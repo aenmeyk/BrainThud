@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud", "BrainThud\BrainThud.csproj", "{5CC8F31E-B8E7-4C7B-8106-A140B2AEEB4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThudTest", "BrainThudTest\BrainThudTest.csproj", "{6D256987-ED2C-4F60-9F0F-E4DDDCEAAF57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{5CC8F31E-B8E7-4C7B-8106-A140B2AEEB4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CC8F31E-B8E7-4C7B-8106-A140B2AEEB4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CC8F31E-B8E7-4C7B-8106-A140B2AEEB4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D256987-ED2C-4F60-9F0F-E4DDDCEAAF57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D256987-ED2C-4F60-9F0F-E4DDDCEAAF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D256987-ED2C-4F60-9F0F-E4DDDCEAAF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D256987-ED2C-4F60-9F0F-E4DDDCEAAF57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
