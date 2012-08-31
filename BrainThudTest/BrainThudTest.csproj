@@ -49,14 +49,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BrainThud.ModelTest\NuggetTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.ModelTest\NuggetTest\Given_a_new_Nugget.cs" />
+    <Compile Include="Extensions\BrainThudAssertionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\Gwt.cs" />
     <Compile Include="Tools\TestExceptionList.cs" />
+    <Compile Include="Tools\TestValues.cs" />
     <Compile Include="Tools\TypeExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BrainThud.Model\BrainThud.Model.csproj">
+      <Project>{BB693ECD-B176-4886-B90A-55E7EBC94736}</Project>
+      <Name>BrainThud.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
