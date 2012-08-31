@@ -1,6 +1,7 @@
 ﻿using BrainThudTest.Extensions;
-using BrainThudTest.Tools;
+using Microsoft.WindowsAzure.StorageClient;
 using NUnit.Framework;
+using FluentAssertions;
 
 namespace BrainThudTest.BrainThud.ModelTest.NuggetTest
 {
@@ -15,25 +16,31 @@ namespace BrainThudTest.BrainThud.ModelTest.NuggetTest
         [Test]
         public void Then_Id_should_get_and_set_a_Guid()
         {
-            this.Nugget.CanGetSetValue(x => x.Id, TestValues.GUID);
+            this.Nugget.CanGetSetGuid(x => x.Id);
         }
 
         [Test]
         public void Then_Question_should_get_and_set_a_string()
         {
-            this.Nugget.CanGetSetValue(x => x.Question, TestValues.STRING);
+            this.Nugget.CanGetSetString(x => x.Question);
         }
 
         [Test]
         public void Then_Answer_should_get_and_set_a_string()
         {
-            this.Nugget.CanGetSetValue(x => x.Answer, TestValues.STRING);
+            this.Nugget.CanGetSetString(x => x.Answer);
         }
 
         [Test]
-        public void Then_SupplementalInformation_should_get_and_set_a_string()
+        public void Then_AdditionalInformation_should_get_and_set_a_string()
         {
-            this.Nugget.CanGetSetValue(x => x.SupplementalInformation, TestValues.STRING );
+            this.Nugget.CanGetSetString(x => x.AdditionalInformation);
+        }
+
+        [Test]
+        public void Then_Nugget_should_inherit_from_TableServiceEntity()
+        {
+            this.Nugget.Should().BeAssignableTo<TableServiceEntity>();
         }
     }
 }

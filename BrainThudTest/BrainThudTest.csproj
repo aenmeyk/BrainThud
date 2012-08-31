@@ -34,6 +34,7 @@
     <Reference Include="FluentAssertions">
       <HintPath>..\packages\FluentAssertions.1.7.1.1\Lib\net40\FluentAssertions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
@@ -42,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +51,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\NuggetTableStorageContextTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\NuggetTableStorageContextTest\Given_a_new_NuggetTableStorageContext.cs" />
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Add_is_called.cs" />
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository.cs" />
+    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\Given_a_new_UnitOfWork.cs" />
     <Compile Include="BrainThud.ModelTest\NuggetTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.ModelTest\NuggetTest\Given_a_new_Nugget.cs" />
     <Compile Include="Extensions\BrainThudAssertionExtensions.cs" />
@@ -62,6 +71,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BrainThud.Data\BrainThud.Data.csproj">
+      <Project>{25729E8C-CB80-4AA2-943E-8A0F76E40F9F}</Project>
+      <Name>BrainThud.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BrainThud.Model\BrainThud.Model.csproj">
       <Project>{BB693ECD-B176-4886-B90A-55E7EBC94736}</Project>
       <Name>BrainThud.Model</Name>
