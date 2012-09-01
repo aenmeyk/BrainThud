@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Data.AzureTableStorage
 {
-    public class TableStorageRepository<T> : IRepository<T> where T: TableServiceEntity
+    public class TableStorageRepository<T> : ITableStorageRepository<T> where T : TableServiceEntity
     {
         private readonly ITableStorageContext<T> tableStorageContext;
 
@@ -15,6 +15,11 @@ namespace BrainThud.Data.AzureTableStorage
         public void Add(T entity)
         {
             this.tableStorageContext.AddObject(entity);
+        }
+
+        public void Commit()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

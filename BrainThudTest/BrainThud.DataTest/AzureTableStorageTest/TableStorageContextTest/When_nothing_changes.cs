@@ -4,10 +4,10 @@ using FluentAssertions;
 using Microsoft.WindowsAzure.StorageClient;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.NuggetTableStorageContextTest
+namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageContextTest
 {
     [TestFixture]
-    public class When_nothing_changes : Given_a_new_NuggetTableStorageContext
+    public class When_nothing_changes : Given_a_new_TableStorageContext_of_Nugget
     {
         public override void When()
         {
@@ -17,13 +17,13 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.NuggetTableStor
         [Test]
         public void Then_ITableStorageContext_should_be_implemented()
         {
-            this.NuggetTableStorageContext.Should().BeAssignableTo<ITableStorageContext<Nugget>>();
+            this.TableStorageContext.Should().BeAssignableTo<ITableStorageContext<Nugget>>();
         }
 
         [Test]
         public void Then_it_should_be_assignable_to_TableServiceContext()
         {
-            this.NuggetTableStorageContext.Should().BeAssignableTo<TableServiceContext>();
+            this.TableStorageContext.Should().BeAssignableTo<TableServiceContext>();
         }
     }
 }

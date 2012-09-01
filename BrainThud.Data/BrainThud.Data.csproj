@@ -51,12 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureTableStorage\ITableStorageRepository.cs" />
-    <Compile Include="AzureTableStorage\NuggetTableStorageContext.cs" />
+    <Compile Include="AzureTableStorage\TableStorageContext.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="AzureTableStorage\ITableStorageContext.cs" />
     <Compile Include="IRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AzureTableStorage\TableStorageRepository.cs" />
+    <Compile Include="RepositoryFactory.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>

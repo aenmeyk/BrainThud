@@ -1,7 +1,7 @@
-﻿using BrainThud.Data;
+﻿using BrainThud.Data.AzureTableStorage;
+using BrainThud.Model;
 using FluentAssertions;
 using NUnit.Framework;
-using BrainThud.Model;
 
 namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest
 {
@@ -14,9 +14,9 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRep
         }
 
         [Test]
-        public void Then_IRepository_should_be_implemented()
+        public void Then_ITableStorageRepository_should_be_implemented()
         {
-            this.TableStorageRepository.Should().BeAssignableTo<IRepository<Nugget>>();
+            this.TableStorageRepository.Should().BeAssignableTo<ITableStorageRepository<Nugget>>();
         }
     }
 }
