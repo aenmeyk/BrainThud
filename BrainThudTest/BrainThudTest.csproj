@@ -56,6 +56,7 @@
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Add_is_called.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository.cs" />
+    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\When_Commit_is_called.cs" />
     <Compile Include="BrainThud.DataTest\UnitOfWorkTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.DataTest\UnitOfWorkTest\Given_a_new_UnitOfWork.cs" />
     <Compile Include="BrainThud.ModelTest\NuggetTest\When_nothing_changes.cs" />

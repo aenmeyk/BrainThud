@@ -50,9 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureTableStorage\ITableStorageRepository.cs" />
     <Compile Include="AzureTableStorage\NuggetTableStorageContext.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="AzureTableStorage\ITableStorageContext.cs" />
+    <Compile Include="IRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AzureTableStorage\TableStorageRepository.cs" />
     <Compile Include="UnitOfWork.cs" />

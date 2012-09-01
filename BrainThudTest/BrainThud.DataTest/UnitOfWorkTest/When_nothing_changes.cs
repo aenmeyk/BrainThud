@@ -1,4 +1,5 @@
 ﻿using BrainThud.Data;
+using BrainThud.Data.AzureTableStorage;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -16,9 +17,9 @@ namespace BrainThudTest.BrainThud.DataTest.UnitOfWorkTest
         }
 
         [Test]
-        public void Then_Nuggets_property_should_get_and_set_an_IRepository()
+        public void Then_Nuggets_property_should_get_and_set_an_ITableStorageRepository()
         {
-            this.UnitOfWork.CanGetSetValue(x => x.Nuggets, new Mock<IRepository<Nugget>>().Object, typeof(IRepository<Nugget>));
+            this.UnitOfWork.CanGetSetValue(x => x.Nuggets, new Mock<ITableStorageRepository<Nugget>>().Object, typeof(ITableStorageRepository<Nugget>));
         }
     }
 }
