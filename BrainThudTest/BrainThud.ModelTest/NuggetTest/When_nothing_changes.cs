@@ -14,12 +14,6 @@ namespace BrainThudTest.BrainThud.ModelTest.NuggetTest
         }
 
         [Test]
-        public void Then_Id_should_get_and_set_a_Guid()
-        {
-            this.Nugget.CanGetSetGuid(x => x.Id);
-        }
-
-        [Test]
         public void Then_Question_should_get_and_set_a_string()
         {
             this.Nugget.CanGetSetString(x => x.Question);

@@ -19,7 +19,7 @@ namespace BrainThud.Data.AzureTableStorage
 
         public void Commit()
         {
-            throw new System.NotImplementedException();
+            this.tableStorageContext.SaveChangesWithRetries();
         }
     }
 }

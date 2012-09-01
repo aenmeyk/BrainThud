@@ -1,4 +1,3 @@
-using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Data.AzureTableStorage
@@ -7,11 +6,10 @@ namespace BrainThud.Data.AzureTableStorage
     {
         private readonly string entitySetName;
 
-
-        public TableStorageContext(string entitySetName, CloudStorageAccount cloudStorageAccount, bool createTable = true)
-            : base(cloudStorageAccount.TableEndpoint.ToString(), cloudStorageAccount.Credentials)
+        public TableStorageContext(string entitySetName, ICloudStorageServices cloudStorageServices)
+            : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
-            if (createTable) cloudStorageAccount.CreateCloudTableClient().CreateTableIfNotExist(entitySetName);
+            cloudStorageServices.CreateTableIfNotExist(entitySetName);
             this.entitySetName = entitySetName;
         }
 

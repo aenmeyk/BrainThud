@@ -1,4 +1,5 @@
-﻿using BrainThud.Data.AzureTableStorage;
+﻿using BrainThud.Data;
+using BrainThud.Data.AzureTableStorage;
 using BrainThud.Model;
 using FluentAssertions;
 using Microsoft.WindowsAzure.StorageClient;
@@ -24,6 +25,12 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageCon
         public void Then_it_should_be_assignable_to_TableServiceContext()
         {
             this.TableStorageContext.Should().BeAssignableTo<TableServiceContext>();
+        }
+
+        [Test]
+        public void Then_CreateTableIfNotExist_should_be_called_on_CloudStorageServices()
+        {
+            this.CloudStorageServices.Verify(x => x.CreateTableIfNotExist(EntitySetNames.NUGGET));
         }
     }
 }

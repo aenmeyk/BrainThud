@@ -5,6 +5,6 @@ namespace BrainThud.Data
 {
     public interface IRepositoryFactory 
     {
-        ITableStorageRepository<T> CreateTableStorageRepository<T>(bool createTable = true) where T : TableServiceEntity;
+        ITableStorageRepository<T> CreateTableStorageRepository<T>() where T : TableServiceEntity;
     }
 }

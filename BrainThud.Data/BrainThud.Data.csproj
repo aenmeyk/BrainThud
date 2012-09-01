@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureTableStorage\CloudStorageServices.cs" />
+    <Compile Include="AzureTableStorage\ICloudStorageServices.cs" />
     <Compile Include="AzureTableStorage\ITableStorageRepository.cs" />
     <Compile Include="AzureTableStorage\TableStorageContext.cs" />
     <Compile Include="Constants.cs" />

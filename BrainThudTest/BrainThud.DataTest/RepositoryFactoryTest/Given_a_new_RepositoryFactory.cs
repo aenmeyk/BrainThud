@@ -10,8 +10,8 @@ namespace BrainThudTest.BrainThud.DataTest.RepositoryFactoryTest
     {
         public override void Given()
         {
-            var cloudStorageAccount = new CloudStorageAccountBuilder().Build();
-            this.RepositoryFactory = new RepositoryFactory(cloudStorageAccount);
+            var cloudStorageServices = new MockCloudStorageServicesBuilder().Build();
+            this.RepositoryFactory = new RepositoryFactory(cloudStorageServices.Object);
         }
 
         protected RepositoryFactory RepositoryFactory { get; private set; }

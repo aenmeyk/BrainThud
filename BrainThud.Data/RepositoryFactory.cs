@@ -1,24 +1,22 @@
 using BrainThud.Data.AzureTableStorage;
-using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Data
 {
     public class RepositoryFactory: IRepositoryFactory
     {
-        private readonly CloudStorageAccount cloudStorageAccount;
+        private readonly ICloudStorageServices cloudStorageServices;
 
-        public RepositoryFactory(CloudStorageAccount cloudStorageAccount)
+        public RepositoryFactory(ICloudStorageServices cloudStorageServices)
         {
-//            this.cloudStorageAccount = CloudStorageAccount.FromConfigurationSetting("DataConnectionString");
-            this.cloudStorageAccount = cloudStorageAccount;
+            this.cloudStorageServices = cloudStorageServices;
         }
 
-        public ITableStorageRepository<T> CreateTableStorageRepository<T>(bool createTable = true)  where T: TableServiceEntity
+        public ITableStorageRepository<T> CreateTableStorageRepository<T>()  where T: TableServiceEntity
         {
             // Use the TableServiceEntity name as the EntitySetName by convention
             var entitySetName = typeof(T).Name;
-            var tableStorageContext = new TableStorageContext<T>(entitySetName, this.cloudStorageAccount, createTable);
+            var tableStorageContext = new TableStorageContext<T>(entitySetName, this.cloudStorageServices);
 
             return new TableStorageRepository<T>(tableStorageContext);
         }

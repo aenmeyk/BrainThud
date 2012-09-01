@@ -12,7 +12,7 @@ namespace BrainThudTest.BrainThud.DataTest.RepositoryFactoryTest
 
         public override void When()
         {
-            this.repository = this.RepositoryFactory.CreateTableStorageRepository<Nugget>(createTable: false);
+            this.repository = this.RepositoryFactory.CreateTableStorageRepository<Nugget>();
         }
 
         [Test]

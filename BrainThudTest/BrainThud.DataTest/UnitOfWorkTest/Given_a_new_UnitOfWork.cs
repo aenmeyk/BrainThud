@@ -14,7 +14,7 @@ namespace BrainThudTest.BrainThud.DataTest.UnitOfWorkTest
         {
             this.NuggetTableStorageRepository = new Mock<ITableStorageRepository<Nugget>>();
             var repositoryFactory = new Mock<IRepositoryFactory>();
-            repositoryFactory.Setup(x => x.CreateTableStorageRepository<Nugget>(true)).Returns(this.NuggetTableStorageRepository.Object);
+            repositoryFactory.Setup(x => x.CreateTableStorageRepository<Nugget>()).Returns(this.NuggetTableStorageRepository.Object);
             this.UnitOfWork = new UnitOfWork(repositoryFactory.Object);
         }
 
