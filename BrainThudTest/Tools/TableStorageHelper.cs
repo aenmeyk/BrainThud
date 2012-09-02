@@ -14,10 +14,5 @@ namespace BrainThudTest.Tools
 
             tableServiceContext.SaveChangesWithRetries();
         }
-
-        public static IEnumerable<T> GetAll<T>(TableServiceContext tableServiceContext)
-        {
-            return tableServiceContext.CreateQuery<T>(typeof(T).Name);
-        }
     }
 }

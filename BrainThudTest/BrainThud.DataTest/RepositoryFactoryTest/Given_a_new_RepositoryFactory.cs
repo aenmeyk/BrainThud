@@ -1,6 +1,8 @@
 ﻿using BrainThud.Data;
+using BrainThud.Data.AzureTableStorage;
 using BrainThudTest.Builders;
 using BrainThudTest.Tools;
+using Moq;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.DataTest.RepositoryFactoryTest
@@ -11,7 +13,7 @@ namespace BrainThudTest.BrainThud.DataTest.RepositoryFactoryTest
         public override void Given()
         {
             var cloudStorageServices = new MockCloudStorageServicesBuilder().Build();
-            this.RepositoryFactory = new RepositoryFactory(cloudStorageServices.Object);
+            this.RepositoryFactory = new RepositoryFactory(cloudStorageServices.Object, new Mock<ITableStorageKeyGenerator>().Object);
         }
 
         protected RepositoryFactory RepositoryFactory { get; private set; }

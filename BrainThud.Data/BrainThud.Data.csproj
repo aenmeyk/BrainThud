@@ -52,8 +52,10 @@
   <ItemGroup>
     <Compile Include="AzureTableStorage\CloudStorageServices.cs" />
     <Compile Include="AzureTableStorage\ICloudStorageServices.cs" />
+    <Compile Include="AzureTableStorage\ITableStorageKeyGenerator.cs" />
     <Compile Include="AzureTableStorage\ITableStorageRepository.cs" />
     <Compile Include="AzureTableStorage\TableStorageContext.cs" />
+    <Compile Include="AzureTableStorage\TableStorageKeyGenerator.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="AzureTableStorage\ITableStorageContext.cs" />

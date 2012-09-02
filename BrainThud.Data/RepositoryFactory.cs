@@ -6,10 +6,12 @@ namespace BrainThud.Data
     public class RepositoryFactory: IRepositoryFactory
     {
         private readonly ICloudStorageServices cloudStorageServices;
+        private readonly ITableStorageKeyGenerator keyGenerator;
 
-        public RepositoryFactory(ICloudStorageServices cloudStorageServices)
+        public RepositoryFactory(ICloudStorageServices cloudStorageServices, ITableStorageKeyGenerator keyGenerator)
         {
             this.cloudStorageServices = cloudStorageServices;
+            this.keyGenerator = keyGenerator;
         }
 
         public ITableStorageRepository<T> CreateTableStorageRepository<T>()  where T: TableServiceEntity
@@ -18,7 +20,7 @@ namespace BrainThud.Data
             var entitySetName = typeof(T).Name;
             var tableStorageContext = new TableStorageContext<T>(entitySetName, this.cloudStorageServices);
 
-            return new TableStorageRepository<T>(tableStorageContext);
+            return new TableStorageRepository<T>(tableStorageContext, this.keyGenerator);
         }
     }
 }
