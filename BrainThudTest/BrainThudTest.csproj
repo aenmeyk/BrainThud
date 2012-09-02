@@ -45,6 +45,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +57,7 @@
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CloudStorageServicesTest\Given_a_new_CloudStorageServices.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\Given_a_new_TableStorageContext_of_Nugget.cs" />
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_GetAll_is_called.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Commit_is_called.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Add_is_called.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_nothing_changes.cs" />
@@ -68,6 +70,9 @@
     <Compile Include="BrainThud.DataTest\UnitOfWorkTest\Given_a_new_UnitOfWork.cs" />
     <Compile Include="BrainThud.ModelTest\NuggetTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.ModelTest\NuggetTest\Given_a_new_Nugget.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\When_Get_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\Given_a_new_NuggetController.cs" />
     <Compile Include="Builders\CloudStorageAccountBuilder.cs" />
     <Compile Include="Builders\MockCloudStorageServicesBuilder.cs" />
     <Compile Include="Extensions\BrainThudAssertionExtensions.cs" />
@@ -92,6 +97,10 @@
     <ProjectReference Include="..\BrainThud.Model\BrainThud.Model.csproj">
       <Project>{BB693ECD-B176-4886-B90A-55E7EBC94736}</Project>
       <Name>BrainThud.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BrainThud.Web\BrainThud.Web.csproj">
+      <Project>{86165000-7B8E-43AC-B049-6081DCAF5A7D}</Project>
+      <Name>BrainThud.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

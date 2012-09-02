@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Data.Services.Client;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Data.AzureTableStorage
@@ -16,6 +18,11 @@ namespace BrainThud.Data.AzureTableStorage
         public void AddObject(T entity)
         {
             this.AddObject(this.entitySetName, entity);
+        }
+
+        public IEnumerable<T> CreateQuery(string entitySetName)
+        {
+            return this.CreateQuery<T>(entitySetName);
         }
     }
 }

@@ -11,11 +11,11 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRep
     {
         public override void Given()
         {
-            this.Context = new Mock<ITableStorageContext<Nugget>>();
-            this.TableStorageRepository = new TableStorageRepository<Nugget>(this.Context.Object);
+            this.TableStorageContext = new Mock<ITableStorageContext<Nugget>>();
+            this.TableStorageRepository = new TableStorageRepository<Nugget>(this.TableStorageContext.Object);
         }
 
-        protected Mock<ITableStorageContext<Nugget>> Context { get; private set; }
+        protected Mock<ITableStorageContext<Nugget>> TableStorageContext { get; private set; }
         protected TableStorageRepository<Nugget> TableStorageRepository { get; private set; }
     }
 }

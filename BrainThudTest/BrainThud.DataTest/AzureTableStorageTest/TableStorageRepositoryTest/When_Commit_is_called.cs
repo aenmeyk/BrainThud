@@ -15,7 +15,7 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRep
         [Test]
         public void Then_SaveChangesWithRetries_is_called_on_TableStorageContext()
         {
-            this.Context.Verify(x => x.SaveChangesWithRetries(), Times.Once());
+            this.TableStorageContext.Verify(x => x.SaveChangesWithRetries(), Times.Once());
         }
     }
 }

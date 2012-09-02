@@ -3,7 +3,7 @@ using BrainThud.Model;
 
 namespace BrainThud.Data
 {
-    public class UnitOfWork 
+    public class UnitOfWork : IUnitOfWork
     {
         public UnitOfWork(IRepositoryFactory repositoryFactory)
         {

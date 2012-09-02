@@ -1,5 +1,6 @@
 ﻿using BrainThud.Data;
 using BrainThud.Data.AzureTableStorage;
+using BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetControllerTest;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -14,6 +15,12 @@ namespace BrainThudTest.BrainThud.DataTest.UnitOfWorkTest
         public override void When()
         {
             // nothing changes
+        }
+
+        [Test]
+        public void Then_IUnitOfWork_should_be_implemented()
+        {
+            this.UnitOfWork.Should().BeAssignableTo<IUnitOfWork>();
         }
 
         [Test]

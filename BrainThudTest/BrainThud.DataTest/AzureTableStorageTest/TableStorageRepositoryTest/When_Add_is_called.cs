@@ -16,7 +16,7 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRep
         [Test]
         public void Then_AddObject_is_called_on_the_TableServiceContext()
         {
-            this.Context.Verify(x => x.AddObject(this.nugget));
+            this.TableStorageContext.Verify(x => x.AddObject(this.nugget));
         }
     }
 }

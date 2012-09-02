@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using System.Data.Services.Client;
 using Microsoft.WindowsAzure.StorageClient;
 
@@ -8,5 +9,6 @@ namespace BrainThud.Data.AzureTableStorage
     {
         void AddObject(T entity);
         DataServiceResponse SaveChangesWithRetries();
+        IEnumerable<T> CreateQuery(string entitySetName);
     }
 }

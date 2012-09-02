@@ -1,4 +1,4 @@
-
+using System.Collections.Generic;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Data.AzureTableStorage
@@ -20,6 +20,11 @@ namespace BrainThud.Data.AzureTableStorage
         public void Commit()
         {
             this.tableStorageContext.SaveChangesWithRetries();
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return this.tableStorageContext.CreateQuery(typeof(T).Name);
         }
     }
 }
