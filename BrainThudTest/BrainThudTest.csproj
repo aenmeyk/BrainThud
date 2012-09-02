@@ -53,37 +53,91 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CloudStorageServicesTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CloudStorageServicesTest\Given_a_new_CloudStorageServices.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\When_GeneratePartitionKey_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\Given_a_new_TableStorageKeyGenerator.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\Given_a_new_TableStorageContext_of_Nugget.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Nugget_is_added_with_existing_keys.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_GetAll_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Commit_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Nugget_is_added_with_blank_keys.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository.cs" />
-    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_CreateTableStorageRepository_of_Nugget_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\Given_a_new_RepositoryFactory.cs" />
-    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\When_Commit_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\Given_a_new_UnitOfWork.cs" />
-    <Compile Include="BrainThud.ModelTest\NuggetTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.ModelTest\NuggetTest\Given_a_new_Nugget.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\When_Get_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\Given_a_new_NuggetController.cs" />
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CloudStorageServicesTest\Given_a_new_CloudStorageServices.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CloudStorageServicesTest\When_nothing_changes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\Given_a_new_TableStorageKeyGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\When_GeneratePartitionKey_is_called.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\When_GenerateRowKey_is_called.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\When_nothing_changes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\Given_a_new_TableStorageContext_of_Nugget.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\When_nothing_changes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Commit_is_called.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_GetAll_is_called.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_nothing_changes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Nugget_is_added_with_blank_keys.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Nugget_is_added_with_existing_keys.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\Given_a_new_RepositoryFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_CreateTableStorageRepository_of_Nugget_is_called.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_nothing_changes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\Given_a_new_UnitOfWork.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\When_Commit_is_called.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\When_nothing_changes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.ModelTest\NuggetTest\Given_a_new_Nugget.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.ModelTest\NuggetTest\When_nothing_changes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\Given_a_new_NuggetController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\When_Get_is_called.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\When_nothing_changes.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Builders\CloudStorageAccountBuilder.cs" />
     <Compile Include="Builders\MockCloudStorageServicesBuilder.cs" />
     <Compile Include="Extensions\BrainThudAssertionExtensions.cs" />
-    <Compile Include="Integration\Azure_Table_Storage_Tests.cs" />
+    <Compile Include="Integration\Azure_Table_Storage_Tests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Integration\TestSetup.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestSetup.cs" />
     <Compile Include="Tools\Constants.cs" />
     <Compile Include="Tools\Gwt.cs" />
     <Compile Include="Tools\TableStorageHelper.cs" />

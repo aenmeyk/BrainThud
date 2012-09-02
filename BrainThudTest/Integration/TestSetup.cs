@@ -1,10 +1,9 @@
 ﻿using System.Configuration;
 using System.Diagnostics;
-using BrainThudTest.Tools;
 using Microsoft.WindowsAzure;
 using NUnit.Framework;
 
-namespace BrainThudTest
+namespace BrainThudTest.Integration
 {
     [SetUpFixture]
     public class TestSetup
