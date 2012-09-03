@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.ServiceRuntime;
 
 namespace BrainThud.Web
 {
@@ -16,6 +19,22 @@ namespace BrainThud.Web
     {
         protected void Application_Start()
         {
+            CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
+            {
+                string connectionString;
+
+                if (RoleEnvironment.IsAvailable)
+                {
+                    connectionString = RoleEnvironment.GetConfigurationSettingValue(configName);
+                }
+                else
+                {
+                    connectionString = ConfigurationManager.AppSettings[configName];
+                }
+
+                configSetter(connectionString);
+            });
+
             AreaRegistration.RegisterAllAreas();
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

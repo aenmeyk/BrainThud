@@ -158,7 +158,7 @@
       <Name>BrainThud.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\BrainThud.Web\BrainThud.Web.csproj">
-      <Project>{86165000-7B8E-43AC-B049-6081DCAF5A7D}</Project>
+      <Project>{7A052710-6240-4B71-8E72-39C90401B2C7}</Project>
       <Name>BrainThud.Web</Name>
     </ProjectReference>
   </ItemGroup>

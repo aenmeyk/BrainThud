@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Http;
 using BrainThud.Data;
 using BrainThud.Model;
 
 namespace BrainThud.Web.Controllers
 {
-    public class NuggetController: ApiController
+    public class NuggetController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
 
