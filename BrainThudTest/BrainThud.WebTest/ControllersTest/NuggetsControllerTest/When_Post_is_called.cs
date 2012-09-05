@@ -16,12 +16,12 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest
     public class When_Post_is_called : Given_a_new_NuggetController
     {
         private Nugget nugget;
-        private HttpResponseMessage result;
+        private HttpResponseMessage response;
 
         public override void When()
         {
             this.nugget = new Nugget { RowKey = "1C81541E-5062-43F5-B63D-E07BD579FE79" };
-            this.result = this.NuggetsController.Post(this.nugget);
+            this.response = this.NuggetsController.Post(this.nugget);
         }
 
         [Test]
@@ -39,13 +39,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest
         [Test]
         public void Then_an_HttpResponseMessage_is_returned_with_a_201_status_code()
         {
-            this.result.StatusCode.Should().Be(HttpStatusCode.Created);
+            this.response.StatusCode.Should().Be(HttpStatusCode.Created);
         }
 
         [Test]
         public void Then_the_Nugget_should_be_returned_in_the_response()
         {
-            var task = this.result.Content.ReadAsStringAsync();
+            var task = this.response.Content.ReadAsStringAsync();
             var nuggetInResponse = Json.Decode(task.Result);
             ((string)nuggetInResponse.RowKey).Should().Be(this.nugget.RowKey);
         }
@@ -59,7 +59,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest
 
             id.Should().Be(this.nugget.RowKey);
             this.NuggetsController.RouteName.Should().Be(RouteConfig.DEFAULT_API);
-            this.result.Headers.Location.ToString().Should().Be(TestValues.LOCALHOST);
+            this.response.Headers.Location.ToString().Should().Be(TestValues.LOCALHOST);
         }
     }
 }

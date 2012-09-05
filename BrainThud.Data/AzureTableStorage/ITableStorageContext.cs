@@ -9,6 +9,7 @@ namespace BrainThud.Data.AzureTableStorage
     {
         void AddObject(T entity);
         void UpdateObject(T entity);
+        void DeleteObject(T entity);
         DataServiceResponse SaveChangesWithRetries();
         IEnumerable<T> CreateQuery(string entitySetName);
     }

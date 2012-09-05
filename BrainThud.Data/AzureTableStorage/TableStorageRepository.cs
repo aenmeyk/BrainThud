@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Data.AzureTableStorage
@@ -26,14 +27,20 @@ namespace BrainThud.Data.AzureTableStorage
             this.tableStorageContext.UpdateObject(entity);
         }
 
-        public void Commit()
+        public void Delete(string rowKey)
         {
-            this.tableStorageContext.SaveChangesWithRetries();
+            var item = this.tableStorageContext.CreateQuery(typeof(T).Name).First(x => x.PartitionKey == Keys.TEMP_PARTITION_KEY && x.RowKey == rowKey);
+            this.tableStorageContext.DeleteObject(item);
         }
 
         public IEnumerable<T> GetAll()
         {
             return this.tableStorageContext.CreateQuery(typeof(T).Name);
+        }
+
+        public void Commit()
+        {
+            this.tableStorageContext.SaveChangesWithRetries();
         }
     }
 }

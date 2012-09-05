@@ -11,24 +11,24 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest
     public class When_Put_is_called : Given_a_new_NuggetController
     {
         private Nugget nugget;
-        private HttpResponseMessage result;
+        private HttpResponseMessage response;
 
         public override void When()
         {
             this.nugget = new Nugget();
-            this.result = this.NuggetsController.Put(this.nugget);
+            this.response = this.NuggetsController.Put(this.nugget);
         }
 
         [Test]
         public void Then_an_HttpResponseMessage_is_returned()
         {
-            this.result.Should().BeAssignableTo<HttpResponseMessage>();
+            this.response.Should().BeAssignableTo<HttpResponseMessage>();
         }
 
         [Test]
         public void Then_the_returned_status_code_should_be_204()
         {
-            this.result.StatusCode.Should().Be(HttpStatusCode.NoContent);
+            this.response.StatusCode.Should().Be(HttpStatusCode.NoContent);
         }
 
         [Test]

@@ -25,6 +25,11 @@ namespace BrainThud.Data.AzureTableStorage
             base.UpdateObject(entity);
         }
 
+        public void DeleteObject(T entity)
+        {
+            base.DeleteObject(entity);
+        }
+
         public IEnumerable<T> CreateQuery(string entitySetName)
         {
             return this.CreateQuery<T>(entitySetName);

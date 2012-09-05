@@ -36,15 +36,25 @@ namespace BrainThud.Web.Controllers
             this.unitOfWork.Nuggets.Add(nugget);
             this.unitOfWork.Commit();
             var response = this.Request.CreateResponse(HttpStatusCode.Created, nugget);
+
             var routeValues = new
             {
                 controller = this.ControllerContext.ControllerDescriptor.ControllerName,
                 id = nugget.RowKey
             };
+
             response.Headers.Location = new Uri(this.GetLink(RouteConfig.DEFAULT_API, routeValues));
             return response;
         }
 
+        public HttpResponseMessage Delete(string id)
+        {
+            this.unitOfWork.Nuggets.Delete(id);
+            this.unitOfWork.Commit();
+            return new HttpResponseMessage(HttpStatusCode.NoContent);
+        }
+
+        // Allows Url.Link to be faked for testing
         public virtual string GetLink(string routeName, object routeValues)
         {
             return Url.Link(routeName, routeValues);

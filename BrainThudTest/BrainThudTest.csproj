@@ -82,6 +82,7 @@
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Delete_is_called.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Update_is_called.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository.cs">
       <SubType>Code</SubType>
@@ -125,6 +126,7 @@
     <Compile Include="BrainThud.ModelTest\NuggetTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Delete_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Post_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Put_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\Given_a_new_NuggetController.cs">
