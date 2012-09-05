@@ -8,6 +8,7 @@ namespace BrainThud.Data.AzureTableStorage
     public interface ITableStorageContext<T> where T: TableServiceEntity
     {
         void AddObject(T entity);
+        void UpdateObject(T entity);
         DataServiceResponse SaveChangesWithRetries();
         IEnumerable<T> CreateQuery(string entitySetName);
     }

@@ -141,7 +141,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
-    <Compile Include="Controllers\NuggetController.cs" />
+    <Compile Include="Controllers\ILinkProvider.cs" />
+    <Compile Include="Controllers\NuggetsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />

@@ -19,6 +19,12 @@ namespace BrainThud.Data.AzureTableStorage
             this.AddObject(this.entitySetName, entity);
         }
 
+        public void UpdateObject(T entity)
+        {
+            this.AttachTo(this.entitySetName, entity);
+            base.UpdateObject(entity);
+        }
+
         public IEnumerable<T> CreateQuery(string entitySetName)
         {
             return this.CreateQuery<T>(entitySetName);

@@ -5,6 +5,7 @@ namespace BrainThudTest.Tools
     public static class TestTypes
     {
         public const string INTEGRATION = "Integration";
+        public const string LONG_RUNNING = "LongRunning";
     }
 
     public static class TestValues
@@ -16,5 +17,6 @@ namespace BrainThudTest.Tools
         public const string STRING = "TestString";
         public const string PARTITION_KEY = "c86258da-9165-4e19-906a-4441bd298d71";
         public const string ROW_KEY = "6037e998-c399-4153-9353-00ae5e6ea1e9";
+        public const string LOCALHOST = "http://localhost/";
     }
 }

@@ -21,6 +21,11 @@ namespace BrainThud.Data.AzureTableStorage
             this.tableStorageContext.AddObject(entity);
         }
 
+        public void Update(T entity)
+        {
+            this.tableStorageContext.UpdateObject(entity);
+        }
+
         public void Commit()
         {
             this.tableStorageContext.SaveChangesWithRetries();

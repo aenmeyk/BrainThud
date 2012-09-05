@@ -38,6 +38,9 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -45,6 +48,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -77,6 +82,7 @@
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Update_is_called.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -119,16 +125,20 @@
     <Compile Include="BrainThud.ModelTest\NuggetTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\Given_a_new_NuggetController.cs">
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Post_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Put_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\Given_a_new_NuggetController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\When_Get_is_called.cs">
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Get_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetControllerTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.WebTest\Fakes\NuggetsControllerFake.cs" />
     <Compile Include="Builders\CloudStorageAccountBuilder.cs" />
+    <Compile Include="Builders\ApiControllerBuilder.cs" />
     <Compile Include="Builders\MockCloudStorageServicesBuilder.cs" />
     <Compile Include="Extensions\BrainThudAssertionExtensions.cs" />
     <Compile Include="Integration\Azure_Table_Storage_Tests.cs">

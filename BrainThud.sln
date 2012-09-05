@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.Model", "BrainThu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.Web", "BrainThud.Web\BrainThud.Web.csproj", "{7A052710-6240-4B71-8E72-39C90401B2C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebRole1", "MvcWebRole1\MvcWebRole1.csproj", "{EC0C7405-DB47-4A63-B566-16956AC27E0B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,10 +37,6 @@ Global
 		{7A052710-6240-4B71-8E72-39C90401B2C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A052710-6240-4B71-8E72-39C90401B2C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A052710-6240-4B71-8E72-39C90401B2C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC0C7405-DB47-4A63-B566-16956AC27E0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC0C7405-DB47-4A63-B566-16956AC27E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC0C7405-DB47-4A63-B566-16956AC27E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC0C7405-DB47-4A63-B566-16956AC27E0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

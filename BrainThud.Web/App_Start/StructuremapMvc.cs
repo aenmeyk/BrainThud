@@ -12,7 +12,6 @@ namespace BrainThud.Web.App_Start {
 //            DependencyResolver.SetResolver(new StructureMapWebApiResolver(container));
             DependencyResolver.SetResolver(new StructureMapMvcResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapWebApiResolver(container);
-//            GlobalConfiguration.Configuration.DependencyResolver = new StructureMapWebApiResolver(container);
         }
     }
 }
