@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using BrainThud.Data;
 using BrainThud.Model;
@@ -17,11 +18,26 @@ namespace BrainThud.Web.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        public ILinkProvider LinkProvider { get; set; }
-
         public IEnumerable<Nugget> Get()
         {
             return this.unitOfWork.Nuggets.GetAll();
+        }
+
+        public Nugget Get(string id)
+        {
+            try
+            {
+                return this.unitOfWork.Nuggets.Get(id);
+            }
+            catch (InvalidOperationException ex)
+            {
+                if (ex.Message == "Sequence contains no matching element")
+                {
+                    throw new HttpException((int)HttpStatusCode.NotFound, "The specified knowledge nugget could not be found.");
+                }
+
+                throw;
+            }
         }
 
         public HttpResponseMessage Put(Nugget nugget)
@@ -43,7 +59,7 @@ namespace BrainThud.Web.Controllers
                 id = nugget.RowKey
             };
 
-            response.Headers.Location = new Uri(this.GetLink(RouteConfig.DEFAULT_API, routeValues));
+            response.Headers.Location = new Uri(this.GetLink(RouteNames.DEFAULT_API, routeValues));
             return response;
         }
 

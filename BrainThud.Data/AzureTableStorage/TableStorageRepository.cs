@@ -8,11 +8,15 @@ namespace BrainThud.Data.AzureTableStorage
     {
         private readonly ITableStorageContext<T> tableStorageContext;
         private readonly ITableStorageKeyGenerator keyGenerator;
-
         public TableStorageRepository(ITableStorageContext<T> tableStorageContext, ITableStorageKeyGenerator keyGenerator)
         {
             this.tableStorageContext = tableStorageContext;
             this.keyGenerator = keyGenerator;
+        }
+
+        private IEnumerable<T> entitySet
+        {
+            get { return this.tableStorageContext.CreateQuery(typeof(T).Name); }
         }
 
         public void Add(T entity)
@@ -29,13 +33,18 @@ namespace BrainThud.Data.AzureTableStorage
 
         public void Delete(string rowKey)
         {
-            var item = this.tableStorageContext.CreateQuery(typeof(T).Name).First(x => x.PartitionKey == Keys.TEMP_PARTITION_KEY && x.RowKey == rowKey);
+            var item = this.Get(rowKey);
             this.tableStorageContext.DeleteObject(item);
+        }
+
+        public T Get(string rowKey)
+        {
+            return this.entitySet.First(x => x.PartitionKey == Keys.TEMP_PARTITION_KEY && x.RowKey == rowKey);
         }
 
         public IEnumerable<T> GetAll()
         {
-            return this.tableStorageContext.CreateQuery(typeof(T).Name);
+            return this.entitySet;
         }
 
         public void Commit()

@@ -1,4 +1,5 @@
 ﻿using BrainThud.Data;
+using BrainThud.Model;
 using BrainThud.Web.Controllers;
 using BrainThudTest.Tools;
 

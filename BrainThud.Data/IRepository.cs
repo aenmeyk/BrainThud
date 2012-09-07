@@ -6,6 +6,7 @@ namespace BrainThud.Data
     {
         void Add(T entity);
         void Update(T entity);
+        T Get(string rowKey);
         IEnumerable<T> GetAll();
     }
 }

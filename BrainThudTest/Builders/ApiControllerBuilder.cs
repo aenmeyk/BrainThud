@@ -4,8 +4,6 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Hosting;
 using System.Web.Http.Routing;
 using BrainThud.Web;
-using BrainThud.Web.Controllers;
-using Moq;
 
 namespace BrainThudTest.Builders
 {
@@ -22,7 +20,7 @@ namespace BrainThudTest.Builders
         {
             var config = new HttpConfiguration();
             var request = new HttpRequestMessage(httpMethod, requestUri);
-            var route = config.Routes.MapHttpRoute(RouteConfig.DEFAULT_API, "api/{controller}/{id}");
+            var route = config.Routes.MapHttpRoute(RouteNames.DEFAULT_API, "api/{controller}/{id}");
             var controllerPartLength = "Controller".Length;
             var typeName = typeof(T).Name;
             var controllerName = typeName.Remove(typeName.Length - controllerPartLength, controllerPartLength);

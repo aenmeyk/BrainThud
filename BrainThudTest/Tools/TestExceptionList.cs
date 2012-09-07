@@ -22,10 +22,23 @@ namespace BrainThudTest.Tools
                 throw (testException.Exception);
             }
         }
+
+        public void HandleAll()
+        {
+            foreach (var testException in this.testExceptions.Where(a => !a.IsHandled))
+            {
+                testException.IsHandled = true;
+            }
+        }
         
         public IEnumerator<Exception> GetEnumerator()
         {
-            yield return this.testExceptions.GetEnumerator().Current.Exception;
+//            yield return this.testExceptions.GetEnumerator().Current.Exception;
+
+            foreach(var testException in testExceptions)
+            {
+                yield return testException.Exception;
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()

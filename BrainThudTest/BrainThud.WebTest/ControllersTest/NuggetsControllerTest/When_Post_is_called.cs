@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
 using BrainThud.Web;
+using BrainThud.Web.App_Start;
 using BrainThudTest.Tools;
 using FluentAssertions;
 using NUnit.Framework;
@@ -58,7 +59,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest
             var id = propertyInfo.GetValue(this.NuggetsController.RouteValues, null);
 
             id.Should().Be(this.nugget.RowKey);
-            this.NuggetsController.RouteName.Should().Be(RouteConfig.DEFAULT_API);
+            this.NuggetsController.RouteName.Should().Be(RouteNames.DEFAULT_API);
             this.response.Headers.Location.ToString().Should().Be(TestValues.LOCALHOST);
         }
     }

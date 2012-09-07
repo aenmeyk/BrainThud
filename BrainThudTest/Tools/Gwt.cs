@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace BrainThudTest.Tools
@@ -34,6 +36,15 @@ namespace BrainThudTest.Tools
         protected void ThrowUnhandledExceptions()
         {
             this.testExceptionList.ThrowUnhandled();
+        }
+
+        protected void ShouldThrowException<T>(string message)
+        {
+            var exception = this.testExceptionList.Single();
+            exception.Should().BeOfType<T>();
+            exception.Message.Should().Be(message);
+
+            this.testExceptionList.HandleAll();
         }
     }
 }

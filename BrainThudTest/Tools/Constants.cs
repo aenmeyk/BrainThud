@@ -19,4 +19,9 @@ namespace BrainThudTest.Tools
         public const string ROW_KEY = "6037e998-c399-4153-9353-00ae5e6ea1e9";
         public const string LOCALHOST = "http://localhost/";
     }
+
+    public static class TestUrls
+    {
+        public const string NUGGETS = "http://localhost/api/nuggets";
+    }
 }
