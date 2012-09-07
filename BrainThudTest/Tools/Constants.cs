@@ -17,11 +17,16 @@ namespace BrainThudTest.Tools
         public const string STRING = "TestString";
         public const string PARTITION_KEY = "c86258da-9165-4e19-906a-4441bd298d71";
         public const string ROW_KEY = "6037e998-c399-4153-9353-00ae5e6ea1e9";
-        public const string LOCALHOST = "http://localhost/";
+        public const string ERROR_KEY = "ErrorKey";
+        public const string ERROR_MESSAGE = "Error Message";
+        public const string ERROR_KEY_2 = "ErrorKey2";
+        public const string ERROR_MESSAGE_2 = "Error Message 2";
+        public const string VALID = "Valid";
     }
 
     public static class TestUrls
     {
         public const string NUGGETS = "http://localhost/api/nuggets";
+        public const string LOCALHOST = "http://localhost/";
     }
 }

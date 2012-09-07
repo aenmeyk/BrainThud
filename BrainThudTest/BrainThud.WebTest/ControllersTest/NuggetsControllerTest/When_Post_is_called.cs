@@ -60,7 +60,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest
 
             id.Should().Be(this.nugget.RowKey);
             this.NuggetsController.RouteName.Should().Be(RouteNames.DEFAULT_API);
-            this.response.Headers.Location.ToString().Should().Be(TestValues.LOCALHOST);
+            this.response.Headers.Location.ToString().Should().Be(TestUrls.LOCALHOST);
         }
     }
 }

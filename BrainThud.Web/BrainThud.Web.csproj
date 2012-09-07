@@ -137,8 +137,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\ValidationActionFilter.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\GlobalConfig.cs" />
     <Compile Include="App_Start\MvcRouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -236,7 +238,7 @@
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Test\QUnit\qunit.js" />
     <Content Include="Test\WebApi\webapi.endpoint.tests.js" />
-    <Content Include="Test\WebApi\webapi.get-result.tests.htm" />
+    <Content Include="Test\WebApi\webapi.get-result.tests.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -131,6 +131,13 @@
     <Compile Include="BrainThud.ModelTest\NuggetTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.WebTest\ActionFiltersTest\When_OnActionExecuting_is_called_with_a_model_error_and_a_valid_model_state.cs" />
+    <Compile Include="BrainThud.WebTest\ActionFiltersTest\When_OnActionExecuting_is_called_with_two_model_errors.cs" />
+    <Compile Include="BrainThud.WebTest\ActionFiltersTest\When_OnActionExecuting_is_called_with_an_invalid_ModelState.cs" />
+    <Compile Include="BrainThud.WebTest\ActionFiltersTest\When_OnActionExecuting_is_called_with_a_valid_ModelState.cs" />
+    <Compile Include="BrainThud.WebTest\ActionFiltersTest\Given_a_new_ValidationActionFilter.cs" />
+    <Compile Include="BrainThud.WebTest\App_StartTest\When_CustomizeConfig_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\App_StartTest\Given_a_GlobalConfig_class.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Get_is_called_with_an_Id_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Get_is_called_with_an_Id_parameter.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Delete_is_called.cs" />
@@ -148,6 +155,7 @@
     <Compile Include="BrainThud.WebTest\Fakes\NuggetsControllerFake.cs" />
     <Compile Include="Builders\CloudStorageAccountBuilder.cs" />
     <Compile Include="Builders\ApiControllerBuilder.cs" />
+    <Compile Include="Builders\ControllerContextBuilder.cs" />
     <Compile Include="Builders\MockCloudStorageServicesBuilder.cs" />
     <Compile Include="Extensions\BrainThudAssertionExtensions.cs" />
     <Compile Include="Integration\Azure_Table_Storage_Tests.cs">

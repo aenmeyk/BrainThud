@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace BrainThud.Web
+namespace BrainThud.Web.App_Start
 {
     public class FilterConfig
     {

@@ -16,7 +16,7 @@ namespace BrainThudTest.BrainThud.WebTest.Fakes
         {
             this.RouteValues = routeValues;
             this.RouteName = routeName;
-            return TestValues.LOCALHOST;
+            return TestUrls.LOCALHOST;
         }
     }
 }

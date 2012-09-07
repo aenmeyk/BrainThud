@@ -35,6 +35,7 @@ namespace BrainThud.Web
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             WebApiConfig.Configure(GlobalConfiguration.Configuration); 
+            GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration);
             MvcRouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
