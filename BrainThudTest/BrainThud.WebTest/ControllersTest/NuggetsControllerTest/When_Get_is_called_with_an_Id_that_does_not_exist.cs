@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using BrainThud.Web.Resources;
 using BrainThudTest.Tools;
 using NUnit.Framework;
 
@@ -10,14 +11,14 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest
     {
         public override void When()
         {
-            this.NuggetRepository.Setup(x => x.Get(TestValues.ROW_KEY)).Throws(new InvalidOperationException("Sequence contains no matching element"));
+            this.NuggetRepository.Setup(x => x.Get(TestValues.ROW_KEY)).Throws(new InvalidOperationException(ErrorMessages.Sequence_contains_no_matching_element));
             this.NuggetsController.Get(TestValues.ROW_KEY);
         }
 
         [Test]
         public void Then_an_HttpException_is_thrown()
         {
-            this.ShouldThrowException<HttpException>("The specified knowledge nugget could not be found.");
+            this.ShouldThrowException<HttpException>(ErrorMessages.The_specified_knowledge_nugget_could_not_be_found);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Http;
 using BrainThud.Data;
 using BrainThud.Model;
+using BrainThud.Web.Resources;
 
 namespace BrainThud.Web.Controllers
 {
@@ -31,9 +32,9 @@ namespace BrainThud.Web.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                if (ex.Message == "Sequence contains no matching element")
+                if (ex.Message == ErrorMessages.Sequence_contains_no_matching_element)
                 {
-                    throw new HttpException((int)HttpStatusCode.NotFound, "The specified knowledge nugget could not be found.");
+                    throw new HttpException((int)HttpStatusCode.NotFound, ErrorMessages.The_specified_knowledge_nugget_could_not_be_found);
                 }
 
                 throw;
