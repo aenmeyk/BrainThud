@@ -161,6 +161,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
+    <Content Include="Require.JS - LICENSE.txt" />
     <Content Include="Scripts\app\bootstrapper.js" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
@@ -169,7 +170,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\main.css" />
     <Content Include="Scripts\app\dataprimer.js" />
+    <Content Include="Scripts\app\main.js" />
+    <Content Include="Scripts\lib\cs.js" />
+    <Content Include="Scripts\lib\domReady.js" />
+    <Content Include="Scripts\lib\i18n.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
+    <Content Include="Scripts\lib\r.js" />
+    <Content Include="Scripts\lib\require.js" />
+    <Content Include="Scripts\lib\require.min.js" />
+    <Content Include="Scripts\lib\text.js" />
     <Content Include="Test\QUnit\qunit.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -272,11 +281,6 @@
     <Content Include="Images\twitter.png" />
     <Content Include="Images\windowsLive.png" />
     <Content Include="Scripts\lib\_references.js" />
-    <None Include="Views\Web.config_OLD" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
