@@ -161,12 +161,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
+    <Content Include="Scripts\app\bootstrapper.js" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Scripts\app\dataprimer.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
     <Content Include="Test\QUnit\qunit.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
