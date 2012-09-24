@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Drop\Dropbox\Projects\BrainThud\BrainThud.nunit" total="56" errors="0" failures="1" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-09-08" time="17:42:58">
+  <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.6387" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.1\bin" machine-name="KEVDESKTOP" user="Kevin" user-domain="KEVDESKTOP" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Project" name="C:\Drop\Dropbox\Projects\BrainThud\BrainThud.nunit" executed="True" result="Failure" success="False" time="3.687" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="C:\Drop\Dropbox\Projects\BrainThud\BrainThudTest\bin\Debug\BrainThudTest.dll" executed="True" result="Failure" success="False" time="3.668" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="BrainThudTest" executed="True" result="Failure" success="False" time="3.667" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="BrainThud" executed="True" result="Success" success="True" time="2.854" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="DataTest" executed="True" result="Success" success="True" time="1.151" asserts="0">
+                    <results>
+                      <test-suite type="Namespace" name="AzureTableStorageTest" executed="True" result="Success" success="True" time="1.087" asserts="0">
+                        <results>
+                          <test-suite type="Namespace" name="CloudStorageServicesTest" executed="True" result="Success" success="True" time="0.271" asserts="0">
+                            <results>
+                              <test-suite type="TestFixture" name="When_nothing_changes" executed="True" result="Success" success="True" time="0.270" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.CloudStorageServicesTest.When_nothing_changes.Then_ICloudStorageAccountFactory_should_be_implemented" executed="True" result="Success" success="True" time="0.099" asserts="0" />
+                                </results>
+                              </test-suite>
+                            </results>
+                          </test-suite>
+                          <test-suite type="Namespace" name="KeyGeneratorTest" executed="True" result="Success" success="True" time="0.011" asserts="0">
+                            <results>
+                              <test-suite type="TestFixture" name="When_GeneratePartitionKey_is_called" executed="True" result="Success" success="True" time="0.003" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.KeyGeneratorTest.When_GeneratePartitionKey_is_called.Then_the_generated_key_should_not_be_empty" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_GenerateRowKey_is_called" executed="True" result="Success" success="True" time="0.001" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.KeyGeneratorTest.When_GenerateRowKey_is_called.Then_the_generated_key_should_not_be_empty" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_nothing_changes" executed="True" result="Success" success="True" time="0.001" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.KeyGeneratorTest.When_nothing_changes.Then_the_class_should_implement_ITableStorageGenerator" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                </results>
+                              </test-suite>
+                            </results>
+                          </test-suite>
+                          <test-suite type="Namespace" name="TableStorageContextTest" executed="True" result="Success" success="True" time="0.659" asserts="0">
+                            <results>
+                              <test-suite type="TestFixture" name="When_nothing_changes" executed="True" result="Success" success="True" time="0.659" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageContextTest.When_nothing_changes.Then_CreateTableIfNotExist_should_be_called_on_CloudStorageServices" executed="True" result="Success" success="True" time="0.025" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageContextTest.When_nothing_changes.Then_it_should_be_assignable_to_TableServiceContext" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageContextTest.When_nothing_changes.Then_ITableStorageContext_should_be_implemented" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                </results>
+                              </test-suite>
+                            </results>
+                          </test-suite>
+                          <test-suite type="Namespace" name="TableStorageRepositoryTest" executed="True" result="Success" success="True" time="0.136" asserts="0">
+                            <results>
+                              <test-suite type="TestFixture" name="When_Commit_is_called" executed="True" result="Success" success="True" time="0.037" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_Commit_is_called.Then_SaveChangesWithRetries_is_called_on_TableStorageContext" executed="True" result="Success" success="True" time="0.005" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_Delete_is_called" executed="True" result="Success" success="True" time="0.042" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_Delete_is_called.Then_no_other_items_are_deleted_from_the_TableStorageContext" executed="True" result="Success" success="True" time="0.002" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_Delete_is_called.Then_the_items_is_deleted_from_the_TableStorageContext" executed="True" result="Success" success="True" time="0.002" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_Get_is_called" executed="True" result="Success" success="True" time="0.010" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_Get_is_called.Then_the_nugget_should_be_returned_from_the_StorageContext" executed="True" result="Success" success="True" time="0.002" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_GetAll_is_called" executed="True" result="Success" success="True" time="0.009" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_GetAll_is_called.Then_the_returned_results_are_returned_from_the_TableStorageContext" executed="True" result="Success" success="True" time="0.005" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_nothing_changes" executed="True" result="Success" success="True" time="0.001" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_nothing_changes.Then_ITableStorageRepository_should_be_implemented" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_Nugget_is_added_with_blank_keys" executed="True" result="Success" success="True" time="0.013" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_Nugget_is_added_with_blank_keys.Then_AddObject_is_called_on_the_TableServiceContext" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_Nugget_is_added_with_blank_keys.Then_the_PartitionKey_is_set_from_the_TableStorageKeyGenerator" executed="True" result="Success" success="True" time="0.006" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_Nugget_is_added_with_blank_keys.Then_the_RowKey_is_set_from_the_TableStorageKeyGenerator" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_Nugget_is_added_with_existing_keys" executed="True" result="Success" success="True" time="0.004" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_Nugget_is_added_with_existing_keys.Then_the_PartitionKey_should_not_change" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_Nugget_is_added_with_existing_keys.Then_the_RowKey_should_not_change" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_Update_is_called" executed="True" result="Success" success="True" time="0.003" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest.When_Update_is_called.Then_UpdateObject_is_called_on_TableStorageContext" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                </results>
+                              </test-suite>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="RepositoryFactoryTest" executed="True" result="Success" success="True" time="0.015" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="When_CreateTableStorageRepository_of_Nugget_is_called" executed="True" result="Success" success="True" time="0.006" asserts="0">
+                            <results>
+                              <test-case name="BrainThudTest.BrainThud.DataTest.RepositoryFactoryTest.When_CreateTableStorageRepository_of_Nugget_is_called.Then_the_result_should_implement_ITableStorageRepository_of_Nugget" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="When_nothing_changes" executed="True" result="Success" success="True" time="0.002" asserts="0">
+                            <results>
+                              <test-case name="BrainThudTest.BrainThud.DataTest.RepositoryFactoryTest.When_nothing_changes.Then_IRepositoryFactory_should_be_implemented" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="UnitOfWorkTest" executed="True" result="Success" success="True" time="0.036" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="When_Commit_is_called" executed="True" result="Success" success="True" time="0.021" asserts="0">
+                            <results>
+                              <test-case name="BrainThudTest.BrainThud.DataTest.UnitOfWorkTest.When_Commit_is_called.Then_Commit_is_called_on_the_NuggetTableStorageContext" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="When_nothing_changes" executed="True" result="Success" success="True" time="0.012" asserts="0">
+                            <results>
+                              <test-case name="BrainThudTest.BrainThud.DataTest.UnitOfWorkTest.When_nothing_changes.Then_IUnitOfWork_should_be_implemented" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                              <test-case name="BrainThudTest.BrainThud.DataTest.UnitOfWorkTest.When_nothing_changes.Then_Nuggets_property_should_get_and_set_an_ITableStorageRepository" executed="True" result="Success" success="True" time="0.009" asserts="2" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                  <test-suite type="Namespace" name="ModelTest" executed="True" result="Success" success="True" time="0.009" asserts="0">
+                    <results>
+                      <test-suite type="Namespace" name="NuggetTest" executed="True" result="Success" success="True" time="0.009" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="When_nothing_changes" executed="True" result="Success" success="True" time="0.009" asserts="0">
+                            <results>
+                              <test-case name="BrainThudTest.BrainThud.ModelTest.NuggetTest.When_nothing_changes.Then_AdditionalInformation_should_get_and_set_a_string" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                              <test-case name="BrainThudTest.BrainThud.ModelTest.NuggetTest.When_nothing_changes.Then_Answer_should_get_and_set_a_string" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                              <test-case name="BrainThudTest.BrainThud.ModelTest.NuggetTest.When_nothing_changes.Then_Nugget_should_inherit_from_TableServiceEntity" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                              <test-case name="BrainThudTest.BrainThud.ModelTest.NuggetTest.When_nothing_changes.Then_Question_should_get_and_set_a_string" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                  <test-suite type="Namespace" name="WebTest" executed="True" result="Success" success="True" time="1.682" asserts="0">
+                    <results>
+                      <test-suite type="Namespace" name="ActionFiltersTest" executed="True" result="Success" success="True" time="0.521" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="When_OnActionExecuting_is_called_with_a_model_error_and_a_valid_model_state" executed="True" result="Success" success="True" time="0.493" asserts="0">
+                            <results>
+                              <test-case name="BrainThudTest.BrainThud.WebTest.ActionFiltersTest.When_OnActionExecuting_is_called_with_a_model_error_and_a_valid_model_state.Then_one_model_errors_should_be_returned_in_the_response_content" executed="True" result="Success" success="True" time="0.003" asserts="0" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="When_OnActionExecuting_is_called_with_a_valid_ModelState" executed="True" result="Success" success="True" time="0.003" asserts="0">
+                            <results>
+                              <test-case name="BrainThudTest.BrainThud.WebTest.ActionFiltersTest.When_OnActionExecuting_is_called_with_a_valid_ModelState.Then_the_HttpActionContext_Response_should_be_null" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="When_OnActionExecuting_is_called_with_an_invalid_ModelState" executed="True" result="Success" success="True" time="0.013" asserts="0">
+                            <results>
+                              <test-case name="BrainThudTest.BrainThud.WebTest.ActionFiltersTest.When_OnActionExecuting_is_called_with_an_invalid_ModelState.Then_the_HttpActionContext_Response_should_be_null" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                              <test-case name="BrainThudTest.BrainThud.WebTest.ActionFiltersTest.When_OnActionExecuting_is_called_with_an_invalid_ModelState.Then_the_model_error_should_be_returned_in_the_response_content" executed="True" result="Success" success="True" time="0.003" asserts="0" />
+                              <test-case name="BrainThudTest.BrainThud.WebTest.ActionFiltersTest.When_OnActionExecuting_is_called_with_an_invalid_ModelState.Then_the_response_RequestMessage_should_not_be_null" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                              <test-case name="BrainThudTest.BrainThud.WebTest.ActionFiltersTest.When_OnActionExecuting_is_called_with_an_invalid_ModelState.Then_the_response_should_have_a_status_code_of_400" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="When_OnActionExecuting_is_called_with_two_model_errors" executed="True" result="Success" success="True" time="0.004" asserts="0">
+                            <results>
+                              <test-case name="BrainThudTest.BrainThud.WebTest.ActionFiltersTest.When_OnActionExecuting_is_called_with_two_model_errors.Then_all_model_error_messages_should_be_returned_in_the_response_content" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                              <test-case name="BrainThudTest.BrainThud.WebTest.ActionFiltersTest.When_OnActionExecuting_is_called_with_two_model_errors.Then_two_model_errors_should_be_returned_in_the_response_content" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="App_StartTest" executed="True" result="Success" success="True" time="0.046" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="When_CustomizeConfig_is_called" executed="True" result="Success" success="True" time="0.045" asserts="0">
+                            <results>
+                              <test-case name="BrainThudTest.BrainThud.WebTest.App_StartTest.When_CustomizeConfig_is_called.Then_a_ValidationActionFilter_should_be_added_to_the_config" executed="True" result="Success" success="True" time="0.031" asserts="0" />
+                              <test-case name="BrainThudTest.BrainThud.WebTest.App_StartTest.When_CustomizeConfig_is_called.Then_the_Json_ContractResolver_should_be_CamelCasePropertyNamesContractResolver" executed="True" result="Success" success="True" time="0.003" asserts="0" />
+                              <test-case name="BrainThudTest.BrainThud.WebTest.App_StartTest.When_CustomizeConfig_is_called.Then_the_XmlFormatter_should_be_removed" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="ControllersTest" executed="True" result="Success" success="True" time="1.108" asserts="0">
+                        <results>
+                          <test-suite type="Namespace" name="NuggetsControllerTest" executed="True" result="Success" success="True" time="1.108" asserts="0">
+                            <results>
+                              <test-suite type="TestFixture" name="When_Delete_is_called" executed="True" result="Success" success="True" time="0.018" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Delete_is_called.Then_Commit_is_called_on_UnitOfWork" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Delete_is_called.Then_Delete_is_called_on_the_NuggetRepository" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Delete_is_called.Then_the_return_status_code_should_be_204" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_Get_is_called" executed="True" result="Success" success="True" time="0.034" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Get_is_called.Then_all_Nuggets_are_returned_from_UnitOfWork" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_Get_is_called_with_an_Id_parameter" executed="True" result="Success" success="True" time="0.008" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Get_is_called_with_an_Id_parameter.Then_a_Nugget_is_returned_from_the_nuggets_repository" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_Get_is_called_with_an_Id_that_does_not_exist" executed="True" result="Success" success="True" time="0.079" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Get_is_called_with_an_Id_that_does_not_exist.Then_an_HttpException_is_thrown" executed="True" result="Success" success="True" time="0.004" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_nothing_changes" executed="True" result="Success" success="True" time="0.001" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_nothing_changes.Then_the_NuggetController_should_inherit_from_ApiController" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_Post_is_called" executed="True" result="Success" success="True" time="0.942" asserts="0">
+                                <categories>
+                                  <category name="LongRunning" />
+                                </categories>
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Post_is_called.Then_Add_is_called_on_Nugget_repository" executed="True" result="Success" success="True" time="0.002" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Post_is_called.Then_an_HttpResponseMessage_is_returned_with_a_201_status_code" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Post_is_called.Then_Commit_is_called_on_UnitOfWork" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Post_is_called.Then_the_location_should_be_created_from_the_nuggets_RowKey" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Post_is_called.Then_the_Nugget_should_be_returned_in_the_response" executed="True" result="Success" success="True" time="0.869" asserts="0" />
+                                </results>
+                              </test-suite>
+                              <test-suite type="TestFixture" name="When_Put_is_called" executed="True" result="Success" success="True" time="0.010" asserts="0">
+                                <results>
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Put_is_called.Then_an_HttpResponseMessage_is_returned" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Put_is_called.Then_Commit_is_called_on_UnitOfWork" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Put_is_called.Then_the_returned_status_code_should_be_204" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                                  <test-case name="BrainThudTest.BrainThud.WebTest.ControllersTest.NuggetsControllerTest.When_Put_is_called.Then_Update_should_be_called_on_the_Nugget_repository" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                                </results>
+                              </test-suite>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="SetUpFixture" name="Integration" executed="True" result="Failure" success="False" time="0.795" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="Azure_Table_Storage_Tests" executed="True" result="Failure" success="False" time="0.774" asserts="0">
+                    <categories>
+                      <category name="Integration" />
+                    </categories>
+                    <results>
+                      <test-case name="BrainThudTest.Integration.Azure_Table_Storage_Tests.Then_NuggetsController_CRUD" executed="True" result="Failure" success="False" time="0.773" asserts="0">
+                        <failure>
+                          <message><![CDATA[Expected object to be Created, but found InternalServerError.]]></message>
+                          <stack-trace><![CDATA[at FluentAssertions.Frameworks.LateBoundTestFramework.Throw(String message) in c:\Workspaces\FluentAssertions\Releases\1.7.0\FluentAssertions.Net35\Frameworks\LateBoundTestFramework.cs:line 16
+at FluentAssertions.Verification.FailWith(String failureMessage, Object[] failureArgs) in c:\Workspaces\FluentAssertions\Releases\1.7.0\FluentAssertions.Net35\Verification.cs:line 158
+at FluentAssertions.Assertions.ObjectAssertions.Be(Object expected, String reason, Object[] reasonArgs) in c:\Workspaces\FluentAssertions\Releases\1.7.0\FluentAssertions.Net35\Assertions\ObjectAssertions.cs:line 49
+at BrainThudTest.Integration.Azure_Table_Storage_Tests.Then_NuggetsController_CRUD() in c:\Drop\Dropbox\Projects\BrainThud\BrainThudTest\Integration\Azure_Table_Storage_Tests.cs:line 73
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
