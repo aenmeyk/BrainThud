@@ -6,26 +6,28 @@ namespace BrainThud.Web.App_Start
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/lib/jquery-1.*"));
+            // Modernizr should be seperate since it loads first
+            bundles.Add(new ScriptBundle(BundlePaths.MODERNIZR).Include(
+                "~/Scripts/lib/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                "~/Scripts/lib/jquery-ui*"));
+            bundles.Add(new ScriptBundle(BundlePaths.JQUERY, "//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js").Include(
+                "~/Scripts/jquery-1.*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+            bundles.Add(new ScriptBundle(BundlePaths.JQUERY_UI, "//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js").Include(
+                "~/Scripts/jquery-ui*"));
+
+            bundles.Add(new ScriptBundle(BundlePaths.EXTERNAL_LIBS).Include(
                 "~/Scripts/lib/jquery.unobtrusive*",
                 "~/Scripts/lib/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                "~/Scripts/lib/modernizr-*"));
+            bundles.Add(new ScriptBundle(BundlePaths.APP_LIBS).IncludeDirectory(
+                "~/Scripts/app", "*.js", searchSubdirectories: false));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle(BundlePaths.STYLES).Include(
                 "~/Content/bootstrap.min.css",
                 "~/Content/bootstrap-responsive.min.css",
                 "~/Content/main.css",
-                "~/Content/site.css"));
-
-            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+                "~/Content/site.css",
                 "~/Content/themes/base/jquery.ui.core.css",
                 "~/Content/themes/base/jquery.ui.resizable.css",
                 "~/Content/themes/base/jquery.ui.selectable.css",
@@ -38,9 +40,6 @@ namespace BrainThud.Web.App_Start
                 "~/Content/themes/base/jquery.ui.datepicker.css",
                 "~/Content/themes/base/jquery.ui.progressbar.css",
                 "~/Content/themes/base/jquery.ui.theme.css"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jsapplibs").IncludeDirectory(
-                "~/Scripts/app", "*.js", searchSubdirectories: false));
         }
     }
 }

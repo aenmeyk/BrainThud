@@ -59,6 +59,10 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -140,6 +144,8 @@
     <Compile Include="BrainThud.WebTest\ActionFiltersTest\When_OnActionExecuting_is_called_with_an_invalid_ModelState.cs" />
     <Compile Include="BrainThud.WebTest\ActionFiltersTest\When_OnActionExecuting_is_called_with_a_valid_ModelState.cs" />
     <Compile Include="BrainThud.WebTest\ActionFiltersTest\Given_a_new_ValidationActionFilter.cs" />
+    <Compile Include="BrainThud.WebTest\App_StartTest\BundleConfigTest\Given_an_empty_bundle_collection.cs" />
+    <Compile Include="BrainThud.WebTest\App_StartTest\BundleConfigTest\When_RegisterBundles_is_called.cs" />
     <Compile Include="BrainThud.WebTest\App_StartTest\When_CustomizeConfig_is_called.cs" />
     <Compile Include="BrainThud.WebTest\App_StartTest\Given_a_GlobalConfig_class.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Get_is_called_with_an_Id_that_does_not_exist.cs" />
@@ -193,6 +199,7 @@
       <Name>BrainThud.Web</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

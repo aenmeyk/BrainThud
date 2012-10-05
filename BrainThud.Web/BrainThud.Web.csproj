@@ -105,6 +105,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
     </Reference>
@@ -132,9 +136,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0-beta2\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebActivator, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -181,14 +182,20 @@
     <Content Include="Content\main.css" />
     <Content Include="Scripts\app\dataprimer.js" />
     <Content Include="Scripts\app\main.js" />
-    <Content Include="Scripts\lib\cs.js" />
-    <Content Include="Scripts\lib\domReady.js" />
-    <Content Include="Scripts\lib\i18n.js" />
-    <Content Include="Scripts\lib\modernizr-2.6.2.js" />
-    <Content Include="Scripts\lib\r.js" />
-    <Content Include="Scripts\lib\require.js" />
-    <Content Include="Scripts\lib\require.min.js" />
-    <Content Include="Scripts\lib\text.js" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\cs.js" />
+    <Content Include="Scripts\domReady.js" />
+    <Content Include="Scripts\i18n.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\require.min.js" />
+    <Content Include="Scripts\text.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -245,20 +252,14 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\lib\jquery-1.8.0-vsdoc.js" />
-    <Content Include="Scripts\lib\jquery-1.8.0.js" />
-    <Content Include="Scripts\lib\jquery-1.8.0.min.js" />
-    <Content Include="Scripts\lib\jquery-ui-1.8.23.js" />
-    <Content Include="Scripts\lib\jquery-ui-1.8.23.min.js" />
-    <Content Include="Scripts\lib\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\lib\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\lib\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\lib\jquery.validate.js" />
-    <Content Include="Scripts\lib\jquery.validate.min.js" />
-    <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\lib\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\lib\knockout-2.1.0.debug.js" />
-    <Content Include="Scripts\lib\knockout-2.1.0.js" />
+    <Content Include="Scripts\jquery-ui-1.8.23.js" />
+    <Content Include="Scripts\jquery-ui-1.8.23.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -286,7 +287,7 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\windowsLive.png" />
-    <Content Include="Scripts\lib\_references.js" />
+    <Content Include="Scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
