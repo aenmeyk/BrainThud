@@ -8,7 +8,7 @@ namespace BrainThud.Web.App_Start
         {
             // Modernizr should be seperate since it loads first
             bundles.Add(new ScriptBundle(BundlePaths.MODERNIZR).Include(
-                "~/Scripts/lib/modernizr-*"));
+                "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle(BundlePaths.JQUERY, "//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js").Include(
                 "~/Scripts/jquery-1.*"));
@@ -17,8 +17,9 @@ namespace BrainThud.Web.App_Start
                 "~/Scripts/jquery-ui*"));
 
             bundles.Add(new ScriptBundle(BundlePaths.EXTERNAL_LIBS).Include(
-                "~/Scripts/lib/jquery.unobtrusive*",
-                "~/Scripts/lib/jquery.validate*"));
+                "~/Scripts/jquery.unobtrusive*",
+                "~/Scripts/jquery.validate*",
+                "~/Scripts/knockout-*"));
 
             bundles.Add(new ScriptBundle(BundlePaths.APP_LIBS).IncludeDirectory(
                 "~/Scripts/app", "*.js", searchSubdirectories: false));
