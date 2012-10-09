@@ -1,7 +1,14 @@
 ﻿define('vm.nugget', ['jquery', 'ko', 'dataContext'],
     function ($, ko, dataContext) {
+        var questions = ko.observableArray(),
+            dataOptions = function() {
+                return {
+                    results: questions
+                };
+            };
         
-        var questions = ko.observable(dataContext.questions);
+        
+        dataContext.questions.getData(dataOptions());
         
         return {
             questions: questions

@@ -181,7 +181,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\main.css" />
     <Content Include="Scripts\app\binder.js" />
-    <Content Include="Scripts\app\dataService.nugget.js" />
+    <Content Include="Scripts\app\dataService.js" />
     <Content Include="Scripts\app\dataContext.js" />
     <Content Include="Scripts\app\vm.nugget.js" />
     <Content Include="Scripts\main.js" />

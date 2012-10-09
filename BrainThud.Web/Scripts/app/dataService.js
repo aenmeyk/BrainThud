@@ -1,4 +1,4 @@
-﻿define('dataService.nugget', ['jquery'],
+﻿define('dataService', ['jquery'],
     function ($) {
 
         var root = '/api/',
@@ -12,9 +12,18 @@
                     callbacks.error(result);
                 });
             };
-        
+
+        var questions = function() {
+            return [
+                'How long is a piece of string?',
+                'When does 1 + 1 != 2?',
+                'What is black and white and read all over?'
+            ];
+        };
+
         return {
-            getNuggets: getNuggets
+//            getNuggets: getNuggets
+            getNuggets: questions
         };
     }
 );
