@@ -1,10 +1,12 @@
 ﻿<section id="questions-view" class="view">
     
-    <input data-bind="value: question" value="This is the question text"/>
+@*    <input data-bind="value: question" value="This is the question text"/>*@
     
-@*    <ul data-bind="foreach:questions">
-        
+    <ul data-bind="foreach:questions">
+        <li>
+            <span data-bind="text: $data"></span>
+        </li>
 
-    </ul>*@
+    </ul>
 
 </section>
