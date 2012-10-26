@@ -181,6 +181,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\main.css" />
     <Content Include="Scripts\app\binder.js" />
+    <Content Include="Scripts\app\model.js" />
     <Content Include="Scripts\app\dataService.js" />
     <Content Include="Scripts\app\dataContext.js" />
     <Content Include="Scripts\app\vm.nugget.js" />
@@ -337,7 +338,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>36877</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
