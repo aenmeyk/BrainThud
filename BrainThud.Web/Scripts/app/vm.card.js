@@ -7,7 +7,6 @@
                 };
             };
         
-        
         dataContext.questions.getData(dataOptions());
         
         return {
