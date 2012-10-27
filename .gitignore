@@ -59,6 +59,8 @@ local.properties
 *.tli
 *.tlh
 *.tmp
+*.user
+*.suo
 *.vspscc
 .builds
 *.dotCover
@@ -115,7 +117,6 @@ Backup*/
 UpgradeLog*.XML
 
 # Azure
-BrainThudCloudService/*
 *.cscfg
 *.csdef
 
