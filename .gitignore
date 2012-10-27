@@ -115,7 +115,7 @@ Backup*/
 UpgradeLog*.XML
 
 # Azure
-BrainThudCloudService/
+BrainThudCloudService/*
 *.cscfg
 *.csdef
 
