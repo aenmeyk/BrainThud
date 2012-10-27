@@ -7,9 +7,9 @@ namespace BrainThudTest.Tools
     {
         public static void ClearTable<T>(TableServiceContext tableServiceContext)
         {
-            foreach (var nugget in tableServiceContext.CreateQuery<T>(typeof(T).Name))
+            foreach (var card in tableServiceContext.CreateQuery<T>(typeof(T).Name))
             {
-                tableServiceContext.DeleteObject(nugget);
+                tableServiceContext.DeleteObject(card);
             }
 
             tableServiceContext.SaveChangesWithRetries();

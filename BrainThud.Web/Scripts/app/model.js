@@ -1,7 +1,7 @@
 ﻿define('model', ['ko'],
 
 function (ko) {
-    var nugget = function() {
+    var card = function() {
         return {
             partitionKey: ko.observable(),
             rowKey: ko.observable(),
@@ -12,6 +12,6 @@ function (ko) {
     };
 
     return {
-        nugget: nugget
+        card: card
     };
 });

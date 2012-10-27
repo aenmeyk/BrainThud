@@ -101,7 +101,7 @@
     <data name="Sequence_contains_no_matching_element">
         <value xml:space="preserve">Sequence contains no matching element</value>
     </data>
-    <data name="The_specified_knowledge_nugget_could_not_be_found">
-        <value xml:space="preserve">The specified knowledge nugget could not be found.</value>
+    <data name="The_specified_knowledge_card_could_not_be_found">
+        <value xml:space="preserve">The specified knowledge card could not be found.</value>
     </data>
 </root>

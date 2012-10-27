@@ -1,9 +1,9 @@
-﻿define('binder', ['jquery', 'ko', 'vm.nugget'],
+﻿define('binder', ['jquery', 'ko', 'vm.card'],
 
-function ($, ko, nugget) {
+function ($, ko, card) {
     var
         bind = function () {
-            ko.applyBindings(nugget, getView('questions-view'));
+            ko.applyBindings(card, getView('questions-view'));
         },
 
         getView = function(viewName) {

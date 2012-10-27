@@ -5,7 +5,7 @@ namespace BrainThud.Data
 {
     public interface IUnitOfWork 
     {
-        ITableStorageRepository<Nugget> Nuggets { get; }
+        ITableStorageRepository<Card> Cards { get; }
         void Commit();
     }
 }

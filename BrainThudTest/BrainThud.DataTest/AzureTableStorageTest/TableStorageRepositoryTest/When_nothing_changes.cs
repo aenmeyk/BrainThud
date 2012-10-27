@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest
 {
     [TestFixture]
-    public class When_nothing_changes : Given_a_new_TableStorageRepository_of_Nugget
+    public class When_nothing_changes : Given_a_new_TableStorageRepository_of_Card
     {
         public override void When()
         {
@@ -16,7 +16,7 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRep
         [Test]
         public void Then_ITableStorageRepository_should_be_implemented()
         {
-            this.TableStorageRepository.Should().BeAssignableTo<ITableStorageRepository<Nugget>>();
+            this.TableStorageRepository.Should().BeAssignableTo<ITableStorageRepository<Card>>();
         }
     }
 }

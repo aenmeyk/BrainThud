@@ -2,7 +2,7 @@
 {
     public static class EntitySetNames
     {
-        public const string NUGGET = "Nugget";
+        public const string CARD = "Card";
     }
 
     public static class ConfigurationSettings

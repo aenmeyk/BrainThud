@@ -1,4 +1,4 @@
-﻿define('vm.nugget', ['jquery', 'ko', 'dataContext'],
+﻿define('vm.card', ['jquery', 'ko', 'dataContext'],
     function ($, ko, dataContext) {
         var questions = ko.observableArray(),
             dataOptions = function() {

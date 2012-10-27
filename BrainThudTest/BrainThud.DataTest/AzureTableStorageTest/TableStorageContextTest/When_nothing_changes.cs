@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageContextTest
 {
     [TestFixture]
-    public class When_nothing_changes : Given_a_new_TableStorageContext_of_Nugget
+    public class When_nothing_changes : Given_a_new_TableStorageContext_of_Card
     {
         public override void When()
         {
@@ -18,7 +18,7 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageCon
         [Test]
         public void Then_ITableStorageContext_should_be_implemented()
         {
-            this.TableStorageContext.Should().BeAssignableTo<ITableStorageContext<Nugget>>();
+            this.TableStorageContext.Should().BeAssignableTo<ITableStorageContext<Card>>();
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageCon
         [Test]
         public void Then_CreateTableIfNotExist_should_be_called_on_CloudStorageServices()
         {
-            this.CloudStorageServices.Verify(x => x.CreateTableIfNotExist(EntitySetNames.NUGGET));
+            this.CloudStorageServices.Verify(x => x.CreateTableIfNotExist(EntitySetNames.CARD));
         }
     }
 }

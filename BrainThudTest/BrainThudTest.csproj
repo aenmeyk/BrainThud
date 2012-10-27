@@ -89,7 +89,7 @@
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\Given_a_new_TableStorageContext_of_Nugget.cs">
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\Given_a_new_TableStorageContext_of_Card.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\When_nothing_changes.cs">
@@ -98,7 +98,7 @@
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Get_is_called.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Delete_is_called.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Update_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository.cs">
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository_of_Card.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Commit_is_called.cs">
@@ -110,16 +110,16 @@
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Nugget_is_added_with_blank_keys.cs">
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Card_is_added_with_blank_keys.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Nugget_is_added_with_existing_keys.cs">
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Card_is_added_with_existing_keys.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\Given_a_new_RepositoryFactory.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_CreateTableStorageRepository_of_Nugget_is_called.cs">
+    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_CreateTableStorageRepository_of_Card_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_nothing_changes.cs">
@@ -134,10 +134,10 @@
     <Compile Include="BrainThud.DataTest\UnitOfWorkTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.ModelTest\NuggetTest\Given_a_new_Nugget.cs">
+    <Compile Include="BrainThud.ModelTest\CardTest\Given_a_new_Card.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.ModelTest\NuggetTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.ModelTest\CardTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BrainThud.WebTest\ActionFiltersTest\When_OnActionExecuting_is_called_with_a_model_error_and_a_valid_model_state.cs" />
@@ -149,21 +149,21 @@
     <Compile Include="BrainThud.WebTest\App_StartTest\BundleConfigTest\When_RegisterBundles_is_called.cs" />
     <Compile Include="BrainThud.WebTest\App_StartTest\When_CustomizeConfig_is_called.cs" />
     <Compile Include="BrainThud.WebTest\App_StartTest\Given_a_GlobalConfig_class.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Get_is_called_with_an_Id_that_does_not_exist.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Get_is_called_with_an_Id_parameter.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Delete_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Post_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Put_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\Given_a_new_NuggetController.cs">
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Get_is_called_with_an_Id_that_does_not_exist.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Get_is_called_with_an_Id_parameter.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Delete_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Post_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Put_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\Given_a_new_CardController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_Get_is_called.cs">
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Get_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\ControllersTest\NuggetsControllerTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\Fakes\NuggetsControllerFake.cs" />
+    <Compile Include="BrainThud.WebTest\Fakes\CardsControllerFake.cs" />
     <Compile Include="Builders\CloudStorageAccountBuilder.cs" />
     <Compile Include="Builders\ApiControllerBuilder.cs" />
     <Compile Include="Builders\ControllerContextBuilder.cs" />

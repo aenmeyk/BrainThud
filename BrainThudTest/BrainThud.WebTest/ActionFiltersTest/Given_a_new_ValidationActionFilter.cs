@@ -14,7 +14,7 @@ namespace BrainThudTest.BrainThud.WebTest.ActionFiltersTest
         {
             this.Context = new HttpActionContext();
             this.Context.ControllerContext = new ControllerContextBuilder()
-              .CreateRequest(HttpMethod.Post, TestUrls.NUGGETS)
+              .CreateRequest(HttpMethod.Post, TestUrls.CARDS)
               .Build();
 
             this.ValidationActionFilter = new ValidationActionFilter();

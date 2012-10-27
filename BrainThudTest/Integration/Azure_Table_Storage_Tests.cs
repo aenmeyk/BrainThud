@@ -19,17 +19,17 @@ namespace BrainThudTest.Integration
     public class Azure_Table_Storage_Tests
     {
 //        [Test]
-//        public void Nugget_is_saved_and_retrieved_from_Azure_Table_Storage()
+//        public void Card_is_saved_and_retrieved_from_Azure_Table_Storage()
 //        {
 //            // Given
 //            var cloudStorageServices = new CloudStorageServices();
 //            var keyGenerator = new TableStorageKeyGenerator();
-//            var tableServiceContext = new TableStorageContext<Nugget>(EntitySetNames.NUGGET, cloudStorageServices);
-//            TableStorageHelper.ClearTable<Nugget>(tableServiceContext);
+//            var tableServiceContext = new TableStorageContext<Card>(EntitySetNames.CARD, cloudStorageServices);
+//            TableStorageHelper.ClearTable<Card>(tableServiceContext);
 //
 //            var repositoryFactory = new RepositoryFactory(cloudStorageServices, keyGenerator);
 //
-//            var createdNugget = new Nugget
+//            var createdCard = new Card
 //            {
 //                PartitionKey = TestValues.PARTITION_KEY,
 //                RowKey = TestValues.ROW_KEY,
@@ -40,16 +40,16 @@ namespace BrainThudTest.Integration
 //
 //            // When
 //            var unitOfWork = new UnitOfWork(repositoryFactory);
-//            unitOfWork.Nuggets.Add(createdNugget);
+//            unitOfWork.Cards.Add(createdCard);
 //            unitOfWork.Commit();
-//            var returnedNugget = unitOfWork.Nuggets.GetAll().Single();
+//            var returnedCard = unitOfWork.Cards.GetAll().Single();
 //
 //            // Then
-//            returnedNugget.ShouldHave().AllProperties().EqualTo(createdNugget);
+//            returnedCard.ShouldHave().AllProperties().EqualTo(createdCard);
 //        }
 
         [Test]
-        public void Then_NuggetsController_CRUD()
+        public void Then_CardsController_CRUD()
         {
             const string POST_QUESTION_TEXT = "Created From Unit Test";
             const string PUT_QUESTION_TEXT = "Updated From Unit Test";
@@ -63,54 +63,54 @@ namespace BrainThudTest.Integration
 
             var server = new HttpServer(config);
             var client = new HttpClient(server);
-            var nugget = new Nugget { Question = POST_QUESTION_TEXT };
+            var card = new Card { Question = POST_QUESTION_TEXT };
 
             // Test Post
-            var postResponse = client.PostAsJsonAsync(TestUrls.NUGGETS, nugget).Result;
-            var postNugget = postResponse.Content.ReadAsAsync<Nugget>().Result;
+            var postResponse = client.PostAsJsonAsync(TestUrls.CARDS, card).Result;
+            var postCard = postResponse.Content.ReadAsAsync<Card>().Result;
 
             // Assert that the POST succeeded
             postResponse.StatusCode.Should().Be(HttpStatusCode.Created);
 
-            // Assert that the posted nugget was returned in the response
-            postNugget.Question.Should().Be(POST_QUESTION_TEXT);
+            // Assert that the posted Card was returned in the response
+            postCard.Question.Should().Be(POST_QUESTION_TEXT);
 
-            // Assert that the relevant keys were set on the nugget
-            postNugget.PartitionKey.Should().NotBeEmpty();
-            postNugget.RowKey.Should().NotBeEmpty();
+            // Assert that the relevant keys were set on the Card
+            postCard.PartitionKey.Should().NotBeEmpty();
+            postCard.RowKey.Should().NotBeEmpty();
 
-            // Assert that the location of the new nugget was returned in the Location header
-            var nuggetUrl = postResponse.Headers.Location;
-            nuggetUrl.AbsoluteUri.Should().BeEquivalentTo(string.Format("{0}/{1}", TestUrls.NUGGETS, postNugget.RowKey));
+            // Assert that the location of the new Card was returned in the Location header
+            var cardUrl = postResponse.Headers.Location;
+            cardUrl.AbsoluteUri.Should().BeEquivalentTo(string.Format("{0}/{1}", TestUrls.CARDS, postCard.RowKey));
 
 
             // Test PUT
-            postNugget.Question = PUT_QUESTION_TEXT;
-            var putResponse = client.PutAsJsonAsync(TestUrls.NUGGETS, postNugget).Result;
+            postCard.Question = PUT_QUESTION_TEXT;
+            var putResponse = client.PutAsJsonAsync(TestUrls.CARDS, postCard).Result;
 
             // Assert that the PUT succeeded
             putResponse.StatusCode.Should().Be(HttpStatusCode.NoContent);
 
 
             // Test GET
-            var getResponse = client.GetAsync(nuggetUrl).Result;
-            var getNugget = getResponse.Content.ReadAsAsync<Nugget>().Result;
+            var getResponse = client.GetAsync(cardUrl).Result;
+            var getCard = getResponse.Content.ReadAsAsync<Card>().Result;
 
-            // Assert that the correct nugget was returned
-            getNugget.RowKey.Should().Be(postNugget.RowKey);
+            // Assert that the correct Card was returned
+            getCard.RowKey.Should().Be(postCard.RowKey);
 
-            // Assert that the PUT did actually update the nugget
-            getNugget.Question.Should().Be(PUT_QUESTION_TEXT);
+            // Assert that the PUT did actually update the Card
+            getCard.Question.Should().Be(PUT_QUESTION_TEXT);
 
 
             // Test DELETE
-            var deleteResponse = client.DeleteAsync(nuggetUrl).Result;
+            var deleteResponse = client.DeleteAsync(cardUrl).Result;
 
             // Assert that the DELETE succeeded
             deleteResponse.StatusCode.Should().Be(HttpStatusCode.NoContent);
 
-            // Assert that the nugget is no longer in storage
-            getResponse = client.GetAsync(nuggetUrl).Result;
+            // Assert that the Card is no longer in storage
+            getResponse = client.GetAsync(cardUrl).Result;
             getResponse.IsSuccessStatusCode.Should().Be(false);
         }
     }

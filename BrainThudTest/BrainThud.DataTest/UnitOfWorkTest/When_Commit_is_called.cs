@@ -13,9 +13,9 @@ namespace BrainThudTest.BrainThud.DataTest.UnitOfWorkTest
         }
 
         [Test]
-        public void Then_Commit_is_called_on_the_NuggetTableStorageContext()
+        public void Then_Commit_is_called_on_the_CardTableStorageContext()
         {
-            this.NuggetTableStorageRepository.Verify(x => x.Commit(), Times.Once());
+            this.CardTableStorageRepository.Verify(x => x.Commit(), Times.Once());
         }
     }
 }

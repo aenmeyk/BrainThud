@@ -154,7 +154,7 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Controllers\NuggetsController.cs" />
+    <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
@@ -187,7 +187,7 @@
     <Content Include="Scripts\app\model.js" />
     <Content Include="Scripts\app\dataService.js" />
     <Content Include="Scripts\app\dataContext.js" />
-    <Content Include="Scripts\app\vm.nugget.js" />
+    <Content Include="Scripts\app\vm.card.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\main.js" />

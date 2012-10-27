@@ -7,14 +7,14 @@ namespace BrainThud.Data
     {
         public UnitOfWork(IRepositoryFactory repositoryFactory)
         {
-            this.Nuggets = repositoryFactory.CreateTableStorageRepository<Nugget>();
+            this.Cards = repositoryFactory.CreateTableStorageRepository<Card>();
         }
 
-        public ITableStorageRepository<Nugget> Nuggets { get; private set; }
+        public ITableStorageRepository<Card> Cards { get; private set; }
 
         public void Commit()
         {
-            this.Nuggets.Commit();
+            this.Cards.Commit();
         }
     }
 }

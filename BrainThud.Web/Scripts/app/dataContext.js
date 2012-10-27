@@ -27,7 +27,7 @@
                 };
             },
             
-            questions = new entitySet(dataService.getNuggets);
+            questions = new entitySet(dataService.getCards);
         
         return {
             questions: questions

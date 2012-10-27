@@ -12,13 +12,13 @@ namespace BrainThudTest.BrainThud.DataTest.UnitOfWorkTest
     {
         public override void Given()
         {
-            this.NuggetTableStorageRepository = new Mock<ITableStorageRepository<Nugget>>();
+            this.CardTableStorageRepository = new Mock<ITableStorageRepository<Card>>();
             var repositoryFactory = new Mock<IRepositoryFactory>();
-            repositoryFactory.Setup(x => x.CreateTableStorageRepository<Nugget>()).Returns(this.NuggetTableStorageRepository.Object);
+            repositoryFactory.Setup(x => x.CreateTableStorageRepository<Card>()).Returns(this.CardTableStorageRepository.Object);
             this.UnitOfWork = new UnitOfWork(repositoryFactory.Object);
         }
 
-        protected Mock<ITableStorageRepository<Nugget>>  NuggetTableStorageRepository { get; private set; }
+        protected Mock<ITableStorageRepository<Card>>  CardTableStorageRepository { get; private set; }
         protected UnitOfWork UnitOfWork { get; private set; }
     }
 }

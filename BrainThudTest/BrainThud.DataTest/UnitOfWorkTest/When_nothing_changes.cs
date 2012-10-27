@@ -23,9 +23,9 @@ namespace BrainThudTest.BrainThud.DataTest.UnitOfWorkTest
         }
 
         [Test]
-        public void Then_Nuggets_property_should_get_and_set_an_ITableStorageRepository()
+        public void Then_Cards_property_should_get_and_set_an_ITableStorageRepository()
         {
-            this.UnitOfWork.CanGetSetValue(x => x.Nuggets, new Mock<ITableStorageRepository<Nugget>>().Object, typeof(ITableStorageRepository<Nugget>));
+            this.UnitOfWork.CanGetSetValue(x => x.Cards, new Mock<ITableStorageRepository<Card>>().Object, typeof(ITableStorageRepository<Card>));
         }
     }
 }

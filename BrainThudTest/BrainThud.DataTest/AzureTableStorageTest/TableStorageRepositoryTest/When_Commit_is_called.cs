@@ -5,7 +5,7 @@ using Moq;
 namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest
 {
     [TestFixture]
-    public class When_Commit_is_called : Given_a_new_TableStorageRepository_of_Nugget
+    public class When_Commit_is_called : Given_a_new_TableStorageRepository_of_Card
     {
         public override void When()
         {

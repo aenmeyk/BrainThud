@@ -26,7 +26,7 @@ namespace BrainThudTest.Tools
 
     public static class TestUrls
     {
-        public const string NUGGETS = "http://localhost/api/nuggets";
+        public const string CARDS = "http://localhost/api/cards";
         public const string LOCALHOST = "http://localhost/";
     }
 }

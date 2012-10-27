@@ -70,11 +70,11 @@ namespace BrainThud.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The specified knowledge nugget could not be found..
+        ///   Looks up a localized string similar to The specified knowledge card could not be found..
         /// </summary>
-        public static string The_specified_knowledge_nugget_could_not_be_found {
+        public static string The_specified_knowledge_card_could_not_be_found {
             get {
-                return ResourceManager.GetString("The_specified_knowledge_nugget_could_not_be_found", resourceCulture);
+                return ResourceManager.GetString("The_specified_knowledge_card_could_not_be_found", resourceCulture);
             }
         }
     }

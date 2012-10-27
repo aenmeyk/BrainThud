@@ -2,8 +2,8 @@
     function ($, model) {
 
         var root = '/api/',
-            getNuggets = function(callbacks) {
-                var url = root + 'nuggets';
+            getCards = function(callbacks) {
+                var url = root + 'cards';
                 $.getJSON(url)
                 .done(function(result, status) {
                     callbacks.success(result);
@@ -21,23 +21,23 @@
 //            ];
 //        };
 //
-//        var nuggets = function() {
-//            var n1 = new model.nugget();
+//        var cards = function() {
+//            var n1 = new model.card();
 //            n1.question('First Question');
 //            
-//            var n2 = new model.nugget();
+//            var n2 = new model.card();
 //            n2.question('Second Question');
 //            
-//            var n3 = new model.nugget();
+//            var n3 = new model.card();
 //            n3.question('Third Question');
 //
 //            return [n1, n2, n3];
 //        };
 
         return {
-            getNuggets: getNuggets
-//            getNuggets: questions
-//            getNuggets: nuggets
+            getCards: getCards
+//            getCards: questions
+//            getCards: cards
         };
     }
 );
