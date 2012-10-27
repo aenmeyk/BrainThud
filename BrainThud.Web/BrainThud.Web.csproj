@@ -298,6 +298,7 @@
     <Content Include="Images\windowsLive.png" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\questions.cshtml" />
+    <Content Include="Views\createCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

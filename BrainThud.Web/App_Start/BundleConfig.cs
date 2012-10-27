@@ -6,6 +6,8 @@ namespace BrainThud.Web.App_Start
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
+//            bundles.IgnoreList.Clear();
+
             // Modernizr should be seperate since it loads first
             bundles.Add(new ScriptBundle(BundlePaths.MODERNIZR).Include(
                 "~/Scripts/modernizr-*"));
@@ -25,10 +27,10 @@ namespace BrainThud.Web.App_Start
                 "~/Scripts/app", "*.js", searchSubdirectories: false));
 
             bundles.Add(new StyleBundle(BundlePaths.STYLES).Include(
-                "~/Content/bootstrap.min.css",
-                "~/Content/bootstrap-responsive.min.css",
                 "~/Content/main.css",
                 "~/Content/site.css",
+                "~/Content/bootstrap.css",
+                "~/Content/bootstrap-responsive.css",
                 "~/Content/themes/base/jquery.ui.core.css",
                 "~/Content/themes/base/jquery.ui.resizable.css",
                 "~/Content/themes/base/jquery.ui.selectable.css",
@@ -40,7 +42,8 @@ namespace BrainThud.Web.App_Start
                 "~/Content/themes/base/jquery.ui.tabs.css",
                 "~/Content/themes/base/jquery.ui.datepicker.css",
                 "~/Content/themes/base/jquery.ui.progressbar.css",
-                "~/Content/themes/base/jquery.ui.theme.css"));
+                "~/Content/themes/base/jquery.ui.theme.css"
+                ));
         }
     }
 }

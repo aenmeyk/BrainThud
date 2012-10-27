@@ -21,10 +21,13 @@
             padding-bottom: 40px;
         }
     </style>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+@*    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+@*    <link href="~/Content/bootstrap-responsive.min.css" rel="stylesheet" />*@
+    @Styles.Render(BundlePaths.STYLES)
+    @Scripts.Render(BundlePaths.MODERNIZR)
 </head>
     <body>
+        <div class="container">
         <header>
             <h1>BrainThud</h1>
             <nav id="shell-top-view" class="main-nav">
@@ -35,15 +38,15 @@
                 </ul>
             </nav>
         </header>
-        <section>
-            @this.RenderPage("Views/questions.cshtml")
+            @this.RenderPage("Views/createCard.cshtml")
+@*            @this.RenderPage("Views/questions.cshtml")*@
 @*            @this.RenderPage("Views/today.cshtml")*@
-        </section>
-                @Scripts.Render(
-                    BundlePaths.JQUERY,
-                    BundlePaths.EXTERNAL_LIBS,
-                    ScriptPaths.REQUIRE_JS,
-                    BundlePaths.APP_LIBS,
-                    ScriptPaths.MAIN_JS)
+        </div>
+        @Scripts.Render(
+            BundlePaths.JQUERY,
+            BundlePaths.EXTERNAL_LIBS,
+            ScriptPaths.REQUIRE_JS,
+            BundlePaths.APP_LIBS,
+            ScriptPaths.MAIN_JS)
     </body>
 </html>
