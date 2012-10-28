@@ -5,13 +5,17 @@
                 return {
                     results: questions
                 };
+            },
+            saveCard = function () {
+                dataContext.questions.saveData();
             };
         
         dataContext.questions.getData(dataOptions());
-        dataContext.questions.saveData();
+        
         
         return {
-            questions: questions
+            questions: questions,
+            saveCard: saveCard
         };
     }
 );

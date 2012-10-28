@@ -4,6 +4,7 @@ function ($, ko, card) {
     var
         bind = function () {
             ko.applyBindings(card, getView('questions-view'));
+            ko.applyBindings(card, getView('createCard-view'));
         },
 
         getView = function(viewName) {

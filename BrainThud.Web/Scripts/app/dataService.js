@@ -14,7 +14,7 @@
             },
 
             saveCard = function (callbacks) {
-                callbacks.success("Your data was saved");
+                callbacks.success("Your card was saved");
             };
 
         return {
