@@ -8,6 +8,7 @@
             };
         
         dataContext.questions.getData(dataOptions());
+        dataContext.questions.saveData();
         
         return {
             questions: questions

@@ -1,12 +1,9 @@
 ﻿define('dataContext', ['jquery', 'dataService'],
     function ($, dataService) {
         var
-            entitySet = function (getFunction) {
+            entitySet = function (getFunction, saveFunction) {
                 var getData = function (options) {
-                    
-//                    var items = getFunction();
-//                    options.results(items);
-                    
+
                     return $.Deferred(function (def) {
                         var results = options && options.results;
                         getFunction({
@@ -15,20 +12,33 @@
                                 results = dtoList;
                                 def.resolve(results);
                             },
-                            error: function(response) {
+                            error: function (response) {
+                                if (def.reject) def.reject();
                                 alert(response.statusText);
                             }
                         });
                     }).promise();
                 };
 
+                var saveData = function () {
+                    return $.Deferred(function (def) {
+                        saveFunction({
+                            success: function (data) {
+                                console.log(data);
+                                def.resolve();
+                            }
+                        });
+                    });
+                };
+
                 return {
-                    getData: getData
+                    getData: getData,
+                    saveData: saveData
                 };
             },
-            
-            questions = new entitySet(dataService.getCards);
-        
+
+            questions = new entitySet(dataService.getCards, dataService.saveCard);
+
         return {
             questions: questions
         };
