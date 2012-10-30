@@ -1,20 +1,20 @@
 ﻿define('vm.card', ['jquery', 'ko', 'dataContext'],
     function ($, ko, dataContext) {
-        var questions = ko.observableArray(),
-            dataOptions = function() {
-                return {
-                    results: questions
-                };
-            },
+        var question = ko.observable(''),
+            answer = ko.observable(''),
+
             saveCard = function () {
-                dataContext.questions.saveData();
+                dataContext.card.saveData({
+                    data: {
+                        question: question(),
+                        answer: answer()
+                    }
+                });
             };
-        
-        dataContext.questions.getData(dataOptions());
-        
-        
+
         return {
-            questions: questions,
+            question: question,
+            answer: answer,
             saveCard: saveCard
         };
     }

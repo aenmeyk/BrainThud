@@ -2,8 +2,8 @@
     function ($, dataService) {
         var
             entitySet = function (getFunction, saveFunction) {
+                
                 var getData = function (options) {
-
                     return $.Deferred(function (def) {
                         var results = options && options.results;
                         getFunction({
@@ -20,12 +20,17 @@
                     }).promise();
                 };
 
-                var saveData = function () {
+                var saveData = function (options) {
                     return $.Deferred(function (def) {
                         saveFunction({
-                            success: function (data) {
-                                console.log(data);
+                            data: options.data,
+                            success: function (result) {
+                                console.log(result);
                                 def.resolve();
+                            },
+                            error: function (response) {
+                                if (def.reject) def.reject();
+                                alert(response.statusText);
                             }
                         });
                     });
@@ -37,10 +42,12 @@
                 };
             },
 
-            questions = new entitySet(dataService.getCards, dataService.saveCard);
+            cards = new entitySet(dataService.getCards, function () { });
+            card = new entitySet(function () { }, dataService.saveCard);
 
         return {
-            questions: questions
+            cards: cards,
+            card: card
         };
     }
 );

@@ -1,5 +1,5 @@
-﻿define('dataService', ['jquery', 'model'],
-    function ($, model) {
+﻿define('dataService', ['jquery'],
+    function ($) {
 
         var root = '/api/',
             getCards = function(callbacks) {
@@ -13,8 +13,20 @@
                 });
             },
 
-            saveCard = function (callbacks) {
-                callbacks.success("Your card was saved");
+            saveCard = function (options) {
+                //                callbacks.success("Your card was saved");
+                $.ajax({
+                    url: root + 'cards',
+                    type: 'POST',
+                    data: JSON.stringify(options.data),
+                    contentType: 'application/json',
+                    success: function (result) {
+                        options.success(result);
+                    },
+                    error: function (result) {
+                        options.error(result);
+                    }
+                });
             };
 
         return {
