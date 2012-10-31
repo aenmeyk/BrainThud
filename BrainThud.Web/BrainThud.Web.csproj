@@ -184,14 +184,19 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\main.css" />
     <Content Include="Scripts\app\binder.js" />
+    <Content Include="Scripts\app\config.js" />
+    <Content Include="Scripts\app\presenter.js" />
+    <Content Include="Scripts\app\router.js" />
+    <Content Include="Scripts\app\route-config.js" />
     <Content Include="Scripts\app\vm.card.js" />
     <Content Include="Scripts\app\vm.js" />
     <Content Include="Scripts\app\model.js" />
     <Content Include="Scripts\app\dataService.js" />
-    <Content Include="Scripts\app\dataContext.js" />
+    <Content Include="Scripts\app\data-context.js" />
     <Content Include="Scripts\app\vm.cards.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\sammy.js" />
     <Content Include="Scripts\main.js" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -206,6 +211,9 @@
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\require.min.js" />
+    <None Include="Scripts\sammy-0.7.1-vsdoc.js" />
+    <Content Include="Scripts\sammy-0.7.1.js" />
+    <Content Include="Scripts\sammy-0.7.1.min.js" />
     <Content Include="Scripts\text.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -299,8 +307,8 @@
     <Content Include="Images\twitter.png" />
     <Content Include="Images\windowsLive.png" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\questions.cshtml" />
-    <Content Include="Views\createCard.cshtml" />
+    <Content Include="Views\todays-cards.cshtml" />
+    <Content Include="Views\create-card.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -327,9 +335,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Home.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\today.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

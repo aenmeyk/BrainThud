@@ -21,7 +21,8 @@ namespace BrainThud.Web.App_Start
             bundles.Add(new ScriptBundle(BundlePaths.EXTERNAL_LIBS).Include(
                 "~/Scripts/jquery.unobtrusive*",
                 "~/Scripts/jquery.validate*",
-                "~/Scripts/knockout-*"));
+                "~/Scripts/knockout-*",
+                "~/Scripts/sammy.js"));
 
             bundles.Add(new ScriptBundle(BundlePaths.APP_LIBS).IncludeDirectory(
                 "~/Scripts/app", "*.js", searchSubdirectories: false));

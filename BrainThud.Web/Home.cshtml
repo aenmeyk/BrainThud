@@ -28,19 +28,21 @@
 </head>
     <body>
         <div class="container">
-        <header>
-            <h1>BrainThud</h1>
-            <nav id="shell-top-view" class="main-nav">
-                <div class="accent-left"></div>
-                <ul data-bind="if: $data">
-                    <li class="route-top"><a href="#/today">Today's Cards</a></li>
-                    <li class="route-top"><a href="#/manage">Manage Cards</a></li>
-                </ul>
-            </nav>
-        </header>
-            @this.RenderPage("Views/createCard.cshtml")
-@*            @this.RenderPage("Views/questions.cshtml")*@
-@*            @this.RenderPage("Views/today.cshtml")*@
+            <header>
+                <h1>BrainThud</h1>
+                <nav id="shell-top-view" class="main-nav">
+                    <div class="accent-left"></div>
+                    <ul data-bind="if: $data">
+                        <li class="route-top"><a href="#/todays-cards">Today's Cards</a></li>
+                        <li class="route-top"><a href="#/create-card">Create Card</a></li>
+                    </ul>
+                </nav>
+            </header>
+                
+            <section class="main">
+                @RenderPage("Views/create-card.cshtml")
+                @RenderPage("Views/todays-cards.cshtml")
+            </section>
         </div>
         @Scripts.Render(
             BundlePaths.JQUERY,
@@ -48,5 +50,9 @@
             ScriptPaths.REQUIRE_JS,
             BundlePaths.APP_LIBS,
             ScriptPaths.MAIN_JS)
+        
+        <script>
+                $('.view').hide();
+        </script>
     </body>
 </html>

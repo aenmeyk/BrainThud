@@ -1,4 +1,4 @@
-﻿define('dataContext', ['jquery', 'dataService'],
+﻿define('data-context', ['jquery', 'dataService'],
     function ($, dataService) {
         var
             entitySet = function (getFunction, saveFunction) {
