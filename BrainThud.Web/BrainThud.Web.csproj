@@ -212,9 +212,6 @@
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\require.min.js" />
-    <None Include="Scripts\sammy-0.7.1-vsdoc.js" />
-    <Content Include="Scripts\sammy-0.7.1.js" />
-    <Content Include="Scripts\sammy-0.7.1.min.js" />
     <Content Include="Scripts\text.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

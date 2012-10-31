@@ -14,7 +14,6 @@
             },
 
             saveCard = function (options) {
-                //                callbacks.success("Your card was saved");
                 $.ajax({
                     url: root + 'cards',
                     type: 'POST',
