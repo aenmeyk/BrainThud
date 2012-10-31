@@ -185,13 +185,14 @@
     <Content Include="Content\main.css" />
     <Content Include="Scripts\app\binder.js" />
     <Content Include="Scripts\app\config.js" />
+    <Content Include="Scripts\app\data-primer.js" />
     <Content Include="Scripts\app\presenter.js" />
     <Content Include="Scripts\app\router.js" />
     <Content Include="Scripts\app\route-config.js" />
     <Content Include="Scripts\app\vm.card.js" />
     <Content Include="Scripts\app\vm.js" />
     <Content Include="Scripts\app\model.js" />
-    <Content Include="Scripts\app\dataService.js" />
+    <Content Include="Scripts\app\data-service.js" />
     <Content Include="Scripts\app\data-context.js" />
     <Content Include="Scripts\app\vm.cards.js" />
     <Content Include="Scripts\bootstrap.js" />

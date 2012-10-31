@@ -1,4 +1,4 @@
-﻿define('dataService', ['jquery'],
+﻿define('data-service', ['jquery'],
     function ($) {
 
         var root = '/api/',
