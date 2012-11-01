@@ -200,7 +200,6 @@
     <Content Include="Scripts\app\route-config.js" />
     <Content Include="Scripts\app\vm.card.js" />
     <Content Include="Scripts\app\vm.js" />
-    <Content Include="Scripts\app\model.js" />
     <Content Include="Scripts\app\data-service.js" />
     <Content Include="Scripts\app\data-context.js" />
     <Content Include="Scripts\app\vm.cards.js" />

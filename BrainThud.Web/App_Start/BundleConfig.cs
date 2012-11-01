@@ -7,6 +7,7 @@ namespace BrainThud.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
 //            bundles.IgnoreList.Clear();
+            BundleTable.EnableOptimizations = true;
 
             // Modernizr should be seperate since it loads first
             bundles.Add(new ScriptBundle(BundlePaths.MODERNIZR).Include(
@@ -29,7 +30,6 @@ namespace BrainThud.Web.App_Start
 
             bundles.Add(new StyleBundle(BundlePaths.CSS).Include(
                 "~/Content/main.css",
-                "~/Content/site.less",
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-responsive.css",
                 "~/Content/themes/base/jquery.ui.core.css",
@@ -46,8 +46,8 @@ namespace BrainThud.Web.App_Start
                 "~/Content/themes/base/jquery.ui.theme.css"
                 ));
 
-            bundles.Add(new Bundle("~/Content/Less", new LessTransform(), new CssMinify())
-                .Include("~/Content/styles.less"));
+            bundles.Add(new Bundle(BundlePaths.LESS, new LessTransform(), new CssMinify()).Include(
+                "~/Content/Site.less"));
 
         }
     }

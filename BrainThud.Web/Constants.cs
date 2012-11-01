@@ -14,7 +14,7 @@
         public const string APP_LIBS = "~/bundles/jsapplibs";
         public const string MODERNIZR = "~/bundles/modernizr";
         public const string CSS = "~/Content/css";
-        public const string LESS = "~/Content/Less";
+        public const string LESS = "~/Content/less";
     }
 
     public static class ScriptPaths
