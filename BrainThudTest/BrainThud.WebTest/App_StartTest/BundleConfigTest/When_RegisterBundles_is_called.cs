@@ -64,7 +64,7 @@ namespace BrainThudTest.BrainThud.WebTest.App_StartTest.BundleConfigTest
         [Test]
         public void Then_a_bundle_should_be_created_for_css()
         {
-            this.BundleCollection.Should().Contain(x => x.Path == BundlePaths.STYLES);
+            this.BundleCollection.Should().Contain(x => x.Path == BundlePaths.CSS);
         }
     }
 }
