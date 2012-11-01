@@ -1,5 +1,5 @@
-﻿define('data-context', ['jquery', 'data-service'],
-    function ($, dataService) {
+﻿define('data-context', ['jquery', 'data-service', 'presenter'],
+    function ($, dataService, presenter) {
         var
             entitySet = function (getFunction, saveFunction) {
                 
@@ -25,6 +25,7 @@
                         saveFunction({
                             data: options.data,
                             success: function (result) {
+                                presenter.showSuccess();
                                 console.log(result);
                                 def.resolve();
                             },

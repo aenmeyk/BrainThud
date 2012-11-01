@@ -1,22 +1,27 @@
 ﻿define('presenter', [],
     function () {
+        var
+            transitionTo = function ($view) {
+                var $activeViews = $('.view-active');
 
-        transitionTo = function ($view) {
-            var $activeViews = $('.view-active');
+                if ($activeViews.length) {
+                    $activeViews.hide();
+                    $('.view').removeClass('view-active');
+                }
 
-            if ($activeViews.length) {
-                $activeViews.hide();
-                $('.view').removeClass('view-active');
-            }
+                if ($view.length) {
+                    $view.show();
+                    $view.addClass('view-active');
+                }
+            },
 
-            if ($view.length) {
-                $view.show();
-                $view.addClass('view-active');
-            }
-        };
+            showSuccess = function () {
+                $('.alert-success').removeClass('hidden');
+            };
 
         return {
-            transitionTo: transitionTo
+            transitionTo: transitionTo,
+            showSuccess: showSuccess
         };
     }
 );
