@@ -7,9 +7,9 @@
                 dataContext.card.saveData({
                     data: {
                         question: question(),
-                        answer: answer(),
-                        createNewCard: createNewCard()
-                    }
+                        answer: answer()
+                    },
+                    createNewCard: createNewCard
                 });
             },
 
@@ -18,6 +18,7 @@
             },
 
             hideSuccess = function () {
+//                console.log('Event Fired');
                 presenter.hideSuccess();
             },
 

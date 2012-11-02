@@ -1,18 +1,18 @@
 ﻿<section id="create-card-view" class="view">
     @*<span data-bind="text: ko.toJSON($data)"></span>*@
 
-    @RenderPage("Shared/successMessage.cshtml", "This is the message")
+    @RenderPage("Shared/successMessage.cshtml", "Your card has been created")
 
     <div class="row-fluid">
         <div class="span1">Question</div>
         <div class="span11">
-            <textarea class="large" data-bind="value: question"></textarea>
+            <textarea class="large" data-bind="value: question, event: { keyup: hideSuccess }"></textarea>
         </div>
     </div>
     <div class="row-fluid">
         <div class="span1">Answer</div>
         <div class="span11">
-            <textarea class="large" data-bind="value: answer"></textarea>
+            <textarea class="large" data-bind="value: answer, event: { keyup: hideSuccess }"></textarea>
         </div>
     </div>
     <div class="row-fluid">

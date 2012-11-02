@@ -7,7 +7,10 @@ namespace BrainThud.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
 //            bundles.IgnoreList.Clear();
+
+#if !DEBUG
             BundleTable.EnableOptimizations = true;
+#endif
 
             // Modernizr should be seperate since it loads first
             bundles.Add(new ScriptBundle(BundlePaths.MODERNIZR).Include(
