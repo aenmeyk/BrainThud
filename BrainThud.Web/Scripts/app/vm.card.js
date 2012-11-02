@@ -7,7 +7,8 @@
                 dataContext.card.saveData({
                     data: {
                         question: question(),
-                        answer: answer()
+                        answer: answer(),
+                        createNewCard: createNewCard()
                     }
                 });
             },
@@ -15,9 +16,14 @@
             activate = function () {
                 // do nothing
             },
-            
+
             hideSuccess = function () {
                 presenter.hideSuccess();
+            },
+
+            createNewCard = function () {
+                question('');
+                answer('');
             };
 
         return {

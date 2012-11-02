@@ -28,6 +28,7 @@
                                 presenter.showSuccess();
                                 console.log(result);
                                 def.resolve();
+                                options.createNewCard();
                             },
                             error: function (response) {
                                 if (def.reject) def.reject();
