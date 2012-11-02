@@ -32,15 +32,6 @@
                         });
                     }
 
-                    //                    _.each(options.routes, function (route) {
-                    //                        registerRoute({
-                    //                            route: route.route,
-                    //                            title: route.title,
-                    //                            callback: route.callback,
-                    //                            view: options.view,
-                    //                        });
-                    //                    });
-
                     return;
                 }
 
@@ -70,7 +61,6 @@
                     return;
                 }
                 sammy.run();
-//                registerBeforeLeaving();
                 navigateTo(startupUrl);
             };
 

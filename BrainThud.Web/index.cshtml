@@ -22,8 +22,9 @@
                 <nav id="shell-top-view" class="main-nav">
                     <div class="accent-left"></div>
                     <ul data-bind="if: $data">
-                        <li class="route-top"><a href="#/todays-cards">Today's Cards</a></li>
                         <li class="route-top"><a href="#/create-card">Create Card</a></li>
+                        <li class="route-top"><a href="#/todays-cards">Today's Cards</a></li>
+                        <li class="route-top"><a href="#/quiz">Quiz</a></li>
                     </ul>
                 </nav>
             </header>
@@ -31,6 +32,7 @@
             <section class="main">
                 @RenderPage("Views/create-card.cshtml")
                 @RenderPage("Views/todays-cards.cshtml")
+                @RenderPage("Views/quiz.cshtml")
             </section>
         </div>
         @Scripts.Render(

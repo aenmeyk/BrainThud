@@ -1,13 +1,15 @@
 ﻿define('config', [],
     function () {
         var hashes = {
+                createCard: '#/create-card',
                 todaysCards: '#/todays-cards',
-                createCard: '#/create-card'
+                quiz: '#/quiz'
             },
 
             viewIds = {
+                createCard: '#create-card-view',
                 todaysCards: '#todays-cards-view',
-                createCard: '#create-card-view'
+                quiz: '#quiz-view'
             };
 
         return {

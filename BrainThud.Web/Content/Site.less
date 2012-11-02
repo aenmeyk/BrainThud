@@ -16,53 +16,67 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+time, mark, audio, video
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section
+{
+    display: block;
 }
-body {
-	line-height: 1;
+
+body
+{
+    line-height: 1;
 }
-ol, ul {
-	list-style: none;
+
+ol, ul
+{
+    list-style: none;
 }
-blockquote, q {
-	quotes: none;
+
+blockquote, q
+{
+    quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+
+    blockquote:before, blockquote:after,
+    q:before, q:after
+    {
+        content: '';
+        content: none;
+    }
+
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- Controls -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-textarea { 
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	box-sizing: border-box;         /* Opera/IE 8+ */
-	&.large  {
-		height: 150px;
-		width: 100%;
-	}
+textarea
+{
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+    &.large
+    {
+        height: 150px;
+        width: 100%;
+    }
 }
 
 
@@ -70,29 +84,47 @@ textarea {
 /* --- display -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-.hidden {
-	visibility: hidden;
+.hidden
+{
+    visibility: hidden;
 }
 
-.visible {
-	visibility: visible;
+.visible
+{
+    visibility: visible;
 }
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- Sizing -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+.corner-radius (@size: 10px)
+{
+    -webkit-border-radius: @size;
+    -moz-border-radius: @size;
+    border-radius: @size;
+}
+
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- Location -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-.right-align {
-	float: right;
+.right-align
+{
+    float: right;
 }
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- custom -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.card
+{
+    background-color: #f8f2d2;
+    padding: 50px;
+    .corner-radius;
+}
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- Media -----------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -106,6 +138,17 @@ textarea {
 {
 }
 
+@media (max-width: 979px)
+{
+    .card
+    {
+        padding: 25px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+    }
+}
+
 @media (min-width: 768px) and (max-width: 979px)
 {
 }
@@ -114,5 +157,10 @@ textarea {
 {
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px)
+{
+    .card
+    {
+        padding: 10px;
+    }
 }

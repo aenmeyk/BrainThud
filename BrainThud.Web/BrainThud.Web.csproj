@@ -255,6 +255,7 @@
     <Content Include="Views\todays-cards.cshtml" />
     <Content Include="Views\create-card.cshtml" />
     <Content Include="Views\Shared\successMessage.cshtml" />
+    <Content Include="Views\quiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
