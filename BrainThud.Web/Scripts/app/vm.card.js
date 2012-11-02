@@ -1,5 +1,5 @@
-﻿define('vm.card', ['jquery', 'ko', 'data-context'],
-    function ($, ko, dataContext) {
+﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter'],
+    function ($, ko, dataContext, presenter) {
         var question = ko.observable(''),
             answer = ko.observable(''),
 
@@ -14,13 +14,18 @@
 
             activate = function () {
                 // do nothing
+            },
+            
+            hideSuccess = function () {
+                presenter.hideSuccess();
             };
 
         return {
             activate: activate,
             question: question,
             answer: answer,
-            saveCard: saveCard
+            saveCard: saveCard,
+            hideSuccess: hideSuccess
         };
     }
 );

@@ -1,10 +1,7 @@
 ﻿<section id="create-card-view" class="view">
     @*<span data-bind="text: ko.toJSON($data)"></span>*@
 
-    <div class="alert alert-success hidden">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <strong>Success!</strong> The card has been successfully created.
-    </div>
+    @RenderPage("Shared/successMessage.cshtml", "This is the message")
 
     <div class="row-fluid">
         <div class="span1">Question</div>

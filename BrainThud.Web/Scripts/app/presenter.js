@@ -17,11 +17,16 @@
 
             showSuccess = function () {
                 $('.alert-success').removeClass('hidden');
+            },
+
+            hideSuccess = function () {
+                $('.alert-success').addClass('hidden');
             };
 
         return {
             transitionTo: transitionTo,
-            showSuccess: showSuccess
+            showSuccess: showSuccess,
+            hideSuccess: hideSuccess
         };
     }
 );
