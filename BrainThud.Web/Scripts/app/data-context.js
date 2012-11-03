@@ -1,24 +1,36 @@
-﻿define('data-context', ['jquery', 'data-service', 'presenter'],
-    function ($, dataService, presenter) {
+﻿define('data-context', ['jquery', 'data-service', 'presenter', 'utils'],
+    function ($, dataService, presenter, utils) {
         var
             entitySet = function (getFunction, saveFunction) {
-                
-                var getData = function (options) {
-                    return $.Deferred(function (def) {
-                        var results = options && options.results;
-                        getFunction({
-                            success: function (dtoList) {
-                                options.results(dtoList);
-                                results = dtoList;
+                var
+                    items = {},
+
+                    getData = function (options) {
+                        return $.Deferred(function (def) {
+                            var results = options && options.results;
+                            if (!items || !utils.hasProperties(items)) {
+                                getFunction({
+                                    success: function (dtoList) {
+                                        items = dtoList;
+                                        //                                options.results(dtoList);
+                                        
+                                        if (results) {
+                                            results(items);
+                                        }
+                                        
+                                        def.resolve(results);
+                                    },
+                                    error: function (response) {
+                                        if (def.reject) def.reject();
+                                        alert(response.statusText);
+                                    }
+                                });
+                            } else {
+                                results(items);
                                 def.resolve(results);
-                            },
-                            error: function (response) {
-                                if (def.reject) def.reject();
-                                alert(response.statusText);
                             }
-                        });
-                    }).promise();
-                };
+                        }).promise();
+                    };
 
                 var saveData = function (options) {
                     return $.Deferred(function (def) {
@@ -45,7 +57,7 @@
             },
 
             cards = new entitySet(dataService.getCards, function () { });
-            card = new entitySet(function () { }, dataService.saveCard);
+        card = new entitySet(function () { }, dataService.saveCard);
 
         return {
             cards: cards,

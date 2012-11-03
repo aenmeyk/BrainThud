@@ -198,6 +198,7 @@
     <Content Include="Scripts\app\presenter.js" />
     <Content Include="Scripts\app\router.js" />
     <Content Include="Scripts\app\route-config.js" />
+    <Content Include="Scripts\app\utils.js" />
     <Content Include="Scripts\app\vm.card.js" />
     <Content Include="Scripts\app\vm.js" />
     <Content Include="Scripts\app\data-service.js" />
