@@ -3,12 +3,8 @@
 function ($, binder, routeConfig, dataPrimer) {
     var run = function () {
         $.when(dataPrimer.fetch())
-            .done(binder.bind())
-            .done(routeConfig.register());
-
-        //        dataprimer.fetch();
-        //        binder.bind();
-        //        routeConfig.register();
+            .done(binder.bind)
+            .done(routeConfig.register);
     };
 
     return {
