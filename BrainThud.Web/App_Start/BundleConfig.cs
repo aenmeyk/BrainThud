@@ -7,6 +7,7 @@ namespace BrainThud.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
 //            bundles.IgnoreList.Clear();
+            bundles.UseCdn = true;
 
 #if !DEBUG
             BundleTable.EnableOptimizations = true;
@@ -25,6 +26,7 @@ namespace BrainThud.Web.App_Start
             bundles.Add(new ScriptBundle(BundlePaths.EXTERNAL_LIBS).Include(
                 "~/Scripts/jquery.unobtrusive*",
                 "~/Scripts/jquery.validate*",
+                "~/Scripts/plugins.js",
                 "~/Scripts/knockout-*",
                 "~/Scripts/sammy.js"));
 
@@ -51,7 +53,6 @@ namespace BrainThud.Web.App_Start
 
             bundles.Add(new Bundle(BundlePaths.LESS, new LessTransform(), new CssMinify()).Include(
                 "~/Content/Site.less"));
-
         }
     }
 }

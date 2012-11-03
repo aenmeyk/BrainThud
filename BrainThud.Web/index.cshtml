@@ -4,9 +4,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -15,35 +13,39 @@
     @Styles.Render(BundlePaths.LESS, BundlePaths.CSS)
     @Scripts.Render(BundlePaths.MODERNIZR)
 </head>
-    <body>
-        <div class="container">
-            <header>
-                <h1>BrainThud</h1>
-                <nav id="shell-top-view" class="main-nav">
-                    <div class="accent-left"></div>
-                    <ul data-bind="if: $data">
-                        <li class="route-top"><a href="#/create-card">Create Card</a></li>
-                        <li class="route-top"><a href="#/todays-cards">Today's Cards</a></li>
-                        <li class="route-top"><a href="#/quiz">Quiz</a></li>
-                    </ul>
-                </nav>
-            </header>
-                
-            <section class="main">
-                @RenderPage("Views/create-card.cshtml")
-                @RenderPage("Views/todays-cards.cshtml")
-                @RenderPage("Views/quiz.cshtml")
-            </section>
-        </div>
-        @Scripts.Render(
-            BundlePaths.JQUERY,
-            BundlePaths.EXTERNAL_LIBS,
-            ScriptPaths.REQUIRE_JS,
-            BundlePaths.APP_LIBS,
-            ScriptPaths.MAIN_JS)
-        
-        <script>
-                $('.view').hide();
-        </script>
-    </body>
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="container">
+        <header>
+            <h1>BrainThud</h1>
+            <nav id="shell-top-view" class="main-nav">
+                <div class="accent-left"></div>
+                <ul data-bind="if: $data">
+                    <li class="route-top"><a href="#/create-card">Create Card</a></li>
+                    <li class="route-top"><a href="#/todays-cards">Today's Cards</a></li>
+                    <li class="route-top"><a href="#/quiz">Quiz</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="main">
+            @RenderPage("Views/create-card.cshtml")
+            @RenderPage("Views/todays-cards.cshtml")
+            @RenderPage("Views/quiz.cshtml")
+        </section>
+    </div>
+    @Scripts.Render(
+        BundlePaths.JQUERY,
+        BundlePaths.EXTERNAL_LIBS,
+        ScriptPaths.REQUIRE_JS,
+        BundlePaths.APP_LIBS,
+        ScriptPaths.MAIN_JS)
+
+    <script>
+        $('.view').hide();
+    </script>
+</body>
 </html>
