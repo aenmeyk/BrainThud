@@ -1,9 +1,9 @@
-﻿define('data-context', ['jquery', 'data-service', 'presenter', 'utils'],
-    function ($, dataService, presenter, utils) {
+﻿define('data-context', ['jquery', 'data-service', 'presenter', 'utils', 'model', 'model.mapper'],
+    function ($, dataService, presenter, utils, model, modelMapper) {
         var
             entitySet = function (getFunction, saveFunction) {
                 var
-                    items = {},
+                    items = [],
 
                     getData = function (options) {
                         return $.Deferred(function (def) {
@@ -11,8 +11,9 @@
                             if (!items || !utils.hasProperties(items)) {
                                 getFunction({
                                     success: function (dtoList) {
-                                        items = dtoList;
-                                        //                                options.results(dtoList);
+                                        for (var i = 0; i < dtoList.length; i++) {
+                                            items.push(modelMapper.card.fromDto(dtoList[i]));
+                                        }
 
                                         if (results) {
                                             results(items);

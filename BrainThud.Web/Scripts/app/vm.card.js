@@ -18,7 +18,6 @@
             },
 
             hideSuccess = function () {
-//                console.log('Event Fired');
                 presenter.hideSuccess();
             },
 
