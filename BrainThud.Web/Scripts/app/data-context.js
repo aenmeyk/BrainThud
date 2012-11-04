@@ -13,11 +13,11 @@
                                     success: function (dtoList) {
                                         items = dtoList;
                                         //                                options.results(dtoList);
-                                        
+
                                         if (results) {
                                             results(items);
                                         }
-                                        
+
                                         def.resolve(results);
                                     },
                                     error: function (response) {
@@ -56,8 +56,8 @@
                 };
             },
 
-            cards = new entitySet(dataService.getCards, function () { });
-        card = new entitySet(function () { }, dataService.saveCard);
+            cards = new entitySet(dataService.cards.get, function () { });
+            card = new entitySet(function () { }, dataService.cards.save);
 
         return {
             cards: cards,
