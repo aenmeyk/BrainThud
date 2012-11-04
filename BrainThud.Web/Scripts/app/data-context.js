@@ -34,8 +34,7 @@
 
                 var saveData = function (options) {
                     return $.Deferred(function (def) {
-                        saveFunction({
-                            data: options.data,
+                        saveFunction(options.data, {
                             success: function (result) {
                                 presenter.showSuccess();
                                 console.log(result);
@@ -57,7 +56,7 @@
             },
 
             cards = new entitySet(dataService.cards.get, function () { });
-            card = new entitySet(function () { }, dataService.cards.save);
+        card = new entitySet(function () { }, dataService.cards.save);
 
         return {
             cards: cards,

@@ -28,6 +28,7 @@ namespace BrainThud.Web.App_Start
                 "~/Scripts/jquery.validate*",
                 "~/Scripts/plugins.js",
                 "~/Scripts/knockout-*",
+                "~/Scripts/amplify.*",
                 "~/Scripts/sammy.js"));
 
             bundles.Add(new ScriptBundle(BundlePaths.APP_LIBS).IncludeDirectory(

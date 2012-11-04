@@ -1,4 +1,4 @@
-﻿define('data-service', ['data-service.cards'],
+﻿define('data-service', ['data-service.card'],
     function (cards) {
         return {
             cards: cards

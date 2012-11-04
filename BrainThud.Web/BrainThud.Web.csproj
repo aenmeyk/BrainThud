@@ -185,6 +185,9 @@
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.less</DependentUpon>
     </Content>
+    <None Include="Scripts\amplify-vsdoc.js" />
+    <Content Include="Scripts\amplify.js" />
+    <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
@@ -202,15 +205,18 @@
     <Content Include="Scripts\app\utils.js" />
     <Content Include="Scripts\app\vm.card.js" />
     <Content Include="Scripts\app\vm.js" />
-    <Content Include="Scripts\app\data-service.cards.js" />
+    <Content Include="Scripts\app\data-service.card.js" />
     <Content Include="Scripts\app\data-context.js" />
     <Content Include="Scripts\app\vm.cards.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\GPL-LICENSE.txt" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\MIT-LICENSE.txt" />
     <Content Include="Scripts\plugins.js" />
     <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\README.txt" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\sammy.js" />
     <Content Include="Scripts\main.js" />

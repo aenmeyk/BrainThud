@@ -9,6 +9,7 @@
         define('jquery', [], function() { return root.jQuery; });
         define('ko', [], function() { return root.ko; });
         define('sammy', [], function () { return root.Sammy; });
+        define('amplify', [], function () { return root.amplify; });
     }
 
     //requirejs.config({
