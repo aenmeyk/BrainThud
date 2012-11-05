@@ -17,6 +17,7 @@
                 {
                     view: config.viewIds.todaysCards,
                     routes: [{
+                        isDefault: true,
                         route: config.hashes.todaysCards,
                         title: "Today's Cards",
                         callback: vm.cards.activate
@@ -27,7 +28,6 @@
                 {
                     view: config.viewIds.quiz,
                     routes: [{
-                        isDefault: true,
                         route: config.hashes.quiz,
                         title: "Quiz",
                         callback: vm.cards.activate

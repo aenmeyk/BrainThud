@@ -35,32 +35,3 @@
         };
     }
 );
-
-
-
-//define('vm.cards', ['jquery', 'ko', 'data-context'],
-//    function ($, ko, dataContext) {
-//        var
-//            cards = ko.observableArray(),
-//
-//            currentCard = ko.computed(function () {
-//                return cards()[0];
-//            }),
-//
-//            dataOptions = function () {
-//                return {
-//                    results: cards
-//                };
-//            },
-//
-//            activate = function () {
-//                dataContext.cards.getData(dataOptions());
-//            };
-//
-//        return {
-//            cards: cards,
-//            currentCard: currentCard,
-//            activate: activate
-//        };
-//    }
-//);

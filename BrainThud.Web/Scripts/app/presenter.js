@@ -16,11 +16,11 @@
             },
 
             showSuccess = function () {
-                $('.alert-success').removeClass('hidden');
+                $('.alert-success').removeClass('invisible');
             },
 
             hideSuccess = function () {
-                $('.alert-success').addClass('hidden');
+                $('.alert-success').addClass('invisible');
             };
 
         return {
