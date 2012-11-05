@@ -45,7 +45,7 @@
                 }
 
                 sammy.get(options.route, function (context) {
-                    options.callback();
+                    options.callback(context.params);
                     $('.view').hide();
                     presenter.transitionTo($(options.view));
                 });

@@ -13,16 +13,19 @@
                 };
             },
 
-            activate = function () {
+            activate = function (routeData) {
                 $.when(dataContext.cards.getData(dataOptions()))
-                    .always(setCurrentCard);
+                    .always(setCurrentCard(routeData.rowKey));
             },
 
-            setCurrentCard = function () {
-                ko.utils.arrayFirst(cards(), function (item) {
-                    currentCard.question(item.question);
-                    currentCard.answer(item.answer);
-                });
+            setCurrentCard = function (rowKey) {
+                for (var i = 0; i < cards().length; i++) {
+                    if(cards()[i].rowKey() === rowKey) {
+                        currentCard.question(cards()[i].question());
+                        currentCard.answer(cards()[i].answer());
+                        return;
+                    }
+                }
             };
 
         return {
