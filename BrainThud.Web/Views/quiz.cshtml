@@ -1,9 +1,7 @@
 ﻿<section id="quiz-view" class="view">
 
     <div class="row-fluid">
-        <div class="span12 card">
-            <span data-bind="text: currentCard.question"></span>
-        </div>
+            <button id="card" type="button" class="card span12 btn btn-warning" data-bind="text: currentCard.text, click: flipCard"></button>
     </div>
 
 @*    <span data-bind="text: ko.toJSON(currentCard)"></span>*@
