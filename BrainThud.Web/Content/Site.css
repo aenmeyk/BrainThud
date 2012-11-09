@@ -113,6 +113,7 @@ textarea.large {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .card {
   padding: 50px;
+  min-height: 200px !important;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -225,6 +226,7 @@ textarea.large {
 @media (max-width: 979px) {
   .card {
     padding: 25px;
+    min-height: 150px !important;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
@@ -244,6 +246,7 @@ textarea.large {
 }
 @media (max-width: 480px) {
   .card {
+    min-height: 100px !important;
     padding: 10px;
   }
 }
