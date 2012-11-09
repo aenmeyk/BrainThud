@@ -1,14 +1,13 @@
 ﻿define('vm.cards', ['jquery', 'ko', 'data-context'],
     function ($, ko, dataContext) {
         var
-            currentCardIndex = 0,
             cards = ko.observableArray(),
             currentCard = {
                 question: ko.observable(''),
                 answer: ko.observable(''),
                 text: ko.observable('')
             },
-
+        
             dataOptions = function () {
                 return {
                     results: cards
@@ -17,52 +16,37 @@
 
             activate = function (routeData) {
                 $.when(dataContext.cards.getData(dataOptions()))
-                    .always(setCurrentCard());
+                    .always(setCurrentCard(routeData.rowKey));
             },
 
-            setCurrentCard = function () {
-                currentCard.question(cards()[currentCardIndex].question());
-                currentCard.answer(cards()[currentCardIndex].answer());
-                currentCard.text(cards()[currentCardIndex].question());
-            },
-            
-            showQuestion = function () {
-                currentCard.text(currentCard.question());
-                $('#card').removeClass('btn-info');
-                $('#card').addClass('btn-warning');
-            },
-            
-            showAnswer = function () {
-                currentCard.text(currentCard.answer());
-                $('#card').removeClass('btn-warning');
-                $('#card').addClass('btn-info');
+            setCurrentCard = function (rowKey) {
+                for (var i = 0; i < cards().length; i++) {
+                    if(cards()[i].rowKey() === rowKey) {
+                        currentCard.question(cards()[i].question());
+                        currentCard.answer(cards()[i].answer());
+                        currentCard.text(cards()[i].question());
+                        return;
+                    }
+                }
             },
 
             flipCard = function () {
-                if (currentCard.text() == currentCard.question()) {
-                    showAnswer();
+                if(currentCard.text() == currentCard.question()) {
+                    currentCard.text(currentCard.answer());
+                    $('#card').removeClass('btn-warning');
+                    $('#card').addClass('btn-info');
                 } else {
-                    showQuestion();
+                    currentCard.text(currentCard.question());
+                    $('#card').removeClass('btn-info');
+                    $('#card').addClass('btn-warning');
                 }
-            },
-
-            setNextCard = function () {
-                if (currentCardIndex >= cards().length - 1) {
-                    currentCardIndex = 0;
-                } else {
-                    currentCardIndex++;
-                }
-                
-                setCurrentCard();
-                showQuestion();
             };
 
         return {
             cards: cards,
             currentCard: currentCard,
             activate: activate,
-            flipCard: flipCard,
-            setNextCard: setNextCard
+            flipCard: flipCard
         };
     }
 );
