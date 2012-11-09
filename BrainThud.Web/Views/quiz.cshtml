@@ -1,8 +1,17 @@
 ﻿<section id="quiz-view" class="view">
 
     <div class="row-fluid">
-            <button id="card" type="button" class="card span12 btn btn-warning" data-bind="text: currentCard.text, click: flipCard"></button>
+        <button id="card" type="button" class="card span12 btn btn-warning" data-bind="text: currentCard.text, click: flipCard"></button>
     </div>
 
-@*    <span data-bind="text: ko.toJSON(currentCard)"></span>*@
+    <div class="row-fluid">
+        <div class="span6">
+            <button type="button" class="primary-button btn btn-danger" data-bind="click: flipCard">Incorrect</button>
+        </div>
+        <div class="span6">
+            <button type="button" class="primary-button btn btn-success" data-bind="click: flipCard">Correct</button>
+        </div>
+    </div>
+
+    @*    <span data-bind="text: ko.toJSON(currentCard)"></span>*@
 </section>
