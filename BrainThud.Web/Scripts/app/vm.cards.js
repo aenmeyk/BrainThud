@@ -41,14 +41,14 @@
             
             showQuestion = function () {
                     currentCard.text(currentCard.question());
-                    $('#card').removeClass('btn-info');
-                    $('#card').addClass('btn-warning');
+                    $('#card').removeClass('answer');
+                    $('#card').addClass('question');
                 },
             
             showAnswer = function () {
                     currentCard.text(currentCard.answer());
-                    $('#card').removeClass('btn-warning');
-                    $('#card').addClass('btn-info');
+                    $('#card').removeClass('question');
+                    $('#card').addClass('answer');
                 },
 
 

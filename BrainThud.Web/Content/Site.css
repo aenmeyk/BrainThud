@@ -117,9 +117,18 @@ form {
 .card {
   padding: 50px;
   min-height: 200px !important;
+  border: 5px;
+  border-style: solid;
+  cursor: pointer;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+}
+.question {
+  border-color: #ffbb00;
+}
+.answer {
+  border-color: #1a9aee;
 }
 .primary-button {
   padding: 25px;
