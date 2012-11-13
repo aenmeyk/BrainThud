@@ -1,5 +1,7 @@
+using BrainThud.Data;
 using BrainThud.Web.Controllers;
 using BrainThudTest.Tools;
+using Moq;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizControllerTest
@@ -9,9 +11,11 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizControllerTest
     {
         public override void Given()
         {
-            this.QuizController = new QuizController();
+            this.UnitOfWork = new Mock<IUnitOfWork>();
+            this.QuizController = new QuizController(this.UnitOfWork.Object);
         }
 
+        protected Mock<IUnitOfWork> UnitOfWork { get; private set; }
         protected QuizController QuizController { get; private set; }
     }
 }
