@@ -8,6 +8,7 @@ namespace BrainThud.Data.AzureTableStorage
     {
         private readonly ITableStorageContext<T> tableStorageContext;
         private readonly ITableStorageKeyGenerator keyGenerator;
+
         public TableStorageRepository(ITableStorageContext<T> tableStorageContext, ITableStorageKeyGenerator keyGenerator)
         {
             this.tableStorageContext = tableStorageContext;
