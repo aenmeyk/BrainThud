@@ -56,25 +56,36 @@ namespace BrainThud.Web.Controllers
 
         public HttpResponseMessage Post(Card card)
         {
-            this.unitOfWork.Cards.Add(card);
-            this.unitOfWork.Commit();
-            var response = this.Request.CreateResponse(HttpStatusCode.Created, card);
-
-            var routeValues = new
+            if (this.ModelState.IsValid)
             {
-                controller = this.ControllerContext.ControllerDescriptor.ControllerName,
-                id = card.RowKey
-            };
+                this.unitOfWork.Cards.Add(card);
+                this.unitOfWork.Commit();
+                var response = this.Request.CreateResponse(HttpStatusCode.Created, card);
 
-            response.Headers.Location = new Uri(this.GetLink(RouteNames.DEFAULT_API, routeValues));
-            return response;
+                var routeValues = new
+                {
+                    controller = this.ControllerContext.ControllerDescriptor.ControllerName,
+                    id = card.RowKey
+                };
+
+                response.Headers.Location = new Uri(this.GetLink(RouteNames.DEFAULT_API, routeValues));
+                return response;
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         public HttpResponseMessage Delete(string id)
         {
-            this.unitOfWork.Cards.Delete(id);
-            this.unitOfWork.Commit();
-            return new HttpResponseMessage(HttpStatusCode.NoContent);
+            if (this.ModelState.IsValid)
+            {
+                this.unitOfWork.Cards.Delete(id);
+                this.unitOfWork.Commit();
+
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         // Allows Url.Link to be faked for testing
