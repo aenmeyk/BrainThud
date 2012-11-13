@@ -1,6 +1,6 @@
 ﻿define('utils', [],
     function () {
-        var hasProperties = function (obj) {
+        var hasProperties = function(obj) {
             for (var prop in obj) {
                 if (obj.hasOwnProperty(prop)) {
                     return true;

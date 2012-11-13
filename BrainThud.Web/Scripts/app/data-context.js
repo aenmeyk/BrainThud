@@ -57,7 +57,7 @@
             },
 
             cards = new entitySet(dataService.cards.get, function () { });
-        card = new entitySet(function () { }, dataService.cards.save);
+            card = new entitySet(function () { }, dataService.cards.save);
 
         return {
             cards: cards,

@@ -7,7 +7,9 @@
                 dataContext.card.saveData({
                     data: {
                         question: question(),
-                        answer: answer()
+                        answer: answer(),
+                        quizDate: new Date(),
+                        level: 0
                     },
                     createNewCard: createNewCard
                 });
