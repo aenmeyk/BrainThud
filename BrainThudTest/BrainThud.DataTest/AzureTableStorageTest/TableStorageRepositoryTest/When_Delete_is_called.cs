@@ -1,9 +1,9 @@
-﻿using BrainThud.Data;
+﻿using System.Linq;
+using BrainThud.Data;
 using BrainThud.Model;
 using BrainThudTest.Tools;
-using FluentAssertions;
-using NUnit.Framework;
 using Moq;
+using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest
 {
@@ -15,7 +15,8 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRep
 
         public override void When()
         {
-            this.TableStorageContext.Setup(x => x.CreateQuery(this.cardShoudBeDeleted.GetType().Name)).Returns(new[] { this.cardShoudBeDeleted, this.cardShoudNotBeDeleted });
+            var cards = new[] { this.cardShoudBeDeleted, this.cardShoudNotBeDeleted }.AsQueryable();
+            this.TableStorageContext.Setup(x => x.CreateQuery(this.cardShoudBeDeleted.GetType().Name)).Returns(cards);
             this.TableStorageRepository.Delete(TestValues.ROW_KEY);
         }
 

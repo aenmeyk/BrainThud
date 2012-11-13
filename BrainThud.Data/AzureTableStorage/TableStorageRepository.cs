@@ -15,7 +15,7 @@ namespace BrainThud.Data.AzureTableStorage
             this.keyGenerator = keyGenerator;
         }
 
-        private IEnumerable<T> entitySet
+        private IQueryable<T> entitySet
         {
             get { return this.tableStorageContext.CreateQuery(typeof(T).Name); }
         }
@@ -40,10 +40,10 @@ namespace BrainThud.Data.AzureTableStorage
 
         public T Get(string rowKey)
         {
-            return this.entitySet.First(x => x.PartitionKey == Keys.TEMP_PARTITION_KEY && x.RowKey == rowKey);
+            return this.entitySet.Where(x => x.PartitionKey == Keys.TEMP_PARTITION_KEY && x.RowKey == rowKey).First();
         }
 
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
             return this.entitySet;
         }

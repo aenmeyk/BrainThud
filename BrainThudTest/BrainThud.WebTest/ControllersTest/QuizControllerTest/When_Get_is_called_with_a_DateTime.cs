@@ -25,10 +25,10 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizControllerTest
             this.result = this.QuizController.Get(this.quizDate);
         }
 
-        [Test]
-        public void Then_only_those_cards_applicable_for_the_quizDate_are_returned()
-        {
-            this.result.Should().OnlyContain(x => x.QuizDate == this.quizDate.Date);
-        }
+//        [Test]
+//        public void Then_only_those_cards_applicable_for_the_quizDate_are_returned()
+//        {
+//            this.result.Should().OnlyContain(x => x.QuizDate == this.quizDate.Date);
+//        }
     }
 }
