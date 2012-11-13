@@ -26,12 +26,6 @@ namespace BrainThudTest.BrainThud.ModelTest.CardTest
         }
 
         [Test]
-        public void Then_AdditionalInformation_should_get_and_set_a_string()
-        {
-            this.Card.CanGetSetString(x => x.AdditionalInformation);
-        }
-
-        [Test]
         public void Then_Card_should_inherit_from_TableServiceEntity()
         {
             this.Card.Should().BeAssignableTo<TableServiceEntity>();

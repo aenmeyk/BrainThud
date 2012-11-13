@@ -18,36 +18,6 @@ namespace BrainThudTest.Integration
     [Category(TestTypes.INTEGRATION)]
     public class Azure_Table_Storage_Tests
     {
-//        [Test]
-//        public void Card_is_saved_and_retrieved_from_Azure_Table_Storage()
-//        {
-//            // Given
-//            var cloudStorageServices = new CloudStorageServices();
-//            var keyGenerator = new TableStorageKeyGenerator();
-//            var tableServiceContext = new TableStorageContext<Card>(EntitySetNames.CARD, cloudStorageServices);
-//            TableStorageHelper.ClearTable<Card>(tableServiceContext);
-//
-//            var repositoryFactory = new RepositoryFactory(cloudStorageServices, keyGenerator);
-//
-//            var createdCard = new Card
-//            {
-//                PartitionKey = TestValues.PARTITION_KEY,
-//                RowKey = TestValues.ROW_KEY,
-//                Question = "QuestionText",
-//                Answer = "AnswerText",
-//                AdditionalInformation = "AdditionalInformationText"
-//            };
-//
-//            // When
-//            var unitOfWork = new UnitOfWork(repositoryFactory);
-//            unitOfWork.Cards.Add(createdCard);
-//            unitOfWork.Commit();
-//            var returnedCard = unitOfWork.Cards.GetAll().Single();
-//
-//            // Then
-//            returnedCard.ShouldHave().AllProperties().EqualTo(createdCard);
-//        }
-
         [Test]
         public void Then_CardsController_CRUD()
         {
