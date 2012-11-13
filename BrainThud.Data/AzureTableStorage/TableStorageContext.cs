@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Data.AzureTableStorage
@@ -30,7 +31,7 @@ namespace BrainThud.Data.AzureTableStorage
             base.DeleteObject(entity);
         }
 
-        public IEnumerable<T> CreateQuery(string entitySetName)
+        public IQueryable<T> CreateQuery(string entitySetName)
         {
             return this.CreateQuery<T>(entitySetName);
         }

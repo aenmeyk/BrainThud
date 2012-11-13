@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.Data.Services.Client;
+using System.Linq;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Data.AzureTableStorage
@@ -11,6 +12,6 @@ namespace BrainThud.Data.AzureTableStorage
         void UpdateObject(T entity);
         void DeleteObject(T entity);
         DataServiceResponse SaveChangesWithRetries();
-        IEnumerable<T> CreateQuery(string entitySetName);
+        IQueryable<T> CreateQuery(string entitySetName);
     }
 }

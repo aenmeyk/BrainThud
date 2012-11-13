@@ -4,6 +4,7 @@ using BrainThudTest.Tools;
 using FluentAssertions;
 using NUnit.Framework;
 using BrainThud.Data;
+using System.Linq;
 
 namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRepositoryTest
 {
@@ -16,7 +17,7 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRep
         public override void When()
         {
             this.expectedResult = new Card { PartitionKey = Keys.TEMP_PARTITION_KEY, RowKey = TestValues.ROW_KEY };
-            var cards = new HashSet<Card> { this.expectedResult, new Card() };
+            var cards = new HashSet<Card> { this.expectedResult, new Card() }.AsQueryable();
             this.TableStorageContext.Setup(x => x.CreateQuery(typeof(Card).Name)).Returns(cards);
             this.actualResult = this.TableStorageRepository.Get(TestValues.ROW_KEY);
         }
