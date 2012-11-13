@@ -53,6 +53,7 @@
     </Reference>
     <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services.Client" />
@@ -138,6 +139,7 @@
     <Compile Include="BrainThud.ModelTest\CardTest\Given_a_new_Card.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.ModelTest\CardTest\When_an_invalid_QuizDate_is_set.cs" />
     <Compile Include="BrainThud.ModelTest\CardTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -150,6 +152,7 @@
     <Compile Include="BrainThud.WebTest\App_StartTest\BundleConfigTest\When_RegisterBundles_is_called.cs" />
     <Compile Include="BrainThud.WebTest\App_StartTest\When_CustomizeConfig_is_called.cs" />
     <Compile Include="BrainThud.WebTest\App_StartTest\Given_a_GlobalConfig_class.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Put_is_called_with_an_invalid_QuizDate.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Get_is_called_with_an_Id_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Get_is_called_with_an_Id_parameter.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Delete_is_called.cs" />

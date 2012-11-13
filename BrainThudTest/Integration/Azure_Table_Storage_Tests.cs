@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
@@ -33,7 +34,7 @@ namespace BrainThudTest.Integration
 
             var server = new HttpServer(config);
             var client = new HttpClient(server);
-            var card = new Card { Question = POST_QUESTION_TEXT };
+            var card = new Card { Question = POST_QUESTION_TEXT, QuizDate = DateTime.Now};
 
             // Test Post
             var postResponse = client.PostAsJsonAsync(TestUrls.CARDS, card).Result;

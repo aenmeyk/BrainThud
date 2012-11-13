@@ -18,7 +18,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         [Test]
         public void Then_an_HttpException_is_thrown()
         {
-            this.ShouldThrowException<HttpException>(ErrorMessages.The_specified_knowledge_card_could_not_be_found);
+            this.ShouldThrowException<HttpException>(ErrorMessages.The_specified_card_could_not_be_found);
         }
     }
 }

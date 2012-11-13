@@ -1,4 +1,5 @@
-﻿namespace BrainThud.Web
+﻿using System;
+namespace BrainThud.Web
 {
     public static class RouteNames
     {

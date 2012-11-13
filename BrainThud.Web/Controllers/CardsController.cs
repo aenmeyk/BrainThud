@@ -34,7 +34,7 @@ namespace BrainThud.Web.Controllers
             {
                 if (ex.Message == ErrorMessages.Sequence_contains_no_matching_element)
                 {
-                    throw new HttpException((int)HttpStatusCode.NotFound, ErrorMessages.The_specified_knowledge_card_could_not_be_found);
+                    throw new HttpException((int)HttpStatusCode.NotFound, ErrorMessages.The_specified_card_could_not_be_found);
                 }
 
                 throw;
@@ -43,9 +43,15 @@ namespace BrainThud.Web.Controllers
 
         public HttpResponseMessage Put(Card card)
         {
-            this.unitOfWork.Cards.Update(card);
-            this.unitOfWork.Commit();
-            return new HttpResponseMessage(HttpStatusCode.NoContent);
+            if (this.ModelState.IsValid)
+            {
+                this.unitOfWork.Cards.Update(card);
+                this.unitOfWork.Commit();
+
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         public HttpResponseMessage Post(Card card)

@@ -26,6 +26,18 @@ namespace BrainThudTest.BrainThud.ModelTest.CardTest
         }
 
         [Test]
+        public void Then_QuizDate_should_get_and_set_a_DateTime()
+        {
+            this.Card.CanGetSetDateTime(x => x.QuizDate);
+        }
+
+        [Test]
+        public void Then_Level_should_get_and_set_an_int()
+        {
+            this.Card.CanGetSetInt(x => x.Level);
+        }
+
+        [Test]
         public void Then_Card_should_inherit_from_TableServiceEntity()
         {
             this.Card.Should().BeAssignableTo<TableServiceEntity>();
