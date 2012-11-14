@@ -58,10 +58,12 @@
 
             cards = new entitySet(dataService.cards.get, function () { });
             card = new entitySet(function () { }, dataService.cards.save);
+            quiz = new entitySet(dataService.quiz.get, function () { });
 
         return {
             cards: cards,
-            card: card
+            card: card,
+            quiz: quiz
         };
     }
 );

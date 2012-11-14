@@ -16,10 +16,13 @@ namespace BrainThud.Web.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<Card> Get(DateTime quizDate)
+        public IEnumerable<Card> Get(int year, int month, int day)
         {
-            var date = quizDate.AddDays(1).Date.AddMilliseconds(-1);
-            return this.unitOfWork.Cards.GetAll().Where(x => x.QuizDate <= date);
+            var quizDate = new DateTime(year, month, day)
+                .AddDays(1).Date
+                .AddMilliseconds(-1);
+
+            return this.unitOfWork.Cards.GetAll().Where(x => x.QuizDate <= quizDate);
         }
     }
 }

@@ -1,7 +1,8 @@
-﻿define('data-service', ['data-service.card'],
-    function (cards) {
+﻿define('data-service', ['data-service.card','data-service.quiz'],
+    function (cards, quiz) {
         return {
-            cards: cards
+            cards: cards,
+            quiz: quiz
         };
     }
 );

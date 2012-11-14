@@ -58,7 +58,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
             var id = propertyInfo.GetValue(this.CardsController.RouteValues, null);
 
             id.Should().Be(this.card.RowKey);
-            this.CardsController.RouteName.Should().Be(RouteNames.DEFAULT_API);
+            this.CardsController.RouteName.Should().Be(RouteNames.API_DEFAULT);
             this.response.Headers.Location.ToString().Should().Be(TestUrls.LOCALHOST);
         }
     }

@@ -17,7 +17,7 @@ namespace BrainThudTest.Builders
 
         public ControllerContextBuilder()
         {
-            var route = this.config.Routes.MapHttpRoute(RouteNames.DEFAULT_API, "api/{controller}/{id}");
+            var route = this.config.Routes.MapHttpRoute(RouteNames.API_DEFAULT, "api/{controller}/{id}");
             this.routeData = new HttpRouteData(route);
         }
 

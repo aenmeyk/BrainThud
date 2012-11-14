@@ -68,7 +68,7 @@ namespace BrainThud.Web.Controllers
                     id = card.RowKey
                 };
 
-                response.Headers.Location = new Uri(this.GetLink(RouteNames.DEFAULT_API, routeValues));
+                response.Headers.Location = new Uri(this.GetLink(RouteNames.API_DEFAULT, routeValues));
                 return response;
             }
 
