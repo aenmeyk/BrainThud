@@ -18,7 +18,8 @@ namespace BrainThud.Web.Controllers
 
         public IEnumerable<Card> Get(DateTime quizDate)
         {
-            return this.unitOfWork.Cards.GetAll().Where(x => x.QuizDate.Date <= quizDate.Date);
+            var date = quizDate.AddDays(1).Date.AddMilliseconds(-1);
+            return this.unitOfWork.Cards.GetAll().Where(x => x.QuizDate <= date);
         }
     }
 }
