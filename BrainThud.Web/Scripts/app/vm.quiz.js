@@ -15,13 +15,6 @@
                 };
             },
 
-//            activate = function (routeData) {
-//                $.when(dataContext.quiz.getData(dataOptions()))
-//                    .always(function () {
-//                         console.log(cards().length);
-//                         console.log('setCurrentCard');
-//                    });
-//            },
             activate = function (routeData) {
                 var deferred = dataContext.quiz.getData(dataOptions());
                 $.when(deferred)
@@ -29,8 +22,6 @@
             },
 
             setCurrentCard = function (rowKey) {
-                console.log('rowKey ' + rowKey);
-                console.log('setCurrentCard ' + cards().length);
                 for (var i = 0; i < cards().length; i++) {
                     if(cards()[i].rowKey() === rowKey) {
                         currentCard.question(cards()[i].question());
