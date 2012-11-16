@@ -30,9 +30,8 @@
             },
 
             activate = function (routeData) {
-                var deferred = dataContext.quiz.getData(dataOptions());
-                $.when(deferred)
-                    .then(setCurrentCard(routeData.rowKey));
+                $.when(dataContext.quiz.getData(dataOptions()))
+                    .then(function () { setCurrentCard(routeData.rowKey); });
             },
 
             setCurrentCard = function (rowKey) {

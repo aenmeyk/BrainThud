@@ -8,7 +8,9 @@
                     var results = options && options.results;
                     if (!items || !utils.hasProperties(items)) {
                         config.get({
-                            success: function(dtoList) {
+                            success: function (dtoList) {
+                                items = [];
+                                
                                 for (var i = 0; i < dtoList.length; i++) {
                                     items.push(config.mapper.fromDto(dtoList[i]));
                                 }
@@ -26,7 +28,7 @@
                         });
                     } else {
                         results(items);
-                        def.resolve(results);
+                         def.resolve(results);
                     }
 
                     return def.promise();
@@ -37,7 +39,7 @@
                     config.save(options.data, {
                         success: function(result) {
                             presenter.showSuccess();
-                            def.resolve();
+                             def.resolve();
                             options.createNewCard();
                         },
                         error: function(response) {

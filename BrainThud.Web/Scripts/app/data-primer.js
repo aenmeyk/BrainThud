@@ -2,11 +2,12 @@
     function ($, ko, dataContext) {
         var
             fetch = function () {
-                return $.Deferred(function (def) {
-                    $.when(dataContext.quiz.getData()
-                        .fail(function () { def.reject(); }))
-                        .done(function () { def.resolve(); });
-                }).promise();
+//                return $.Deferred(function (def) {
+//                    //                    $.when(dataContext.quiz.getData()
+//                    //                        .fail(function () { def.reject(); }))
+//                    //                        .done(function () { def.resolve(); });
+//                    def.resolve();
+//                }).promise();
             };
 
         return {
