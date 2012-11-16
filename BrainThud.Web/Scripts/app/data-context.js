@@ -6,31 +6,39 @@
                     items = [],
 
                     getData = function (options) {
-                        return $.Deferred(function (def) {
-                            var results = options && options.results;
-                            if (!items || !utils.hasProperties(items)) {
-                                getFunction({
-                                    success: function (dtoList) {
-                                        for (var i = 0; i < dtoList.length; i++) {
-                                            items.push(modelMapper.card.fromDto(dtoList[i]));
-                                        }
+                        console.log('Start getData');
+                        var def = new $.Deferred();
 
-                                        if (results) {
-                                            results(items);
-                                        }
-
-                                        def.resolve(results);
-                                    },
-                                    error: function (response) {
-                                        if (def.reject) def.reject();
-                                        alert(response.statusText);
+                        console.log('Start Deferred');
+                        var results = options && options.results;
+                        if (!items || !utils.hasProperties(items)) {
+                            console.log('getFunction');
+                            getFunction({
+                                success: function (dtoList) {
+                                    console.log('success');
+                                    for (var i = 0; i < dtoList.length; i++) {
+                                        items.push(modelMapper.card.fromDto(dtoList[i]));
                                     }
-                                });
-                            } else {
-                                results(items);
-                                def.resolve(results);
-                            }
-                        }).promise();
+
+                                    if (results) {
+                                        results(items);
+                                        console.log('resolve ' + results().length);
+                                    }
+                                    def.resolve(results);
+                                },
+                                error: function (response) {
+                                    console.log('error');
+                                    if (def.reject) def.reject();
+                                    alert(response.statusText);
+                                }
+                            });
+                        } else {
+                            console.log('Else');
+                            results(items);
+                            def.resolve(results);
+                        }
+                        
+                        return def.promise();
                     };
 
                 var saveData = function (options) {

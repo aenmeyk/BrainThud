@@ -30,7 +30,7 @@
                     routes: [{
                         route: config.hashes.quiz,
                         title: "Quiz",
-                        callback: vm.cards.activate
+                        callback: vm.quiz.activate
                         }]
                 }
                 

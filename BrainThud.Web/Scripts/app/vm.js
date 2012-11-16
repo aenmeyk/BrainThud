@@ -1,8 +1,9 @@
-﻿define('vm', ['vm.card', 'vm.cards'],
-    function (card, cards) {
+﻿define('vm', ['vm.card', 'vm.cards', 'vm.quiz'],
+    function (card, cards, quiz) {
         return {
             card: card,
-            cards: cards
+            cards: cards,
+            quiz: quiz
         };
     }
 );

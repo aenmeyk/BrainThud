@@ -3,7 +3,7 @@
         var
             fetch = function () {
                 return $.Deferred(function (def) {
-                    $.when(dataContext.cards.getData()
+                    $.when(dataContext.quiz.getData()
                         .fail(function () { def.reject(); }))
                         .done(function () { def.resolve(); });
                 }).promise();

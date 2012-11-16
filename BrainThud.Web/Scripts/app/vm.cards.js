@@ -1,71 +1,18 @@
 ﻿define('vm.cards', ['jquery', 'ko', 'data-context'],
     function ($, ko, dataContext) {
-        var
-            nextCard = ko.observable(),
-            cards = ko.observableArray(),
-            currentCard = {
-                question: ko.observable(''),
-                answer: ko.observable(''),
-                text: ko.observable('')
-            },
-        
-            dataOptions = function () {
+        var cards = ko.observableArray(),
+            dataOptions = function() {
                 return {
                     results: cards
                 };
             },
-
-            activate = function (routeData) {
-                $.when(dataContext.cards.getData(dataOptions()))
-                    .always(setCurrentCard(routeData.rowKey));
-            },
-
-            setCurrentCard = function (rowKey) {
-                for (var i = 0; i < cards().length; i++) {
-                    if(cards()[i].rowKey() === rowKey) {
-                        currentCard.question(cards()[i].question());
-                        currentCard.answer(cards()[i].answer());
-                        currentCard.text(cards()[i].question());
-
-                        var nextCardIndex = i + 1;
-                        if (nextCardIndex >= cards().length - 1) {
-                            nextCardIndex = 0;
-                        }
-
-                        nextCard('#/quiz/' + cards()[nextCardIndex].rowKey());
-                        showQuestion();
-                        return;
-                    }
-                }
-            },
-            
-            showQuestion = function () {
-                    currentCard.text(currentCard.question());
-                    $('#card').removeClass('answer');
-                    $('#card').addClass('question');
-                },
-            
-            showAnswer = function () {
-                    currentCard.text(currentCard.answer());
-                    $('#card').removeClass('question');
-                    $('#card').addClass('answer');
-                },
-
-
-            flipCard = function () {
-                if(currentCard.text() == currentCard.question()) {
-                    showAnswer();
-                } else {
-                    showQuestion();
-                }
+            activate = function(routeData) {
+                dataContext.cards.getData(dataOptions());
             };
 
         return {
             cards: cards,
-            currentCard: currentCard,
-            nextCard: nextCard,
-            activate: activate,
-            flipCard: flipCard
+            activate: activate
         };
     }
 );
