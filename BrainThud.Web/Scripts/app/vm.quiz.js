@@ -1,14 +1,28 @@
 ﻿define('vm.quiz', ['jquery', 'ko', 'data-context'],
     function ($, ko, dataContext) {
         var
+            questionSideVisible = ko.observable(true),
             nextCard = ko.observable(),
             cards = ko.observableArray([]),
+            
             currentCard = {
                 question: ko.observable(''),
                 answer: ko.observable(''),
-                text: ko.observable('')
             },
-        
+            
+            currentCardText = ko.computed(function () {
+                var cardText = '';
+                if (currentCard) {
+                    if (questionSideVisible()) {
+                        return currentCard.question();
+                    } else {
+                        return currentCard.answer();
+                    }
+                }
+
+                return cardText;
+            }),
+
             dataOptions = function () {
                 return {
                     results: cards
@@ -26,7 +40,6 @@
                     if(cards()[i].rowKey() === rowKey) {
                         currentCard.question(cards()[i].question());
                         currentCard.answer(cards()[i].answer());
-                        currentCard.text(cards()[i].question());
 
                         var nextCardIndex = i + 1;
                         if (nextCardIndex >= cards().length - 1) {
@@ -34,36 +47,21 @@
                         }
 
                         nextCard('#/quiz/' + cards()[nextCardIndex].rowKey());
-                        showQuestion();
+                        questionSideVisible(true);
                         return;
                     }
                 }
             },
             
-            showQuestion = function () {
-                    currentCard.text(currentCard.question());
-                    $('#card').removeClass('answer');
-                    $('#card').addClass('question');
-                },
-            
-            showAnswer = function () {
-                    currentCard.text(currentCard.answer());
-                    $('#card').removeClass('question');
-                    $('#card').addClass('answer');
-                },
-
-
             flipCard = function () {
-                if(currentCard.text() == currentCard.question()) {
-                    showAnswer();
-                } else {
-                    showQuestion();
-                }
+                questionSideVisible(!questionSideVisible());
             };
 
         return {
             cards: cards,
             currentCard: currentCard,
+            currentCardText: currentCardText,
+            questionSideVisible: questionSideVisible,
             nextCard: nextCard,
             activate: activate,
             flipCard: flipCard
