@@ -75,6 +75,23 @@ namespace BrainThud.Web.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
+
+        // http://stackoverflow.com/a/10711213/1464699
+        // http://architects.dzone.com/news/common-rest-design-pattern
+//        // /api/cards/promotion/id
+//        [HttpPut]
+//        public HttpResponseMessage Promotion(string id)
+//        {
+//            return new HttpResponseMessage(HttpStatusCode.NoContent);
+//        }
+//
+//        // /api/cards/demotion/id
+//        [HttpPut]
+//        public HttpResponseMessage Demotion(string id)
+//        {
+//            return new HttpResponseMessage(HttpStatusCode.NoContent);
+//        }
+
         public HttpResponseMessage Delete(string id)
         {
             if (this.ModelState.IsValid)

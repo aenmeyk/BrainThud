@@ -45,7 +45,7 @@
                             nextCardIndex = 0;
                         }
 
-                        nextCard('#/quiz/' + cards()[nextCardIndex].rowKey());
+                        nextCard('#/quizzes/' + cards()[nextCardIndex].rowKey());
                         questionSideVisible(true);
                         return;
                     }

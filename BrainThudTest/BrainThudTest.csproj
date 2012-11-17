@@ -172,9 +172,9 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizControllerTest\When_Get_is_called_with_a_DateTime.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizControllerTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizControllerTest\Given_a_new_QuizController.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_Get_is_called_with_a_DateTime.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\Given_a_new_QuizzesController.cs" />
     <Compile Include="BrainThud.WebTest\Fakes\CardsControllerFake.cs" />
     <Compile Include="Builders\CloudStorageAccountBuilder.cs" />
     <Compile Include="Builders\ApiControllerBuilder.cs" />

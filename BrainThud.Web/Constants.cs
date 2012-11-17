@@ -3,7 +3,7 @@ namespace BrainThud.Web
 {
     public static class RouteNames
     {
-        public const string API_QUIZ = "ApiQuiz";
+        public const string API_QUIZZES = "ApiQuizzes";
         public const string API_DEFAULT = "ApiDefault";
         public const string DEFAULT = "Default";
     }

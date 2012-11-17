@@ -7,7 +7,7 @@
                 var month = today.getMonth() + 1;
                 var day = today.getDate();
                 amplify.request.define('todaysQuiz', 'ajax', {
-                    url: '/api/quiz/' + year  + '/' + month + '/' + day,
+                    url: '/api/quizzes/' + year  + '/' + month + '/' + day,
                     dataType: 'json',
                     type: 'GET'
                 });

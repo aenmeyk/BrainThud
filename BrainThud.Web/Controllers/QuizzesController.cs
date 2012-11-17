@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace BrainThud.Web.Controllers
 {
-    public class QuizController : ApiController
+    public class QuizzesController : ApiController
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public QuizController(IUnitOfWork unitOfWork)
+        public QuizzesController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }

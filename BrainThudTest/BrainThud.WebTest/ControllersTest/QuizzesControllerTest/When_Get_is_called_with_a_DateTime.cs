@@ -6,10 +6,10 @@ using FluentAssertions;
 using NUnit.Framework;
 using System.Linq;
 
-namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizControllerTest
+namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
 {
     [TestFixture]
-    public class When_Get_is_called_with_a_DateTime : Given_a_new_QuizController
+    public class When_Get_is_called_with_a_DateTime : Given_a_new_QuizzesController
     {
         private const int YEAR = 2012;
         private const int MONTH = 7;
@@ -36,7 +36,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizControllerTest
                 .Build();
 
             this.UnitOfWork.Setup(x => x.Cards.GetAll()).Returns(allCards.AsQueryable());
-            this.result = this.QuizController.Get(YEAR, MONTH, DAY);
+            this.result = this.QuizzesController.Get(YEAR, MONTH, DAY);
         }
 
         [Test]
