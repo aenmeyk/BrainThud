@@ -8,6 +8,7 @@
                     var results = options && options.results;
                     if (!items || !utils.hasProperties(items)) {
                         config.get({
+                            params: options.params,
                             success: function (dtoList) {
                                 items = [];
                                 
@@ -56,24 +57,31 @@
             };
         };
 
-        cards = new EntitySet({
-            get: dataService.cards.get,
-            mapper: modelMapper.card
-        });
+        var cards = new EntitySet({
+                get: dataService.cards.get,
+                mapper: modelMapper.card
+            }),
+            card = new EntitySet({
+                save: dataService.cards.save
+            }),
+            quiz = new EntitySet({
+                get: dataService.quiz.get,
+                mapper: modelMapper.card
+            }),
+            getQuiz = function() {
+                return new EntitySet({
+                    get: dataService.quiz.get,
+                    mapper: modelMapper.card
+                });
+            };
         
-        card = new EntitySet({
-             save: dataService.cards.save
-        });
         
-        quiz = new EntitySet({
-             get: dataService.quiz.get,
-             mapper: modelMapper.card
-        });
 
         return {
             cards: cards,
             card: card,
-            quiz: quiz
+            quiz: quiz,
+            getQuiz: getQuiz
         };
     }
 );

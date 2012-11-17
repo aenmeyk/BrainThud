@@ -1,6 +1,15 @@
 ﻿define('vm.quiz', ['jquery', 'ko', 'data-context'],
     function ($, ko, dataContext) {
         var
+            init = function () {
+                var today = new Date(),
+                    year = today.getFullYear(),
+                    month = today.getMonth() + 1,
+                    day = today.getDate();
+
+                datePath = year + '/' + month + '/' + day;
+            },
+            datePath,
             questionSideVisible = ko.observable(true),
             nextCard = ko.observable(),
             cards = ko.observableArray([]),
@@ -25,12 +34,15 @@
 
             dataOptions = function () {
                 return {
-                    results: cards
+                    results: cards,
+                    params: {
+                        datePath: datePath
+                    }
                 };
             },
 
             activate = function (routeData) {
-                $.when(dataContext.quiz.getData(dataOptions()))
+                $.when(dataContext.getQuiz().getData(dataOptions()))
                     .then(function () { setCurrentCard(routeData.rowKey); });
             },
 
@@ -45,7 +57,7 @@
                             nextCardIndex = 0;
                         }
 
-                        nextCard('#/quizzes/' + cards()[nextCardIndex].rowKey());
+                        nextCard('#/quizzes/' + datePath + '/' + cards()[nextCardIndex].rowKey());
                         questionSideVisible(true);
                         return;
                     }
@@ -55,6 +67,8 @@
             flipCard = function () {
                 questionSideVisible(!questionSideVisible());
             };
+
+        init();
 
         return {
             cards: cards,

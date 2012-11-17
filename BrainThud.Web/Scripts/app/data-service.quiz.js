@@ -2,22 +2,19 @@
     function (amplify) {
         var
             init = function () {
-                var today = new Date();
-                var year = today.getFullYear();
-                var month = today.getMonth() + 1;
-                var day = today.getDate();
                 amplify.request.define('todaysQuiz', 'ajax', {
-                    url: '/api/quizzes/' + year  + '/' + month + '/' + day,
+                    url: '/api/quizzes/{datePath}',
                     dataType: 'json',
                     type: 'GET'
                 });
             },
-
-            get = function (callbacks) {
+        
+            get = function (config) {
                 return amplify.request({
                     resourceId: 'todaysQuiz',
-                    success: callbacks.success,
-                    error: callbacks.error
+                    data: { datePath: config.params.datePath },
+                    success: config.success,
+                    error: config.error
                 });
             };
         
