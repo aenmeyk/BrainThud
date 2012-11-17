@@ -27,5 +27,11 @@ namespace BrainThudTest.BrainThud.DataTest.UnitOfWorkTest
         {
             this.UnitOfWork.CanGetSetValue(x => x.Cards, new Mock<ITableStorageRepository<Card>>().Object, typeof(ITableStorageRepository<Card>));
         }
+
+        [Test]
+        public void Then_QuizResults_property_should_get_and_set_an_ITableStorageRepository()
+        {
+            this.UnitOfWork.CanGetSetValue(x => x.QuizResults, new Mock<ITableStorageRepository<QuizResult>>().Object, typeof(ITableStorageRepository<QuizResult>));
+        }
     }
 }

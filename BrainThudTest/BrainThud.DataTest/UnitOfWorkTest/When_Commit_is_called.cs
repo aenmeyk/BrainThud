@@ -17,5 +17,11 @@ namespace BrainThudTest.BrainThud.DataTest.UnitOfWorkTest
         {
             this.CardTableStorageRepository.Verify(x => x.Commit(), Times.Once());
         }
+
+        [Test]
+        public void Then_Commit_is_called_on_the_QuizResultTableStorageContext()
+        {
+            this.QuizResultTableStorageRepository.Verify(x => x.Commit(), Times.Once());
+        }
     }
 }

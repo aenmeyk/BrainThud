@@ -29,6 +29,7 @@ namespace BrainThudTest.Tools
     public static class TestUrls
     {
         public const string CARDS = "http://localhost/api/cards";
+        public const string QUIZ_RESULTS = "http://localhost/api/quizzes/2012/6/30/results";
         public const string LOCALHOST = "http://localhost/";
     }
 }

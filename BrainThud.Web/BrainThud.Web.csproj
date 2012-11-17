@@ -158,8 +158,10 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuizResultsController.cs" />
     <Compile Include="Controllers\QuizzesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />

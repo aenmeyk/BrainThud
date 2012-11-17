@@ -10,7 +10,7 @@ using BrainThud.Web.Resources;
 
 namespace BrainThud.Web.Controllers
 {
-    public class CardsController : ApiController
+    public class CardsController : ApiControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -75,23 +75,6 @@ namespace BrainThud.Web.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
-
-        // http://stackoverflow.com/a/10711213/1464699
-        // http://architects.dzone.com/news/common-rest-design-pattern
-//        // /api/cards/promotion/id
-//        [HttpPut]
-//        public HttpResponseMessage Promotion(string id)
-//        {
-//            return new HttpResponseMessage(HttpStatusCode.NoContent);
-//        }
-//
-//        // /api/cards/demotion/id
-//        [HttpPut]
-//        public HttpResponseMessage Demotion(string id)
-//        {
-//            return new HttpResponseMessage(HttpStatusCode.NoContent);
-//        }
-
         public HttpResponseMessage Delete(string id)
         {
             if (this.ModelState.IsValid)
@@ -103,12 +86,6 @@ namespace BrainThud.Web.Controllers
             }
 
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
-        }
-
-        // Allows Url.Link to be faked for testing
-        public virtual string GetLink(string routeName, object routeValues)
-        {
-            return Url.Link(routeName, routeValues);
         }
     }
 }
