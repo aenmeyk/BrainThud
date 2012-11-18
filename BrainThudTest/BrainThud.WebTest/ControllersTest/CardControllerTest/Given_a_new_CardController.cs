@@ -15,15 +15,12 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
     {
         public override void Given()
         {
-            this.CardRepository = new Mock<ITableStorageRepository<Card>>();
-            this.UnitOfWork = new Mock<IUnitOfWork>();
-            this.UnitOfWork.SetupGet(x => x.Cards).Returns(this.CardRepository.Object);
+            this.UnitOfWork = new Mock<IUnitOfWork> { DefaultValue = DefaultValue.Mock };
             this.CardsController = new ApiControllerBuilder<CardsControllerFake>(new CardsControllerFake(this.UnitOfWork.Object))
                 .CreateRequest(HttpMethod.Post, TestUrls.CARDS)
                 .Build();
         }
 
-        protected Mock<ITableStorageRepository<Card>> CardRepository { get; private set; }
         protected Mock<IUnitOfWork> UnitOfWork { get; private set; }
         protected CardsControllerFake CardsController { get; private set; }
     }

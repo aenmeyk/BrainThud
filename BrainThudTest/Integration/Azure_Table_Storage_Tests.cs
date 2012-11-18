@@ -89,6 +89,9 @@ namespace BrainThudTest.Integration
         [Ignore]
         public void QuizResultsController_CRUD()
         {
+            var quizDate = new DateTime(2012, 6, 30);
+            var testUrl = string.Format(TestUrls.QUIZ_RESULTS, quizDate.Year, quizDate.Month, quizDate.Day);
+
             var container = IoC.Initialize();
             var config = new HttpConfiguration { DependencyResolver = new StructureMapWebApiResolver(container) };
             config.Formatters.JsonFormatter.MediaTypeMappings.Add(new UriPathExtensionMapping("json", "application/json"));
@@ -101,14 +104,14 @@ namespace BrainThudTest.Integration
             var quizResult = new QuizResult();
 
             // Test POST
-            var postResponse = client.PostAsJsonAsync(TestUrls.QUIZ_RESULTS, quizResult).Result;
+            var postResponse = client.PostAsJsonAsync(testUrl, quizResult).Result;
             var postQuizResult = postResponse.Content.ReadAsAsync<QuizResult>().Result;
 
             // Assert that the POST succeeded
             postResponse.StatusCode.Should().Be(HttpStatusCode.Created);
 
             // Assert that the posted QuizResult was returned in the response
-//            postQuizResult.QuizDate.Should().Be(postQuizDate);
+            postQuizResult.QuizDate.Should().Be(quizDate);
 
             // Assert that the relevant keys were set on the Card
             postQuizResult.PartitionKey.Should().NotBeEmpty();
@@ -116,7 +119,7 @@ namespace BrainThudTest.Integration
 
             // Assert that the location of the new QuizResult was returned in the Location header
             var quizResultUrl = postResponse.Headers.Location;
-            quizResultUrl.AbsoluteUri.Should().BeEquivalentTo(string.Format("{0}/{1}", TestUrls.QUIZ_RESULTS, postQuizResult.RowKey));
+            quizResultUrl.AbsoluteUri.Should().BeEquivalentTo(string.Format("{0}/{1}", testUrl, postQuizResult.RowKey));
 
 
 //            // Test PUT
@@ -138,15 +141,15 @@ namespace BrainThudTest.Integration
 //            getCard.Question.Should().Be(PUT_QUESTION_TEXT);
 //
 //
-//            // Test DELETE
-//            var deleteResponse = client.DeleteAsync(quizResultUrl).Result;
-//
-//            // Assert that the DELETE succeeded
-//            deleteResponse.StatusCode.Should().Be(HttpStatusCode.NoContent);
-//
-//            // Assert that the Card is no longer in storage
-//            getResponse = client.GetAsync(quizResultUrl).Result;
-//            getResponse.IsSuccessStatusCode.Should().Be(false);
+            // Test DELETE
+            var deleteResponse = client.DeleteAsync(quizResultUrl).Result;
+
+            // Assert that the DELETE succeeded
+            deleteResponse.StatusCode.Should().Be(HttpStatusCode.NoContent);
+
+            // Assert that the Card is no longer in storage
+            var getResponse = client.GetAsync(quizResultUrl).Result;
+            getResponse.IsSuccessStatusCode.Should().Be(false);
         }
     }
 }

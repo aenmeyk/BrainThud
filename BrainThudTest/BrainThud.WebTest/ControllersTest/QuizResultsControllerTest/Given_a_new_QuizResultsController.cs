@@ -1,6 +1,5 @@
 ﻿using System.Net.Http;
 using BrainThud.Data;
-using BrainThud.Web.Controllers;
 using BrainThudTest.BrainThud.WebTest.Fakes;
 using BrainThudTest.Builders;
 using BrainThudTest.Tools;
@@ -15,6 +14,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         public override void Given()
         {
             this.UnitOfWork = new Mock<IUnitOfWork> { DefaultValue = DefaultValue.Mock };
+
             this.QuizResultsController = new ApiControllerBuilder<QuizResultsControllerFake>(new QuizResultsControllerFake(this.UnitOfWork.Object))
                .CreateRequest(HttpMethod.Post, TestUrls.QUIZ_RESULTS)
                .Build();

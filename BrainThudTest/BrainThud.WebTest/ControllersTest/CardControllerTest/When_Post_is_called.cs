@@ -27,7 +27,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         [Test]
         public void Then_Add_is_called_on_Card_repository()
         {
-            this.CardRepository.Verify(x => x.Add(this.card), Times.Once());
+            this.UnitOfWork.Verify(x => x.Cards.Add(this.card), Times.Once());
         }
 
         [Test]

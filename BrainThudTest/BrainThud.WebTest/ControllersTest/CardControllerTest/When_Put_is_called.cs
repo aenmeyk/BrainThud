@@ -34,7 +34,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         [Test]
         public void Then_Update_should_be_called_on_the_Card_repository()
         {
-            this.CardRepository.Verify(x => x.Update(this.card), Times.Once());
+            this.UnitOfWork.Verify(x => x.Cards.Update(this.card), Times.Once());
         }
 
         [Test]

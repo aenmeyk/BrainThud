@@ -18,21 +18,39 @@ namespace BrainThud.Web.Controllers
 
         public HttpResponseMessage Post(int year, int month, int day, QuizResult quizResult)
         {
-            quizResult.QuizDate = new DateTime(year, month, day);
-            this.unitOfWork.QuizResults.Add(quizResult);
-            this.unitOfWork.Commit();
-            var response = this.Request.CreateResponse(HttpStatusCode.Created, quizResult);
-
-            var routeValues = new
+            if (this.ModelState.IsValid)
             {
-                year,
-                month,
-                day,
-                id = quizResult.RowKey
-            };
+                quizResult.QuizDate = new DateTime(year, month, day);
+                this.unitOfWork.QuizResults.Add(quizResult);
+                this.unitOfWork.Commit();
+                var response = this.Request.CreateResponse(HttpStatusCode.Created, quizResult);
 
-            response.Headers.Location = new Uri(this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues));
-            return response;
+                var routeValues = new
+                {
+                    year,
+                    month,
+                    day,
+                    id = quizResult.RowKey
+                };
+
+                response.Headers.Location = new Uri(this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues));
+                return response;
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+        }
+
+        public HttpResponseMessage Delete(string id)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.unitOfWork.QuizResults.Delete(id);
+                this.unitOfWork.Commit();
+
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
     }
 }

@@ -4,17 +4,17 @@ using BrainThud.Model;
 using NUnit.Framework;
 using FluentAssertions;
 
-namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
+namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerTest
 {
     [TestFixture]
-    public class When_Post_is_called_with_an_invalid_model : Given_a_new_CardController
+    public class When_Post_is_called_with_an_invalid_model : Given_a_new_QuizResultsController
     {
         private HttpResponseMessage response;
 
         public override void When()
         {
-            this.CardsController.ModelState.AddModelError("Error Key", "Error Message");
-            this.response = this.CardsController.Post(new Card());
+            this.QuizResultsController.ModelState.AddModelError("Error Key", "Error Message");
+            this.response = this.QuizResultsController.Post(2012,1,1,new QuizResult());
         }
 
         [Test]

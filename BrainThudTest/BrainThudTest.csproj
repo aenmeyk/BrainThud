@@ -175,8 +175,11 @@
     </Compile>
     <Compile Include="BrainThud.WebTest\ControllersTest\ApiControllerBaseTest\Given_a_new_ApiControllerBase.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\Given_a_new_QuizResultsController.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Delete_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Delete_is_called_with_an_invalid_model.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_successful_Post_is_made.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Post_is_called_with_an_invalid_model.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_Get_is_called_with_a_DateTime.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\Given_a_new_QuizzesController.cs" />
