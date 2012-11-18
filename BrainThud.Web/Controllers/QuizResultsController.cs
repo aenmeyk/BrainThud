@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
 using BrainThud.Data;
 using BrainThud.Model;
+using BrainThud.Web.Handlers;
 
 namespace BrainThud.Web.Controllers
 {
     public class QuizResultsController : ApiControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IQuizResultHandler quizResultHandler;
 
-        public QuizResultsController(IUnitOfWork unitOfWork)
+        public QuizResultsController(IUnitOfWork unitOfWork, IQuizResultHandler quizResultHandler)
         {
             this.unitOfWork = unitOfWork;
+            this.quizResultHandler = quizResultHandler;
         }
 
         public HttpResponseMessage Post(int year, int month, int day, QuizResult quizResult)
@@ -21,7 +23,12 @@ namespace BrainThud.Web.Controllers
             if (this.ModelState.IsValid)
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
+
+                // TODO: Handle the situation where the card doesn't exist
+                var card = this.unitOfWork.Cards.Get(quizResult.CardId);
+                this.quizResultHandler.UpdateCardLevel(quizResult, card);
                 this.unitOfWork.QuizResults.Add(quizResult);
+                this.unitOfWork.Cards.Update(card);
                 this.unitOfWork.Commit();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, quizResult);
 

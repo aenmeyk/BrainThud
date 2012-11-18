@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web.Http;
-using BrainThud.Data;
-using BrainThud.Data.AzureTableStorage;
 using BrainThud.Model;
 using BrainThud.Web.App_Start;
 using BrainThud.Web.DependencyResolution;
@@ -37,6 +34,7 @@ namespace BrainThudTest.Integration
             var card = new Card { Question = POST_QUESTION_TEXT, QuizDate = DateTime.Now };
 
             // Test POST
+            // -------------------------------------------------------------------------------------
             var postResponse = client.PostAsJsonAsync(TestUrls.CARDS, card).Result;
             var postCard = postResponse.Content.ReadAsAsync<Card>().Result;
 
@@ -56,6 +54,7 @@ namespace BrainThudTest.Integration
 
 
             // Test PUT
+            // -------------------------------------------------------------------------------------
             postCard.Question = PUT_QUESTION_TEXT;
             var putResponse = client.PutAsJsonAsync(TestUrls.CARDS, postCard).Result;
 
@@ -64,6 +63,7 @@ namespace BrainThudTest.Integration
 
 
             // Test GET
+            // -------------------------------------------------------------------------------------
             var getResponse = client.GetAsync(cardUrl).Result;
             var getCard = getResponse.Content.ReadAsAsync<Card>().Result;
 
@@ -75,6 +75,7 @@ namespace BrainThudTest.Integration
 
 
             // Test DELETE
+            // -------------------------------------------------------------------------------------
             var deleteResponse = client.DeleteAsync(cardUrl).Result;
 
             // Assert that the DELETE succeeded
@@ -86,7 +87,6 @@ namespace BrainThudTest.Integration
         }
 
         [Test]
-        [Ignore]
         public void QuizResultsController_CRUD()
         {
             var quizDate = new DateTime(2012, 6, 30);
@@ -101,9 +101,19 @@ namespace BrainThudTest.Integration
 
             var server = new HttpServer(config);
             var client = new HttpClient(server);
-            var quizResult = new QuizResult();
+
+            // Create the card
+            var card = new Card { Question = "Created from QuizResultsController_CRUD test.", QuizDate = DateTime.Now };
+            var postCardResponse = client.PostAsJsonAsync(TestUrls.CARDS, card).Result;
+            var postCard = postCardResponse.Content.ReadAsAsync<Card>().Result;
+            var cardUrl = postCardResponse.Headers.Location;
+
+            // Create the QuizResult
+            var quizResult = new QuizResult { IsCorrect = true, CardId = postCard.RowKey };
+
 
             // Test POST
+            // -------------------------------------------------------------------------------------
             var postResponse = client.PostAsJsonAsync(testUrl, quizResult).Result;
             var postQuizResult = postResponse.Content.ReadAsAsync<QuizResult>().Result;
 
@@ -121,27 +131,9 @@ namespace BrainThudTest.Integration
             var quizResultUrl = postResponse.Headers.Location;
             quizResultUrl.AbsoluteUri.Should().BeEquivalentTo(string.Format("{0}/{1}", testUrl, postQuizResult.RowKey));
 
-
-//            // Test PUT
-//            postQuizResult.Question = PUT_QUESTION_TEXT;
-//            var putResponse = client.PutAsJsonAsync(TestUrls.CARDS, postQuizResult).Result;
-//
-//            // Assert that the PUT succeeded
-//            putResponse.StatusCode.Should().Be(HttpStatusCode.NoContent);
-//
-//
-//            // Test GET
-//            var getResponse = client.GetAsync(quizResultUrl).Result;
-//            var getCard = getResponse.Content.ReadAsAsync<Card>().Result;
-//
-//            // Assert that the correct Card was returned
-//            getCard.RowKey.Should().Be(postQuizResult.RowKey);
-//
-//            // Assert that the PUT did actually update the Card
-//            getCard.Question.Should().Be(PUT_QUESTION_TEXT);
-//
-//
+            
             // Test DELETE
+            // -------------------------------------------------------------------------------------
             var deleteResponse = client.DeleteAsync(quizResultUrl).Result;
 
             // Assert that the DELETE succeeded
@@ -150,6 +142,9 @@ namespace BrainThudTest.Integration
             // Assert that the Card is no longer in storage
             var getResponse = client.GetAsync(quizResultUrl).Result;
             getResponse.IsSuccessStatusCode.Should().Be(false);
+
+            // Delete the card
+            client.DeleteAsync(cardUrl);
         }
     }
 }

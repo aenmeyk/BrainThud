@@ -1,5 +1,6 @@
 using System.Web.Mvc;
 using BrainThud.Data;
+using BrainThud.Web.Calendars;
 using StructureMap;
 
 namespace BrainThud.Web.DependencyResolution
@@ -18,6 +19,7 @@ namespace BrainThud.Web.DependencyResolution
                         });
 
                     x.For<IControllerFactory>().Use<DefaultControllerFactory>();
+                    x.For<IQuizCalendar>().Use<DefaultQuizCalendar>();
                 });
 
             return ObjectFactory.Container;

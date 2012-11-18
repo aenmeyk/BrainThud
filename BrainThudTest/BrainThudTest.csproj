@@ -155,6 +155,8 @@
     <Compile Include="BrainThud.WebTest\App_StartTest\BundleConfigTest\When_RegisterBundles_is_called.cs" />
     <Compile Include="BrainThud.WebTest\App_StartTest\When_CustomizeConfig_is_called.cs" />
     <Compile Include="BrainThud.WebTest\App_StartTest\Given_a_GlobalConfig_class.cs" />
+    <Compile Include="BrainThud.WebTest\CalendarsTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\CalendarsTest\Given_a_new_DefaultQuizCalendar.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\ApiControllerBaseTest\When_NothingChanges.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Delete_is_called_with_an_invalid_model.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Post_is_called_with_an_invalid_model.cs" />
@@ -185,6 +187,10 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\Given_a_new_QuizzesController.cs" />
     <Compile Include="BrainThud.WebTest\Fakes\CardsControllerFake.cs" />
     <Compile Include="BrainThud.WebTest\Fakes\QuizResultsControllerFake.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_UpdateCardLevel_is_called_with_an_incorrect_result.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\Given_a_new_QuizResultHandler.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_UpdateCardLevel_is_called_with_a_correct_result.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_nothing_changes.cs" />
     <Compile Include="Builders\CloudStorageAccountBuilder.cs" />
     <Compile Include="Builders\ApiControllerBuilder.cs" />
     <Compile Include="Builders\ControllerContextBuilder.cs" />

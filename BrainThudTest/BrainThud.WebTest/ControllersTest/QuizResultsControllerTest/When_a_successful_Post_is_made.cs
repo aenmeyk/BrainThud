@@ -71,5 +71,17 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
             this.QuizResultsController.RouteName.Should().Be(RouteNames.API_QUIZ_RESULTS);
             this.response.Headers.Location.ToString().Should().Be(TestUrls.LOCALHOST);
         }
+
+        [Test]
+        public void Then_UpdateCardLevel_is_called_on_the_QuizResultHandler()
+        {
+            this.QuizResultHandler.Verify(x => x.UpdateCardLevel(this.quizResult, It.Is<Card>(c => c.RowKey == this.quizResult.CardId)), Times.Once());
+        }
+
+        [Test]
+        public void Then_the_card_is_updated_in_the_UnitOfWork()
+        {
+            this.UnitOfWork.Verify(x => x.Cards.Update(It.Is<Card>(c => c.RowKey == this.quizResult.CardId)), Times.Once());
+        }
     }
 }
