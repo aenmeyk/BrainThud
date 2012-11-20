@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web.Http;
-using BrainThud.Data;
-using BrainThud.Model;
 using System.Linq;
+using BrainThud.Data;
+using BrainThud.Web.Dtos;
 
 namespace BrainThud.Web.Controllers
 {
-    public class QuizzesController : ApiController
+    public class QuizzesController : ApiControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -16,13 +14,21 @@ namespace BrainThud.Web.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<Card> Get(int year, int month, int day)
+        public Quiz Get(int year, int month, int day)
         {
             var quizDate = new DateTime(year, month, day)
                 .AddDays(1).Date
                 .AddMilliseconds(-1);
 
-            return this.unitOfWork.Cards.GetAll().Where(x => x.QuizDate <= quizDate);
+            var routeValues = new { year, month, day };
+
+            var quiz = new Quiz
+            {
+                Cards = this.unitOfWork.Cards.GetAll().Where(x => x.QuizDate <= quizDate),
+                ResultsUri = this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues)
+            };
+
+            return quiz;
         }
     }
 }

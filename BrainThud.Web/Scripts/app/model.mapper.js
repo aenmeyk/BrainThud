@@ -1,18 +1,41 @@
 ﻿define('model.mapper', ['model'],
     function(model) {
-        var card = {
-            fromDto: function(dto) {
-                var item = new model.Card();
-                item.partitionKey(dto.partitionKey)
+        var
+            quiz = {
+                mapResults: function (dto, results) {
+                    var cards = [];
+
+                    for (var i = 0; i < dto.cards.length; i++) {
+                        cards.push(getCardFromDto(dto.cards[i]));
+                    }
+
+                    results.push({
+                        cards: cards,
+                        requestsUri: dto.resultsUri
+                    });
+                }
+            },
+            
+            card = {
+                mapResults: function (dto, results) {
+                    for (var i = 0; i < dto.length; i++) {
+                        results.push(getCardFromDto(dto[i]));
+                    }
+                }
+            },
+
+            getCardFromDto = function(dto) {
+                var singleCard = new model.Card();
+                singleCard.partitionKey(dto.partitionKey)
                     .rowKey(dto.rowKey)
                     .question(dto.question)
                     .answer(dto.answer);
-                return item;
-            }
-        };
+                return singleCard;
+            };
 
         return {
-            card: card
+            card: card,
+            quiz: quiz
         };
     }
 );

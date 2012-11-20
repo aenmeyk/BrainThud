@@ -171,6 +171,7 @@
     <Compile Include="DependencyResolution\StructureMapMvcResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapWebApiResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
+    <Compile Include="Dtos\Quiz.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +205,7 @@
     <Content Include="Content\main.css" />
     <Content Include="Scripts\app\binder.js" />
     <Content Include="Scripts\app\config.js" />
+    <Content Include="Scripts\app\data-service.quiz-result.js" />
     <Content Include="Scripts\app\vm.quiz.js" />
     <Content Include="Scripts\app\data-service.quiz.js" />
     <Content Include="Scripts\app\model.js" />

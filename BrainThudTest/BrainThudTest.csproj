@@ -186,6 +186,7 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\Given_a_new_QuizzesController.cs" />
     <Compile Include="BrainThud.WebTest\Fakes\CardsControllerFake.cs" />
+    <Compile Include="BrainThud.WebTest\Fakes\QuizzesControllerFake.cs" />
     <Compile Include="BrainThud.WebTest\Fakes\QuizResultsControllerFake.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_UpdateCardLevel_is_called_with_an_incorrect_result.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\Given_a_new_QuizResultHandler.cs" />

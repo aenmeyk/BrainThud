@@ -5,12 +5,8 @@
     </div>
 
     <div class="row-fluid">
-        <form class="span6" data-bind="attr: { action: nextCard }">
-            <button type="submit" class="primary-button btn btn-success">Correct</button>
-        </form>
-        <form class="span6" data-bind="attr: { action: nextCard }">
-            <button type="submit" class="primary-button btn btn-danger">Incorrect</button>
-        </form>
+            <button type="button" class="span6 primary-button btn btn-success" data-bind="click: submitCorrect">Correct</button>
+            <button type="button" class="span6 primary-button btn btn-danger" data-bind="click: submitIncorrect">Incorrect</button>
     </div>
 
 @*        <span data-bind="text: ko.toJSON(currentCard)"></span>*@

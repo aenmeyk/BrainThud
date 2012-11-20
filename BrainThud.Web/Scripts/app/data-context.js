@@ -1,23 +1,21 @@
 ﻿define('data-context', ['jquery', 'data-service', 'presenter', 'utils', 'model', 'model.mapper'],
     function ($, dataService, presenter, utils, model, modelMapper) {
         var EntitySet = function(config) {
-            var items = [],
+            var cachedResults = [],
                 getData = function(options) {
                     var def = new $.Deferred();
 
                     var results = options && options.results;
-                    if (!items || !utils.hasProperties(items)) {
+                    if (!cachedResults || !utils.hasProperties(cachedResults)) {
                         config.get({
                             params: options.params,
-                            success: function (dtoList) {
-                                items = [];
+                            success: function (dto) {
+                                cachedResults = [];
                                 
-                                for (var i = 0; i < dtoList.length; i++) {
-                                    items.push(config.mapper.fromDto(dtoList[i]));
-                                }
+                                config.mapper.mapResults(dto, cachedResults);
 
                                 if (results) {
-                                    results(items);
+                                    results(cachedResults);
                                 }
 
                                 def.resolve(results);
@@ -28,7 +26,7 @@
                             }
                         });
                     } else {
-                        results(items);
+                        results(cachedResults);
                          def.resolve(results);
                     }
 
@@ -38,9 +36,10 @@
             var saveData = function(options) {
                 return $.Deferred(function(def) {
                     config.save(options.data, {
+                        params: options.params,
                         success: function(result) {
                             presenter.showSuccess();
-                             def.resolve();
+                            def.resolve();
                             options.createNewCard();
                         },
                         error: function(response) {
@@ -66,22 +65,13 @@
             }),
             quiz = new EntitySet({
                 get: dataService.quiz.get,
-                mapper: modelMapper.card
-            }),
-            getQuiz = function() {
-                return new EntitySet({
-                    get: dataService.quiz.get,
-                    mapper: modelMapper.card
-                });
-            };
-        
-        
+                mapper: modelMapper.quiz
+            });
 
         return {
             cards: cards,
             card: card,
-            quiz: quiz,
-            getQuiz: getQuiz
+            quiz: quiz
         };
     }
 );

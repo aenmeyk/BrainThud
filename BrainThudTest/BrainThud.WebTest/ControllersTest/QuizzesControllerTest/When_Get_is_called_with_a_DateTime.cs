@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using BrainThud.Model;
+using BrainThud.Web.Dtos;
+using BrainThudTest.Tools;
 using FizzWare.NBuilder;
 using FluentAssertions;
 using NUnit.Framework;
-using System.Linq;
 
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
 {
@@ -15,7 +16,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
         private const int MONTH = 7;
         private const int DAY = 1;
         private DateTime quizDate;
-        private IEnumerable<Card> result;
+        private Quiz quiz;
 
         public override void When()
         {
@@ -36,13 +37,19 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
                 .Build();
 
             this.UnitOfWork.Setup(x => x.Cards.GetAll()).Returns(allCards.AsQueryable());
-            this.result = this.QuizzesController.Get(YEAR, MONTH, DAY);
+            this.quiz = this.QuizzesController.Get(YEAR, MONTH, DAY);
         }
 
         [Test]
         public void Then_only_cards_with_a_QuizDate_less_than_or_equal_to_the_quizDate_parameter_are_returned()
         {
-            this.result.Should().OnlyContain(x => x.Level == 0).And.HaveCount(8);
+            this.quiz.Cards.Should().OnlyContain(x => x.Level == 0).And.HaveCount(8);
+        }
+
+        [Test]
+        public void Then_the_ResultsUri_is_returned()
+        {
+            this.quiz.ResultsUri.Should().Be(TestUrls.LOCALHOST);
         }
     }
 }

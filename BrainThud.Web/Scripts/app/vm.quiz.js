@@ -11,14 +11,15 @@
             },
             datePath,
             questionSideVisible = ko.observable(true),
+            quiz = ko.observableArray([]),
             nextCard = ko.observable(),
             cards = ko.observableArray([]),
-            
+
             currentCard = {
                 question: ko.observable(''),
                 answer: ko.observable(''),
             },
-            
+
             currentCardText = ko.computed(function () {
                 var cardText = '';
                 if (currentCard) {
@@ -34,7 +35,7 @@
 
             dataOptions = function () {
                 return {
-                    results: cards,
+                    results: quiz,
                     params: {
                         datePath: datePath
                     }
@@ -42,13 +43,16 @@
             },
 
             activate = function (routeData) {
-                $.when(dataContext.getQuiz().getData(dataOptions()))
-                    .then(function () { setCurrentCard(routeData.rowKey); });
+                $.when(dataContext.quiz.getData(dataOptions()))
+                    .then(function () {
+                        cards(quiz()[0].cards);
+                        setCurrentCard(routeData.rowKey);
+                    });
             },
 
             setCurrentCard = function (rowKey) {
                 for (var i = 0; i < cards().length; i++) {
-                    if(cards()[i].rowKey() === rowKey) {
+                    if (cards()[i].rowKey() === rowKey) {
                         currentCard.question(cards()[i].question());
                         currentCard.answer(cards()[i].answer());
 
@@ -63,9 +67,17 @@
                     }
                 }
             },
-            
+
             flipCard = function () {
                 questionSideVisible(!questionSideVisible());
+            },
+
+            submitCorrect = function () {
+                window.location.href = nextCard();
+            },
+
+            submitIncorrect = function () {
+                window.location.href = nextCard();
             };
 
         init();
@@ -77,6 +89,8 @@
             questionSideVisible: questionSideVisible,
             nextCard: nextCard,
             activate: activate,
+            submitCorrect: submitCorrect,
+            submitIncorrect: submitIncorrect,
             flipCard: flipCard
         };
     }
