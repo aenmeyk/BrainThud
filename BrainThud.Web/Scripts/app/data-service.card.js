@@ -26,7 +26,7 @@
             save = function (data, callbacks) {
                 return amplify.request({
                     resourceId: 'createCard',
-                    data: JSON.stringify(data),
+                    data: data,
                     success: callbacks.success,
                     error: callbacks.error
                 });

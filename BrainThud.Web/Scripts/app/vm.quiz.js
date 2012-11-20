@@ -16,6 +16,7 @@
             cards = ko.observableArray([]),
 
             currentCard = {
+                rowKey: ko.observable(''),
                 question: ko.observable(''),
                 answer: ko.observable(''),
             },
@@ -53,6 +54,7 @@
             setCurrentCard = function (rowKey) {
                 for (var i = 0; i < cards().length; i++) {
                     if (cards()[i].rowKey() === rowKey) {
+                        currentCard.rowKey(cards()[i].rowKey());
                         currentCard.question(cards()[i].question());
                         currentCard.answer(cards()[i].answer());
 
@@ -71,12 +73,26 @@
             flipCard = function () {
                 questionSideVisible(!questionSideVisible());
             },
+            
+            getQuizResultConfig = function(isCorrect) {
+                return {
+                    data: {
+                        cardId: currentCard.rowKey(),
+                        isCorrect: isCorrect
+                    },
+                    params: {
+                        datePath: datePath
+                    }
+                };
+            },
 
             submitCorrect = function () {
+                dataContext.quizResult.saveData(getQuizResultConfig(true));
                 window.location.href = nextCard();
             },
 
             submitIncorrect = function () {
+                dataContext.quizResult.saveData(getQuizResultConfig(false));
                 window.location.href = nextCard();
             };
 

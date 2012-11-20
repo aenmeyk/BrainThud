@@ -4,15 +4,16 @@
             answer = ko.observable(''),
 
             saveCard = function () {
-                dataContext.card.saveData({
+                $.when(dataContext.card.saveData({
                     data: {
                         question: question(),
                         answer: answer(),
                         quizDate: new Date(),
                         level: 0
-                    },
-                    createNewCard: createNewCard
-                });
+                    }}))
+                    .then(function() {
+                        createNewCard();
+                    });
             },
 
             activate = function () {

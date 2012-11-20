@@ -40,7 +40,6 @@
                         success: function(result) {
                             presenter.showSuccess();
                             def.resolve();
-                            options.createNewCard();
                         },
                         error: function(response) {
                             if (def.reject) def.reject();
@@ -66,12 +65,16 @@
             quiz = new EntitySet({
                 get: dataService.quiz.get,
                 mapper: modelMapper.quiz
+            }),
+            quizResult = new EntitySet({
+                save: dataService.quizResult.save
             });
 
         return {
             cards: cards,
             card: card,
-            quiz: quiz
+            quiz: quiz,
+            quizResult: quizResult
         };
     }
 );
