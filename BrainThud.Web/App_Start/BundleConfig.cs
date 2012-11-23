@@ -30,6 +30,7 @@ namespace BrainThud.Web.App_Start
                 "~/Scripts/knockout-*",
                 "~/Scripts/amplify.*",
                 "~/Scripts/bootstrap.*",
+                "~/Scripts/toastr.js",
                 "~/Scripts/sammy.js"));
 
             bundles.Add(new ScriptBundle(BundlePaths.APP_LIBS).IncludeDirectory(
@@ -39,6 +40,7 @@ namespace BrainThud.Web.App_Start
                 "~/Content/main.css",
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-responsive.css",
+                "~/Content/toastr.css",
                 "~/Content/themes/base/jquery.ui.core.css",
                 "~/Content/themes/base/jquery.ui.resizable.css",
                 "~/Content/themes/base/jquery.ui.selectable.css",

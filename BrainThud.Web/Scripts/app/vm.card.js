@@ -1,5 +1,5 @@
-﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter'],
-    function ($, ko, dataContext, presenter) {
+﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr'],
+    function ($, ko, dataContext, presenter, toastr) {
         var question = ko.observable(''),
             answer = ko.observable(''),
             deckName = ko.observable(''),
@@ -16,16 +16,13 @@
                         level: 0
                     }}))
                     .then(function() {
+                        toastr.success('Success!');
                         createNewCard();
                     });
             },
 
             activate = function () {
                 // do nothing
-            },
-
-            hideSuccess = function () {
-                presenter.hideSuccess();
             },
 
             createNewCard = function () {
@@ -39,8 +36,7 @@
             answer: answer,
             deckName: deckName,
             tags: tags,
-            saveCard: saveCard,
-            hideSuccess: hideSuccess
+            saveCard: saveCard
         };
     }
 );

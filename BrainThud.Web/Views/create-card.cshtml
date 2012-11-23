@@ -1,27 +1,25 @@
 ﻿<section id="create-card-view" class="view">
     @*<span data-bind="text: ko.toJSON($data)"></span>*@
-
-    @RenderPage("Shared/successMessage.cshtml", "Your card has been created")
     
     <fieldset >
     <div class="row-fluid">
         <div class="span12">
-            <input type="text" placeholder="Deck Name" class="stretch" data-bind="value: deckName, event: { keyup: hideSuccess }" />
+            <input type="text" placeholder="Deck Name" class="stretch" data-bind="value: deckName" />
         </div>
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <input type="text" placeholder="Tags (separate tags with commas)" class="stretch" data-bind="value: tags, event: { keyup: hideSuccess }" />
+            <input type="text" placeholder="Tags (separate tags with commas)" class="stretch" data-bind="value: tags" />
         </div>
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <textarea class="large" placeholder="Question" data-bind="value: question, event: { keyup: hideSuccess }"></textarea>
+            <textarea class="large" placeholder="Question" data-bind="value: question"></textarea>
         </div>
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <textarea class="large" placeholder="Answer" data-bind="value: answer, event: { keyup: hideSuccess }"></textarea>
+            <textarea class="large" placeholder="Answer" data-bind="value: answer"></textarea>
         </div>
     </div>
     <div class="row-fluid">

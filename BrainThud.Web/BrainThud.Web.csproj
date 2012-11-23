@@ -194,6 +194,7 @@
       <DependentUpon>Site.less</DependentUpon>
     </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
+    <Content Include="Content\toastr.css" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
@@ -247,6 +248,7 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\toastr.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -277,7 +279,6 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\todays-cards.cshtml" />
     <Content Include="Views\create-card.cshtml" />
-    <Content Include="Views\Shared\successMessage.cshtml" />
     <Content Include="Views\quiz.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
-﻿define('data-context', ['jquery', 'data-service', 'presenter', 'utils', 'model', 'model.mapper'],
-    function ($, dataService, presenter, utils, model, modelMapper) {
+﻿define('data-context', ['jquery', 'data-service', 'utils', 'model', 'model.mapper'],
+    function ($, dataService, utils, model, modelMapper) {
         var EntitySet = function(config) {
             var cachedResults = [],
                 getData = function(options) {
@@ -38,7 +38,6 @@
                     config.save(options.data, {
                         params: options.params,
                         success: function(result) {
-                            presenter.showSuccess();
                             def.resolve();
                         },
                         error: function(response) {

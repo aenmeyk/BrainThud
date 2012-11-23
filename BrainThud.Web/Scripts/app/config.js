@@ -1,5 +1,5 @@
-﻿define('config', [],
-    function () {
+﻿define('config', ['toastr'],
+    function (toastr) {
         var hashes = {
                 createCard: '#/create-card',
                 todaysCards: '#/todays-cards',
@@ -11,6 +11,8 @@
                 todaysCards: '#todays-cards-view',
                 quiz: '#quiz-view'
             };
+
+        toastr.options.timeOut = 1500;
 
         return {
             hashes: hashes,

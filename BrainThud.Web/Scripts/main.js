@@ -10,6 +10,7 @@
         define('ko', [], function() { return root.ko; });
         define('sammy', [], function () { return root.Sammy; });
         define('amplify', [], function () { return root.amplify; });
+        define('toastr', [], function () { return root.toastr; });
     }
 
     //requirejs.config({
