@@ -2,7 +2,8 @@
     @*<span data-bind="text: ko.toJSON($data)"></span>*@
 
     @RenderPage("Shared/successMessage.cshtml", "Your card has been created")
-
+    
+    <fieldset >
     <div class="row-fluid">
         <div class="span12">
             <input type="text" placeholder="Deck Name" class="stretch" data-bind="value: deckName, event: { keyup: hideSuccess }" />
@@ -28,4 +29,5 @@
             <button type="button" class="btn right-align" data-bind="click: saveCard">Create & New</button>
         </div>
     </div>
+        </fieldset>
 </section>
