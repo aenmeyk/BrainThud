@@ -30,8 +30,8 @@
                     .rowKey(dto.rowKey)
                     .question(dto.question)
                     .answer(dto.answer)
-                    .answer(dto.deckName)
-                    .answer(dto.tags);
+                    .deckName(dto.deckName)
+                    .tags(dto.tags);
                 
                 return singleCard;
             };
