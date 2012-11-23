@@ -14,5 +14,9 @@ namespace BrainThud.Model
         public DateTime QuizDate { get; set; }
 
         public int Level { get; set; }
+
+        public string DeckName { get; set; }
+
+        public string Tags { get; set; }
     }
 }

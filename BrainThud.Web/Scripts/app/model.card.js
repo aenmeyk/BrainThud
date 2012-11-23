@@ -6,6 +6,8 @@
             self.rowKey = ko.observable();
             self.question = ko.observable();
             self.answer = ko.observable();
+            self.deckName = ko.observable();
+            self.tags = ko.observable();
         };
 
         return Card;

@@ -14,6 +14,18 @@ namespace BrainThudTest.BrainThud.ModelTest.CardTest
         }
 
         [Test]
+        public void Then_DeckName_should_get_and_set_a_string()
+        {
+            this.Card.CanGetSetString(x => x.DeckName);
+        }
+
+        [Test]
+        public void Then_Tags_should_get_and_set_a_string()
+        {
+            this.Card.CanGetSetString(x => x.Tags);
+        }
+
+        [Test]
         public void Then_Question_should_get_and_set_a_string()
         {
             this.Card.CanGetSetString(x => x.Question);
