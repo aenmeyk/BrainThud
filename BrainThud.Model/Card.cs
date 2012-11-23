@@ -4,8 +4,14 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Model
 {
-    public class Card : TableServiceEntity
+    public class Card : TableServiceEntity, ITestData
     {
+        public Card()
+        {
+#if DEBUG
+            this.IsTestData = true;
+#endif
+        }
         public string Question { get; set; }
 
         public string Answer { get; set; }
@@ -18,5 +24,7 @@ namespace BrainThud.Model
         public string DeckName { get; set; }
 
         public string Tags { get; set; }
+
+        public bool IsTestData { get; set; }
     }
 }

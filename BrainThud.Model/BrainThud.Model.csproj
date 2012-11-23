@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="ITestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="QuizResult.cs" />

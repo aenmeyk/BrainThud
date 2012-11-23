@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using BrainThud.Model;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Data.AzureTableStorage
@@ -17,13 +18,29 @@ namespace BrainThud.Data.AzureTableStorage
 
         private IQueryable<T> entitySet
         {
-            get { return this.tableStorageContext.CreateQuery(typeof(T).Name); }
+            get
+            {
+                var queryable = this.tableStorageContext.CreateQuery(typeof(T).Name);
+#if DEBUG
+                if(typeof(ITestData).IsAssignableFrom(typeof(T)))
+                {
+                    return queryable.Where(x => ((ITestData)x).IsTestData);
+                }
+#endif
+                return queryable;
+            }
         }
 
         public void Add(T entity)
         {
             if (string.IsNullOrEmpty(entity.PartitionKey)) entity.PartitionKey = this.keyGenerator.GeneratePartitionKey();
             if (string.IsNullOrEmpty(entity.RowKey)) entity.RowKey = this.keyGenerator.GenerateRowKey();
+
+#if DEBUG
+            var mockable = entity as ITestData;
+            if(mockable != null) mockable.IsTestData = true;
+#endif
+
             this.tableStorageContext.AddObject(entity);
         }
 
