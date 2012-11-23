@@ -29,6 +29,7 @@ namespace BrainThud.Web.App_Start
                 "~/Scripts/plugins.js",
                 "~/Scripts/knockout-*",
                 "~/Scripts/amplify.*",
+                "~/Scripts/bootstrap.*",
                 "~/Scripts/sammy.js"));
 
             bundles.Add(new ScriptBundle(BundlePaths.APP_LIBS).IncludeDirectory(
