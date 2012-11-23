@@ -8,6 +8,12 @@
                     day = today.getDate();
 
                 datePath = year + '/' + month + '/' + day;
+                
+                // Certain browsers highlight the div when clicked.  Remove this highlight.
+                var cardElement = $('#card');
+                cardElement.click(function () {
+                    cardElement.blur();
+                });
             },
             datePath,
             questionSideVisible = ko.observable(true),

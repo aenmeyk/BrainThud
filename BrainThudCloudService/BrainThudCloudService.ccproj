@@ -40,9 +40,6 @@
     <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
-    <PublishProfile Include="Profiles\brainthudProduction.azurePubxml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BrainThud.Web\BrainThud.Web.csproj">
       <Name>BrainThud.Web</Name>
       <Project>{7a052710-6240-4b71-8e72-39c90401b2c7}</Project>
@@ -51,6 +48,9 @@
       <RoleName>BrainThud.Web</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\brainthudProduction.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>
