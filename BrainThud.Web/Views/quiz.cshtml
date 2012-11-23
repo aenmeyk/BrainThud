@@ -1,4 +1,12 @@
 ﻿<section id="quiz-view" class="view">
+        
+    <div class="row-fluid">
+        <div class="span12">
+            <button type="button" class="card-toolbar-button btn right-align" data-bind="click: showNextCard">></button>
+            <button type="button" class="card-toolbar-button btn right-align" data-bind="click: showPreviousCard"><</button>
+        </div>
+        
+    </div>
 
     <div class="row-fluid">
         <div class="card question span12" data-bind="text: currentCardText, click: flipCard, css: { question: questionSideVisible(), answer: !questionSideVisible() }"></div>

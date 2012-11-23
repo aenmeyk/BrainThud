@@ -135,6 +135,9 @@ form {
   margin-top: 20px;
   width: 100%;
 }
+.card-toolbar-button {
+  margin-bottom: 10px;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -251,6 +254,9 @@ form {
   .primary-button {
     margin-top: 0px;
     padding: 10px;
+  }
+  .card-toolbar-button {
+    margin-bottom: 0px;
   }
 }
 @media (min-width: 480px) and (max-width: 767px) {

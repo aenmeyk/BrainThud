@@ -13,6 +13,7 @@
             questionSideVisible = ko.observable(true),
             quiz = ko.observableArray([]),
             nextCard = ko.observable(),
+            previousCard = ko.observable(),
             cards = ko.observableArray([]),
 
             currentCard = {
@@ -64,6 +65,14 @@
                         }
 
                         nextCard('#/quizzes/' + datePath + '/' + cards()[nextCardIndex].rowKey());
+
+                        var previousCardIndex = i - 1;
+                        if (previousCardIndex < 0) {
+                            previousCardIndex = cards().length - 1;
+                        }
+
+                        previousCard('#/quizzes/' + datePath + '/' + cards()[previousCardIndex].rowKey());
+                        
                         questionSideVisible(true);
                         return;
                     }
@@ -86,14 +95,22 @@
                 };
             },
 
+            showNextCard = function () {
+                window.location.href = nextCard();
+            },
+
+            showPreviousCard = function () {
+                window.location.href = previousCard();
+            },
+
             submitCorrect = function () {
                 dataContext.quizResult.saveData(getQuizResultConfig(true));
-                window.location.href = nextCard();
+                showNextCard();
             },
 
             submitIncorrect = function () {
                 dataContext.quizResult.saveData(getQuizResultConfig(false));
-                window.location.href = nextCard();
+                showNextCard();
             };
 
         init();
@@ -103,8 +120,9 @@
             currentCard: currentCard,
             currentCardText: currentCardText,
             questionSideVisible: questionSideVisible,
-            nextCard: nextCard,
             activate: activate,
+            showNextCard: showNextCard,
+            showPreviousCard: showPreviousCard,
             submitCorrect: submitCorrect,
             submitIncorrect: submitIncorrect,
             flipCard: flipCard
