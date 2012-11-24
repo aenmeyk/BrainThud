@@ -16,7 +16,7 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRep
         public override void When()
         {
             var cards = new[] { this.cardShoudBeDeleted, this.cardShoudNotBeDeleted }.AsQueryable();
-            this.TableStorageContext.Setup(x => x.CreateQuery(this.cardShoudBeDeleted.GetType().Name)).Returns(cards);
+            this.TableStorageContext.Setup(x => x.CreateQuery()).Returns(cards);
             this.TableStorageRepository.Delete(TestValues.ROW_KEY);
         }
 

@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureTableStorage\CloudStorageServices.cs" />
+    <Compile Include="AzureTableStorage\EntitySetDictionary.cs" />
     <Compile Include="AzureTableStorage\ICloudStorageServices.cs" />
     <Compile Include="AzureTableStorage\ITableStorageKeyGenerator.cs" />
     <Compile Include="AzureTableStorage\ITableStorageRepository.cs" />

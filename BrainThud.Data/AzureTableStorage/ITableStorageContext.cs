@@ -12,6 +12,6 @@ namespace BrainThud.Data.AzureTableStorage
         void UpdateObject(T entity);
         void DeleteObject(T entity);
         DataServiceResponse SaveChangesWithRetries();
-        IQueryable<T> CreateQuery(string entitySetName);
+        IQueryable<T> CreateQuery();
     }
 }

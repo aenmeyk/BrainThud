@@ -20,7 +20,7 @@ namespace BrainThud.Data.AzureTableStorage
         {
             get
             {
-                var queryable = this.tableStorageContext.CreateQuery(typeof(T).Name);
+                var queryable = this.tableStorageContext.CreateQuery();
 #if DEBUG
                 if(typeof(ITestData).IsAssignableFrom(typeof(T)))
                 {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BrainThudTest.Tools
+namespace BrainThudTest
 {
     public class TestExceptionList : IEnumerable<Exception>
     {
@@ -35,7 +35,7 @@ namespace BrainThudTest.Tools
         {
 //            yield return this.testExceptions.GetEnumerator().Current.Exception;
 
-            foreach(var testException in testExceptions)
+            foreach(var testException in this.testExceptions)
             {
                 yield return testException.Exception;
             }

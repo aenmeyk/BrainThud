@@ -15,7 +15,7 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageCon
         public override void Given()
         {
             this.CloudStorageServices = new MockCloudStorageServicesBuilder().Build();
-            this.TableStorageContext = new TableStorageContext<Card>(EntitySetNames.CARD, this.CloudStorageServices.Object);
+            this.TableStorageContext = new TableStorageContext<Card>(this.CloudStorageServices.Object);
         }
 
         protected TableStorageContext<Card> TableStorageContext { get; private set; }

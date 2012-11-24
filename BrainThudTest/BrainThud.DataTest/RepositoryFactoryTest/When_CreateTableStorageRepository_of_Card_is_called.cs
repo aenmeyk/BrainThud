@@ -1,6 +1,7 @@
 ﻿using BrainThud.Data.AzureTableStorage;
 using BrainThud.Model;
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.DataTest.RepositoryFactoryTest

@@ -3,7 +3,7 @@ using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace BrainThudTest.Tools
+namespace BrainThudTest
 {
     [TestFixture]
     public abstract class Gwt

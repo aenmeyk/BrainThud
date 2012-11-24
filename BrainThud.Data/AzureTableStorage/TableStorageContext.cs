@@ -8,11 +8,11 @@ namespace BrainThud.Data.AzureTableStorage
     {
         private readonly string entitySetName;
 
-        public TableStorageContext(string entitySetName, ICloudStorageServices cloudStorageServices)
+        public TableStorageContext(ICloudStorageServices cloudStorageServices)
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
+            this.entitySetName = new EntitySetDictionary()[typeof(T)];
             cloudStorageServices.CreateTableIfNotExist(entitySetName);
-            this.entitySetName = entitySetName;
         }
 
         public void AddObject(T entity)
@@ -43,9 +43,9 @@ namespace BrainThud.Data.AzureTableStorage
             base.DeleteObject(entity);
         }
 
-        public IQueryable<T> CreateQuery(string entitySetName)
+        public IQueryable<T> CreateQuery()
         {
-            return this.CreateQuery<T>(entitySetName);
+            return this.CreateQuery<T>(this.entitySetName);
         }
     }
 }

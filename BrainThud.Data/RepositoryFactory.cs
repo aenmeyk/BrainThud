@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using BrainThud.Data.AzureTableStorage;
 using Microsoft.WindowsAzure.StorageClient;
 
@@ -17,8 +19,7 @@ namespace BrainThud.Data
         public ITableStorageRepository<T> CreateTableStorageRepository<T>()  where T: TableServiceEntity
         {
             // Use the TableServiceEntity name as the EntitySetName by convention
-            var entitySetName = typeof(T).Name;
-            var tableStorageContext = new TableStorageContext<T>(entitySetName, this.cloudStorageServices);
+            var tableStorageContext = new TableStorageContext<T>(this.cloudStorageServices);
 
             return new TableStorageRepository<T>(tableStorageContext, this.keyGenerator);
         }

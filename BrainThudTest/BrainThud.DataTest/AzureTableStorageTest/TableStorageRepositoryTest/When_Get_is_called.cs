@@ -18,7 +18,7 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRep
         {
             this.expectedResult = new Card { PartitionKey = Keys.TEMP_PARTITION_KEY, RowKey = TestValues.ROW_KEY };
             var cards = new HashSet<Card> { this.expectedResult, new Card() }.AsQueryable();
-            this.TableStorageContext.Setup(x => x.CreateQuery(typeof(Card).Name)).Returns(cards);
+            this.TableStorageContext.Setup(x => x.CreateQuery()).Returns(cards);
             this.actualResult = this.TableStorageRepository.Get(TestValues.ROW_KEY);
         }
 

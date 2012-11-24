@@ -15,7 +15,7 @@ namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageRep
         public override void When()
         {
             this.expectedCards = new HashSet<Card> {new Card(), new Card()}.AsQueryable();
-            this.TableStorageContext.Setup(x => x.CreateQuery(typeof(Card).Name)).Returns(this.expectedCards);
+            this.TableStorageContext.Setup(x => x.CreateQuery()).Returns(this.expectedCards);
             this.returnedCards = this.TableStorageRepository.GetAll();
         }
 
