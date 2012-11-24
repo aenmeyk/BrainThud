@@ -1,13 +1,8 @@
-﻿define('vm.quiz', ['jquery', 'ko', 'data-context'],
-    function ($, ko, dataContext) {
+﻿define('vm.quiz', ['jquery', 'ko', 'data-context', 'utils'],
+    function ($, ko, dataContext, utils) {
         var
             init = function () {
-                var today = new Date(),
-                    year = today.getFullYear(),
-                    month = today.getMonth() + 1,
-                    day = today.getDate();
-
-                datePath = year + '/' + month + '/' + day;
+                datePath = utils.getDatePath();
                 
                 // Certain browsers highlight the div when clicked.  Remove this highlight.
                 var cardElement = $('#card');
@@ -70,14 +65,14 @@
                             nextCardIndex = 0;
                         }
 
-                        nextCard('#/quizzes/' + datePath + '/' + cards()[nextCardIndex].rowKey());
+                        nextCard(getCardUri(nextCardIndex));
 
                         var previousCardIndex = i - 1;
                         if (previousCardIndex < 0) {
                             previousCardIndex = cards().length - 1;
                         }
 
-                        previousCard('#/quizzes/' + datePath + '/' + cards()[previousCardIndex].rowKey());
+                        previousCard(getCardUri(previousCardIndex));
                         
                         questionSideVisible(true);
                         return;
@@ -87,6 +82,10 @@
 
             flipCard = function () {
                 questionSideVisible(!questionSideVisible());
+            },
+            
+            getCardUri = function(cardIndex) {
+                return '#/quizzes/' + datePath + '/' + cards()[cardIndex].rowKey();
             },
             
             getQuizResultConfig = function(isCorrect) {

@@ -43,7 +43,6 @@
             // Crank up the router
             router.run();
         };
-        
 
         return {
             register: register

@@ -1,41 +1,25 @@
-﻿define('data-primer', ['jquery', 'ko', 'data-context', 'vm'],
-    function ($, ko, dataContext, vm) {
+﻿define('data-primer', ['jquery', 'ko', 'data-context', 'utils', 'dom'],
+    function ($, ko, dataContext, utils, dom) {
         var
-            datePath,
             quiz = ko.observableArray([]),
-            dataOptions = function () {
-                var today = new Date(),
-                year = today.getFullYear(),
-                month = today.getMonth() + 1,
-                day = today.getDate();
-
-                datePath = year + '/' + month + '/' + day;
-
+            dataOptions = function() {
                 return {
                     results: quiz,
                     params: {
-                        datePath: datePath
+                        datePath: utils.getDatePath()
                     }
                 };
             },
-
-            fetch = function () {
-                return $.Deferred(function (def) {
+            fetch = function() {
+                return $.Deferred(function(def) {
                     $.when(dataContext.quiz.getData(dataOptions())
-                        .fail(function () { def.reject(); }))
+                        .fail(function() { def.reject(); }))
                         .done(function() {
                             def.resolve();
-                            setQuizMenuUri(quiz()[0].cards[0].rowKey());
+                            dom.setQuizMenuUri(quiz()[0].cards[0].rowKey());
                         });
-//                    def.resolve();
                 }).promise();
-            },
-            
-
-        setQuizMenuUri = function(rowKey) {
-            $('#quizMenu').attr('href', '#/quizzes/' + datePath + '/' + rowKey);
-        };
-
+            };
 
         return {
             fetch: fetch
