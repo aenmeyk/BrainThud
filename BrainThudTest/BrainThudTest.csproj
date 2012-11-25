@@ -76,6 +76,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CardKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs" />
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CardKeyGeneratorTest\Given_a_new_CardKeyGenerator.cs" />
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CloudStorageServicesTest\Given_a_new_CloudStorageServices.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -85,16 +88,16 @@
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\When_QuizResult_key_is_used.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\Given_a_new_EntitySetDictionary.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\When_Card_key_is_used.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\Given_a_new_TableStorageKeyGenerator.cs">
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageKeyGeneratorTest\Given_a_new_TableStorageKeyGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\When_GeneratePartitionKey_is_called.cs">
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\When_GenerateRowKey_is_called.cs">
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageKeyGeneratorTest\When_GenerateRowKey_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\KeyGeneratorTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageKeyGeneratorTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\Given_a_new_TableStorageContext_of_Card.cs">

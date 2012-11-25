@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureTableStorage\CardKeyGenerator.cs" />
     <Compile Include="AzureTableStorage\CloudStorageServices.cs" />
     <Compile Include="AzureTableStorage\EntitySetDictionary.cs" />
     <Compile Include="AzureTableStorage\ICloudStorageServices.cs" />

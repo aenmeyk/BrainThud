@@ -5,6 +5,12 @@
         public const string CARD = "Card";
     }
 
+    public static class CardRowTypes
+    {
+        public const string CARD = "C";
+        public const string RESULT = "R";
+    }
+
     public static class ConfigurationSettings
     {
         public const string AZURE_STORAGE = "DataConnectionString";

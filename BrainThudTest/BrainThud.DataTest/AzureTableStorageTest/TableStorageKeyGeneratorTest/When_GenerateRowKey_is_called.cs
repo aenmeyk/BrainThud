@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.KeyGeneratorTest
+namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageKeyGeneratorTest
 {
     [TestFixture]
     public class When_GenerateRowKey_is_called : Given_a_new_TableStorageKeyGenerator
