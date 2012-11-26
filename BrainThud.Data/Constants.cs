@@ -3,6 +3,7 @@
     public static class EntitySetNames
     {
         public const string CARD = "Card";
+        public const string USER = "User";
     }
 
     public static class CardRowTypes

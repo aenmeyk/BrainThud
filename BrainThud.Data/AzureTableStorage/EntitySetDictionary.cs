@@ -10,6 +10,7 @@ namespace BrainThud.Data.AzureTableStorage
         {
             this.Add(typeof(Card), EntitySetNames.CARD);
             this.Add(typeof(QuizResult), EntitySetNames.CARD);
+            this.Add(typeof(User), EntitySetNames.USER);
         }
     }
 }

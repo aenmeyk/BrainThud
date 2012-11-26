@@ -85,6 +85,7 @@
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CloudStorageServicesTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\When_User_key_is_used.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\When_QuizResult_key_is_used.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\Given_a_new_EntitySetDictionary.cs" />
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\When_Card_key_is_used.cs" />
