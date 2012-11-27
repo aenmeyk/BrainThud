@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using BrainThud.Web.App_Start;
+using Microsoft.IdentityModel.Web;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.ServiceRuntime;
 
@@ -38,6 +39,8 @@ namespace BrainThud.Web
             GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration);
             MvcRouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //FederatedAuthentication.ServiceConfiguration.
         }
     }
 }
