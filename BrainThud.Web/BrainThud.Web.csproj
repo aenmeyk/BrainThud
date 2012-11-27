@@ -254,13 +254,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\toastr.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
+    <None Include="Web.config" />
+    <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
+    </None>
+    <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
-    </Content>
+    </None>
     <Content Include="Content\Site.less" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\aspNetHome.png" />
