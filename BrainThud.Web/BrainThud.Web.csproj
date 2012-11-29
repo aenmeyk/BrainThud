@@ -203,7 +203,7 @@
     </Content>
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Content\toastr.css" />
-    <Content Include="Images\logo_small.png" />
+    <Content Include="Images\logo_fat_40.png" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />

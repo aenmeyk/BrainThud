@@ -75,6 +75,11 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.shadow {
+  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- Controls -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -120,15 +125,18 @@ form {
 .card {
   padding: 50px;
   min-height: 200px !important;
-  border: 5px;
+  border: 1px;
   border-style: solid;
   cursor: pointer;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 }
 .question {
-  border-color: #ffbb00;
+  border-color: #d4d4d4;
 }
 .answer {
   border-color: #1a9aee;
