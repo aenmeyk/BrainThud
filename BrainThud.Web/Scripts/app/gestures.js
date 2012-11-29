@@ -3,13 +3,16 @@
         var 
             register = function() {
                 $('#card').swipe({
-                    swipe: function (event, direction, distance, duration, fingerCount) {
-                        if (direction === 'left') {
-                            vm.quiz.showNextCard();
-                        } else if (direction === 'right') {
-                            vm.quiz.showPreviousCard();
-                        }
-                    }
+                    swipeLeft: function (event, direction, distance, duration, fingerCount) {
+                        vm.quiz.showNextCard();
+                    },
+                    swipeRight: function (event, direction, distance, duration, fingerCount) {
+                        vm.quiz.showPreviousCard();
+                    },
+                    click: function(event, target) {
+                        vm.quiz.flipCard();
+                    },
+                    threshold: 75
                 });
             };
 
