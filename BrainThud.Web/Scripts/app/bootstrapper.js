@@ -1,10 +1,13 @@
-﻿define('bootstrapper', ['jquery', 'binder', 'route-config', 'data-primer'],
+﻿define('bootstrapper', ['jquery', 'binder', 'route-config', 'data-primer', 'gestures'],
 
-function ($, binder, routeConfig, dataPrimer) {
+function ($, binder, routeConfig, dataPrimer, gestures) {
     var run = function () {
         $.when(dataPrimer.fetch())
             .done(binder.bind)
-            .done(routeConfig.register);
+            .done(function () {
+                gestures.register();
+                routeConfig.register();
+            });
     };
 
     return {
