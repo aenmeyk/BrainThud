@@ -181,8 +181,8 @@ form {
 	width: 100%;
 }
 
-.card-toolbar-button {
-	margin-bottom: 10px;
+.card-toolbar {
+	margin: 10px 0;
 }
 
 .brand {
@@ -341,12 +341,12 @@ input[type=text] {
 @media (max-width: 767px)
 {
 	.primary-button {
-		margin-top: 0px;
+		margin-top: 0;
         padding: 10px;
 	}
 
-	.card-toolbar-button {
-		margin-bottom: 0px;
+	.card-toolbar {
+		margin: 0;
 	}
 }
 
@@ -364,6 +364,11 @@ input[type=text] {
 	.identity {
 		visibility: collapse;
         padding: 0;
+	}
+
+	.card-toolbar {
+		visibility: collapse;
+		height: 0;
 	}
 }
 

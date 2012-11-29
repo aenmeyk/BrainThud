@@ -146,8 +146,8 @@ form {
   margin-top: 20px;
   width: 100%;
 }
-.card-toolbar-button {
-  margin-bottom: 10px;
+.card-toolbar {
+  margin: 10px 0;
 }
 .brand {
   padding: 0 0 0 15px !important;
@@ -286,11 +286,11 @@ input[type=text] {
 }
 @media (max-width: 767px) {
   .primary-button {
-    margin-top: 0px;
+    margin-top: 0;
     padding: 10px;
   }
-  .card-toolbar-button {
-    margin-bottom: 0px;
+  .card-toolbar {
+    margin: 0;
   }
 }
 @media (min-width: 480px) and (max-width: 767px) {
@@ -304,6 +304,10 @@ input[type=text] {
   .identity {
     visibility: collapse;
     padding: 0;
+  }
+  .card-toolbar {
+    visibility: collapse;
+    height: 0;
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
