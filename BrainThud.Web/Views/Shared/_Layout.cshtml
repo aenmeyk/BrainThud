@@ -1,0 +1,62 @@
+﻿@using System.Web.Optimization
+@using BrainThud.Web
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>BrainThud</title>
+    @Styles.Render(BundlePaths.CSS, BundlePaths.LESS)
+    @Scripts.Render(BundlePaths.MODERNIZR)
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <header>
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="#"><img src="~/Images/logo_fat_40.png" /></a>
+                    
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <i class="icon-bar"></i>
+                        <i class="icon-bar"></i>
+                        <i class="icon-bar"></i>
+                    </a>
+
+                    <div class="identity">@User.Identity.Name</div>
+
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li><a href="#/create-card" data-toggle="collapse" data-target=".nav-collapse">Create Card</a></li>
+                            <li><a href="#/todays-cards" data-toggle="collapse" data-target=".nav-collapse">Today's Cards</a></li>
+                            <li><a id="quizMenu" data-toggle="collapse" data-target=".nav-collapse">Quiz</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+        
+    <div class="container">
+        <section class="main">
+                @RenderBody()
+        </section>
+    </div>
+
+    @Scripts.Render(
+        BundlePaths.JQUERY,
+        BundlePaths.EXTERNAL_LIBS,
+        ScriptPaths.REQUIRE_JS,
+        BundlePaths.APP_LIBS,
+        ScriptPaths.MAIN_JS)
+
+</body>
+</html>

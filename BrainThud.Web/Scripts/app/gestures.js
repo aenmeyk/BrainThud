@@ -2,7 +2,7 @@
     function (vm) {
         var 
             register = function() {
-                $('#card').swipe({
+                $('#quiz-view').swipe({
                     swipeLeft: function (event, direction, distance, duration, fingerCount) {
                         vm.quiz.showNextCard();
                     },
