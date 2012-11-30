@@ -170,6 +170,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\CardsController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuizResultsController.cs" />
     <Compile Include="Controllers\QuizzesController.cs" />
@@ -204,9 +205,11 @@
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Content\toastr.css" />
     <Content Include="Images\logo_fat_40.png" />
+    <Content Include="Scripts\account.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Views\Web.config" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
