@@ -1,6 +1,12 @@
 ﻿using System;
 namespace BrainThud.Web
 {
+    public static class Hosts
+    {
+        public const string LOCALHOST = "http://localhost:36877/";
+        public const string BRAINTHUD = "http://www.brainthud.com/";
+    }
+
     public static class RouteNames
     {
         public const string API_QUIZZES = "ApiQuizzes";

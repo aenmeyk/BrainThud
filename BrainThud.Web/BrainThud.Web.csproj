@@ -210,7 +210,7 @@
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
     <Content Include="Views\Account\Login.cshtml" />
-    <None Include="Views\Web.config" />
+    <Content Include="Views\Web.config" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>

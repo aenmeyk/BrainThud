@@ -10,7 +10,12 @@ namespace BrainThud.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
-            ViewBag.MetaDataScript = "https://brainthud.accesscontrol.windows.net/v2/metadata/identityProviders.js?protocol=wsfederation&realm=http://localhost:36877/&version=1.0&callback=ShowSigninPage";
+            var host = Hosts.BRAINTHUD;
+#if DEBUG
+            host = Hosts.LOCALHOST;
+#endif
+
+            ViewBag.MetaDataScript = string.Format("https://brainthud.accesscontrol.windows.net/v2/metadata/identityProviders.js?protocol=wsfederation&realm={0}&version=1.0&callback=ShowSigninPage", host);
             return View("~/Views/Account/Login.cshtml");
         }
     }
