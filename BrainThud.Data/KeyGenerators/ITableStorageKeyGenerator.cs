@@ -1,4 +1,4 @@
-namespace BrainThud.Data.AzureTableStorage
+namespace BrainThud.Data.KeyGenerators
 {
     public interface ITableStorageKeyGenerator 
     {

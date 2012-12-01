@@ -60,6 +60,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.IdentityModel.Services" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web" />
@@ -128,6 +129,10 @@
     <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Card_is_added_with_existing_keys.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.DataTest\KeyGeneratorFactoryTest\Given_a_new_KeyGeneratorFactory.cs" />
+    <Compile Include="BrainThud.DataTest\KeyGeneratorFactoryTest\When_GetTableStorageKeyGenerator_of_type_Card_is_called.cs" />
+    <Compile Include="BrainThud.DataTest\KeyGeneratorFactoryTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_CreateTableStorageRepository_of_User_is_called.cs" />
     <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\Given_a_new_RepositoryFactory.cs">
       <SubType>Code</SubType>
     </Compile>

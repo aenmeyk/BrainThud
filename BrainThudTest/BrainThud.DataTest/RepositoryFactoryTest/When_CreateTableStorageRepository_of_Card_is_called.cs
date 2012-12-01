@@ -21,5 +21,11 @@ namespace BrainThudTest.BrainThud.DataTest.RepositoryFactoryTest
         {
             this.repository.Should().BeAssignableTo<ITableStorageRepository<Card>>();
         }
+
+        [Test]
+        public void Then_the_KeyGenerator_should_be_retrieved_from_the_KeyGeneratorFactory()
+        {
+            this.KeyGeneratorFactory.Verify(x => x.GetTableStorageKeyGenerator<Card>(), Times.Once());
+        }
     }
 }

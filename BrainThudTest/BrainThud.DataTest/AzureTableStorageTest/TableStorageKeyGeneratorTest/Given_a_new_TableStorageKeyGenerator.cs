@@ -1,4 +1,5 @@
 ﻿using BrainThud.Data.AzureTableStorage;
+using BrainThud.Data.KeyGenerators;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.DataTest.AzureTableStorageTest.TableStorageKeyGeneratorTest

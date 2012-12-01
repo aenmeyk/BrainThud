@@ -1,6 +1,6 @@
 using System;
 
-namespace BrainThud.Data.AzureTableStorage
+namespace BrainThud.Data.KeyGenerators
 {
     public class TableStorageKeyGenerator : ITableStorageKeyGenerator
     {

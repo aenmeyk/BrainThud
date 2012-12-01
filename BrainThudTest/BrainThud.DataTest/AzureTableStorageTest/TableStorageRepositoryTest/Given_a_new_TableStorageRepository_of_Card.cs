@@ -1,4 +1,5 @@
 ﻿using BrainThud.Data.AzureTableStorage;
+using BrainThud.Data.KeyGenerators;
 using BrainThud.Model;
 using BrainThudTest.Tools;
 using Moq;
