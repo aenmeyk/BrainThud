@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BrainThud.Model;
+using BrainThud.Web.Model;
 using FluentAssertions;
 using NUnit.Framework;
 

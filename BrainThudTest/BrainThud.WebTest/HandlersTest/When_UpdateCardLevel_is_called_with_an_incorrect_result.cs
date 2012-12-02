@@ -1,5 +1,5 @@
 ﻿using System;
-using BrainThud.Model;
+using BrainThud.Web.Model;
 using FluentAssertions;
 using NUnit.Framework;
 

@@ -1,4 +1,4 @@
-using BrainThud.Data;
+using BrainThud.Web.Data;
 using BrainThudTest.BrainThud.WebTest.Fakes;
 using BrainThudTest.Tools;
 using Moq;

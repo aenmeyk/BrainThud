@@ -1,8 +1,8 @@
 ﻿using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
-using BrainThud.Model;
 using BrainThud.Web;
+using BrainThud.Web.Model;
 using BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest;
 using BrainThudTest.Tools;
 using NUnit.Framework;

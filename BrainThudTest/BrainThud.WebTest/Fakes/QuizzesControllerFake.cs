@@ -1,5 +1,5 @@
-﻿using BrainThud.Data;
-using BrainThud.Web.Controllers;
+﻿using BrainThud.Web.Controllers;
+using BrainThud.Web.Data;
 using BrainThudTest.Tools;
 
 namespace BrainThudTest.BrainThud.WebTest.Fakes

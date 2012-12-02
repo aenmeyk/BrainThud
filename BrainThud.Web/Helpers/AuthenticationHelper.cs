@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace BrainThud.Web.Helpers
 {
-    public class AuthenticationHelper
+    public class AuthenticationHelper : IAuthenticationHelper
     {
         private readonly IEnumerable<Claim> claims;
 

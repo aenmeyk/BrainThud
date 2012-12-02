@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using BrainThud.Model;
+using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Dtos
 {

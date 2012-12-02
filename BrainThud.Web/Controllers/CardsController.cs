@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web;
-using BrainThud.Data;
-using BrainThud.Model;
+using BrainThud.Web.Data;
+using BrainThud.Web.Helpers;
+using BrainThud.Web.Model;
 using BrainThud.Web.Resources;
 
 namespace BrainThud.Web.Controllers
@@ -12,10 +13,12 @@ namespace BrainThud.Web.Controllers
     public class CardsController : ApiControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IAuthenticationHelper authenticationHelper;
 
-        public CardsController(IUnitOfWork unitOfWork)
+        public CardsController(IUnitOfWork unitOfWork, IAuthenticationHelper authenticationHelper)
         {
             this.unitOfWork = unitOfWork;
+            this.authenticationHelper = authenticationHelper;
         }
 
         public IEnumerable<Card> Get()
@@ -27,7 +30,7 @@ namespace BrainThud.Web.Controllers
         {
             try
             {
-                return this.unitOfWork.Cards.Get(id);
+                return this.unitOfWork.Cards.Get(this.authenticationHelper.NameIdentifier, id);
             }
             catch (InvalidOperationException ex)
             {
@@ -78,7 +81,7 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                this.unitOfWork.Cards.Delete(id);
+                this.unitOfWork.Cards.Delete(this.authenticationHelper.NameIdentifier, id);
                 this.unitOfWork.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);

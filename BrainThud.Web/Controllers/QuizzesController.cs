@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using BrainThud.Data;
+using BrainThud.Web.Data;
 using BrainThud.Web.Dtos;
 
 namespace BrainThud.Web.Controllers

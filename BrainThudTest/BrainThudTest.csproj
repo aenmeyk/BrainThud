@@ -77,85 +77,85 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CardKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CardKeyGeneratorTest\Given_a_new_CardKeyGenerator.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CloudStorageServicesTest\Given_a_new_CloudStorageServices.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\Given_a_new_CardKeyGenerator.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CloudStorageServicesTest\Given_a_new_CloudStorageServices.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\CloudStorageServicesTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CloudStorageServicesTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\When_User_key_is_used.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\When_QuizResult_key_is_used.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\Given_a_new_EntitySetDictionary.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\EntitySetDictionaryTest\When_Card_key_is_used.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageKeyGeneratorTest\Given_a_new_TableStorageKeyGenerator.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\EntitySetDictionaryTest\When_User_key_is_used.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\EntitySetDictionaryTest\When_QuizResult_key_is_used.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\EntitySetDictionaryTest\Given_a_new_EntitySetDictionary.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\EntitySetDictionaryTest\When_Card_key_is_used.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageKeyGeneratorTest\Given_a_new_TableStorageKeyGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageKeyGeneratorTest\When_GenerateRowKey_is_called.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageKeyGeneratorTest\When_GenerateRowKey_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageKeyGeneratorTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageKeyGeneratorTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\Given_a_new_TableStorageContext_of_Card.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageContextTest\Given_a_new_TableStorageContext_for_the_Card_entity.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageContextTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageContextTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Get_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Delete_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Update_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository_of_Card.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Get_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Delete_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Update_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository_of_Card.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Commit_is_called.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Commit_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_GetAll_is_called.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_GetAll_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Card_is_added_with_blank_keys.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Card_is_added_with_blank_keys.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\AzureTableStorageTest\TableStorageRepositoryTest\When_Card_is_added_with_existing_keys.cs">
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Card_is_added_with_existing_keys.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\KeyGeneratorFactoryTest\Given_a_new_KeyGeneratorFactory.cs" />
-    <Compile Include="BrainThud.DataTest\KeyGeneratorFactoryTest\When_GetTableStorageKeyGenerator_of_type_Card_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\KeyGeneratorFactoryTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_CreateTableStorageRepository_of_User_is_called.cs" />
-    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\Given_a_new_RepositoryFactory.cs">
+    <Compile Include="BrainThud.WebTest\Data\KeyGeneratorFactoryTest\Given_a_new_KeyGeneratorFactory.cs" />
+    <Compile Include="BrainThud.WebTest\Data\KeyGeneratorFactoryTest\When_GetTableStorageKeyGenerator_of_type_Card_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\KeyGeneratorFactoryTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoryFactoryTest\When_CreateTableStorageRepository_of_User_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoryFactoryTest\Given_a_new_RepositoryFactory.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_CreateTableStorageRepository_of_Card_is_called.cs">
+    <Compile Include="BrainThud.WebTest\Data\RepositoryFactoryTest\When_CreateTableStorageRepository_of_Card_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\RepositoryFactoryTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.WebTest\Data\RepositoryFactoryTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\Given_a_new_UnitOfWork.cs">
+    <Compile Include="BrainThud.WebTest\Data\UnitOfWorkTest\Given_a_new_UnitOfWork.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\When_Commit_is_called.cs">
+    <Compile Include="BrainThud.WebTest\Data\UnitOfWorkTest\When_Commit_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.DataTest\UnitOfWorkTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.WebTest\Data\UnitOfWorkTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.ModelTest\CardTest\Given_a_new_Card.cs">
+    <Compile Include="BrainThud.WebTest\Model\CardTest\Given_a_new_Card.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.ModelTest\CardTest\When_an_invalid_QuizDate_is_set.cs" />
-    <Compile Include="BrainThud.ModelTest\CardTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.WebTest\Model\CardTest\When_an_invalid_QuizDate_is_set.cs" />
+    <Compile Include="BrainThud.WebTest\Model\CardTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BrainThud.WebTest\ActionFiltersTest\When_OnActionExecuting_is_called_with_a_model_error_and_a_valid_model_state.cs" />
@@ -227,14 +227,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BrainThud.Data\BrainThud.Data.csproj">
-      <Project>{25729E8C-CB80-4AA2-943E-8A0F76E40F9F}</Project>
-      <Name>BrainThud.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BrainThud.Model\BrainThud.Model.csproj">
-      <Project>{BB693ECD-B176-4886-B90A-55E7EBC94736}</Project>
-      <Name>BrainThud.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BrainThud.Web\BrainThud.Web.csproj">
       <Project>{7A052710-6240-4B71-8E72-39C90401B2C7}</Project>
       <Name>BrainThud.Web</Name>

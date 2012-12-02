@@ -1,6 +1,8 @@
 using System.Web.Mvc;
-using BrainThud.Data;
 using BrainThud.Web.Calendars;
+using BrainThud.Web.Data;
+using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Model;
 using StructureMap;
 
 namespace BrainThud.Web.DependencyResolution
@@ -14,12 +16,12 @@ namespace BrainThud.Web.DependencyResolution
                     x.Scan(scan =>
                         {
                             scan.TheCallingAssembly();
-                            scan.Assembly(typeof(UnitOfWork).Assembly);
                             scan.WithDefaultConventions();
                         });
 
                     x.For<IControllerFactory>().Use<DefaultControllerFactory>();
                     x.For<IQuizCalendar>().Use<DefaultQuizCalendar>();
+                    x.For<ITableStorageRepository<Configuration>>().Use<TableStorageRepository<Configuration>>();
                 });
 
             return ObjectFactory.Container;

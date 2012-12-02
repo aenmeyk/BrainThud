@@ -1,6 +1,6 @@
 ﻿using System;
-using BrainThud.Model;
 using BrainThud.Web.Calendars;
+using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Handlers
 {

@@ -11,7 +11,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
     {
         public override void When()
         {
-            this.UnitOfWork.Setup(x => x.Cards.Get(TestValues.ROW_KEY)).Throws(new InvalidOperationException(ErrorMessages.Sequence_contains_no_matching_element));
+            this.UnitOfWork.Setup(x => x.Cards.Get(TestValues.PARTITION_KEY, TestValues.ROW_KEY)).Throws(new InvalidOperationException(ErrorMessages.Sequence_contains_no_matching_element));
             this.CardsController.Get(TestValues.ROW_KEY);
         }
 

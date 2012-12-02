@@ -1,4 +1,4 @@
-﻿using BrainThud.Data.AzureTableStorage;
+﻿using BrainThud.Web.Data.AzureTableStorage;
 using Moq;
 
 namespace BrainThudTest.Builders

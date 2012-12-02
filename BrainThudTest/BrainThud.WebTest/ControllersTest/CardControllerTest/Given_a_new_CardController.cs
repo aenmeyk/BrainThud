@@ -1,7 +1,6 @@
 ﻿using System.Net.Http;
-using BrainThud.Data;
-using BrainThud.Data.AzureTableStorage;
-using BrainThud.Model;
+using BrainThud.Web.Data;
+using BrainThud.Web.Helpers;
 using BrainThudTest.BrainThud.WebTest.Fakes;
 using BrainThudTest.Builders;
 using BrainThudTest.Tools;
@@ -16,7 +15,10 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         public override void Given()
         {
             this.UnitOfWork = new Mock<IUnitOfWork> { DefaultValue = DefaultValue.Mock };
-            this.CardsController = new ApiControllerBuilder<CardsControllerFake>(new CardsControllerFake(this.UnitOfWork.Object))
+            var authenticationHelper = new Mock<IAuthenticationHelper>();
+            authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
+            this.CardsController = new ApiControllerBuilder<CardsControllerFake>(
+                new CardsControllerFake(this.UnitOfWork.Object, authenticationHelper.Object))
                 .CreateRequest(HttpMethod.Post, TestUrls.CARDS)
                 .Build();
         }

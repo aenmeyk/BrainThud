@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using BrainThud.Model;
 using BrainThud.Web.Dtos;
+using BrainThud.Web.Model;
 using BrainThudTest.Tools;
 using FizzWare.NBuilder;
 using FluentAssertions;

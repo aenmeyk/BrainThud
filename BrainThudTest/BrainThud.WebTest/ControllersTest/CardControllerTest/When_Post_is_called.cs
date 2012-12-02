@@ -3,10 +3,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
 using BrainThud.Web;
+using BrainThud.Web.Model;
 using BrainThudTest.Tools;
 using FluentAssertions;
 using NUnit.Framework;
-using BrainThud.Model;
 using Moq;
 
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest

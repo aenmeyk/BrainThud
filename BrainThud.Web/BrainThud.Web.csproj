@@ -173,6 +173,25 @@
     <Compile Include="Controllers\QuizResultsController.cs" />
     <Compile Include="Controllers\QuizzesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Data\AzureTableStorage\CloudStorageServices.cs" />
+    <Compile Include="Data\AzureTableStorage\EntitySetDictionary.cs" />
+    <Compile Include="Data\AzureTableStorage\ICloudStorageServices.cs" />
+    <Compile Include="Data\AzureTableStorage\ITableStorageContext.cs" />
+    <Compile Include="Data\AzureTableStorage\ITableStorageRepository.cs" />
+    <Compile Include="Data\AzureTableStorage\TableStorageContext.cs" />
+    <Compile Include="Data\AzureTableStorage\TableStorageRepository.cs" />
+    <Compile Include="Data\AzureTableStorage\TestTableStorageContext.cs" />
+    <Compile Include="Data\Constants.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Data\IRepositoryFactory.cs" />
+    <Compile Include="Data\IUnitOfWork.cs" />
+    <Compile Include="Data\KeyGenerators\CardKeyGenerator.cs" />
+    <Compile Include="Data\KeyGenerators\IKeyGeneratorFactory.cs" />
+    <Compile Include="Data\KeyGenerators\ITableStorageKeyGenerator.cs" />
+    <Compile Include="Data\KeyGenerators\KeyGeneratorFactory.cs" />
+    <Compile Include="Data\KeyGenerators\TableStorageKeyGenerator.cs" />
+    <Compile Include="Data\RepositoryFactory.cs" />
+    <Compile Include="Data\UnitOfWork.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapMvcResolver.cs" />
@@ -185,6 +204,13 @@
     <Compile Include="Handlers\IQuizResultHandler.cs" />
     <Compile Include="Handlers\QuizResultHandler.cs" />
     <Compile Include="Helpers\AuthenticationHelper.cs" />
+    <Compile Include="Helpers\IAuthenticationHelper.cs" />
+    <Compile Include="Model\Card.cs" />
+    <Compile Include="Model\Configuration.cs" />
+    <Compile Include="Model\Constants.cs" />
+    <Compile Include="Model\ITestData.cs" />
+    <Compile Include="Model\QuizResult.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -307,16 +333,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BrainThud.Data\BrainThud.Data.csproj">
-      <Project>{25729E8C-CB80-4AA2-943E-8A0F76E40F9F}</Project>
-      <Name>BrainThud.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BrainThud.Model\BrainThud.Model.csproj">
-      <Project>{BB693ECD-B176-4886-B90A-55E7EBC94736}</Project>
-      <Name>BrainThud.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ErrorMessages.resx">

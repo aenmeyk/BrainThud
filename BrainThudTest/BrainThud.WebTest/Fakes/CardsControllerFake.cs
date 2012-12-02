@@ -1,13 +1,14 @@
-﻿using BrainThud.Data;
-using BrainThud.Model;
-using BrainThud.Web.Controllers;
+﻿using BrainThud.Web.Controllers;
+using BrainThud.Web.Data;
+using BrainThud.Web.Helpers;
 using BrainThudTest.Tools;
 
 namespace BrainThudTest.BrainThud.WebTest.Fakes
 {
     public class CardsControllerFake : CardsController
     {
-        public CardsControllerFake(IUnitOfWork unitOfWork) : base(unitOfWork) {}
+        public CardsControllerFake(IUnitOfWork unitOfWork, IAuthenticationHelper authenticationHelper) 
+            : base(unitOfWork, authenticationHelper) { }
 
         public string RouteName { get; set; }
         public object RouteValues { get; set; }

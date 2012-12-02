@@ -1,7 +1,7 @@
-﻿using BrainThudTest.Tools;
+﻿using BrainThud.Web.Model;
+using BrainThudTest.Tools;
 using FluentAssertions;
 using NUnit.Framework;
-using BrainThud.Model;
 
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
@@ -13,7 +13,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 
         public override void When()
         {
-            this.UnitOfWork.Setup(x => x.Cards.Get(TestValues.ROW_KEY)).Returns(this.expectedResult);
+            this.UnitOfWork.Setup(x => x.Cards.Get(TestValues.PARTITION_KEY, TestValues.ROW_KEY)).Returns(this.expectedResult);
             this.actualResult = this.CardsController.Get(TestValues.ROW_KEY);
         }
 
@@ -21,7 +21,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         public void Then_a_Card_is_returned_from_the_cards_repository()
         {
             this.actualResult.Should().Be(this.expectedResult);
-            this.UnitOfWork.Verify(x => x.Cards.Get(TestValues.ROW_KEY));
+            this.UnitOfWork.Verify(x => x.Cards.Get(TestValues.PARTITION_KEY, TestValues.ROW_KEY));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
-using BrainThud.Data;
+using BrainThud.Web.Data;
 using BrainThud.Web.Handlers;
+using BrainThud.Web.Helpers;
 using BrainThudTest.BrainThud.WebTest.Fakes;
 using BrainThudTest.Builders;
 using BrainThudTest.Tools;
@@ -16,7 +17,12 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         {
             this.UnitOfWork = new Mock<IUnitOfWork> { DefaultValue = DefaultValue.Mock };
             this.QuizResultHandler = new Mock<IQuizResultHandler>();
-            var quizResultsController = new QuizResultsControllerFake(this.UnitOfWork.Object, this.QuizResultHandler.Object);
+            var authenticationHelper = new Mock<IAuthenticationHelper>();
+            authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
+            var quizResultsController = new QuizResultsControllerFake(
+                this.UnitOfWork.Object, 
+                this.QuizResultHandler.Object,
+                authenticationHelper.Object);
 
             this.QuizResultsController = new ApiControllerBuilder<QuizResultsControllerFake>(quizResultsController)
                .CreateRequest(HttpMethod.Post, TestUrls.QUIZ_RESULTS)
