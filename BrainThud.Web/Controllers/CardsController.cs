@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using BrainThud.Web.Data;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
 using BrainThud.Web.Resources;
@@ -12,25 +13,29 @@ namespace BrainThud.Web.Controllers
 {
     public class CardsController : ApiControllerBase
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IAuthenticationHelper authenticationHelper;
 
-        public CardsController(IUnitOfWork unitOfWork, IAuthenticationHelper authenticationHelper)
+        public CardsController(
+            ITableStorageContextFactory tableStorageContextFactory,
+            IAuthenticationHelper authenticationHelper)
         {
-            this.unitOfWork = unitOfWork;
+            this.tableStorageContextFactory = tableStorageContextFactory;
             this.authenticationHelper = authenticationHelper;
         }
 
         public IEnumerable<Card> Get()
         {
-            return this.unitOfWork.Cards.GetAll();
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+            return tableStorageContext.Cards.GetAll();
         }
 
         public Card Get(string id)
         {
             try
             {
-                return this.unitOfWork.Cards.Get(this.authenticationHelper.NameIdentifier, id);
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                return tableStorageContext.Cards.Get(this.authenticationHelper.NameIdentifier, id);
             }
             catch (InvalidOperationException ex)
             {
@@ -47,8 +52,9 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                this.unitOfWork.Cards.Update(card);
-                this.unitOfWork.Commit();
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                tableStorageContext.Cards.Update(card);
+                tableStorageContext.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
@@ -60,8 +66,9 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                this.unitOfWork.Cards.Add(card);
-                this.unitOfWork.Commit();
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                tableStorageContext.Cards.Add(card);
+                tableStorageContext.Commit();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, card);
 
                 var routeValues = new
@@ -81,8 +88,9 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                this.unitOfWork.Cards.Delete(this.authenticationHelper.NameIdentifier, id);
-                this.unitOfWork.Commit();
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                tableStorageContext.Cards.Delete(this.authenticationHelper.NameIdentifier, id);
+                tableStorageContext.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }

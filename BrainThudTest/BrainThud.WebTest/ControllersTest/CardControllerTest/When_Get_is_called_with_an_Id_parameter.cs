@@ -13,7 +13,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 
         public override void When()
         {
-            this.UnitOfWork.Setup(x => x.Cards.Get(TestValues.PARTITION_KEY, TestValues.ROW_KEY)).Returns(this.expectedResult);
+            this.TableStorageContext.Setup(x => x.Cards.Get(TestValues.PARTITION_KEY, TestValues.ROW_KEY)).Returns(this.expectedResult);
             this.actualResult = this.CardsController.Get(TestValues.ROW_KEY);
         }
 
@@ -21,7 +21,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         public void Then_a_Card_is_returned_from_the_cards_repository()
         {
             this.actualResult.Should().Be(this.expectedResult);
-            this.UnitOfWork.Verify(x => x.Cards.Get(TestValues.PARTITION_KEY, TestValues.ROW_KEY));
+            this.TableStorageContext.Verify(x => x.Cards.Get(TestValues.PARTITION_KEY, TestValues.ROW_KEY));
         }
     }
 }

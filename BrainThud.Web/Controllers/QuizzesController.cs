@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Linq;
 using BrainThud.Web.Data;
+using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Dtos;
+using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Controllers
 {
     public class QuizzesController : ApiControllerBase
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly ITableStorageContextFactory tableStorageContextFactory;
 
-        public QuizzesController(IUnitOfWork unitOfWork)
+        public QuizzesController(ITableStorageContextFactory tableStorageContextFactory)
         {
-            this.unitOfWork = unitOfWork;
+            this.tableStorageContextFactory = tableStorageContextFactory;
         }
 
         public Quiz Get(int year, int month, int day)
         {
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+
             var quizDate = new DateTime(year, month, day)
                 .AddDays(1).Date
                 .AddMilliseconds(-1);
@@ -24,7 +29,7 @@ namespace BrainThud.Web.Controllers
 
             var quiz = new Quiz
             {
-                Cards = this.unitOfWork.Cards.GetAll().Where(x => x.QuizDate <= quizDate),
+                Cards = tableStorageContext.Cards.GetAll().Where(x => x.QuizDate <= quizDate),
                 ResultsUri = this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues)
             };
 

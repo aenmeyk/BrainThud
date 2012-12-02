@@ -1,5 +1,6 @@
 ﻿using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Data.KeyGenerators;
 using BrainThudTest.Builders;
 using Moq;
 using NUnit.Framework;
@@ -13,7 +14,10 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
         public override void Given()
         {
             this.CloudStorageServices = new MockCloudStorageServicesBuilder().Build();
-            this.TableStorageContext = new TableStorageContext(this.CloudStorageServices.Object, EntitySetNames.CARD);
+            this.TableStorageContext = new TableStorageContext(
+                this.CloudStorageServices.Object, 
+                new Mock<IKeyGeneratorFactory>().Object,
+                EntitySetNames.CARD);
         }
 
         protected TableStorageContext TableStorageContext { get; private set; }

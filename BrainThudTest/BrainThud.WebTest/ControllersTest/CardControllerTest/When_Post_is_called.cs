@@ -27,13 +27,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         [Test]
         public void Then_Add_is_called_on_Card_repository()
         {
-            this.UnitOfWork.Verify(x => x.Cards.Add(this.card), Times.Once());
+            this.TableStorageContext.Verify(x => x.Cards.Add(this.card), Times.Once());
         }
 
         [Test]
         public void Then_Commit_is_called_on_UnitOfWork()
         {
-            this.UnitOfWork.Verify(x => x.Commit(), Times.Once());
+            this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
         }
 
         [Test]

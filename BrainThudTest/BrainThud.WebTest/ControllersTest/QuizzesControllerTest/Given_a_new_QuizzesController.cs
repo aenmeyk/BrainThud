@@ -1,6 +1,6 @@
 using BrainThud.Web.Data;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThudTest.BrainThud.WebTest.Fakes;
-using BrainThudTest.Tools;
 using Moq;
 using NUnit.Framework;
 
@@ -11,11 +11,14 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
     {
         public override void Given()
         {
-            this.UnitOfWork = new Mock<IUnitOfWork>();
-            this.QuizzesController = new QuizzesControllerFake(this.UnitOfWork.Object);
+            this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
+            var tableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
+            tableStorageContextFactory.Setup(x => x.CreateTableStorageContext(EntitySetNames.CARD)).Returns(this.TableStorageContext.Object);
+
+            this.QuizzesController = new QuizzesControllerFake(tableStorageContextFactory.Object);
         }
 
-        protected Mock<IUnitOfWork> UnitOfWork { get; private set; }
+        protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
         protected QuizzesControllerFake QuizzesController { get; private set; }
     }
 }

@@ -15,7 +15,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         public override void When()
         {
             this.expectedCards = new HashSet<Card> { new Card(), new Card() }.AsQueryable();
-            this.UnitOfWork.Setup(x => x.Cards.GetAll()).Returns(this.expectedCards);
+            this.TableStorageContext.Setup(x => x.Cards.GetAll()).Returns(this.expectedCards);
             this.returnedCards = this.CardsController.Get();
         }
 

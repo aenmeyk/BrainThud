@@ -17,7 +17,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
             var tableStorageGenerator = new Mock<ITableStorageKeyGenerator>();
             tableStorageGenerator.Setup(x => x.GeneratePartitionKey()).Returns(PARTITION_KEY);
             tableStorageGenerator.Setup(x => x.GenerateRowKey()).Returns(ROW_KEY);
-            this.TableStorageContext = new Mock<ITableStorageContext>();
+            this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
             this.TableStorageRepository = new TableStorageRepository<Card>(this.TableStorageContext.Object, tableStorageGenerator.Object);
         }
 

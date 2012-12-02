@@ -1,5 +1,6 @@
 ﻿using System.Net.Http;
 using BrainThud.Web.Data;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
 using BrainThudTest.BrainThud.WebTest.Fakes;
@@ -15,12 +16,15 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
     {
         public override void Given()
         {
-            this.UnitOfWork = new Mock<IUnitOfWork> { DefaultValue = DefaultValue.Mock };
+            this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
+            var tableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
+            tableStorageContextFactory.Setup(x => x.CreateTableStorageContext(EntitySetNames.CARD)).Returns(this.TableStorageContext.Object);
+
             this.QuizResultHandler = new Mock<IQuizResultHandler>();
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
             var quizResultsController = new QuizResultsControllerFake(
-                this.UnitOfWork.Object, 
+                tableStorageContextFactory.Object, 
                 this.QuizResultHandler.Object,
                 authenticationHelper.Object);
 
@@ -30,7 +34,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         }
 
         protected Mock<IQuizResultHandler> QuizResultHandler { get; private set; }
-        protected Mock<IUnitOfWork> UnitOfWork { get; private set; }
+        protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
         protected QuizResultsControllerFake QuizResultsController { get; private set; }
     }
 }

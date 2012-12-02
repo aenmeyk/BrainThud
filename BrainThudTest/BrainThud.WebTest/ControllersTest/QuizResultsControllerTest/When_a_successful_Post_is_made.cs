@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Web.Helpers;
 using BrainThud.Web;
 using BrainThud.Web.Model;
-using BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest;
 using BrainThudTest.Tools;
 using NUnit.Framework;
 using FluentAssertions;
@@ -35,13 +34,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         [Test]
         public void Then_the_QuizResult_is_added_to_the_UnitOfWork()
         {
-            this.UnitOfWork.Verify(x => x.QuizResults.Add(this.quizResult), Times.Once());
+            this.TableStorageContext.Verify(x => x.QuizResults.Add(this.quizResult), Times.Once());
         }
 
         [Test]
         public void Then_the_UnitOfWork_should_commit_its_changes()
         {
-            this.UnitOfWork.Verify(x => x.Commit(), Times.Once());
+            this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
         }
 
         [Test]
@@ -81,7 +80,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         [Test]
         public void Then_the_card_is_updated_in_the_UnitOfWork()
         {
-            this.UnitOfWork.Verify(x => x.Cards.Update(It.Is<Card>(c => c.RowKey == this.quizResult.CardId)), Times.Once());
+            this.TableStorageContext.Verify(x => x.Cards.Update(It.Is<Card>(c => c.RowKey == this.quizResult.CardId)), Times.Once());
         }
     }
 }

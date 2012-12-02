@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using BrainThud.Web.Data;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
@@ -10,16 +11,16 @@ namespace BrainThud.Web.Controllers
 {
     public class QuizResultsController : ApiControllerBase
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IQuizResultHandler quizResultHandler;
         private readonly IAuthenticationHelper authenticationHelper;
 
         public QuizResultsController(
-            IUnitOfWork unitOfWork, 
+            ITableStorageContextFactory tableStorageContextFactory,
             IQuizResultHandler quizResultHandler, 
             IAuthenticationHelper authenticationHelper)
         {
-            this.unitOfWork = unitOfWork;
+            this.tableStorageContextFactory = tableStorageContextFactory;
             this.quizResultHandler = quizResultHandler;
             this.authenticationHelper = authenticationHelper;
         }
@@ -29,13 +30,14 @@ namespace BrainThud.Web.Controllers
             if (this.ModelState.IsValid)
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
 
                 // TODO: Handle the situation where the card doesn't exist
-                var card = this.unitOfWork.Cards.Get(this.authenticationHelper.NameIdentifier, quizResult.CardId);
+                var card = tableStorageContext.Cards.Get(this.authenticationHelper.NameIdentifier, quizResult.CardId);
                 this.quizResultHandler.UpdateCardLevel(quizResult, card);
-                this.unitOfWork.QuizResults.Add(quizResult);
-                this.unitOfWork.Cards.Update(card);
-                this.unitOfWork.Commit();
+                tableStorageContext.QuizResults.Add(quizResult);
+                tableStorageContext.Cards.Update(card);
+                tableStorageContext.Commit();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, quizResult);
 
                 var routeValues = new
@@ -57,8 +59,9 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                this.unitOfWork.QuizResults.Delete(authenticationHelper.NameIdentifier, id);
-                this.unitOfWork.Commit();
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                tableStorageContext.QuizResults.Delete(authenticationHelper.NameIdentifier, id);
+                tableStorageContext.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }

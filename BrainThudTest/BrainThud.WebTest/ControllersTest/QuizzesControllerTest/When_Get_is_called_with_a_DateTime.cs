@@ -36,7 +36,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
                 .TheNext(2).With(x => x.QuizDate = dayAfter).And(x => x.Level = DAY)
                 .Build();
 
-            this.UnitOfWork.Setup(x => x.Cards.GetAll()).Returns(allCards.AsQueryable());
+            this.TableStorageContext.Setup(x => x.Cards.GetAll()).Returns(allCards.AsQueryable());
             this.quiz = this.QuizzesController.Get(YEAR, MONTH, DAY);
         }
 

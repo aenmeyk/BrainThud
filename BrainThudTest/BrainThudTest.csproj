@@ -132,25 +132,6 @@
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorFactoryTest\Given_a_new_KeyGeneratorFactory.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorFactoryTest\When_GetTableStorageKeyGenerator_of_type_Card_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorFactoryTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.WebTest\Data\RepositoryFactoryTest\When_CreateTableStorageRepository_of_User_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\Data\RepositoryFactoryTest\Given_a_new_RepositoryFactory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BrainThud.WebTest\Data\RepositoryFactoryTest\When_CreateTableStorageRepository_of_Card_is_called.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BrainThud.WebTest\Data\RepositoryFactoryTest\When_nothing_changes.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BrainThud.WebTest\Data\UnitOfWorkTest\Given_a_new_UnitOfWork.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BrainThud.WebTest\Data\UnitOfWorkTest\When_Commit_is_called.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BrainThud.WebTest\Data\UnitOfWorkTest\When_nothing_changes.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="BrainThud.WebTest\Model\CardTest\Given_a_new_Card.cs">
       <SubType>Code</SubType>
     </Compile>

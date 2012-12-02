@@ -1,5 +1,5 @@
 ﻿using BrainThud.Web.Controllers;
-using BrainThud.Web.Data;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Helpers;
 using BrainThudTest.Tools;
 
@@ -7,8 +7,10 @@ namespace BrainThudTest.BrainThud.WebTest.Fakes
 {
     public class CardsControllerFake : CardsController
     {
-        public CardsControllerFake(IUnitOfWork unitOfWork, IAuthenticationHelper authenticationHelper) 
-            : base(unitOfWork, authenticationHelper) { }
+        public CardsControllerFake(
+            ITableStorageContextFactory tableStorageContextFactory, 
+            IAuthenticationHelper authenticationHelper)
+            : base(tableStorageContextFactory, authenticationHelper) { }
 
         public string RouteName { get; set; }
         public object RouteValues { get; set; }
