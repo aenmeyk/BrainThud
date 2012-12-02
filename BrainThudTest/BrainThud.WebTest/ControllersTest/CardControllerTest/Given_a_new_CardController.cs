@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
 using BrainThudTest.BrainThud.WebTest.Fakes;
 using BrainThudTest.Builders;
@@ -21,8 +22,12 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
-            this.CardsController = new ApiControllerBuilder<CardsControllerFake>(
-                new CardsControllerFake(tableStorageContextFactory.Object, authenticationHelper.Object))
+            var cardsControllerFake = new CardsControllerFake(
+                tableStorageContextFactory.Object, 
+                authenticationHelper.Object,
+                new Mock<IKeyGeneratorFactory>().Object);
+
+            this.CardsController = new ApiControllerBuilder<CardsControllerFake>(cardsControllerFake)
                 .CreateRequest(HttpMethod.Post, TestUrls.CARDS)
                 .Build();
         }

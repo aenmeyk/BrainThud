@@ -1,4 +1,7 @@
-﻿using BrainThud.Web.Model;
+﻿using BrainThud.Web.Data.KeyGenerators;
+using BrainThud.Web.Model;
+using BrainThudTest.Tools;
+using Moq;
 using NUnit.Framework;
 using FluentAssertions;
 
@@ -11,7 +14,11 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
 
         public override void When()
         {
-            this.TableStorageRepository.Add(this.card);
+            var tableStorageKeyGenerator = new Mock<ITableStorageKeyGenerator>();
+            tableStorageKeyGenerator.Setup(x => x.GeneratePartitionKey()).Returns(TestValues.PARTITION_KEY);
+            tableStorageKeyGenerator.Setup(x => x.GenerateRowKey()).Returns(TestValues.ROW_KEY);
+
+            this.TableStorageRepository.Add(this.card, tableStorageKeyGenerator.Object);
         }
 
         [Test]
@@ -23,13 +30,13 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
         [Test]
         public void Then_the_PartitionKey_is_set_from_the_TableStorageKeyGenerator()
         {
-            this.card.PartitionKey.Should().Be(PARTITION_KEY);
+            this.card.PartitionKey.Should().Be(TestValues.PARTITION_KEY);
         }
 
         [Test]
         public void Then_the_RowKey_is_set_from_the_TableStorageKeyGenerator()
         {
-            this.card.RowKey.Should().Be(ROW_KEY);
+            this.card.RowKey.Should().Be(TestValues.ROW_KEY);
         }
     }
 }

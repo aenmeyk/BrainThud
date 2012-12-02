@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Web.Helpers;
 using BrainThud.Web;
+using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
 using BrainThudTest.Tools;
 using NUnit.Framework;
@@ -34,7 +35,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         [Test]
         public void Then_the_QuizResult_is_added_to_the_UnitOfWork()
         {
-            this.TableStorageContext.Verify(x => x.QuizResults.Add(this.quizResult), Times.Once());
+            this.TableStorageContext.Verify(x => x.QuizResults.Add(this.quizResult, It.IsAny<ITableStorageKeyGenerator>()), Times.Once());
         }
 
         [Test]

@@ -114,9 +114,6 @@
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository_of_Card.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Commit_is_called.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_GetAll_is_called.cs">
       <SubType>Code</SubType>
     </Compile>

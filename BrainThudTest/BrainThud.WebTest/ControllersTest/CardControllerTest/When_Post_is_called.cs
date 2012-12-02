@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
 using BrainThud.Web;
+using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
 using BrainThudTest.Tools;
 using FluentAssertions;
@@ -27,7 +28,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         [Test]
         public void Then_Add_is_called_on_Card_repository()
         {
-            this.TableStorageContext.Verify(x => x.Cards.Add(this.card), Times.Once());
+            this.TableStorageContext.Verify(x => x.Cards.Add(this.card, It.IsAny<ITableStorageKeyGenerator>()), Times.Once());
         }
 
         [Test]

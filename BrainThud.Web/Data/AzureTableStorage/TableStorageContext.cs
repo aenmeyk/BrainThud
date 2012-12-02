@@ -1,7 +1,6 @@
 using System;
 using System.Data.Services.Client;
 using System.Linq;
-using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
 using Microsoft.WindowsAzure.StorageClient;
 
@@ -9,18 +8,15 @@ namespace BrainThud.Web.Data.AzureTableStorage
 {
     public class TableStorageContext : TableServiceContext, ITableStorageContext
     {
-        private readonly IKeyGeneratorFactory keyGeneratorFactory;
         private readonly string entitySetName;
         private readonly Lazy<ITableStorageRepository<Card>> cards;
         private readonly Lazy<ITableStorageRepository<QuizResult>> quizResults;
 
         public TableStorageContext(
             ICloudStorageServices cloudStorageServices, 
-            IKeyGeneratorFactory keyGeneratorFactory, 
             string entitySetName)
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
-            this.keyGeneratorFactory = keyGeneratorFactory;
             this.entitySetName = entitySetName;
             cloudStorageServices.CreateTableIfNotExist(entitySetName);
             this.cards = this.InitializeLazyRepository<Card>();
@@ -29,11 +25,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         private Lazy<ITableStorageRepository<T>> InitializeLazyRepository<T>() where T: TableServiceEntity
         {
-            return new Lazy<ITableStorageRepository<T>>(() =>
-            {
-                var keyGenerator = this.keyGeneratorFactory.GetTableStorageKeyGenerator<T>();
-                return new TableStorageRepository<T>(this, keyGenerator);
-            });
+            return new Lazy<ITableStorageRepository<T>>(() => new TableStorageRepository<T>(this));
         }
 
         public ITableStorageRepository<Card> Cards { get { return cards.Value; } }

@@ -8,12 +8,10 @@ namespace BrainThud.Web.Data.AzureTableStorage
     public class TableStorageRepository<T> : ITableStorageRepository<T> where T : TableServiceEntity
     {
         private readonly ITableStorageContext tableStorageContext;
-        private readonly ITableStorageKeyGenerator keyGenerator;
 
-        public TableStorageRepository(ITableStorageContext tableStorageContext, ITableStorageKeyGenerator keyGenerator)
+        public TableStorageRepository(ITableStorageContext tableStorageContext)
         {
             this.tableStorageContext = tableStorageContext;
-            this.keyGenerator = keyGenerator;
         }
 
         private IQueryable<T> entitySet
@@ -31,10 +29,10 @@ namespace BrainThud.Web.Data.AzureTableStorage
             }
         }
 
-        public void Add(T entity)
+        public void Add(T entity, ITableStorageKeyGenerator keyGenerator)
         {
-            if (string.IsNullOrEmpty(entity.PartitionKey)) entity.PartitionKey = this.keyGenerator.GeneratePartitionKey();
-            if (string.IsNullOrEmpty(entity.RowKey)) entity.RowKey = this.keyGenerator.GenerateRowKey();
+            if (string.IsNullOrEmpty(entity.PartitionKey)) entity.PartitionKey = keyGenerator.GeneratePartitionKey();
+            if (string.IsNullOrEmpty(entity.RowKey)) entity.RowKey = keyGenerator.GenerateRowKey();
 
 #if DEBUG
             var mockable = entity as ITestData;
@@ -63,12 +61,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
         public IQueryable<T> GetAll()
         {
             return this.entitySet;
-        }
-
-        public void Commit()
-        {
-            this.tableStorageContext.SaveChangesWithRetries();
-//            ((TableStorageContext<T>)this.tableStorageContext).SaveChangesWithRetries( SaveChangesOptions.Batch);
         }
     }
 }

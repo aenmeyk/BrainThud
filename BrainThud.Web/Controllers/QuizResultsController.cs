@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
@@ -14,15 +15,18 @@ namespace BrainThud.Web.Controllers
         private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IQuizResultHandler quizResultHandler;
         private readonly IAuthenticationHelper authenticationHelper;
+        private readonly IKeyGeneratorFactory keyGeneratorFactory;
 
         public QuizResultsController(
             ITableStorageContextFactory tableStorageContextFactory,
             IQuizResultHandler quizResultHandler, 
-            IAuthenticationHelper authenticationHelper)
+            IAuthenticationHelper authenticationHelper,
+            IKeyGeneratorFactory keyGeneratorFactory)
         {
             this.tableStorageContextFactory = tableStorageContextFactory;
             this.quizResultHandler = quizResultHandler;
             this.authenticationHelper = authenticationHelper;
+            this.keyGeneratorFactory = keyGeneratorFactory;
         }
 
         public HttpResponseMessage Post(int year, int month, int day, QuizResult quizResult)
@@ -31,11 +35,12 @@ namespace BrainThud.Web.Controllers
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                var keyGenerator = this.keyGeneratorFactory.GetTableStorageKeyGenerator<QuizResult>();
 
                 // TODO: Handle the situation where the card doesn't exist
                 var card = tableStorageContext.Cards.Get(this.authenticationHelper.NameIdentifier, quizResult.CardId);
                 this.quizResultHandler.UpdateCardLevel(quizResult, card);
-                tableStorageContext.QuizResults.Add(quizResult);
+                tableStorageContext.QuizResults.Add(quizResult, keyGenerator);
                 tableStorageContext.Cards.Update(card);
                 tableStorageContext.Commit();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, quizResult);
