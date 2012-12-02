@@ -17,12 +17,15 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
 
         public override void Given()
         {
-            this.Configuration = new Configuration {LastUsedId = LAST_USED_ID};
-            var authenticationHelper = new Mock<IAuthenticationHelper>(); 
+            this.Configuration = new Configuration { LastUsedId = LAST_USED_ID };
+            var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
+            var tableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
+            tableStorageContext.Setup(x => x.Configurations.Get(TestValues.PARTITION_KEY, EntityNames.CONFIGURATION)).Returns(this.Configuration);
 
             this.CardKeyGenerator = new CardKeyGenerator(
-                authenticationHelper.Object);
+                authenticationHelper.Object,
+                tableStorageContext.Object);
         }
 
         protected Configuration Configuration { get; set; }

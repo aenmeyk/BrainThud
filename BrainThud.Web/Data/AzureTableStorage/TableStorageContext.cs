@@ -11,6 +11,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         private readonly string entitySetName;
         private readonly Lazy<ITableStorageRepository<Card>> cards;
         private readonly Lazy<ITableStorageRepository<QuizResult>> quizResults;
+        private readonly Lazy<ITableStorageRepository<Configuration>> configurations;
 
         public TableStorageContext(
             ICloudStorageServices cloudStorageServices, 
@@ -21,6 +22,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
             cloudStorageServices.CreateTableIfNotExist(entitySetName);
             this.cards = this.InitializeLazyRepository<Card>();
             this.quizResults = this.InitializeLazyRepository<QuizResult>();
+            this.configurations = this.InitializeLazyRepository<Configuration>();
         }
 
         private Lazy<ITableStorageRepository<T>> InitializeLazyRepository<T>() where T: TableServiceEntity
@@ -30,6 +32,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public ITableStorageRepository<Card> Cards { get { return cards.Value; } }
         public ITableStorageRepository<QuizResult> QuizResults { get { return quizResults.Value; } }
+        public ITableStorageRepository<Configuration> Configurations { get { return configurations.Value; } }
 
         public void AddObject(TableServiceEntity entity)
         {
