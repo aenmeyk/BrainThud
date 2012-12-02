@@ -16,16 +16,13 @@ namespace BrainThud.Web.Controllers
     {
         private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IAuthenticationHelper authenticationHelper;
-        private readonly IKeyGeneratorFactory keyGeneratorFactory;
 
         public CardsController(
             ITableStorageContextFactory tableStorageContextFactory,
-            IAuthenticationHelper authenticationHelper,
-            IKeyGeneratorFactory keyGeneratorFactory)
+            IAuthenticationHelper authenticationHelper)
         {
             this.tableStorageContextFactory = tableStorageContextFactory;
             this.authenticationHelper = authenticationHelper;
-            this.keyGeneratorFactory = keyGeneratorFactory;
         }
 
         public IEnumerable<Card> Get()
@@ -70,8 +67,8 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var keyGenerator = this.keyGeneratorFactory.GetTableStorageKeyGenerator<Card>();
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext);
                 tableStorageContext.Cards.Add(card, keyGenerator);
                 tableStorageContext.Commit();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, card);

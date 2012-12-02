@@ -12,9 +12,8 @@ namespace BrainThudTest.BrainThud.WebTest.Fakes
         public QuizResultsControllerFake( 
             ITableStorageContextFactory tableStorageContextFactory, 
             IQuizResultHandler quizResultHandler,
-            IAuthenticationHelper authenticationHelper,
-            IKeyGeneratorFactory keyGeneratorFactory)
-            : base(tableStorageContextFactory, quizResultHandler, authenticationHelper, keyGeneratorFactory) { }
+            IAuthenticationHelper authenticationHelper)
+            : base(tableStorageContextFactory, quizResultHandler, authenticationHelper) { }
 
         public string RouteName { get; set; }
         public object RouteValues { get; set; }

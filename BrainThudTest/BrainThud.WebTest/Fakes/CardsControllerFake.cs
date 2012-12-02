@@ -10,9 +10,8 @@ namespace BrainThudTest.BrainThud.WebTest.Fakes
     {
         public CardsControllerFake(
             ITableStorageContextFactory tableStorageContextFactory, 
-            IAuthenticationHelper authenticationHelper,
-            IKeyGeneratorFactory keyGeneratorFactory)
-            : base(tableStorageContextFactory, authenticationHelper, keyGeneratorFactory) { }
+            IAuthenticationHelper authenticationHelper)
+            : base(tableStorageContextFactory, authenticationHelper) { }
 
         public string RouteName { get; set; }
         public object RouteValues { get; set; }

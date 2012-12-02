@@ -1,6 +1,5 @@
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Helpers;
-using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Data.KeyGenerators
 {

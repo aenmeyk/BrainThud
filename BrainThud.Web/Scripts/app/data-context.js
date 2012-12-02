@@ -20,9 +20,8 @@
 
                                 def.resolve(results);
                             },
-                            error: function(response) {
+                            error: function() {
                                 if (def.reject) def.reject();
-                                alert(response.statusText);
                             }
                         });
                     } else {
@@ -42,7 +41,6 @@
                         },
                         error: function(response) {
                             if (def.reject) def.reject();
-                            alert(response.statusText);
                         }
                     });
                 });
