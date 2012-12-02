@@ -33,18 +33,18 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
 //            this.rowKey.Substring(2, 1).Should().Be((CARD_ID + 1).ToString());
 //        }
 
-        [Test]
-        public void Then_the_CardId_should_be_one_more_than_the_LastUsedId()
-        {
-            this.rowKey.Should().Be((LAST_USED_ID + 1).ToString());
-        }
-        
-
-        [Test]
-        public void Then_the_LastUsedId_is_incremented()
-        {
-            this.Configuration.LastUsedId.Should().Be(LAST_USED_ID + 1);
-        }
+//        [Test]
+//        public void Then_the_CardId_should_be_one_more_than_the_LastUsedId()
+//        {
+//            this.rowKey.Should().Be((LAST_USED_ID + 1).ToString());
+//        }
+//        
+//
+//        [Test]
+//        public void Then_the_LastUsedId_is_incremented()
+//        {
+//            this.Configuration.LastUsedId.Should().Be(LAST_USED_ID + 1);
+//        }
 
 //        [Test]
 //        public void Then_the_new_LastUsedCardId_should_be_persisted()

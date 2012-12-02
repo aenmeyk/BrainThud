@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IdentityModel.Services;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
@@ -23,7 +24,7 @@ namespace BrainThudTest.Integration
             const string PUT_QUESTION_TEXT = "Updated From Unit Test";
 
             var container = IoC.Initialize();
-            var config = new HttpConfiguration { DependencyResolver = new StructureMapWebApiResolver(container) };
+            var config = new HttpConfiguration { DependencyResolver = new StructureMapWebApiResolver(container),  };
             config.Formatters.JsonFormatter.MediaTypeMappings.Add(new UriPathExtensionMapping("json", "application/json"));
             config.Formatters.XmlFormatter.MediaTypeMappings.Add(new UriPathExtensionMapping("xml", "application/xml"));
 

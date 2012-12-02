@@ -31,7 +31,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         {
             return new Lazy<ITableStorageRepository<T>>(() =>
             {
-                var keyGenerator = this.keyGeneratorFactory.GetTableStorageKeyGenerator<QuizResult>();
+                var keyGenerator = this.keyGeneratorFactory.GetTableStorageKeyGenerator<T>();
                 return new TableStorageRepository<T>(this, keyGenerator);
             });
         }

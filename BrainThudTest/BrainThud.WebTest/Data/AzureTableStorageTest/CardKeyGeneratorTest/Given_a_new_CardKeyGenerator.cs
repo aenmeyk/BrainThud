@@ -20,11 +20,8 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
             this.Configuration = new Configuration {LastUsedId = LAST_USED_ID};
             var authenticationHelper = new Mock<IAuthenticationHelper>(); 
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
-            var repository = new Mock<ITableStorageRepository<Configuration>>();
-            repository.Setup(x => x.Get(TestValues.PARTITION_KEY, EntityNames.CONFIGURATION)).Returns(Configuration);
 
             this.CardKeyGenerator = new CardKeyGenerator(
-                repository.Object, 
                 authenticationHelper.Object);
         }
 
