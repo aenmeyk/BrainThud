@@ -66,6 +66,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -77,6 +78,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\Given_a_new_AccountController.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\SignOut.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\Given_a_new_CardKeyGenerator.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />

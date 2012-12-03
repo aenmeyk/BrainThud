@@ -1,10 +1,10 @@
-﻿using System.Configuration;
-using System.Diagnostics;
-using Microsoft.WindowsAzure;
-using NUnit.Framework;
-
-namespace BrainThudTest.Integration
-{
+﻿//using System.Configuration;
+//using System.Diagnostics;
+//using Microsoft.WindowsAzure;
+//using NUnit.Framework;
+//
+//namespace BrainThudTest.Integration
+//{
 //    [SetUpFixture]
 //    public class TestSetup
 //    {
@@ -32,4 +32,4 @@ namespace BrainThudTest.Integration
 //            });
 //        }
 //    }
-}
+//}

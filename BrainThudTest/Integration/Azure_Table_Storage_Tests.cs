@@ -1,17 +1,17 @@
-﻿using System;
-using System.IdentityModel.Services;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Web.Http;
-using BrainThud.Web.App_Start;
-using BrainThud.Web.DependencyResolution;
-using BrainThud.Web.Model;
-using BrainThudTest.Tools;
-using FluentAssertions;
-using NUnit.Framework;
-
-        // TODO: Figure out how to use integration testing with the AuthenticationHelper
+﻿//using System;
+//using System.IdentityModel.Services;
+//using System.Net;
+//using System.Net.Http;
+//using System.Net.Http.Formatting;
+//using System.Web.Http;
+//using BrainThud.Web.App_Start;
+//using BrainThud.Web.DependencyResolution;
+//using BrainThud.Web.Model;
+//using BrainThudTest.Tools;
+//using FluentAssertions;
+//using NUnit.Framework;
+//
+//        // TODO: Figure out how to use integration testing with the AuthenticationHelper
 //namespace BrainThudTest.Integration
 //{
 //    [TestFixture]
@@ -47,9 +47,9 @@ using NUnit.Framework;
 //            // Assert that the posted Card was returned in the response
 //            postCard.Question.Should().Be(POST_QUESTION_TEXT);
 //
-//            // Assert that the relevant keys were set on the Card
-//            postCard.PartitionKey.Should().NotBeEmpty();
-//            postCard.RowKey.Should().NotBeEmpty();
+//            //// Assert that the relevant keys were set on the Card
+//            //postCard.PartitionKey.Should().NotBeEmpty();
+//            //postCard.RowKey.Should().NotBeEmpty();
 //
 //            // Assert that the location of the new Card was returned in the Location header
 //            var cardUrl = postResponse.Headers.Location;
