@@ -38,7 +38,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         }
 
         [Test]
-        public void Then_Commit_is_called_on_UnitOfWork()
+        public void Then_Commit_is_called_on_the_TableStorageContext()
         {
             this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
         }

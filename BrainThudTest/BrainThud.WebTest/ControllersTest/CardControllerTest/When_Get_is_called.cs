@@ -20,7 +20,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         }
 
         [Test]
-        public void Then_all_Cards_are_returned_from_UnitOfWork()
+        public void Then_all_Cards_are_returned_from_the_cards_repository()
         {
             this.returnedCards.Should().Equal(this.expectedCards);
         }

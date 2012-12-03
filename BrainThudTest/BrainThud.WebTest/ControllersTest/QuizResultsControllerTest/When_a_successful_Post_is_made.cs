@@ -33,13 +33,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         }
 
         [Test]
-        public void Then_the_QuizResult_is_added_to_the_UnitOfWork()
+        public void Then_the_QuizResult_is_added_to_the_QuizResults_repository()
         {
             this.TableStorageContext.Verify(x => x.QuizResults.Add(this.quizResult, It.IsAny<ITableStorageKeyGenerator>()), Times.Once());
         }
 
         [Test]
-        public void Then_the_UnitOfWork_should_commit_its_changes()
+        public void Then_the_TableStorageContext_should_commit_its_changes()
         {
             this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
         }
@@ -79,7 +79,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         }
 
         [Test]
-        public void Then_the_card_is_updated_in_the_UnitOfWork()
+        public void Then_the_card_is_updated_in_the_cards_repository()
         {
             this.TableStorageContext.Verify(x => x.Cards.Update(It.Is<Card>(c => c.RowKey == this.quizResult.CardId)), Times.Once());
         }
