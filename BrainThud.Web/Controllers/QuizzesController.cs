@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web.Http;
 using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
@@ -8,6 +9,7 @@ using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Controllers
 {
+    [Authorize]
     public class QuizzesController : ApiControllerBase
     {
         private readonly ITableStorageContextFactory tableStorageContextFactory;
