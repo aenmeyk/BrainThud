@@ -205,7 +205,6 @@
     <Compile Include="Model\Constants.cs" />
     <Compile Include="Model\ITestData.cs" />
     <Compile Include="Model\QuizResult.cs" />
-    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>

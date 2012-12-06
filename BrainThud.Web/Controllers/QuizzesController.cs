@@ -3,9 +3,7 @@ using System.Linq;
 using System.Web.Http;
 using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Dtos;
-using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Controllers
 {
