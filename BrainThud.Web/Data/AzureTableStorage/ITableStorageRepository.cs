@@ -7,5 +7,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
     {
         void Delete(string partitionKey, string rowKey);
         void Add(T entity, ITableStorageKeyGenerator keyGenerator);
+        T GetOrCreate(string partitionKey, string rowKey);
     }
 }

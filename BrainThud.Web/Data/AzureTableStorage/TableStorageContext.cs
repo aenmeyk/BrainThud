@@ -23,6 +23,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
             this.cards = this.InitializeLazyRepository<Card>();
             this.quizResults = this.InitializeLazyRepository<QuizResult>();
             this.configurations = this.InitializeLazyRepository<Configuration>();
+            this.IgnoreResourceNotFoundException = true;
         }
 
         private Lazy<ITableStorageRepository<T>> InitializeLazyRepository<T>() where T: TableServiceEntity
@@ -53,7 +54,12 @@ namespace BrainThud.Web.Data.AzureTableStorage
                 }
             }
 
-            if (!alreadyAttached) this.AttachTo(this.entitySetName, entity);
+            if(!alreadyAttached)
+            {
+                this.Detach(entity);
+                this.AttachTo(this.entitySetName, entity);
+            }
+
             base.UpdateObject(entity);
         }
 

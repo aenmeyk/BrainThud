@@ -31,5 +31,11 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
         {
             this.CloudStorageServices.Verify(x => x.CreateTableIfNotExists(EntitySetNames.CARD));
         }
+
+        [Test]
+        public void Then_IgnoreResourceNotFoundException_should_be_true()
+        {
+            this.TableStorageContext.IgnoreResourceNotFoundException.Should().BeTrue();
+        }
     }
 }

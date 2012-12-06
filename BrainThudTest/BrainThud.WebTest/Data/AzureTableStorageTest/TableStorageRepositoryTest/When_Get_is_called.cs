@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using BrainThud.Web.Data;
+using System.Linq;
 using BrainThud.Web.Model;
-using BrainThudTest.Tools;
 using FluentAssertions;
 using NUnit.Framework;
-using System.Linq;
 
 namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorageRepositoryTest
 {

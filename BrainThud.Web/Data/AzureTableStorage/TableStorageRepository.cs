@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
@@ -33,7 +34,11 @@ namespace BrainThud.Web.Data.AzureTableStorage
         {
             if (string.IsNullOrEmpty(entity.PartitionKey)) entity.PartitionKey = keyGenerator.GeneratePartitionKey();
             if (string.IsNullOrEmpty(entity.RowKey)) entity.RowKey = keyGenerator.GenerateRowKey();
+            this.Add(entity);
+        }
 
+        public void Add(T entity)
+        {
 #if DEBUG
             var mockable = entity as ITestData;
             if(mockable != null) mockable.IsTestData = true;
@@ -55,12 +60,33 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public T Get(string partitionKey, string rowKey)
         {
-            return this.entitySet.Where(x => x.PartitionKey == partitionKey && x.RowKey == rowKey).First();
+            return this.Find(partitionKey, rowKey).First();
         }
 
         public IQueryable<T> GetAll()
         {
             return this.entitySet;
+        }
+
+        public T GetOrCreate(string partitionKey, string rowKey)
+        {
+            var entity = this.Find(partitionKey, rowKey).FirstOrDefault();
+
+            if(entity == null)
+            {
+                entity = Activator.CreateInstance<T>();
+                entity.PartitionKey = partitionKey;
+                entity.RowKey = rowKey;
+
+                this.Add(entity);
+            }
+
+            return entity;
+        }
+
+        private IQueryable<T> Find(string partitionKey, string rowKey)
+        {
+            return this.entitySet.Where(x => x.PartitionKey == partitionKey && x.RowKey == rowKey);
         }
     }
 }

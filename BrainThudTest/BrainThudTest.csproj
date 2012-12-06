@@ -115,6 +115,9 @@
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageContextTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_GetOrCreate_is_called_for_a_Configuration_that_does_exist.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository_of_Configuration.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_GetOrCreate_is_called_for_a_Configuration_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Get_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Delete_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Update_is_called.cs" />

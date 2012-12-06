@@ -17,8 +17,10 @@ namespace BrainThud.Web.Data.KeyGenerators
         public string GenerateRowKey()
         {
             // TODO: handle error if timestamp has changed.  i.e. the ID may already have been incremented.
-            var configuration = this.tableStorageContext.Configurations.Get(this.authenticationHelper.NameIdentifier, EntityNames.CONFIGURATION);
+            var configuration = this.tableStorageContext.Configurations.GetOrCreate(this.authenticationHelper.NameIdentifier, EntityNames.CONFIGURATION);
             var cardId = ++configuration.LastUsedId;
+
+            this.tableStorageContext.UpdateObject(configuration);
 
             return cardId.ToString();
         }
