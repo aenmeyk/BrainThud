@@ -182,7 +182,6 @@
     <Compile Include="Data\AzureTableStorage\TableStorageContextFactory.cs" />
     <Compile Include="Data\AzureTableStorage\TableStorageRepository.cs" />
     <Compile Include="Data\AzureTableStorage\TestTableStorageContext.cs" />
-    <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\KeyGenerators\CardKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\ITableStorageKeyGenerator.cs" />
@@ -202,7 +201,6 @@
     <Compile Include="Helpers\IAuthenticationHelper.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\Configuration.cs" />
-    <Compile Include="Model\Constants.cs" />
     <Compile Include="Model\ITestData.cs" />
     <Compile Include="Model\QuizResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

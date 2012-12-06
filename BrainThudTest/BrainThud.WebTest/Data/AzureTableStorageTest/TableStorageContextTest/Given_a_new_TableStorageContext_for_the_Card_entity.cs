@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data;
+﻿using BrainThud.Web;
+using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
@@ -11,7 +12,6 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
     [TestFixture]
     public abstract class Given_a_new_TableStorageContext_for_the_Card_entity : Gwt
     {
-
         public override void Given()
         {
             this.CloudStorageServices = new MockCloudStorageServicesBuilder().Build();

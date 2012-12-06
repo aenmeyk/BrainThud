@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data;
+﻿using BrainThud.Web;
+using BrainThud.Web.Data;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;

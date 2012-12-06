@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data;
+﻿using BrainThud.Web;
+using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
 using FluentAssertions;
 using Microsoft.WindowsAzure.StorageClient;

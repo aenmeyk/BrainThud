@@ -1,5 +1,4 @@
-﻿using System;
-namespace BrainThud.Web
+﻿namespace BrainThud.Web
 {
     public static class Hosts
     {
@@ -30,5 +29,33 @@ namespace BrainThud.Web
     {
         public const string MAIN_JS = "~/Scripts/main.js";
         public const string REQUIRE_JS = "~/Scripts/require.js";
+    }
+
+    public static class EntityNames
+    {
+        public const string CONFIGURATION = "Configuration";
+    }
+
+    public static class EntitySetNames
+    {
+        public const string CARD = "Card";
+        public const string USER = "User";
+    }
+
+    public static class CardRowTypes
+    {
+        public const string CARD = "C";
+        public const string RESULT = "R";
+    }
+
+    public static class ConfigurationSettings
+    {
+        public const string AZURE_STORAGE = "DataConnectionString";
+    }
+
+    public static class TypeValues
+    {
+        public const string MIN_SQL_DATETIME = "01/01/1753";
+        public const string MAX_SQL_DATETIME = "12/31/9999";
     }
 }
