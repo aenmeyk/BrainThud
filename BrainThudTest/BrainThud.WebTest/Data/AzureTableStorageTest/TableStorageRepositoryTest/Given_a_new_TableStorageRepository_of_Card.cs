@@ -1,4 +1,5 @@
 ﻿using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
 using Moq;
 using NUnit.Framework;
@@ -11,7 +12,9 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
         public override void Given()
         {
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
-            this.TableStorageRepository = new TableStorageRepository<Card>(this.TableStorageContext.Object);
+            var authenticationHelper = new Mock<IAuthenticationHelper>();
+            authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
+            this.TableStorageRepository = new TableStorageRepository<Card>(this.TableStorageContext.Object, authenticationHelper.Object);
         }
 
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }

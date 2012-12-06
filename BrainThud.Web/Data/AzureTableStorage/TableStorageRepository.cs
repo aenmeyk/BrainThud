@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using BrainThud.Web.Data.KeyGenerators;
+using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
 using Microsoft.WindowsAzure.StorageClient;
 
@@ -9,10 +10,12 @@ namespace BrainThud.Web.Data.AzureTableStorage
     public class TableStorageRepository<T> : ITableStorageRepository<T> where T : TableServiceEntity
     {
         private readonly ITableStorageContext tableStorageContext;
+        private readonly IAuthenticationHelper authenticationHelper;
 
-        public TableStorageRepository(ITableStorageContext tableStorageContext)
+        public TableStorageRepository(ITableStorageContext tableStorageContext, IAuthenticationHelper authenticationHelper)
         {
             this.tableStorageContext = tableStorageContext;
+            this.authenticationHelper = authenticationHelper;
         }
 
         private IQueryable<T> entitySet
@@ -21,12 +24,12 @@ namespace BrainThud.Web.Data.AzureTableStorage
             {
                 var queryable = this.tableStorageContext.CreateQuery<T>();
 #if DEBUG
-                if(typeof(ITestData).IsAssignableFrom(typeof(T)))
+                if (typeof(ITestData).IsAssignableFrom(typeof(T)))
                 {
-                    return queryable.Where(x => ((ITestData)x).IsTestData);
+                    queryable = queryable.Where(x => ((ITestData)x).IsTestData);
                 }
 #endif
-                return queryable;
+                return queryable.Where(x => x.PartitionKey == this.authenticationHelper.NameIdentifier);
             }
         }
 
@@ -41,7 +44,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         {
 #if DEBUG
             var mockable = entity as ITestData;
-            if(mockable != null) mockable.IsTestData = true;
+            if (mockable != null) mockable.IsTestData = true;
 #endif
 
             this.tableStorageContext.AddObject(entity);
@@ -72,7 +75,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         {
             var entity = this.Find(partitionKey, rowKey).FirstOrDefault();
 
-            if(entity == null)
+            if (entity == null)
             {
                 entity = Activator.CreateInstance<T>();
                 entity.PartitionKey = partitionKey;

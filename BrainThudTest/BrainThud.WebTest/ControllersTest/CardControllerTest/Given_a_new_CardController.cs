@@ -1,11 +1,9 @@
 ﻿using System.Net.Http;
 using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
 using BrainThudTest.BrainThud.WebTest.Fakes;
 using BrainThudTest.Builders;
-using BrainThudTest.Tools;
 using Moq;
 using NUnit.Framework;
 
@@ -14,6 +12,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
     [TestFixture]
     public abstract class Given_a_new_CardController : Gwt
     {
+
         public override void Given()
         {
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
@@ -23,7 +22,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
             var cardsControllerFake = new CardsControllerFake(
-                tableStorageContextFactory.Object, 
+                tableStorageContextFactory.Object,
                 authenticationHelper.Object);
 
             this.CardsController = new ApiControllerBuilder<CardsControllerFake>(cardsControllerFake)

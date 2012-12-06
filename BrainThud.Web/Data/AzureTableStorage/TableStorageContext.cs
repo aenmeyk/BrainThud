@@ -1,6 +1,7 @@
 using System;
 using System.Data.Services.Client;
 using System.Linq;
+using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
 using Microsoft.WindowsAzure.StorageClient;
 
@@ -8,6 +9,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 {
     public class TableStorageContext : TableServiceContext, ITableStorageContext
     {
+        private readonly IAuthenticationHelper authenticationHelper;
         private readonly string entitySetName;
         private readonly Lazy<ITableStorageRepository<Card>> cards;
         private readonly Lazy<ITableStorageRepository<QuizResult>> quizResults;
@@ -15,9 +17,11 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public TableStorageContext(
             ICloudStorageServices cloudStorageServices, 
+            IAuthenticationHelper authenticationHelper,
             string entitySetName)
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
+            this.authenticationHelper = authenticationHelper;
             this.entitySetName = entitySetName;
             cloudStorageServices.CreateTableIfNotExists(entitySetName);
             this.cards = this.InitializeLazyRepository<Card>();
@@ -28,7 +32,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         private Lazy<ITableStorageRepository<T>> InitializeLazyRepository<T>() where T: TableServiceEntity
         {
-            return new Lazy<ITableStorageRepository<T>>(() => new TableStorageRepository<T>(this));
+            return new Lazy<ITableStorageRepository<T>>(() => new TableStorageRepository<T>(this, this.authenticationHelper));
         }
 
         public ITableStorageRepository<Card> Cards { get { return cards.Value; } }
