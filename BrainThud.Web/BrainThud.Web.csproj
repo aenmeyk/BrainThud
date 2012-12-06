@@ -187,7 +187,6 @@
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\KeyGenerators\CardKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\ITableStorageKeyGenerator.cs" />
-    <Compile Include="Data\KeyGenerators\TableStorageKeyGenerator.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapMvcResolver.cs" />
