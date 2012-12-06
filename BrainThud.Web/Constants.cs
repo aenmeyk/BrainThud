@@ -31,21 +31,25 @@
         public const string REQUIRE_JS = "~/Scripts/require.js";
     }
 
+    public static class PartitionKeys
+    {
+        public const string MASTER = "master";
+    }
+
     public static class EntityNames
     {
-        public const string CONFIGURATION = "Configuration";
+        public const string CONFIGURATION = "configuration";
     }
 
     public static class EntitySetNames
     {
         public const string CARD = "Card";
-        public const string USER = "User";
     }
 
     public static class CardRowTypes
     {
-        public const string CARD = "C";
-        public const string RESULT = "R";
+        public const string CARD = "c";
+        public const string RESULT = "r";
     }
 
     public static class ConfigurationSettings

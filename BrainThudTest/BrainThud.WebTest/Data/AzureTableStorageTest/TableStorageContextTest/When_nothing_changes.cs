@@ -1,5 +1,4 @@
 ﻿using BrainThud.Web;
-using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
 using FluentAssertions;
 using Microsoft.WindowsAzure.StorageClient;
@@ -10,10 +9,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
     [TestFixture]
     public class When_nothing_changes : Given_a_new_TableStorageContext_for_the_Card_entity
     {
-        public override void When()
-        {
-            // nothing changes
-        }
+        public override void When() { }
 
         [Test]
         public void Then_ITableStorageContext_should_be_implemented()

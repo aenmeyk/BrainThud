@@ -1,5 +1,4 @@
 using BrainThud.Web;
-using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThudTest.BrainThud.WebTest.Fakes;
 using Moq;

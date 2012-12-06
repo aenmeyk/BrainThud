@@ -1,13 +1,10 @@
 ﻿using System.Net.Http;
 using BrainThud.Web;
-using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
 using BrainThudTest.BrainThud.WebTest.Fakes;
 using BrainThudTest.Builders;
-using BrainThudTest.Tools;
 using Moq;
 using NUnit.Framework;
 
