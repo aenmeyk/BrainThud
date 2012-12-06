@@ -61,7 +61,7 @@
                         currentCard.answer(cards()[i].answer());
 
                         var nextCardIndex = i + 1;
-                        if (nextCardIndex >= cards().length - 1) {
+                        if (nextCardIndex >= cards().length) {
                             nextCardIndex = 0;
                         }
 
