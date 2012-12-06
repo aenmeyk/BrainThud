@@ -13,6 +13,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CloudStorag
         }
 
         [Test]
+        [Category(TestTypes.LONG_RUNNING)]
         public void Then_ICloudStorageAccountFactory_should_be_implemented()
         {
             this.CloudStorageServices.Should().BeAssignableTo<ICloudStorageServices>();

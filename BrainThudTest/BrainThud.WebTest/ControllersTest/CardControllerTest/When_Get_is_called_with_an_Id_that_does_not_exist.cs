@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Web;
-using BrainThud.Web.Data;
 using BrainThud.Web.Resources;
-using BrainThudTest.Tools;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
