@@ -11,7 +11,7 @@ namespace BrainThudTest
         private readonly TestExceptionList testExceptionList = new TestExceptionList();
 
         [TestFixtureSetUp]
-        public void SubInitialize()
+        public virtual void SubInitialize()
         {
             try
             {

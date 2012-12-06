@@ -20,7 +20,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
             get { return this.lazyCloudStorageAccount.Value; }
         }
 
-        public void CreateTableIfNotExist(string entitySetName)
+        public void CreateTableIfNotExists(string entitySetName)
         {
             this.lazyCloudTableClient.Value.CreateTableIfNotExist(entitySetName);
         }

@@ -172,7 +172,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuizResultsController.cs" />
     <Compile Include="Controllers\QuizzesController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\AzureTableStorage\Cards.cs" />
     <Compile Include="Data\AzureTableStorage\CloudStorageServices.cs" />
     <Compile Include="Data\AzureTableStorage\EntitySetDictionary.cs" />
@@ -195,6 +194,7 @@
     <Compile Include="DependencyResolution\StructureMapWebApiResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
     <Compile Include="Dtos\Quiz.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

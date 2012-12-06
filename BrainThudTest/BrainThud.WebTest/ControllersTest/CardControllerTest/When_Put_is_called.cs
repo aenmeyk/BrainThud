@@ -32,7 +32,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         }
 
         [Test]
-        public void Then_Update_should_be_called_on_the_Card_repository()
+        public void Then_Update_should_be_called_on_the_card_repository()
         {
             this.TableStorageContext.Verify(x => x.Cards.Update(this.card), Times.Once());
         }

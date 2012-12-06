@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BrainThudTest.Tools
+namespace BrainThudTest
 {
     public static class TestTypes
     {

@@ -13,7 +13,6 @@ using Moq;
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
     [TestFixture]
-    [Category(TestTypes.LONG_RUNNING)]
     public class When_Post_is_called : Given_a_new_CardController
     {
         private Card card;
@@ -26,24 +25,28 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         }
 
         [Test]
+        [Category(TestTypes.LONG_RUNNING)]
         public void Then_Add_is_called_on_Card_repository()
         {
             this.TableStorageContext.Verify(x => x.Cards.Add(this.card, It.IsAny<ITableStorageKeyGenerator>()), Times.Once());
         }
 
         [Test]
+        [Category(TestTypes.LONG_RUNNING)]
         public void Then_Commit_is_called_on_the_TableStorageContext()
         {
             this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
         }
 
         [Test]
+        [Category(TestTypes.LONG_RUNNING)]
         public void Then_an_HttpResponseMessage_is_returned_with_a_201_status_code()
         {
             this.response.StatusCode.Should().Be(HttpStatusCode.Created);
         }
 
         [Test]
+        [Category(TestTypes.LONG_RUNNING)]
         public void Then_the_Card_should_be_returned_in_the_response()
         {
             var task = this.response.Content.ReadAsStringAsync();
@@ -52,6 +55,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         }
 
         [Test]
+        [Category(TestTypes.LONG_RUNNING)]
         public void Then_the_location_should_be_created_from_the_cards_RowKey()
         {
             var type = this.CardsController.RouteValues.GetType();

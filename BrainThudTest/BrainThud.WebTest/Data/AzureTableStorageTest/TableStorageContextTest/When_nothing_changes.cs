@@ -29,7 +29,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
         [Test]
         public void Then_CreateTableIfNotExist_should_be_called_on_CloudStorageServices()
         {
-            this.CloudStorageServices.Verify(x => x.CreateTableIfNotExist(EntitySetNames.CARD));
+            this.CloudStorageServices.Verify(x => x.CreateTableIfNotExists(EntitySetNames.CARD));
         }
     }
 }

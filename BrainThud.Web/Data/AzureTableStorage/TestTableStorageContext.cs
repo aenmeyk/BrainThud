@@ -12,7 +12,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
             this.entitySetName = entitySetName;
-            cloudStorageServices.CreateTableIfNotExist(entitySetName);
+            cloudStorageServices.CreateTableIfNotExists(entitySetName);
         }
 
         public void AddObject(TableServiceEntity entity)
@@ -62,7 +62,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 //            : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
 //        {
 //            this.entitySetName = new EntitySetDictionary()[typeof(T)];
-//            cloudStorageServices.CreateTableIfNotExist(entitySetName);
+//            cloudStorageServices.CreateTableIfNotExists(entitySetName);
 //        }
 //
 //        public void AddObject(T entity)

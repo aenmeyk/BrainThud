@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CloudStorageServicesTest
 {
     [TestFixture]
-    public abstract class Given_a_new_CloudStorageServices : Gwt
+    public abstract class Given_a_new_CloudStorageServices : GwtAzureEmulator
     {
         public override void Given()
         {

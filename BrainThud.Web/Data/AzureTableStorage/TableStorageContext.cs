@@ -19,7 +19,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
             this.entitySetName = entitySetName;
-            cloudStorageServices.CreateTableIfNotExist(entitySetName);
+            cloudStorageServices.CreateTableIfNotExists(entitySetName);
             this.cards = this.InitializeLazyRepository<Card>();
             this.quizResults = this.InitializeLazyRepository<QuizResult>();
             this.configurations = this.InitializeLazyRepository<Configuration>();

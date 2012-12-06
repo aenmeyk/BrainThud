@@ -81,12 +81,15 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\Given_a_new_AccountController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\SignOut.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\Given_a_new_CardKeyGenerator.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CloudStorageServicesTest\Given_a_new_CloudStorageServices.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CloudStorageServicesTest\When_CloudStorageAccount_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CloudStorageServicesTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -188,14 +191,12 @@
     <Compile Include="Builders\ControllerContextBuilder.cs" />
     <Compile Include="Builders\MockCloudStorageServicesBuilder.cs" />
     <Compile Include="Extensions\BrainThudAssertionExtensions.cs" />
+    <Compile Include="GwtAzureEmulator.cs" />
     <Compile Include="Integration\Azure_Table_Storage_Tests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Integration\TestSetup.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tools\Constants.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Gwt.cs" />
     <Compile Include="Tools\TableStorageHelper.cs" />
     <Compile Include="TestExceptionList.cs" />
