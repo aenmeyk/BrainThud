@@ -26,7 +26,7 @@ namespace BrainThud.Web.Data.KeyGenerators
             var cardId = ++userConfiguration.LastUsedId;
             this.tableStorageContext.UpdateObject(userConfiguration);
 
-            return string.Format("{0}-{1}", CardRowTypes.CARD, cardId.ToString());
+            return this.GetRowKey(cardId.ToString());
         }
 
         public string GeneratePartitionKey()
@@ -42,6 +42,11 @@ namespace BrainThud.Web.Data.KeyGenerators
                                 ?? this.userHelper.CreateUserConfiguration(nameIdentifier);
 
             return configuration;
+        }
+
+        public string GetRowKey(string cardId)
+        {
+            return string.Format("{0}-{1}", CardRowTypes.CARD, cardId);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace BrainThudTest
         // ReSharper disable InconsistentNaming
         public static readonly Guid GUID = Guid.Parse("16ffa7cb-53f7-4a1d-bf19-c60555c95fcf");
         public static readonly DateTime DATETIME = new DateTime(2012, 1, 1);
+        public static readonly string CARD_ID = "583";
         // ReSharper restore InconsistentNaming
 
         public const int INT = 5;
