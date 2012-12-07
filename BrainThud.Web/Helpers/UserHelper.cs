@@ -12,14 +12,14 @@ namespace BrainThud.Web.Helpers
             this.tableStorageContextFactory = tableStorageContextFactory;
         }
 
-        public Configuration CreateUserConfiguration(string nameIdentifier)
+        public UserConfiguration CreateUserConfiguration(string nameIdentifier)
         {
             // TODO: handle error if timestamp has changed.  i.e. the ID may already have been incremented.
             var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
             var masterConfiguration = tableStorageContext.MasterConfigurations
                 .GetOrCreate(PartitionKeys.MASTER, EntityNames.CONFIGURATION);
 
-            var configuration = new Configuration
+            var configuration = new UserConfiguration
             {
                 PartitionKey = nameIdentifier, 
                 RowKey = EntityNames.CONFIGURATION,

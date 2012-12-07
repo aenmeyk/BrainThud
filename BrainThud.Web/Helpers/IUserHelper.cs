@@ -4,6 +4,6 @@ namespace BrainThud.Web.Helpers
 {
     public interface IUserHelper 
     {
-        Configuration CreateUserConfiguration(string nameIdentifier);
+        UserConfiguration CreateUserConfiguration(string nameIdentifier);
     }
 }

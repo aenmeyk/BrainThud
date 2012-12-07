@@ -201,7 +201,7 @@
     <Compile Include="Helpers\IUserHelper.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Model\Card.cs" />
-    <Compile Include="Model\Configuration.cs" />
+    <Compile Include="Model\UserConfiguration.cs" />
     <Compile Include="Model\MasterConfiguration.cs" />
     <Compile Include="Model\QuizResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,7 +13,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
 
         public override void When()
         {
-            this.TableStorageContext.Setup(x => x.Configurations.Get(TestValues.NAME_IDENTIFIER, EntityNames.CONFIGURATION)).Returns((Configuration)null);
+            this.TableStorageContext.Setup(x => x.Configurations.Get(TestValues.NAME_IDENTIFIER, EntityNames.CONFIGURATION)).Returns((UserConfiguration)null);
             this.rowKey = this.CardKeyGenerator.GenerateRowKey();
         }
 
@@ -26,13 +26,13 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
         [Test]
         public void Then_the_LastUsedId_is_incremented()
         {
-            this.Configuration.LastUsedId.Should().Be(LAST_USED_ID + 1);
+            this.UserConfiguration.LastUsedId.Should().Be(LAST_USED_ID + 1);
         }
 
         [Test]
         public void Then_the_Configuration_is_updated_in_the_context()
         {
-            this.TableStorageContext.Verify(x => x.UpdateObject(this.Configuration), Times.Once());
+            this.TableStorageContext.Verify(x => x.UpdateObject(this.UserConfiguration), Times.Once());
         }
     }
 }

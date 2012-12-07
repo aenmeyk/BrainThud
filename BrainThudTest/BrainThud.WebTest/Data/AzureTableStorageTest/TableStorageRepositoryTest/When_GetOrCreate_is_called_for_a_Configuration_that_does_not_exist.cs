@@ -10,11 +10,11 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
     [TestFixture]
     public class When_GetOrCreate_is_called_for_a_Configuration_that_does_not_exist : Given_a_new_TableStorageRepository_of_Configuration
     {
-        private Configuration result;
+        private UserConfiguration result;
 
         public override void When()
         {
-            this.TableStorageContext.Setup(x => x.CreateQuery<Configuration>()).Returns(new Collection<Configuration>().AsQueryable());
+            this.TableStorageContext.Setup(x => x.CreateQuery<UserConfiguration>()).Returns(new Collection<UserConfiguration>().AsQueryable());
             this.result = this.TableStorageRepository.GetOrCreate(TestValues.PARTITION_KEY, TestValues.ROW_KEY);
         }
 

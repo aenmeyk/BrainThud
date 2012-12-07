@@ -26,7 +26,7 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest
         public void Then_a_new_UserConfiguration_is_created_in_the_TableStorageContext()
         {
             this.TableStorageContext.Verify(x => x.Configurations.Add(
-                It.Is<Configuration>(c => c.PartitionKey == TestValues.NAME_IDENTIFIER 
+                It.Is<UserConfiguration>(c => c.PartitionKey == TestValues.NAME_IDENTIFIER 
                     && c.RowKey == EntityNames.CONFIGURATION)), Times.Once());
         }
 
@@ -46,7 +46,7 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest
         public void Then_the_UserId_should_match_the_MasterConfiguration_LastUsedUserId()
         {
             this.TableStorageContext.Verify(x => x.Configurations.Add(
-                It.Is<Configuration>(c => c.UserId == this.masterConfiguration.LastUsedUserId)), Times.Once());
+                It.Is<UserConfiguration>(c => c.UserId == this.masterConfiguration.LastUsedUserId)), Times.Once());
         }
 
         [Test]

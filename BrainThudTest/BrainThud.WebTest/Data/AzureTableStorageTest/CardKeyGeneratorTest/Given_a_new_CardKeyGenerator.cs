@@ -15,12 +15,12 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
 
         public override void Given()
         {
-            this.Configuration = new Configuration { LastUsedId = LAST_USED_ID };
+            this.UserConfiguration = new UserConfiguration { LastUsedId = LAST_USED_ID };
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
             this.UserHelper = new Mock<IUserHelper>();
-            this.UserHelper.Setup(x => x.CreateUserConfiguration(TestValues.NAME_IDENTIFIER)).Returns(this.Configuration);
+            this.UserHelper.Setup(x => x.CreateUserConfiguration(TestValues.NAME_IDENTIFIER)).Returns(this.UserConfiguration);
 
             this.CardKeyGenerator = new CardKeyGenerator(
                 authenticationHelper.Object,
@@ -30,7 +30,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
 
         protected Mock<IUserHelper> UserHelper { get; private set; }
         protected Mock<ITableStorageContext> TableStorageContext { get; set; }
-        protected Configuration Configuration { get; set; }
+        protected UserConfiguration UserConfiguration { get; set; }
         protected CardKeyGenerator CardKeyGenerator { get; set; }
     }
 }
