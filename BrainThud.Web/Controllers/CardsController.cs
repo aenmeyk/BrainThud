@@ -72,7 +72,7 @@ namespace BrainThud.Web.Controllers
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
                 var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, this.userHelper);
                 tableStorageContext.Cards.Add(card, keyGenerator);
-                tableStorageContext.Commit();
+                tableStorageContext.CommitBatch();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, card);
 
                 var routeValues = new

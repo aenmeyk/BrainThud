@@ -7,7 +7,7 @@ using FluentAssertions;
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
     [TestFixture]
-    public class When_Put_is_called_with_an_invalid_model : Given_a_new_CardController
+    public class When_Put_is_called_with_an_invalid_model : Given_a_new_CardsController
     {
         private Card card;
         private HttpResponseMessage response;

@@ -18,5 +18,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
         ITableStorageRepository<MasterConfiguration> MasterConfigurations { get; }
         void Commit();
         bool Detach(TableServiceEntity entity);
+        void CommitBatch();
     }
 }

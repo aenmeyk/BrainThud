@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
     [TestFixture]
-    public class When_nothing_changes : Given_a_new_CardController
+    public class When_nothing_changes : Given_a_new_CardsController
     {
         public override void When()
         {

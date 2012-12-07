@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
     [TestFixture]
-    public class When_Delete_is_called_with_an_invalid_model : Given_a_new_CardController
+    public class When_Delete_is_called_with_an_invalid_model : Given_a_new_CardsController
     {
         private HttpResponseMessage response;
 

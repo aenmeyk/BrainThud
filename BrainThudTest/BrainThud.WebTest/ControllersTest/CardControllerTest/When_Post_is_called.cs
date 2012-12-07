@@ -1,19 +1,17 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
 using BrainThud.Web;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
-using BrainThudTest.Tools;
 using FluentAssertions;
-using NUnit.Framework;
 using Moq;
+using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
     [TestFixture]
-    public class When_Post_is_called : Given_a_new_CardController
+    public class When_Post_is_called : Given_a_new_CardsController
     {
         private Card card;
         private HttpResponseMessage response;
@@ -33,9 +31,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 
         [Test]
         [Category(TestTypes.LONG_RUNNING)]
-        public void Then_Commit_is_called_on_the_TableStorageContext()
+        public void Then_CommitBatch_is_called_on_the_TableStorageContext()
         {
-            this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
+            this.TableStorageContext.Verify(x => x.CommitBatch(), Times.Once());
         }
 
         [Test]

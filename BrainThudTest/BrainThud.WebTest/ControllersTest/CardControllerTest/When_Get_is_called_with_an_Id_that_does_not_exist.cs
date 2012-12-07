@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
     [TestFixture]
-    public class When_Get_is_called_with_an_Id_that_does_not_exist : Given_a_new_CardController
+    public class When_Get_is_called_with_an_Id_that_does_not_exist : Given_a_new_CardsController
     {
         public override void When()
         {

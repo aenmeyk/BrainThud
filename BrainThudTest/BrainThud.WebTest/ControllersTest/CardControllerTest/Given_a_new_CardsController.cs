@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
     [TestFixture]
-    public abstract class Given_a_new_CardController : Gwt
+    public abstract class Given_a_new_CardsController : Gwt
     {
 
         public override void Given()

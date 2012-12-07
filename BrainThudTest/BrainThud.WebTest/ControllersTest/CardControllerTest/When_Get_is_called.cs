@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
     [TestFixture]
-    public class When_Get_is_called : Given_a_new_CardController
+    public class When_Get_is_called : Given_a_new_CardsController
     {
         private IQueryable<Card> expectedCards;
         private IEnumerable<Card> returnedCards;
