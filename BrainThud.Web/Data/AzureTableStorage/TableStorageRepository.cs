@@ -23,12 +23,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
             get
             {
                 var queryable = this.tableStorageContext.CreateQuery<T>();
-#if DEBUG
-                if (typeof(ITestData).IsAssignableFrom(typeof(T)))
-                {
-                    queryable = queryable.Where(x => ((ITestData)x).IsTestData);
-                }
-#endif
                 return queryable.Where(x => x.PartitionKey == this.authenticationHelper.NameIdentifier);
             }
         }
@@ -42,11 +36,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public void Add(T entity)
         {
-#if DEBUG
-            var mockable = entity as ITestData;
-            if (mockable != null) mockable.IsTestData = true;
-#endif
-
             this.tableStorageContext.AddObject(entity);
         }
 
@@ -63,7 +52,9 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public T Get(string partitionKey, string rowKey)
         {
-            return this.entitySet.FirstOrDefault();
+            return this.entitySet
+                .Where(x => x.PartitionKey == partitionKey && x.RowKey == rowKey)
+                .FirstOrDefault();
         }
 
         public IQueryable<T> GetAll()

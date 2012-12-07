@@ -202,7 +202,6 @@
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\Configuration.cs" />
-    <Compile Include="Model\ITestData.cs" />
     <Compile Include="Model\MasterConfiguration.cs" />
     <Compile Include="Model\QuizResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

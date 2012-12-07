@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Model
 {
-    public class QuizResult : TableServiceEntity, ITestData
+    public class QuizResult : TableServiceEntity
     {
         public DateTime QuizDate { get; set; }
         public string CardId { get; set; }
