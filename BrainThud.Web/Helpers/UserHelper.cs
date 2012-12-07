@@ -21,7 +21,7 @@ namespace BrainThud.Web.Helpers
 
             var configuration = new UserConfiguration
             {
-                PartitionKey = nameIdentifier,
+                PartitionKey = string.Format("{0}-{1}", nameIdentifier, userId),
                 RowKey = EntityNames.CONFIGURATION,
                 UserId = userId
             };

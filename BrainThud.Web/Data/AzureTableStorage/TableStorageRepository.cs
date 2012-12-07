@@ -25,7 +25,10 @@ namespace BrainThud.Web.Data.AzureTableStorage
                 var queryable = this.tableStorageContext.CreateQuery<T>();
 
                 // TODO: Find a better way of limiting user results
-                return queryable.Where(x => x.PartitionKey == this.authenticationHelper.NameIdentifier || x.PartitionKey == PartitionKeys.MASTER);
+                return queryable.Where(x =>
+                    string.Compare(x.PartitionKey, this.authenticationHelper.NameIdentifier + '-', StringComparison.Ordinal) >= 0
+                    && string.Compare(x.PartitionKey, this.authenticationHelper.NameIdentifier + '.', StringComparison.Ordinal) < 0 
+                    || x.PartitionKey == PartitionKeys.MASTER);
             }
         }
 
@@ -55,7 +58,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         public T Get(string partitionKey, string rowKey)
         {
             return this.entitySet
-                .Where(x => x.PartitionKey == partitionKey && x.RowKey == rowKey)
+                .Where(x => string.Compare(x.PartitionKey, partitionKey + '-', StringComparison.Ordinal) >= 0 && string.Compare(x.PartitionKey, partitionKey + '.', StringComparison.Ordinal) < 0 && x.RowKey == rowKey)
                 .FirstOrDefault();
         }
 

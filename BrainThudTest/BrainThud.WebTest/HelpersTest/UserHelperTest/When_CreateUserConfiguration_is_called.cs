@@ -4,7 +4,7 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.HelpersTest
+namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
 {
     [TestFixture]
     public class When_CreateUserConfiguration_is_called : Given_a_new_UserHelper
@@ -25,7 +25,8 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest
         public void Then_a_new_UserConfiguration_is_created_in_the_TableStorageContext()
         {
             this.TableStorageContext.Verify(x => x.UserConfigurations.Add(
-                It.Is<UserConfiguration>(c => c.PartitionKey == TestValues.NAME_IDENTIFIER 
+                It.Is<UserConfiguration>(c => 
+                    c.PartitionKey == TestValues.NAME_IDENTIFIER + "-" + (LAST_USED_USER_ID + 1).ToString()
                     && c.RowKey == EntityNames.CONFIGURATION)), Times.Once());
         }
 

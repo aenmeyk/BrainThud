@@ -16,9 +16,9 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
 
         public override void When()
         {
-            this.card1 = new Card { PartitionKey = TestValues.PARTITION_KEY };
+            this.card1 = new Card { PartitionKey = TestValues.CARD_PARTITION_KEY };
             this.card2 = new Card { PartitionKey = "DifferentPartitionKey" };
-            this.card3 = new Card { PartitionKey = TestValues.PARTITION_KEY };
+            this.card3 = new Card { PartitionKey = TestValues.CARD_PARTITION_KEY };
 
             this.TableStorageContext.Setup(x => x.CreateQuery<Card>()).Returns(new HashSet<Card> { this.card1, this.card2, this.card3 }.AsQueryable());
             this.returnedCards = this.TableStorageRepository.GetAll();

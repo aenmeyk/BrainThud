@@ -2,9 +2,8 @@
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Helpers;
 using Moq;
-using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.HelpersTest
+namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
 {
     public abstract class Given_a_new_UserHelper : Gwt
     {

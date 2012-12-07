@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
-using BrainThud.Web.Data;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Dtos;
 

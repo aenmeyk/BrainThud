@@ -9,14 +9,14 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
     [TestFixture]
     public class When_Delete_is_called : Given_a_new_TableStorageRepository_of_Card
     {
-        private readonly Card cardShoudBeDeleted = new Card { PartitionKey = TestValues.PARTITION_KEY, RowKey = TestValues.ROW_KEY };
-        private readonly Card cardShoudNotBeDeleted = new Card { PartitionKey = TestValues.PARTITION_KEY, RowKey = "24D0E17E-99C6-458B-99E8-6878BA5A1E74" };
+        private readonly Card cardShoudBeDeleted = new Card { PartitionKey = TestValues.CARD_PARTITION_KEY, RowKey = TestValues.CARD_ROW_KEY };
+        private readonly Card cardShoudNotBeDeleted = new Card { PartitionKey = TestValues.CARD_PARTITION_KEY, RowKey = "24D0E17E-99C6-458B-99E8-6878BA5A1E74" };
 
         public override void When()
         {
             var cards = new[] { this.cardShoudBeDeleted, this.cardShoudNotBeDeleted }.AsQueryable();
             this.TableStorageContext.Setup(x => x.CreateQuery<Card>()).Returns(cards);
-            this.TableStorageRepository.Delete(TestValues.PARTITION_KEY, TestValues.ROW_KEY);
+            this.TableStorageRepository.Delete(TestValues.NAME_IDENTIFIER, TestValues.CARD_ROW_KEY);
         }
 
         [Test]

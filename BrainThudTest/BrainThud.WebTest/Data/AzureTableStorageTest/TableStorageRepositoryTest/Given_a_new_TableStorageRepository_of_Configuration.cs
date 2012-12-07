@@ -13,7 +13,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
         {
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
             var authenticationHelper = new Mock<IAuthenticationHelper>();
-            authenticationHelper.SetupGet(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
+            authenticationHelper.SetupGet(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
             this.TableStorageRepository = new TableStorageRepository<UserConfiguration>(this.TableStorageContext.Object, authenticationHelper.Object);
         }
 

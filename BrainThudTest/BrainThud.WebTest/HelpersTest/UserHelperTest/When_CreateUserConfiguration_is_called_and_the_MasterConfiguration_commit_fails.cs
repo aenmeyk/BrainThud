@@ -4,7 +4,7 @@ using BrainThud.Web.Model;
 using Moq;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.HelpersTest
+namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
 {
     public class When_CreateUserConfiguration_is_called_and_the_MasterConfiguration_commit_fails : Given_a_new_UserHelper
     {
