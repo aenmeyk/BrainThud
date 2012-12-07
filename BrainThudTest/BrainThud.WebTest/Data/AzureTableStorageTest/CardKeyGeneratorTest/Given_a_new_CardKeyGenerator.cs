@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data.AzureTableStorage;
+﻿using BrainThud.Web;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
@@ -12,13 +13,15 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
     {
         protected const string USER_ROW_KEY = TestValues.ROW_KEY;
         protected const int LAST_USED_ID = 8;
+        protected const int USER_ID = 53;
 
         public override void Given()
         {
-            this.UserConfiguration = new UserConfiguration { LastUsedId = LAST_USED_ID };
+            this.UserConfiguration = new UserConfiguration { LastUsedId = LAST_USED_ID, UserId = USER_ID };
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
+            this.TableStorageContext.Setup(x => x.UserConfigurations.Get(TestValues.NAME_IDENTIFIER, EntityNames.CONFIGURATION)).Returns(this.UserConfiguration);
             this.UserHelper = new Mock<IUserHelper>();
             this.UserHelper.Setup(x => x.CreateUserConfiguration(TestValues.NAME_IDENTIFIER)).Returns(this.UserConfiguration);
 

@@ -14,9 +14,9 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
         }
 
         [Test]
-        public void Then_the_user_NameIdentifier_is_returned()
+        public void Then_the_user_NameIdentifier_dash_UserId_is_returned()
         {
-            this.partitionKey.Should().Be(TestValues.NAME_IDENTIFIER);
+            this.partitionKey.Should().Be(TestValues.NAME_IDENTIFIER + "-" + USER_ID);
         }
     }
 }

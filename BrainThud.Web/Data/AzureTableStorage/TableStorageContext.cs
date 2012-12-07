@@ -39,7 +39,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public ITableStorageRepository<Card> Cards { get { return this.cards.Value; } }
         public ITableStorageRepository<QuizResult> QuizResults { get { return this.quizResults.Value; } }
-        public ITableStorageRepository<UserConfiguration> Configurations { get { return this.configurations.Value; } }
+        public ITableStorageRepository<UserConfiguration> UserConfigurations { get { return this.configurations.Value; } }
         public ITableStorageRepository<MasterConfiguration> MasterConfigurations { get { return this.masterConfigurations.Value; } }
 
         public void AddObject(TableServiceEntity entity)

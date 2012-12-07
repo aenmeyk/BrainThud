@@ -26,7 +26,7 @@ namespace BrainThud.Web.Helpers
                 UserId = userId
             };
 
-            tableStorageContext.Configurations.Add(configuration);
+            tableStorageContext.UserConfigurations.Add(configuration);
             tableStorageContext.Commit();
 
             return configuration;

@@ -12,14 +12,13 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
 
         public override void When()
         {
-            this.TableStorageContext.Setup(x => x.Configurations.Get(TestValues.NAME_IDENTIFIER, EntityNames.CONFIGURATION)).Returns(this.UserConfiguration);
             this.rowKey = this.CardKeyGenerator.GenerateRowKey();
         }
 
         [Test]
-        public void Then_the_CardId_should_be_one_more_than_the_LastUsedId()
+        public void Then_the_CardId_should_be_c_dash_one_more_than_the_LastUsedId()
         {
-            this.rowKey.Should().Be((LAST_USED_ID + 1).ToString());
+            this.rowKey.Should().Be(CardRowTypes.CARD + "-" + (LAST_USED_ID + 1).ToString());
         }
         
         [Test]
