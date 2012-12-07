@@ -57,13 +57,13 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public void Delete(string partitionKey, string rowKey)
         {
-            var item = this.Get(partitionKey, rowKey);
-            this.tableStorageContext.DeleteObject(item);
+            var entity = this.Get(partitionKey, rowKey);
+            this.tableStorageContext.DeleteObject(entity);
         }
 
         public T Get(string partitionKey, string rowKey)
         {
-            return this.Find(partitionKey, rowKey).First();
+            return this.entitySet.FirstOrDefault();
         }
 
         public IQueryable<T> GetAll()
@@ -73,7 +73,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public T GetOrCreate(string partitionKey, string rowKey)
         {
-            var entity = this.Find(partitionKey, rowKey).FirstOrDefault();
+            var entity = this.Get(partitionKey, rowKey);
 
             if (entity == null)
             {
@@ -85,11 +85,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
             }
 
             return entity;
-        }
-
-        private IQueryable<T> Find(string partitionKey, string rowKey)
-        {
-            return this.entitySet.Where(x => x.PartitionKey == partitionKey && x.RowKey == rowKey);
         }
     }
 }

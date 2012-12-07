@@ -1,5 +1,4 @@
-﻿using BrainThudTest.Tools;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGeneratorTest
@@ -17,7 +16,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
         [Test]
         public void Then_the_user_NameIdentifier_is_returned()
         {
-            this.partitionKey.Should().Be(TestValues.PARTITION_KEY);
+            this.partitionKey.Should().Be(TestValues.NAME_IDENTIFIER);
         }
     }
 }

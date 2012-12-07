@@ -7,19 +7,26 @@ namespace BrainThud.Web.Data.KeyGenerators
     {
         private readonly IAuthenticationHelper authenticationHelper;
         private readonly ITableStorageContext tableStorageContext;
+        private readonly IUserHelper userHelper;
 
-        public CardKeyGenerator(IAuthenticationHelper authenticationHelper, ITableStorageContext tableStorageContext)
+        public CardKeyGenerator(
+            IAuthenticationHelper authenticationHelper, 
+            ITableStorageContext tableStorageContext, 
+            IUserHelper userHelper)
         {
             this.authenticationHelper = authenticationHelper;
             this.tableStorageContext = tableStorageContext;
+            this.userHelper = userHelper;
         }
 
         public string GenerateRowKey()
         {
             // TODO: handle error if timestamp has changed.  i.e. the ID may already have been incremented.
-            var configuration = this.tableStorageContext.Configurations.GetOrCreate(this.authenticationHelper.NameIdentifier, EntityNames.CONFIGURATION);
-            var cardId = ++configuration.LastUsedId;
+            var nameIdentifier = this.authenticationHelper.NameIdentifier;
+            var configuration = this.tableStorageContext.Configurations.Get(nameIdentifier, EntityNames.CONFIGURATION) 
+                ?? this.userHelper.CreateUserConfiguration(nameIdentifier);
 
+            var cardId = ++configuration.LastUsedId;
             this.tableStorageContext.UpdateObject(configuration);
 
             return cardId.ToString();

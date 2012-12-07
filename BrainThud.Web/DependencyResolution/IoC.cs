@@ -1,8 +1,6 @@
 using System.Web.Mvc;
 using BrainThud.Web.Calendars;
-using BrainThud.Web.Data;
-using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Model;
+using BrainThud.Web.Data.KeyGenerators;
 using StructureMap;
 
 namespace BrainThud.Web.DependencyResolution
@@ -21,7 +19,7 @@ namespace BrainThud.Web.DependencyResolution
 
                     x.For<IControllerFactory>().Use<DefaultControllerFactory>();
                     x.For<IQuizCalendar>().Use<DefaultQuizCalendar>();
-                    x.For<ITableStorageRepository<Configuration>>().Use<TableStorageRepository<Configuration>>();
+                    x.For<ITableStorageKeyGenerator>().Use<CardKeyGenerator>();
                 });
 
             return ObjectFactory.Container;

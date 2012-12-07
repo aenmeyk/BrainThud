@@ -1,4 +1,5 @@
 ﻿using BrainThud.Web;
+using BrainThud.Web.Model;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -6,13 +7,13 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGeneratorTest
 {
     [TestFixture]
-    public class When_GenerateRowKey_is_called : Given_a_new_CardKeyGenerator
+    public class When_GenerateRowKey_is_called_for_a_user_that_does_not_exist : Given_a_new_CardKeyGenerator
     {
         private string rowKey;
 
         public override void When()
         {
-            this.TableStorageContext.Setup(x => x.Configurations.GetOrCreate(TestValues.PARTITION_KEY, EntityNames.CONFIGURATION)).Returns(this.Configuration);
+            this.TableStorageContext.Setup(x => x.Configurations.Get(TestValues.NAME_IDENTIFIER, EntityNames.CONFIGURATION)).Returns((Configuration)null);
             this.rowKey = this.CardKeyGenerator.GenerateRowKey();
         }
 

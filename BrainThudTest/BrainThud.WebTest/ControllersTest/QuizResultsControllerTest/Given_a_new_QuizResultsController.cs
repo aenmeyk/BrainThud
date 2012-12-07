@@ -18,14 +18,15 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
             var tableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
             tableStorageContextFactory.Setup(x => x.CreateTableStorageContext(EntitySetNames.CARD)).Returns(this.TableStorageContext.Object);
-
             this.QuizResultHandler = new Mock<IQuizResultHandler>();
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
+
             var quizResultsController = new QuizResultsControllerFake(
                 tableStorageContextFactory.Object, 
                 this.QuizResultHandler.Object,
-                authenticationHelper.Object);
+                authenticationHelper.Object,
+                new Mock<IUserHelper>().Object);
 
             this.QuizResultsController = new ApiControllerBuilder<QuizResultsControllerFake>(quizResultsController)
                .CreateRequest(HttpMethod.Post, TestUrls.QUIZ_RESULTS)

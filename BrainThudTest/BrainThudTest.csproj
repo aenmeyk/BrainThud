@@ -83,9 +83,10 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called_for_a_user_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\Given_a_new_CardKeyGenerator.cs" />
-    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called_for_a_user_that_exists.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CloudStorageServicesTest\Given_a_new_CloudStorageServices.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,9 +94,6 @@
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CloudStorageServicesTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\EntitySetDictionaryTest\When_QuizResult_key_is_used.cs" />
-    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\EntitySetDictionaryTest\Given_a_new_EntitySetDictionary.cs" />
-    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\EntitySetDictionaryTest\When_Card_key_is_used.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageContextTest\Given_a_new_TableStorageContext_for_the_Card_entity.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -123,6 +121,8 @@
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Card_is_added_with_existing_keys.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.WebTest\HelpersTest\Given_a_new_UserHelper.cs" />
+    <Compile Include="BrainThud.WebTest\HelpersTest\When_CreateUserConfiguration_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Model\CardTest\Given_a_new_Card.cs">
       <SubType>Code</SubType>
     </Compile>

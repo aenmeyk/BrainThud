@@ -18,6 +18,7 @@ namespace BrainThudTest
         public const int INT = 5;
         public const string STRING = "TestString";
         public const string PARTITION_KEY = "c86258da-9165-4e19-906a-4441bd298d71";
+        public const string NAME_IDENTIFIER = "b979a21e36f841509fbbd1d722f80cff";
         public const string ROW_KEY = "6037e998-c399-4153-9353-00ae5e6ea1e9";
         public const string ERROR_KEY = "ErrorKey";
         public const string ERROR_MESSAGE = "Error Message";

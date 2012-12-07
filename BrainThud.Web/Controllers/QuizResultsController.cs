@@ -15,15 +15,18 @@ namespace BrainThud.Web.Controllers
         private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IQuizResultHandler quizResultHandler;
         private readonly IAuthenticationHelper authenticationHelper;
+        private readonly IUserHelper userHelper;
 
         public QuizResultsController(
             ITableStorageContextFactory tableStorageContextFactory,
             IQuizResultHandler quizResultHandler, 
-            IAuthenticationHelper authenticationHelper)
+            IAuthenticationHelper authenticationHelper,
+            IUserHelper userHelper)
         {
             this.tableStorageContextFactory = tableStorageContextFactory;
             this.quizResultHandler = quizResultHandler;
             this.authenticationHelper = authenticationHelper;
+            this.userHelper = userHelper;
         }
 
         public HttpResponseMessage Post(int year, int month, int day, QuizResult quizResult)
@@ -32,7 +35,7 @@ namespace BrainThud.Web.Controllers
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
-                var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext);
+                var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, userHelper);
 
                 // TODO: Handle the situation where the card doesn't exist
                 var card = tableStorageContext.Cards.Get(this.authenticationHelper.NameIdentifier, quizResult.CardId);

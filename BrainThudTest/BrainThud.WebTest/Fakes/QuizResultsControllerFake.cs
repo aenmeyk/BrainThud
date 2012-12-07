@@ -1,9 +1,7 @@
 ﻿using BrainThud.Web.Controllers;
 using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
-using BrainThudTest.Tools;
 
 namespace BrainThudTest.BrainThud.WebTest.Fakes
 {
@@ -12,8 +10,9 @@ namespace BrainThudTest.BrainThud.WebTest.Fakes
         public QuizResultsControllerFake( 
             ITableStorageContextFactory tableStorageContextFactory, 
             IQuizResultHandler quizResultHandler,
-            IAuthenticationHelper authenticationHelper)
-            : base(tableStorageContextFactory, quizResultHandler, authenticationHelper) { }
+            IAuthenticationHelper authenticationHelper,
+            IUserHelper userHelper)
+            : base(tableStorageContextFactory, quizResultHandler, authenticationHelper, userHelper) { }
 
         public string RouteName { get; set; }
         public object RouteValues { get; set; }

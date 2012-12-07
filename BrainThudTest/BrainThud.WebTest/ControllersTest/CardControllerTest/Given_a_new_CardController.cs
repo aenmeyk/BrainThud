@@ -23,7 +23,8 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
             var cardsControllerFake = new CardsControllerFake(
                 tableStorageContextFactory.Object,
-                authenticationHelper.Object);
+                authenticationHelper.Object,
+                new Mock<IUserHelper>().Object);
 
             this.CardsController = new ApiControllerBuilder<CardsControllerFake>(cardsControllerFake)
                 .CreateRequest(HttpMethod.Post, TestUrls.CARDS)

@@ -5,5 +5,6 @@ namespace BrainThud.Web.Model
     public class Configuration : TableServiceEntity 
     {
         public int LastUsedId { get; set; }
+        public int UsedId { get; set; }
     }
 }
