@@ -1,6 +1,7 @@
-﻿using BrainThud.Web.Model;
-using BrainThudTest.Tools;
+﻿using BrainThud.Web;
+using BrainThud.Web.Model;
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
@@ -10,18 +11,20 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
     {
         private readonly Card expectedResult = new Card();
         private Card actualResult;
+        private string rowKey;
 
         public override void When()
         {
-            this.TableStorageContext.Setup(x => x.Cards.Get(TestValues.PARTITION_KEY, TestValues.ROW_KEY)).Returns(this.expectedResult);
-            this.actualResult = this.CardsController.Get(TestValues.ROW_KEY);
+            this.rowKey = CardRowTypes.CARD + "-" + TestValues.CARD_ID;
+            this.TableStorageContext.Setup(x => x.Cards.Get(TestValues.PARTITION_KEY, this.rowKey)).Returns(this.expectedResult);
+            this.actualResult = this.CardsController.Get(TestValues.CARD_ID);
         }
 
         [Test]
         public void Then_a_Card_is_returned_from_the_cards_repository()
         {
             this.actualResult.Should().Be(this.expectedResult);
-            this.TableStorageContext.Verify(x => x.Cards.Get(TestValues.PARTITION_KEY, TestValues.ROW_KEY));
+            this.TableStorageContext.Verify(x => x.Cards.Get(TestValues.PARTITION_KEY, this.rowKey), Times.Once());
         }
     }
 }
