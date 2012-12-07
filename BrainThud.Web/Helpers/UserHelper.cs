@@ -23,7 +23,7 @@ namespace BrainThud.Web.Helpers
             {
                 PartitionKey = nameIdentifier, 
                 RowKey = EntityNames.CONFIGURATION,
-                UsedId = ++masterConfiguration.LastUsedUserId
+                UserId = ++masterConfiguration.LastUsedUserId
             };
 
             tableStorageContext.Configurations.Add(configuration);

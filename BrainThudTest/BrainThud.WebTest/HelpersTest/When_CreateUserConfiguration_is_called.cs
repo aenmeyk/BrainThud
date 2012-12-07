@@ -46,7 +46,7 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest
         public void Then_the_UserId_should_match_the_MasterConfiguration_LastUsedUserId()
         {
             this.TableStorageContext.Verify(x => x.Configurations.Add(
-                It.Is<Configuration>(c => c.UsedId == this.masterConfiguration.LastUsedUserId)), Times.Once());
+                It.Is<Configuration>(c => c.UserId == this.masterConfiguration.LastUsedUserId)), Times.Once());
         }
 
         [Test]
