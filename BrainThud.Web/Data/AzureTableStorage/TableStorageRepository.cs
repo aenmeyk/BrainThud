@@ -23,7 +23,9 @@ namespace BrainThud.Web.Data.AzureTableStorage
             get
             {
                 var queryable = this.tableStorageContext.CreateQuery<T>();
-                return queryable.Where(x => x.PartitionKey == this.authenticationHelper.NameIdentifier);
+
+                // TODO: Find a better way of limiting user results
+                return queryable.Where(x => x.PartitionKey == this.authenticationHelper.NameIdentifier || x.PartitionKey == PartitionKeys.MASTER);
             }
         }
 
