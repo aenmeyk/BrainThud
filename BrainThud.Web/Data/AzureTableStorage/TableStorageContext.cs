@@ -84,5 +84,10 @@ namespace BrainThud.Web.Data.AzureTableStorage
         {
             this.SaveChangesWithRetries();
         }
+
+        public bool Detach(TableServiceEntity entity)
+        {
+            return base.Detach(entity);
+        }
     }
 }

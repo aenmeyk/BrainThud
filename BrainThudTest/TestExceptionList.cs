@@ -33,8 +33,6 @@ namespace BrainThudTest
         
         public IEnumerator<Exception> GetEnumerator()
         {
-//            yield return this.testExceptions.GetEnumerator().Current.Exception;
-
             foreach(var testException in this.testExceptions)
             {
                 yield return testException.Exception;

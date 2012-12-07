@@ -10,7 +10,7 @@ namespace BrainThudTest
     {
         private readonly TestExceptionList testExceptionList = new TestExceptionList();
 
-        [TestFixtureSetUp]
+        [SetUp]
         public virtual void SubInitialize()
         {
             try
@@ -27,7 +27,7 @@ namespace BrainThudTest
         public abstract void Given();
         public abstract void When();
 
-        [TestFixtureTearDown]
+        [TearDown]
         public void SubCleanup()
         {
             this.ThrowUnhandledExceptions();

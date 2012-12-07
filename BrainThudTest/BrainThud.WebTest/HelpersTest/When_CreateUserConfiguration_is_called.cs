@@ -21,7 +21,6 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest
             this.UserHelper.CreateUserConfiguration(TestValues.NAME_IDENTIFIER);
         }
 
-
         [Test]
         public void Then_a_new_UserConfiguration_is_created_in_the_TableStorageContext()
         {
@@ -31,9 +30,9 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest
         }
 
         [Test]
-        public void Then_Commit_is_called_on_the_TableStorageContext()
+        public void Then_Commit_is_called_on_the_TableStorageContext_twice()
         {
-            this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
+            this.TableStorageContext.Verify(x => x.Commit(), Times.Exactly(2));
         }
 
         [Test]

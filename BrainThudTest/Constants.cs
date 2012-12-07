@@ -33,4 +33,15 @@ namespace BrainThudTest
         public const string QUIZ_RESULTS = "http://localhost/api/quizzes/{0}/{1}/{2}/results";
         public const string LOCALHOST = "http://localhost/";
     }
+
+    public static class ExceptionMessages
+    {
+        public const string AZURE_CONCURRENCY_VIOLATION = @"<?xml version=""1.0"" encoding=""utf-8"" standalone=""yes""?>
+<error xmlns=""http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"">
+  <code>UpdateConditionNotSatisfied</code>
+  <message xml:lang=""en-US"">The update condition specified in the request was not satisfied.
+RequestId:9422ce64-90f0-43ca-a7e9-db19955fbec9
+Time:2012-12-07T14:08:26.9275938Z</message>
+</error>";
+    }
 }

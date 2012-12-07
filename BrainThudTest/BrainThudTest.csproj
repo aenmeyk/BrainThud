@@ -121,6 +121,7 @@
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageRepositoryTest\When_Card_is_added_with_existing_keys.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.WebTest\HelpersTest\When_CreateUserConfiguration_is_called_and_the_MasterConfiguration_commit_fails.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\Given_a_new_UserHelper.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\When_CreateUserConfiguration_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Model\CardTest\Given_a_new_Card.cs">

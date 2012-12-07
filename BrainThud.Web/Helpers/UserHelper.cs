@@ -1,4 +1,7 @@
-﻿using BrainThud.Web.Data.AzureTableStorage;
+﻿using System;
+using System.Xml;
+using System.Xml.Linq;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Helpers
@@ -14,23 +17,56 @@ namespace BrainThud.Web.Helpers
 
         public UserConfiguration CreateUserConfiguration(string nameIdentifier)
         {
-            // TODO: handle error if timestamp has changed.  i.e. the ID may already have been incremented.
+            var userId = this.GetNextId();
             var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
-            var masterConfiguration = tableStorageContext.MasterConfigurations
-                .GetOrCreate(PartitionKeys.MASTER, EntityNames.CONFIGURATION);
 
             var configuration = new UserConfiguration
             {
-                PartitionKey = nameIdentifier, 
+                PartitionKey = nameIdentifier,
                 RowKey = EntityNames.CONFIGURATION,
-                UserId = ++masterConfiguration.LastUsedUserId
+                UserId = userId
             };
 
             tableStorageContext.Configurations.Add(configuration);
-            tableStorageContext.MasterConfigurations.Update(masterConfiguration);
             tableStorageContext.Commit();
 
             return configuration;
+        }
+
+        private int GetNextId()
+        {
+            var retries = 0;
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+
+            while (true)
+            {
+                retries++;
+                var masterConfiguration = tableStorageContext.MasterConfigurations.GetOrCreate(PartitionKeys.MASTER, EntityNames.CONFIGURATION);
+
+                try
+                {
+                    var userId = ++masterConfiguration.LastUsedUserId;
+                    tableStorageContext.MasterConfigurations.Update(masterConfiguration);
+                    tableStorageContext.Commit();
+
+                    return userId;
+                }
+                catch (Exception e)
+                {
+                    if (e.InnerException != null && retries < ConfigurationSettings.CONCURRENCY_VIOLATION_RETRIES)
+                    {
+                        var errorXml = XElement.Parse(e.InnerException.Message);
+                        var code = errorXml.FirstNode as XElement;
+                        if (code != null && code.Value == AzureErrorCodes.CONCURRENCY_VIOLATION)
+                        {
+                            tableStorageContext.Detach(masterConfiguration);
+                            continue;
+                        }
+                    }
+
+                    throw;
+                }
+            }
         }
     }
 }

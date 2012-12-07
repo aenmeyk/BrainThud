@@ -76,7 +76,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
                 this.Add(entity);
             }
-
+            
             return entity;
         }
     }

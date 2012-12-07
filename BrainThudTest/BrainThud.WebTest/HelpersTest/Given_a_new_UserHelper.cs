@@ -6,7 +6,6 @@ using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.HelpersTest
 {
-    [TestFixture]
     public abstract class Given_a_new_UserHelper : Gwt
     {
         public override void Given()

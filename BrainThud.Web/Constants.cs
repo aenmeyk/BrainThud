@@ -55,6 +55,8 @@
     public static class ConfigurationSettings
     {
         public const string AZURE_STORAGE = "DataConnectionString";
+        public const int CONCURRENCY_VIOLATION_RETRIES = 10;
+
     }
 
     public static class TypeValues
@@ -62,4 +64,11 @@
         public const string MIN_SQL_DATETIME = "01/01/1753";
         public const string MAX_SQL_DATETIME = "12/31/9999";
     }
+
+    public static class AzureErrorCodes
+    {
+        public const string CONCURRENCY_VIOLATION = "UpdateConditionNotSatisfied";
+    }
+
+
 }
