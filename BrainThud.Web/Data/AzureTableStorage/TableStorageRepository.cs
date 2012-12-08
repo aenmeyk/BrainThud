@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
-using BrainThud.Web.Model;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.AzureTableStorage
@@ -57,6 +56,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public T Get(string partitionKey, string rowKey)
         {
+            // TODO: Make the "string.Compare" stuff custom to and individual entity repository type
             return this.entitySet
                 .Where(x => string.Compare(x.PartitionKey, partitionKey + '-', StringComparison.Ordinal) >= 0 && string.Compare(x.PartitionKey, partitionKey + '.', StringComparison.Ordinal) < 0 && x.RowKey == rowKey)
                 .FirstOrDefault();

@@ -54,6 +54,7 @@ namespace BrainThud.Web.Helpers
                 {
                     if (e.InnerException != null && retries < ConfigurationSettings.CONCURRENCY_VIOLATION_RETRIES)
                     {
+                        // TODO: Move the exception parsing into its own class
                         var errorXml = XElement.Parse(e.InnerException.Message);
                         var code = errorXml.FirstNode as XElement;
                         if (code != null && code.Value == AzureErrorCodes.CONCURRENCY_VIOLATION)
