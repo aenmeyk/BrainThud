@@ -8,15 +8,13 @@ namespace BrainThud.Web.Data.Repositories
     {
         private readonly string nameIdentifier;
 
-        public CardRepository(
-            ITableStorageContext tableStorageContext, 
-            string nameIdentifier) 
+        public CardRepository(ITableStorageContext tableStorageContext, string nameIdentifier) 
             : base(tableStorageContext)
         {
             this.nameIdentifier = nameIdentifier;
         }
 
-        public Card Get(string userId, string cardId)
+        public Card GetCard(int userId, int cardId)
         {
             var partitionKey = string.Format("{0}-{1}", nameIdentifier, userId);
             var rowKey = string.Format("{0}-{1}", CardRowTypes.CARD, cardId);

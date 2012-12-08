@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Net.Http;
-using BrainThudTest.Tools;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -14,7 +13,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         public override void When()
         {
             this.CardsController.ModelState.AddModelError("Error Key", "Error Message");
-            this.response = this.CardsController.Delete(TestValues.ROW_KEY);
+            this.response = this.CardsController.Delete(TestValues.CARD_ID);
         }
 
         [Test]

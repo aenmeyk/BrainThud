@@ -33,7 +33,7 @@ namespace BrainThud.Web.Controllers
             return tableStorageContext.Cards.GetAll();
         }
 
-        public Card Get(string id)
+        public Card Get(int id)
         {
             try
             {
@@ -91,12 +91,12 @@ namespace BrainThud.Web.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
-        public HttpResponseMessage Delete(string id)
+        public HttpResponseMessage Delete(int id)
         {
             if (this.ModelState.IsValid)
             {
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
-                tableStorageContext.Cards.Delete(this.authenticationHelper.NameIdentifier, id);
+                tableStorageContext.Cards.Delete(this.authenticationHelper.NameIdentifier, id.ToString());
                 tableStorageContext.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);

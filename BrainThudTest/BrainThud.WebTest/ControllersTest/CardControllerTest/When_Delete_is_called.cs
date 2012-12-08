@@ -1,9 +1,8 @@
 ﻿using System.Net;
 using System.Net.Http;
-using BrainThudTest.Tools;
 using FluentAssertions;
-using NUnit.Framework;
 using Moq;
+using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
@@ -14,13 +13,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 
         public override void When()
         {
-            this.response = this.CardsController.Delete(TestValues.ROW_KEY);
+            this.response = this.CardsController.Delete(TestValues.CARD_ID);
         }
 
         [Test]
         public void Then_Delete_is_called_on_the_CardRepository()
         {
-            this.TableStorageContext.Verify(x => x.Cards.Delete(TestValues.PARTITION_KEY, TestValues.ROW_KEY), Times.Once());
+            this.TableStorageContext.Verify(x => x.Cards.Delete(TestValues.PARTITION_KEY, TestValues.CARD_ID.ToString()), Times.Once());
         }
 
         [Test]

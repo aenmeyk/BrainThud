@@ -11,7 +11,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
 
         public override void When()
         {
-            this.card = this.CardRepository.Get(TestValues.USER_ID, TestValues.CARD_ID);
+            this.card = this.CardRepository.GetCard(TestValues.USER_ID, TestValues.CARD_ID);
         }
 
         [Test]
