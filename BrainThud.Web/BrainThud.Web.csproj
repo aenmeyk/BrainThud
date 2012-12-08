@@ -176,6 +176,7 @@
     <Compile Include="Data\AzureTableStorage\ICloudStorageServices.cs" />
     <Compile Include="Data\AzureTableStorage\ITableStorageContext.cs" />
     <Compile Include="Data\AzureTableStorage\ITableStorageContextFactory.cs" />
+    <Compile Include="Data\Repositories\CardEntityRepository.cs" />
     <Compile Include="Data\Repositories\CardRepository.cs" />
     <Compile Include="Data\Repositories\ICardRepository.cs" />
     <Compile Include="Data\Repositories\ITableStorageRepository.cs" />
