@@ -1,9 +1,8 @@
 ﻿using System.Net;
 using System.Net.Http;
-using BrainThudTest.Tools;
 using FluentAssertions;
-using NUnit.Framework;
 using Moq;
+using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerTest
 {
@@ -20,7 +19,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         [Test]
         public void Then_Delete_is_called_on_the_CardRepository()
         {
-            this.TableStorageContext.Verify(x => x.QuizResults.Delete(TestValues.PARTITION_KEY, TestValues.ROW_KEY), Times.Once());
+            this.TableStorageContext.Verify(x => x.QuizResults.Delete(TestValues.NAME_IDENTIFIER, TestValues.ROW_KEY), Times.Once());
         }
 
         [Test]

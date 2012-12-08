@@ -1,6 +1,5 @@
 ﻿using BrainThud.Web;
 using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Helpers;
 using BrainThudTest.Builders;
 using Moq;
 using NUnit.Framework;
@@ -15,7 +14,8 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
             this.CloudStorageServices = new MockCloudStorageServicesBuilder().Build();
             this.TableStorageContext = new TableStorageContext(
                 this.CloudStorageServices.Object, 
-                EntitySetNames.CARD);
+                EntitySetNames.CARD,
+                TestValues.NAME_IDENTIFIER);
         }
 
         protected TableStorageContext TableStorageContext { get; private set; }

@@ -23,7 +23,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
             this.TableStorageContext.Setup(x => x.UserConfigurations.Get(TestValues.NAME_IDENTIFIER, EntityNames.CONFIGURATION)).Returns(this.UserConfiguration);
             this.UserHelper = new Mock<IUserHelper>();
-            this.UserHelper.Setup(x => x.CreateUserConfiguration(TestValues.NAME_IDENTIFIER)).Returns(this.UserConfiguration);
+            this.UserHelper.Setup(x => x.CreateUserConfiguration()).Returns(this.UserConfiguration);
 
             this.CardKeyGenerator = new CardKeyGenerator(
                 authenticationHelper.Object,

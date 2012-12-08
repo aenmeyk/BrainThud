@@ -34,7 +34,7 @@ namespace BrainThud.Web.Controllers
             if (this.ModelState.IsValid)
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
                 var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, userHelper);
 
                 // TODO: Handle the situation where the card doesn't exist
@@ -64,7 +64,7 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
                 tableStorageContext.QuizResults.Delete(authenticationHelper.NameIdentifier, id);
                 tableStorageContext.Commit();
 

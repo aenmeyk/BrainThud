@@ -39,7 +39,7 @@ namespace BrainThud.Web.Data.KeyGenerators
         {
             var nameIdentifier = this.authenticationHelper.NameIdentifier;
             var configuration = this.tableStorageContext.UserConfigurations.Get(nameIdentifier, EntityNames.CONFIGURATION)
-                                ?? this.userHelper.CreateUserConfiguration(nameIdentifier);
+                                ?? this.userHelper.CreateUserConfiguration();
 
             return configuration;
         }

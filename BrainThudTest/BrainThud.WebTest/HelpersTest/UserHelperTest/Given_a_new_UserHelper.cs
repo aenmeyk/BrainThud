@@ -10,8 +10,8 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
         public override void Given()
         {
             this.TableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
-            this.TableStorageContext = Mock.Get(this.TableStorageContextFactory.Object.CreateTableStorageContext(EntitySetNames.CARD));
-            this.UserHelper = new UserHelper(this.TableStorageContextFactory.Object);
+            this.TableStorageContext = Mock.Get(this.TableStorageContextFactory.Object.CreateTableStorageContext(EntitySetNames.CARD, TestValues.NAME_IDENTIFIER));
+            this.UserHelper = new UserHelper(this.TableStorageContextFactory.Object, TestValues.NAME_IDENTIFIER);
         }
 
         protected UserHelper UserHelper { get; private set; }

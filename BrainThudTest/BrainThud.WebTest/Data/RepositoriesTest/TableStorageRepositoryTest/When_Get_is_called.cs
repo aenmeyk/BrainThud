@@ -14,10 +14,10 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.TableStorageRepo
 
         public override void When()
         {
-            this.expectedResult = new Card { PartitionKey = TestValues.CARD_PARTITION_KEY, RowKey = TestValues.CARD_ROW_KEY };
-            var cards = new HashSet<Card> { new Card { PartitionKey = TestValues.CARD_PARTITION_KEY }, this.expectedResult, new Card() }.AsQueryable();
+            this.expectedResult = new Card { PartitionKey = TestValues.PARTITION_KEY, RowKey = TestValues.ROW_KEY };
+            var cards = new HashSet<Card> { new Card { PartitionKey = TestValues.PARTITION_KEY }, this.expectedResult, new Card() }.AsQueryable();
             this.TableStorageContext.Setup(x => x.CreateQuery<Card>()).Returns(cards);
-            this.actualResult = this.TableStorageRepository.Get(TestValues.NAME_IDENTIFIER, TestValues.CARD_ROW_KEY);
+            this.actualResult = this.TableStorageRepository.Get(TestValues.PARTITION_KEY, TestValues.ROW_KEY);
         }
 
         [Test]

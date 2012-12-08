@@ -42,9 +42,8 @@ namespace BrainThud.Web.Data.Repositories
 
         public T Get(string partitionKey, string rowKey)
         {
-            // TODO: Make the "string.Compare" stuff custom to and individual entity repository type
             return this.EntitySet
-                .Where(x => string.Compare(x.PartitionKey, partitionKey + '-', StringComparison.Ordinal) >= 0 && string.Compare(x.PartitionKey, partitionKey + '.', StringComparison.Ordinal) < 0 && x.RowKey == rowKey)
+                .Where(x => x.PartitionKey == partitionKey && x.RowKey == rowKey)
                 .FirstOrDefault();
         }
 

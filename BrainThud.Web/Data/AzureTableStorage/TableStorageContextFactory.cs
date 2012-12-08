@@ -12,9 +12,9 @@ namespace BrainThud.Web.Data.AzureTableStorage
             this.cloudStorageServices = cloudStorageServices;
         }
 
-        public ITableStorageContext CreateTableStorageContext(string entitySetName)
+        public ITableStorageContext CreateTableStorageContext(string entitySetName, string nameIdentifier)
         {
-            return new TableStorageContext(this.cloudStorageServices, entitySetName);
+            return new TableStorageContext(this.cloudStorageServices, entitySetName, nameIdentifier);
         }
     }
 }

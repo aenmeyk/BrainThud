@@ -18,7 +18,7 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
             this.TableStorageContext.Setup(x => x.MasterConfigurations.GetOrCreate(PartitionKeys.MASTER, EntityNames.CONFIGURATION))
                 .Returns(this.masterConfiguration);
 
-            this.UserHelper.CreateUserConfiguration(TestValues.NAME_IDENTIFIER);
+            this.UserHelper.CreateUserConfiguration();
         }
 
         [Test]

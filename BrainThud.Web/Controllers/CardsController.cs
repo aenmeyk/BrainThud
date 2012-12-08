@@ -29,7 +29,7 @@ namespace BrainThud.Web.Controllers
 
         public IEnumerable<Card> Get()
         {
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
             return tableStorageContext.Cards.GetAll();
         }
 
@@ -37,7 +37,7 @@ namespace BrainThud.Web.Controllers
         {
             try
             {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
                 var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, this.userHelper);
                 var rowKey = keyGenerator.GetRowKey(id);
 
@@ -58,7 +58,7 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
                 tableStorageContext.Cards.Update(card);
                 tableStorageContext.Commit();
 
@@ -72,7 +72,7 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
                 var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, this.userHelper);
                 tableStorageContext.Cards.Add(card, keyGenerator);
                 tableStorageContext.CommitBatch();
@@ -95,7 +95,7 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
                 tableStorageContext.Cards.Delete(this.authenticationHelper.NameIdentifier, id.ToString());
                 tableStorageContext.Commit();
 

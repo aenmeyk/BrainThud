@@ -8,16 +8,18 @@ namespace BrainThud.Web.Helpers
     public class UserHelper : IUserHelper
     {
         private readonly ITableStorageContextFactory tableStorageContextFactory;
+        private readonly string nameIdentifier;
 
-        public UserHelper(ITableStorageContextFactory tableStorageContextFactory)
+        public UserHelper(ITableStorageContextFactory tableStorageContextFactory, string nameIdentifier)
         {
             this.tableStorageContextFactory = tableStorageContextFactory;
+            this.nameIdentifier = nameIdentifier;
         }
 
-        public UserConfiguration CreateUserConfiguration(string nameIdentifier)
+        public UserConfiguration CreateUserConfiguration()
         {
             var userId = this.GetNextId();
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.nameIdentifier);
 
             var configuration = new UserConfiguration
             {
@@ -35,7 +37,7 @@ namespace BrainThud.Web.Helpers
         private int GetNextId()
         {
             var retries = 0;
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD);
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.nameIdentifier);
 
             while (true)
             {

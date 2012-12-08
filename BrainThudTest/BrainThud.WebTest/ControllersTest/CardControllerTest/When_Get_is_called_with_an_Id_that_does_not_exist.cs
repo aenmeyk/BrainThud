@@ -10,7 +10,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
     {
         public override void When()
         {
-            this.TableStorageContext.Setup(x => x.Cards.Get(TestValues.PARTITION_KEY, TestValues.CARD_ROW_KEY)).Throws(new InvalidOperationException(ErrorMessages.Sequence_contains_no_matching_element));
+            this.TableStorageContext.Setup(x => x.Cards.Get(TestValues.NAME_IDENTIFIER, TestValues.CARD_ROW_KEY)).Throws(new InvalidOperationException(ErrorMessages.Sequence_contains_no_matching_element));
             this.CardsController.Get(TestValues.CARD_ID);
         }
 

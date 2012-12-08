@@ -17,10 +17,11 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         {
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
             var tableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
-            tableStorageContextFactory.Setup(x => x.CreateTableStorageContext(EntitySetNames.CARD)).Returns(this.TableStorageContext.Object);
+            tableStorageContextFactory.Setup(x => x.CreateTableStorageContext(EntitySetNames.CARD, TestValues.NAME_IDENTIFIER)).Returns(this.TableStorageContext.Object);
 
             var authenticationHelper = new Mock<IAuthenticationHelper>();
-            authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.PARTITION_KEY);
+            authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
+
             var cardsControllerFake = new CardsControllerFake(
                 tableStorageContextFactory.Object,
                 authenticationHelper.Object,

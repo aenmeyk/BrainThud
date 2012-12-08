@@ -19,7 +19,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         [Test]
         public void Then_Delete_is_called_on_the_CardRepository()
         {
-            this.TableStorageContext.Verify(x => x.Cards.Delete(TestValues.PARTITION_KEY, TestValues.CARD_ID.ToString()), Times.Once());
+            this.TableStorageContext.Verify(x => x.Cards.Delete(TestValues.NAME_IDENTIFIER, TestValues.CARD_ID.ToString()), Times.Once());
         }
 
         [Test]

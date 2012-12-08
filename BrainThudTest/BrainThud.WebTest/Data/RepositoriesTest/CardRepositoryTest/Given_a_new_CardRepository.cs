@@ -11,6 +11,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
     [TestFixture]
     public abstract class Given_a_new_CardRepository : Gwt
     {
+
         public override void Given()
         {
             var cards = Builder<Card>.CreateListOfSize(5)
@@ -20,12 +21,13 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
                     .And(x => x.RowKey = TestValues.CARD_ROW_KEY)
                 .Build();
 
-            var tableStorageContext = new Mock<ITableStorageContext>();
-            tableStorageContext.Setup(x => x.CreateQuery<Card>()).Returns(cards.AsQueryable());
+            this.TableStorageContext = new Mock<ITableStorageContext>();
+            this.TableStorageContext.Setup(x => x.CreateQuery<Card>()).Returns(cards.AsQueryable());
 
-            this.CardRepository = new CardRepository(tableStorageContext.Object, TestValues.NAME_IDENTIFIER);
+            this.CardRepository = new CardRepository(this.TableStorageContext.Object, TestValues.NAME_IDENTIFIER);
         }
 
+        protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
         protected CardRepository CardRepository { get; private set; }
     }
 }

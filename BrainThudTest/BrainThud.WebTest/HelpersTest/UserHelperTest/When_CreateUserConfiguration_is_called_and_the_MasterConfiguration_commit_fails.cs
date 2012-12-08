@@ -16,7 +16,7 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
                 .Returns(new MasterConfiguration());
 
             this.TableStorageContext.Setup(x => x.Commit()).Throws(exception);
-            this.UserHelper.CreateUserConfiguration(TestValues.NAME_IDENTIFIER);
+            this.UserHelper.CreateUserConfiguration();
         }
 
         [Test]

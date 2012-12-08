@@ -1,5 +1,6 @@
 using BrainThud.Web;
 using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Helpers;
 using BrainThudTest.BrainThud.WebTest.Fakes;
 using Moq;
 using NUnit.Framework;
@@ -13,9 +14,12 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
         {
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
             var tableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
-            tableStorageContextFactory.Setup(x => x.CreateTableStorageContext(EntitySetNames.CARD)).Returns(this.TableStorageContext.Object);
+            tableStorageContextFactory.Setup(x => x.CreateTableStorageContext(EntitySetNames.CARD, TestValues.NAME_IDENTIFIER)).Returns(this.TableStorageContext.Object);
 
-            this.QuizzesController = new QuizzesControllerFake(tableStorageContextFactory.Object);
+            var authenticationHelper = new Mock<IAuthenticationHelper>();
+            authenticationHelper.SetupGet(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
+
+            this.QuizzesController = new QuizzesControllerFake(tableStorageContextFactory.Object, authenticationHelper.Object);
         }
 
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }

@@ -15,12 +15,15 @@ namespace BrainThud.Web.Data.AzureTableStorage
         private readonly Lazy<ITableStorageRepository<UserConfiguration>> configurations;
         private readonly Lazy<ITableStorageRepository<MasterConfiguration>> masterConfigurations;
 
-        public TableStorageContext(ICloudStorageServices cloudStorageServices, string entitySetName)
+        public TableStorageContext(
+            ICloudStorageServices cloudStorageServices, 
+            string entitySetName, 
+            string nameIdentifier)
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
             this.entitySetName = entitySetName;
             cloudStorageServices.CreateTableIfNotExists(entitySetName);
-            this.cards = this.InitializeLazyRepository<Card>();
+            this.cards = new Lazy<ITableStorageRepository<Card>>(() => new CardRepository(this, nameIdentifier));
             this.quizResults = this.InitializeLazyRepository<QuizResult>();
             this.configurations = this.InitializeLazyRepository<UserConfiguration>();
             this.masterConfigurations = this.InitializeLazyRepository<MasterConfiguration>();

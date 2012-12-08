@@ -2,6 +2,6 @@
 {
     public interface ITableStorageContextFactory 
     {
-        ITableStorageContext CreateTableStorageContext(string entitySetName);
+        ITableStorageContext CreateTableStorageContext(string entitySetName, string nameIdentifier);
     }
 }
