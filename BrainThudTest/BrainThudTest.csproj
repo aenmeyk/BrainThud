@@ -146,7 +146,7 @@
     <Compile Include="BrainThud.WebTest\App_StartTest\Given_a_GlobalConfig_class.cs" />
     <Compile Include="BrainThud.WebTest\CalendarsTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\CalendarsTest\Given_a_new_DefaultQuizCalendar.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\ApiControllerBaseTest\When_NothingChanges.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\ApiControllerBaseTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Delete_is_called_with_an_invalid_model.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Post_is_called_with_an_invalid_model.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Put_is_called_with_an_invalid_QuizDate.cs" />

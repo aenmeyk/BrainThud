@@ -6,10 +6,8 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTest
 {
     [TestFixture]
-    public class When_Nothing_Changes : Given_a_new_CardRepository
+    public class When_nothing_changes : Given_a_new_CardRepository
     {
-        public override void When(){}
-
         [Test]
         public void Then_the_CardRepository_should_derive_from_TableStorageRepository_of_type_Card()
         {

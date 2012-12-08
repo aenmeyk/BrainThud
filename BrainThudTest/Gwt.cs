@@ -25,7 +25,11 @@ namespace BrainThudTest
         }
 
         public abstract void Given();
-        public abstract void When();
+
+        /// <summary>
+        /// Override when an action is required on the state of the system for an assert to be made.
+        /// </summary>
+        public virtual void When() { }
 
         [TearDown]
         public void SubCleanup()
