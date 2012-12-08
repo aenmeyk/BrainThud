@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace BrainThud.Web.Data
+namespace BrainThud.Web.Data.Repositories
 {
     public interface IRepository<T>
     {

@@ -1,7 +1,7 @@
 using BrainThud.Web.Data.KeyGenerators;
 using Microsoft.WindowsAzure.StorageClient;
 
-namespace BrainThud.Web.Data.AzureTableStorage
+namespace BrainThud.Web.Data.Repositories
 {
     public interface ITableStorageRepository<T>: IRepository<T> where T : TableServiceEntity
     {

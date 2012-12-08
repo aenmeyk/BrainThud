@@ -1,10 +1,9 @@
 ﻿using System.Linq;
 using BrainThud.Web.Model;
-using BrainThudTest.Tools;
 using Moq;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorageRepositoryTest
+namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.TableStorageRepositoryTest
 {
     [TestFixture]
     public class When_Delete_is_called : Given_a_new_TableStorageRepository_of_Card

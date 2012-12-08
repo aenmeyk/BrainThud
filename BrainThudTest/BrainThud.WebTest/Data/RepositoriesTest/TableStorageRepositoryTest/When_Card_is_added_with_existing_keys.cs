@@ -1,11 +1,10 @@
 ﻿using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
-using BrainThudTest.Tools;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorageRepositoryTest
+namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.TableStorageRepositoryTest
 {
     [TestFixture]
     public class When_Card_is_added_with_existing_keys : Given_a_new_TableStorageRepository_of_Card

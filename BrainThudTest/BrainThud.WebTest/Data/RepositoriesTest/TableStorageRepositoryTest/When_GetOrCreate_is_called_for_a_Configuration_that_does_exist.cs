@@ -5,7 +5,7 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorageRepositoryTest
+namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.TableStorageRepositoryTest
 {
     [TestFixture]
     public class When_GetOrCreate_is_called_for_a_Configuration_that_does_exist : Given_a_new_TableStorageRepository_of_Configuration

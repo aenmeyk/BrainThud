@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Moq;
 
-namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorageRepositoryTest
+namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.TableStorageRepositoryTest
 {
     [TestFixture]
     public class When_Update_is_called : Given_a_new_TableStorageRepository_of_Card

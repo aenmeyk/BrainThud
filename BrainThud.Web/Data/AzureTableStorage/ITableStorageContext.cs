@@ -1,5 +1,6 @@
 using System.Data.Services.Client;
 using System.Linq;
+using BrainThud.Web.Data.Repositories;
 using BrainThud.Web.Model;
 using Microsoft.WindowsAzure.StorageClient;
 

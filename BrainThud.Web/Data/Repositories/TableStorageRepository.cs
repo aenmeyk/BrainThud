@@ -1,10 +1,11 @@
 using System;
 using System.Linq;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
 using Microsoft.WindowsAzure.StorageClient;
 
-namespace BrainThud.Web.Data.AzureTableStorage
+namespace BrainThud.Web.Data.Repositories
 {
     public class TableStorageRepository<T> : ITableStorageRepository<T> where T : TableServiceEntity
     {

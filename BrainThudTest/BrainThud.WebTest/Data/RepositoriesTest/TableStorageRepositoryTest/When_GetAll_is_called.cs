@@ -4,7 +4,7 @@ using BrainThud.Web.Model;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorageRepositoryTest
+namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.TableStorageRepositoryTest
 {
     [TestFixture]
     public class When_GetAll_is_called : Given_a_new_TableStorageRepository_of_Card
@@ -27,7 +27,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
         [Test]
         public void Then_all_Cards_for_the_authenticated_user_are_returned_from_the_cards_repository()
         {
-            this.returnedCards.Should().Contain(new[] { card1, this.card3 }).And.NotContain(this.card2);
+            this.returnedCards.Should().Contain(new[] { this.card1, this.card3 }).And.NotContain(this.card2);
         }
     }
 }
