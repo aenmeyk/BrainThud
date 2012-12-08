@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
-using BrainThud.Web.Helpers;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.Repositories
@@ -10,27 +9,13 @@ namespace BrainThud.Web.Data.Repositories
     public class TableStorageRepository<T> : ITableStorageRepository<T> where T : TableServiceEntity
     {
         private readonly ITableStorageContext tableStorageContext;
-        private readonly IAuthenticationHelper authenticationHelper;
 
-        public TableStorageRepository(ITableStorageContext tableStorageContext, IAuthenticationHelper authenticationHelper)
+        public TableStorageRepository(ITableStorageContext tableStorageContext)
         {
             this.tableStorageContext = tableStorageContext;
-            this.authenticationHelper = authenticationHelper;
         }
 
-        private IQueryable<T> entitySet
-        {
-            get
-            {
-                var queryable = this.tableStorageContext.CreateQuery<T>();
-
-                // TODO: Find a better way of limiting user results
-                return queryable.Where(x =>
-                    string.Compare(x.PartitionKey, this.authenticationHelper.NameIdentifier + '-', StringComparison.Ordinal) >= 0
-                    && string.Compare(x.PartitionKey, this.authenticationHelper.NameIdentifier + '.', StringComparison.Ordinal) < 0 
-                    || x.PartitionKey == PartitionKeys.MASTER);
-            }
-        }
+        protected IQueryable<T> EntitySet { get { return this.tableStorageContext.CreateQuery<T>(); } }
 
         public void Add(T entity, ITableStorageKeyGenerator keyGenerator)
         {
@@ -58,14 +43,14 @@ namespace BrainThud.Web.Data.Repositories
         public T Get(string partitionKey, string rowKey)
         {
             // TODO: Make the "string.Compare" stuff custom to and individual entity repository type
-            return this.entitySet
+            return this.EntitySet
                 .Where(x => string.Compare(x.PartitionKey, partitionKey + '-', StringComparison.Ordinal) >= 0 && string.Compare(x.PartitionKey, partitionKey + '.', StringComparison.Ordinal) < 0 && x.RowKey == rowKey)
                 .FirstOrDefault();
         }
 
         public IQueryable<T> GetAll()
         {
-            return this.entitySet;
+            return this.EntitySet;
         }
 
         public T GetOrCreate(string partitionKey, string rowKey)
@@ -80,7 +65,7 @@ namespace BrainThud.Web.Data.Repositories
 
                 this.Add(entity);
             }
-            
+
             return entity;
         }
     }

@@ -2,7 +2,6 @@ using System;
 using System.Data.Services.Client;
 using System.Linq;
 using BrainThud.Web.Data.Repositories;
-using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
 using Microsoft.WindowsAzure.StorageClient;
 
@@ -10,20 +9,15 @@ namespace BrainThud.Web.Data.AzureTableStorage
 {
     public class TableStorageContext : TableServiceContext, ITableStorageContext
     {
-        private readonly IAuthenticationHelper authenticationHelper;
         private readonly string entitySetName;
         private readonly Lazy<ITableStorageRepository<Card>> cards;
         private readonly Lazy<ITableStorageRepository<QuizResult>> quizResults;
         private readonly Lazy<ITableStorageRepository<UserConfiguration>> configurations;
         private readonly Lazy<ITableStorageRepository<MasterConfiguration>> masterConfigurations;
 
-        public TableStorageContext(
-            ICloudStorageServices cloudStorageServices, 
-            IAuthenticationHelper authenticationHelper,
-            string entitySetName)
+        public TableStorageContext(ICloudStorageServices cloudStorageServices, string entitySetName)
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
-            this.authenticationHelper = authenticationHelper;
             this.entitySetName = entitySetName;
             cloudStorageServices.CreateTableIfNotExists(entitySetName);
             this.cards = this.InitializeLazyRepository<Card>();
@@ -35,7 +29,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         private Lazy<ITableStorageRepository<T>> InitializeLazyRepository<T>() where T: TableServiceEntity
         {
-            return new Lazy<ITableStorageRepository<T>>(() => new TableStorageRepository<T>(this, this.authenticationHelper));
+            return new Lazy<ITableStorageRepository<T>>(() => new TableStorageRepository<T>(this));
         }
 
         public ITableStorageRepository<Card> Cards { get { return this.cards.Value; } }
