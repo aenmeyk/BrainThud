@@ -17,11 +17,16 @@ namespace BrainThud.Web.Data.Repositories
 
         protected IQueryable<T> EntitySet { get { return this.tableStorageContext.CreateQuery<T>(); } }
 
-        public void Add(T entity, ITableStorageKeyGenerator keyGenerator)
+        public virtual void Add(T entity, ITableStorageKeyGenerator keyGenerator)
         {
-            if (string.IsNullOrEmpty(entity.PartitionKey)) entity.PartitionKey = keyGenerator.GeneratePartitionKey();
-            if (string.IsNullOrEmpty(entity.RowKey)) entity.RowKey = keyGenerator.GenerateRowKey();
+            SetKeyValues(entity, keyGenerator);
             this.Add(entity);
+        }
+
+        protected static void SetKeyValues(T entity, ITableStorageKeyGenerator keyGenerator)
+        {
+            if(string.IsNullOrEmpty(entity.PartitionKey)) entity.PartitionKey = keyGenerator.GeneratePartitionKey();
+            if(string.IsNullOrEmpty(entity.RowKey)) entity.RowKey = keyGenerator.GenerateRowKey();
         }
 
         public void Add(T entity)

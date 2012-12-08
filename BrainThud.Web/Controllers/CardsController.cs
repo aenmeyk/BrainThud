@@ -11,6 +11,9 @@ using BrainThud.Web.Resources;
 
 namespace BrainThud.Web.Controllers
 {
+
+    // TODO: Add a method to get all cards for a particular user:
+    //     public IEnumerable<Card> Get(int userId)
     public class CardsController : ApiControllerBase
     {
         private readonly ITableStorageContextFactory tableStorageContextFactory;
@@ -35,20 +38,11 @@ namespace BrainThud.Web.Controllers
 
         public Card Get(int userId, int cardId)
         {
-            try
-            {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
-                return tableStorageContext.Cards.GetById(userId, cardId);
-            }
-            catch (InvalidOperationException ex)
-            {
-                if (ex.Message == ErrorMessages.Sequence_contains_no_matching_element)
-                {
-                    throw new HttpException((int)HttpStatusCode.NotFound, ErrorMessages.The_specified_card_could_not_be_found);
-                }
-
-                throw;
-            }
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
+            var card = tableStorageContext.Cards.GetById(userId, cardId);
+            if (card == null) throw new HttpException((int)HttpStatusCode.NotFound, ErrorMessages.The_specified_card_could_not_be_found);
+               
+            return card;
         }
 
         public HttpResponseMessage Put(Card card)
@@ -78,10 +72,11 @@ namespace BrainThud.Web.Controllers
                 var routeValues = new
                 {
                     controller = this.ControllerContext.ControllerDescriptor.ControllerName,
-                    id = card.RowKey
+                    userId = card.UserId,
+                    cardId = card.CardId
                 };
 
-                response.Headers.Location = new Uri(this.GetLink(RouteNames.API_DEFAULT, routeValues));
+                response.Headers.Location = new Uri(this.GetLink(RouteNames.API_CARDS, routeValues));
                 return response;
             }
 

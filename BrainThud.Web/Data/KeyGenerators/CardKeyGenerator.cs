@@ -10,6 +10,10 @@ namespace BrainThud.Web.Data.KeyGenerators
         private readonly ITableStorageContext tableStorageContext;
         private readonly IUserHelper userHelper;
 
+        // TODO: Test that these are set
+        public int UserId { get; private set; }
+        public int CardId { get; private set; }
+
         public CardKeyGenerator(
             IAuthenticationHelper authenticationHelper,
             ITableStorageContext tableStorageContext,
@@ -23,15 +27,16 @@ namespace BrainThud.Web.Data.KeyGenerators
         public string GenerateRowKey()
         {
             var userConfiguration = this.GetUserConfiguration();
-            var cardId = ++userConfiguration.LastUsedId;
+            this.CardId = ++userConfiguration.LastUsedId;
             this.tableStorageContext.UpdateObject(userConfiguration);
 
-            return this.GetRowKey(cardId);
+            return this.GetRowKey(this.CardId);
         }
 
         public string GeneratePartitionKey()
         {
             var userConfiguration = this.GetUserConfiguration();
+            this.UserId = userConfiguration.UserId;
             return string.Format("{0}-{1}", this.authenticationHelper.NameIdentifier, userConfiguration.UserId);
         }
 

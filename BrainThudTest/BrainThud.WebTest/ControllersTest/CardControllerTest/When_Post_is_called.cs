@@ -57,11 +57,16 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         public void Then_the_location_should_be_created_from_the_cards_RowKey()
         {
             var type = this.CardsController.RouteValues.GetType();
-            var propertyInfo = type.GetProperty("id");
-            var id = propertyInfo.GetValue(this.CardsController.RouteValues, null);
+            var cardIdPropertyInfo = type.GetProperty("cardId");
+            var cardId = cardIdPropertyInfo.GetValue(this.CardsController.RouteValues, null);
 
-            id.Should().Be(this.card.RowKey);
-            this.CardsController.RouteName.Should().Be(RouteNames.API_DEFAULT);
+            var userIdPropertyInfo = type.GetProperty("userId");
+            var userId = userIdPropertyInfo.GetValue(this.CardsController.RouteValues, null);
+
+            cardId.Should().Be(this.card.CardId);
+            userId.Should().Be(this.card.UserId);
+
+            this.CardsController.RouteName.Should().Be(RouteNames.API_CARDS);
             this.response.Headers.Location.ToString().Should().Be(TestUrls.LOCALHOST);
         }
     }

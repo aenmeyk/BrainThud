@@ -17,6 +17,16 @@ namespace BrainThud.Web.App_Start
                 defaults: new { controller = "QuizResults", id = RouteParameter.Optional });
 
             config.Routes.MapHttpRoute(
+                name: RouteNames.API_CARDS,
+                routeTemplate: "api/cards/{userid}/{cardid}",
+                defaults: new
+                {
+                    controller = "Cards", 
+                    userid = RouteParameter.Optional,
+                    cardid = RouteParameter.Optional
+                });
+
+            config.Routes.MapHttpRoute(
                 name: RouteNames.API_DEFAULT,
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional });

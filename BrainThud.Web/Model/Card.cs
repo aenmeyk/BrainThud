@@ -20,5 +20,9 @@ namespace BrainThud.Web.Model
         public string Tags { get; set; }
 
         public bool IsTestData { get; set; }
+
+        public int CardId { get; set; }
+
+        public int UserId { get; set; }
     }
 }
