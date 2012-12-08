@@ -11,14 +11,16 @@ namespace BrainThud.Web.Data.Repositories
 
         public override void Add(Card entity, ITableStorageKeyGenerator keyGenerator)
          {
-             SetKeyValues(entity, keyGenerator);
-
+            SetKeyValues(entity, keyGenerator);
             var cardKeyGenerator = keyGenerator as CardKeyGenerator;
+
             if(cardKeyGenerator != null)
             {
                 entity.UserId = cardKeyGenerator.UserId;
                 entity.CardId = cardKeyGenerator.CardId;
             }
+
+            this.Add(entity);
          }
     }
 }

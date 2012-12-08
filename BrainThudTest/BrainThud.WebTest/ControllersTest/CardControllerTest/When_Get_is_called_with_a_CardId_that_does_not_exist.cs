@@ -1,5 +1,5 @@
-﻿using System;
-using System.Web;
+﻿using System.Web;
+using BrainThud.Web.Model;
 using BrainThud.Web.Resources;
 using NUnit.Framework;
 
@@ -10,7 +10,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
     {
         public override void When()
         {
-            this.TableStorageContext.Setup(x => x.Cards.GetById(TestValues.USER_ID, TestValues.CARD_ID)).Throws(new InvalidOperationException(ErrorMessages.Sequence_contains_no_matching_element));
+            this.TableStorageContext.Setup(x => x.Cards.GetById(TestValues.USER_ID, TestValues.CARD_ID)).Returns((Card)null);
             this.CardsController.Get(TestValues.USER_ID, TestValues.CARD_ID);
         }
 

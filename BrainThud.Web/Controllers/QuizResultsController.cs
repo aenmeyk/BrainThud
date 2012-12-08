@@ -59,18 +59,18 @@ namespace BrainThud.Web.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
-//        public HttpResponseMessage Delete(int userId, int cardId)
-//        {
-//            if (this.ModelState.IsValid)
-//            {
-//                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
-//                tableStorageContext.QuizResults.Delete(userId, cardId);
-//                tableStorageContext.Commit();
-//
-//                return new HttpResponseMessage(HttpStatusCode.NoContent);
-//            }
-//
-//            return new HttpResponseMessage(HttpStatusCode.BadRequest);
-//        }
+        public HttpResponseMessage Delete(int userId, int cardId)
+        {
+            if (this.ModelState.IsValid)
+            {
+                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
+                tableStorageContext.QuizResults.DeleteById(userId, cardId);
+                tableStorageContext.Commit();
+
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+        }
     }
 }

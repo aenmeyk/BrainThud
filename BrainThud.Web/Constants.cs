@@ -51,6 +51,7 @@
     {
         public const string CARD = "c";
         public const string RESULT = "r";
+        public const string QUIZ_RESULT = "qr";
         public const string CONFIGURATION = "cfg";
     }
 
