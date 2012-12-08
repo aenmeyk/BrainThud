@@ -2,7 +2,7 @@
 
 namespace BrainThud.Web.Data.Repositories
 {
-    public interface IUserRepository : ICardRepository<UserConfiguration>
+    public interface IUserRepository : ICardEntityRepository<UserConfiguration>
     {
         UserConfiguration GetByNameIdentifier();
     }

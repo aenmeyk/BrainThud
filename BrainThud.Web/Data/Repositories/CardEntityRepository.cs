@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.Repositories
 {
-    public abstract class CardEntityRepository<T> : TableStorageRepository<T>, ICardRepository<T> where T : TableServiceEntity
+    public abstract class CardEntityRepository<T> : TableStorageRepository<T>, ICardEntityRepository<T> where T : TableServiceEntity
     {
         private readonly string rowKeyPrefix;
         protected string NameIdentifier { get; private set; }
