@@ -15,7 +15,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         IQueryable<T> CreateQuery<T>();
         ICardEntityRepository<Card> Cards { get; }
         ITableStorageRepository<QuizResult> QuizResults { get; }
-        ICardEntityRepository<UserConfiguration> UserConfigurations { get; }
+        IUserConfigurationRepository UserConfigurations { get; }
         ITableStorageRepository<MasterConfiguration> MasterConfigurations { get; }
         void Commit();
         bool Detach(TableServiceEntity entity);

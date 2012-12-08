@@ -20,7 +20,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.UserRepositoryTe
             var userConfigurations = new[] { this.matchingUserConfiguration, nonMatchingUserConfiguration1, nonMatchingUserConfiguration2 };
             this.TableStorageContext.Setup(x => x.CreateQuery<UserConfiguration>()).Returns(userConfigurations.AsQueryable());
 
-            this.userConfiguration = this.UserRepository.GetByNameIdentifier();
+            this.userConfiguration = this.UserConfigurationRepository.GetByNameIdentifier();
         }
 
         [Test]

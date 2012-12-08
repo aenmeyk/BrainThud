@@ -37,11 +37,8 @@ namespace BrainThud.Web.Data.KeyGenerators
 
         private UserConfiguration GetUserConfiguration()
         {
-            var nameIdentifier = this.authenticationHelper.NameIdentifier;
-            var configuration = this.tableStorageContext.UserConfigurations.Get(nameIdentifier, EntityNames.CONFIGURATION)
-                                ?? this.userHelper.CreateUserConfiguration();
-
-            return configuration;
+            return this.tableStorageContext.UserConfigurations.GetByNameIdentifier()
+                ?? this.userHelper.CreateUserConfiguration();
         }
 
         public string GetRowKey(int cardId)

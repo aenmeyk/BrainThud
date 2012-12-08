@@ -8,7 +8,10 @@ namespace BrainThud.Web.Data.Repositories
         private readonly string rowKeyPrefix;
         protected string NameIdentifier { get; private set; }
 
-        protected CardEntityRepository(ITableStorageContext tableStorageContext, string nameIdentifier, string rowKeyPrefix) 
+        protected CardEntityRepository(
+            ITableStorageContext tableStorageContext, 
+            string nameIdentifier, 
+            string rowKeyPrefix) 
             : base(tableStorageContext)
         {
             this.rowKeyPrefix = rowKeyPrefix;

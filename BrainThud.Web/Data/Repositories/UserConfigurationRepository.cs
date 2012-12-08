@@ -5,9 +5,9 @@ using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Data.Repositories
 {
-    public class UserRepository : CardEntityRepository <UserConfiguration>, IUserRepository
+    public class UserConfigurationRepository : CardEntityRepository <UserConfiguration>, IUserConfigurationRepository
     {
-        public UserRepository(ITableStorageContext tableStorageContext, string nameIdentifier)
+        public UserConfigurationRepository(ITableStorageContext tableStorageContext, string nameIdentifier)
             : base(tableStorageContext, nameIdentifier, CardRowTypes.CONFIGURATION) { }
 
         public UserConfiguration GetByNameIdentifier()

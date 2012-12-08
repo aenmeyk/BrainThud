@@ -12,7 +12,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         private readonly string entitySetName;
         private readonly Lazy<ICardEntityRepository<Card>> cards;
         private readonly Lazy<ITableStorageRepository<QuizResult>> quizResults;
-        private readonly Lazy<ICardEntityRepository<UserConfiguration>> userConfigurations;
+        private readonly Lazy<IUserConfigurationRepository> userConfigurations;
         private readonly Lazy<ITableStorageRepository<MasterConfiguration>> masterConfigurations;
 
         public TableStorageContext(
@@ -25,7 +25,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
             cloudStorageServices.CreateTableIfNotExists(entitySetName);
             this.cards = new Lazy<ICardEntityRepository<Card>>(() => new CardRepository(this, nameIdentifier));
             this.quizResults = this.InitializeLazyRepository<QuizResult>();
-            this.userConfigurations = new Lazy<ICardEntityRepository<UserConfiguration>>(() => new UserRepository(this, nameIdentifier));
+            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => new UserConfigurationRepository(this, nameIdentifier));
             this.masterConfigurations = this.InitializeLazyRepository<MasterConfiguration>();
             this.IgnoreResourceNotFoundException = true;
         }
@@ -37,7 +37,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public ICardEntityRepository<Card> Cards { get { return this.cards.Value; } }
         public ITableStorageRepository<QuizResult> QuizResults { get { return this.quizResults.Value; } }
-        public ICardEntityRepository<UserConfiguration> UserConfigurations { get { return this.userConfigurations.Value; } }
+        public IUserConfigurationRepository UserConfigurations { get { return this.userConfigurations.Value; } }
         public ITableStorageRepository<MasterConfiguration> MasterConfigurations { get { return this.masterConfigurations.Value; } }
 
         public void AddObject(TableServiceEntity entity)
