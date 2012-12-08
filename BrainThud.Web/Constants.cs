@@ -50,6 +50,7 @@
     {
         public const string CARD = "c";
         public const string RESULT = "r";
+        public const string CONFIGURATION = "cfg";
     }
 
     public static class ConfigurationSettings

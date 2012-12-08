@@ -182,11 +182,13 @@
     <Compile Include="Data\Repositories\ITableStorageRepository.cs" />
     <Compile Include="Data\AzureTableStorage\TableStorageContext.cs" />
     <Compile Include="Data\AzureTableStorage\TableStorageContextFactory.cs" />
+    <Compile Include="Data\Repositories\IUserRepository.cs" />
     <Compile Include="Data\Repositories\TableStorageRepository.cs" />
     <Compile Include="Data\AzureTableStorage\TestTableStorageContext.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
     <Compile Include="Data\KeyGenerators\CardKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\ITableStorageKeyGenerator.cs" />
+    <Compile Include="Data\Repositories\UserRepository.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapMvcResolver.cs" />

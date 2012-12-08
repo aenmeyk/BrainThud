@@ -96,7 +96,7 @@ namespace BrainThud.Web.Controllers
             if (this.ModelState.IsValid)
             {
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
-                tableStorageContext.Cards.DeleteCard(userId, cardId);
+                tableStorageContext.Cards.DeleteById(userId, cardId);
                 tableStorageContext.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);

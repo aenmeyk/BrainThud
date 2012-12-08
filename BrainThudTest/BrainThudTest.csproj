@@ -78,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureInitializer.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\Given_a_new_AccountController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\SignOut.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
@@ -103,12 +104,12 @@
     </Compile>
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\Given_a_new_CardRepository.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Nothing_Changes.cs" />
-    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Get_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_GetById_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\When_GetOrCreate_is_called_for_a_Configuration_that_does_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository_of_Configuration.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\When_GetOrCreate_is_called_for_a_Configuration_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\When_Get_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_DeleteCard_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_DeleteById_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\When_Update_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository_of_Card.cs">
       <SubType>Code</SubType>
@@ -125,6 +126,9 @@
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\When_Card_is_added_with_existing_keys.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\Given_a_new_UserRepository.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\When_GetByNameIdentifier_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\When_CreateUserConfiguration_is_called_and_the_MasterConfiguration_commit_fails.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\Given_a_new_UserHelper.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\When_CreateUserConfiguration_is_called.cs" />

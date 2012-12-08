@@ -1,9 +1,9 @@
 ﻿using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Model;
+using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.Repositories
 {
-    public abstract class CardEntityRepository : TableStorageRepository<Card>, ICardRepository
+    public abstract class CardEntityRepository<T> : TableStorageRepository<T>, ICardRepository<T> where T : TableServiceEntity
     {
         private readonly string rowKeyPrefix;
         protected string NameIdentifier { get; private set; }
@@ -15,7 +15,7 @@ namespace BrainThud.Web.Data.Repositories
             this.NameIdentifier = nameIdentifier;
         }
 
-        public Card GetCard(int userId, int cardId)
+        public T GetById(int userId, int cardId)
         {
             var partitionKey = this.GetPartitionKey(userId);
             var rowKey = GetRowKey(cardId);
@@ -23,7 +23,7 @@ namespace BrainThud.Web.Data.Repositories
             return this.Get(partitionKey, rowKey);
         }
 
-        public void DeleteCard(int userId, int cardId)
+        public void DeleteById(int userId, int cardId)
         {
             var partitionKey = this.GetPartitionKey(userId);
             var rowKey = GetRowKey(cardId);

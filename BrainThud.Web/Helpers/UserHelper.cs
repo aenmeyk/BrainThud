@@ -8,22 +8,22 @@ namespace BrainThud.Web.Helpers
     public class UserHelper : IUserHelper
     {
         private readonly ITableStorageContextFactory tableStorageContextFactory;
-        private readonly string nameIdentifier;
+        private readonly IAuthenticationHelper authenticationHelper;
 
-        public UserHelper(ITableStorageContextFactory tableStorageContextFactory, string nameIdentifier)
+        public UserHelper(ITableStorageContextFactory tableStorageContextFactory, IAuthenticationHelper authenticationHelper)
         {
             this.tableStorageContextFactory = tableStorageContextFactory;
-            this.nameIdentifier = nameIdentifier;
+            this.authenticationHelper = authenticationHelper;
         }
 
         public UserConfiguration CreateUserConfiguration()
         {
             var userId = this.GetNextId();
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.nameIdentifier);
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
 
             var configuration = new UserConfiguration
             {
-                PartitionKey = string.Format("{0}-{1}", nameIdentifier, userId),
+                PartitionKey = string.Format("{0}-{1}", this.authenticationHelper.NameIdentifier, userId),
                 RowKey = EntityNames.CONFIGURATION,
                 UserId = userId
             };
@@ -37,7 +37,7 @@ namespace BrainThud.Web.Helpers
         private int GetNextId()
         {
             var retries = 0;
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.nameIdentifier);
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
 
             while (true)
             {

@@ -5,11 +5,11 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTest
 {
     [TestFixture]
-    public class When_DeleteCard_is_called : Given_a_new_CardRepository
+    public class When_DeleteById_is_called : Given_a_new_CardRepository
     {
         public override void When()
         {
-            this.CardRepository.DeleteCard(TestValues.USER_ID, TestValues.CARD_ID);
+            this.CardRepository.DeleteById(TestValues.USER_ID, TestValues.CARD_ID);
         }
 
         [Test]

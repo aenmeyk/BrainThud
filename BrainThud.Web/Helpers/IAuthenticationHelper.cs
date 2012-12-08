@@ -1,6 +1,7 @@
 ﻿namespace BrainThud.Web.Helpers
 {
-    public interface IAuthenticationHelper {
+    public interface IAuthenticationHelper 
+    {
         string IdentityProvider { get; }
         string NameIdentifier { get; }
         void SignOut();
