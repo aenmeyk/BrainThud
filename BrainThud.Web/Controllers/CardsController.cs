@@ -33,15 +33,12 @@ namespace BrainThud.Web.Controllers
             return tableStorageContext.Cards.GetAll();
         }
 
-        public Card Get(int id)
+        public Card Get(int userId, int cardId)
         {
             try
             {
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
-                var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, this.userHelper);
-                var rowKey = keyGenerator.GetRowKey(id);
-
-                return tableStorageContext.Cards.Get(this.authenticationHelper.NameIdentifier, rowKey);
+                return tableStorageContext.Cards.GetById(userId, cardId);
             }
             catch (InvalidOperationException ex)
             {
