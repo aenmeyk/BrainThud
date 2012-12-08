@@ -13,7 +13,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
 
         public override void When()
         {
-            this.response = this.QuizResultsController.Delete(TestValues.USER_ID, TestValues.CARD_ID);
+            this.response = this.QuizResultsController.Delete(TestValues.USER_ID, 2012, 7, 1, TestValues.CARD_ID);
         }
 
         [Test]

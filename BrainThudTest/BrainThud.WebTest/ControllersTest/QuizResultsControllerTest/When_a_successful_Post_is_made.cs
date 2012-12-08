@@ -16,13 +16,14 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
     {
         private const int YEAR = 2012;
         private const int MONTH = 8;
-        private const int DAY = 21;
+        private const int DAY = 19;
         private QuizResult quizResult;
         private HttpResponseMessage response;
 
         public override void When()
         {
-            this.quizResult = new QuizResult();
+            // TODO: Pull "32" into test values
+            this.quizResult = new QuizResult { EntityId = 32, UserId = TestValues.USER_ID };
             this.response = this.QuizResultsController.Post(TestValues.USER_ID, YEAR, MONTH, DAY, this.quizResult);
         }
 
@@ -64,10 +65,15 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         public void Then_the_location_should_be_created_from_the_QuizResult_RowKey()
         {
             var type = this.QuizResultsController.RouteValues.GetType();
-            var propertyInfo = type.GetProperty("id");
-            var id = propertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
 
-            id.Should().Be(this.quizResult.EntityId);
+            var userIdPropertyInfo = type.GetProperty("userId");
+            var userId = userIdPropertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
+            userId.Should().Be(this.quizResult.UserId);
+
+            var quizResultIdPropertyInfo = type.GetProperty("quizResultId");
+            var quizResultId = quizResultIdPropertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
+            quizResultId.Should().Be(this.quizResult.EntityId);
+            
             this.QuizResultsController.RouteName.Should().Be(RouteNames.API_QUIZ_RESULTS);
             this.response.Headers.Location.ToString().Should().Be(TestUrls.LOCALHOST);
         }

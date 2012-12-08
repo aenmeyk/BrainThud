@@ -13,7 +13,7 @@ namespace BrainThud.Web.Data.Repositories
         public override void Add(QuizResult entity, ITableStorageKeyGenerator keyGenerator)
         {
             SetKeyValues(entity, keyGenerator);
-            var cardKeyGenerator = keyGenerator as CardKeyGenerator;
+            var cardKeyGenerator = keyGenerator as CardEntityKeyGenerator;
 
             if (cardKeyGenerator != null)
             {

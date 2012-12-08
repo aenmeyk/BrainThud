@@ -3,12 +3,12 @@ using BrainThud.Web.Helpers;
 
 namespace BrainThud.Web.Data.KeyGenerators
 {
-    public class CardKeyGenerator : CardEntityKeyGenerator
+    public class QuizResultKeyGenerator : CardEntityKeyGenerator
     {
-        public CardKeyGenerator(
+        public QuizResultKeyGenerator(
             IAuthenticationHelper authenticationHelper,
             ITableStorageContext tableStorageContext,
             IUserHelper userHelper)
-            : base(authenticationHelper, tableStorageContext, userHelper, CardRowTypes.CARD) {}
+            : base(authenticationHelper, tableStorageContext, userHelper, CardRowTypes.QUIZ_RESULT) {}
     }
 }

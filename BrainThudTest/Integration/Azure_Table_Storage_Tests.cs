@@ -135,7 +135,7 @@ namespace BrainThudTest.Integration
 
             // Assert that the location of the new QuizResult was returned in the Location header
             var quizResultUrl = postResponse.Headers.Location;
-            quizResultUrl.AbsoluteUri.Should().BeEquivalentTo(string.Format("{0}/{1}", testUrl, postQuizResult.RowKey));
+            quizResultUrl.AbsoluteUri.Should().BeEquivalentTo(string.Format("{0}/{1}", testUrl, postQuizResult.EntityId));
 
 
             // Test DELETE

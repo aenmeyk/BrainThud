@@ -34,7 +34,7 @@ namespace BrainThud.Web.Controllers
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
-                var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, userHelper);
+                var keyGenerator = new QuizResultKeyGenerator(this.authenticationHelper, tableStorageContext, userHelper);
 
                 // TODO: Handle the situation where the card doesn't exist
                 var card = tableStorageContext.Cards.GetById(userId, quizResult.CardId);
@@ -50,7 +50,7 @@ namespace BrainThud.Web.Controllers
                     year,
                     month,
                     day,
-                    id = quizResult.EntityId
+                    quizResultId = quizResult.EntityId
                 };
 
                 response.Headers.Location = new Uri(this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues));
@@ -60,12 +60,12 @@ namespace BrainThud.Web.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
-        public HttpResponseMessage Delete(int userId, int cardId)
+        public HttpResponseMessage Delete(int userId, int year, int month, int day, int quizResultId)
         {
             if (this.ModelState.IsValid)
             {
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
-                tableStorageContext.QuizResults.DeleteById(userId, cardId);
+                tableStorageContext.QuizResults.DeleteById(userId, quizResultId);
                 tableStorageContext.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
