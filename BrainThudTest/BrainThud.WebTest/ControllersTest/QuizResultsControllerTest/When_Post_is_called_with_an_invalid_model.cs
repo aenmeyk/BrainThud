@@ -14,7 +14,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         public override void When()
         {
             this.QuizResultsController.ModelState.AddModelError("Error Key", "Error Message");
-            this.response = this.QuizResultsController.Post(2012,1,1,new QuizResult());
+            this.response = this.QuizResultsController.Post(TestValues.USER_ID, 2012, 1, 1, new QuizResult());
         }
 
         [Test]

@@ -23,7 +23,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         public override void When()
         {
             this.quizResult = new QuizResult();
-            this.response = this.QuizResultsController.Post(YEAR, MONTH, DAY, this.quizResult);
+            this.response = this.QuizResultsController.Post(TestValues.USER_ID, YEAR, MONTH, DAY, this.quizResult);
         }
 
         [Test]
@@ -39,9 +39,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         }
 
         [Test]
-        public void Then_the_TableStorageContext_should_commit_its_changes()
+        public void Then_the_TableStorageContext_should_commit_its_changes_in_a_batch()
         {
-            this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
+            this.TableStorageContext.Verify(x => x.CommitBatch(), Times.Once());
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
             var propertyInfo = type.GetProperty("id");
             var id = propertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
 
-            id.Should().Be(this.quizResult.RowKey);
+            id.Should().Be(this.quizResult.EntityId);
             this.QuizResultsController.RouteName.Should().Be(RouteNames.API_QUIZ_RESULTS);
             this.response.Headers.Location.ToString().Should().Be(TestUrls.LOCALHOST);
         }
@@ -75,13 +75,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         [Test]
         public void Then_UpdateCardLevel_is_called_on_the_QuizResultHandler()
         {
-            this.QuizResultHandler.Verify(x => x.UpdateCardLevel(this.quizResult, It.Is<Card>(c => c.RowKey == this.quizResult.CardId)), Times.Once());
+            this.QuizResultHandler.Verify(x => x.UpdateCardLevel(this.quizResult, It.Is<Card>(c => c.EntityId == this.quizResult.CardId)), Times.Once());
         }
 
         [Test]
         public void Then_the_card_is_updated_in_the_cards_repository()
         {
-            this.TableStorageContext.Verify(x => x.Cards.Update(It.Is<Card>(c => c.RowKey == this.quizResult.CardId)), Times.Once());
+            this.TableStorageContext.Verify(x => x.Cards.Update(It.Is<Card>(c => c.EntityId == this.quizResult.CardId)), Times.Once());
         }
     }
 }

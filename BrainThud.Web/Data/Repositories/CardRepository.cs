@@ -17,7 +17,7 @@ namespace BrainThud.Web.Data.Repositories
             if(cardKeyGenerator != null)
             {
                 entity.UserId = cardKeyGenerator.UserId;
-                entity.CardId = cardKeyGenerator.CardId;
+                entity.EntityId = cardKeyGenerator.EntityId;
             }
 
             this.Add(entity);

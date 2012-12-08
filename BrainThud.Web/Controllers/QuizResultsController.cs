@@ -28,7 +28,7 @@ namespace BrainThud.Web.Controllers
             this.userHelper = userHelper;
         }
 
-        public HttpResponseMessage Post(int year, int month, int day, QuizResult quizResult)
+        public HttpResponseMessage Post(int userId, int year, int month, int day, QuizResult quizResult)
         {
             if (this.ModelState.IsValid)
             {
@@ -37,19 +37,20 @@ namespace BrainThud.Web.Controllers
                 var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, userHelper);
 
                 // TODO: Handle the situation where the card doesn't exist
-                var card = tableStorageContext.Cards.Get(this.authenticationHelper.NameIdentifier, quizResult.CardId);
+                var card = tableStorageContext.Cards.GetById(userId, quizResult.CardId);
                 this.quizResultHandler.UpdateCardLevel(quizResult, card);
                 tableStorageContext.QuizResults.Add(quizResult, keyGenerator);
                 tableStorageContext.Cards.Update(card);
-                tableStorageContext.Commit();
+                tableStorageContext.CommitBatch();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, quizResult);
 
                 var routeValues = new
                 {
+                    userId,
                     year,
                     month,
                     day,
-                    id = quizResult.RowKey
+                    id = quizResult.EntityId
                 };
 
                 response.Headers.Location = new Uri(this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues));

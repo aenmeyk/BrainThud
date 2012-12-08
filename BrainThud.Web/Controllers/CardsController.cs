@@ -73,7 +73,7 @@ namespace BrainThud.Web.Controllers
                 {
                     controller = this.ControllerContext.ControllerDescriptor.ControllerName,
                     userId = card.UserId,
-                    cardId = card.CardId
+                    cardId = card.EntityId
                 };
 
                 response.Headers.Location = new Uri(this.GetLink(RouteNames.API_CARDS, routeValues));

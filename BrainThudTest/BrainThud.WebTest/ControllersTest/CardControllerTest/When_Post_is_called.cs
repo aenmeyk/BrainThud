@@ -63,7 +63,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
             var userIdPropertyInfo = type.GetProperty("userId");
             var userId = userIdPropertyInfo.GetValue(this.CardsController.RouteValues, null);
 
-            cardId.Should().Be(this.card.CardId);
+            cardId.Should().Be(this.card.EntityId);
             userId.Should().Be(this.card.UserId);
 
             this.CardsController.RouteName.Should().Be(RouteNames.API_CARDS);

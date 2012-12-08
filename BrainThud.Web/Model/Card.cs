@@ -21,7 +21,7 @@ namespace BrainThud.Web.Model
 
         public bool IsTestData { get; set; }
 
-        public int CardId { get; set; }
+        public int EntityId { get; set; }
 
         public int UserId { get; set; }
     }
