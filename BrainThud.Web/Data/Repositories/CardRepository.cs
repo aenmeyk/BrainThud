@@ -3,7 +3,7 @@ using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Data.Repositories
 {
-    public class CardRepository : TableStorageRepository<Card>
+    public class CardRepository : TableStorageRepository<Card>, ICardRepository
     {
         private readonly string nameIdentifier;
 

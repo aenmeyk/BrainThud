@@ -91,12 +91,12 @@ namespace BrainThud.Web.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
-        public HttpResponseMessage Delete(int id)
+        public HttpResponseMessage Delete(int userId, int cardId)
         {
             if (this.ModelState.IsValid)
             {
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
-                tableStorageContext.Cards.Delete(this.authenticationHelper.NameIdentifier, id.ToString());
+                tableStorageContext.Cards.DeleteCard(userId, cardId);
                 tableStorageContext.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);

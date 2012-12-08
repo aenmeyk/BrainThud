@@ -13,7 +13,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         public override void When()
         {
             this.CardsController.ModelState.AddModelError("Error Key", "Error Message");
-            this.response = this.CardsController.Delete(TestValues.CARD_ID);
+            this.response = this.CardsController.Delete(TestValues.USER_ID, TestValues.CARD_ID);
         }
 
         [Test]

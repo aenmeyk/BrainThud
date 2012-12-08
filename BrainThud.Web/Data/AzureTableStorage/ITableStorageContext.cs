@@ -13,7 +13,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         void DeleteObject(TableServiceEntity entity);
         DataServiceResponse SaveChangesWithRetries();
         IQueryable<T> CreateQuery<T>();
-        ITableStorageRepository<Card> Cards { get; }
+        ICardRepository Cards { get; }
         ITableStorageRepository<QuizResult> QuizResults { get; }
         ITableStorageRepository<UserConfiguration> UserConfigurations { get; }
         ITableStorageRepository<MasterConfiguration> MasterConfigurations { get; }

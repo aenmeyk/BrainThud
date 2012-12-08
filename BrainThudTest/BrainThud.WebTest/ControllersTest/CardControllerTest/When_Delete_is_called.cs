@@ -13,13 +13,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 
         public override void When()
         {
-            this.response = this.CardsController.Delete(TestValues.CARD_ID);
+            this.response = this.CardsController.Delete(TestValues.USER_ID, TestValues.CARD_ID);
         }
 
         [Test]
         public void Then_Delete_is_called_on_the_CardRepository()
         {
-            this.TableStorageContext.Verify(x => x.Cards.Delete(TestValues.NAME_IDENTIFIER, TestValues.CARD_ID.ToString()), Times.Once());
+            this.TableStorageContext.Verify(x => x.Cards.DeleteCard(TestValues.USER_ID, TestValues.CARD_ID), Times.Once());
         }
 
         [Test]
