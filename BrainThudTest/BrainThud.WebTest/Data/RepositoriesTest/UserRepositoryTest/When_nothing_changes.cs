@@ -11,7 +11,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.UserRepositoryTe
         [Test]
         public void Then_UserRepository_should_derive_from_CardEntityRepository()
         {
-            this.UserRepository.Should().BeAssignableTo<CardEntityRepository<UserConfiguration>>();
+            this.UserConfigurationRepository.Should().BeAssignableTo<CardEntityRepository<UserConfiguration>>();
         }
     }
 }

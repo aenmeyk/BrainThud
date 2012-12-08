@@ -11,10 +11,10 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.UserRepositoryTe
         public override void Given()
         {
             this.TableStorageContext = new Mock<ITableStorageContext>();
-            this.UserRepository = new UserRepository(this.TableStorageContext.Object, TestValues.NAME_IDENTIFIER);
+            this.UserConfigurationRepository = new UserConfigurationRepository(this.TableStorageContext.Object, TestValues.NAME_IDENTIFIER);
         }
 
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
-        protected UserRepository UserRepository { get; set; }
+        protected UserConfigurationRepository UserConfigurationRepository { get; set; }
     }
 }
