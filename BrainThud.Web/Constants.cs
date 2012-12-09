@@ -44,8 +44,13 @@
 
     public static class AzureTableNames
     {
-        public const string CARD = "Card";
-        public const string CONFIGURATION = "Configuration";
+        public const string CARD = "card";
+        public const string CONFIGURATION = "configuration";
+    }
+
+    public static class AzureQueueNames
+    {
+        public const string IDENTITY = "identity";
     }
 
     public static class CardRowTypes

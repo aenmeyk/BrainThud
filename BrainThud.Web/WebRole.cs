@@ -20,6 +20,7 @@ namespace BrainThud.Web
             var cloudStorageServices = IoCContainer.GetInstance<ICloudStorageServices>();
             cloudStorageServices.SetConfigurationSettingPublisher();
             cloudStorageServices.CreateTablesIfNotCreated();
+            cloudStorageServices.CreateQueusIfNotCreated();
 
             return base.OnStart();
         }

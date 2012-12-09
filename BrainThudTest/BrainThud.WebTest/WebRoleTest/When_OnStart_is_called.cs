@@ -23,5 +23,11 @@ namespace BrainThudTest.BrainThud.WebTest.WebRoleTest
         {
             this.CloudStorageServices.Verify(x => x.CreateTablesIfNotCreated(), Times.Once());
         }
+
+        [Test]
+        public void Then_CreateQueusIfNotCreated_is_called_on_the_CloudStorageServices()
+        {
+            this.CloudStorageServices.Verify(x => x.CreateQueusIfNotCreated(), Times.Once());
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
         CloudStorageAccount CloudStorageAccount { get; }
         void CreateTablesIfNotCreated();
         void SetConfigurationSettingPublisher();
+        void CreateQueusIfNotCreated();
     }
 }

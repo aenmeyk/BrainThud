@@ -10,11 +10,13 @@ namespace BrainThud.Web.Data.AzureTableStorage
     {
         private readonly Lazy<CloudStorageAccount> lazyCloudStorageAccount;
         private readonly Lazy<CloudTableClient> lazyCloudTableClient;
+        private readonly Lazy<CloudQueueClient> lazyCloudQueueClient;
 
         public CloudStorageServices()
         {
             this.lazyCloudStorageAccount = new Lazy<CloudStorageAccount>(() => CloudStorageAccount.FromConfigurationSetting(ConfigurationSettings.AZURE_STORAGE));
             this.lazyCloudTableClient = new Lazy<CloudTableClient>(() => this.CloudStorageAccount.CreateCloudTableClient());
+            this.lazyCloudQueueClient = new Lazy<CloudQueueClient>(() => this.CloudStorageAccount.CreateCloudQueueClient());
         }
 
         public CloudStorageAccount CloudStorageAccount { get { return this.lazyCloudStorageAccount.Value; } }
@@ -24,6 +26,12 @@ namespace BrainThud.Web.Data.AzureTableStorage
             var cloudTableClient = this.lazyCloudTableClient.Value;
             cloudTableClient.CreateTableIfNotExist(AzureTableNames.CARD);
             cloudTableClient.CreateTableIfNotExist(AzureTableNames.CONFIGURATION);
+        }
+
+        public void CreateQueusIfNotCreated()
+        {
+            var cloudQueue = lazyCloudQueueClient.Value.GetQueueReference(AzureQueueNames.IDENTITY);
+            cloudQueue.CreateIfNotExist();
         }
 
         public void SetConfigurationSettingPublisher()
@@ -44,5 +52,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
                 configSetter(connectionString);
             });
         }
+
     }
 }
