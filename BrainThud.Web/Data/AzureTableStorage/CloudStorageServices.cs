@@ -1,5 +1,7 @@
 using System;
+using System.Configuration;
 using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.AzureTableStorage
@@ -15,14 +17,32 @@ namespace BrainThud.Web.Data.AzureTableStorage
             this.lazyCloudTableClient = new Lazy<CloudTableClient>(() => this.CloudStorageAccount.CreateCloudTableClient());
         }
 
-        public CloudStorageAccount CloudStorageAccount
+        public CloudStorageAccount CloudStorageAccount { get { return this.lazyCloudStorageAccount.Value; } }
+
+        public void CreateTablesIfNotCreated()
         {
-            get { return this.lazyCloudStorageAccount.Value; }
+            var cloudTableClient = this.lazyCloudTableClient.Value;
+            cloudTableClient.CreateTableIfNotExist(AzureTableNames.CARD);
+            cloudTableClient.CreateTableIfNotExist(AzureTableNames.CONFIGURATION);
         }
 
-        public void CreateTableIfNotExists(string entitySetName)
+        public void SetConfigurationSettingPublisher()
         {
-            this.lazyCloudTableClient.Value.CreateTableIfNotExist(entitySetName);
+            CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
+            {
+                string connectionString;
+
+                if (RoleEnvironment.IsAvailable)
+                {
+                    connectionString = RoleEnvironment.GetConfigurationSettingValue(configName);
+                }
+                else
+                {
+                    connectionString = ConfigurationManager.AppSettings[configName];
+                }
+
+                configSetter(connectionString);
+            });
         }
     }
 }

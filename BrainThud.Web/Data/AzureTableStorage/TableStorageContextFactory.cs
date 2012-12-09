@@ -1,7 +1,4 @@
-﻿
-using BrainThud.Web.Helpers;
-
-namespace BrainThud.Web.Data.AzureTableStorage
+﻿namespace BrainThud.Web.Data.AzureTableStorage
 {
     public class TableStorageContextFactory : ITableStorageContextFactory
     {
@@ -12,9 +9,9 @@ namespace BrainThud.Web.Data.AzureTableStorage
             this.cloudStorageServices = cloudStorageServices;
         }
 
-        public ITableStorageContext CreateTableStorageContext(string entitySetName, string nameIdentifier)
+        public ITableStorageContext CreateTableStorageContext(string tableName, string nameIdentifier)
         {
-            return new TableStorageContext(this.cloudStorageServices, entitySetName, nameIdentifier);
+            return new TableStorageContext(this.cloudStorageServices, tableName, nameIdentifier);
         }
     }
 }

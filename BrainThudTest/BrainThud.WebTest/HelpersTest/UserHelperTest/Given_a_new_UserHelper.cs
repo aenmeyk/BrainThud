@@ -10,7 +10,7 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
         public override void Given()
         {
             this.TableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
-            this.TableStorageContext = Mock.Get(this.TableStorageContextFactory.Object.CreateTableStorageContext(EntitySetNames.CARD, TestValues.NAME_IDENTIFIER));
+            this.TableStorageContext = Mock.Get(this.TableStorageContextFactory.Object.CreateTableStorageContext(AzureTableNames.CARD, TestValues.NAME_IDENTIFIER));
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.SetupGet(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
 

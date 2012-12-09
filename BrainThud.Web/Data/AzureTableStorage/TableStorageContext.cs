@@ -9,7 +9,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 {
     public class TableStorageContext : TableServiceContext, ITableStorageContext
     {
-        private readonly string entitySetName;
+        private readonly string tableName;
         private readonly Lazy<ICardEntityRepository<Card>> cards;
         private readonly Lazy<ICardEntityRepository<QuizResult>> quizResults;
         private readonly Lazy<IUserConfigurationRepository> userConfigurations;
@@ -17,12 +17,11 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public TableStorageContext(
             ICloudStorageServices cloudStorageServices, 
-            string entitySetName, 
+            string tableName, 
             string nameIdentifier)
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
-            this.entitySetName = entitySetName;
-            cloudStorageServices.CreateTableIfNotExists(entitySetName);
+            this.tableName = tableName;
             this.cards = new Lazy<ICardEntityRepository<Card>>(() => new CardRepository(this, nameIdentifier));
             this.quizResults = new Lazy<ICardEntityRepository<QuizResult>>(() => new QuizResultsRepository(this, nameIdentifier));
             this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => new UserConfigurationRepository(this, nameIdentifier));
@@ -42,7 +41,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public void AddObject(TableServiceEntity entity)
         {
-            this.AddObject(this.entitySetName, entity);
+            this.AddObject(this.tableName, entity);
         }
 
         public void UpdateObject(TableServiceEntity entity)
@@ -62,7 +61,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
             if(!alreadyAttached)
             {
                 this.Detach(entity);
-                this.AttachTo(this.entitySetName, entity);
+                this.AttachTo(this.tableName, entity);
             }
 
             base.UpdateObject(entity);
@@ -75,7 +74,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public IQueryable<T> CreateQuery<T>()
         {
-            return this.CreateQuery<T>(this.entitySetName);
+            return this.CreateQuery<T>(this.tableName);
         }
 
         public void Commit()

@@ -42,6 +42,7 @@
       <HintPath>..\packages\FluentAssertions.2.0.0.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
@@ -185,6 +186,8 @@
     <Compile Include="BrainThud.WebTest\HandlersTest\Given_a_new_QuizResultHandler.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_UpdateCardLevel_is_called_with_a_correct_result.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\WebRoleTest\Given_a_new_WebRole.cs" />
+    <Compile Include="BrainThud.WebTest\WebRoleTest\When_OnStart_is_called.cs" />
     <Compile Include="Builders\CloudStorageAccountBuilder.cs" />
     <Compile Include="Builders\ApiControllerBuilder.cs" />
     <Compile Include="Builders\ControllerContextBuilder.cs" />

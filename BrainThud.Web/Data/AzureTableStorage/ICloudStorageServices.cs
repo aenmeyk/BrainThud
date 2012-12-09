@@ -5,6 +5,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
     public interface ICloudStorageServices 
     {
         CloudStorageAccount CloudStorageAccount { get; }
-        void CreateTableIfNotExists(string entitySetName);
+        void CreateTablesIfNotCreated();
+        void SetConfigurationSettingPublisher();
     }
 }

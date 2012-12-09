@@ -1,34 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.Diagnostics;
+using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.DependencyResolution;
 using Microsoft.WindowsAzure.ServiceRuntime;
+using StructureMap;
 
 namespace BrainThud.Web
 {
     public class WebRole : RoleEntryPoint
     {
+        // Public to allow this to be set to a mock for testing
+        public IContainer IoCContainer { get; set; }
+
+        public WebRole()
+        {
+            this.IoCContainer = IoC.Initialize();
+        }
+
         public override bool OnStart()
         {
-            // For information on handling configuration changes
-            // see the MSDN topic at http://go.microsoft.com/fwlink/?LinkId=166357.
-            CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
-            {
-                string connectionString;
-
-                if (RoleEnvironment.IsAvailable)
-                {
-                    connectionString = RoleEnvironment.GetConfigurationSettingValue(configName);
-                }
-                else
-                {
-                    connectionString = ConfigurationManager.AppSettings[configName];
-                }
-
-                configSetter(connectionString);
-            });
+            var cloudStorageServices = IoCContainer.GetInstance<ICloudStorageServices>();
+            cloudStorageServices.SetConfigurationSettingPublisher();
+            cloudStorageServices.CreateTablesIfNotCreated();
 
             return base.OnStart();
         }

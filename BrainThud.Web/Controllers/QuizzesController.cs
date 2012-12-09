@@ -21,7 +21,7 @@ namespace BrainThud.Web.Controllers
 
         public Quiz Get(int year, int month, int day)
         {
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(EntitySetNames.CARD, this.authenticationHelper.NameIdentifier);
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
 
             var quizDate = new DateTime(year, month, day)
                 .AddDays(1).Date

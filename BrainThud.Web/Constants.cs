@@ -42,9 +42,10 @@
         public const string CONFIGURATION = "configuration";
     }
 
-    public static class EntitySetNames
+    public static class AzureTableNames
     {
         public const string CARD = "Card";
+        public const string CONFIGURATION = "Configuration";
     }
 
     public static class CardRowTypes
