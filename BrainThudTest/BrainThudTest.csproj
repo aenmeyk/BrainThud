@@ -85,6 +85,11 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\When_Seed_is_called_with_a_full_queue.cs" />
+    <Compile Include="BrainThud.WebTest\Fakes\FakeIdentityQueueManager.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\Given_a_new_IdentityQueueManager.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\When_Seed_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GetRowKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called_for_a_user_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs" />

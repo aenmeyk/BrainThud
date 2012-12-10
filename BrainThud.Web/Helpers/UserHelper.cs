@@ -42,7 +42,7 @@ namespace BrainThud.Web.Helpers
             while (true)
             {
                 retries++;
-                var masterConfiguration = tableStorageContext.MasterConfigurations.GetOrCreate(PartitionKeys.MASTER, EntityNames.CONFIGURATION);
+                var masterConfiguration = tableStorageContext.MasterConfigurations.GetOrCreate(Keys.MASTER, EntityNames.CONFIGURATION);
 
                 try
                 {

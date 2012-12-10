@@ -172,6 +172,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuizResultsController.cs" />
     <Compile Include="Controllers\QuizzesController.cs" />
+    <Compile Include="Data\AzureQueues\IdentityQueueManager.cs" />
+    <Compile Include="Data\AzureQueues\IIdentityQueueManager.cs" />
     <Compile Include="Data\AzureTableStorage\CloudStorageServices.cs" />
     <Compile Include="Data\AzureTableStorage\ICloudStorageServices.cs" />
     <Compile Include="Data\AzureTableStorage\ITableStorageContext.cs" />

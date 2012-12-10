@@ -15,7 +15,7 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
         public override void When()
         {
             this.masterConfiguration = new MasterConfiguration { LastUsedUserId = LAST_USED_USER_ID };
-            this.TableStorageContext.Setup(x => x.MasterConfigurations.GetOrCreate(PartitionKeys.MASTER, EntityNames.CONFIGURATION))
+            this.TableStorageContext.Setup(x => x.MasterConfigurations.GetOrCreate(Keys.MASTER, EntityNames.CONFIGURATION))
                 .Returns(this.masterConfiguration);
 
             this.UserHelper.CreateUserConfiguration();

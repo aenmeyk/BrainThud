@@ -1,4 +1,5 @@
 ﻿using BrainThud.Web;
+using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
 using Moq;
 using NUnit.Framework;
@@ -12,14 +13,17 @@ namespace BrainThudTest.BrainThud.WebTest.WebRoleTest
         public override void Given()
         {
             this.CloudStorageServices = new Mock<ICloudStorageServices>();
+            this.IdentityQueueManager = new Mock<IIdentityQueueManager>();
+
             var ioc = new Mock<IContainer>();
             ioc.Setup(x => x.GetInstance<ICloudStorageServices>()).Returns(this.CloudStorageServices.Object);
+            ioc.Setup(x => x.GetInstance<IIdentityQueueManager>()).Returns(this.IdentityQueueManager.Object);
 
-            this.WebRole = new WebRole();
-            this.WebRole.IoCContainer = ioc.Object;
+            this.WebRole = new WebRole(enableContinuousExecution: false) {IoCContainer = ioc.Object};
         }
 
         protected Mock<ICloudStorageServices> CloudStorageServices { get; private set; }
+        protected Mock<IIdentityQueueManager> IdentityQueueManager { get; private set; }
         protected WebRole WebRole { get; private set; }
     }
 }

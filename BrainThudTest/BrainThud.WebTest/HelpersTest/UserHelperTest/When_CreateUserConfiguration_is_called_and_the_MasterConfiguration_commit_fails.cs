@@ -12,7 +12,7 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
         {
             var exception = new Exception(string.Empty, new Exception(ExceptionMessages.AZURE_CONCURRENCY_VIOLATION));
             this.TableStorageContext
-                .Setup(x => x.MasterConfigurations.GetOrCreate(PartitionKeys.MASTER, EntityNames.CONFIGURATION))
+                .Setup(x => x.MasterConfigurations.GetOrCreate(Keys.MASTER, EntityNames.CONFIGURATION))
                 .Returns(new MasterConfiguration());
 
             this.TableStorageContext.Setup(x => x.Commit()).Throws(exception);

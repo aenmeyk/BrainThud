@@ -32,14 +32,20 @@
         public const string REQUIRE_JS = "~/Scripts/require.js";
     }
 
-    public static class PartitionKeys
+    public static class Keys
     {
         public const string MASTER = "master";
+        public const string CONFIGURATION = "configuration";
     }
 
     public static class EntityNames
     {
         public const string CONFIGURATION = "configuration";
+    }
+
+    public static class NameIdentifiers
+    {
+        public const string MASTER = "master";
     }
 
     public static class AzureTableNames
@@ -65,6 +71,8 @@
     {
         public const string AZURE_STORAGE = "DataConnectionString";
         public const int CONCURRENCY_VIOLATION_RETRIES = 10;
+        public const int SEED_IDENTITIES = 20;
+        public static int SeedRefreshIntervalSeconds = 60;
 
     }
 

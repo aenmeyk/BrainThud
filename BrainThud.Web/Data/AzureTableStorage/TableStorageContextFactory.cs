@@ -9,7 +9,7 @@
             this.cloudStorageServices = cloudStorageServices;
         }
 
-        public ITableStorageContext CreateTableStorageContext(string tableName, string nameIdentifier)
+        public ITableStorageContext CreateTableStorageContext(string tableName, string nameIdentifier = NameIdentifiers.MASTER)
         {
             return new TableStorageContext(this.cloudStorageServices, tableName, nameIdentifier);
         }

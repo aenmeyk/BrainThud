@@ -29,5 +29,11 @@ namespace BrainThudTest.BrainThud.WebTest.WebRoleTest
         {
             this.CloudStorageServices.Verify(x => x.CreateQueusIfNotCreated(), Times.Once());
         }
+
+        [Test]
+        public void Then_Seed_is_called_on_IdentityQueueManager()
+        {
+            this.IdentityQueueManager.Verify(x => x.Seed(), Times.Once());
+        }
     }
 }

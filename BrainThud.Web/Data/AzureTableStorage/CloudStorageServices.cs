@@ -20,6 +20,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         }
 
         public CloudStorageAccount CloudStorageAccount { get { return this.lazyCloudStorageAccount.Value; } }
+        public CloudQueueClient CloudQueueClient { get { return this.lazyCloudQueueClient.Value; } }
 
         public void CreateTablesIfNotCreated()
         {
