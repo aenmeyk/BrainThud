@@ -18,7 +18,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
 
         public override void Given()
         {
-            this.UserConfiguration = new UserConfiguration { LastUsedId = LAST_USED_ID, UserId = USER_ID };
+            this.UserConfiguration = new UserConfiguration { UserId = USER_ID };
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };

@@ -1,4 +1,5 @@
 ﻿using BrainThud.Web;
+using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Helpers;
 using Moq;
@@ -9,15 +10,20 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
     {
         public override void Given()
         {
+            this.IdentityQueueManager = new Mock<IIdentityQueueManager>();
             this.TableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
             this.TableStorageContext = Mock.Get(this.TableStorageContextFactory.Object.CreateTableStorageContext(AzureTableNames.CARD, TestValues.NAME_IDENTIFIER));
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.SetupGet(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
 
-            this.UserHelper = new UserHelper(this.TableStorageContextFactory.Object, authenticationHelper.Object);
+            this.UserHelper = new UserHelper(
+                this.TableStorageContextFactory.Object, 
+                authenticationHelper.Object, 
+                this.IdentityQueueManager.Object);
         }
 
         protected UserHelper UserHelper { get; private set; }
+        protected Mock<IIdentityQueueManager> IdentityQueueManager { get; private set; }
         protected Mock<ITableStorageContextFactory> TableStorageContextFactory { get; private set; }
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
     }

@@ -33,12 +33,7 @@ namespace BrainThud.Web.Data.KeyGenerators
 
         public string GenerateRowKey()
         {
-//            var userConfiguration = this.GetUserConfiguration();
-//            this.EntityId = ++userConfiguration.LastUsedId;
-//            this.tableStorageContext.UpdateObject(userConfiguration);
-
             this.EntityId = this.identityQueueManager.GetNextIdentity();
-
             return this.GetRowKey(this.EntityId);
         }
 

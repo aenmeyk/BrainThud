@@ -134,7 +134,6 @@
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\Given_a_new_UserRepository.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\When_GetByNameIdentifier_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\When_CreateUserConfiguration_is_called_and_the_MasterConfiguration_commit_fails.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\Given_a_new_UserHelper.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\When_CreateUserConfiguration_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Model\CardTest\Given_a_new_Card.cs">
