@@ -183,6 +183,7 @@
     <Compile Include="Data\AzureTableStorage\ITableStorageContext.cs" />
     <Compile Include="Data\AzureTableStorage\ITableStorageContextFactory.cs" />
     <Compile Include="Data\KeyGenerators\CardEntityKeyGenerator.cs" />
+    <Compile Include="Data\KeyGenerators\ICardEntityKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\QuizResultKeyGenerator.cs" />
     <Compile Include="Data\Repositories\CardEntityRepository.cs" />
     <Compile Include="Data\Repositories\CardRepository.cs" />

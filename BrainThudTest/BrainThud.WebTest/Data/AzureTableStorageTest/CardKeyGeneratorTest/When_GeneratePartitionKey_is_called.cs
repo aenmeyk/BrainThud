@@ -18,5 +18,11 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
         {
             this.partitionKey.Should().Be(TestValues.NAME_IDENTIFIER + "-" + USER_ID);
         }
+
+        [Test]
+        public void Then_the_GeneratedUserId_should_be_set()
+        {
+            this.CardKeyGenerator.GeneratedUserId.Should().Be(USER_ID);
+        }
     }
 }

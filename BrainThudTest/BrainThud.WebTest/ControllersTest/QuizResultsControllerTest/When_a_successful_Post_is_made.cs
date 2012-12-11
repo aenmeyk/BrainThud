@@ -22,8 +22,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
 
         public override void When()
         {
-            // TODO: Pull "32" into test values
-            this.quizResult = new QuizResult { EntityId = 32, UserId = TestValues.USER_ID };
+            this.quizResult = new QuizResult { EntityId = TestValues.QUIZ_RESULT_ID, UserId = TestValues.USER_ID };
             this.response = this.QuizResultsController.Post(TestValues.USER_ID, YEAR, MONTH, DAY, this.quizResult);
         }
 

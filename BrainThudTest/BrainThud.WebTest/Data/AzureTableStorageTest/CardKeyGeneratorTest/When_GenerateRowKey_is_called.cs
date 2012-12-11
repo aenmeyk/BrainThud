@@ -19,5 +19,11 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
         {
             this.rowKey.Should().Be(CardRowTypes.CARD + "-" + NEXT_IDENTITY_VALUE);
         }
+
+        [Test]
+        public void Then_the_GeneratedEntityId_should_be_set()
+        {
+            this.CardKeyGenerator.GeneratedEntityId.Should().Be(NEXT_IDENTITY_VALUE);
+        }
     }
 }

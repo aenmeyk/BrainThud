@@ -22,6 +22,7 @@ namespace BrainThudTest
         public const string STRING = "TestString";
         public const int USER_ID = 21;
         public const int CARD_ID = 583;
+        public const int QUIZ_RESULT_ID = 32;
         public const string PARTITION_KEY = "c86258da-9165-4e19-906a-4441bd298d71";
         public const string NAME_IDENTIFIER = "b979a21e36f841509fbbd1d722f80cff";
         public const string ROW_KEY = "6037e998-c399-4153-9353-00ae5e6ea1e9";

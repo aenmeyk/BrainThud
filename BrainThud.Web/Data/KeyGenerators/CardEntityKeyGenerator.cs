@@ -5,17 +5,13 @@ using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Data.KeyGenerators
 {
-    public abstract class CardEntityKeyGenerator : ITableStorageKeyGenerator
+    public abstract class CardEntityKeyGenerator : ICardEntityKeyGenerator
     {
         private readonly IAuthenticationHelper authenticationHelper;
         private readonly ITableStorageContext tableStorageContext;
         private readonly IUserHelper userHelper;
         private readonly IIdentityQueueManager identityQueueManager;
         private readonly string rowType;
-
-        // TODO: Test that these are set
-        public int UserId { get; private set; }
-        public int EntityId { get; private set; }
 
         protected CardEntityKeyGenerator(
             IAuthenticationHelper authenticationHelper,
@@ -31,16 +27,19 @@ namespace BrainThud.Web.Data.KeyGenerators
             this.rowType = rowType;
         }
 
+        public int GeneratedUserId { get; private set; }
+        public int GeneratedEntityId { get; private set; }
+
         public string GenerateRowKey()
         {
-            this.EntityId = this.identityQueueManager.GetNextIdentity();
-            return this.GetRowKey(this.EntityId);
+            this.GeneratedEntityId = this.identityQueueManager.GetNextIdentity();
+            return this.GetRowKey(this.GeneratedEntityId);
         }
 
         public string GeneratePartitionKey()
         {
             var userConfiguration = this.GetUserConfiguration();
-            this.UserId = userConfiguration.UserId;
+            this.GeneratedUserId = userConfiguration.UserId;
             return string.Format("{0}-{1}", this.authenticationHelper.NameIdentifier, userConfiguration.UserId);
         }
 
