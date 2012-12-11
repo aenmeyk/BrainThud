@@ -1,5 +1,6 @@
 ﻿using BrainThud.Web;
 using FluentAssertions;
+using Microsoft.WindowsAzure.StorageClient;
 using Moq;
 using NUnit.Framework;
 
@@ -7,18 +8,16 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureQueuesTest
 {
     public class When_Seed_is_called_with_a_full_queue : Given_a_new_IdentityQueueManager
     {
-        private const int MESSAGES_IN_QUEUE = ConfigurationSettings.SEED_IDENTITIES;
-
         public override void When()
         {
-            this.IdentityQueueManager.MessagesInQueue = MESSAGES_IN_QUEUE;
+            this.IdentityCloudQueue.Setup(x => x.RetrieveApproximateMessageCount()).Returns(ConfigurationSettings.SEED_IDENTITIES);
             this.IdentityQueueManager.Seed();
         }
 
         [Test]
         public void Then_no_messages_should_be_added_to_the_queue()
         {
-            this.IdentityQueueManager.ItemsAddedToQueue.Count.Should().Be(0);
+            this.IdentityCloudQueue.Verify(x => x.AddMessage(It.IsAny<CloudQueueMessage>()), Times.Never());
         }
 
         [Test]

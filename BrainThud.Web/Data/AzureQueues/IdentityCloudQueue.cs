@@ -1,0 +1,37 @@
+﻿using System;
+using BrainThud.Web.Data.AzureTableStorage;
+using Microsoft.WindowsAzure.StorageClient;
+
+namespace BrainThud.Web.Data.AzureQueues
+{
+    public class IdentityCloudQueue : IIdentityCloudQueue
+    {
+        private readonly Lazy<CloudQueue> lazyCloudQueue;
+
+        public IdentityCloudQueue(ICloudStorageServices cloudStorageServices)
+        {
+            this.lazyCloudQueue = new Lazy<CloudQueue>(() => cloudStorageServices.CloudQueueClient.GetQueueReference(AzureQueueNames.IDENTITY));
+        }
+
+        public void AddMessage(CloudQueueMessage message)
+        {
+            this.lazyCloudQueue.Value.AddMessage(message);
+        }
+        
+        public ICloudQueueMessageWrapper GetMessage(TimeSpan visibilityTimeout)
+        {
+            var cloudQueueMessage = this.lazyCloudQueue.Value.GetMessage(visibilityTimeout);
+            return new CloudQueueMessageWrapper(cloudQueueMessage);
+        }
+
+        public void DeleteMessage(ICloudQueueMessageWrapper message)
+        {
+            this.lazyCloudQueue.Value.DeleteMessage(message.Message);
+        }
+
+        public int RetrieveApproximateMessageCount()
+        {
+            return this.lazyCloudQueue.Value.RetrieveApproximateMessageCount();
+        }
+    }
+}
