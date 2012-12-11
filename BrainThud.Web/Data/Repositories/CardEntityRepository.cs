@@ -1,4 +1,6 @@
-﻿using BrainThud.Web.Data.AzureTableStorage;
+﻿using System;
+using System.Linq;
+using BrainThud.Web.Data.AzureTableStorage;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.Repositories
@@ -32,6 +34,13 @@ namespace BrainThud.Web.Data.Repositories
             var rowKey = GetRowKey(cardId);
 
             this.Delete(partitionKey, rowKey);
+        }
+
+        public IQueryable<T> GetAllForUser()
+        {
+            return this.EntitySet.Where(x =>
+                string.Compare(x.PartitionKey, this.NameIdentifier + '-', StringComparison.Ordinal) >= 0
+                && string.Compare(x.PartitionKey, this.NameIdentifier + '.', StringComparison.Ordinal) < 0);
         }
 
         private string GetRowKey(int cardId)

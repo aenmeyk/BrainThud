@@ -16,6 +16,7 @@
             nextCard = ko.observable(),
             previousCard = ko.observable(),
             cards = ko.observableArray([]),
+            userId = ko.observable(),
 
             currentCard = {
                 rowKey: ko.observable(''),
@@ -49,6 +50,7 @@
                 $.when(dataContext.quiz.getData(dataOptions()))
                     .then(function () {
                         cards(quiz()[0].cards);
+                        userId(quiz()[0].userId);
                         setCurrentCard(routeData.rowKey);
                     });
             },
@@ -85,7 +87,7 @@
             },
             
             getCardUri = function(cardIndex) {
-                return '#/quizzes/' + datePath + '/' + cards()[cardIndex].rowKey();
+                return '#/quizzes/' + userId() + '/' + datePath + '/' + cards()[cardIndex].rowKey();
             },
             
             getQuizResultConfig = function(isCorrect) {

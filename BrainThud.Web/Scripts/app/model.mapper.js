@@ -11,7 +11,8 @@
 
                     results.push({
                         cards: cards,
-                        requestsUri: dto.resultsUri
+                        resultsUri: dto.resultsUri,
+                        userId: dto.userId
                     });
                 }
             },
@@ -31,7 +32,8 @@
                     .question(dto.question)
                     .answer(dto.answer)
                     .deckName(dto.deckName)
-                    .tags(dto.tags);
+                    .tags(dto.tags)
+                    .userId(dto.userId);
                 
                 return singleCard;
             };

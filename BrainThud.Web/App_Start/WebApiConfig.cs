@@ -8,7 +8,7 @@ namespace BrainThud.Web.App_Start
         {
             config.Routes.MapHttpRoute(
                 name: RouteNames.API_QUIZZES,
-                routeTemplate: "api/quizzes/{year}/{month}/{day}",
+                routeTemplate: "api/quizzes/{userid}/{year}/{month}/{day}",
                 defaults: new { controller = "Quizzes" });
 
             config.Routes.MapHttpRoute(

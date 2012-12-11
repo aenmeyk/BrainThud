@@ -1,4 +1,5 @@
-﻿using Microsoft.WindowsAzure.StorageClient;
+﻿using System.Linq;
+using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.Repositories
 {
@@ -6,5 +7,6 @@ namespace BrainThud.Web.Data.Repositories
     {
         T GetById(int userId, int cardId);
         void DeleteById(int userId, int cardId);
+        IQueryable<T> GetAllForUser();
     }
 }

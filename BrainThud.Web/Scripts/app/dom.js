@@ -2,7 +2,7 @@
     function ($, utils) {
         var
             setQuizMenuUri = function (rowKey) {
-                $('#quizMenu').attr('href', '#/quizzes/' + utils.getDatePath() + '/' + rowKey);
+                $('#quizMenu').attr('href', '#/quizzes/19/' + utils.getDatePath() + '/' + rowKey);
             };
 
         return {

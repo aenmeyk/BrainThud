@@ -3,7 +3,7 @@
         var hashes = {
                 createCard: '#/create-card',
                 todaysCards: '#/todays-cards',
-                quiz: '#/quizzes/:year/:month/:day/:rowKey'
+                quiz: '#/quizzes/:userId/:year/:month/:day/:rowKey'
             },
 
             viewIds = {

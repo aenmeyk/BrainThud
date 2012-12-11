@@ -1,5 +1,5 @@
 ﻿define('model', ['model.card'],
-    function (card) {
+    function (card, user) {
         return {
             Card: card
         };

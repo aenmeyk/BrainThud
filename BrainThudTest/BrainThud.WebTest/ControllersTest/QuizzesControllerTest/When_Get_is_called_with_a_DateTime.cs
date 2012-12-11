@@ -36,7 +36,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
                 .TheNext(2).With(x => x.QuizDate = dayAfter).And(x => x.Level = DAY)
                 .Build();
 
-            this.TableStorageContext.Setup(x => x.Cards.GetAll()).Returns(allCards.AsQueryable());
+            this.TableStorageContext.Setup(x => x.Cards.GetAllForUser()).Returns(allCards.AsQueryable());
+            var userConfiguration = new UserConfiguration { UserId = TestValues.USER_ID };
+            this.TableStorageContext.Setup(x => x.UserConfigurations.GetByNameIdentifier()).Returns(userConfiguration);
             this.quiz = this.QuizzesController.Get(YEAR, MONTH, DAY);
         }
 
@@ -50,6 +52,12 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
         public void Then_the_ResultsUri_is_returned()
         {
             this.quiz.ResultsUri.Should().Be(TestUrls.LOCALHOST);
+        }
+
+        [Test]
+        public void Then_the_UserId_is_returned_in_the_Quiz_object()
+        {
+            this.quiz.UserId.Should().Be(TestValues.USER_ID);
         }
     }
 }

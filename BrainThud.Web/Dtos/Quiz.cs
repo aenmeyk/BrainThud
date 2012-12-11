@@ -7,5 +7,6 @@ namespace BrainThud.Web.Dtos
     {
         public IEnumerable<Card> Cards { get; set; }
         public string ResultsUri { get; set; }
+        public int UserId { get; set; }
     }
 }
