@@ -8,7 +8,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureQueuesTest
 {
     public abstract class Given_a_new_IdentityQueueManager : Gwt
     {
-        protected const long CURRENT_MAX_IDENTITY = 1000;
+        protected const int CURRENT_MAX_IDENTITY = 1000;
 
         public override void Given()
         {

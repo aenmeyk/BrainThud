@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
@@ -19,15 +20,18 @@ namespace BrainThud.Web.Controllers
         private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IAuthenticationHelper authenticationHelper;
         private readonly IUserHelper userHelper;
+        private readonly IIdentityQueueManager identityQueueManager;
 
         public CardsController(
             ITableStorageContextFactory tableStorageContextFactory,
             IAuthenticationHelper authenticationHelper,
-            IUserHelper userHelper)
+            IUserHelper userHelper,
+            IIdentityQueueManager identityQueueManager)
         {
             this.tableStorageContextFactory = tableStorageContextFactory;
             this.authenticationHelper = authenticationHelper;
             this.userHelper = userHelper;
+            this.identityQueueManager = identityQueueManager;
         }
 
         public IEnumerable<Card> Get()
@@ -64,7 +68,7 @@ namespace BrainThud.Web.Controllers
             if (this.ModelState.IsValid)
             {
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-                var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, this.userHelper);
+                var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, this.userHelper, this.identityQueueManager);
                 tableStorageContext.Cards.Add(card, keyGenerator);
                 tableStorageContext.CommitBatch();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, card);

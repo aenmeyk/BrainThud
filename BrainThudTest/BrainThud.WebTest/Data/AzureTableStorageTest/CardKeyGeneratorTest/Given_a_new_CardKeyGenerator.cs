@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data.AzureTableStorage;
+﻿using BrainThud.Web.Data.AzureQueues;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
@@ -13,6 +14,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
         protected const string USER_ROW_KEY = TestValues.ROW_KEY;
         protected const int LAST_USED_ID = 8;
         protected const int USER_ID = 53;
+        protected const int NEXT_IDENTITY_VALUE = 15;
 
         public override void Given()
         {
@@ -24,14 +26,19 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
             this.UserHelper = new Mock<IUserHelper>();
             this.UserHelper.Setup(x => x.CreateUserConfiguration()).Returns(this.UserConfiguration);
 
+            this.IdentityQueueManager = new Mock<IIdentityQueueManager>();
+            this.IdentityQueueManager.Setup(x => x.GetNextIdentity()).Returns(NEXT_IDENTITY_VALUE);
+
             this.CardKeyGenerator = new CardKeyGenerator(
                 authenticationHelper.Object,
                 this.TableStorageContext.Object,
-                this.UserHelper.Object);
+                this.UserHelper.Object,
+                this.IdentityQueueManager.Object);
         }
 
         protected Mock<IUserHelper> UserHelper { get; private set; }
         protected Mock<ITableStorageContext> TableStorageContext { get; set; }
+        protected Mock<IIdentityQueueManager> IdentityQueueManager { get; set; }
         protected UserConfiguration UserConfiguration { get; set; }
         protected CardKeyGenerator CardKeyGenerator { get; set; }
     }

@@ -2,7 +2,8 @@
 {
     public static class Hosts
     {
-        public const string LOCALHOST = "http://localhost:36877/";
+//        public const string LOCALHOST = "http://localhost:36877/";
+        public const string LOCALHOST = "http://127.0.0.1:81/";
         public const string BRAINTHUD = "http://www.brainthud.com/";
     }
 
@@ -72,6 +73,7 @@
         public const string AZURE_STORAGE = "DataConnectionString";
         public const int CONCURRENCY_VIOLATION_RETRIES = 10;
         public const int SEED_IDENTITIES = 20;
+        public const int IDENTITY_QUEUE_VISIBILITY_TIMEOUT_SECONDS = 10;
         public static int SeedRefreshIntervalSeconds = 60;
 
     }

@@ -1,3 +1,4 @@
+using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
@@ -9,29 +10,34 @@ namespace BrainThud.Web.Data.KeyGenerators
         private readonly IAuthenticationHelper authenticationHelper;
         private readonly ITableStorageContext tableStorageContext;
         private readonly IUserHelper userHelper;
+        private readonly IIdentityQueueManager identityQueueManager;
         private readonly string rowType;
 
         // TODO: Test that these are set
         public int UserId { get; private set; }
         public int EntityId { get; private set; }
 
-        public CardEntityKeyGenerator(
+        protected CardEntityKeyGenerator(
             IAuthenticationHelper authenticationHelper,
             ITableStorageContext tableStorageContext,
             IUserHelper userHelper,
+            IIdentityQueueManager identityQueueManager,
             string rowType)
         {
             this.authenticationHelper = authenticationHelper;
             this.tableStorageContext = tableStorageContext;
             this.userHelper = userHelper;
+            this.identityQueueManager = identityQueueManager;
             this.rowType = rowType;
         }
 
         public string GenerateRowKey()
         {
-            var userConfiguration = this.GetUserConfiguration();
-            this.EntityId = ++userConfiguration.LastUsedId;
-            this.tableStorageContext.UpdateObject(userConfiguration);
+//            var userConfiguration = this.GetUserConfiguration();
+//            this.EntityId = ++userConfiguration.LastUsedId;
+//            this.tableStorageContext.UpdateObject(userConfiguration);
+
+            this.EntityId = this.identityQueueManager.GetNextIdentity();
 
             return this.GetRowKey(this.EntityId);
         }

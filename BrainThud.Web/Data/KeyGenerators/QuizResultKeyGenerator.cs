@@ -1,3 +1,4 @@
+using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Helpers;
 
@@ -8,7 +9,8 @@ namespace BrainThud.Web.Data.KeyGenerators
         public QuizResultKeyGenerator(
             IAuthenticationHelper authenticationHelper,
             ITableStorageContext tableStorageContext,
-            IUserHelper userHelper)
-            : base(authenticationHelper, tableStorageContext, userHelper, CardRowTypes.QUIZ_RESULT) {}
+            IUserHelper userHelper,
+            IIdentityQueueManager identityQueueManager)
+            : base(authenticationHelper, tableStorageContext, userHelper, identityQueueManager, CardRowTypes.QUIZ_RESULT) {}
     }
 }

@@ -91,10 +91,9 @@
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\When_Seed_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GetRowKey_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called_for_a_user_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\Given_a_new_CardKeyGenerator.cs" />
-    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called_for_a_user_that_exists.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CardKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\CloudStorageServicesTest\Given_a_new_CloudStorageServices.cs">
       <SubType>Code</SubType>
     </Compile>
