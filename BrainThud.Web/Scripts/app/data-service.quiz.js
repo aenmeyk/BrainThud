@@ -14,7 +14,7 @@
                     resourceId: 'todaysQuiz',
                     data: {
                         datePath: config.params.datePath,
-                        userId: '19'
+                        userId: config.params.userId
                     },
                     success: config.success,
                     error: config.error

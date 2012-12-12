@@ -4,7 +4,7 @@
             init = function () {
                 
                 amplify.request.define('createQuizResult', 'ajax', {
-                    url: '/api/quizzes/{datePath}/results',
+                    url: '/api/quizzes/{userId}/{datePath}/results',
                     dataType: 'json',
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8'
@@ -14,9 +14,12 @@
             save = function (data, config) {
                 return amplify.request({
                     resourceId: 'createQuizResult',
-//                    data: JSON.stringify(data),
-                    data: { datePath: config.params.datePath, cardId: data.cardId, isCorrect: data.isCorrect },
-//                    data: { datePath: config.params.datePath, data: JSON.stringify(data) },
+                    data: {
+                        datePath: config.params.datePath,
+                        userId: config.params.userId,
+                        cardId: data.cardId,
+                        isCorrect: data.isCorrect
+                    },
                     success: config.success,
                     error: config.error
                 });

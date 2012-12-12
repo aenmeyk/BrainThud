@@ -41,7 +41,8 @@
                 return {
                     results: quiz,
                     params: {
-                        datePath: datePath
+                        datePath: datePath,
+                        userId: userId()
                     }
                 };
             },
@@ -97,7 +98,8 @@
                         isCorrect: isCorrect
                     },
                     params: {
-                        datePath: datePath
+                        datePath: datePath,
+                        userId: userId()
                     }
                 };
             },
