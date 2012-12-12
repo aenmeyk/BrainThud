@@ -25,7 +25,7 @@ namespace BrainThud.Web
             this.enableContinuousExecution = enableContinuousExecution;
         }
 
-        public override bool OnStart()
+        public override void Run()
         {
             var cloudStorageServices = IoCContainer.GetInstance<ICloudStorageServices>();
             cloudStorageServices.SetConfigurationSettingPublisher();
@@ -39,8 +39,6 @@ namespace BrainThud.Web
                 identityQueueManager.Seed();
                 Thread.Sleep(TimeSpan.FromSeconds(ConfigurationSettings.SeedRefreshIntervalSeconds));
             } while (this.enableContinuousExecution);
-
-            return base.OnStart();
         }
     }
 }

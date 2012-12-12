@@ -1,15 +1,14 @@
-﻿using FluentAssertions;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.WebRoleTest
 {
     [TestFixture]
-    public class When_OnStart_is_called : Given_a_new_WebRole
+    public class When_Run_is_called : Given_a_new_WebRole
     {
         public override void When()
         {
-            this.WebRole.OnStart();
+            this.WebRole.Run();
         }
 
         [Test]

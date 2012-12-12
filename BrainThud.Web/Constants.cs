@@ -2,8 +2,8 @@
 {
     public static class Hosts
     {
-//        public const string LOCALHOST = "http://localhost:36877/";
-        public const string LOCALHOST = "http://127.0.0.1:81/";
+        public const string LOCALHOST = "http://localhost:36877/";
+//        public const string LOCALHOST = "http://127.0.0.1:81/";
         public const string BRAINTHUD = "http://www.brainthud.com/";
     }
 

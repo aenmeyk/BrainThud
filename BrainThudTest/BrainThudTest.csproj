@@ -195,7 +195,7 @@
     <Compile Include="BrainThud.WebTest\HandlersTest\When_UpdateCardLevel_is_called_with_a_correct_result.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\WebRoleTest\Given_a_new_WebRole.cs" />
-    <Compile Include="BrainThud.WebTest\WebRoleTest\When_OnStart_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\WebRoleTest\When_Run_is_called.cs" />
     <Compile Include="Builders\CloudStorageAccountBuilder.cs" />
     <Compile Include="Builders\ApiControllerBuilder.cs" />
     <Compile Include="Builders\ControllerContextBuilder.cs" />
