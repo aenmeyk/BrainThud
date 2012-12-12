@@ -85,7 +85,7 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\Copy of When_Get_is_called_with_a_DateTime.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_Get_is_called_by_a_user_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\When_GetNextIdentity_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\When_Seed_is_called_with_a_full_queue.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\Given_a_new_IdentityQueueManager.cs" />
