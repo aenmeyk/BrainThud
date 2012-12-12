@@ -7,6 +7,7 @@
                 {
                     view: config.viewIds.createCard,
                     routes: [{
+                        isDefault: true,
                         route: config.hashes.createCard,
                         title: "Create Card",
                         callback: vm.card.activate
@@ -17,7 +18,6 @@
                 {
                     view: config.viewIds.todaysCards,
                     routes: [{
-                        isDefault: true,
                         route: config.hashes.todaysCards,
                         title: "Today's Cards",
                         callback: vm.cards.activate
