@@ -1,8 +1,8 @@
 ﻿define('dom', ['jquery', 'utils'],
     function ($, utils) {
         var
-            setQuizMenuUri = function (rowKey) {
-                $('#quizMenu').attr('href', '#/quizzes/19/' + utils.getDatePath() + '/' + rowKey);
+            setQuizMenuUri = function (userId, cardId) {
+                $('#quizMenu').attr('href', '#/quizzes/' + userId + '/' + utils.getDatePath() + '/' + cardId);
             };
 
         return {

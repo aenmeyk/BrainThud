@@ -9,6 +9,7 @@
             self.deckName = ko.observable();
             self.tags = ko.observable();
             self.userId = ko.observable();
+            self.cardId = ko.observable();
         };
 
         return Card;

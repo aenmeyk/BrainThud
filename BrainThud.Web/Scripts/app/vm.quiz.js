@@ -19,7 +19,7 @@
             userId = ko.observable(),
 
             currentCard = {
-                rowKey: ko.observable(''),
+                cardId: ko.observable(''),
                 question: ko.observable(''),
                 answer: ko.observable(''),
             },
@@ -51,14 +51,14 @@
                     .then(function () {
                         cards(quiz()[0].cards);
                         userId(quiz()[0].userId);
-                        setCurrentCard(routeData.rowKey);
+                        setCurrentCard(routeData.cardId);
                     });
             },
 
-            setCurrentCard = function (rowKey) {
+            setCurrentCard = function (cardId) {
                 for (var i = 0; i < cards().length; i++) {
-                    if (cards()[i].rowKey() === rowKey) {
-                        currentCard.rowKey(cards()[i].rowKey());
+                    if (cards()[i].cardId() === parseInt(cardId)) {
+                        currentCard.cardId(cards()[i].cardId());
                         currentCard.question(cards()[i].question());
                         currentCard.answer(cards()[i].answer());
 
@@ -87,13 +87,13 @@
             },
             
             getCardUri = function(cardIndex) {
-                return '#/quizzes/' + userId() + '/' + datePath + '/' + cards()[cardIndex].rowKey();
+                return '#/quizzes/' + userId() + '/' + datePath + '/' + cards()[cardIndex].cardId();
             },
             
             getQuizResultConfig = function(isCorrect) {
                 return {
                     data: {
-                        cardId: currentCard.rowKey(),
+                        cardId: currentCard.cardId(),
                         isCorrect: isCorrect
                     },
                     params: {
@@ -123,6 +123,7 @@
         init();
 
         return {
+            userId: userId,
             cards: cards,
             currentCard: currentCard,
             currentCardText: currentCardText,

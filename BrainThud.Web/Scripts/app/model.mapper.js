@@ -33,7 +33,8 @@
                     .answer(dto.answer)
                     .deckName(dto.deckName)
                     .tags(dto.tags)
-                    .userId(dto.userId);
+                    .userId(dto.userId)
+                    .cardId(dto.entityId);
                 
                 return singleCard;
             };

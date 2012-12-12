@@ -16,8 +16,9 @@
                         .fail(function() { def.reject(); }))
                         .done(function() {
                             def.resolve();
-                            if (quiz()[0].cards[0]) {
-                                dom.setQuizMenuUri(quiz()[0].cards[0].rowKey());
+                            var firstCard = quiz()[0].cards[0];
+                            if (firstCard) {
+                                dom.setQuizMenuUri(firstCard.userId(), firstCard.cardId());
                             }
                         });
                 }).promise();
