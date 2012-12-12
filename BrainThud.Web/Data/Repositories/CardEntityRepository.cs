@@ -7,7 +7,7 @@ namespace BrainThud.Web.Data.Repositories
 {
     public abstract class CardEntityRepository<T> : TableStorageRepository<T>, ICardEntityRepository<T> where T : TableServiceEntity
     {
-        private readonly string rowKeyPrefix;
+        protected string RowKeyPrefix { get; private set; }
         protected string NameIdentifier { get; private set; }
 
         protected CardEntityRepository(
@@ -16,8 +16,18 @@ namespace BrainThud.Web.Data.Repositories
             string rowKeyPrefix) 
             : base(tableStorageContext)
         {
-            this.rowKeyPrefix = rowKeyPrefix;
+            this.RowKeyPrefix = rowKeyPrefix;
             this.NameIdentifier = nameIdentifier;
+        }
+
+        protected override IQueryable<T> EntitySet
+        {
+            get
+            {
+                return base.EntitySet.Where(x =>
+                    string.Compare(x.RowKey, this.RowKeyPrefix + '-', StringComparison.Ordinal) >= 0
+                    && string.Compare(x.RowKey, this.RowKeyPrefix + '.', StringComparison.Ordinal) < 0);
+            }
         }
 
         public T GetById(int userId, int cardId)
@@ -45,7 +55,7 @@ namespace BrainThud.Web.Data.Repositories
 
         private string GetRowKey(int cardId)
         {
-            return string.Format("{0}-{1}", this.rowKeyPrefix, cardId);
+            return string.Format("{0}-{1}", this.RowKeyPrefix, cardId);
         }
 
         private string GetPartitionKey(int userId)

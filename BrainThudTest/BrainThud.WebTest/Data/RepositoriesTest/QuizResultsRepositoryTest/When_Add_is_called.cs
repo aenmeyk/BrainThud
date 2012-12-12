@@ -50,7 +50,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.QuizResultsRepos
         [Test]
         public void Then_the_entity_should_be_added_to_the_TableStorageContext()
         {
-            this.tableStorageContext.Verify(x => x.AddObject(this.quizResult), Times.Once());
+            this.TableStorageContext.Verify(x => x.AddObject(this.quizResult), Times.Once());
         }
     }
 }

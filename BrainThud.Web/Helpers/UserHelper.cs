@@ -23,12 +23,13 @@ namespace BrainThud.Web.Helpers
         public UserConfiguration CreateUserConfiguration()
         {
             var userId = this.identityQueueManager.GetNextIdentity();
+            var configurationId = this.identityQueueManager.GetNextIdentity();
             var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
 
             var configuration = new UserConfiguration
             {
                 PartitionKey = string.Format("{0}-{1}", this.authenticationHelper.NameIdentifier, userId),
-                RowKey = EntityNames.CONFIGURATION,
+                RowKey = string.Format("{0}-{1}", CardRowTypes.CONFIGURATION, configurationId),
                 UserId = userId
             };
 

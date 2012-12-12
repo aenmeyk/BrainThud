@@ -15,7 +15,7 @@ namespace BrainThud.Web.Data.Repositories
             this.tableStorageContext = tableStorageContext;
         }
 
-        protected IQueryable<T> EntitySet { get { return this.tableStorageContext.CreateQuery<T>(); } }
+        protected virtual IQueryable<T> EntitySet { get { return this.tableStorageContext.CreateQuery<T>(); } }
 
         public virtual void Add(T entity, ITableStorageKeyGenerator keyGenerator)
         {

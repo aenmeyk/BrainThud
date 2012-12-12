@@ -14,15 +14,19 @@ namespace BrainThudTest
         // ReSharper disable InconsistentNaming
         public static readonly Guid GUID = Guid.Parse("16ffa7cb-53f7-4a1d-bf19-c60555c95fcf");
         public static readonly DateTime DATETIME = new DateTime(2012, 1, 1);
-        public static readonly string CARD_ROW_KEY = CardRowTypes.CARD + '-' + CARD_ID;
         public static readonly string CARD_PARTITION_KEY = NAME_IDENTIFIER + '-' + USER_ID;
+        public static readonly string CARD_ROW_KEY = CardRowTypes.CARD + '-' + CARD_ID;
+        public static readonly string QUIZ_ROW_KEY = CardRowTypes.QUIZ_RESULT + '-' + QUIZ_ID;
+        public static readonly string CONFIGURATION_ROW_KEY = CardRowTypes.CONFIGURATION + '-' + CONFIGURATION_ID;
         // ReSharper restore InconsistentNaming
 
         public const int INT = 5;
         public const string STRING = "TestString";
         public const int USER_ID = 21;
         public const int CARD_ID = 583;
+        public const int QUIZ_ID = 37;
         public const int QUIZ_RESULT_ID = 32;
+        public const int CONFIGURATION_ID = 85;
         public const string PARTITION_KEY = "c86258da-9165-4e19-906a-4441bd298d71";
         public const string NAME_IDENTIFIER = "b979a21e36f841509fbbd1d722f80cff";
         public const string ROW_KEY = "6037e998-c399-4153-9353-00ae5e6ea1e9";

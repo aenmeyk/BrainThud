@@ -37,7 +37,7 @@ namespace BrainThud.Web.Controllers
         public IEnumerable<Card> Get()
         {
             var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-            return tableStorageContext.Cards.GetAll();
+            return tableStorageContext.Cards.GetAllForUser();
         }
 
         public Card Get(int userId, int cardId)

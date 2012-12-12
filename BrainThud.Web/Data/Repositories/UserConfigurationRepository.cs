@@ -11,11 +11,7 @@ namespace BrainThud.Web.Data.Repositories
 
         public UserConfiguration GetByNameIdentifier()
         {
-// ReSharper disable ReplaceWithSingleCallToFirstOrDefault
-            return this.GetAllForUser() 
-                .Where(x => x.RowKey == EntityNames.CONFIGURATION)
-                .FirstOrDefault();
-// ReSharper restore ReplaceWithSingleCallToFirstOrDefault
+            return this.GetAllForUser().FirstOrDefault();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using BrainThud.Web;
 using BrainThud.Web.Model;
 using FluentAssertions;
 using NUnit.Framework;
@@ -14,8 +13,8 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.UserRepositoryTe
 
         public override void When()
         {
-            this.matchingUserConfiguration = new UserConfiguration { PartitionKey = TestValues.CARD_PARTITION_KEY, RowKey = EntityNames.CONFIGURATION };
-            var nonMatchingUserConfiguration1 = new UserConfiguration { PartitionKey = "Non-matchingPartitionKey", RowKey = EntityNames.CONFIGURATION };
+            this.matchingUserConfiguration = new UserConfiguration { PartitionKey = TestValues.CARD_PARTITION_KEY, RowKey = TestValues.CONFIGURATION_ROW_KEY };
+            var nonMatchingUserConfiguration1 = new UserConfiguration { PartitionKey = "Non-matchingPartitionKey", RowKey = TestValues.CONFIGURATION_ROW_KEY };
             var nonMatchingUserConfiguration2 = new UserConfiguration { PartitionKey = TestValues.CARD_PARTITION_KEY, RowKey = "Non-matchingRowKey" };
             var userConfigurations = new[] { this.matchingUserConfiguration, nonMatchingUserConfiguration1, nonMatchingUserConfiguration2 };
             this.TableStorageContext.Setup(x => x.CreateQuery<UserConfiguration>()).Returns(userConfigurations.AsQueryable());

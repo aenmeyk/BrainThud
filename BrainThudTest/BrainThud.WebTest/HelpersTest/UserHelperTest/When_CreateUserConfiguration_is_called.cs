@@ -1,6 +1,5 @@
 ﻿using BrainThud.Web;
 using BrainThud.Web.Model;
-using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
@@ -23,7 +22,7 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
             this.TableStorageContext.Verify(x => x.UserConfigurations.Add(
                 It.Is<UserConfiguration>(c =>
                     c.PartitionKey == TestValues.NAME_IDENTIFIER + "-" + NEXT_IDENTITY_VALUE.ToString()
-                    && c.RowKey == EntityNames.CONFIGURATION)), Times.Once());
+                    && c.RowKey == CardRowTypes.CONFIGURATION + "-" + NEXT_IDENTITY_VALUE.ToString())), Times.Once());
         }
 
         [Test]
