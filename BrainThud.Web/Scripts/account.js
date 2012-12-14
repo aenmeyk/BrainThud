@@ -3,6 +3,13 @@
 // 
 
 function ShowSigninPage(IPs) {
+    //for (var i in IPs) {
+    //    if (typeof cookieName !== 'undefined' && cookieName !== null && cookieName == identityProviders[i].Name) {
+    //        window.location = identityProviders[i].LoginUrl;
+    //        return null;
+    //    }
+    //}
+
     $.each(IPs, function (i, ip) {
         $("#IPDiv").append('<a href="' + ip.LoginUrl + '"><img class="identity-provider " style="-webkit-user-select: none" src="' + ip.ImageUrl + '" alt="' + ip.Name + '"></a>');
     });

@@ -45,8 +45,7 @@
       </system.Web>
   -->
   <!-- Access Control Service -->
-  <!--
-  <location path="FederationMetadata">
+  <!--<location path="FederationMetadata">
     <system.web>
       <authorization>
         <allow users="*" />
@@ -64,6 +63,10 @@
     <authentication mode="Forms">
       <forms loginUrl="~/Account/Login" />
     </authentication>
+    <!--Commented by Identity and Access VS Package-->
+    <!--<authentication mode="None" />-->
+    <!--Commented by Identity and Access VS Package-->
+    <!--<authentication mode="Forms"><forms loginUrl="~/Account/Login" /></authentication>-->
     <!--Commented by Identity and Access VS Package-->
     <!--<authentication mode="None" />-->
     <!--Commented by Identity and Access VS Package-->
@@ -111,6 +114,7 @@
       <add path="*.less" verb="GET" type="dotless.Core.LessCssHttpHandler, dotless.Core" resourceType="File" preCondition="" />
     </httpHandlers>
     <httpRuntime requestValidationMode="4.5" />
+    <machineKey decryptionKey="FD7F41D13A555E0409CF1BC969861965FA25EFB809165DC0" validationKey="DBC9B2531B27E1EF68DCB9E9A2ACF3B540C5BCAE297DF8EBF3F136514C74859BEA3EE49788B288C2DC76015733199AA3738DC1C08265DBD51FC5D5C8ADC022B3" />
   </system.web>
   <system.webServer>
     <validation validateIntegratedModeConfiguration="false" />
@@ -166,13 +170,12 @@
     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
   </entityFramework>
   <dotless minifyCss="false" cache="true" web="false" />
-    
   <system.identityModel>
     <identityConfiguration>
       <audienceUris>
-<!--        <add value="http://www.brainthud.com/" />-->
         <add value="http://localhost:36877/" />
-<!--        <add value="http://127.0.0.1:81/" />-->
+        <add value="http://localhost:36877/" />
+        <!--        <add value="http://127.0.0.1:81/" />-->
       </audienceUris>
       <issuerNameRegistry type="System.IdentityModel.Tokens.ConfigurationBasedIssuerNameRegistry, System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
         <trustedIssuers>
@@ -180,16 +183,18 @@
         </trustedIssuers>
       </issuerNameRegistry>
       <certificateValidation certificateValidationMode="None" />
+      <securityTokenHandlers>
+        <add type="System.IdentityModel.Services.Tokens.MachineKeySessionSecurityTokenHandler, System.IdentityModel.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+        <remove type="System.IdentityModel.Tokens.SessionSecurityTokenHandler, System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+      </securityTokenHandlers>
     </identityConfiguration>
   </system.identityModel>
-    
   <system.identityModel.services>
     <federationConfiguration>
       <cookieHandler requireSsl="false" />
-<!--      <wsFederation passiveRedirectEnabled="true" issuer="https://brainthud.accesscontrol.windows.net/v2/wsfederation" realm="http://www.brainthud.com/" requireHttps="false" />-->
-      <wsFederation passiveRedirectEnabled="true" issuer="https://brainthud.accesscontrol.windows.net/v2/wsfederation" realm="http://localhost:36877/" requireHttps="false" />
-<!--      <wsFederation passiveRedirectEnabled="false" issuer="https://brainthud.accesscontrol.windows.net/v2/wsfederation" realm="http://127.0.0.1:81/" requireHttps="false" />-->
+      <!--      <wsFederation passiveRedirectEnabled="false" issuer="https://brainthud.accesscontrol.windows.net/v2/wsfederation" realm="http://www.brainthud.com/" requireHttps="false" />-->
+      <wsFederation passiveRedirectEnabled="false" issuer="https://brainthud.accesscontrol.windows.net/v2/wsfederation" realm="http://localhost:36877/" requireHttps="false" />
+      <!--      <wsFederation passiveRedirectEnabled="false" issuer="https://brainthud.accesscontrol.windows.net/v2/wsfederation" realm="http://127.0.0.1:81/" requireHttps="false" />-->
     </federationConfiguration>
   </system.identityModel.services>
-
 </configuration>
