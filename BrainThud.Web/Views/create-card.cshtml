@@ -27,7 +27,7 @@
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <textarea class="large" id="wmd-input" placeholder="Question" data-bind="value: tags"></textarea>
+            <textarea class="large" id="wmd-input" placeholder="Question" data-bind="value: question"></textarea>
         </div>
     </div>
     <div class="row-fluid">
@@ -38,11 +38,28 @@
 
     
 
+@*    <div class="row-fluid">*@
+@*        <div class="span12">*@
+@*            <textarea class="large" placeholder="Answer" data-bind="value: answer"></textarea>*@
+@*        </div>*@
+@*    </div>*@
+    
     <div class="row-fluid">
         <div class="span12">
-            <textarea class="large" placeholder="Answer" data-bind="value: answer"></textarea>
+            <div id="wmd-button-bar-second"></div>
         </div>
     </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <textarea class="large" id="wmd-input-second" placeholder="Answer" data-bind="value: answer"></textarea>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="wmd-preview-second" class="wmd-preview"></div>
+        </div>
+    </div>
+
     <div class="row-fluid">
         <div class="span12">
             <button type="button" class="btn right-align" data-bind="click: saveCard">Create & New</button>

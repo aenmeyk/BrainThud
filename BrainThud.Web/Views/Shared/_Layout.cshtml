@@ -66,6 +66,9 @@
                 var converter = Markdown.getSanitizingConverter();
                 var editor = new Markdown.Editor(converter);
                 editor.run();
+                
+                var editor2 = new Markdown.Editor(converter, "-second");
+                editor2.run();
             })();
     </script>
 </body>
