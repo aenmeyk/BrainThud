@@ -1242,9 +1242,9 @@
                     case "l":
                         doClick(buttons.link);
                         break;
-                    case "q":
-                        doClick(buttons.quote);
-                        break;
+//                    case "q":
+//                        doClick(buttons.quote);
+//                        break;
                     case "k":
                         doClick(buttons.code);
                         break;
@@ -1257,9 +1257,9 @@
                     case "u":
                         doClick(buttons.ulist);
                         break;
-                    case "h":
-                        doClick(buttons.heading);
-                        break;
+//                    case "h":
+//                        doClick(buttons.heading);
+//                        break;
                     case "r":
                         doClick(buttons.hr);
                         break;
@@ -1454,13 +1454,13 @@
                 buttonRow.appendChild(button);
                 return button;
             };
-            var makeSpacer = function (num) {
+            var makeSpacer = function(num) {
                 var spacer = document.createElement("li");
                 spacer.className = "wmd-spacer wmd-spacer" + num;
                 spacer.id = "wmd-spacer" + num + postfix;
                 buttonRow.appendChild(spacer);
                 xPosition += 25;
-            }
+            };
 
             buttons.bold = makeButton("wmd-bold-button", getString("bold"), "0px", bindCommand("doBold"));
             buttons.italic = makeButton("wmd-italic-button", getString("italic"), "-20px", bindCommand("doItalic"));
@@ -1468,7 +1468,7 @@
             buttons.link = makeButton("wmd-link-button", getString("link"), "-40px", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, false);
             }));
-            buttons.quote = makeButton("wmd-quote-button", getString("quote"), "-60px", bindCommand("doBlockquote"));
+//            buttons.quote = makeButton("wmd-quote-button", getString("quote"), "-60px", bindCommand("doBlockquote"));
             buttons.code = makeButton("wmd-code-button", getString("code"), "-80px", bindCommand("doCode"));
             buttons.image = makeButton("wmd-image-button", getString("image"), "-100px", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, true);
@@ -1480,7 +1480,7 @@
             buttons.ulist = makeButton("wmd-ulist-button", getString("ulist"), "-140px", bindCommand(function (chunk, postProcessing) {
                 this.doList(chunk, postProcessing, false);
             }));
-            buttons.heading = makeButton("wmd-heading-button", getString("heading"), "-160px", bindCommand("doHeading"));
+//            buttons.heading = makeButton("wmd-heading-button", getString("heading"), "-160px", bindCommand("doHeading"));
             buttons.hr = makeButton("wmd-hr-button", getString("hr"), "-180px", bindCommand("doHorizontalRule"));
             makeSpacer(3);
             buttons.undo = makeButton("wmd-undo-button", getString("undo"), "-200px", null);
