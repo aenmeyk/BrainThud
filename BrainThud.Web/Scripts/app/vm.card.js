@@ -1,6 +1,16 @@
 ﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'markdown'],
     function ($, ko, dataContext, presenter, toastr, markdown) {
         var
+            init = function() {
+                var converter = markdown.getSanitizingConverter();
+
+                questionEditor = new Markdown.Editor(converter, "-question");
+                answerEditor = new Markdown.Editor(converter, "-answer");
+
+                questionEditor.run();
+                answerEditor.run();
+            },
+            
             questionEditor,
             answerEditor,
             question = ko.observable(''),
@@ -25,13 +35,7 @@
             },
 
             activate = function () {
-                var converter = markdown.getSanitizingConverter();
-
-                questionEditor = new Markdown.Editor(converter, "-question");
-                answerEditor = new Markdown.Editor(converter, "-answer");
-
-                questionEditor.run();
-                answerEditor.run();
+                // do nothing
             },
 
             createNewCard = function () {
@@ -40,6 +44,8 @@
                 questionEditor.refreshPreview();
                 answerEditor.refreshPreview();
             };
+
+        init();
 
         return {
             activate: activate,
