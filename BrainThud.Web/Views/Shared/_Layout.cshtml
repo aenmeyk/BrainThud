@@ -58,18 +58,5 @@
         ScriptPaths.REQUIRE_JS,
         BundlePaths.APP_LIBS,
         ScriptPaths.MAIN_JS)
-
-    @RenderSection("scripts", required: false)
-    
-        <script type="text/javascript">
-            (function () {
-                var converter = Markdown.getSanitizingConverter();
-                var editor = new Markdown.Editor(converter);
-                editor.run();
-                
-                var editor2 = new Markdown.Editor(converter, "-second");
-                editor2.run();
-            })();
-    </script>
 </body>
 </html>

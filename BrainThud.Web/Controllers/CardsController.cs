@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Mvc;
 using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
@@ -63,6 +64,7 @@ namespace BrainThud.Web.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
+        [ValidateInput(false)]
         public HttpResponseMessage Post(Card card)
         {
             if (this.ModelState.IsValid)
