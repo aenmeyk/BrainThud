@@ -1,14 +1,16 @@
-﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'markdown'],
-    function ($, ko, dataContext, presenter, toastr, markdown) {
+﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'markdown', 'dom'],
+    function ($, ko, dataContext, presenter, toastr, markdown, dom) {
         var
-            init = function() {
-                var converter = markdown.getSanitizingConverter();
+            init = function () {
+                if (dom.isCreateCardRendered()) {
+                    var converter = markdown.getSanitizingConverter();
 
-                questionEditor = new Markdown.Editor(converter, "-question");
-                answerEditor = new Markdown.Editor(converter, "-answer");
+                    questionEditor = new Markdown.Editor(converter, "-question");
+                    answerEditor = new Markdown.Editor(converter, "-answer");
 
-                questionEditor.run();
-                answerEditor.run();
+                    questionEditor.run();
+                    answerEditor.run();
+                }
             },
             
             questionEditor,
@@ -19,15 +21,14 @@
             tags = ko.observable(''),
 
             saveCard = function () {
+                var cardData = {
+                    quizDate: new Date(),
+                    level: 0
+                };
+                dom.getNewCardValues(cardData);
                 $.when(dataContext.card.saveData({
-                    data: {
-                        question: question(),
-                        answer: answer(),
-                        deckName: deckName(),
-                        tags: tags(),
-                        quizDate: new Date(),
-                        level: 0
-                    }}))
+                    data: cardData
+                }))
                     .then(function() {
                         toastr.success('Success!');
                         createNewCard();
@@ -39,8 +40,7 @@
             },
 
             createNewCard = function () {
-                question('');
-                answer('');
+                dom.resetNewCard();
                 questionEditor.refreshPreview();
                 answerEditor.refreshPreview();
             };
