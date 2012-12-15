@@ -6,7 +6,9 @@ function ($, binder, routeConfig, dataPrimer, gestures, markdown) {
         $.when(dataPrimer.fetch())
             .done(binder.bind)
             .done(function() {
-                gestures.register();
+                if (Modernizr.touch) {
+                    gestures.register();
+                }
                 routeConfig.register();
             });
         },
