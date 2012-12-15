@@ -1459,7 +1459,7 @@
                 spacer.className = "wmd-spacer wmd-spacer" + num;
                 spacer.id = "wmd-spacer" + num + postfix;
                 buttonRow.appendChild(spacer);
-                xPosition += 25;
+                xPosition += 20;
             };
 
             buttons.bold = makeButton("wmd-bold-button", getString("bold"), "0px", bindCommand("doBold"));
@@ -1468,7 +1468,7 @@
             buttons.link = makeButton("wmd-link-button", getString("link"), "-40px", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, false);
             }));
-//            buttons.quote = makeButton("wmd-quote-button", getString("quote"), "-60px", bindCommand("doBlockquote"));
+            buttons.quote = makeButton("wmd-quote-button", getString("quote"), "-60px", bindCommand("doBlockquote"));
             buttons.code = makeButton("wmd-code-button", getString("code"), "-80px", bindCommand("doCode"));
             buttons.image = makeButton("wmd-image-button", getString("image"), "-100px", bindCommand(function (chunk, postProcessing) {
                 return this.doLinkOrImage(chunk, postProcessing, true);
@@ -1481,8 +1481,8 @@
                 this.doList(chunk, postProcessing, false);
             }));
 //            buttons.heading = makeButton("wmd-heading-button", getString("heading"), "-160px", bindCommand("doHeading"));
-            buttons.hr = makeButton("wmd-hr-button", getString("hr"), "-180px", bindCommand("doHorizontalRule"));
-            makeSpacer(3);
+//            buttons.hr = makeButton("wmd-hr-button", getString("hr"), "-180px", bindCommand("doHorizontalRule"));
+//            makeSpacer(3);
             buttons.undo = makeButton("wmd-undo-button", getString("undo"), "-200px", null);
             buttons.undo.execute = function (manager) { if (manager) manager.undo(); };
 
