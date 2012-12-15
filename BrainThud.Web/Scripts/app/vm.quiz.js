@@ -1,9 +1,9 @@
-﻿define('vm.quiz', ['jquery', 'ko', 'data-context', 'utils'],
-    function ($, ko, dataContext, utils) {
+﻿define('vm.quiz', ['jquery', 'ko', 'data-context', 'utils', 'markdown'],
+    function ($, ko, dataContext, utils, markdown) {
         var
             init = function () {
                 datePath = utils.getDatePath();
-                
+                markDownConverter = markdown.getSanitizingConverter();
                 // Certain browsers highlight the div when clicked.  Remove this highlight.
                 var cardElement = $('#card');
                 cardElement.click(function () {
@@ -11,6 +11,7 @@
                 });
             },
             datePath,
+            markDownConverter,
             questionSideVisible = ko.observable(true),
             quiz = ko.observableArray([]),
             nextCard = ko.observable(),
@@ -60,8 +61,14 @@
                 for (var i = 0; i < cards().length; i++) {
                     if (cards()[i].cardId() === parseInt(cardId)) {
                         currentCard.cardId(cards()[i].cardId());
-                        currentCard.question(cards()[i].question());
-                        currentCard.answer(cards()[i].answer());
+                        
+                        var questionText = cards()[i].question();
+                        var sanitizedQuestion = markDownConverter.makeHtml(questionText);
+                        currentCard.question(sanitizedQuestion);
+                        
+                        var answerText = cards()[i].answer();
+                        var sanitizedAnswer = markDownConverter.makeHtml(answerText);
+                        currentCard.answer(sanitizedAnswer);
 
                         var nextCardIndex = i + 1;
                         if (nextCardIndex >= cards().length) {

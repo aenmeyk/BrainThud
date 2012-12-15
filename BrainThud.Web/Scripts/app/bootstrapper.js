@@ -1,6 +1,6 @@
-﻿define('bootstrapper', ['jquery', 'binder', 'route-config', 'data-primer', 'gestures'],
+﻿define('bootstrapper', ['jquery', 'binder', 'route-config', 'data-primer', 'gestures', 'markdown'],
 
-function ($, binder, routeConfig, dataPrimer, gestures) {
+function ($, binder, routeConfig, dataPrimer, gestures, markdown) {
     var run = function () {
         initializeEditors();
         $.when(dataPrimer.fetch())
@@ -12,8 +12,7 @@ function ($, binder, routeConfig, dataPrimer, gestures) {
         },
 
         initializeEditors = function () {
-            var
-                converter = Markdown.getSanitizingConverter(),
+            var converter = markdown.getSanitizingConverter(),
                 questionEditor = new Markdown.Editor(converter, "-question"),
                 answerEditor = new Markdown.Editor(converter, "-answer");
             

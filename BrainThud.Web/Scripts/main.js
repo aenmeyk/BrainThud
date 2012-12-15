@@ -11,6 +11,7 @@
         define('sammy', [], function () { return root.Sammy; });
         define('amplify', [], function () { return root.amplify; });
         define('toastr', [], function () { return root.toastr; });
+        define('markdown', [], function () { return root.Markdown; });
     }
 
     //requirejs.config({
