@@ -336,9 +336,9 @@
     <Content Include="Images\twitter.png" />
     <Content Include="Images\windowsLive.png" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\todays-cards.cshtml" />
+    <Content Include="Views\cards.cshtml" />
     <Content Include="Views\create-card.cshtml" />
-    <Content Include="Views\quiz.cshtml" />
+    <Content Include="Views\todays-quiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -352,9 +352,6 @@
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="old.index.cshtml.old" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,10 @@
+﻿<section id="cards-view" class="view">
+    
+        <ul data-bind="foreach:cards">
+            <li>
+                <span data-bind="text: $data.question"></span>
+            </li>
+        </ul>
+
+@*    <span data-bind="text: ko.toJSON($data)"></span>*@
+</section>

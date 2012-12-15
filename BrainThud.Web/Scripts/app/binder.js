@@ -4,8 +4,8 @@ function ($, ko, vm) {
     var
         bind = function () {
             ko.applyBindings(vm.card, getView('#create-card-view'));
-            ko.applyBindings(vm.cards, getView('#todays-cards-view'));
-            ko.applyBindings(vm.quiz, getView('#quiz-view'));
+            ko.applyBindings(vm.cards, getView('#cards-view'));
+            ko.applyBindings(vm.quiz, getView('#todays-quiz-view'));
         },
 
         getView = function(viewName) {
