@@ -1,8 +1,7 @@
-﻿define('bootstrapper', ['jquery', 'binder', 'route-config', 'data-primer', 'gestures', 'markdown'],
+﻿define('bootstrapper', ['jquery', 'binder', 'route-config', 'data-primer', 'gestures'],
 
-function ($, binder, routeConfig, dataPrimer, gestures, markdown) {
+function ($, binder, routeConfig, dataPrimer, gestures) {
     var run = function () {
-        initializeEditors();
         $.when(dataPrimer.fetch())
             .done(binder.bind)
             .done(function() {
@@ -11,15 +10,6 @@ function ($, binder, routeConfig, dataPrimer, gestures, markdown) {
                 }
                 routeConfig.register();
             });
-        },
-
-        initializeEditors = function () {
-            var converter = markdown.getSanitizingConverter(),
-                questionEditor = new Markdown.Editor(converter, "-question"),
-                answerEditor = new Markdown.Editor(converter, "-answer");
-            
-            questionEditor.run();
-            answerEditor.run();
         };
 
     return {
