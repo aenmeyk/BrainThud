@@ -1,6 +1,10 @@
-﻿define('model.mapper', ['model'],
-    function(model) {
+﻿define('model.mapper', ['model', 'markdown'],
+    function (model, markdown) {
         var
+            init = function () {
+                markDownConverter = markdown.getSanitizingConverter();
+            },
+            markDownConverter,
             quiz = {
                 mapResults: function (dto, results) {
                     var cards = [];
@@ -29,8 +33,8 @@
                 var singleCard = new model.Card();
                 singleCard.partitionKey(dto.partitionKey)
                     .rowKey(dto.rowKey)
-                    .question(dto.question)
-                    .answer(dto.answer)
+                    .question(markDownConverter.makeHtml(dto.question))
+                    .answer(markDownConverter.makeHtml(dto.answer))
                     .deckName(dto.deckName)
                     .tags(dto.tags)
                     .userId(dto.userId)
@@ -38,6 +42,8 @@
                 
                 return singleCard;
             };
+
+        init();
 
         return {
             card: card,
