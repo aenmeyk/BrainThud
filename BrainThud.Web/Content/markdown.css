@@ -50,6 +50,22 @@
     display: inline-block;
 }
 
+.wmd-spacer1
+{
+    visibility: hidden;
+    left: 47px;
+}
+.wmd-spacer2
+{
+    visibility: hidden;
+    left: 150px;
+}
+.wmd-spacer3
+{
+    visibility: hidden;
+    left: 250px;
+}
+
 
 
 
