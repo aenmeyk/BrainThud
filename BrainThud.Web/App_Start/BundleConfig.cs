@@ -31,6 +31,7 @@ namespace BrainThud.Web.App_Start
                 "~/Scripts/knockout-*",
                 "~/Scripts/amplify.*",
                 "~/Scripts/bootstrap.*",
+                "~/Scripts/Markdown.*",
                 "~/Scripts/toastr.js",
                 "~/Scripts/sammy.js"));
 
@@ -42,6 +43,7 @@ namespace BrainThud.Web.App_Start
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-responsive.css",
                 "~/Content/toastr.css",
+                "~/Content/markdown.css",
                 "~/Content/themes/base/jquery.ui.core.css",
                 "~/Content/themes/base/jquery.ui.resizable.css",
                 "~/Content/themes/base/jquery.ui.selectable.css",

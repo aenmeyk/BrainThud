@@ -60,5 +60,13 @@
         ScriptPaths.MAIN_JS)
 
     @RenderSection("scripts", required: false)
+    
+        <script type="text/javascript">
+            (function () {
+                var converter = Markdown.getSanitizingConverter();
+                var editor = new Markdown.Editor(converter);
+                editor.run();
+            })();
+    </script>
 </body>
 </html>

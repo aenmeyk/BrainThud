@@ -1,7 +1,6 @@
 ﻿<section id="create-card-view" class="view">
     @*<span data-bind="text: ko.toJSON($data)"></span>*@
-    
-    <fieldset >
+
     <div class="row-fluid">
         <div class="span12">
             <input type="text" placeholder="Deck Name" class="stretch" data-bind="value: deckName" />
@@ -12,11 +11,33 @@
             <input type="text" placeholder="Tags (separate tags with commas)" class="stretch" data-bind="value: tags" />
         </div>
     </div>
+
+
+
+    @*    <div class="row-fluid">*@
+    @*        <div class="span12">*@
+    @*            <textarea class="large" placeholder="Question" data-bind="value: question"></textarea>*@
+    @*        </div>*@
+    @*    </div>*@
+
     <div class="row-fluid">
         <div class="span12">
-            <textarea class="large" placeholder="Question" data-bind="value: question"></textarea>
+            <div id="wmd-button-bar"></div>
         </div>
     </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <textarea class="large" id="wmd-input" placeholder="Question" data-bind="value: tags"></textarea>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="wmd-preview" class="wmd-preview"></div>
+        </div>
+    </div>
+
+    
+
     <div class="row-fluid">
         <div class="span12">
             <textarea class="large" placeholder="Answer" data-bind="value: answer"></textarea>
@@ -27,5 +48,4 @@
             <button type="button" class="btn right-align" data-bind="click: saveCard">Create & New</button>
         </div>
     </div>
-        </fieldset>
 </section>
