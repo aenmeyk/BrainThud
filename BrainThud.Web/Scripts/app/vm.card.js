@@ -1,59 +1,73 @@
-﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'markdown', 'dom'],
-    function ($, ko, dataContext, presenter, toastr, markdown, dom) {
+﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'dom', 'editor'],
+    function ($, ko, dataContext, presenter, toastr, dom, editor) {
         var
-            init = function () {
-                if (dom.isCreateCardRendered()) {
-                    var converter = markdown.getSanitizingConverter();
-
-                    questionEditor = new Markdown.Editor(converter, "-question");
-                    answerEditor = new Markdown.Editor(converter, "-answer");
-
-                    questionEditor.run();
-                    answerEditor.run();
-                }
+            cards = ko.observableArray(),
+            dataOptions = function () {
+                return {
+                    results: cards
+                };
             },
-            
-            questionEditor,
-            answerEditor,
-            question = ko.observable(''),
-            answer = ko.observable(''),
+            partitionKey = ko.observable(''),
+            rowKey = ko.observable(''),
             deckName = ko.observable(''),
             tags = ko.observable(''),
+            question = ko.observable(''),
+            answer = ko.observable(''),
+            quizDate = ko.observable(''),
+            level = ko.observable(''),
+            entityId = ko.observable(''),
+            userId = ko.observable(''),
 
-            saveCard = function () {
+            updateCard = function () {
                 var cardData = {
-                    quizDate: new Date(),
-                    level: 0
+                    partitionKey: partitionKey(),
+                    rowKey: rowKey(),
+                    quizDate: quizDate(),
+                    level: level(),
+                    entityId: entityId(),
+                    userId: userId()
                 };
-                dom.getNewCardValues(cardData);
-                $.when(dataContext.card.saveData({
+                dom.getCardValues(cardData, 'edit');
+                $.when(dataContext.card.updateData({
                     data: cardData
                 }))
-                    .then(function() {
+                    .then(function () {
                         toastr.success('Success!');
-                        createNewCard();
                     });
             },
 
-            activate = function () {
-                // do nothing
-            },
-
-            createNewCard = function () {
-                dom.resetNewCard();
-                questionEditor.refreshPreview();
-                answerEditor.refreshPreview();
+            activate = function (routeData) {
+                $.when(dataContext.card.getData(dataOptions()))
+                    .then(function () {
+                        for (var i = 0; i < cards().length; i++) {
+                            if (cards()[i].cardId() === parseInt(routeData.cardId)) {
+                                // TODO: Move this to the mapper
+                                var card = cards()[i];
+                                partitionKey(card.partitionKey());
+                                rowKey(card.rowKey());
+                                deckName(card.deckName());
+                                tags(card.tags());
+                                question(card.question());
+                                answer(card.answer());
+                                quizDate(card.quizDate());
+                                level(card.level());
+                                entityId(card.cardId());
+                                userId(card.userId());
+                            }
+                        };
+                    })
+                    .then(function () {
+                        editor.refreshPreview('edit');
+                    });
             };
-
-        init();
 
         return {
             activate: activate,
-            question: question,
-            answer: answer,
             deckName: deckName,
             tags: tags,
-            saveCard: saveCard
+            question: question,
+            answer: answer,
+            updateCard: updateCard
         };
     }
 );

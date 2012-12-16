@@ -50,6 +50,7 @@ namespace BrainThud.Web.Controllers
             return card;
         }
 
+        [ValidateInput(false)]
         public HttpResponseMessage Put(Card card)
         {
             if (this.ModelState.IsValid)

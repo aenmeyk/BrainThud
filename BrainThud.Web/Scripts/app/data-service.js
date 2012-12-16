@@ -1,5 +1,5 @@
 ﻿define('data-service', ['data-service.card', 'data-service.quiz', 'data-service.quiz-result'],
-    function (cards, quiz, quizResult) {
+    function (card, quiz, quizResult) {
         
         var init = function() {
             amplify.subscribe("request.ajax.preprocess", function(defnSettings, settings, ajaxSettings) {
@@ -10,7 +10,7 @@
         init();
 
         return {
-            cards: cards,
+            card: card,
             quiz: quiz,
             quizResult: quizResult
         };

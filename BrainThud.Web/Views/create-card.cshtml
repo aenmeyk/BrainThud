@@ -1,52 +1,14 @@
-﻿<section id="create-card-view" class="view">
-    @*<span data-bind="text: ko.toJSON($data)"></span>*@
-    
-    <div class="row-fluid">
-        <div class="span12">
-            <input id="new-card-deckname" type="text" placeholder="Deck Name" class="stretch" data-bind="value: deckName" />
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-            <input id="new-card-tags" type="text" placeholder="Tags (separate tags with commas)" class="stretch" data-bind="value: tags" />
-        </div>
-    </div>
+﻿@{
+    ViewBag.EditorName = "create";
+}
+
+<section id="create-card-view" class="view">
+
+    @Html.Partial("_card-editor")
 
     <div class="row-fluid">
         <div class="span12">
-            <div id="wmd-button-bar-question"></div>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-            <textarea id="wmd-input-question" class="large" placeholder="Question" data-bind="value: question"></textarea>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-            <div id="wmd-preview-question" class="wmd-preview"></div>
-        </div>
-    </div>
-    
-    <div class="row-fluid">
-        <div class="span12">
-            <div id="wmd-button-bar-answer"></div>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-            <textarea id="wmd-input-answer" class="large" placeholder="Answer" data-bind="value: answer"></textarea>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-            <div id="wmd-preview-answer" class="wmd-preview"></div>
-        </div>
-    </div>
-
-    <div class="row-fluid">
-        <div class="span12">
-            <button type="button" class="btn right-align" data-bind="click: saveCard">Create & New</button>
+            <button type="button" class="btn right-align" data-bind="click: createCard">Create & New</button>
         </div>
     </div>
 </section>

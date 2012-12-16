@@ -1,10 +1,6 @@
-﻿define('model.mapper', ['model', 'markdown'],
-    function (model, markdown) {
+﻿define('model.mapper', ['model', 'editor'],
+    function (model, editor) {
         var
-            init = function () {
-                markDownConverter = markdown.getSanitizingConverter();
-            },
-            markDownConverter,
             quiz = {
                 mapResults: function (dto, results) {
                     var cards = [];
@@ -28,25 +24,41 @@
                     }
                 }
             },
+            
+            cardHtml = {
+                mapResults: function (dto, results) {
+                    for (var i = 0; i < dto.length; i++) {
+                        results.push(getCardFromDtoHtml(dto[i]));
+                    }
+                }
+            },
 
             getCardFromDto = function(dto) {
                 var singleCard = new model.Card();
                 singleCard.partitionKey(dto.partitionKey)
                     .rowKey(dto.rowKey)
-                    .question(markDownConverter.makeHtml(dto.question))
-                    .answer(markDownConverter.makeHtml(dto.answer))
                     .deckName(dto.deckName)
                     .tags(dto.tags)
+                    .question(dto.question)
+                    .answer(dto.answer)
+                    .quizDate(dto.quizDate)
+                    .level(dto.level)
                     .userId(dto.userId)
                     .cardId(dto.entityId);
                 
                 return singleCard;
-            };
+            },
 
-        init();
+            getCardFromDtoHtml = function(dto) {
+                var singleCard = getCardFromDto(dto);
+                singleCard.question(editor.makeHtml(dto.question))
+                          .answer(editor.makeHtml(dto.answer));
+                return singleCard;
+            };
 
         return {
             card: card,
+            cardHtml: cardHtml,
             quiz: quiz
         };
     }

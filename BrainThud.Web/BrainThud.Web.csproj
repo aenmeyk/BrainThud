@@ -246,6 +246,8 @@
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
+    <Content Include="Scripts\app\editor.js" />
+    <Content Include="Scripts\app\vm.create-card.js" />
     <Content Include="Scripts\Markdown.Converter.js" />
     <Content Include="Scripts\Markdown.Editor.js" />
     <Content Include="Scripts\Markdown.Sanitizer.js" />
@@ -312,7 +314,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Card-mini-menu.cshtml" />
+    <Content Include="Views\Shared\_card-editor.cshtml" />
+    <Content Include="Views\card.cshtml" />
+    <Content Include="Views\Shared\_card-mini-menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

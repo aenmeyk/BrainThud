@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.EditorName = "edit";
+}
+
+<section id="card-view" class="view">
+    
+    @Html.Partial("_card-editor")
+    
+    <div class="row-fluid">
+        <div class="span12">
+            <button type="button" class="btn right-align" data-bind="click: updateCard">Save</button>
+        </div>
+    </div>
+
+@*    <span data-bind="text: ko.toJSON($data)"></span>*@
+</section>

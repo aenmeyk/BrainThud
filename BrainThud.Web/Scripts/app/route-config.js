@@ -3,6 +3,16 @@
         var register = function() {
             var routeData = [
                 
+                // editCard routes
+                {
+                    view: config.viewIds.card,
+                    routes: [{
+                        route: config.hashes.cardEdit,
+                        title: "Card",
+                        callback: vm.card.activate
+                        }]
+                },
+                
                 // createCard routes
                 {
                     view: config.viewIds.createCard,
@@ -10,7 +20,7 @@
                         isDefault: true,
                         route: config.hashes.createCard,
                         title: "Create Card",
-                        callback: vm.card.activate
+                        callback: vm.createCard.activate
                         }]
                 },
                 

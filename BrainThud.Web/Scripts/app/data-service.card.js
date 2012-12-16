@@ -12,6 +12,12 @@
                     dataType: 'json',
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8'
+                }),
+                amplify.request.define('updateCard', 'ajax', {
+                    url: '/api/cards',
+                    dataType: 'json',
+                    type: 'PUT',
+                    contentType: 'application/json; charset=utf-8'
                 });
             },
 
@@ -23,9 +29,18 @@
                 });
             },
 
-            save = function (data, callbacks) {
+            create = function (data, callbacks) {
                 return amplify.request({
                     resourceId: 'createCard',
+                    data: data,
+                    success: callbacks.success,
+                    error: callbacks.error
+                });
+            },
+
+            update = function (data, callbacks) {
+                return amplify.request({
+                    resourceId: 'updateCard',
                     data: data,
                     success: callbacks.success,
                     error: callbacks.error
@@ -36,7 +51,8 @@
 
         return {
             get: get,
-            save: save
+            create: create,
+            update: update
         };
     }
 );

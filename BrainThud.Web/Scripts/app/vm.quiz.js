@@ -130,7 +130,7 @@
             };
 
             editCard = function () {
-                window.location.href = "#/create-card";
+                window.location.href = '#/cards/' + currentCard.cardId() + '/edit';
             },
 
         init();

@@ -5,25 +5,25 @@
                 $('#quizMenu').attr('href', '#/quizzes/' + userId + '/' + utils.getDatePath() + '/' + cardId);
             },
 
-            getNewCardValues = function (data) {
-                data.deckName = $('#new-card-deckname').val();
-                data.tags = $('#new-card-tags').val();
-                data.question = $('#wmd-input-question').val();
-                data.answer = $('#wmd-input-answer').val();
+            getCardValues = function (card, editorName) {
+                card.deckName = $('#new-card-deckname-' + editorName).val();
+                card.tags = $('#new-card-tags-' + editorName).val();
+                card.question = $('#wmd-input-question-' + editorName).val();
+                card.answer = $('#wmd-input-answer-' + editorName).val();
             },
 
             resetNewCard = function () {
-                $('#wmd-input-question').val('');
-                $('#wmd-input-answer').val('');
+                $('#wmd-input-question-create').val('');
+                $('#wmd-input-answer-create').val('');
             },
 
             isCreateCardRendered = function () {
-                return $('#wmd-input-question').length != 0;
+                return $('#wmd-input-question-create').length != 0;
             };
 
         return {
             setQuizMenuUri: setQuizMenuUri,
-            getNewCardValues: getNewCardValues,
+            getCardValues: getCardValues,
             resetNewCard: resetNewCard,
             isCreateCardRendered: isCreateCardRendered
         };
