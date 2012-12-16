@@ -129,6 +129,10 @@
                 showNextCard();
             };
 
+            editCard = function () {
+                window.location.href = "#/create-card";
+            },
+
         init();
 
         return {
@@ -142,6 +146,7 @@
             showPreviousCard: showPreviousCard,
             submitCorrect: submitCorrect,
             submitIncorrect: submitIncorrect,
+            editCard: editCard,
             flipCard: flipCard
         };
     }

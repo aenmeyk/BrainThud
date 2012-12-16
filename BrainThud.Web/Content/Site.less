@@ -95,42 +95,42 @@ textarea {
 
 @question-color: #D4D4D4;
 @answer-color: #1a9aee;
+@subtle-text-color: #aaa;
+@subtle-text-size: 13px;
 
 .shadow {
-  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-     -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- Controls -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-textarea
-{
+textarea {
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box; /* Firefox, other Gecko */
     box-sizing: border-box; /* Opera/IE 8+ */
-    &.large
-    {
+    &.large {
         height: 150px;
         width: 100%;
     }
 }
 
 form {
-	margin: 0;
+    margin: 0;
 }
 
 ul {
-	list-style:none;
+    list-style: none;
 }
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- display -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-.visible{
+.visible {
     visibility: visible;
 }
 
@@ -138,14 +138,14 @@ ul {
 /* --- Sizing -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-.corner-radius (@size: 6px){
+.corner-radius (@size: 6px) {
     -webkit-border-radius: @size;
     -moz-border-radius: @size;
     border-radius: @size;
 }
 
 .stretch {
-	width: 100%;
+    width: 100%;
 }
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -160,14 +160,14 @@ ul {
 /* --- custom -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-.card (@padding: 50px, @margin: 10px 0, @min-height: 200px) {
-	border: 1px;
-	border-style: solid;
+.card (@padding: 50px, @min-height: 200px) {
+    border: 1px;
+    border-style: solid;
     padding: @padding;
-	min-height: @min-height !important;
-	margin: @margin;
+    min-height: @min-height !important;
+    margin: 10px 0 0 0;
     .corner-radius;
-	.shadow;
+    .shadow;
 }
 
 .quiz-card {
@@ -175,43 +175,44 @@ ul {
 }
 
 .list-card {
-	.card(10px, 5px 0, 0);
+    .card(10px, 0);
 }
 
 .question {
-	border-color: @question-color;
+    border-color: @question-color;
 }
+
 .answer {
-	border-color: @answer-color;
+    border-color: @answer-color;
 }
 
 .primary-button {
     padding: 25px;
-	margin-top: 10px;
-	width: 100%;
+    margin-top: 10px;
+    width: 100%;
 }
 
 .card-toolbar {
-	margin: 10px 0 0;
+    margin: 10px 0 0;
 }
 
 .brand {
-	padding: 0 0 0 15px !important;
+    padding: 0 0 0 15px !important;
 }
 
 .identity {
-	float: right;
-	display: block;
-	padding: 10px 15px 10px 0;
+    float: right;
+    display: block;
+    padding: 10px 15px 10px 0;
 }
 
 .identity-provider {
-	width: 120px;
-	margin: 20px;
+    width: 120px;
+    margin: 20px;
 }
 
 .navbar {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 /*input[type=text], textarea {
@@ -219,10 +220,34 @@ ul {
 	}*/
 
 input[type=text] {
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	box-sizing: border-box;         /* Opera/IE 8+ */
-	min-height:30px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+    min-height: 30px;
+}
+
+.mini-menu {
+	margin: 0 5px;
+
+    li {
+        display: inline;
+
+        a {
+            font-size: @subtle-text-size;
+            color: @subtle-text-color;
+            cursor: pointer;
+        }
+
+        &:after {
+            content: ' | ';
+            font-size: @subtle-text-size;
+            color: @subtle-text-color;
+        }
+
+        &:last-child:after {
+            content: '';
+        }
+    }
 }
 
 /* ==========================================================================
@@ -241,12 +266,12 @@ input[type=text] {
     *text-indent: -9999px;
 }
 
-.ir:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 100%;
-}
+    .ir:before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 100%;
+    }
 
 /*
  * Hide from both screenreaders and browsers: h5bp.com/u
@@ -272,20 +297,20 @@ input[type=text] {
     width: 1px;
 }
 
-/*
+    /*
  * Extends the .visuallyhidden class to allow the element to be focusable
  * when navigated to via the keyboard: h5bp.com/p
  */
 
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-}
+    .visuallyhidden.focusable:active,
+    .visuallyhidden.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
 
 /*
  * Hide visually and from screenreaders, but maintain layout
@@ -333,65 +358,57 @@ input[type=text] {
    ========================================================================== */
 
 
-@media (min-width: 1200px)
-{
+@media (min-width: 1200px) {
 }
 
-@media (min-width: 980px) and (max-width: 1199px)
-{
+@media (min-width: 980px) and (max-width: 1199px) {
 }
 
-@media (max-width: 979px)
-{
+@media (max-width: 979px) {
     .card {
         padding: 25px;
-		min-height: 150px !important;
+        min-height: 150px !important;
         -webkit-border-radius: 6px;
         -moz-border-radius: 6px;
         border-radius: 6px;
     }
 }
 
-@media (min-width: 768px) and (max-width: 979px)
-{
+@media (min-width: 768px) and (max-width: 979px) {
 }
 
-@media (max-width: 767px)
-{
-	.primary-button {
-		margin-top: 0;
+@media (max-width: 767px) {
+    .primary-button {
+        margin-top: 0;
         padding: 15px;
-	}
+    }
 
-	.card-toolbar {
-		margin: 0;
-	}
+    .card-toolbar {
+        margin: 0;
+    }
 }
 
-@media (min-width: 480px) and (max-width: 767px)
-{
+@media (min-width: 480px) and (max-width: 767px) {
 }
 
-@media (max-width: 480px)
-{
+@media (max-width: 480px) {
     .card {
-		min-height: 100px !important;
+        min-height: 100px !important;
         padding: 10px;
     }
 
-	.identity {
-		visibility: collapse;
+    .identity {
+        visibility: collapse;
         padding: 0;
-	}
+    }
 
-	.card-toolbar {
-		visibility: collapse;
-		height: 0;
-	}
+    .card-toolbar {
+        visibility: collapse;
+        height: 0;
+    }
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (min-resolution: 144dpi) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
     /* Style adjustments for high resolution devices */
 }
 
@@ -413,9 +430,9 @@ input[type=text] {
         text-decoration: underline;
     }
 
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
+        a[href]:after {
+            content: " (" attr(href) ")";
+        }
 
     abbr[title]:after {
         content: " (" attr(title) ")";
