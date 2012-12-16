@@ -312,7 +312,7 @@ input[type=text] {
 @media (max-width: 767px) {
   .primary-button {
     margin-top: 0;
-    padding: 10px;
+    padding: 20px;
   }
   .card-toolbar {
     margin: 0;
