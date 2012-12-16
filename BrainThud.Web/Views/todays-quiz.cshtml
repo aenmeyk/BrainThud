@@ -9,16 +9,19 @@
 
     <div class="row-fluid">
         <div class="span12">
-            <div id="wmd-preview-quiz" class="quiz-card question span12" data-bind="html: currentCardText, css: { question: questionSideVisible(), answer: !questionSideVisible() }, click: flipCard"></div>
+            <div id="wmd-preview-quiz" class="quiz-card question span12" data-bind="html: currentCardText, css: { question: questionSideVisible(), answer: !questionSideVisible() }"></div>
         </div>
     </div>
 
 
     <div class="row-fluid">
-        <div class="span6">
-            <button id="sumbitCorrectButton" type="button" class="primary-button btn btn-success" data-bind="click: submitCorrect">Correct</button>
+        <div class="span4">
+            <button type="button" class="primary-button btn btn-primary" data-bind="click: flipCard">Flip Card</button>
         </div>
-        <div class="span6">
+        <div class="span4">
+            <button type="button" class="primary-button btn btn-success" data-bind="click: submitCorrect">Correct</button>
+        </div>
+        <div class="span4">
             <button type="button" class="primary-button btn btn-danger" data-bind="click: submitIncorrect">Incorrect</button>
         </div>
     </div>

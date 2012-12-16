@@ -128,7 +128,6 @@ ul {
 .quiz-card {
   border: 1px;
   border-style: solid;
-  cursor: pointer;
   padding: 50px;
   min-height: 200px !important;
   margin: 10px 0;
@@ -142,7 +141,6 @@ ul {
 .list-card {
   border: 1px;
   border-style: solid;
-  cursor: pointer;
   padding: 10px;
   min-height: 0 !important;
   margin: 5px 0;
@@ -312,7 +310,7 @@ input[type=text] {
 @media (max-width: 767px) {
   .primary-button {
     margin-top: 0;
-    padding: 20px;
+    padding: 15px;
   }
   .card-toolbar {
     margin: 0;
