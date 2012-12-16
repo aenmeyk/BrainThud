@@ -6,12 +6,16 @@
                     results: cards
                 };
             },
+            editCard = function(card) {
+                window.alert(card.cardId());
+            },
             activate = function(routeData) {
                 dataContext.cards.getData(dataOptions());
             };
 
         return {
             cards: cards,
+            editCard: editCard,
             activate: activate
         };
     }

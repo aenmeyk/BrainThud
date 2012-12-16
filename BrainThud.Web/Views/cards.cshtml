@@ -2,16 +2,12 @@
     
         <ul data-bind="foreach:cards">
             <li>
-                @*                <span data-bind="text: $data.question"></span>*@
+@*                                <span data-bind="text: $data.cardId"></span>*@
                 
                 <div class="row-fluid">
                     <div class="span12">
                         <div id="wmd-preview-quiz" class="list-card question span12" data-bind="html: question"></div>
-                        <ul class="mini-menu">
-            @*                <li><a>share</a></li>*@
-                            <li><a data-bind="click: editCard">edit</a></li>
-            @*                <li><a>delete</a></li>*@
-                        </ul>
+                        @Html.Partial("_Card-mini-menu")
                     </div>
                 </div>
 
