@@ -122,6 +122,9 @@ ul {
 .right-align {
   float: right;
 }
+.center-align {
+  text-align: center;
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- custom -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -180,9 +183,38 @@ ul {
 .navbar {
   margin-bottom: 10px;
 }
-/*input[type=text], textarea {
-	padding: 3px ;
-	}*/
+.content-block {
+  border-color: #dddddd;
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  text-align: center;
+  padding: 10px 10px;
+}
+.colored-content-block {
+  background-color: whiteSmoke;
+  border-color: #dddddd;
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  text-align: center;
+  padding: 10px 10px;
+}
+.login-instructions {
+  margin: 30px 0;
+  padding: 50px 30px;
+}
+.identity-provider-block {
+  margin: 20px 0;
+  padding: 30px 10px;
+}
+.login-logo {
+  margin: 10px 0;
+}
 input[type=text] {
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
@@ -333,6 +365,17 @@ input[type=text] {
   }
   .card-toolbar {
     margin: 0;
+  }
+  .login-instructions {
+    margin: 10px 0;
+    padding: 10px 10px;
+  }
+  .identity-provider-block {
+    margin: 10px 0;
+    padding: 5px;
+  }
+  .identity-provider {
+    margin: 10px;
   }
 }
 @media (min-width: 480px) and (max-width: 767px) {

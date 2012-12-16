@@ -1,8 +1,19 @@
+@{
+    ViewBag.HideNavBar = true;    
+}
+
 <div class="row-fluid">
-    <div class="span12">Click a logo below to log in using a trusted identity provider</div>
+    <div class="span4 hidden-phone login-logo">
+        <img src="~/Images/logo_medium.jpg" />
+    </div>
+    <div class="span8 colored-content-block login-instructions">
+        Click below to log in using a trusted identity provider
+    </div>
+    <div class="span8 center-align content-block">
+        <div id="IPDiv"/>
+    </div>
 </div>
 
-<div id="IPDiv"/>
 
 @section Scripts {
     @Scripts.Render("~/scripts/account.js")

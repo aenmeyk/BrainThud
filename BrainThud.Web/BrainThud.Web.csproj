@@ -242,6 +242,7 @@
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Content\toastr.css" />
     <Content Include="Images\logo_fat_40.png" />
+    <Content Include="Images\logo_medium.jpg" />
     <Content Include="Scripts\account.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
