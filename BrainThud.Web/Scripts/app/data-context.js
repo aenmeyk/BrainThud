@@ -67,10 +67,11 @@
             };
         };
 
-        var cards = new EntitySet({
-            get: dataService.card.get,
-            mapper: modelMapper.cardHtml
-        }),
+        var
+            cards = new EntitySet({
+                get: dataService.card.get,
+                mapper: modelMapper.cardHtml
+            }),
             card = new EntitySet({
                 get: dataService.card.get,
                 create: dataService.card.create,

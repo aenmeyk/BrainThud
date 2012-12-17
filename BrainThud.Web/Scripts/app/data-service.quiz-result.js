@@ -11,7 +11,7 @@
                 });
             },
 
-            save = function (data, config) {
+            create = function (data, config) {
                 return amplify.request({
                     resourceId: 'createQuizResult',
                     data: {
@@ -28,7 +28,7 @@
         init();
 
         return {
-            save: save
+            create: create
         };
     }
 );
