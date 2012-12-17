@@ -120,12 +120,12 @@
             },
 
             submitCorrect = function () {
-                dataContext.quizResult.saveData(getQuizResultConfig(true));
+                dataContext.quizResult.createData(getQuizResultConfig(true));
                 showNextCard();
             },
 
             submitIncorrect = function () {
-                dataContext.quizResult.saveData(getQuizResultConfig(false));
+                dataContext.quizResult.createData(getQuizResultConfig(false));
                 showNextCard();
             };
 
