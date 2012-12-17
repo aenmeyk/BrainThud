@@ -5,22 +5,18 @@
 // Setup mocks
 var
     $ = function (viewName) {
-        var get = function (value) {
-            return viewName;
-        };
         return {
-            get: get
+            get: function(value) {
+                return viewName;
+            }
         };
     },
 
-    ko = function () {
-        var applyBindings = function (viewModel, rootNode) {
+    ko = {
+        applyBindings: function (viewModel, rootNode) {
             appliedBindings[viewModel] = rootNode;
-        };
-        return {
-            applyBindings: applyBindings,
-        };
-    }(),
+        }
+    },
 
     appliedBindings = [],
     vm = {
