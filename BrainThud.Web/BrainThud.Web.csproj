@@ -268,7 +268,6 @@
     <Content Include="Scripts\app\config.js" />
     <Content Include="Scripts\app\dom.js" />
     <Content Include="Scripts\app\data-service.quiz-result.js" />
-    <Content Include="Scripts\app\gestures.js" />
     <Content Include="Scripts\app\vm.quiz.js" />
     <Content Include="Scripts\app\data-service.quiz.js" />
     <Content Include="Scripts\app\model.js" />
@@ -287,8 +286,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\GPL-LICENSE.txt" />
-    <Content Include="Scripts\jquery.touchSwipe.js" />
-    <Content Include="Scripts\jquery.touchSwipe.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\MIT-LICENSE.txt" />

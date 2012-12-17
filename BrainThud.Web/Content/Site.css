@@ -168,6 +168,12 @@ ul {
 .card-toolbar {
   margin: 10px 0 0;
 }
+.card-toolbar-button {
+  padding: 10px 20px;
+}
+.quiz-control-box {
+  margin: 15px 0 0 0;
+}
 .brand {
   padding: 0 0 0 15px !important;
 }
@@ -389,10 +395,6 @@ input[type=text] {
   .identity {
     visibility: collapse;
     padding: 0;
-  }
-  .card-toolbar {
-    visibility: collapse;
-    height: 0;
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {

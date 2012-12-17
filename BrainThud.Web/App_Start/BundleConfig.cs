@@ -26,7 +26,6 @@ namespace BrainThud.Web.App_Start
             bundles.Add(new ScriptBundle(BundlePaths.EXTERNAL_LIBS).Include(
                 "~/Scripts/jquery.unobtrusive*",
                 "~/Scripts/jquery.validate*",
-                "~/Scripts/jquery.touchSwipe*",
                 "~/Scripts/plugins.js",
                 "~/Scripts/knockout-*",
                 "~/Scripts/amplify.*",
