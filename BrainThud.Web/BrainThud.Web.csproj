@@ -230,6 +230,7 @@
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\wmd-buttons.png" />
     <Content Include="Content\markdown.css" />
+    <Content Include="Content\qunit.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
     </Content>
@@ -252,6 +253,9 @@
     <Content Include="Scripts\Markdown.Converter.js" />
     <Content Include="Scripts\Markdown.Editor.js" />
     <Content Include="Scripts\Markdown.Sanitizer.js" />
+    <Content Include="Scripts\qunit.js" />
+    <Content Include="Test\Scripts\binder-test.js" />
+    <Content Include="Test\Scripts\qunit-test.js" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Web.config" />
     <Compile Include="WebRole.cs" />
@@ -318,6 +322,7 @@
     <Content Include="Views\Shared\_card-editor.cshtml" />
     <Content Include="Views\card.cshtml" />
     <Content Include="Views\Shared\_card-mini-menu.cshtml" />
+    <Content Include="Test\Scripts\test-runner.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

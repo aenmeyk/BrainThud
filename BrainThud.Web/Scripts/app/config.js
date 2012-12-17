@@ -4,14 +4,14 @@
             hashes = {
                 cardEdit: '#/cards/:cardId/edit',
                 createCard: '#/create-card',
-                todaysCards: '#/cards',
+                cards: '#/cards',
                 quiz: '#/quizzes/:userId/:year/:month/:day/:cardId'
             },
 
             viewIds = {
                 card: '#card-view',
                 createCard: '#create-card-view',
-                todaysCards: '#cards-view',
+                cards: '#cards-view',
                 quiz: '#todays-quiz-view'
             };
 

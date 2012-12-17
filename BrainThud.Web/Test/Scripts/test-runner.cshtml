@@ -1,0 +1,30 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Tests</title>
+    <link href="~/Content/qunit.css" rel="stylesheet" />
+</head>
+<body>
+    <h1 id="qunit-header">Tests</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture"></div>
+    
+    <script>
+        var itemToTest;
+        var define = function (name, deps, callback) {
+            itemToTest = callback;
+        };
+    </script>
+
+    <script src="~/Scripts/qunit.js"></script>
+    <script src="~/Scripts/app/binder.js"></script>
+    <script src="~/Test/Scripts/binder-test.js"></script>
+@*    <script src="~/Test/Scripts/qunit-test.js"></script>*@
+</body>
+
+</html>

@@ -1,12 +1,12 @@
-﻿define('binder', ['jquery', 'ko', 'vm'],
+﻿define('binder', ['jquery', 'ko', 'vm', 'config'],
 
-function ($, ko, vm) {
+function ($, ko, vm, config) {
     var
         bind = function () {
-            ko.applyBindings(vm.createCard, getView('#create-card-view'));
-            ko.applyBindings(vm.card, getView('#card-view'));
-            ko.applyBindings(vm.cards, getView('#cards-view'));
-            ko.applyBindings(vm.quiz, getView('#todays-quiz-view'));
+            ko.applyBindings(vm.card, getView(config.viewIds.card));
+            ko.applyBindings(vm.createCard, getView(config.viewIds.createCard));
+            ko.applyBindings(vm.cards, getView(config.viewIds.cards));
+            ko.applyBindings(vm.quiz, getView(config.viewIds.quiz));
         },
 
         getView = function(viewName) {

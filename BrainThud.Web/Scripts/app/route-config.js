@@ -24,11 +24,11 @@
                         }]
                 },
                 
-                // todaysCards routes
+                // cards routes
                 {
-                    view: config.viewIds.todaysCards,
+                    view: config.viewIds.cards,
                     routes: [{
-                        route: config.hashes.todaysCards,
+                        route: config.hashes.cards,
                         title: "Today's Cards",
                         callback: vm.cards.activate
                         }]
