@@ -256,6 +256,7 @@
     <Content Include="Scripts\qunit.js" />
     <Content Include="Test\Scripts\binder-test.js" />
     <Content Include="Test\Scripts\bootstrapper-test.js" />
+    <Content Include="Test\Scripts\data-context-test.js" />
     <Content Include="Test\Scripts\test-setup.js" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Web.config" />
