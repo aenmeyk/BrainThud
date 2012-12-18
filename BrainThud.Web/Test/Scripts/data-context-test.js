@@ -3,24 +3,25 @@
 /// <reference path="../../Scripts/app/data-context.js" />
 
 // Setup mocks
-var entitySetMock = {
-    get: function (callbacks) {
-        callbacks.success(dto);
-    },
-    create: function (data, callbacks) {
-        callbacks.success(dto);
-    },
-    update: function (data, callbacks) {
-        callbacks.success(dto);
-    },
-    mapper: {
-        mapResults: function (dto, cachedResults) {
-            
-        }
-    },
-};
 var
     cashedResultsAreMappedToResults = false,
+    entitySetMock = {
+        get: function (callbacks) {
+            callbacks.success(dto);
+        },
+        create: function (data, callbacks) {
+            callbacks.success(dto);
+        },
+        update: function (data, callbacks) {
+            callbacks.success(dto);
+        },
+        mapper: {
+            mapResults: function (dto, cachedResults) {
+            
+            }
+        },
+    },
+
     $ = {
         Deferred: function () {
             return {
