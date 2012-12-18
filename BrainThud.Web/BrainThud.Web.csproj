@@ -170,6 +170,7 @@
     <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JasmineController.cs" />
     <Compile Include="Controllers\QuizResultsController.cs" />
     <Compile Include="Controllers\QuizzesController.cs" />
     <Compile Include="Data\AzureQueues\CloudQueueMessageWrapper.cs" />
@@ -229,6 +230,8 @@
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\wmd-buttons.png" />
+    <Content Include="Content\jasmine\jasmine.css" />
+    <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="Content\markdown.css" />
     <Content Include="Content\qunit.css" />
     <Content Include="Content\Site.css">
@@ -250,12 +253,20 @@
     <Content Include="Scripts\app\bootstrapper.js" />
     <Content Include="Scripts\app\editor.js" />
     <Content Include="Scripts\app\vm.create-card.js" />
+    <Content Include="Scripts\jasmine-samples\Player.js" />
+    <Content Include="Scripts\jasmine-samples\PlayerSpec.js" />
+    <Content Include="Scripts\jasmine-samples\Song.js" />
+    <Content Include="Scripts\jasmine-samples\SpecHelper.js" />
+    <Content Include="Scripts\jasmine\jasmine-html.js" />
+    <Content Include="Scripts\jasmine\jasmine.js" />
     <Content Include="Scripts\Markdown.Converter.js" />
     <Content Include="Scripts\Markdown.Editor.js" />
     <Content Include="Scripts\Markdown.Sanitizer.js" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Test\Scripts\binder-test.js" />
     <Content Include="Test\Scripts\bootstrapper-test.js" />
+    <Content Include="Test\Scripts\binder-jtest.js" />
+    <Content Include="Test\Scripts\jtest-setup.js" />
     <Content Include="Test\Scripts\data-context-test.js" />
     <Content Include="Test\Scripts\test-setup.js" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -298,6 +309,7 @@
     <Content Include="Scripts\sammy.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\app\model.card.js" />
+    <Content Include="Scripts\jasmine\MIT.LICENSE" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -322,6 +334,8 @@
     <Content Include="Views\card.cshtml" />
     <Content Include="Views\Shared\_card-mini-menu.cshtml" />
     <Content Include="Test\Scripts\test-runner.cshtml" />
+    <Content Include="Views\Jasmine\SpecRunner.cshtml" />
+    <Content Include="Test\Scripts\jtest-runner.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
