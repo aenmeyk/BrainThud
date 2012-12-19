@@ -263,12 +263,11 @@
     <Content Include="Scripts\Markdown.Editor.js" />
     <Content Include="Scripts\Markdown.Sanitizer.js" />
     <Content Include="Scripts\qunit.js" />
-    <Content Include="Test\Scripts\binder-test.js" />
     <Content Include="Test\Scripts\bootstrapper-test.js" />
-    <Content Include="Test\Scripts\binder-jtest.js" />
-    <Content Include="Test\Scripts\jtest-setup.js" />
+    <Content Include="Test\Scripts\binder-test.js" />
+    <Content Include="Test\Scripts\jasmine-test-setup.js" />
     <Content Include="Test\Scripts\data-context-test.js" />
-    <Content Include="Test\Scripts\test-setup.js" />
+    <Content Include="Test\Scripts\qunit-test-setup.js" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Web.config" />
     <Compile Include="WebRole.cs" />
@@ -333,9 +332,9 @@
     <Content Include="Views\Shared\_card-editor.cshtml" />
     <Content Include="Views\card.cshtml" />
     <Content Include="Views\Shared\_card-mini-menu.cshtml" />
-    <Content Include="Test\Scripts\test-runner.cshtml" />
+    <Content Include="Test\Scripts\qunit-test-runner.cshtml" />
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
-    <Content Include="Test\Scripts\jtest-runner.cshtml" />
+    <Content Include="Test\Scripts\jasmine-test-runner.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
