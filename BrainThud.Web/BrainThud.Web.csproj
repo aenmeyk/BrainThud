@@ -252,6 +252,7 @@
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
     <Content Include="Scripts\app\editor.js" />
+    <Content Include="Scripts\app\data-context-helper.js" />
     <Content Include="Scripts\app\vm.create-card.js" />
     <Content Include="Scripts\jasmine-samples\Player.js" />
     <Content Include="Scripts\jasmine-samples\PlayerSpec.js" />
@@ -264,11 +265,12 @@
     <Content Include="Scripts\Markdown.Sanitizer.js" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Test\Scripts\bootstrapper-test.js" />
-    <Content Include="Test\Scripts\qunit-bootstrapper-test.js" />
     <Content Include="Test\Scripts\binder-test.js" />
+    <Content Include="Test\Scripts\data-context-helper-test.js" />
     <Content Include="Test\Scripts\jasmine-test-setup.js" />
     <Content Include="Test\Scripts\data-context-test.js" />
     <Content Include="Test\Scripts\qunit-test-setup.js" />
+    <Content Include="Test\Scripts\sinon.js" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Web.config" />
     <Compile Include="WebRole.cs" />

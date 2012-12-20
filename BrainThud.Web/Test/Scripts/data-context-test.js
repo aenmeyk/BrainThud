@@ -1,84 +1,84 @@
-﻿/// <reference path="../../Scripts/qunit.js" />
-/// <reference path="test-setup.js" />
+﻿/// <reference path="../../Scripts/jasmine/jasmine.js" />
+/// <reference path="jasmine-test-setup.js" />
 /// <reference path="../../Scripts/app/data-context.js" />
 
-// Setup mocks
-var
-    cashedResultsAreMappedToResults = false,
-    entitySetMock = {
-        get: function (callbacks) {
-            callbacks.success(dto);
-        },
-        create: function (data, callbacks) {
-            callbacks.success(dto);
-        },
-        update: function (data, callbacks) {
-            callbacks.success(dto);
-        },
-        mapper: {
-            mapResults: function (dto, cachedResults) {
-            
-            }
-        },
-    },
+describe("Given data-context module", function () {
+    var dataContext, dataService, modelMapper, dataContextHelper;
 
-    $ = {
-        Deferred: function () {
-            return {
-                promise: function () {
+    beforeEach(function () {
+        dataContext = modules['data-context'];
+        dataContextHelper = jasmine.createSpyObj('dataContextHelper', ['EntitySet']);
+        dataContextHelper.EntitySet.andCallFake(function (config) {
+            return config;
+        });
+        modelMapper = jasmine.createSpyObj('modelMapper', ['card', 'cardHtml', 'quiz']);
 
-                },
-                resolve: function (results) {
-
-                }
-            };
-        }
-    },
-
-    dataService = {
-        card: entitySetMock,
-        quiz: entitySetMock,
-        quizResult: entitySetMock
-    },
-
-    utils = {
-        hasProperties: function (results) {
-
-        }
-    },
-
-    model = {
-    },
-
-    modelMapper = {
-        cardHtml: {
-            mapResults: function (dto, cachedResults) {
-                cashedResultsAreMappedToResults = true;
-            }
-        }
-    },
-
-    options = {
-        results: function (cachedResults) {
-
-        }
-    },
-
-    dto = {
-
-    };
-
-// Tests
-(function () {
-    var result;
-
-    module('Given a data-context.cards entitSet, when getData is called', {
-        setup: function () {
-            result = itemToTest($, dataService, utils, model, modelMapper).cards.getData();
-        }
+        dataService = {
+            card: jasmine.createSpyObj('dataService.card', ['get', 'create', 'update']),
+            quiz: jasmine.createSpyObj('dataService.quiz', ['get']),
+            quizResult: jasmine.createSpyObj('dataService.quizResult', ['create'])
+        };
     });
 
-    test('Then the cached results are mapped to the actual results', function () {
-        ok(cashedResultsAreMappedToResults);
+    describe("when cards is called", function () {
+        var cards;
+
+        beforeEach(function () {
+            cards = dataContext(dataService, modelMapper, dataContextHelper).cards;
+        });
+
+        it('then the dataContextHelper.EntitySet should be instantiated with the correct configuration', function () {
+            expect(cards).toEqual({
+                get: dataService.card.get,
+                mapper: modelMapper.cardHtml
+            });
+        });
     });
-})();
+
+    describe("when card is called", function () {
+        var card;
+
+        beforeEach(function () {
+            card = dataContext(dataService, modelMapper, dataContextHelper).card;
+        });
+
+        it('then the dataContextHelper.EntitySet should be instantiated with the correct configuration', function () {
+            expect(card).toEqual({
+                get: dataService.card.get,
+                create: dataService.card.create,
+                update: dataService.card.update,
+                mapper: modelMapper.card
+            });
+        });
+    });
+
+    describe("when quiz is called", function () {
+        var quiz;
+
+        beforeEach(function () {
+            quiz = dataContext(dataService, modelMapper, dataContextHelper).quiz;
+        });
+
+        it('then the dataContextHelper.EntitySet should be instantiated with the correct configuration', function () {
+            expect(quiz).toEqual({
+                get: dataService.quiz.get,
+                mapper: modelMapper.quiz
+            });
+        });
+    });
+
+    describe("when quizResult is called", function () {
+        var quizResult;
+
+        beforeEach(function () {
+            quizResult = dataContext(dataService, modelMapper, dataContextHelper).quizResult;
+        });
+
+        it('then the dataContextHelper.EntitySet should be instantiated with the correct configuration', function () {
+            expect(quizResult).toEqual({
+                create: dataService.quizResult.create
+            });
+        });
+    });
+
+});

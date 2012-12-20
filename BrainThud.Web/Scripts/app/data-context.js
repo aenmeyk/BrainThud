@@ -1,85 +1,21 @@
-﻿define('data-context', ['jquery', 'data-service', 'utils', 'model', 'model.mapper'],
-    function ($, dataService, utils, model, modelMapper) {
+﻿define('data-context', ['data-service', 'model.mapper', 'data-context-helper'],
+    function (dataService, modelMapper, dataContextHelper) {
         var
-            EntitySet = function (config) {
-                var cachedResults = [],
-                    getData = function (options) {
-                        var def = new $.Deferred();
-
-                        var results = options && options.results;
-                        if (!cachedResults || !utils.hasProperties(cachedResults)) {
-                            config.get({
-                                success: function (dto) {
-                                    cachedResults = [];
-
-                                    config.mapper.mapResults(dto, cachedResults);
-
-                                    if (results) {
-                                        results(cachedResults);
-                                    }
-
-                                    def.resolve(results);
-                                },
-                                error: function () {
-                                    if (def.reject) def.reject();
-                                }
-                            });
-                        } else {
-                            results(cachedResults);
-                            def.resolve(results);
-                        }
-
-                        return def.promise();
-                    },
-
-                    createData = function (options) {
-                        return $.Deferred(function (def) {
-                            config.create(options.data, {
-                                success: function (result) {
-                                    def.resolve();
-                                },
-                                error: function (response) {
-                                    if (def.reject) def.reject();
-                                }
-                            });
-                        });
-                    },
-
-                    updateData = function (options) {
-                        return $.Deferred(function (def) {
-                            config.update(options.data, {
-                                success: function (result) {
-                                    def.resolve();
-                                },
-                                error: function (response) {
-                                    if (def.reject) def.reject();
-                                }
-                            });
-                        });
-                    };
-
-                return {
-                    getData: getData,
-                    createData: createData,
-                    updateData: updateData
-                };
-            },
-
-            cards = new EntitySet({
+            cards = new dataContextHelper.EntitySet({
                 get: dataService.card.get,
                 mapper: modelMapper.cardHtml
             }),
-            card = new EntitySet({
+            card = new dataContextHelper.EntitySet({
                 get: dataService.card.get,
                 create: dataService.card.create,
                 update: dataService.card.update,
                 mapper: modelMapper.card
             }),
-            quiz = new EntitySet({
+            quiz = new dataContextHelper.EntitySet({
                 get: dataService.quiz.get,
                 mapper: modelMapper.quiz
             }),
-            quizResult = new EntitySet({
+            quizResult = new dataContextHelper.EntitySet({
                 create: dataService.quizResult.create
             });
 
