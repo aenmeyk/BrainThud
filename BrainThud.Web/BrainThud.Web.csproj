@@ -264,6 +264,7 @@
     <Content Include="Scripts\Markdown.Sanitizer.js" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Test\Scripts\bootstrapper-test.js" />
+    <Content Include="Test\Scripts\qunit-bootstrapper-test.js" />
     <Content Include="Test\Scripts\binder-test.js" />
     <Content Include="Test\Scripts\jasmine-test-setup.js" />
     <Content Include="Test\Scripts\data-context-test.js" />
