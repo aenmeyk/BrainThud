@@ -254,10 +254,6 @@
     <Content Include="Scripts\app\editor.js" />
     <Content Include="Scripts\app\data-context-helper.js" />
     <Content Include="Scripts\app\vm.create-card.js" />
-    <Content Include="Scripts\jasmine-samples\Player.js" />
-    <Content Include="Scripts\jasmine-samples\PlayerSpec.js" />
-    <Content Include="Scripts\jasmine-samples\Song.js" />
-    <Content Include="Scripts\jasmine-samples\SpecHelper.js" />
     <Content Include="Scripts\jasmine\jasmine-html.js" />
     <Content Include="Scripts\jasmine\jasmine.js" />
     <Content Include="Scripts\Markdown.Converter.js" />
