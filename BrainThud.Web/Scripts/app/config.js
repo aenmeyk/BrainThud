@@ -12,7 +12,8 @@
                 card: '#card-view',
                 createCard: '#create-card-view',
                 cards: '#cards-view',
-                quiz: '#todays-quiz-view'
+                quiz: '#todays-quiz-view',
+                nav: '#nav-view'
             };
 
         toastr.options.timeOut = 1500;

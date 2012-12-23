@@ -1,6 +1,6 @@
-﻿define('data-primer', ['jquery', 'ko', 'data-context', 'utils', 'dom'],
+﻿define('data-primer', ['jquery', 'ko', 'data-context', 'utils'],
 
-function ($, ko, dataContext, utils, dom) {
+function ($, ko, dataContext, utils) {
     var
         quiz = ko.observableArray([]),
         dataOptions = function () {
@@ -19,7 +19,10 @@ function ($, ko, dataContext, utils, dom) {
                         def.resolve();
                         var firstCard = quiz()[0].cards[0];
                         if (firstCard) {
-                            dom.setQuizMenuUri(firstCard.userId(), firstCard.cardId());
+                            //                            dom.setQuizMenuUri(firstCard.userId(), firstCard.cardId());
+                            var userId = firstCard.userId();
+                            var cardId = firstCard.cardId();
+                            global.quizMenuUri = '#/quizzes/' + userId + '/' + utils.getDatePath() + '/' + cardId;
                         }
                     });
             }).promise();

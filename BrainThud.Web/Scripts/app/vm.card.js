@@ -1,11 +1,9 @@
-﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'dom', 'editor'],
-    function ($, ko, dataContext, presenter, toastr, dom, editor) {
+﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'dom', 'editor', 'router'],
+    function ($, ko, dataContext, presenter, toastr, dom, editor, router) {
         var
             cards = ko.observableArray(),
-            dataOptions = function () {
-                return {
-                    results: cards
-                };
+            dataOptions = {
+                results: cards
             },
             partitionKey = ko.observable(''),
             rowKey = ko.observable(''),
@@ -31,13 +29,14 @@
                 $.when(dataContext.card.updateData({
                     data: cardData
                 }))
-                    .then(function () {
-                        toastr.success('Success!');
-                    });
+                .then(function () {
+                    toastr.success('Success!');
+                    router.navigateTo(global.previousUrl);
+                });
             },
 
             activate = function (routeData) {
-                $.when(dataContext.card.getData(dataOptions()))
+                $.when(dataContext.card.getData(dataOptions))
                     .then(function () {
                         for (var i = 0; i < cards().length; i++) {
                             if (cards()[i].cardId() === parseInt(routeData.cardId)) {

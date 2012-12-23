@@ -1,10 +1,6 @@
 ﻿define('dom', ['jquery', 'utils'],
     function ($, utils) {
         var
-            setQuizMenuUri = function (userId, cardId) {
-                $('#quizMenu').attr('href', '#/quizzes/' + userId + '/' + utils.getDatePath() + '/' + cardId);
-            },
-
             getCardValues = function (card, editorName) {
                 card.deckName = $('#new-card-deckname-' + editorName).val();
                 card.tags = $('#new-card-tags-' + editorName).val();
@@ -22,7 +18,6 @@
             };
 
         return {
-            setQuizMenuUri: setQuizMenuUri,
             getCardValues: getCardValues,
             resetNewCard: resetNewCard,
             isCreateCardRendered: isCreateCardRendered

@@ -1,5 +1,5 @@
-﻿define('vm.cards', ['jquery', 'ko', 'data-context'],
-    function ($, ko, dataContext) {
+﻿define('vm.cards', ['jquery', 'ko', 'data-context', 'router'],
+    function ($, ko, dataContext, router) {
         var
             cards = ko.observableArray(),
             dataOptions = function() {
@@ -7,8 +7,8 @@
                     results: cards
                 };
             },
-            editCard = function(card) {
-                window.location.href = '#/cards/' + card.cardId() + '/edit';
+            editCard = function (card) {
+                router.navigateTo('#/cards/' + card.cardId() + '/edit');
             },
             activate = function(routeData) {
                 dataContext.cards.getData(dataOptions());

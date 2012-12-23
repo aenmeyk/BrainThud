@@ -1,5 +1,5 @@
-﻿define('vm.quiz', ['jquery', 'ko', 'data-context', 'utils', 'markdown'],
-    function ($, ko, dataContext, utils, markdown) {
+﻿define('vm.quiz', ['jquery', 'ko', 'data-context', 'utils', 'markdown', 'router'],
+    function ($, ko, dataContext, utils, markdown, router) {
         var
             init = function () {
                 datePath = utils.getDatePath();
@@ -112,11 +112,11 @@
             },
 
             showNextCard = function () {
-                window.location.href = nextCard();
+                router.navigateTo(nextCard());
             },
 
             showPreviousCard = function () {
-                window.location.href = previousCard();
+                router.navigateTo(previousCard());
             },
 
             submitCorrect = function () {
@@ -130,7 +130,7 @@
             };
 
             editCard = function () {
-                window.location.href = '#/cards/' + currentCard.cardId() + '/edit';
+                router.navigateTo('#/cards/' + currentCard.cardId() + '/edit');
             },
 
         init();

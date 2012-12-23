@@ -251,6 +251,7 @@
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
+    <Content Include="Scripts\app\vm.nav.js" />
     <Content Include="Scripts\app\editor.js" />
     <Content Include="Scripts\app\data-context-helper.js" />
     <Content Include="Scripts\app\vm.create-card.js" />
@@ -260,7 +261,6 @@
     <Content Include="Scripts\Markdown.Editor.js" />
     <Content Include="Scripts\Markdown.Sanitizer.js" />
     <Content Include="Scripts\qunit.js" />
-    <Content Include="Scripts\regular_form_submit_fix.js" />
     <Content Include="Test\Scripts\bootstrapper-test.js" />
     <Content Include="Test\Scripts\binder-test.js" />
     <Content Include="Test\Scripts\data-context-helper-test.js" />

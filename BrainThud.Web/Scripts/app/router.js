@@ -1,9 +1,11 @@
-﻿define('router', ['jquery', 'sammy', 'presenter'],
-    function ($, Sammy, presenter) {
+﻿define('router', ['jquery', 'sammy', 'presenter', 'config'],
+    function ($, Sammy, presenter, config) {
         var startupUrl = '',
             defaultRoute = '',
 
             navigateTo = function (url) {
+                global.previousUrl = global.currentUrl;
+                global.currentUrl = url;
                 sammy.setLocation(url);
             },
 
