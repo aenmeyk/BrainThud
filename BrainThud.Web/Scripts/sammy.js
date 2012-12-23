@@ -832,10 +832,11 @@
             });
 
             // bind to submit to capture post/put/delete routes
-            this.bind('submit', function (e) {
-                var returned = app._checkFormSubmission($(e.target).closest('form'));
-                return (returned === false) ? e.preventDefault() : false;
-            });
+            // Removed because it was resulting in "http://www.brainthud.com/undefined?" when enter was pressed on mark-down dialogs
+            //            this.bind('submit', function (e) {
+            //                var returned = app._checkFormSubmission($(e.target).closest('form'));
+            //                return (returned === false) ? e.preventDefault() : false;
+            //            });
 
             // bind unload to body unload
             $(window).bind('beforeunload', function () {

@@ -8,6 +8,7 @@
                     var results = options && options.results;
                     if (!cachedResults || !utils.hasProperties(cachedResults)) {
                         config.get({
+                            params: options.params,
                             success: function(dto) {
                                 cachedResults = [];
 
@@ -33,6 +34,7 @@
                 createData = function(options) {
                     return $.Deferred(function(def) {
                         config.create(options.data, {
+                            params: options.params,
                             success: function(result) {
                                 def.resolve();
                             },
@@ -45,6 +47,7 @@
                 updateData = function(options) {
                     return $.Deferred(function(def) {
                         config.update(options.data, {
+                            params: options.params,
                             success: function(result) {
                                 def.resolve();
                             },
