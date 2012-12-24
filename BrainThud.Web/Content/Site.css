@@ -266,9 +266,6 @@ input[type=text] {
   margin: 20px 0px;
   padding: 40px;
 }
-.btn {
-  padding: 15px 25px;
-}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -429,7 +426,7 @@ input[type=text] {
     padding: 0;
   }
   .quiz-details {
-    margin: 10px 0px;
+    margin: 10px 0 0 0;
     padding: 10px;
   }
 }
