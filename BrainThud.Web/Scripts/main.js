@@ -1,4 +1,5 @@
 ﻿var global = {
+    userId: '',
     previousUrl: '',
     currentUrl: '',
     quizMenuUri: ''

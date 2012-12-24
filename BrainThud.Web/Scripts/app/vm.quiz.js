@@ -1,9 +1,11 @@
 ﻿define('vm.quiz', ['ko'],
     function (ko) {
-        var value= '';
+        var value= '',
+            activate = function (){};
 
         return {
-            value: value
+            value: value,
+            activate: activate
         };
     }
 );

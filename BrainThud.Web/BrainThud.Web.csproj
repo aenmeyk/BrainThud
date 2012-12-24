@@ -169,6 +169,7 @@
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ConfigController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JasmineController.cs" />
     <Compile Include="Controllers\QuizResultsController.cs" />
@@ -251,6 +252,7 @@
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
+    <Content Include="Scripts\app\data-service.config.js" />
     <Content Include="Scripts\app\data-service.quiz-card.js" />
     <Content Include="Scripts\app\vm.quiz.js" />
     <Content Include="Scripts\app\vm.nav.js" />

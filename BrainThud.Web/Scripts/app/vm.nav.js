@@ -4,13 +4,13 @@
             goToCreateCard = function () {
                 router.navigateTo('#/create-card');
             },
-            goToCards = function() {
+            goToCards = function () {
                 router.navigateTo('#/cards');
             },
             goToQuiz = function () {
                 router.navigateTo(global.quizMenuUri);
             },
-            goToSignOut = function() {
+            goToSignOut = function () {
                 router.navigateTo('/Account/SignOut');
             };
 

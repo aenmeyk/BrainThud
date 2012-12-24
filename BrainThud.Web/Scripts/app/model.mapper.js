@@ -32,6 +32,12 @@
                     }
                 }
             },
+            
+            config = {
+                mapResults: function (dto, results) {
+                    results.push(dto);
+                }
+            },
 
             getCardFromDto = function(dto) {
                 var singleCard = new model.Card();
@@ -59,7 +65,8 @@
         return {
             card: card,
             cardHtml: cardHtml,
-            quizCard: quizCard
+            quizCard: quizCard,
+            config: config
         };
     }
 );

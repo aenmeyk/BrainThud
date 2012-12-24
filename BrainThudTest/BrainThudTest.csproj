@@ -83,6 +83,9 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\Given_a_new_AccountController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\SignOut.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\Given_a_new_ConfigController.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_Get_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_Get_is_called_by_a_user_that_does_not_exist.cs" />
