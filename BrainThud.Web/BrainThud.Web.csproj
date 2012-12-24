@@ -264,6 +264,8 @@
     <Content Include="Scripts\Markdown.Converter.js" />
     <Content Include="Scripts\Markdown.Editor.js" />
     <Content Include="Scripts\Markdown.Sanitizer.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Test\Scripts\bootstrapper-test.js" />
     <Content Include="Test\Scripts\binder-test.js" />

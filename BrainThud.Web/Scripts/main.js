@@ -18,6 +18,7 @@
         define('amplify', [], function () { return root.amplify; });
         define('toastr', [], function () { return root.toastr; });
         define('markdown', [], function () { return root.Markdown; });
+        define('moment', [], function () { return root.moment; });
     }
 
     //requirejs.config({

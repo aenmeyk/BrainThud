@@ -59,5 +59,11 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
         {
             this.quiz.UserId.Should().Be(TestValues.USER_ID);
         }
+
+        [Test]
+        public void Then_the_QuizDate_is_returned()
+        {
+            this.quiz.QuizDate.Should().Be(this.quizDate.Date);
+        }
     }
 }
