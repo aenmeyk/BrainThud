@@ -15,6 +15,10 @@
                 get: dataService.quiz.get,
                 mapper: modelMapper.quiz
             }),
+            quizCard = new dataContextHelper.EntitySet({
+                get: dataService.quizCard.get,
+                mapper: modelMapper.quizCard
+            }),
             quizResult = new dataContextHelper.EntitySet({
                 create: dataService.quizResult.create
             });
@@ -23,6 +27,7 @@
             cards: cards,
             card: card,
             quiz: quiz,
+            quizCard: quizCard,
             quizResult: quizResult
         };
     }

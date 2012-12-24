@@ -42,6 +42,16 @@
                         title: "Quiz",
                         callback: vm.quiz.activate
                         }]
+                },
+                
+                // quizCard
+                {
+                    view: config.viewIds.quizCard,
+                    routes: [{
+                        route: config.hashes.quizCard,
+                        title: "QuizCard",
+                        callback: vm.quizCard.activate
+                        }]
                 }
                 
             ];

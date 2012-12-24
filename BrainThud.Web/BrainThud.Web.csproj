@@ -251,6 +251,8 @@
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
+    <Content Include="Scripts\app\data-service.quiz-card.js" />
+    <Content Include="Scripts\app\vm.quiz.js" />
     <Content Include="Scripts\app\vm.nav.js" />
     <Content Include="Scripts\app\editor.js" />
     <Content Include="Scripts\app\data-context-helper.js" />
@@ -280,7 +282,7 @@
     <Content Include="Scripts\app\config.js" />
     <Content Include="Scripts\app\dom.js" />
     <Content Include="Scripts\app\data-service.quiz-result.js" />
-    <Content Include="Scripts\app\vm.quiz.js" />
+    <Content Include="Scripts\app\vm.quiz-card.js" />
     <Content Include="Scripts\app\data-service.quiz.js" />
     <Content Include="Scripts\app\model.js" />
     <Content Include="Scripts\app\data-service.js" />
@@ -335,6 +337,7 @@
     <Content Include="Test\Scripts\qunit-test-runner.cshtml" />
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
     <Content Include="Test\Scripts\jasmine-test-runner.cshtml" />
+    <Content Include="Views\quiz-card.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -364,7 +367,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\cards.cshtml" />
     <Content Include="Views\create-card.cshtml" />
-    <Content Include="Views\todays-quiz.cshtml" />
+    <Content Include="Views\quiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

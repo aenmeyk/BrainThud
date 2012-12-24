@@ -1,7 +1,7 @@
 ﻿define('model.mapper', ['model', 'editor'],
     function (model, editor) {
         var
-            quiz = {
+            quizCard = {
                 mapResults: function (dto, results) {
                     var cards = [];
 
@@ -59,7 +59,7 @@
         return {
             card: card,
             cardHtml: cardHtml,
-            quiz: quiz
+            quizCard: quizCard
         };
     }
 );

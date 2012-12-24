@@ -7,7 +7,7 @@
             goToCards = function() {
                 router.navigateTo('#/cards');
             },
-            goToTodaysQuiz = function() {
+            goToQuiz = function () {
                 router.navigateTo(global.quizMenuUri);
             },
             goToSignOut = function() {
@@ -17,7 +17,7 @@
         return {
             goToCreateCard: goToCreateCard,
             goToCards: goToCards,
-            goToTodaysQuiz: goToTodaysQuiz,
+            goToQuiz: goToQuiz,
             goToSignOut: goToSignOut
         };
     }
