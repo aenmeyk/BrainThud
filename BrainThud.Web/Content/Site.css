@@ -1,4 +1,4 @@
-/*
+﻿/*
  * HTML5 Boilerplate
  *
  * What follows is the result of much research on cross-browser styling.
@@ -153,12 +153,6 @@ ul {
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-}
-.question {
-  border-color: #d4d4d4;
-}
-.answer {
-  border-color: #006ecc;
 }
 .primary-button {
   padding: 25px;
@@ -353,12 +347,18 @@ input[type=text] {
   
 }
 @media (max-width: 979px) {
-  .card {
+  .quiz-card {
+    border: 1px;
+    border-style: solid;
     padding: 25px;
     min-height: 150px !important;
+    margin: 10px 0 0 0;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+    -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   }
 }
 @media (min-width: 768px) and (max-width: 979px) {
@@ -388,9 +388,18 @@ input[type=text] {
   
 }
 @media (max-width: 480px) {
-  .card {
-    min-height: 100px !important;
+  .quiz-card {
+    border: 1px;
+    border-style: solid;
     padding: 10px;
+    min-height: 100px !important;
+    margin: 10px 0 0 0;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   }
   .identity {
     visibility: collapse;
@@ -461,4 +470,13 @@ input[type=text] {
   h3 {
     page-break-after: avoid;
   }
+}
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* --- custom -----------------------------------------------------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.question {
+  border-color: #d4d4d4;
+}
+.answer {
+  border-color: #006ecc;
 }

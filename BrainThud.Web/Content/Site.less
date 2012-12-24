@@ -184,14 +184,6 @@ ul {
     .card(10px, 0);
 }
 
-.question {
-    border-color: @question-color;
-}
-
-.answer {
-    border-color: @answer-color;
-}
-
 .primary-button {
     padding: 25px;
     margin-top: 10px;
@@ -403,13 +395,9 @@ input[type=text] {
 }
 
 @media (max-width: 979px) {
-    .card {
-        padding: 25px;
-        min-height: 150px !important;
-        -webkit-border-radius: 6px;
-        -moz-border-radius: 6px;
-        border-radius: 6px;
-    }
+	.quiz-card {
+		.card(25px, 150px);
+	}
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
@@ -444,10 +432,9 @@ input[type=text] {
 }
 
 @media (max-width: 480px) {
-    .card {
-        min-height: 100px !important;
-        padding: 10px;
-    }
+	.quiz-card {
+		.card(10px, 100px);
+	}
 
     .identity {
         visibility: collapse;
@@ -529,4 +516,16 @@ input[type=text] {
     h3 {
         page-break-after: avoid;
     }
+}
+
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* --- custom -----------------------------------------------------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.question {
+    border-color: @question-color;
+}
+
+.answer {
+    border-color: @answer-color;
 }
