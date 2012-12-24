@@ -1,10 +1,15 @@
 ﻿define('vm.quiz', ['ko'],
     function (ko) {
-        var value= '',
-            activate = function (){};
+        var
+            activate = function () {
+            },
+            
+            startQuiz = function() {
+
+            };
 
         return {
-            value: value,
+            startQuiz: startQuiz,
             activate: activate
         };
     }

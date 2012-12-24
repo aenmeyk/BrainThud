@@ -1,6 +1,22 @@
 ﻿<section id="quiz-view" class="view">
 
-    <div>Today's Quiz</div>
+    <div class="row-fluid">
+        <div class="span12">
+            <h1>Today's Quiz</h1>
+        </div>
+        <div class="span12 colored-content-block quiz-details">
+            <div><h3>12/24/2012</h3></div>
+            <div class="strong">11 of 14 cards completed</div>
+            <div class="correct-color strong">8 correct</div>
+            <div class="incorrect-color strong">3 incorrect</div>
+        </div>
+        <div class="span12">
+            
+            <button type="button" class="btn btn-primary right-align" data-bind="click: startQuiz">
+                <i class="icon-play-circle icon-white"></i> Start Quiz
+            </button>
+        </div>
+    </div>
 
     @*        <span data-bind="text: ko.toJSON(currentCard)"></span>*@
 </section>

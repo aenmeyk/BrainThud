@@ -6,16 +6,27 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
+@question-color: #D4D4D4;
+@answer-color: #006ECC;
+@correct-color: #59B359;
+@incorrect-color: #D74C46;
+@secondary-color: whiteSmoke;
+@secondary-border-color: #DDD;
+@primary-text-color: #5A5A5A;
+@subtle-text-color: #aaa;
+@subtle-text-size: 13px;
+
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
 
 html,
+body,
 button,
 input,
 select,
 textarea {
-    color: #222;
+    color: @primary-text-color;
 }
 
 body {
@@ -93,13 +104,6 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-@question-color: #D4D4D4;
-@secondary-color: whiteSmoke;
-@secondary-border-color: #DDD;
-@answer-color: #006ECC;
-@subtle-text-color: #aaa;
-@subtle-text-size: 13px;
-
 .shadow {
     -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
@@ -128,12 +132,24 @@ ul {
     list-style: none;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	color: @primary-text-color;
+}
+
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- display -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 .visible {
     visibility: visible;
+}
+
+.correct-color {
+	color: @correct-color;
+}
+
+.incorrect-color {
+	color: @incorrect-color;
 }
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -148,6 +164,10 @@ ul {
 
 .stretch {
     width: 100%;
+}
+
+.strong {
+	font-weight: bold;
 }
 
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -226,7 +246,6 @@ ul {
 	border-style: solid;
 	border-width: 1px;
     .corner-radius;
-	text-align: center;
 	padding: 10px 10px;
 }
 
@@ -278,6 +297,15 @@ input[type=text] {
             content: '';
         }
     }
+}
+
+.quiz-details {
+	margin: 20px 0px;
+	padding: 40px;
+}
+
+.btn {
+	padding: 15px 25px;
 }
 
 /* ==========================================================================
@@ -440,6 +468,11 @@ input[type=text] {
         visibility: collapse;
         padding: 0;
     }
+
+	.quiz-details {
+		margin: 10px 0px;
+		padding: 10px;
+	}
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
