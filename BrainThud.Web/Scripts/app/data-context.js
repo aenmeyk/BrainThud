@@ -1,10 +1,6 @@
 ﻿define('data-context', ['data-service', 'model.mapper', 'data-context-helper'],
     function (dataService, modelMapper, dataContextHelper) {
         var
-            cards = new dataContextHelper.EntitySet({
-                get: dataService.card.get,
-                mapper: modelMapper.cardHtml
-            }),
             card = new dataContextHelper.EntitySet({
                 get: dataService.card.get,
                 create: dataService.card.create,
@@ -28,7 +24,6 @@
             });
 
         return {
-            cards: cards,
             card: card,
             quiz: quiz,
             quizCard: quizCard,

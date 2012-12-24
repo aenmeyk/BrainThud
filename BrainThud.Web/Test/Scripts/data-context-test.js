@@ -16,6 +16,8 @@ describe("Given data-context module", function () {
         dataService = {
             card: jasmine.createSpyObj('dataService.card', ['get', 'create', 'update']),
             quiz: jasmine.createSpyObj('dataService.quiz', ['get']),
+            quizCard: jasmine.createSpyObj('dataService.quizCard', ['get']),
+            config: jasmine.createSpyObj('dataService.config', ['get']),
             quizResult: jasmine.createSpyObj('dataService.quizResult', ['create'])
         };
     });

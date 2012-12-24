@@ -2,8 +2,8 @@
 using System.Net.Http;
 using BrainThud.Web.Model;
 using FluentAssertions;
-using NUnit.Framework;
 using Moq;
+using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
 {
@@ -16,6 +16,10 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         public override void When()
         {
             this.card = new Card();
+            this.TableStorageContext
+                .Setup(x => x.Cards.Update(this.card))
+                .Callback<Card>(x => x.EntityId = TestValues.CARD_ID);
+  
             this.response = this.CardsController.Put(this.card);
         }
 
@@ -26,9 +30,15 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         }
 
         [Test]
-        public void Then_the_returned_status_code_should_be_204()
+        public void Then_the_returned_status_code_should_be_200()
         {
-            this.response.StatusCode.Should().Be(HttpStatusCode.NoContent);
+            this.response.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Test]
+        public void Then_the_updated_card_should_be_returned_in_the_response()
+        {
+            this.response.Content.As<ObjectContent>().Value.As<Card>().EntityId.Should().Be(TestValues.CARD_ID);
         }
 
         [Test]

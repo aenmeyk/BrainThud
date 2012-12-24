@@ -48,7 +48,14 @@
                     return $.Deferred(function(def) {
                         config.update(options.data, {
                             params: options.params,
-                            success: function(result) {
+                            success: function (dto) {
+                                for (var i = 0; i < cachedResults.length; i++) {
+                                    if (cachedResults[i].partitionKey() === dto.partitionKey && cachedResults[i].rowKey() === dto.rowKey) {
+                                        cachedResults[i] = config.mapper.mapResult(dto);
+                                        break;
+                                    }
+                                }
+
                                 def.resolve();
                             },
                             error: function(response) {

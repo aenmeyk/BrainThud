@@ -16,11 +16,21 @@
                     day = today.getDate();
 
                 return year + '/' + month + '/' + day;
+            },
+            entityExists = function(array, entity) {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i].partitionKey == entity.partitionKey && array[i].rowKey == entity.rowKey) {
+                        return true;
+                    }
+                }
+
+                return false;
             };
         
         return {
             hasProperties: hasProperties,
-            getDatePath: getDatePath
+            getDatePath: getDatePath,
+            entityExists: entityExists
         };
     }
 );

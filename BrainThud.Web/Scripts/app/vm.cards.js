@@ -11,7 +11,7 @@
                 router.navigateTo('#/cards/' + card.cardId() + '/edit');
             },
             activate = function(routeData) {
-                dataContext.cards.getData(dataOptions());
+                dataContext.card.getData(dataOptions());
             };
 
         return {

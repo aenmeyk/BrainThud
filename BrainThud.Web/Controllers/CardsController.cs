@@ -59,7 +59,7 @@ namespace BrainThud.Web.Controllers
                 tableStorageContext.Cards.Update(card);
                 tableStorageContext.Commit();
 
-                return new HttpResponseMessage(HttpStatusCode.NoContent);
+                return this.Request.CreateResponse(HttpStatusCode.OK, card);
             }
 
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
