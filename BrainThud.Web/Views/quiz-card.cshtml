@@ -2,8 +2,12 @@
 
     <div class="row-fluid card-toolbar">
         <div class="span12">
-            <button type="button" class="btn right-align card-toolbar-button" data-bind="click: showNextCard">></button>
-            <button type="button" class="btn right-align card-toolbar-button" data-bind="click: showPreviousCard"><</button>
+            <button type="button" class="btn btn-primary right-align card-toolbar-button" data-bind="click: showNextCard, enable: hasNextCard">
+                <i class="icon-forward icon-white"></i>
+            </button>
+            <button type="button" class="btn btn-primary right-align card-toolbar-button" data-bind="click: showPreviousCard, enable: hasPreviousCard">
+                <i class="icon-backward icon-white"></i>
+            </button>
         </div>
     </div>
 

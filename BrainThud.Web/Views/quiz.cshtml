@@ -4,28 +4,34 @@
         <div class="span12">
             <h1>Today's Quiz</h1>
         </div>
+    </div>
+    <div class="row-fluid">
         <div class="span12 colored-content-block quiz-details">
-            <div><h3 data-bind="html: quizDate"></h3></div>
+            <div>
+                <h3 data-bind="html: quizDate"></h3>
+            </div>
             <div class="strong">
                 <span data-bind="html: cardCount"></span> cards in today's quiz
             </div>
         </div>
-@*        <div class="span12 colored-content-block quiz-details">*@
-@*            <div><h3 data-bind="html: quizDate"></h3></div>*@
-@*            <div class="strong">*@
-@*                <span data-bind="html: completedCardCount"></span> of *@
-@*                <span data-bind="html: cardCount"></span> cards completed*@
-@*            </div>*@
-@*            <div class="correct-color strong">*@
-@*                <span data-bind="html: correctCardCount"></span> correct*@
-@*            </div>*@
-@*            <div class="incorrect-color strong">*@
-@*                <span data-bind="html: incorrectCardCount"></span> incorrect*@
-@*            </div>*@
-@*        </div>*@
+    </div>
+    @*        <div class="span12 colored-content-block quiz-details">*@
+    @*            <div><h3 data-bind="html: quizDate"></h3></div>*@
+    @*            <div class="strong">*@
+    @*                <span data-bind="html: completedCardCount"></span> of *@
+    @*                <span data-bind="html: cardCount"></span> cards completed*@
+    @*            </div>*@
+    @*            <div class="correct-color strong">*@
+    @*                <span data-bind="html: correctCardCount"></span> correct*@
+    @*            </div>*@
+    @*            <div class="incorrect-color strong">*@
+    @*                <span data-bind="html: incorrectCardCount"></span> incorrect*@
+    @*            </div>*@
+    @*        </div>*@
+    <div class="row-fluid">
         <div class="span4 offset8">
             <button type="button" class="primary-button btn btn-primary right-align" data-bind="click: startQuiz">
-                <i class="icon-play-circle icon-white"></i> Start Quiz
+                <i class="icon-play-circle icon-white"></i>Start Quiz
             </button>
         </div>
     </div>

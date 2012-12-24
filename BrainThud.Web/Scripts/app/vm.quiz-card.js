@@ -10,12 +10,20 @@
                 });
             },
             datePath,
+            nextCardIndex = ko.observable(),
+            previousCardIndex = ko.observable(),
             questionSideVisible = ko.observable(true),
             quiz = ko.observableArray([]),
             nextCard = ko.observable(),
             previousCard = ko.observable(),
             cards = ko.observableArray([]),
             userId = ko.observable(),
+            hasNextCard = ko.computed(function () {
+                return nextCardIndex() <= cards().length - 1;
+            }),
+            hasPreviousCard = ko.computed(function () {
+                return previousCardIndex() >= 0;
+            }),
 
             currentCard = {
                 cardId: ko.observable(''),
@@ -45,26 +53,29 @@
             },
 
             activate = function (routeData) {
-                var existingCards = ko.observableArray([]);
-                
-                // TODO: Find a better way of ensuring that the ViewModels use the same store for cards. 
-                // (We need the same store because if a card is updated on one ViewModel we need the value to be updated on the other ViewModels too.)
-                $.when(dataContext.quizCard.getData(dataOptions), dataContext.card.getData({ results: existingCards }))
-                    .then(function () {
-                        var quizCards = quiz()[0].cards;
-                        cards = ko.observableArray([]);
-                        for (var i = 0; i < quizCards.length; i++) {
-                            for (var j = 0; j < existingCards().length; j++) {
-                                if (quizCards[i].partitionKey() == existingCards()[j].partitionKey() && quizCards[i].rowKey() == existingCards()[j].rowKey()) {
-                                    cards().push(existingCards()[j]);
-                                    break;
+                // TODO: The activate method fires for each navigation to a new card.  I think we need a vm for each card since each card has it's own route.
+                if (cards().length === 0) {
+                    var existingCards = ko.observableArray([]);
+
+                    // TODO: Find a better way of ensuring that the ViewModels use the same store for cards. 
+                    // (We need the same store because if a card is updated on one ViewModel we need the value to be updated on the other ViewModels too.)
+                    $.when(dataContext.quizCard.getData(dataOptions), dataContext.card.getData({ results: existingCards }))
+                        .then(function () {
+                            var quizCards = quiz()[0].cards;
+                            cards = ko.observableArray([]);
+                            for (var i = 0; i < quizCards.length; i++) {
+                                for (var j = 0; j < existingCards().length; j++) {
+                                    if (quizCards[i].partitionKey() == existingCards()[j].partitionKey() && quizCards[i].rowKey() == existingCards()[j].rowKey()) {
+                                        cards().push(existingCards()[j]);
+                                        break;
+                                    }
                                 }
                             }
-                        }
 
-                        userId(quiz()[0].userId);
-                        setCurrentCard(routeData.cardId);
-                    });
+                            userId(quiz()[0].userId);
+                        });
+                }
+                setCurrentCard(routeData.cardId);
             },
 
             setCurrentCard = function (cardId) {
@@ -78,19 +89,20 @@
                         var answerText = cards()[i].answerHtml();
                         currentCard.answer(answerText);
 
-                        var nextCardIndex = i + 1;
-                        if (nextCardIndex >= cards().length) {
-                            nextCardIndex = 0;
+                        nextCardIndex(i + 1);
+                        if (hasNextCard()) {
+                            nextCard(getCardUri(nextCardIndex()));
                         }
 
-                        nextCard(getCardUri(nextCardIndex));
-
-                        var previousCardIndex = i - 1;
-                        if (previousCardIndex < 0) {
-                            previousCardIndex = cards().length - 1;
+                        previousCardIndex(i - 1);
+                        if (hasPreviousCard()) {
+                            previousCard(getCardUri(previousCardIndex()));
                         }
 
-                        previousCard(getCardUri(previousCardIndex));
+                        //                        if (previousCardIndex < 0) {
+                        //                            previousCardIndex = cards().length - 1;
+                        //                        }
+                        //
 
                         questionSideVisible(true);
                         return;
@@ -155,7 +167,9 @@
             submitCorrect: submitCorrect,
             submitIncorrect: submitIncorrect,
             editCard: editCard,
-            flipCard: flipCard
+            flipCard: flipCard,
+            hasNextCard: hasNextCard,
+            hasPreviousCard: hasPreviousCard
         };
     }
 );
