@@ -22,21 +22,6 @@ describe("Given data-context module", function () {
         };
     });
 
-    describe("when cards is called", function () {
-        var cards;
-
-        beforeEach(function () {
-            cards = dataContext(dataService, modelMapper, dataContextHelper).cards;
-        });
-
-        it('then the dataContextHelper.EntitySet should be instantiated with the correct configuration', function () {
-            expect(cards).toEqual({
-                get: dataService.card.get,
-                mapper: modelMapper.cardHtml
-            });
-        });
-    });
-
     describe("when card is called", function () {
         var card;
 

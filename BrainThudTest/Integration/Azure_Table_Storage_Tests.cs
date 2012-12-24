@@ -64,7 +64,7 @@ namespace BrainThudTest.Integration
             var putResponse = client.PutAsJsonAsync(TestUrls.CARDS, postCard).Result;
 
             // Assert that the PUT succeeded
-            putResponse.StatusCode.Should().Be(HttpStatusCode.NoContent);
+            putResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
 
             // Test GET
