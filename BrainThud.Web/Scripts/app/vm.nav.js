@@ -8,7 +8,8 @@
                 router.navigateTo('#/cards');
             },
             goToQuiz = function () {
-                router.navigateTo(global.quizMenuUri);
+                router.navigateTo('#/quizzes/19/2012/12/24/156');
+//                router.navigateTo(global.quizMenuUri);
             },
             goToSignOut = function () {
                 router.navigateTo('/Account/SignOut');

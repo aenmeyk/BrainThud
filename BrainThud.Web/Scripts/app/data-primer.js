@@ -16,18 +16,14 @@ function ($, ko, dataContext, utils) {
         fetch = function () {
             return $.Deferred(function (def) {
                 $.when(dataContext.quizCard.getData(quizOptions)
-                        ,dataContext.config.getData(configOptions))
+                        , dataContext.config.getData(configOptions)
+                        , dataContext.card.getData({ results: ko.observableArray([]) }))
                     .fail(function () { def.reject(); })
                     .done(function () {
                         def.resolve();
                         var userId = userConfiguration()[0].userId;
-                        var firstCard = quiz()[0].cards[0];
-                        if (firstCard) {
-                            var cardId = firstCard.cardId();
-                            global.quizMenuUri = '#/quizzes/' + userId + '/' + utils.getDatePath();
-//                            global.quizMenuUri = '#/quizzes/' + userId + '/' + utils.getDatePath() + '/' + cardId;
-                            global.userId = userId;
-                        }
+                        global.quizMenuUri = '#/quizzes/' + userId + '/' + utils.getDatePath();
+                        global.userId = userId;
                     });
             }).promise();
         };

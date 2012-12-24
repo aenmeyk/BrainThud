@@ -36,20 +36,32 @@
                 return cardText;
             }),
 
-            dataOptions = function () {
-                return {
-                    results: quiz,
-                    params: {
-                        datePath: datePath,
-                        userId: userId()
-                    }
-                };
+            dataOptions = {
+                results: quiz,
+                params: {
+                    datePath: datePath,
+                    userId: userId()
+                }
             },
 
             activate = function (routeData) {
-                $.when(dataContext.quizCard.getData(dataOptions()))
+                var existingCards = ko.observableArray([]);
+                
+                // TODO: Find a better way of ensuring that the ViewModels use the same store for cards. 
+                // (We need the same store because if a card is updated on one ViewModel we need the value to be updated on the other ViewModels too.)
+                $.when(dataContext.quizCard.getData(dataOptions), dataContext.card.getData({ results: existingCards }))
                     .then(function () {
-                        cards(quiz()[0].cards);
+                        var quizCards = quiz()[0].cards;
+                        cards = ko.observableArray([]);
+                        for (var i = 0; i < quizCards.length; i++) {
+                            for (var j = 0; j < existingCards().length; j++) {
+                                if (quizCards[i].partitionKey() == existingCards()[j].partitionKey() && quizCards[i].rowKey() == existingCards()[j].rowKey()) {
+                                    cards().push(existingCards()[j]);
+                                    break;
+                                }
+                            }
+                        }
+
                         userId(quiz()[0].userId);
                         setCurrentCard(routeData.cardId);
                     });
@@ -59,10 +71,10 @@
                 for (var i = 0; i < cards().length; i++) {
                     if (cards()[i].cardId() === parseInt(cardId)) {
                         currentCard.cardId(cards()[i].cardId());
-                        
+
                         var questionText = cards()[i].questionHtml();
                         currentCard.question(questionText);
-                        
+
                         var answerText = cards()[i].answerHtml();
                         currentCard.answer(answerText);
 
@@ -79,7 +91,7 @@
                         }
 
                         previousCard(getCardUri(previousCardIndex));
-                        
+
                         questionSideVisible(true);
                         return;
                     }
@@ -89,12 +101,12 @@
             flipCard = function () {
                 questionSideVisible(!questionSideVisible());
             },
-            
-            getCardUri = function(cardIndex) {
+
+            getCardUri = function (cardIndex) {
                 return '#/quizzes/' + userId() + '/' + datePath + '/' + cards()[cardIndex].cardId();
             },
-            
-            getQuizResultConfig = function(isCorrect) {
+
+            getQuizResultConfig = function (isCorrect) {
                 return {
                     data: {
                         cardId: currentCard.cardId(),
@@ -125,11 +137,11 @@
                 showNextCard();
             };
 
-            editCard = function () {
-                router.navigateTo('#/cards/' + currentCard.cardId() + '/edit');
-            },
+        editCard = function () {
+            router.navigateTo('#/cards/' + currentCard.cardId() + '/edit');
+        },
 
-        init();
+    init();
 
         return {
             userId: userId,
