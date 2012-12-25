@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data.AzureTableStorage;
+﻿using System;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
 
@@ -12,7 +13,8 @@ namespace BrainThud.Web.Data.Repositories
         public override void Add(Card entity, ITableStorageKeyGenerator keyGenerator)
          {
             SetKeyValues(entity, keyGenerator);
-            var cardKeyGenerator = keyGenerator as CardEntityKeyGenerator;
+            entity.QuizDate = DateTime.UtcNow.AddDays(1).Date;
+            var cardKeyGenerator = keyGenerator as ICardEntityKeyGenerator;
 
             if(cardKeyGenerator != null)
             {

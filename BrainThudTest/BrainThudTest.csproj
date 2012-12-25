@@ -112,6 +112,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\Given_a_new_CardRepository.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Add_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Nothing_Changes.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_GetById_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\QuizResultsRepositoryTest\Given_a_new_QuizResultsRepository.cs" />
