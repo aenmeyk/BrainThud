@@ -29,6 +29,7 @@
                 cardId: ko.observable(''),
                 question: ko.observable(''),
                 answer: ko.observable(''),
+                deckName: ko.observable(''),
             },
 
             currentCardText = ko.computed(function () {
@@ -80,14 +81,16 @@
 
             setCurrentCard = function (cardId) {
                 for (var i = 0; i < cards().length; i++) {
-                    if (cards()[i].cardId() === parseInt(cardId)) {
-                        currentCard.cardId(cards()[i].cardId());
+                    var card = cards()[i];
+                    if (card.cardId() === parseInt(cardId)) {
+                        currentCard.cardId(card.cardId());
 
-                        var questionText = cards()[i].questionHtml();
+                        var questionText = card.questionHtml();
                         currentCard.question(questionText);
 
-                        var answerText = cards()[i].answerHtml();
+                        var answerText = card.answerHtml();
                         currentCard.answer(answerText);
+                        currentCard.deckName(card.deckName);
 
                         nextCardIndex(i + 1);
                         if (hasNextCard()) {
@@ -98,11 +101,6 @@
                         if (hasPreviousCard()) {
                             previousCard(getCardUri(previousCardIndex()));
                         }
-
-                        //                        if (previousCardIndex < 0) {
-                        //                            previousCardIndex = cards().length - 1;
-                        //                        }
-                        //
 
                         questionSideVisible(true);
                         return;
