@@ -71,8 +71,7 @@ namespace BrainThud.Web.Controllers
             if (this.ModelState.IsValid)
             {
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-                var keyGenerator = new CardKeyGenerator(this.authenticationHelper, tableStorageContext, this.userHelper, this.identityQueueManager);
-                tableStorageContext.Cards.Add(card, keyGenerator);
+                tableStorageContext.Cards.Add(card);
                 tableStorageContext.CommitBatch();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, card);
 

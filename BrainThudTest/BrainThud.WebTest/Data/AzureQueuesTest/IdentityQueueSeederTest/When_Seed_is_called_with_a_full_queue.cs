@@ -4,14 +4,14 @@ using Microsoft.WindowsAzure.StorageClient;
 using Moq;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.Data.AzureQueuesTest
+namespace BrainThudTest.BrainThud.WebTest.Data.AzureQueuesTest.IdentityQueueSeederTest
 {
-    public class When_Seed_is_called_with_a_full_queue : Given_a_new_IdentityQueueManager
+    public class When_Seed_is_called_with_a_full_queue : Given_a_new_IdentityQueueSeeder
     {
         public override void When()
         {
             this.IdentityCloudQueue.Setup(x => x.RetrieveApproximateMessageCount()).Returns(ConfigurationSettings.SEED_IDENTITIES);
-            this.IdentityQueueManager.Seed();
+            this.IdentityQueueSeeder.Seed();
         }
 
         [Test]

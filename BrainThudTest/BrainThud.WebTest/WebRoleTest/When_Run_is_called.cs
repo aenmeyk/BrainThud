@@ -32,7 +32,7 @@ namespace BrainThudTest.BrainThud.WebTest.WebRoleTest
         [Test]
         public void Then_Seed_is_called_on_IdentityQueueManager()
         {
-            this.IdentityQueueManager.Verify(x => x.Seed(), Times.Once());
+            this.IdentityQueueSeeder.Verify(x => x.Seed(), Times.Once());
         }
     }
 }

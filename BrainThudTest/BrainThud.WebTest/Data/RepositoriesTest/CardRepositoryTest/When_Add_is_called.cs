@@ -1,8 +1,6 @@
 ﻿using System;
-using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
 using FluentAssertions;
-using Moq;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTest
@@ -14,25 +12,19 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
 
         public override void When()
         {
-            var keyGenerator = new Mock<ICardEntityKeyGenerator>();
-            keyGenerator.Setup(x => x.GeneratePartitionKey()).Returns(TestValues.PARTITION_KEY);
-            keyGenerator.Setup(x => x.GenerateRowKey()).Returns(TestValues.ROW_KEY);
-            keyGenerator.SetupGet(x => x.GeneratedUserId).Returns(TestValues.USER_ID);
-            keyGenerator.SetupGet(x => x.GeneratedEntityId).Returns(TestValues.CARD_ID);
-
-            this.CardRepository.Add(card, keyGenerator.Object);
+            this.CardRepository.Add(card);
         }
 
         [Test]
         public void Then_the_PartitionKey_should_be_set()
         {
-            this.card.PartitionKey.Should().Be(TestValues.PARTITION_KEY);
+            this.card.PartitionKey.Should().Be(TestValues.CARD_PARTITION_KEY);
         }
 
         [Test]
         public void Then_the_RowKey_should_be_set()
         {
-            this.card.RowKey.Should().Be(TestValues.ROW_KEY);
+            this.card.RowKey.Should().Be(TestValues.CARD_ROW_KEY);
         }
 
         [Test]

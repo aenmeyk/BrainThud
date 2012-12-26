@@ -1,7 +1,9 @@
 using System;
 using System.Data.Services.Client;
 using System.Linq;
+using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
+using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
 using Microsoft.WindowsAzure.StorageClient;
 
@@ -9,7 +11,11 @@ namespace BrainThud.Web.Data.AzureTableStorage
 {
     public class TableStorageContext : TableServiceContext, ITableStorageContext
     {
+        private readonly ICardEntityKeyGenerator cardKeyGenerator;
+        private readonly ICardEntityKeyGenerator quizResultKeyGenerator;
+        private readonly IUserHelper userHelper;
         private readonly string tableName;
+        private readonly string nameIdentifier;
         private readonly Lazy<ICardEntityRepository<Card>> cards;
         private readonly Lazy<ICardEntityRepository<QuizResult>> quizResults;
         private readonly Lazy<IUserConfigurationRepository> userConfigurations;
@@ -17,21 +23,23 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public TableStorageContext(
             ICloudStorageServices cloudStorageServices, 
+            ICardEntityKeyGenerator cardKeyGenerator,
+            ICardEntityKeyGenerator quizResultKeyGenerator,
+            IUserHelper userHelper,
             string tableName, 
             string nameIdentifier)
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
+            this.cardKeyGenerator = cardKeyGenerator;
+            this.quizResultKeyGenerator = quizResultKeyGenerator;
+            this.userHelper = userHelper;
             this.tableName = tableName;
-            this.cards = new Lazy<ICardEntityRepository<Card>>(() => new CardRepository(this, nameIdentifier));
-            this.quizResults = new Lazy<ICardEntityRepository<QuizResult>>(() => new QuizResultsRepository(this, nameIdentifier));
-            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => new UserConfigurationRepository(this, nameIdentifier));
-            this.masterConfigurations = this.InitializeLazyRepository<MasterConfiguration>();
+            this.nameIdentifier = nameIdentifier;
             this.IgnoreResourceNotFoundException = true;
-        }
-
-        private Lazy<ITableStorageRepository<T>> InitializeLazyRepository<T>() where T: TableServiceEntity
-        {
-            return new Lazy<ITableStorageRepository<T>>(() => new TableStorageRepository<T>(this));
+            this.cards = new Lazy<ICardEntityRepository<Card>>(() => new CardRepository(this, this.cardKeyGenerator, this.nameIdentifier));
+            this.quizResults = new Lazy<ICardEntityRepository<QuizResult>>(() => new QuizResultsRepository(this, this.quizResultKeyGenerator, this.nameIdentifier));
+            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => new UserConfigurationRepository(this, this.cardKeyGenerator, this.userHelper, this.nameIdentifier));
+            this.masterConfigurations = new Lazy<ITableStorageRepository<MasterConfiguration>>(() => new TableStorageRepository<MasterConfiguration>(this));
         }
 
         public ICardEntityRepository<Card> Cards { get { return this.cards.Value; } }

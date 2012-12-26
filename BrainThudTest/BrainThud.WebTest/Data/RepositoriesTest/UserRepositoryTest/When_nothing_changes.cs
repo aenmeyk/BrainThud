@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.UserRepositoryTest
 {
     [TestFixture]
-    public class When_nothing_changes : Given_a_new_UserRepository
+    public class When_nothing_changes : Given_a_new_UserConfigurationRepository
     {
         [Test]
         public void Then_UserRepository_should_derive_from_CardEntityRepository()

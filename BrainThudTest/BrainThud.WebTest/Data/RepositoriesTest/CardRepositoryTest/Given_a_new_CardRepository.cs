@@ -1,4 +1,5 @@
 ﻿using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
 using BrainThud.Web.Model;
 using FizzWare.NBuilder;
@@ -21,12 +22,25 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
                     .And(x => x.RowKey = TestValues.CARD_ROW_KEY)
                 .Build();
 
-            this.TableStorageContext = new Mock<ITableStorageContext>();
+            this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
             this.TableStorageContext.Setup(x => x.CreateQuery<Card>()).Returns(cards.AsQueryable());
+            var userConfiguration = new UserConfiguration { UserId = TestValues.USER_ID };
+            this.TableStorageContext
+                .Setup(x => x.UserConfigurations.GetByNameIdentifier())
+                .Returns(userConfiguration);
 
-            this.CardRepository = new CardRepository(this.TableStorageContext.Object, TestValues.NAME_IDENTIFIER);
+            this.CardKeyGenerator = new Mock<ICardEntityKeyGenerator>();
+            this.CardKeyGenerator.Setup(x => x.GeneratePartitionKey(TestValues.USER_ID)).Returns(TestValues.CARD_PARTITION_KEY);
+            this.CardKeyGenerator.Setup(x => x.GenerateRowKey()).Returns(TestValues.CARD_ROW_KEY);
+            this.CardKeyGenerator.SetupGet(x => x.GeneratedEntityId).Returns(TestValues.CARD_ID);
+
+            this.CardRepository = new CardRepository(
+                this.TableStorageContext.Object,
+                this.CardKeyGenerator.Object,
+                TestValues.NAME_IDENTIFIER);
         }
 
+        protected Mock<ICardEntityKeyGenerator> CardKeyGenerator { get; private set; }
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
         protected CardRepository CardRepository { get; private set; }
     }

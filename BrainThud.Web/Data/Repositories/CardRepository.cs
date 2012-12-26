@@ -7,22 +7,20 @@ namespace BrainThud.Web.Data.Repositories
 {
     public class CardRepository : CardEntityRepository<Card>
     {
-        public CardRepository(ITableStorageContext tableStorageContext, string nameIdentifier) 
-            : base(tableStorageContext, nameIdentifier, CardRowTypes.CARD) {}
+        public CardRepository(
+            ITableStorageContext tableStorageContext, 
+            ICardEntityKeyGenerator cardKeyGenerator, 
+            string nameIdentifier)
+            : base(tableStorageContext, cardKeyGenerator, nameIdentifier, CardRowTypes.CARD) { }
 
-        public override void Add(Card entity, ITableStorageKeyGenerator keyGenerator)
+        public override void Add(Card entity)
          {
-            SetKeyValues(entity, keyGenerator);
-            entity.QuizDate = DateTime.UtcNow.AddDays(1).Date;
-            var cardKeyGenerator = keyGenerator as ICardEntityKeyGenerator;
+             this.SetKeyValues(entity, this.KeyGenerator);
+             entity.QuizDate = DateTime.UtcNow.AddDays(1).Date;
+            entity.UserId = this.UserId;
+            entity.EntityId = this.KeyGenerator.GeneratedEntityId;
 
-            if(cardKeyGenerator != null)
-            {
-                entity.UserId = cardKeyGenerator.GeneratedUserId;
-                entity.EntityId = cardKeyGenerator.GeneratedEntityId;
-            }
-
-            this.Add(entity);
+            base.Add(entity);
          }
     }
 }

@@ -13,17 +13,17 @@ namespace BrainThudTest.BrainThud.WebTest.WebRoleTest
         public override void Given()
         {
             this.CloudStorageServices = new Mock<ICloudStorageServices>();
-            this.IdentityQueueManager = new Mock<IIdentityQueueManager>();
+            this.IdentityQueueSeeder = new Mock<IIdentityQueueSeeder>();
 
             var ioc = new Mock<IContainer>();
             ioc.Setup(x => x.GetInstance<ICloudStorageServices>()).Returns(this.CloudStorageServices.Object);
-            ioc.Setup(x => x.GetInstance<IIdentityQueueManager>()).Returns(this.IdentityQueueManager.Object);
+            ioc.Setup(x => x.GetInstance<IIdentityQueueSeeder>()).Returns(this.IdentityQueueSeeder.Object);
 
             this.WebRole = new WebRole(enableContinuousExecution: false) {IoCContainer = ioc.Object};
         }
 
         protected Mock<ICloudStorageServices> CloudStorageServices { get; private set; }
-        protected Mock<IIdentityQueueManager> IdentityQueueManager { get; private set; }
+        protected Mock<IIdentityQueueSeeder> IdentityQueueSeeder { get; private set; }
         protected WebRole WebRole { get; private set; }
     }
 }

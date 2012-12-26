@@ -1,7 +1,5 @@
-﻿using BrainThud.Web.Data.KeyGenerators;
-using BrainThud.Web.Model;
+﻿using BrainThud.Web.Model;
 using FluentAssertions;
-using Moq;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.TableStorageRepositoryTest
@@ -13,7 +11,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.TableStorageRepo
 
         public override void When()
         {
-            this.TableStorageRepository.Add(this.card, new Mock<ITableStorageKeyGenerator>().Object);
+            this.TableStorageRepository.Add(this.card);
         }
 
         [Test]

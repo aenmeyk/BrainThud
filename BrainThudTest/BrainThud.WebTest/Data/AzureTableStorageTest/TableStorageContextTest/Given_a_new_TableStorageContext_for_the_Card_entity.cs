@@ -1,5 +1,7 @@
 ﻿using BrainThud.Web;
 using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Data.KeyGenerators;
+using BrainThud.Web.Helpers;
 using BrainThudTest.Builders;
 using Moq;
 using NUnit.Framework;
@@ -12,13 +14,23 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
         public override void Given()
         {
             this.CloudStorageServices = new MockCloudStorageServicesBuilder().Build();
+            this.CardKeyGenerator = new Mock<ICardEntityKeyGenerator>();
+            this.QuizResultKeyGenerator = new Mock<ICardEntityKeyGenerator>();
+            this.UserHelper = new Mock<IUserHelper>();
+
             this.TableStorageContext = new TableStorageContext(
                 this.CloudStorageServices.Object, 
+                this.CardKeyGenerator.Object,
+                this.QuizResultKeyGenerator.Object,
+                this.UserHelper.Object,
                 AzureTableNames.CARD,
                 TestValues.NAME_IDENTIFIER);
         }
 
         protected TableStorageContext TableStorageContext { get; private set; }
+        protected Mock<IUserHelper> UserHelper { get; private set; }
+        protected Mock<ICardEntityKeyGenerator> CardKeyGenerator { get; private set; }
+        protected Mock<ICardEntityKeyGenerator> QuizResultKeyGenerator { get; private set; }
         protected Mock<ICloudStorageServices> CloudStorageServices { get; private set; }
     }
 }

@@ -5,7 +5,7 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.Data.AzureQueuesTest
+namespace BrainThudTest.BrainThud.WebTest.Data.AzureQueuesTest.IdentityQueueManagerTest
 {
     [TestFixture]
     public class When_GetNextIdentity_is_called : Given_a_new_IdentityQueueManager

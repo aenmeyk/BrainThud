@@ -4,9 +4,9 @@ using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Model;
 using Moq;
 
-namespace BrainThudTest.BrainThud.WebTest.Data.AzureQueuesTest
+namespace BrainThudTest.BrainThud.WebTest.Data.AzureQueuesTest.IdentityQueueSeederTest
 {
-    public abstract class Given_a_new_IdentityQueueManager : Gwt
+    public abstract class Given_a_new_IdentityQueueSeeder : Gwt
     {
         protected const int CURRENT_MAX_IDENTITY = 1000;
 
@@ -24,12 +24,12 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureQueuesTest
                 .Setup(x => x.CreateTableStorageContext(AzureTableNames.CONFIGURATION, NameIdentifiers.MASTER))
                 .Returns(this.TableStorageContext.Object);
 
-            this.IdentityQueueManager = new IdentityQueueManager(tableStorageContextFactory.Object, this.IdentityCloudQueue.Object);
+            this.IdentityQueueSeeder = new IdentityQueueSeeder(tableStorageContextFactory.Object, this.IdentityCloudQueue.Object);
         }
 
         protected Mock<IIdentityCloudQueue> IdentityCloudQueue { get; private set; }
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
         protected MasterConfiguration MasterConfiguration { get; private set; }
-        protected IdentityQueueManager IdentityQueueManager { get; private set; }
+        protected IdentityQueueSeeder IdentityQueueSeeder { get; private set; }
     }
 }

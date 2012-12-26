@@ -12,6 +12,11 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.TableStorageRepo
         public override void Given()
         {
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
+            var userConfiguration = new UserConfiguration { UserId = TestValues.USER_ID };
+            this.TableStorageContext
+                .Setup(x => x.UserConfigurations.GetByNameIdentifier())
+                .Returns(userConfiguration);
+
             this.TableStorageRepository = new TableStorageRepository<Card>(this.TableStorageContext.Object);
         }
 

@@ -26,7 +26,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         [Category(TestTypes.LONG_RUNNING)]
         public void Then_Add_is_called_on_Card_repository()
         {
-            this.TableStorageContext.Verify(x => x.Cards.Add(this.card, It.IsAny<ITableStorageKeyGenerator>()), Times.Once());
+            this.TableStorageContext.Verify(x => x.Cards.Add(this.card), Times.Once());
         }
 
         [Test]

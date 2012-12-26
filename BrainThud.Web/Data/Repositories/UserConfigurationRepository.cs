@@ -1,17 +1,38 @@
 ﻿using System.Linq;
 using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Data.KeyGenerators;
+using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Data.Repositories
 {
     public class UserConfigurationRepository : CardEntityRepository <UserConfiguration>, IUserConfigurationRepository
     {
-        public UserConfigurationRepository(ITableStorageContext tableStorageContext, string nameIdentifier)
-            : base(tableStorageContext, nameIdentifier, CardRowTypes.CONFIGURATION) { }
+        private readonly IUserHelper userHelper;
+
+        public UserConfigurationRepository(
+            ITableStorageContext tableStorageContext,
+            ICardEntityKeyGenerator cardKeyGenerator, 
+            IUserHelper userHelper,
+            string nameIdentifier)
+            : base(tableStorageContext, cardKeyGenerator, nameIdentifier, CardRowTypes.CONFIGURATION)
+        {
+            this.userHelper = userHelper;
+        }
 
         public UserConfiguration GetByNameIdentifier()
         {
-            return this.GetAllForUser().FirstOrDefault();
+            var userConfiguration = this.GetAllForUser().FirstOrDefault();
+
+            if(userConfiguration == null)
+            {
+                userConfiguration = this.userHelper.CreateUserConfiguration();
+                this.TableStorageContext.UserConfigurations.Add(userConfiguration);
+                this.TableStorageContext.Commit();
+
+            }
+
+            return userConfiguration ?? this.userHelper.CreateUserConfiguration();
         }
     }
 }

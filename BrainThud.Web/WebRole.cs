@@ -32,11 +32,11 @@ namespace BrainThud.Web
             cloudStorageServices.CreateTablesIfNotCreated();
             cloudStorageServices.CreateQueusIfNotCreated();
 
-            var identityQueueManager = this.IoCContainer.GetInstance<IIdentityQueueManager>();
+            var identityQueueSeeder = this.IoCContainer.GetInstance<IIdentityQueueSeeder>();
 
             do
             {
-                identityQueueManager.Seed();
+                identityQueueSeeder.Seed();
                 Thread.Sleep(TimeSpan.FromSeconds(ConfigurationSettings.SeedRefreshIntervalSeconds));
             } while (this.enableContinuousExecution);
         }

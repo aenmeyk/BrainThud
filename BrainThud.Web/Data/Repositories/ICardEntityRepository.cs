@@ -5,8 +5,8 @@ namespace BrainThud.Web.Data.Repositories
 {
     public interface ICardEntityRepository<T> : ITableStorageRepository<T> where T : TableServiceEntity
     {
-        T GetById(int userId, int cardId);
-        void DeleteById(int userId, int cardId);
         IQueryable<T> GetAllForUser();
+        T GetById(int userId, int entityId);
+        void DeleteById(int userId, int entityId);
     }
 }

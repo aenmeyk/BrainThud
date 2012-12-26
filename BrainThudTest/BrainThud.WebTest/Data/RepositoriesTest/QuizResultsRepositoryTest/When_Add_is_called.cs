@@ -9,18 +9,11 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.QuizResultsRepos
     [TestFixture]
     public class When_Add_is_called : Given_a_new_QuizResultsRepository
     {
-        private Mock<ICardEntityKeyGenerator> keyGenerator;
         private readonly QuizResult quizResult = new QuizResult();
 
         public override void When()
         {
-            this.keyGenerator = new Mock<ICardEntityKeyGenerator>();
-            this.keyGenerator.Setup(x => x.GeneratePartitionKey()).Returns(TestValues.PARTITION_KEY);
-            this.keyGenerator.Setup(x => x.GenerateRowKey()).Returns(TestValues.ROW_KEY);
-            this.keyGenerator.SetupGet(x => x.GeneratedUserId).Returns(TestValues.USER_ID);
-            this.keyGenerator.SetupGet(x => x.GeneratedEntityId).Returns(TestValues.QUIZ_RESULT_ID);
-
-            this.QuizResultsRepository.Add(this.quizResult, this.keyGenerator.Object);
+            this.QuizResultsRepository.Add(this.quizResult);
         }
 
         [Test]

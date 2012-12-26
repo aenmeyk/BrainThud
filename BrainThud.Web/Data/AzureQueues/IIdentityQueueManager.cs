@@ -2,7 +2,6 @@
 {
     public interface IIdentityQueueManager
     {
-        void Seed();
         int GetNextIdentity();
     }
 }

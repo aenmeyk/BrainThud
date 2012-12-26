@@ -38,12 +38,12 @@ namespace BrainThud.Web.Controllers
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-                var keyGenerator = new QuizResultKeyGenerator(this.authenticationHelper, tableStorageContext, this.userHelper, this.identityQueueManager);
+//                var keyGenerator = new QuizResultKeyGenerator(this.authenticationHelper, this.identityQueueManager, quizResult);
 
                 // TODO: Handle the situation where the card doesn't exist
                 var card = tableStorageContext.Cards.GetById(userId, quizResult.CardId);
                 this.quizResultHandler.UpdateCardLevel(quizResult, card);
-                tableStorageContext.QuizResults.Add(quizResult, keyGenerator);
+                tableStorageContext.QuizResults.Add(quizResult);
                 tableStorageContext.Cards.Update(card);
                 tableStorageContext.CommitBatch();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, quizResult);

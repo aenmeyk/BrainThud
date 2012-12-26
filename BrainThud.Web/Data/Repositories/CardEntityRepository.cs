@@ -1,24 +1,28 @@
 ﻿using System;
 using System.Linq;
 using BrainThud.Web.Data.AzureTableStorage;
+using BrainThud.Web.Data.KeyGenerators;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.Repositories
 {
     public abstract class CardEntityRepository<T> : TableStorageRepository<T>, ICardEntityRepository<T> where T : TableServiceEntity
     {
-        protected string RowKeyPrefix { get; private set; }
-        protected string NameIdentifier { get; private set; }
-
         protected CardEntityRepository(
             ITableStorageContext tableStorageContext, 
+            ICardEntityKeyGenerator keyGenerator,
             string nameIdentifier, 
             string rowKeyPrefix) 
             : base(tableStorageContext)
         {
+            this.KeyGenerator = keyGenerator;
             this.RowKeyPrefix = rowKeyPrefix;
             this.NameIdentifier = nameIdentifier;
         }
+
+        protected ICardEntityKeyGenerator KeyGenerator { get; private set; }
+        protected string RowKeyPrefix { get; private set; }
+        protected string NameIdentifier { get; private set; }
 
         protected override IQueryable<T> EntitySet
         {
@@ -30,18 +34,18 @@ namespace BrainThud.Web.Data.Repositories
             }
         }
 
-        public T GetById(int userId, int cardId)
+        public T GetById(int userId, int entityId)
         {
-            var partitionKey = this.GetPartitionKey(userId);
-            var rowKey = GetRowKey(cardId);
+            var partitionKey = this.KeyGenerator.GetPartitionKey(userId);
+            var rowKey = this.KeyGenerator.GetRowKey(entityId);
 
             return this.Get(partitionKey, rowKey);
         }
 
-        public void DeleteById(int userId, int cardId)
+        public void DeleteById(int userId, int entityId)
         {
-            var partitionKey = this.GetPartitionKey(userId);
-            var rowKey = GetRowKey(cardId);
+            var partitionKey = this.KeyGenerator.GetPartitionKey(userId);
+            var rowKey = this.KeyGenerator.GetRowKey(entityId);
 
             this.Delete(partitionKey, rowKey);
         }
@@ -51,16 +55,6 @@ namespace BrainThud.Web.Data.Repositories
             return this.EntitySet.Where(x =>
                 string.Compare(x.PartitionKey, this.NameIdentifier + '-', StringComparison.Ordinal) >= 0
                 && string.Compare(x.PartitionKey, this.NameIdentifier + '.', StringComparison.Ordinal) < 0);
-        }
-
-        private string GetRowKey(int cardId)
-        {
-            return string.Format("{0}-{1}", this.RowKeyPrefix, cardId);
-        }
-
-        private string GetPartitionKey(int userId)
-        {
-            return string.Format("{0}-{1}", this.NameIdentifier, userId);
         }
     }
 }

@@ -10,19 +10,13 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
 
         public override void When()
         {
-            this.partitionKey = this.CardKeyGenerator.GeneratePartitionKey();
+            this.partitionKey = this.CardKeyGenerator.GeneratePartitionKey(USER_ID);
         }
 
         [Test]
         public void Then_the_user_NameIdentifier_dash_UserId_is_returned()
         {
             this.partitionKey.Should().Be(TestValues.NAME_IDENTIFIER + "-" + USER_ID);
-        }
-
-        [Test]
-        public void Then_the_GeneratedUserId_should_be_set()
-        {
-            this.CardKeyGenerator.GeneratedUserId.Should().Be(USER_ID);
         }
     }
 }

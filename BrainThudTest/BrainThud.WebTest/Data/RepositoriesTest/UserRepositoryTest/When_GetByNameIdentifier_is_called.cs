@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.UserRepositoryTest
 {
     [TestFixture]
-    public class When_GetByNameIdentifier_is_called : Given_a_new_UserRepository
+    public class When_GetByNameIdentifier_is_called : Given_a_new_UserConfigurationRepository
     {
         private UserConfiguration matchingUserConfiguration;
         private UserConfiguration userConfiguration;

@@ -8,41 +8,38 @@ namespace BrainThud.Web.Data.Repositories
 {
     public class TableStorageRepository<T> : ITableStorageRepository<T> where T : TableServiceEntity
     {
-        private readonly ITableStorageContext tableStorageContext;
+        private readonly Lazy<int> userId;
 
         public TableStorageRepository(ITableStorageContext tableStorageContext)
         {
-            this.tableStorageContext = tableStorageContext;
+            this.TableStorageContext = tableStorageContext;
+            this.userId = new Lazy<int>(() => this.TableStorageContext.UserConfigurations.GetByNameIdentifier().UserId);
         }
 
-        protected virtual IQueryable<T> EntitySet { get { return this.tableStorageContext.CreateQuery<T>(); } }
+        protected ITableStorageContext TableStorageContext { get; private set; }
+        protected virtual IQueryable<T> EntitySet { get { return this.TableStorageContext.CreateQuery<T>(); } }
+        protected int UserId { get { return this.userId.Value; } }
 
-        public virtual void Add(T entity, ITableStorageKeyGenerator keyGenerator)
+        protected void SetKeyValues(T entity, ITableStorageKeyGenerator keyGenerator)
         {
-            SetKeyValues(entity, keyGenerator);
-            this.Add(entity);
-        }
-
-        protected static void SetKeyValues(T entity, ITableStorageKeyGenerator keyGenerator)
-        {
-            if(string.IsNullOrEmpty(entity.PartitionKey)) entity.PartitionKey = keyGenerator.GeneratePartitionKey();
+            if(string.IsNullOrEmpty(entity.PartitionKey)) entity.PartitionKey = keyGenerator.GeneratePartitionKey(this.UserId);
             if(string.IsNullOrEmpty(entity.RowKey)) entity.RowKey = keyGenerator.GenerateRowKey();
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
-            this.tableStorageContext.AddObject(entity);
+            this.TableStorageContext.AddObject(entity);
         }
 
         public void Update(T entity)
         {
-            this.tableStorageContext.UpdateObject(entity);
+            this.TableStorageContext.UpdateObject(entity);
         }
 
         public void Delete(string partitionKey, string rowKey)
         {
             var entity = this.Get(partitionKey, rowKey);
-            this.tableStorageContext.DeleteObject(entity);
+            this.TableStorageContext.DeleteObject(entity);
         }
 
         public T Get(string partitionKey, string rowKey)

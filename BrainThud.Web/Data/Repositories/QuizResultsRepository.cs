@@ -6,21 +6,19 @@ namespace BrainThud.Web.Data.Repositories
 {
     public class QuizResultsRepository : CardEntityRepository<QuizResult>
     {
-        public QuizResultsRepository(ITableStorageContext tableStorageContext, string nameIdentifier) 
-            : base(tableStorageContext, nameIdentifier, CardRowTypes.QUIZ_RESULT) {}
+        public QuizResultsRepository(
+            ITableStorageContext tableStorageContext,
+            ICardEntityKeyGenerator quizResultKeyGenerator, 
+            string nameIdentifier)
+            : base(tableStorageContext, quizResultKeyGenerator, nameIdentifier, CardRowTypes.QUIZ_RESULT) { }
 
-        public override void Add(QuizResult entity, ITableStorageKeyGenerator keyGenerator)
+        public override void Add(QuizResult entity)
         {
-            SetKeyValues(entity, keyGenerator);
-            var cardKeyGenerator = keyGenerator as ICardEntityKeyGenerator;
+            this.SetKeyValues(entity, this.KeyGenerator);
+            entity.UserId = this.UserId;
+            entity.EntityId = this.KeyGenerator.GeneratedEntityId;
 
-            if (cardKeyGenerator != null)
-            {
-                entity.UserId = cardKeyGenerator.GeneratedUserId;
-                entity.EntityId = cardKeyGenerator.GeneratedEntityId;
-            }
-
-            this.Add(entity);
+            base.Add(entity);
         }
     }
 }

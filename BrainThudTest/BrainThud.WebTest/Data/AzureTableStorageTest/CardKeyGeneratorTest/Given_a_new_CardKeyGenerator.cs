@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data.AzureQueues;
+﻿using BrainThud.Web;
+using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
@@ -21,23 +22,20 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGene
             this.UserConfiguration = new UserConfiguration { UserId = USER_ID };
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
-            this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
-            this.TableStorageContext.Setup(x => x.UserConfigurations.GetByNameIdentifier()).Returns(this.UserConfiguration);
-            this.UserHelper = new Mock<IUserHelper>();
-            this.UserHelper.Setup(x => x.CreateUserConfiguration()).Returns(this.UserConfiguration);
+            this.TableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
+            this.TableStorageContextFactory
+                .Setup(x => x.CreateTableStorageContext(AzureTableNames.CARD, TestValues.NAME_IDENTIFIER).UserConfigurations.GetByNameIdentifier())
+                .Returns(this.UserConfiguration);
 
             this.IdentityQueueManager = new Mock<IIdentityQueueManager>();
             this.IdentityQueueManager.Setup(x => x.GetNextIdentity()).Returns(NEXT_IDENTITY_VALUE);
 
             this.CardKeyGenerator = new CardKeyGenerator(
                 authenticationHelper.Object,
-                this.TableStorageContext.Object,
-                this.UserHelper.Object,
                 this.IdentityQueueManager.Object);
         }
 
-        protected Mock<IUserHelper> UserHelper { get; private set; }
-        protected Mock<ITableStorageContext> TableStorageContext { get; set; }
+        protected Mock<ITableStorageContextFactory> TableStorageContextFactory { get; set; }
         protected Mock<IIdentityQueueManager> IdentityQueueManager { get; set; }
         protected UserConfiguration UserConfiguration { get; set; }
         protected CardKeyGenerator CardKeyGenerator { get; set; }
