@@ -1,5 +1,5 @@
-﻿define('vm.quiz-card', ['jquery', 'ko', 'data-context', 'utils', 'router'],
-    function ($, ko, dataContext, utils, router) {
+﻿define('vm.quiz-card', ['jquery', 'ko', 'data-context', 'utils', 'router', 'amplify', 'config'],
+    function ($, ko, dataContext, utils, router, amplify, config) {
         var
             init = function () {
                 datePath = utils.getDatePath();
@@ -136,14 +136,23 @@
             showPreviousCard = function () {
                 router.navigateTo(previousCard());
             },
+            
+            publishQuizResult = function(isCorrect) {
+                amplify.publish(config.pubs.addQuizResult, {
+                    cardId: currentCard.cardId(),
+                    isCorrect: isCorrect
+                });
+            },
 
             submitCorrect = function () {
                 dataContext.quizResult.createData(getQuizResultConfig(true));
+                publishQuizResult(true);
                 showNextCard();
             },
 
             submitIncorrect = function () {
                 dataContext.quizResult.createData(getQuizResultConfig(false));
+                publishQuizResult(false);
                 showNextCard();
             };
 

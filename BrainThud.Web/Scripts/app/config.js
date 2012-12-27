@@ -16,13 +16,18 @@
                 quiz: '#quiz-view',
                 quizCard: '#quiz-card-view',
                 nav: '#nav-view'
+            },
+
+            pubs = {
+                addQuizResult: 'add-quiz-result'
             };
 
         toastr.options.timeOut = 1500;
 
         return {
             hashes: hashes,
-            viewIds: viewIds
+            viewIds: viewIds,
+            pubs: pubs
         };
     }
 );

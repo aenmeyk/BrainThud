@@ -1,15 +1,9 @@
-﻿define('vm.quiz', ['ko', 'data-context', 'utils', 'moment', 'router'],
-    function (ko, dataContext, utils, moment, router) {
+﻿define('vm.quiz', ['ko', 'data-context', 'utils', 'moment', 'router', 'amplify', 'config'],
+    function (ko, dataContext, utils, moment, router, amplify, config) {
         var
             quizDate = ko.observable(),
             cardCount = ko.observable(0),
-            quizResults = ko.observableArray([
-                { isCorrect: true },
-                { isCorrect: true },
-                { isCorrect: true },
-                { isCorrect: false },
-                { isCorrect: false }
-            ]),
+            quizResults = ko.observableArray([]),
             
             completedCardCount = ko.computed(function () {
                 return quizResults().length;
@@ -53,6 +47,12 @@
                 var url = '#/quizzes/' + global.userId + '/' + utils.getDatePath() + '/' + quizzes()[0].cards[0].cardId();
                 router.navigateTo(url);
             };
+        
+
+        amplify.subscribe(config.pubs.addQuizResult, function (data) {
+            quizResults().push(data);
+        });
+
         
                     
         function countQuizResults(shouldCount) {
