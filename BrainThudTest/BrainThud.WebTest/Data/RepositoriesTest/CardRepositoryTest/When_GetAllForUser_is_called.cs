@@ -25,7 +25,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
                 .Build();
 
             this.TableStorageContext.Setup(x => x.CreateQuery<Card>()).Returns(cards.AsQueryable());
-            this.actualCards = this.CardRepository.GetAllForUser();
+            this.actualCards = this.CardRepository.GetForUser();
         }
 
         [Test]

@@ -50,7 +50,7 @@ namespace BrainThud.Web.Data.Repositories
             this.Delete(partitionKey, rowKey);
         }
 
-        public IQueryable<T> GetAllForUser()
+        public IQueryable<T> GetForUser()
         {
             return this.EntitySet.Where(x =>
                 string.Compare(x.PartitionKey, this.NameIdentifier + '-', StringComparison.Ordinal) >= 0

@@ -25,7 +25,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.QuizResultsRepos
                 .Build();
 
             this.TableStorageContext.Setup(x => x.CreateQuery<QuizResult>()).Returns(quizResults.AsQueryable());
-            this.actualQuizResults = this.QuizResultsRepository.GetAllForUser();
+            this.actualQuizResults = this.QuizResultsRepository.GetForUser();
         }
 
         [Test]

@@ -33,7 +33,7 @@ namespace BrainThud.Web.Controllers
             
             var quiz = new Quiz
             {
-                Cards = tableStorageContext.Cards.GetAllForUser().Where(x => x.QuizDate <= quizDate),
+                Cards = tableStorageContext.Cards.GetForUser().Where(x => x.QuizDate <= quizDate),
                 ResultsUri = this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues),
                 UserId = userConfiguration != null ? userConfiguration.UserId : 0,
                 QuizDate = quizDate.Date,

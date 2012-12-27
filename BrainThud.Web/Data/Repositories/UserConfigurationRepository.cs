@@ -22,7 +22,7 @@ namespace BrainThud.Web.Data.Repositories
 
         public UserConfiguration GetByNameIdentifier()
         {
-            var userConfiguration = this.GetAllForUser().FirstOrDefault();
+            var userConfiguration = this.GetForUser().FirstOrDefault();
 
             if(userConfiguration == null)
             {

@@ -36,7 +36,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
 
             // Use IsCorrect = true to indicate which cards should be included in result
             this.quizResults = Builder<QuizResult>.CreateListOfSize(3).Build();
-            this.TableStorageContext.Setup(x => x.Cards.GetAllForUser()).Returns(allCards.AsQueryable());
+            this.TableStorageContext.Setup(x => x.Cards.GetForUser()).Returns(allCards.AsQueryable());
             this.TableStorageContext.Setup(x => x.QuizResults.GetForQuiz(TestValues.YEAR, TestValues.MONTH, TestValues.DAY)).Returns(this.quizResults.AsQueryable());
 
             var userConfiguration = new UserConfiguration { UserId = TestValues.USER_ID };
