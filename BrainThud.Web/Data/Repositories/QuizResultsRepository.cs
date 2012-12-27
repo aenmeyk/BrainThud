@@ -1,10 +1,12 @@
-﻿using BrainThud.Web.Data.AzureTableStorage;
+﻿using System;
+using System.Linq;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Data.Repositories
 {
-    public class QuizResultsRepository : CardEntityRepository<QuizResult>
+    public class QuizResultsRepository : CardEntityRepository<QuizResult>, IQuizResultsRepository
     {
         public QuizResultsRepository(
             ITableStorageContext tableStorageContext,
@@ -19,6 +21,17 @@ namespace BrainThud.Web.Data.Repositories
             entity.EntityId = this.KeyGenerator.GeneratedEntityId;
 
             base.Add(entity);
+        }
+
+        public IQueryable<QuizResult> GetForQuiz(int year, int month, int day)
+        {
+            // TODO: Only return results for this user
+            var quizDate = new DateTime(year, month, day);
+            return this.EntitySet
+                .Where(x => x.QuizDate == quizDate)
+                .Where(x =>
+                    string.Compare(x.PartitionKey, this.NameIdentifier + '-', StringComparison.Ordinal) >= 0
+                    && string.Compare(x.PartitionKey, this.NameIdentifier + '.', StringComparison.Ordinal) < 0);
         }
     }
 }

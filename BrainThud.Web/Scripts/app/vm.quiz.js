@@ -3,9 +3,30 @@
         var
             quizDate = ko.observable(),
             cardCount = ko.observable(0),
-            completedCardCount = ko.observable(0),
-            correctCardCount = ko.observable(0),
-            incorrectCardCount = ko.observable(0),
+            quizResults = ko.observableArray([
+                { isCorrect: true },
+                { isCorrect: true },
+                { isCorrect: true },
+                { isCorrect: false },
+                { isCorrect: false }
+            ]),
+            
+            completedCardCount = ko.computed(function () {
+                return quizResults().length;
+            }),
+            
+            correctCardCount = ko.computed(function () {
+                return countQuizResults(function(quizResult) {
+                    return quizResult.isCorrect;
+                });
+            }),
+            
+            incorrectCardCount = ko.computed(function () {
+                return countQuizResults(function (quizResult) {
+                    return !quizResult.isCorrect;
+                });
+            }),
+
             quizzes = ko.observableArray([]),
 
             dataOptions = {
@@ -24,6 +45,7 @@
                        var quiz = quizzes()[0];
                        quizDate(moment(quiz.quizDate).format('L'));
                        cardCount(quiz.cards.length);
+                       quizResults(quiz.quizResults);
                    });
            },
 
@@ -31,6 +53,17 @@
                 var url = '#/quizzes/' + global.userId + '/' + utils.getDatePath() + '/' + quizzes()[0].cards[0].cardId();
                 router.navigateTo(url);
             };
+        
+                    
+        function countQuizResults(shouldCount) {
+            var correct = 0;
+            var results = quizResults();
+            for (var i = 0; i < quizResults().length; i++) {
+                if (shouldCount(results[i])) correct++;
+            }
+            return correct;
+        };
+
 
         return {
             startQuiz: startQuiz,

@@ -191,6 +191,7 @@
     <Compile Include="Data\KeyGenerators\QuizResultKeyGenerator.cs" />
     <Compile Include="Data\Repositories\CardEntityRepository.cs" />
     <Compile Include="Data\Repositories\CardRepository.cs" />
+    <Compile Include="Data\Repositories\IQuizResultsRepository.cs" />
     <Compile Include="Data\Repositories\QuizResultsRepository.cs" />
     <Compile Include="Data\Repositories\ICardEntityRepository.cs" />
     <Compile Include="Data\Repositories\ITableStorageRepository.cs" />

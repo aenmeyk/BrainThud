@@ -35,6 +35,9 @@ namespace BrainThudTest
         public const string ERROR_KEY_2 = "ErrorKey2";
         public const string ERROR_MESSAGE_2 = "Error Message 2";
         public const string VALID = "Valid";
+        public const int YEAR = 2012;
+        public const int MONTH = 7;
+        public const int DAY = 21;
     }
 
     public static class TestUrls

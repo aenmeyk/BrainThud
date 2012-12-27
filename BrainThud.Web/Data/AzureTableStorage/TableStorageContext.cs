@@ -17,7 +17,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         private readonly string tableName;
         private readonly string nameIdentifier;
         private readonly Lazy<ICardEntityRepository<Card>> cards;
-        private readonly Lazy<ICardEntityRepository<QuizResult>> quizResults;
+        private readonly Lazy<IQuizResultsRepository> quizResults;
         private readonly Lazy<IUserConfigurationRepository> userConfigurations;
         private readonly Lazy<ITableStorageRepository<MasterConfiguration>> masterConfigurations;
 
@@ -37,13 +37,13 @@ namespace BrainThud.Web.Data.AzureTableStorage
             this.nameIdentifier = nameIdentifier;
             this.IgnoreResourceNotFoundException = true;
             this.cards = new Lazy<ICardEntityRepository<Card>>(() => new CardRepository(this, this.cardKeyGenerator, this.nameIdentifier));
-            this.quizResults = new Lazy<ICardEntityRepository<QuizResult>>(() => new QuizResultsRepository(this, this.quizResultKeyGenerator, this.nameIdentifier));
+            this.quizResults = new Lazy<IQuizResultsRepository>(() => new QuizResultsRepository(this, this.quizResultKeyGenerator, this.nameIdentifier));
             this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => new UserConfigurationRepository(this, this.cardKeyGenerator, this.userHelper, this.nameIdentifier));
             this.masterConfigurations = new Lazy<ITableStorageRepository<MasterConfiguration>>(() => new TableStorageRepository<MasterConfiguration>(this));
         }
 
         public ICardEntityRepository<Card> Cards { get { return this.cards.Value; } }
-        public ICardEntityRepository<QuizResult> QuizResults { get { return this.quizResults.Value; } }
+        public IQuizResultsRepository QuizResults { get { return this.quizResults.Value; } }
         public IUserConfigurationRepository UserConfigurations { get { return this.userConfigurations.Value; } }
         public ITableStorageRepository<MasterConfiguration> MasterConfigurations { get { return this.masterConfigurations.Value; } }
 

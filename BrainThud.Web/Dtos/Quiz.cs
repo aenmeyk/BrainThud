@@ -10,5 +10,6 @@ namespace BrainThud.Web.Dtos
         public string ResultsUri { get; set; }
         public int UserId { get; set; }
         public DateTime QuizDate { get; set; }
+        public IEnumerable<QuizResult> QuizResults { get; set; }
     }
 }

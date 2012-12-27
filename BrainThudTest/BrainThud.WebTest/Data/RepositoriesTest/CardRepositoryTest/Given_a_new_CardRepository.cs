@@ -32,6 +32,8 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
             this.CardKeyGenerator = new Mock<ICardEntityKeyGenerator>();
             this.CardKeyGenerator.Setup(x => x.GeneratePartitionKey(TestValues.USER_ID)).Returns(TestValues.CARD_PARTITION_KEY);
             this.CardKeyGenerator.Setup(x => x.GenerateRowKey()).Returns(TestValues.CARD_ROW_KEY);
+            this.CardKeyGenerator.Setup(x => x.GetPartitionKey(TestValues.USER_ID)).Returns(TestValues.CARD_PARTITION_KEY);
+            this.CardKeyGenerator.Setup(x => x.GetRowKey(TestValues.CARD_ID)).Returns(TestValues.CARD_ROW_KEY);
             this.CardKeyGenerator.SetupGet(x => x.GeneratedEntityId).Returns(TestValues.CARD_ID);
 
             this.CardRepository = new CardRepository(

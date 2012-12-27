@@ -8,11 +8,18 @@
                         cards.push(getCardFromDto(dto.cards[i]));
                     }
 
+                    var quizResults = [];
+
+                    for (var i = 0; i < dto.quizResults.length; i++) {
+                        quizResults.push(getCardFromDto(dto.quizResults[i]));
+                    }
+
                     results.push({
                         cards: cards,
                         resultsUri: dto.resultsUri,
                         userId: dto.userId,
-                        quizDate: dto.quizDate
+                        quizDate: dto.quizDate,
+                        quizResults: dto.quizResults
                     });
                 }
             },
