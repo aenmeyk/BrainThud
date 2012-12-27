@@ -218,6 +218,7 @@
     <Compile Include="Helpers\AuthenticationHelper.cs" />
     <Compile Include="Helpers\IAuthenticationHelper.cs" />
     <Compile Include="Helpers\IUserHelper.cs" />
+    <Compile Include="Helpers\PredicateBuilder.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\UserConfiguration.cs" />

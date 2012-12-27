@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\QuizResultKeyGeneratorTest\Given_a_new_QuizResultKeyGenerator.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\QuizResultKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_GetForQuiz_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\Given_a_new_CardRepository.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Add_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Nothing_Changes.cs" />

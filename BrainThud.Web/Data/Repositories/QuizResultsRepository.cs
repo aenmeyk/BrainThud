@@ -25,7 +25,6 @@ namespace BrainThud.Web.Data.Repositories
 
         public IQueryable<QuizResult> GetForQuiz(int year, int month, int day)
         {
-            // TODO: Only return results for this user
             var quizDate = new DateTime(year, month, day);
             return this.EntitySet
                 .Where(x => x.QuizDate == quizDate)
