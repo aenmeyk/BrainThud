@@ -122,8 +122,8 @@
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\QuizResultsRepositoryTest\When_GetForQuiz_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\QuizResultsRepositoryTest\Given_a_new_QuizResultsRepository.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\QuizResultsRepositoryTest\When_Add_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_GetAllForUser_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\QuizResultsRepositoryTest\When_GetAllForUser_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_GetForUser_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\QuizResultsRepositoryTest\When_GetForUser_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\When_GetOrCreate_is_called_for_a_Configuration_that_does_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\Given_a_new_TableStorageRepository_of_Configuration.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\When_GetOrCreate_is_called_for_a_Configuration_that_does_not_exist.cs" />

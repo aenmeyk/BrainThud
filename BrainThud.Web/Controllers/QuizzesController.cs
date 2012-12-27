@@ -22,14 +22,12 @@ namespace BrainThud.Web.Controllers
         public Quiz Get(int year, int month, int day)
         {
             var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
+            var routeValues = new { year, month, day };
+            var userConfiguration = tableStorageContext.UserConfigurations.GetByNameIdentifier();
 
             var quizDate = new DateTime(year, month, day)
                 .AddDays(1).Date
                 .AddMilliseconds(-1);
-
-            var routeValues = new { year, month, day };
-
-            var userConfiguration = tableStorageContext.UserConfigurations.GetByNameIdentifier();
             
             var quiz = new Quiz
             {
