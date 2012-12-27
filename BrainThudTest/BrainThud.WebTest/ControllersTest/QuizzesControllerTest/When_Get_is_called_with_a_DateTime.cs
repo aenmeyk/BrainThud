@@ -15,6 +15,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
         private DateTime quizDate;
         private Quiz quiz;
         private IList<QuizResult> quizResults;
+        private IEnumerable<Card> quizResultCards;
 
         public override void When()
         {
@@ -25,18 +26,24 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
             var twelveHoursAfter = this.quizDate.AddHours(12);
             var dayAfter = this.quizDate.AddDays(TestValues.DAY);
 
-            // Use Level property of 0 to indicate which cards should be included in result
-            var allCards = Builder<Card>.CreateListOfSize(10)
-                .TheFirst(2).With(x => x.QuizDate = dayBefore).And(x => x.Level = 0)
-                .TheNext(2).With(x => x.QuizDate = this.quizDate).And(x => x.Level = 0)
-                .TheNext(2).With(x => x.QuizDate = millisecondAfter).And(x => x.Level = 0)
-                .TheNext(2).With(x => x.QuizDate = twelveHoursAfter).And(x => x.Level = 0)
-                .TheNext(2).With(x => x.QuizDate = dayAfter).And(x => x.Level = TestValues.DAY)
+            // Use Level property of 1 to indicate which cards should be included in result
+            var userCards = Builder<Card>.CreateListOfSize(10)
+                .TheFirst(2).With(x => x.QuizDate = dayBefore).And(x => x.Level = 1)
+                .TheNext(2).With(x => x.QuizDate = this.quizDate).And(x => x.Level = 1)
+                .TheNext(2).With(x => x.QuizDate = millisecondAfter).And(x => x.Level = 1)
+                .TheNext(2).With(x => x.QuizDate = twelveHoursAfter).And(x => x.Level = 1)
+                .TheNext(2).With(x => x.QuizDate = dayAfter)
+                .Build();
+
+            this.quizResultCards = Builder<Card>.CreateListOfSize(2)
+                .All().With(x => x.Level = 1)
                 .Build();
 
             // Use IsCorrect = true to indicate which cards should be included in result
             this.quizResults = Builder<QuizResult>.CreateListOfSize(3).Build();
-            this.TableStorageContext.Setup(x => x.Cards.GetForUser()).Returns(allCards.AsQueryable());
+
+            this.TableStorageContext.Setup(x => x.Cards.GetForUser()).Returns(userCards.AsQueryable());
+            this.TableStorageContext.Setup(x => x.Cards.GetForQuizResults(this.quizResults)).Returns(this.quizResultCards.AsQueryable());
             this.TableStorageContext.Setup(x => x.QuizResults.GetForQuiz(TestValues.YEAR, TestValues.MONTH, TestValues.DAY)).Returns(this.quizResults.AsQueryable());
 
             var userConfiguration = new UserConfiguration { UserId = TestValues.USER_ID };
@@ -47,7 +54,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
         [Test]
         public void Then_only_cards_with_a_QuizDate_less_than_or_equal_to_the_quizDate_parameter_are_returned()
         {
-            this.quiz.Cards.Should().OnlyContain(x => x.Level == 0).And.HaveCount(8);
+            this.quiz.Cards.Should().OnlyContain(x => x.Level == 1).And.HaveCount(10);
+        }
+
+        [Test]
+        public void Then_the_cards_referenced_from_the_QuizResults_should_be_included_in_the_QuizCards()
+        {
+            this.quiz.Cards.Should().Contain(this.quizResultCards);
         }
 
         [Test]

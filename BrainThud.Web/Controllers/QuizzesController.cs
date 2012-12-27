@@ -28,14 +28,18 @@ namespace BrainThud.Web.Controllers
             var quizDate = new DateTime(year, month, day)
                 .AddDays(1).Date
                 .AddMilliseconds(-1);
-            
+
+            var quizResults = tableStorageContext.QuizResults.GetForQuiz(year, month, day).ToList();
+            var userCards = tableStorageContext.Cards.GetForUser().Where(x => x.QuizDate <= quizDate).ToList();
+            var quizResultCards = tableStorageContext.Cards.GetForQuizResults(quizResults);
+
             var quiz = new Quiz
             {
-                Cards = tableStorageContext.Cards.GetForUser().Where(x => x.QuizDate <= quizDate),
+                Cards = userCards.Union(quizResultCards),
                 ResultsUri = this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues),
                 UserId = userConfiguration != null ? userConfiguration.UserId : 0,
                 QuizDate = quizDate.Date,
-                QuizResults = tableStorageContext.QuizResults.GetForQuiz(year, month, day)
+                QuizResults = quizResults
             };
 
             return quiz;

@@ -11,7 +11,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
     [TestFixture]
     public class When_GetForQuiz_is_called : Given_a_new_CardRepository
     {
-        private IQueryable<Card> actualCards;
+        private IEnumerable<Card> actualCards;
 
         private static IEnumerable<Card> cards
         {
@@ -21,16 +21,16 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
                 return new[]
                 {
                     // Correct user, no matching QuizResult
-                    new Card {PartitionKey = TestValues.CARD_PARTITION_KEY, RowKey = CardRowTypes.CARD + '-' + 0 },
+                    new Card {PartitionKey = TestValues.CARD_PARTITION_KEY, RowKey = CardRowTypes.CARD + '-' + 0, EntityId = 0},
 
                     // Correct user, matching QuizResult
-                    new Card {PartitionKey = TestValues.CARD_PARTITION_KEY, RowKey = CardRowTypes.CARD + '-' + 1, Level = 1},
+                    new Card {PartitionKey = TestValues.CARD_PARTITION_KEY, RowKey = CardRowTypes.CARD + '-' + 1, Level = 1, EntityId = 1},
 
                     // Incorrect user, no matching QuizResult
-                    new Card {PartitionKey = TestValues.PARTITION_KEY, RowKey = CardRowTypes.CARD + '-' + 2},
+                    new Card {PartitionKey = TestValues.PARTITION_KEY, RowKey = CardRowTypes.CARD + '-' + 2, EntityId = 2},
 
                     // Incorrect user, matching QuizResult
-                    new Card {PartitionKey = TestValues.PARTITION_KEY, RowKey = CardRowTypes.CARD + '-' + 3},
+                    new Card {PartitionKey = TestValues.PARTITION_KEY, RowKey = CardRowTypes.CARD + '-' + 3, EntityId = 3},
                 };
             }
         }
@@ -49,7 +49,6 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
 
         public override void When()
         {
-            this.CardKeyGenerator.Setup(x => x.GetRowKey(It.IsAny<int>())).Returns<int>(x => CardRowTypes.CARD + '-' + x);
             this.TableStorageContext.Setup(x => x.CreateQuery<Card>()).Returns(cards.AsQueryable());
             this.actualCards = this.CardRepository.GetForQuizResults(quizResults);
         }

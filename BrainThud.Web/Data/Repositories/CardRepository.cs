@@ -8,7 +8,7 @@ using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Data.Repositories
 {
-    public class CardRepository : CardEntityRepository<Card>
+    public class CardRepository : CardEntityRepository<Card>, ICardRepository
     {
         public CardRepository(
             ITableStorageContext tableStorageContext, 
@@ -26,21 +26,16 @@ namespace BrainThud.Web.Data.Repositories
             base.Add(entity);
          }
 
-        public IQueryable<Card> GetForQuizResults(IEnumerable<QuizResult> quizResults)
+        public IEnumerable<Card> GetForQuizResults(IEnumerable<QuizResult> quizResults)
         {
-            var predicate = PredicateBuilder.False<Card>();
+            var quizResultCardIds = quizResults.Select(qr => qr.CardId);
+            var results = this.EntitySet
+                .Where(x => 
+                    string.Compare(x.PartitionKey, this.NameIdentifier + '-', StringComparison.Ordinal) >= 0 && 
+                    string.Compare(x.PartitionKey, this.NameIdentifier + '.', StringComparison.Ordinal) < 0)
+                .ToList();
 
-            foreach(var quizResult in quizResults)
-            {
-                var cardRowKey = this.KeyGenerator.GetRowKey(quizResult.CardId);
-                predicate = predicate.Or(x => x.RowKey == cardRowKey);
-            }
-
-            return this.EntitySet
-                .Where(predicate)
-                .Where(x =>
-                       string.Compare(x.PartitionKey, this.NameIdentifier + '-', StringComparison.Ordinal) >= 0
-                       && string.Compare(x.PartitionKey, this.NameIdentifier + '.', StringComparison.Ordinal) < 0);
+            return results.Where(x => quizResultCardIds.Contains(x.EntityId));
         }
     }
 }
