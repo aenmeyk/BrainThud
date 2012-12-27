@@ -37,8 +37,12 @@ namespace BrainThud.Web.Handlers
 
             if(existingResult != null)
             {
-                card.Level--;
-                card.QuizDate = card.QuizDate.AddDays(-this.quizCalendar[card.Level]).Date;
+                if(card.Level > 0)
+                {
+                    card.Level--;
+                    card.QuizDate = card.QuizDate.AddDays(-this.quizCalendar[card.Level]).Date;
+                }
+                
                 tableStorageContext.QuizResults.Delete(existingResult.PartitionKey, existingResult.RowKey);
             }
         }

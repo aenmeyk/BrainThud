@@ -149,6 +149,7 @@
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\Given_a_new_UserConfigurationRepository.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\When_GetByNameIdentifier_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_ReverseIfExists_is_called_with_existing_QuizResult_and_card_is_level_0.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_ReverseIfExists_is_called_and_the_QuizResult_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_ReverseIfExists_is_called_with_existing_QuizResult.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\Given_a_new_UserHelper.cs" />

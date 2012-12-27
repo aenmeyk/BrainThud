@@ -50,7 +50,15 @@
         
 
         amplify.subscribe(config.pubs.addQuizResult, function (data) {
-            quizResults().push(data);
+            var resultsArray = quizResults();
+            for (var i = 0; i < resultsArray.length; i++) {
+                if (resultsArray[i].cardId === data.cardId) {
+                    resultsArray.splice(i, 1);
+                    break;
+                }
+            }
+
+            resultsArray.push(data);
         });
 
         
