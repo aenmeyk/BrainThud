@@ -13,7 +13,7 @@ namespace BrainThudTest
     {
         // ReSharper disable InconsistentNaming
         public static readonly Guid GUID = Guid.Parse("16ffa7cb-53f7-4a1d-bf19-c60555c95fcf");
-        public static readonly DateTime DATETIME = new DateTime(2012, 1, 1);
+        public static readonly DateTime DATETIME = new DateTime(YEAR, MONTH, DAY);
         public static readonly string CARD_PARTITION_KEY = NAME_IDENTIFIER + '-' + USER_ID;
         public static readonly string CARD_ROW_KEY = CardRowTypes.CARD + '-' + CARD_ID;
         public static readonly string QUIZ_ROW_KEY = CardRowTypes.QUIZ_RESULT + '-' + QUIZ_ID;

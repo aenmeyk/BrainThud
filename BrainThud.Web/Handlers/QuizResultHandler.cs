@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using BrainThud.Web.Calendars;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Handlers
@@ -20,6 +22,25 @@ namespace BrainThud.Web.Handlers
                 : 0;
 
             card.QuizDate = DateTime.UtcNow.AddDays(this.quizCalendar[card.Level]).Date;
+        }
+
+        public void ReverseIfExists(ITableStorageContext tableStorageContext, QuizResult quizResult, Card card)
+        {
+            var quizDate = quizResult.QuizDate;
+
+// ReSharper disable ReplaceWithSingleCallToFirstOrDefault
+            var existingResult = tableStorageContext.QuizResults
+                .GetForQuiz(quizDate.Year, quizDate.Month, quizDate.Day)
+                .Where(x => x.CardId == card.EntityId)
+                .FirstOrDefault();
+// ReSharper restore ReplaceWithSingleCallToFirstOrDefault
+
+            if(existingResult != null)
+            {
+                card.Level--;
+                card.QuizDate = card.QuizDate.AddDays(-this.quizCalendar[card.Level]).Date;
+                tableStorageContext.QuizResults.Delete(existingResult.PartitionKey, existingResult.RowKey);
+            }
         }
     }
 }

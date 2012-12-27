@@ -88,7 +88,6 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_Get_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Post_is_called_with_an_existing_QuizResult.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_Get_is_called_by_a_user_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueSeederTest\Given_a_new_IdentityQueueSeeder.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueSeederTest\When_nothing_changes.cs" />
@@ -150,6 +149,8 @@
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\Given_a_new_UserConfigurationRepository.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\When_GetByNameIdentifier_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserRepositoryTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_ReverseIfExists_is_called_and_the_QuizResult_does_not_exist.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_ReverseIfExists_is_called_with_existing_QuizResult.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\Given_a_new_UserHelper.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\When_CreateUserConfiguration_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Model\CardTest\Given_a_new_Card.cs">

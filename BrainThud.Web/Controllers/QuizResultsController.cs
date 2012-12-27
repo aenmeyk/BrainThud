@@ -16,7 +16,7 @@ namespace BrainThud.Web.Controllers
 
         public QuizResultsController(
             ITableStorageContextFactory tableStorageContextFactory,
-            IQuizResultHandler quizResultHandler, 
+            IQuizResultHandler quizResultHandler,
             IAuthenticationHelper authenticationHelper)
         {
             this.tableStorageContextFactory = tableStorageContextFactory;
@@ -33,22 +33,15 @@ namespace BrainThud.Web.Controllers
 
                 // TODO: Handle the situation where the card doesn't exist
                 var card = tableStorageContext.Cards.GetById(userId, quizResult.CardId);
+                this.quizResultHandler.ReverseIfExists(tableStorageContext, quizResult, card);
                 this.quizResultHandler.UpdateCardLevel(quizResult, card);
                 tableStorageContext.QuizResults.Add(quizResult);
                 tableStorageContext.Cards.Update(card);
                 tableStorageContext.CommitBatch();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, quizResult);
-
-                var routeValues = new
-                {
-                    userId,
-                    year,
-                    month,
-                    day,
-                    quizResultId = quizResult.EntityId
-                };
-
+                var routeValues = new { userId, year, month, day, quizResultId = quizResult.EntityId };
                 response.Headers.Location = new Uri(this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues));
+
                 return response;
             }
 

@@ -17,10 +17,12 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         private const int DAY = 19;
         private QuizResult quizResult;
         private HttpResponseMessage response;
+        private readonly Card card = new Card { EntityId = TestValues.CARD_ID };
 
         public override void When()
         {
-            this.quizResult = new QuizResult { EntityId = TestValues.QUIZ_RESULT_ID, UserId = TestValues.USER_ID };
+            this.TableStorageContext.Setup(x => x.Cards.GetById(TestValues.USER_ID, TestValues.CARD_ID)).Returns(this.card);
+            this.quizResult = new QuizResult { EntityId = TestValues.QUIZ_RESULT_ID, UserId = TestValues.USER_ID, CardId = TestValues.CARD_ID };
             this.response = this.QuizResultsController.Post(TestValues.USER_ID, YEAR, MONTH, DAY, this.quizResult);
         }
 
@@ -70,7 +72,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
             var quizResultIdPropertyInfo = type.GetProperty("quizResultId");
             var quizResultId = quizResultIdPropertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
             quizResultId.Should().Be(this.quizResult.EntityId);
-            
+
             this.QuizResultsController.RouteName.Should().Be(RouteNames.API_QUIZ_RESULTS);
             this.response.Headers.Location.ToString().Should().Be(TestUrls.LOCALHOST);
         }
@@ -85,6 +87,12 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         public void Then_the_card_is_updated_in_the_cards_repository()
         {
             this.TableStorageContext.Verify(x => x.Cards.Update(It.Is<Card>(c => c.EntityId == this.quizResult.CardId)), Times.Once());
+        }
+
+        [Test]
+        public void Then_ReverseIfExists_should_be_called_on_QuizResultHandler()
+        {
+            this.QuizResultHandler.Verify(x => x.ReverseIfExists(this.TableStorageContext.Object, this.quizResult, this.card), Times.Once());
         }
     }
 }
