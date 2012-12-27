@@ -12,6 +12,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
 
         public override void When()
         {
+            this.QuizCalendar.Setup(x => x[0]).Returns(TestValues.INT);
             this.CardRepository.Add(card);
         }
 
@@ -40,9 +41,10 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
         }
 
         [Test]
-        public void Then_the_QuizDate_should_be_set_for_tomorrow()
+        public void Then_the_QuizDate_should_be_set_from_the_first_entry_in_the_QuizCalendar()
         {
-            this.card.QuizDate.Date.Should().Be(DateTime.UtcNow.AddDays(1).Date);
+            var expectedDate = DateTime.UtcNow.AddDays(TestValues.INT).Date;
+            this.card.QuizDate.Date.Should().Be(expectedDate);
         }
     }
 }

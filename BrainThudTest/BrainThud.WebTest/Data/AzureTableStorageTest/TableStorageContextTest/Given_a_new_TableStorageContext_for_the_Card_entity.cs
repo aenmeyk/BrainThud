@@ -1,4 +1,5 @@
 ﻿using BrainThud.Web;
+using BrainThud.Web.Calendars;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
@@ -19,10 +20,11 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
             this.UserHelper = new Mock<IUserHelper>();
 
             this.TableStorageContext = new TableStorageContext(
-                this.CloudStorageServices.Object, 
+                this.CloudStorageServices.Object,
                 this.CardKeyGenerator.Object,
                 this.QuizResultKeyGenerator.Object,
                 this.UserHelper.Object,
+                new Mock<IQuizCalendar>().Object,
                 AzureTableNames.CARD,
                 TestValues.NAME_IDENTIFIER);
         }

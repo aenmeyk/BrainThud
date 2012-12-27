@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data.AzureTableStorage;
+﻿using BrainThud.Web.Calendars;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
 using BrainThud.Web.Model;
@@ -36,12 +37,16 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
             this.CardKeyGenerator.Setup(x => x.GetRowKey(TestValues.CARD_ID)).Returns(TestValues.CARD_ROW_KEY);
             this.CardKeyGenerator.SetupGet(x => x.GeneratedEntityId).Returns(TestValues.CARD_ID);
 
+            this.QuizCalendar = new Mock<IQuizCalendar>();
+
             this.CardRepository = new CardRepository(
                 this.TableStorageContext.Object,
                 this.CardKeyGenerator.Object,
+                this.QuizCalendar.Object,
                 TestValues.NAME_IDENTIFIER);
         }
 
+        protected Mock<IQuizCalendar> QuizCalendar { get; private set; }
         protected Mock<ICardEntityKeyGenerator> CardKeyGenerator { get; private set; }
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
         protected CardRepository CardRepository { get; private set; }

@@ -17,10 +17,11 @@ namespace BrainThud.Web.Handlers
 
         public void UpdateCardLevel(QuizResult quizResult, Card card)
         {
-            card.QuizDate = DateTime.UtcNow.AddDays(this.quizCalendar[card.Level]).Date;
             card.Level = quizResult.IsCorrect
                 ? card.Level + 1
                 : 0;
+
+            card.QuizDate = DateTime.UtcNow.AddDays(this.quizCalendar[card.Level]).Date;
         }
 
         public void ReverseIfExists(ITableStorageContext tableStorageContext, QuizResult quizResult, Card card)

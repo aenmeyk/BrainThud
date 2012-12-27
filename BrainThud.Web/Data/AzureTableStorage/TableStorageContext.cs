@@ -1,6 +1,7 @@
 using System;
 using System.Data.Services.Client;
 using System.Linq;
+using BrainThud.Web.Calendars;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
 using BrainThud.Web.Helpers;
@@ -14,6 +15,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         private readonly ICardEntityKeyGenerator cardKeyGenerator;
         private readonly ICardEntityKeyGenerator quizResultKeyGenerator;
         private readonly IUserHelper userHelper;
+        private readonly IQuizCalendar quizCalendar;
         private readonly string tableName;
         private readonly string nameIdentifier;
         private readonly Lazy<ICardRepository> cards;
@@ -26,6 +28,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
             ICardEntityKeyGenerator cardKeyGenerator,
             ICardEntityKeyGenerator quizResultKeyGenerator,
             IUserHelper userHelper,
+            IQuizCalendar quizCalendar,
             string tableName, 
             string nameIdentifier)
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
@@ -33,10 +36,11 @@ namespace BrainThud.Web.Data.AzureTableStorage
             this.cardKeyGenerator = cardKeyGenerator;
             this.quizResultKeyGenerator = quizResultKeyGenerator;
             this.userHelper = userHelper;
+            this.quizCalendar = quizCalendar;
             this.tableName = tableName;
             this.nameIdentifier = nameIdentifier;
             this.IgnoreResourceNotFoundException = true;
-            this.cards = new Lazy<ICardRepository>(() => new CardRepository(this, this.cardKeyGenerator, this.nameIdentifier));
+            this.cards = new Lazy<ICardRepository>(() => new CardRepository(this, this.cardKeyGenerator, this.quizCalendar, this.nameIdentifier));
             this.quizResults = new Lazy<IQuizResultsRepository>(() => new QuizResultsRepository(this, this.quizResultKeyGenerator, this.nameIdentifier));
             this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => new UserConfigurationRepository(this, this.cardKeyGenerator, this.userHelper, this.nameIdentifier));
             this.masterConfigurations = new Lazy<ITableStorageRepository<MasterConfiguration>>(() => new TableStorageRepository<MasterConfiguration>(this));
