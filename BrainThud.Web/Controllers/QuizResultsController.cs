@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
@@ -15,21 +13,15 @@ namespace BrainThud.Web.Controllers
         private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IQuizResultHandler quizResultHandler;
         private readonly IAuthenticationHelper authenticationHelper;
-        private readonly IUserHelper userHelper;
-        private readonly IIdentityQueueManager identityQueueManager;
 
         public QuizResultsController(
             ITableStorageContextFactory tableStorageContextFactory,
             IQuizResultHandler quizResultHandler, 
-            IAuthenticationHelper authenticationHelper,
-            IUserHelper userHelper,
-            IIdentityQueueManager identityQueueManager)
+            IAuthenticationHelper authenticationHelper)
         {
             this.tableStorageContextFactory = tableStorageContextFactory;
             this.quizResultHandler = quizResultHandler;
             this.authenticationHelper = authenticationHelper;
-            this.userHelper = userHelper;
-            this.identityQueueManager = identityQueueManager;
         }
 
         public HttpResponseMessage Post(int userId, int year, int month, int day, QuizResult quizResult)
@@ -38,7 +30,6 @@ namespace BrainThud.Web.Controllers
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-//                var keyGenerator = new QuizResultKeyGenerator(this.authenticationHelper, this.identityQueueManager, quizResult);
 
                 // TODO: Handle the situation where the card doesn't exist
                 var card = tableStorageContext.Cards.GetById(userId, quizResult.CardId);

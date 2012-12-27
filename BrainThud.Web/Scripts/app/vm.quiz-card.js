@@ -58,7 +58,7 @@
                 if (cards().length === 0) {
                     var existingCards = ko.observableArray([]);
 
-                    // TODO: Find a better way of ensuring that the ViewModels use the same store for cards. 
+                    // TODO: Find a better way of ensuring that the ViewModels use the same store for cards. Perhaps use pub/sub like the QuizResults
                     // (We need the same store because if a card is updated on one ViewModel we need the value to be updated on the other ViewModels too.)
                     $.when(dataContext.quizCard.getData(dataOptions), dataContext.card.getData({ results: existingCards }))
                         .then(function () {
@@ -130,11 +130,19 @@
             },
 
             showNextCard = function () {
-                router.navigateTo(nextCard());
+                if (hasNextCard()) {
+                    router.navigateTo(nextCard());
+                } else {
+                    router.navigateTo('#/quizzes/32/2012/12/27');
+                }
             },
 
             showPreviousCard = function () {
-                router.navigateTo(previousCard());
+                if (hasPreviousCard()) {
+                    router.navigateTo(previousCard());
+                } else {
+                    router.navigateTo('#/quizzes/32/2012/12/27');
+                }
             },
             
             publishQuizResult = function(isCorrect) {
@@ -174,9 +182,7 @@
             submitCorrect: submitCorrect,
             submitIncorrect: submitIncorrect,
             editCard: editCard,
-            flipCard: flipCard,
-            hasNextCard: hasNextCard,
-            hasPreviousCard: hasPreviousCard
+            flipCard: flipCard
         };
     }
 );

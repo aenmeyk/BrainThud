@@ -1,6 +1,5 @@
 ﻿using System.Net.Http;
 using BrainThud.Web;
-using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
@@ -26,9 +25,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
             var quizResultsController = new QuizResultsControllerFake(
                 tableStorageContextFactory.Object, 
                 this.QuizResultHandler.Object,
-                authenticationHelper.Object,
-                new Mock<IUserHelper>().Object,
-                new Mock<IIdentityQueueManager>().Object);
+                authenticationHelper.Object);
 
             this.QuizResultsController = new ApiControllerBuilder<QuizResultsControllerFake>(quizResultsController)
                .CreateRequest(HttpMethod.Post, TestUrls.QUIZ_RESULTS)
