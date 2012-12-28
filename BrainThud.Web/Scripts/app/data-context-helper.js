@@ -35,7 +35,8 @@
                     return $.Deferred(function(def) {
                         config.create(options.data, {
                             params: options.params,
-                            success: function(result) {
+                            success: function (result) {
+                                config.mapper.mapResults([result], cachedResults);
                                 def.resolve();
                             },
                             error: function(response) {

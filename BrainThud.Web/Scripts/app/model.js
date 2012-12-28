@@ -1,7 +1,8 @@
-﻿define('model', ['model.card'],
-    function (card, user) {
+﻿define('model', ['model.card', 'model.quiz-result'],
+    function (card, quizResult) {
         return {
-            Card: card
+            Card: card,
+            QuizResult: quizResult
         };
     }
 );

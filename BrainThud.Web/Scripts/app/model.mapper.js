@@ -36,6 +36,25 @@
                 }
             },
 
+            quizResult = {
+                mapResults: function(dto, results) {
+                    for (var i = 0; i < dto.length; i++) {
+                        if (!utils.entityExists(results, dto)) {
+                            var singleQuizResult = new model.QuizResult();
+                            singleQuizResult.partitionKey(dto.partitionKey)
+                                .rowKey(dto.rowKey)
+                                .quizDate(dto.quizDate)
+                                .cardId(dto.cardId)
+                                .isCorrect(dto.isCorrect)
+                                .userId(dto.userId)
+                                .entityId(dto.entityId);
+
+                            results.push(singleQuizResult);
+                        }
+                    }
+                }
+            },
+
             config = {
                 mapResults: function(dto, results) {
                     if (!utils.entityExists(results, dto)) {
@@ -62,6 +81,7 @@
         return {
             card: card,
             quizCard: quizCard,
+            quizResult: quizResult,
             config: config
         };
     }

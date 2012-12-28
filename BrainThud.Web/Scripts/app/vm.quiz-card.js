@@ -146,7 +146,7 @@
             },
             
             publishQuizResult = function(isCorrect) {
-                amplify.publish(config.pubs.addQuizResult, {
+                amplify.publish(config.pubs.createQuizResult, {
                     cardId: currentCard.cardId(),
                     isCorrect: isCorrect
                 });

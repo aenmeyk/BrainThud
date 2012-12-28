@@ -257,6 +257,7 @@
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
+    <Content Include="Scripts\app\model.quiz-result.js" />
     <Content Include="Scripts\app\data-service.config.js" />
     <Content Include="Scripts\app\data-service.quiz-card.js" />
     <Content Include="Scripts\app\vm.quiz.js" />

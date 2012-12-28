@@ -20,7 +20,8 @@
                 mapper: modelMapper.config
             }),
             quizResult = new dataContextHelper.EntitySet({
-                create: dataService.quizResult.create
+                create: dataService.quizResult.create,
+                mapper: modelMapper.quizResult
             });
 
         return {

@@ -19,7 +19,7 @@
             },
 
             pubs = {
-                addQuizResult: 'add-quiz-result'
+                createQuizResult: 'create-quiz-result',
             };
 
         toastr.options.timeOut = 1500;

@@ -1,6 +1,21 @@
 ﻿define('vm.quiz', ['ko', 'data-context', 'utils', 'moment', 'router', 'amplify', 'config'],
     function (ko, dataContext, utils, moment, router, amplify, config) {
         var
+            
+            init = function() {
+                amplify.subscribe(config.pubs.createQuizResult, function (data) {
+                    var resultsArray = quizResults();
+                    for (var i = 0; i < resultsArray.length; i++) {
+                        if (resultsArray[i].cardId === data.cardId) {
+                            resultsArray.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                    resultsArray.push(data);
+                });
+            },
+
             quizDate = ko.observable(),
             cardCount = ko.observable(0),
             quizResults = ko.observableArray([]),
@@ -48,20 +63,7 @@
                 router.navigateTo(url);
             };
         
-
-        amplify.subscribe(config.pubs.addQuizResult, function (data) {
-            var resultsArray = quizResults();
-            for (var i = 0; i < resultsArray.length; i++) {
-                if (resultsArray[i].cardId === data.cardId) {
-                    resultsArray.splice(i, 1);
-                    break;
-                }
-            }
-
-            resultsArray.push(data);
-        });
-
-        
+        init();
                     
         function countQuizResults(shouldCount) {
             var correct = 0;

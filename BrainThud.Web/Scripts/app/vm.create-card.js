@@ -1,10 +1,10 @@
 ﻿define('vm.create-card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'editor', 'dom'],
     function ($, ko, dataContext, presenter, toastr, editor, dom) {
         var
-            question = ko.observable(''),
-            answer = ko.observable(''),
             deckName = ko.observable(''),
             tags = ko.observable(''),
+            question = ko.observable(''),
+            answer = ko.observable(''),
 
             createCard = function () {
                 var cardData = {
@@ -15,10 +15,10 @@
                 $.when(dataContext.card.createData({
                     data: cardData
                 }))
-                    .then(function() {
-                        toastr.success('Success!');
-                        createNewCard();
-                    });
+                .then(function () {
+                    toastr.success('Success!');
+                    createNewCard();
+                });
             },
 
             activate = function () {
@@ -32,10 +32,10 @@
 
         return {
             activate: activate,
-            question: question,
-            answer: answer,
             deckName: deckName,
             tags: tags,
+            question: question,
+            answer: answer,
             createCard: createCard
         };
     }
