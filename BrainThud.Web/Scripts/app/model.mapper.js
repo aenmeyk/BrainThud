@@ -73,7 +73,7 @@
                     .quizDate(dto.quizDate)
                     .level(dto.level)
                     .userId(dto.userId)
-                    .cardId(dto.entityId);
+                    .entityId(dto.entityId);
 
                 return singleCard;
             };

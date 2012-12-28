@@ -11,7 +11,7 @@
             self.quizDate = ko.observable();
             self.level = ko.observable();
             self.userId = ko.observable();
-            self.cardId = ko.observable();
+            self.entityId = ko.observable();
             self.questionHtml = ko.computed(function () {
                 return self.question() ? editor.makeHtml(self.question()) : '';
             });

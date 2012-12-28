@@ -1,4 +1,6 @@
-﻿var global = {
+﻿
+// TODO: Use pub/sub instead of global
+var global = {
     userId: '',
     previousUrl: '',
     currentUrl: '',

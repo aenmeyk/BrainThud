@@ -39,7 +39,7 @@
                 $.when(dataContext.card.getData(dataOptions))
                     .then(function () {
                         for (var i = 0; i < cards().length; i++) {
-                            if (cards()[i].cardId() === parseInt(routeData.cardId)) {
+                            if (cards()[i].entityId() === parseInt(routeData.cardId)) {
                                 // TODO: Move this to the mapper
                                 var card = cards()[i];
                                 partitionKey(card.partitionKey());
@@ -50,7 +50,7 @@
                                 answer(card.answer());
                                 quizDate(card.quizDate());
                                 level(card.level());
-                                entityId(card.cardId());
+                                entityId(card.entityId());
                                 userId(card.userId());
                             }
                         };

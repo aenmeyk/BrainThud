@@ -59,7 +59,7 @@
            },
 
             startQuiz = function () {
-                var url = '#/quizzes/' + global.userId + '/' + utils.getDatePath() + '/' + quizzes()[0].cards[0].cardId();
+                var url = '#/quizzes/' + global.userId + '/' + utils.getDatePath() + '/' + quizzes()[0].cards[0].entityId();
                 router.navigateTo(url);
             };
         

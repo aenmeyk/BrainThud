@@ -1,5 +1,5 @@
-﻿define('data-service.card', ['amplify'],
-    function (amplify) {
+﻿define('data-service.card', ['amplify', 'pubs', 'model.mapper'],
+    function (amplify, pubs, modelMapper) {
         var
             init = function() {
                 amplify.request.define('getCards', 'ajax', {
@@ -39,10 +39,18 @@
             },
 
             update = function (data, callbacks) {
+                // TODO: Try to only use pub/sub
+                var success = function (result) {
+                    callbacks.success(result);
+                    
+                    var card = modelMapper.card.mapResult(result);
+                    pubs.card.update(card);
+                };
+
                 return amplify.request({
                     resourceId: 'updateCard',
                     data: data,
-                    success: callbacks.success,
+                    success: success,
                     error: callbacks.error
                 });
             };

@@ -8,6 +8,18 @@
                 cardElement.click(function () {
                     cardElement.blur();
                 });
+                
+                amplify.subscribe(config.pubs.updateCard, function (data) {
+                    var cardsArray = cards();
+                    for (var i = 0; i < cardsArray.length; i++) {
+                        if (cardsArray[i].entityId() === data.entityId()) {
+                            cardsArray.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                    cardsArray.push(data);
+                });
             },
             datePath,
             nextCardIndex = ko.observable(),
@@ -26,7 +38,7 @@
             }),
 
             currentCard = {
-                cardId: ko.observable(''),
+                entityId: ko.observable(''),
                 question: ko.observable(''),
                 answer: ko.observable(''),
                 deckName: ko.observable(''),
@@ -82,8 +94,8 @@
             setCurrentCard = function (cardId) {
                 for (var i = 0; i < cards().length; i++) {
                     var card = cards()[i];
-                    if (card.cardId() === parseInt(cardId)) {
-                        currentCard.cardId(card.cardId());
+                    if (card.entityId() === parseInt(cardId)) {
+                        currentCard.entityId(card.entityId());
 
                         var questionText = card.questionHtml();
                         currentCard.question(questionText);
@@ -113,13 +125,13 @@
             },
 
             getCardUri = function (cardIndex) {
-                return '#/quizzes/' + userId() + '/' + datePath + '/' + cards()[cardIndex].cardId();
+                return '#/quizzes/' + userId() + '/' + datePath + '/' + cards()[cardIndex].entityId();
             },
 
             getQuizResultConfig = function (isCorrect) {
                 return {
                     data: {
-                        cardId: currentCard.cardId(),
+                        cardId: currentCard.entityId(),
                         isCorrect: isCorrect
                     },
                     params: {
@@ -147,7 +159,7 @@
             
             publishQuizResult = function(isCorrect) {
                 amplify.publish(config.pubs.createQuizResult, {
-                    cardId: currentCard.cardId(),
+                    cardId: currentCard.entityId(),
                     isCorrect: isCorrect
                 });
             },
@@ -165,7 +177,7 @@
             };
 
         editCard = function () {
-            router.navigateTo('#/cards/' + currentCard.cardId() + '/edit');
+            router.navigateTo('#/cards/' + currentCard.entityId() + '/edit');
         },
 
     init();

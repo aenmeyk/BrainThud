@@ -8,7 +8,7 @@
                 };
             },
             editCard = function (card) {
-                router.navigateTo('#/cards/' + card.cardId() + '/edit');
+                router.navigateTo('#/cards/' + card.entityId() + '/edit');
             },
             activate = function(routeData) {
                 dataContext.card.getData(dataOptions());
