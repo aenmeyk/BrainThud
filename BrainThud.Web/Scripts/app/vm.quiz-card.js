@@ -3,11 +3,6 @@
         var
             init = function () {
                 datePath = utils.getDatePath();
-                // Certain browsers highlight the div when clicked.  Remove this highlight.
-                var cardElement = $('#card');
-                cardElement.click(function () {
-                    cardElement.blur();
-                });
                 
                 amplify.subscribe(config.pubs.updateCard, function (data) {
                     var cardsArray = cards();
