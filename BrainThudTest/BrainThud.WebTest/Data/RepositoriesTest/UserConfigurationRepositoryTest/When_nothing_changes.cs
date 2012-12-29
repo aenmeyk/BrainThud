@@ -3,7 +3,7 @@ using BrainThud.Web.Model;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.UserRepositoryTest
+namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.UserConfigurationRepositoryTest
 {
     [TestFixture]
     public class When_nothing_changes : Given_a_new_UserConfigurationRepository

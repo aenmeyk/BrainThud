@@ -2,7 +2,6 @@
 using BrainThud.Web.Calendars;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
-using BrainThud.Web.Helpers;
 using BrainThudTest.Builders;
 using Moq;
 using NUnit.Framework;
@@ -17,20 +16,17 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
             this.CloudStorageServices = new MockCloudStorageServicesBuilder().Build();
             this.CardKeyGenerator = new Mock<ICardEntityKeyGenerator>();
             this.QuizResultKeyGenerator = new Mock<ICardEntityKeyGenerator>();
-            this.UserHelper = new Mock<IUserHelper>();
 
             this.TableStorageContext = new TableStorageContext(
                 this.CloudStorageServices.Object,
                 this.CardKeyGenerator.Object,
                 this.QuizResultKeyGenerator.Object,
-                this.UserHelper.Object,
                 new Mock<IQuizCalendar>().Object,
                 AzureTableNames.CARD,
                 TestValues.NAME_IDENTIFIER);
         }
 
         protected TableStorageContext TableStorageContext { get; private set; }
-        protected Mock<IUserHelper> UserHelper { get; private set; }
         protected Mock<ICardEntityKeyGenerator> CardKeyGenerator { get; private set; }
         protected Mock<ICardEntityKeyGenerator> QuizResultKeyGenerator { get; private set; }
         protected Mock<ICloudStorageServices> CloudStorageServices { get; private set; }
