@@ -2,7 +2,7 @@
 
     <div class="row-fluid card-toolbar">
         <div class="span9">
-            <span class="strong" data-bind="html: currentCard.deckName()"></span>
+            <span class="strong" data-bind="html: currentCard().deckName"></span>
         </div>
         <div class="span3">
             <button type="button" class="btn btn-primary right-align card-toolbar-button" data-bind="click: showNextCard">
@@ -16,7 +16,7 @@
 
     <div class="row-fluid">
         <div class="span12">
-            <div id="wmd-preview-quiz" class="quiz-card question span12" data-bind="html: currentCardText, css: { question: questionSideVisible(), answer: !questionSideVisible() }"></div>
+            <div id="wmd-preview-quiz" class="quiz-card question span12" data-bind="html: currentCard().currentSideText, css: { question: currentCard().questionSideVisible(), answer: !currentCard().questionSideVisible() }"></div>
             @Html.Partial("_card-mini-menu")
         </div>
     </div>

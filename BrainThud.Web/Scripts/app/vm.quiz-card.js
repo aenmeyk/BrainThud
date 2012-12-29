@@ -1,5 +1,5 @@
-﻿define('vm.quiz-card', ['jquery', 'ko', 'data-context', 'utils', 'router', 'amplify', 'config'],
-    function ($, ko, dataContext, utils, router, amplify, config) {
+﻿define('vm.quiz-card', ['jquery', 'ko', 'data-context', 'utils', 'router', 'amplify', 'config', 'model'],
+    function ($, ko, dataContext, utils, router, amplify, config, model) {
         var
             init = function () {
                 datePath = utils.getDatePath();
@@ -24,7 +24,6 @@
             datePath,
             nextCardIndex = ko.observable(),
             previousCardIndex = ko.observable(),
-            questionSideVisible = ko.observable(true),
             quiz = ko.observableArray([]),
             nextCard = ko.observable(),
             previousCard = ko.observable(),
@@ -37,25 +36,7 @@
                 return previousCardIndex() >= 0;
             }),
 
-            currentCard = {
-                entityId: ko.observable(''),
-                question: ko.observable(''),
-                answer: ko.observable(''),
-                deckName: ko.observable(''),
-            },
-
-            currentCardText = ko.computed(function () {
-                var cardText = '';
-                if (currentCard) {
-                    if (questionSideVisible()) {
-                        return currentCard.question();
-                    } else {
-                        return currentCard.answer();
-                    }
-                }
-
-                return cardText;
-            }),
+            currentCard = ko.observable(new model.Card()),
 
             dataOptions = {
                 results: quiz,
@@ -95,14 +76,8 @@
                 for (var i = 0; i < cards().length; i++) {
                     var card = cards()[i];
                     if (card.entityId() === parseInt(cardId)) {
-                        currentCard.entityId(card.entityId());
-
-                        var questionText = card.questionHtml();
-                        currentCard.question(questionText);
-
-                        var answerText = card.answerHtml();
-                        currentCard.answer(answerText);
-                        currentCard.deckName(card.deckName);
+                        currentCard(card);
+                        currentCard().questionSideVisible(true);
 
                         nextCardIndex(i + 1);
                         if (hasNextCard()) {
@@ -114,14 +89,13 @@
                             previousCard(getCardUri(previousCardIndex()));
                         }
 
-                        questionSideVisible(true);
                         return;
                     }
                 }
             },
 
             flipCard = function () {
-                questionSideVisible(!questionSideVisible());
+                currentCard().questionSideVisible(!currentCard().questionSideVisible());
             },
 
             getCardUri = function (cardIndex) {
@@ -131,7 +105,7 @@
             getQuizResultConfig = function (isCorrect) {
                 return {
                     data: {
-                        cardId: currentCard.entityId(),
+                        cardId: currentCard().entityId(),
                         isCorrect: isCorrect
                     },
                     params: {
@@ -159,7 +133,7 @@
             
             publishQuizResult = function(isCorrect) {
                 amplify.publish(config.pubs.createQuizResult, {
-                    cardId: currentCard.entityId(),
+                    cardId: currentCard().entityId(),
                     isCorrect: isCorrect
                 });
             },
@@ -177,7 +151,7 @@
             };
 
         editCard = function () {
-            router.navigateTo('#/cards/' + currentCard.entityId() + '/edit');
+            router.navigateTo('#/cards/' + currentCard().entityId() + '/edit');
         },
 
     init();
@@ -186,8 +160,6 @@
             userId: userId,
             cards: cards,
             currentCard: currentCard,
-            currentCardText: currentCardText,
-            questionSideVisible: questionSideVisible,
             activate: activate,
             showNextCard: showNextCard,
             showPreviousCard: showPreviousCard,

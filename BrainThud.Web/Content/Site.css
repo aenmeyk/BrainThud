@@ -1,4 +1,4 @@
-﻿/*
+/*
  * HTML5 Boilerplate
  *
  * What follows is the result of much research on cross-browser styling.
@@ -118,6 +118,9 @@ h6 {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .visible {
   visibility: visible;
+}
+.removed {
+  display: none;
 }
 .correct-color {
   color: #59b359;

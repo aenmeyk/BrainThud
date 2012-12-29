@@ -2,4 +2,13 @@
     @*<li><a>share</a></li>*@
     <li><a data-bind="click: function() { $root.editCard($data) }">edit</a></li>
     @*<li><a>delete</a></li>*@
+
+    @if(Model != null)
+    {
+        foreach(var menuItem in Model)
+        {
+          <li>@Html.Raw(menuItem)</li>
+        }
+    }
+    
 </ul>
