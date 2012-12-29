@@ -278,6 +278,16 @@ input[type=text] {
   margin-top: 3px;
   font-weight: bold;
 }
+.text-small {
+  font-size: 13px;
+  color: #aaaaaa;
+}
+.progress-indicator {
+  float: right;
+  margin: 2px 5px;
+  font-size: 13px;
+  color: #aaaaaa;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */

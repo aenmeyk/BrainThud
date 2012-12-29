@@ -22,13 +22,25 @@
                 });
             },
             datePath,
-            nextCardIndex = ko.observable(),
-            previousCardIndex = ko.observable(),
             quiz = ko.observableArray([]),
             nextCard = ko.observable(),
             previousCard = ko.observable(),
             cards = ko.observableArray([]),
             userId = ko.observable(),
+            currentCard = ko.observable(new model.Card()),
+            currentCardIndex = ko.observable(0),
+            cardCount = ko.computed(function () {
+                return cards().length;
+            }),
+            displayIndex = ko.computed(function () {
+                return currentCardIndex() + 1;
+            }),
+            nextCardIndex = ko.computed(function () {
+                return currentCardIndex() + 1;
+            }),
+            previousCardIndex = ko.computed(function () {
+                return currentCardIndex() - 1;
+            }),
             hasNextCard = ko.computed(function () {
                 return nextCardIndex() <= cards().length - 1;
             }),
@@ -36,7 +48,6 @@
                 return previousCardIndex() >= 0;
             }),
 
-            currentCard = ko.observable(new model.Card()),
 
             dataOptions = {
                 results: quiz,
@@ -56,11 +67,11 @@
                     $.when(dataContext.quizCard.getData(dataOptions), dataContext.card.getData({ results: existingCards }))
                         .then(function () {
                             var quizCards = quiz()[0].cards;
-                            cards = ko.observableArray([]);
+                            cards([]);
                             for (var i = 0; i < quizCards.length; i++) {
                                 for (var j = 0; j < existingCards().length; j++) {
                                     if (quizCards[i].partitionKey() == existingCards()[j].partitionKey() && quizCards[i].rowKey() == existingCards()[j].rowKey()) {
-                                        cards().push(existingCards()[j]);
+                                        cards.push(existingCards()[j]);
                                         break;
                                     }
                                 }
@@ -78,13 +89,12 @@
                     if (card.entityId() === parseInt(cardId)) {
                         currentCard(card);
                         currentCard().questionSideVisible(true);
-
-                        nextCardIndex(i + 1);
+                        currentCardIndex(i);
+                        
                         if (hasNextCard()) {
                             nextCard(getCardUri(nextCardIndex()));
                         }
 
-                        previousCardIndex(i - 1);
                         if (hasPreviousCard()) {
                             previousCard(getCardUri(previousCardIndex()));
                         }
@@ -160,6 +170,8 @@
             userId: userId,
             cards: cards,
             currentCard: currentCard,
+            displayIndex: displayIndex,
+            cardCount: cardCount,
             activate: activate,
             showNextCard: showNextCard,
             showPreviousCard: showPreviousCard,

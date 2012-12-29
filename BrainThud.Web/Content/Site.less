@@ -291,15 +291,13 @@ input[type=text] {
         display: inline;
 
         a {
-            font-size: @subtle-text-size;
-            color: @subtle-text-color;
+            .text-small;
             cursor: pointer;
         }
 
         &:after {
             content: ' | ';
-            font-size: @subtle-text-size;
-            color: @subtle-text-color;
+            .text-small;
         }
 
         &:last-child:after {
@@ -317,6 +315,17 @@ input[type=text] {
     float: right;
 	margin-top: 3px;
 	font-weight: bold;
+}
+
+.text-small {
+	font-size: @subtle-text-size;
+	color: @subtle-text-color;
+}
+
+.progress-indicator {
+	float: right;
+	margin: 2px 5px;
+	.text-small;
 }
 
 /* ==========================================================================
