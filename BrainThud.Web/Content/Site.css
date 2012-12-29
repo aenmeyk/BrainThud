@@ -385,6 +385,12 @@ input[type=text] {
 @media (min-width: 1200px) {
   
 }
+@media (max-width: 1199px) {
+  h3 {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
 @media (min-width: 980px) and (max-width: 1199px) {
   
 }
@@ -427,6 +433,10 @@ input[type=text] {
   }
   .form-label {
     float: none;
+  }
+  h3 {
+    font-size: 16px;
+    line-height: 20px;
   }
 }
 @media (min-width: 480px) and (max-width: 767px) {
