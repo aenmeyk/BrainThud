@@ -14,8 +14,12 @@
 
                     resultsArray.push(data);
                 });
+                amplify.subscribe(config.pubs.deleteCard, function () {
+                    invalidateCache = true;
+                });
             },
 
+            invalidateCache = false,
             quizDate = ko.observable(),
             cardCount = ko.observable(0),
             quizResults = ko.observableArray([]),
@@ -38,23 +42,27 @@
 
             quizzes = ko.observableArray([]),
 
-            dataOptions = {
-                results: quizzes,
-                params: {
-                    datePath: utils.getDatePath(),
-                    userId: global.userId // TODO: I can use global.userId directly from wherever this is being passed
-                }
+            dataOptions = function() {
+                return {
+                    invalidateCache: invalidateCache,
+                    results: quizzes,
+                    params: {
+                        datePath: utils.getDatePath(),
+                        userId: global.userId // TODO: I can use global.userId directly from wherever this is being passed
+                    }
+                };
             },
 
            activate = function () {
                // TODO: Find a better way of ensuring that the ViewModels use the same store for cards. 
                // (We need the same store because if a card is updated on one ViewModel we need the value to be updated on the other ViewModels too.)
-               $.when(dataContext.quizCard.getData(dataOptions))
+               $.when(dataContext.quizCard.getData(dataOptions()))
                    .then(function () {
                        var quiz = quizzes()[0];
                        quizDate(moment(quiz.quizDate).format('L'));
                        cardCount(quiz.cards.length);
                        quizResults(quiz.quizResults);
+                       invalidateCache = false;
                    });
            },
 

@@ -5,6 +5,7 @@
                 get: dataService.card.get,
                 create: dataService.card.create,
                 update: dataService.card.update,
+                deleteItem: dataService.card.deleteItem,
                 mapper: modelMapper.card
             }),
             quiz = new dataContextHelper.EntitySet({

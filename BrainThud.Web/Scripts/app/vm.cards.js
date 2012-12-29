@@ -1,6 +1,7 @@
-﻿define('vm.cards', ['jquery', 'ko', 'data-context', 'router'],
-    function ($, ko, dataContext, router) {
+﻿define('vm.cards', ['jquery', 'ko', 'data-context', 'router', 'amplify', 'config'],
+    function ($, ko, dataContext, router, amplify, config) {
         var
+            activeCard,
             cards = ko.observableArray([]),
             
             dataOptions = function() {
@@ -19,13 +20,35 @@
 
             activate = function (routeData) {
                 dataContext.card.getData(dataOptions());
+            },
+            
+            showDeleteDialog = function (card) {
+                activeCard = card;
+                $("#cards-view .deleteDialog").modal('show');
+            },
+
+            deleteCard = function () {
+                $.when(dataContext.card.deleteData({
+                    params: {
+                        userId: global.userId,
+                        partitionKey: activeCard.partitionKey(),
+                        rowKey: activeCard.rowKey(),
+                        entityId: activeCard.entityId()
+                    }
+                })).then(function () {
+                    $("#cards-view .deleteDialog").modal('hide');
+                    amplify.publish(config.pubs.deleteCard);
+                    activate();
+                });
             };
 
         return {
             cards: cards,
             editCard: editCard,
             flipCard: flipCard,
-            activate: activate
+            activate: activate,
+            showDeleteDialog: showDeleteDialog,
+            deleteCard: deleteCard
         };
     }
 );

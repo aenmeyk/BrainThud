@@ -350,6 +350,7 @@
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
     <Content Include="Test\Scripts\jasmine-test-runner.cshtml" />
     <Content Include="Views\quiz-card.cshtml" />
+    <Content Include="Views\Shared\_delete-card-dialog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

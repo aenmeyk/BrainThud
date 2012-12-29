@@ -20,7 +20,8 @@
 
             pubs = {
                 createQuizResult: 'create-quiz-result',
-                updateCard: 'update-card'
+                updateCard: 'update-card',
+                deleteCard: 'delete-card'
             };
 
         toastr.options.timeOut = 1500;

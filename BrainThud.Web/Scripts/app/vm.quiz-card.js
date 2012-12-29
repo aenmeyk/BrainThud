@@ -15,8 +15,13 @@
 
                     cardsArray.push(data);
                 });
+                
+                amplify.subscribe(config.pubs.deleteCard, function () {
+                    cards([]);
+                });
             },
             datePath,
+            currentRouteData,
             quiz = ko.observableArray([]),
             nextCard = ko.observable(),
             previousCard = ko.observable(),
@@ -53,6 +58,7 @@
             },
 
             activate = function (routeData) {
+                currentRouteData = routeData;
                 // TODO: The activate method fires for each navigation to a new card.  I think we need a vm for each card since each card has it's own route.
                 if (cards().length === 0) {
                     var existingCards = ko.observableArray([]);
@@ -101,6 +107,27 @@
 
             flipCard = function () {
                 currentCard().questionSideVisible(!currentCard().questionSideVisible());
+            },
+            
+            deleteCard = function () {
+                $.when(dataContext.card.deleteData({
+                    params: {
+                        userId: userId(),
+                        partitionKey: currentCard().partitionKey(),
+                        rowKey: currentCard().rowKey(),
+                        entityId: currentCard().entityId()
+                    }
+                })).then(function () {
+                    $("#quiz-card-view .deleteDialog").modal('hide');
+                    showNextCard();
+                    amplify.publish(config.pubs.deleteCard);
+                    cards([]);
+                    activate(currentRouteData);
+                });
+            },
+
+            showDeleteDialog = function () {
+                $("#quiz-card-view .deleteDialog").modal('show');
             },
 
             getCardUri = function (cardIndex) {
@@ -173,7 +200,9 @@
             submitCorrect: submitCorrect,
             submitIncorrect: submitIncorrect,
             editCard: editCard,
-            flipCard: flipCard
+            flipCard: flipCard,
+            showDeleteDialog: showDeleteDialog,
+            deleteCard: deleteCard
         };
     }
 );

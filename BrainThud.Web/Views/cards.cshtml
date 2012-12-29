@@ -7,12 +7,14 @@
             <div class="row-fluid">
                 <div class="span12">
                     <div id="wmd-preview-quiz" class="list-card question span12" data-bind="html: currentSideText, css: { question: questionSideVisible(), answer: !questionSideVisible() }"></div>
-                    @Html.Partial("_card-mini-menu", new[] { "<a data-bind='click: function() { $root.flipCard($data) }'>flip</a>"  })
+                    @Html.Partial("_card-mini-menu", new[] { "<a data-bind='click: function() { $root.flipCard($data) }'>flip</a>" })
                 </div>
             </div>
 
         </li>
     </ul>
+    
+    @Html.Partial("_delete-card-dialog")
 
     @*    <span data-bind="text: ko.toJSON($data)"></span>*@
 </section>

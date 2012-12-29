@@ -4,6 +4,10 @@
             var cachedResults = [],
                 getData = function(options) {
                     var def = new $.Deferred();
+                    
+                    if (options.invalidateCache) {
+                        cachedResults = [];
+                    }
 
                     var results = options && options.results;
                     if (!cachedResults || !utils.hasProperties(cachedResults)) {
@@ -64,12 +68,33 @@
                             }
                         });
                     });
+                },
+                deleteData = function(options) {
+                    return $.Deferred(function(def) {
+                        config.deleteItem({
+                            params: options.params,
+                            success: function () {
+                                for (var i = 0; i < cachedResults.length; i++) {
+                                    if (cachedResults[i].partitionKey() === options.params.partitionKey && cachedResults[i].rowKey() === options.params.rowKey) {
+                                        cachedResults.splice(i, 1);
+                                        break;
+                                    }
+                                }
+
+                                def.resolve();
+                            },
+                            error: function(response) {
+                                if (def.reject) def.reject();
+                            }
+                        });
+                    });
                 };
 
             return {
                 getData: getData,
                 createData: createData,
-                updateData: updateData
+                updateData: updateData,
+                deleteData: deleteData
             };
         };
 

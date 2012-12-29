@@ -19,6 +19,12 @@
                     type: 'PUT',
                     contentType: 'application/json; charset=utf-8'
                 });
+                amplify.request.define('deleteCard', 'ajax', {
+                    url: '/api/cards/{userId}/{entityId}',
+                    dataType: 'json',
+                    type: 'DELETE',
+                    contentType: 'application/json; charset=utf-8'
+                });
             },
 
             get = function (callbacks) {
@@ -53,6 +59,18 @@
                     success: success,
                     error: callbacks.error
                 });
+            },
+
+            deleteItem = function (config) {
+                return amplify.request({
+                    resourceId: 'deleteCard',
+                    data: {
+                         entityId: config.params.entityId,
+                         userId: config.params.userId
+                    },
+                    success: config.success,
+                    error: config.error
+                });
             };
         
         init();
@@ -60,7 +78,8 @@
         return {
             get: get,
             create: create,
-            update: update
+            update: update,
+            deleteItem: deleteItem
         };
     }
 );
