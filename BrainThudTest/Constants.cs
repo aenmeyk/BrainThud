@@ -16,7 +16,7 @@ namespace BrainThudTest
         public static readonly DateTime DATETIME = new DateTime(YEAR, MONTH, DAY);
         public static readonly string CARD_PARTITION_KEY = NAME_IDENTIFIER + '-' + USER_ID;
         public static readonly string CARD_ROW_KEY = CardRowTypes.CARD + '-' + CARD_ID;
-        public static readonly string QUIZ_ROW_KEY = CardRowTypes.QUIZ_RESULT + '-' + QUIZ_ID;
+        public static readonly string QUIZ_RESULT_ROW_KEY = CardRowTypes.QUIZ_RESULT + '-' + QUIZ_ID;
         public static readonly string CONFIGURATION_ROW_KEY = CardRowTypes.CONFIGURATION + '-' + CONFIGURATION_ID;
         // ReSharper restore InconsistentNaming
 

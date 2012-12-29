@@ -95,6 +95,7 @@ namespace BrainThud.Web.Controllers
             {
                 var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
                 tableStorageContext.Cards.DeleteById(userId, cardId);
+                tableStorageContext.QuizResults.DeleteByCardId(cardId);
                 tableStorageContext.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);

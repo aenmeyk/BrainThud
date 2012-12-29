@@ -33,5 +33,11 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
         {
             this.response.StatusCode.Should().Be(HttpStatusCode.NoContent);
         }
+
+        [Test]
+        public void Then_the_associated_QuizResults_are_deleted()
+        {
+            this.TableStorageContext.Verify(x => x.QuizResults.DeleteByCardId(TestValues.CARD_ID), Times.Once());
+        }
     }
 }

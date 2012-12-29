@@ -32,5 +32,22 @@ namespace BrainThud.Web.Data.Repositories
                     string.Compare(x.PartitionKey, this.NameIdentifier + '-', StringComparison.Ordinal) >= 0
                     && string.Compare(x.PartitionKey, this.NameIdentifier + '.', StringComparison.Ordinal) < 0);
         }
+
+        public void DeleteByCardId(int cardId)
+        {
+            var quizResults = this.EntitySet
+                .Where(x => x.CardId == cardId)
+                .Where(x =>
+                    string.Compare(x.RowKey, CardRowTypes.QUIZ_RESULT + '-', StringComparison.Ordinal) >= 0
+                    && string.Compare(x.RowKey, CardRowTypes.QUIZ_RESULT + '.', StringComparison.Ordinal) < 0)
+                .Where(x =>
+                    string.Compare(x.PartitionKey, this.NameIdentifier + '-', StringComparison.Ordinal) >= 0
+                    && string.Compare(x.PartitionKey, this.NameIdentifier + '.', StringComparison.Ordinal) < 0);
+
+            foreach(var quizResult in quizResults)
+            {
+                this.Delete(quizResult.PartitionKey, quizResult.RowKey);
+            }
+        }
     }
 }
