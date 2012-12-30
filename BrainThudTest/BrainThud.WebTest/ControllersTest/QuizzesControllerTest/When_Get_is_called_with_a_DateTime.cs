@@ -26,17 +26,19 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
             var twelveHoursAfter = this.quizDate.AddHours(12);
             var dayAfter = this.quizDate.AddDays(TestValues.DAY);
 
-            // Use Level property of 1 to indicate which cards should be included in result
+            var generator = new UniqueRandomGenerator();
+
+            // Use EntityId of > 100 to indicate which cards should be included in result
             var userCards = Builder<Card>.CreateListOfSize(10)
-                .TheFirst(2).With(x => x.QuizDate = dayBefore).And(x => x.Level = 1)
-                .TheNext(2).With(x => x.QuizDate = this.quizDate).And(x => x.Level = 1)
-                .TheNext(2).With(x => x.QuizDate = millisecondAfter).And(x => x.Level = 1)
-                .TheNext(2).With(x => x.QuizDate = twelveHoursAfter).And(x => x.Level = 1)
+                .TheFirst(2).With(x => x.QuizDate = dayBefore).And(x => x.EntityId = generator.Next(100, 1000))
+                .TheNext(2).With(x => x.QuizDate = this.quizDate).And(x => x.EntityId = generator.Next(100, 1000))
+                .TheNext(2).With(x => x.QuizDate = millisecondAfter).And(x => x.EntityId = generator.Next(100, 1000))
+                .TheNext(2).With(x => x.QuizDate = twelveHoursAfter).And(x => x.EntityId = generator.Next(100, 1000))
                 .TheNext(2).With(x => x.QuizDate = dayAfter)
                 .Build();
 
             this.quizResultCards = Builder<Card>.CreateListOfSize(2)
-                .All().With(x => x.Level = 1)
+                .All().With(x => x.EntityId = generator.Next(100, 1000))
                 .Build();
 
             // Use IsCorrect = true to indicate which cards should be included in result
@@ -54,13 +56,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
         [Test]
         public void Then_only_cards_with_a_QuizDate_less_than_or_equal_to_the_quizDate_parameter_are_returned()
         {
-            this.quiz.Cards.Should().OnlyContain(x => x.Level == 1).And.HaveCount(10);
+            this.quiz.CardIds.Should().OnlyContain(x => x > 100).And.HaveCount(10);
         }
 
         [Test]
         public void Then_the_cards_referenced_from_the_QuizResults_should_be_included_in_the_QuizCards()
         {
-            this.quiz.Cards.Should().Contain(this.quizResultCards);
+            this.quiz.CardIds.Should().Contain(this.quizResultCards.Select(x => x.EntityId));
         }
 
         [Test]

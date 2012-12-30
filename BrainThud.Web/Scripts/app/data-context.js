@@ -12,10 +12,6 @@
                 get: dataService.quiz.get,
                 mapper: modelMapper.quiz
             }),
-            quizCard = new dataContextHelper.EntitySet({
-                get: dataService.quizCard.get,
-                mapper: modelMapper.quizCard
-            }),
             config = new dataContextHelper.EntitySet({
                 get: dataService.config.get,
                 mapper: modelMapper.config
@@ -28,7 +24,6 @@
         return {
             card: card,
             quiz: quiz,
-            quizCard: quizCard,
             config: config,
             quizResult: quizResult
         };

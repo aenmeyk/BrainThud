@@ -1,5 +1,5 @@
-﻿define('vm.nav', ['router'],
-    function (router) {
+﻿define('vm.nav', ['router', 'utils'],
+    function (router, utils) {
         var
             goToCreateCard = function () {
                 router.navigateTo('#/create-card');
@@ -8,8 +8,7 @@
                 router.navigateTo('#/cards');
             },
             goToQuiz = function () {
-//                router.navigateTo('#/quizzes/19/2012/12/24/156');
-                router.navigateTo(global.quizMenuUri);
+                router.navigateTo('#/quizzes/' + global.userId + '/' + utils.getDatePath());
             },
             goToSignOut = function () {
                 router.navigateTo('/Account/SignOut');

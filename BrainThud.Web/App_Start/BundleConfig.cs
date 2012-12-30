@@ -33,6 +33,7 @@ namespace BrainThud.Web.App_Start
                 "~/Scripts/Markdown.*",
                 "~/Scripts/toastr.js",
                 "~/Scripts/moment.*",
+                "~/Scripts/underscore.*",
                 "~/Scripts/sammy.js"));
 
             bundles.Add(new ScriptBundle(BundlePaths.APP_LIBS).IncludeDirectory(

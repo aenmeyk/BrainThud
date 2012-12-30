@@ -56,7 +56,7 @@
            activate = function () {
                // TODO: Find a better way of ensuring that the ViewModels use the same store for cards. 
                // (We need the same store because if a card is updated on one ViewModel we need the value to be updated on the other ViewModels too.)
-               $.when(dataContext.quizCard.getData(dataOptions()))
+               $.when(dataContext.quiz.getData(dataOptions()))
                    .then(function () {
                        var quiz = quizzes()[0];
                        quizDate(moment(quiz.quizDate).format('L'));

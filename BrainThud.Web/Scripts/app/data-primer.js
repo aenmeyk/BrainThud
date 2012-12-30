@@ -15,15 +15,19 @@ function ($, ko, dataContext, utils) {
         },
         fetch = function () {
             return $.Deferred(function (def) {
-                $.when(dataContext.quizCard.getData(quizOptions)
-                        , dataContext.config.getData(configOptions)
-                        , dataContext.card.getData({ results: ko.observableArray([]) }))
-                    .fail(function () { def.reject(); })
-                    .done(function () {
-                        def.resolve();
-                        var userId = userConfiguration()[0].userId;
-                        global.quizMenuUri = '#/quizzes/' + userId + '/' + utils.getDatePath();
-                        global.userId = userId;
+                $.when(dataContext.config.getData(configOptions))
+                    .done(function() {
+                        global.userId = userConfiguration()[0].userId;
+                        $.when(dataContext.quiz.getData({
+                                params: {
+                                    datePath: utils.getDatePath(),
+                                    userId: global.userId
+                                }
+                            }), dataContext.card.getData({ results: ko.observableArray([]) }))
+                            .fail(function() { def.reject(); })
+                            .done(function() {
+                                def.resolve();
+                            });
                     });
             }).promise();
         };

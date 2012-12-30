@@ -1,21 +1,17 @@
 ﻿define('model.mapper', ['model', 'editor', 'utils'],
     function (model, editor, utils) {
-        var quizCard = {
-                mapResults: function(dto, results) {
-                    var cards = [];
-
-                    for (var i = 0; i < dto.cards.length; i++) {
-                        cards.push(getCardFromDto(dto.cards[i]));
-                    }
-
+        var quiz = {
+            mapResults: function (dto, results) {
                     var quizResults = [];
 
                     for (var i = 0; i < dto.quizResults.length; i++) {
+                        
+                        // TODO: Why is quizResult being mapped from getCardFromDto?
                         quizResults.push(getCardFromDto(dto.quizResults[i]));
                     }
 
                     results.push({
-                        cards: cards,
+                        cards: dto.cardIds,
                         resultsUri: dto.resultsUri,
                         userId: dto.userId,
                         quizDate: dto.quizDate,
@@ -80,7 +76,7 @@
 
         return {
             card: card,
-            quizCard: quizCard,
+            quiz: quiz,
             quizResult: quizResult,
             config: config
         };

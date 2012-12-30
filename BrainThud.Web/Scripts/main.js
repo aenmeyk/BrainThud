@@ -21,6 +21,7 @@ var global = {
         define('toastr', [], function () { return root.toastr; });
         define('markdown', [], function () { return root.Markdown; });
         define('moment', [], function () { return root.moment; });
+        define('underscore', [], function () { return root.underscore; });
     }
 
     //requirejs.config({

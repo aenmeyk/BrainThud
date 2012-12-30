@@ -30,12 +30,12 @@ namespace BrainThud.Web.Controllers
                 .AddMilliseconds(-1);
 
             var quizResults = tableStorageContext.QuizResults.GetForQuiz(year, month, day).ToList();
-            var userCards = tableStorageContext.Cards.GetForUser().Where(x => x.QuizDate <= quizDate).ToList();
-            var quizResultCards = tableStorageContext.Cards.GetForQuizResults(quizResults);
+            var userCards = tableStorageContext.Cards.GetForUser().Where(x => x.QuizDate <= quizDate).ToList().Select(x => x.EntityId);
+            var quizResultCards = tableStorageContext.Cards.GetForQuizResults(quizResults).Select(x => x.EntityId);
 
             var quiz = new Quiz
             {
-                Cards = userCards.Union(quizResultCards),
+                CardIds =  userCards.Union(quizResultCards),
                 ResultsUri = this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues),
                 UserId = userConfiguration != null ? userConfiguration.UserId : 0,
                 QuizDate = quizDate.Date,

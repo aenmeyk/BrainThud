@@ -257,9 +257,10 @@
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
+    <Content Include="Scripts\app\vm.quiz-card-old.js" />
     <Content Include="Scripts\app\model.quiz-result.js" />
     <Content Include="Scripts\app\data-service.config.js" />
-    <Content Include="Scripts\app\data-service.quiz-card.js" />
+    <Content Include="Scripts\app\data-service.quiz.js" />
     <Content Include="Scripts\app\pubs.js" />
     <Content Include="Scripts\app\vm.quiz.js" />
     <Content Include="Scripts\app\vm.nav.js" />
@@ -274,6 +275,8 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\qunit.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Test\Scripts\bootstrapper-test.js" />
     <Content Include="Test\Scripts\binder-test.js" />
     <Content Include="Test\Scripts\data-context-helper-test.js" />
@@ -294,7 +297,6 @@
     <Content Include="Scripts\app\dom.js" />
     <Content Include="Scripts\app\data-service.quiz-result.js" />
     <Content Include="Scripts\app\vm.quiz-card.js" />
-    <Content Include="Scripts\app\data-service.quiz.js" />
     <Content Include="Scripts\app\model.js" />
     <Content Include="Scripts\app\data-service.js" />
     <Content Include="Scripts\app\data-primer.js" />
