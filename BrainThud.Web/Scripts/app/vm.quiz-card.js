@@ -1,9 +1,6 @@
 ﻿define('vm.quiz-card', ['jquery', 'underscore', 'ko', 'data-context', 'utils', 'router', 'amplify', 'config', 'model'],
     function ($, _, ko, dataContext, utils, router, amplify, config, model) {
         var
-            init = function () {
-            },
-
             cards = ko.observableArray([]),
             card = ko.observable(new model.Card()),
 
@@ -30,13 +27,13 @@
                 };
             },
 
-            getQuizPath = function () {
-                return '#/quizzes/' + global.userId + '/' + utils.getDatePath();
-            },
-
-            getCardUri = function (cardIndex) {
-                return getQuizPath() + '/' + cards()[cardIndex].entityId();
-            },
+//            getQuizPath = function () {
+//                return '#/quizzes/' + global.userId + '/' + utils.getDatePath();
+//            },
+//
+//            getCardUri = function (cardIndex) {
+//                return getQuizPath() + '/' + cards()[cardIndex].entityId();
+//            },
 
             publishQuizResult = function (isCorrect) {
                 amplify.publish(config.pubs.createQuizResult, {
@@ -45,22 +42,24 @@
                 });
             },
 
-            showNextCard = function() {
-                var index = displayIndex();
-                if (index < cards().length - 1) {
-                    router.navigateTo(getCardUri(index + 1));
-                } else {
-                    router.navigateTo(getQuizPath());
-                }
+            showNextCard = function () {
+                amplify.publish(config.pubs.showNextCard);
+//                var index = displayIndex();
+//                if (index < cards().length - 1) {
+//                    router.navigateTo(getCardUri(index + 1));
+//                } else {
+//                    router.navigateTo(getQuizPath());
+//                }
             },
             
             showPreviousCard = function() {
-                var index = displayIndex();
-                if (index > 0) {
-                    router.navigateTo(getCardUri(index - 1));
-                } else {
-                    router.navigateTo(getQuizPath());
-                }
+                amplify.publish(config.pubs.showPreviousCard);
+                //                var index = displayIndex();
+//                if (index > 0) {
+//                    router.navigateTo(getCardUri(index - 1));
+//                } else {
+//                    router.navigateTo(getQuizPath());
+//                }
             },
             
             flipCard = function() {
@@ -109,8 +108,6 @@
             cardCount = ko.computed(function () {
                 return cards().length;
             });
-        
-        init();
 
         return {
             activate: activate,

@@ -21,7 +21,9 @@
             pubs = {
                 createQuizResult: 'create-quiz-result',
                 updateCard: 'update-card',
-                deleteCard: 'delete-card'
+                deleteCard: 'delete-card',
+                showNextCard: 'show-next-card',
+                showPreviousCard: 'show-previous-card'
             };
 
         toastr.options.timeOut = 1500;

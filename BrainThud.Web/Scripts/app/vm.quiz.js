@@ -1,5 +1,5 @@
-﻿define('vm.quiz', ['ko', 'data-context', 'utils', 'moment', 'router', 'amplify', 'config'],
-    function (ko, dataContext, utils, moment, router, amplify, config) {
+﻿define('vm.quiz', ['ko', 'data-context', 'utils', 'moment', 'router', 'quiz-navigator', 'amplify', 'config'],
+    function (ko, dataContext, utils, moment, router, quizNavigator, amplify, config) {
         var
             
             init = function() {
@@ -37,7 +37,7 @@
                     results: quizzes,
                     params: {
                         datePath: utils.getDatePath(),
-                        userId: global.userId // TODO: I can use global.userId directly from wherever this is being passed
+                        userId: global.userId
                     }
                 };
             },
@@ -52,6 +52,7 @@
                        cardCount(quiz.cardIds.length);
                        quizResults(quiz.quizResults);
                        invalidateCache = false;
+                       quizNavigator.init();
                    });
            },
 
