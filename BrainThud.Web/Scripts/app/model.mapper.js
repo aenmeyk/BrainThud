@@ -11,7 +11,7 @@
                     }
 
                     results.push({
-                        cards: dto.cardIds,
+                        cardIds: dto.cardIds,
                         resultsUri: dto.resultsUri,
                         userId: dto.userId,
                         quizDate: dto.quizDate,

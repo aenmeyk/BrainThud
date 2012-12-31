@@ -1,5 +1,5 @@
-﻿define('data-context', ['data-service', 'model.mapper', 'data-context-helper'],
-    function (dataService, modelMapper, dataContextHelper) {
+﻿define('data-context', ['data-service', 'model.mapper', 'data-context-helper', 'data-subs'],
+    function (dataService, modelMapper, dataContextHelper, dataSubs) {
         var
             card = new dataContextHelper.EntitySet({
                 get: dataService.card.get,
@@ -8,11 +8,14 @@
                 deleteItem: dataService.card.deleteItem,
                 mapper: modelMapper.card
             }),
+            
             quiz = new dataContextHelper.EntitySet({
                 get: dataService.quiz.get,
-                mapper: modelMapper.quiz
+                mapper: modelMapper.quiz,
+                subs: dataSubs.quiz
             }),
-            config = new dataContextHelper.EntitySet({
+            
+            userConfig = new dataContextHelper.EntitySet({
                 get: dataService.config.get,
                 mapper: modelMapper.config
             }),
@@ -24,7 +27,7 @@
         return {
             card: card,
             quiz: quiz,
-            config: config,
+            config: userConfig,
             quizResult: quizResult
         };
     }

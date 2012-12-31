@@ -1,6 +1,6 @@
-﻿define('data-context-helper', ['jquery', 'utils'],
-    function ($, utils) {
-        var EntitySet = function(config) {
+﻿define('data-context-helper', ['jquery', 'underscore', 'utils'],
+    function ($, _, utils) {
+        var EntitySet = function (config) {
             var cachedResults = [],
                 getData = function(options) {
                     var def = new $.Deferred();
@@ -90,6 +90,14 @@
                     });
                 };
 
+            if (config.subs) {
+                _.each(config.subs, function (sub) {
+                    sub(function() {
+                        return cachedResults;
+                    });
+                });
+            }
+            
             return {
                 getData: getData,
                 createData: createData,

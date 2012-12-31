@@ -3,17 +3,6 @@
         var
             
             init = function() {
-                amplify.subscribe(config.pubs.createQuizResult, function (data) {
-                    var resultsArray = quizResults();
-                    for (var i = 0; i < resultsArray.length; i++) {
-                        if (resultsArray[i].cardId === data.cardId) {
-                            resultsArray.splice(i, 1);
-                            break;
-                        }
-                    }
-
-                    resultsArray.push(data);
-                });
                 amplify.subscribe(config.pubs.deleteCard, function () {
                     invalidateCache = true;
                 });
@@ -60,14 +49,14 @@
                    .then(function () {
                        var quiz = quizzes()[0];
                        quizDate(moment(quiz.quizDate).format('L'));
-                       cardCount(quiz.cards.length);
+                       cardCount(quiz.cardIds.length);
                        quizResults(quiz.quizResults);
                        invalidateCache = false;
                    });
            },
 
             startQuiz = function () {
-                var url = '#/quizzes/' + global.userId + '/' + utils.getDatePath() + '/' + quizzes()[0].cards[0].entityId();
+                var url = '#/quizzes/' + global.userId + '/' + utils.getDatePath() + '/' + quizzes()[0].cardIds[0];
                 router.navigateTo(url);
             };
         
