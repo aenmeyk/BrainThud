@@ -1,5 +1,5 @@
-﻿define('vm.nav', ['router', 'utils'],
-    function (router, utils) {
+﻿define('vm.nav', ['router', 'utils', 'global'],
+    function (router, utils, global) {
         var
             goToCreateCard = function () {
                 router.navigateTo('#/create-card');

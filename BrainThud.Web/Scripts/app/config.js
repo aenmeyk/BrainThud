@@ -22,6 +22,7 @@
                 createQuizResult: 'create-quiz-result',
                 updateCard: 'update-card',
                 deleteCard: 'delete-card',
+                showCurrentCard: 'show-current-card',
                 showNextCard: 'show-next-card',
                 showPreviousCard: 'show-previous-card'
             };

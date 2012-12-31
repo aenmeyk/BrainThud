@@ -1,5 +1,5 @@
-﻿define('vm.cards', ['jquery', 'ko', 'data-context', 'router', 'amplify', 'config'],
-    function ($, ko, dataContext, router, amplify, config) {
+﻿define('vm.cards', ['jquery', 'ko', 'data-context', 'router', 'amplify', 'config', 'global'],
+    function ($, ko, dataContext, router, amplify, config, global) {
         var
             activeCard,
             cards = ko.observableArray([]),

@@ -1,5 +1,5 @@
-﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'dom', 'editor', 'router'],
-    function ($, ko, dataContext, presenter, toastr, dom, editor, router) {
+﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'dom', 'editor', 'router', 'global'],
+    function ($, ko, dataContext, presenter, toastr, dom, editor, router, global) {
         var
             cards = ko.observableArray(),
             dataOptions = {

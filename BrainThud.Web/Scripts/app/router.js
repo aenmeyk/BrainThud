@@ -1,5 +1,5 @@
-﻿define('router', ['jquery', 'sammy', 'presenter', 'config'],
-    function ($, Sammy, presenter, config) {
+﻿define('router', ['jquery', 'sammy', 'presenter', 'config', 'global'],
+    function ($, Sammy, presenter, config, global) {
         var startupUrl = '',
             defaultRoute = '',
 

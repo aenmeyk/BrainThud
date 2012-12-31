@@ -1,5 +1,5 @@
-﻿define('vm.quiz', ['ko', 'data-context', 'utils', 'moment', 'router', 'quiz-navigator', 'amplify', 'config'],
-    function (ko, dataContext, utils, moment, router, quizNavigator, amplify, config) {
+﻿define('vm.quiz', ['ko', 'data-context', 'utils', 'moment', 'quiz-navigator', 'amplify', 'config', 'global'],
+    function (ko, dataContext, utils, moment, quizNavigator, amplify, config, global) {
         var
             
             init = function() {
@@ -52,13 +52,12 @@
                        cardCount(quiz.cardIds.length);
                        quizResults(quiz.quizResults);
                        invalidateCache = false;
-                       quizNavigator.init();
+                       quizNavigator.activate();
                    });
            },
 
             startQuiz = function () {
-                var url = '#/quizzes/' + global.userId + '/' + utils.getDatePath() + '/' + quizzes()[0].cardIds[0];
-                router.navigateTo(url);
+                amplify.publish(config.pubs.showCurrentCard);
             };
         
         init();

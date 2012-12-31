@@ -1,11 +1,11 @@
-﻿define('quiz-navigator', ['ko', 'router', 'data-context', 'utils', 'amplify', 'config'],
-    function (ko, router, dataContext, utils, amplify, config) {
+﻿define('quiz-navigator', ['ko', 'router', 'data-context', 'utils', 'amplify', 'config', 'global'],
+    function (ko, router, dataContext, utils, amplify, config, global) {
         var
             cardIds,
             cardIndex = 0,
             quizzes = ko.observableArray([]),
 
-            init = function () {
+            activate = function () {
                 quizzes = ko.observableArray([]);
                 $.when(dataContext.quiz.getData(dataOptions()))
                     .then(function () {
@@ -32,6 +32,23 @@
                 return getQuizPath() + '/' + cardIds[cardIndex];
             },
 
+            showLastCard = function () {
+                cardIndex = cardIds.length - 1;
+                if (cardIndex > 0) {
+                    router.navigateTo(getCardUri());
+                } else {
+                    showQuizSummary();
+                }
+            },
+
+            showCurrentCard = function () {
+                if (cardIndex < cardIds.length - 1) {
+                    router.navigateTo(getCardUri());
+                } else {
+                    showLastCard();
+                }
+            },
+
             showNextCard = function () {
                 if (cardIndex < cardIds.length - 1) {
                     cardIndex++;
@@ -55,6 +72,10 @@
                 router.navigateTo(getQuizPath());
             };
 
+        amplify.subscribe(config.pubs.showCurrentCard, function () {
+            showCurrentCard();
+        });
+
         amplify.subscribe(config.pubs.showNextCard, function () {
             showNextCard();
         });
@@ -64,7 +85,7 @@
         });
 
         return {
-            init: init
+            activate: activate
         };
     }
 );

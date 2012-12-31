@@ -1,14 +1,7 @@
-﻿define('data-primer', ['jquery', 'ko', 'data-context', 'utils'],
+﻿define('data-primer', ['jquery', 'ko', 'data-context', 'utils', 'global'],
 
-function ($, ko, dataContext, utils) {
+function ($, ko, dataContext, utils, global) {
     var
-        quiz = ko.observableArray([]),
-        quizOptions = {
-            results: quiz,
-            params: {
-                datePath: utils.getDatePath()
-            }
-        },
         userConfiguration = ko.observableArray([]),
         configOptions = {
             results: userConfiguration
@@ -16,18 +9,22 @@ function ($, ko, dataContext, utils) {
         fetch = function () {
             return $.Deferred(function (def) {
                 $.when(dataContext.config.getData(configOptions))
-                    .done(function() {
-                        global.userId = userConfiguration()[0].userId;
-                        $.when(dataContext.quiz.getData({
+                    .done(function () {
+                        if (userConfiguration()[0]) {
+                            global.userId = userConfiguration()[0].userId;
+                            $.when(dataContext.quiz.getData({
                                 params: {
                                     datePath: utils.getDatePath(),
                                     userId: global.userId
                                 }
                             }), dataContext.card.getData({ results: ko.observableArray([]) }))
-                            .fail(function() { def.reject(); })
-                            .done(function() {
-                                def.resolve();
-                            });
+                                .fail(function() { def.reject(); })
+                                .done(function() {
+                                    def.resolve();
+                                });
+                        } else {
+                            def.reject();
+                        }
                     });
             }).promise();
         };
