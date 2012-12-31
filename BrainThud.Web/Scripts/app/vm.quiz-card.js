@@ -69,8 +69,6 @@
             
             submitCorrect = function() {
                 dataContext.quizResult.createData(getQuizResultConfig(true));
-                // The problem is that I am getting a quiz but publishing a quizResult.
-                // Next: Only allow EntitySet to subscribe to data notifications. That way the cache can be updated.
                 publishQuizResult(true);
                 showNextCard();
             },
@@ -90,7 +88,18 @@
             },
             
             deleteCard = function() {
-                // TODO
+                $.when(dataContext.card.deleteData({
+                    params: {
+                        userId: global.userId,
+                        partitionKey: card().partitionKey(),
+                        rowKey: card().rowKey(),
+                        entityId: card().entityId()
+                    }
+                })).then(function () {
+                    $("#quiz-card-view .deleteDialog").modal('hide');
+                    showNextCard();
+                    amplify.publish(config.pubs.deleteCard);
+                });
             },
             
             displayIndex = ko.computed(function() {
