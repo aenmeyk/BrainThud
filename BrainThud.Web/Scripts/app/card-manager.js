@@ -1,5 +1,5 @@
-﻿define('card-manager', ['ko', 'router', 'data-context', 'utils', 'amplify', 'config', 'global'],
-    function (ko, router, dataContext, utils, amplify, config, global) {
+﻿define('card-manager', ['jquery', 'ko', 'router', 'data-context', 'utils', 'amplify', 'config', 'global'],
+    function ($, ko, router, dataContext, utils, amplify, config, global) {
         var
             deleteCardOptions,
             register = function () {

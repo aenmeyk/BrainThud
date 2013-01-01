@@ -1,5 +1,5 @@
-﻿define('router', ['jquery', 'sammy', 'presenter', 'config', 'global'],
-    function ($, Sammy, presenter, config, global) {
+﻿define('router', ['jquery', 'underscore', 'sammy', 'presenter', 'config', 'global'],
+    function ($, _, Sammy, presenter, config, global) {
         var startupUrl = '',
             defaultRoute = '',
 
@@ -23,8 +23,7 @@
             register = function (options) {
                 if (options.routes) {
                     // Register a list of routes
-                    for (var i = 0; i < options.routes.length; i++) {
-                        var route = options.routes[i];
+                    _.each(options.routes, function(route) {
                         registerRoute({
                             isDefault: route.isDefault,
                             route: route.route,
@@ -32,7 +31,7 @@
                             callback: route.callback,
                             view: options.view,
                         });
-                    }
+                    });
 
                     return;
                 }

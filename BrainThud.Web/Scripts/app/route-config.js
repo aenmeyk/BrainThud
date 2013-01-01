@@ -1,66 +1,58 @@
-﻿define('route-config', ['config', 'vm', 'router'],
-    function (config, vm, router) {
+﻿define('route-config', ['underscore', 'config', 'vm', 'router'],
+    function (_, config, vm, router) {
         var register = function() {
             var routeData = [
                 
-                // editCard routes
                 {
                     view: config.viewIds.card,
                     routes: [{
-                        route: config.hashes.cardEdit,
                         title: "Card",
+                        route: config.hashes.cardEdit,
                         callback: vm.card.activate
                         }]
                 },
                 
-                // createCard routes
                 {
                     view: config.viewIds.createCard,
                     routes: [{
                         isDefault: true,
-                        route: config.hashes.createCard,
                         title: "Create Card",
+                        route: config.hashes.createCard,
                         callback: vm.createCard.activate
                         }]
                 },
                 
-                // cards routes
                 {
                     view: config.viewIds.cards,
                     routes: [{
-                        route: config.hashes.cards,
                         title: "Today's Cards",
+                        route: config.hashes.cards,
                         callback: vm.cards.activate
                         }]
                 },
                 
-                // quiz
                 {
                     view: config.viewIds.quiz,
                     routes: [{
-                        route: config.hashes.quiz,
                         title: "Quiz",
+                        route: config.hashes.quiz,
                         callback: vm.quiz.activate
                         }]
                 },
                 
-                // quizCard
                 {
                     view: config.viewIds.quizCard,
                     routes: [{
-                        route: config.hashes.quizCard,
                         title: "QuizCard",
+                        route: config.hashes.quizCard,
                         callback: vm.quizCard.activate
                         }]
-                }
-                
-            ];
+                }];
 
-            for (var i = 0; i < routeData.length; i++) {
-                router.register(routeData[i]);
-            }
+            _.each(routeData, function (route) {
+                router.register(route);
+            });
 
-            // Crank up the router
             router.run();
         };
 
