@@ -18,10 +18,8 @@ function ($, ko, dataContext, utils, global) {
                                     userId: global.userId
                                 }
                             }), dataContext.card.getData({ results: ko.observableArray([]) }))
-                                .fail(function() { def.reject(); })
-                                .done(function() {
-                                    def.resolve();
-                                });
+                            .fail(function() { def.reject(); })
+                            .done(function() { def.resolve(); });
                         } else {
                             def.reject();
                         }

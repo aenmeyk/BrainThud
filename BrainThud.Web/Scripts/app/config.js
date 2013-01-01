@@ -26,7 +26,9 @@
                 showNextCard: 'show-next-card',
                 showPreviousCard: 'show-previous-card',
                 showEditCard: 'show-edit-card',
-                showDeleteCard: 'show-delete-card'
+                showDeleteCard: 'show-delete-card',
+                cardCacheChanged: 'card-cache-changed',
+                quizCacheChanged: 'quiz-cache-changed'
             };
 
         toastr.options.timeOut = 1500;

@@ -3,26 +3,26 @@
         var
             cards = ko.observableArray([]),
             cardCount = ko.observable(0),
-            card = ko.observable(new model.Card()),
+            cardId = ko.observable(0),
+            card = ko.computed(function () {
+                var found = _.find(cards(), function (item) {
+                    return item.entityId() === parseInt(cardId());
+                });
+
+                return found ? found : new model.Card();
+            }),
+            
+            init = function() {
+                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
+                    cards(data);
+                });
+                amplify.subscribe(config.pubs.quizCacheChanged, function (data) {
+                    cardCount(data[0].cardIds.length);
+                });
+            },
 
             activate = function (routeData) {
-                var quizzes = ko.observableArray([]),
-                    options = {
-                    results: quizzes,
-                    params: {
-                        datePath: utils.getDatePath(),
-                        userId: global.userId
-                    }
-                };
-                
-                $.when(dataContext.card.getData({ results: cards }), dataContext.quiz.getData(options))
-                    .then(function () {
-                        var matchingCard = _.find(cards(), function (item) {
-                            return item.entityId() === parseInt(routeData.cardId);
-                        });
-                        card(matchingCard);
-                        cardCount(quizzes()[0].cardIds.length);
-                    });
+                cardId(parseInt(routeData.cardId));
             },
 
             getQuizResultConfig = function (isCorrect) {
@@ -83,6 +83,8 @@
             displayIndex = ko.computed(function () {
                 return _.indexOf(cards(), card()) + 1;
             });
+
+        init();
 
         return {
             activate: activate,

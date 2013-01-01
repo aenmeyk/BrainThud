@@ -1,30 +1,35 @@
-﻿define('data-context-helper', ['jquery', 'underscore', 'utils'],
-    function ($, _, utils) {
-        var EntitySet = function (config) {
-            var cachedResults = [],
-                getData = function(options) {
+﻿define('data-context-helper', ['jquery', 'underscore', 'utils', 'amplify'],
+    function ($, _, utils, amplify) {
+        var EntitySet = function (entitySetConfig) {
+            var
+                mostRecentGetParams = {},
+                cachedResults = [],
+                
+                getData = function (options) {
                     var def = new $.Deferred();
-                    
+                    mostRecentGetParams = options.params;
+
                     if (options.invalidateCache) {
                         cachedResults = [];
                     }
 
                     var results = options && options.results;
                     if (!cachedResults || !utils.hasProperties(cachedResults)) {
-                        config.get({
+                        entitySetConfig.get({
                             params: options.params,
-                            success: function(dto) {
+                            success: function (dto) {
                                 cachedResults = [];
 
-                                config.mapper.mapResults(dto, cachedResults);
+                                entitySetConfig.mapper.mapResults(dto, cachedResults);
 
                                 if (results) {
                                     results(cachedResults);
                                 }
 
+                                publishCacheChanged();
                                 def.resolve(results);
                             },
-                            error: function() {
+                            error: function () {
                                 if (def.reject) def.reject();
                             }
                         });
@@ -35,43 +40,48 @@
 
                     return def.promise();
                 },
-                createData = function(options) {
-                    return $.Deferred(function(def) {
-                        config.create(options.data, {
+                
+                createData = function (options) {
+                    return $.Deferred(function (def) {
+                        entitySetConfig.create(options.data, {
                             params: options.params,
                             success: function (result) {
-                                config.mapper.mapResults([result], cachedResults);
+                                entitySetConfig.mapper.mapResults([result], cachedResults);
+                                publishCacheChanged();
                                 def.resolve();
                             },
-                            error: function(response) {
+                            error: function () {
                                 if (def.reject) def.reject();
                             }
                         });
                     });
                 },
-                updateData = function(options) {
-                    return $.Deferred(function(def) {
-                        config.update(options.data, {
+                
+                updateData = function (options) {
+                    return $.Deferred(function (def) {
+                        entitySetConfig.update(options.data, {
                             params: options.params,
                             success: function (dto) {
                                 for (var i = 0; i < cachedResults.length; i++) {
                                     if (cachedResults[i].partitionKey() === dto.partitionKey && cachedResults[i].rowKey() === dto.rowKey) {
-                                        cachedResults[i] = config.mapper.mapResult(dto);
+                                        cachedResults[i] = entitySetConfig.mapper.mapResult(dto);
                                         break;
                                     }
                                 }
 
+                                publishCacheChanged();
                                 def.resolve();
                             },
-                            error: function(response) {
+                            error: function () {
                                 if (def.reject) def.reject();
                             }
                         });
                     });
                 },
-                deleteData = function(options) {
-                    return $.Deferred(function(def) {
-                        config.deleteItem({
+                
+                deleteData = function (options) {
+                    return $.Deferred(function (def) {
+                        entitySetConfig.deleteItem({
                             params: options.params,
                             success: function () {
                                 for (var i = 0; i < cachedResults.length; i++) {
@@ -81,28 +91,35 @@
                                     }
                                 }
 
+                                publishCacheChanged();
                                 def.resolve();
                             },
-                            error: function(response) {
+                            error: function () {
                                 if (def.reject) def.reject();
                             }
                         });
                     });
-                };
+                },
 
-            if (config.subs) {
-                _.each(config.subs, function (sub) {
-                    sub(function() {
-                        return cachedResults;
+                publishCacheChanged = function () {
+                    if (entitySetConfig.cardChangedPub) {
+                        amplify.publish(entitySetConfig.cardChangedPub, cachedResults);
+                    }
+                },
+                
+                refreshCache = function() {
+                    getData({
+                        invalidateCache: true,
+                        params: mostRecentGetParams
                     });
-                });
-            }
+                };
             
             return {
                 getData: getData,
                 createData: createData,
                 updateData: updateData,
-                deleteData: deleteData
+                deleteData: deleteData,
+                refreshCache: refreshCache
             };
         };
 

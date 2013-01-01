@@ -32,6 +32,7 @@
                 })).then(function () {
                     $("#deleteDialog").modal('hide');
                     deleteCardOptions.currentCallback();
+                    dataContext.quiz.refreshCache();
                     amplify.publish(config.pubs.deleteCard);
                 });
             };
