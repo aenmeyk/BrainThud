@@ -1,13 +1,10 @@
-﻿define('vm.cards', ['jquery', 'ko', 'data-context', 'router', 'amplify', 'config', 'global'],
-    function ($, ko, dataContext, router, amplify, config, global) {
+﻿define('vm.cards', ['jquery', 'ko', 'data-context', 'router', 'amplify', 'config'],
+    function ($, ko, dataContext, router, amplify, config) {
         var
-            activeCard,
             cards = ko.observableArray([]),
             
-            dataOptions = function() {
-                return {
-                    results: cards
-                };
+            dataOptions = {
+                results: cards
             },
             
             editCard = function (card) {
@@ -18,15 +15,15 @@
                 card.questionSideVisible(!card.questionSideVisible());
             },
 
-            activate = function (routeData) {
-                dataContext.card.getData(dataOptions());
+            activate = function () {
+                dataContext.card.getData(dataOptions);
             },
             
             showDeleteDialog = function (card) {
                 amplify.publish(config.pubs.showDeleteCard, {
                     data: card,
                     callback: function() {
-                        dataContext.card.getData(dataOptions());
+                        dataContext.card.getData(dataOptions);
                     }
                 });
             };
