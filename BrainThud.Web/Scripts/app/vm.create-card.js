@@ -1,31 +1,27 @@
-﻿define('vm.create-card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'editor', 'dom', 'model'],
-    function ($, ko, dataContext, presenter, toastr, editor, dom, model) {
+﻿define('vm.create-card', ['ko', 'editor', 'dom', 'model', 'amplify', 'config'],
+    function (ko, editor, dom, model, amplify, config) {
         var
             card = ko.observable(new model.Card()),
 
-            createCard = function () {
-                var cardData = {
-                    quizDate: new Date(),
-                    level: 0
-                };
-                dom.getCardValues(cardData, 'create');
-                $.when(dataContext.card.createData({
-                    data: cardData
-                }))
-                .then(function () {
-                    toastr.success('Success!');
-                    createNewCard();
+            init = function () {
+                amplify.subscribe(config.pubs.createCard, function () {
+                    dom.resetNewCard();
+                    editor.refreshPreview('create');
                 });
             },
 
-            activate = function () {
-                // do nothing
-            },
+            activate = function () { },
 
-            createNewCard = function () {
-                dom.resetNewCard();
-                editor.refreshPreview('create');
+            createCard = function () {
+                var newCard = {
+                    quizDate: new Date(),
+                    level: 0
+                };
+                dom.getCardValues(newCard, 'create');
+                amplify.publish(config.pubs.createNewCard, newCard);
             };
+
+        init();
 
         return {
             activate: activate,

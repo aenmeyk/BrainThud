@@ -20,6 +20,7 @@
 
             pubs = {
                 createQuizResult: 'create-quiz-result',
+                createCard: 'create-card',
                 updateCard: 'update-card',
                 deleteCard: 'delete-card',
                 showCurrentCard: 'show-current-card',
@@ -27,6 +28,7 @@
                 showPreviousCard: 'show-previous-card',
                 showEditCard: 'show-edit-card',
                 showDeleteCard: 'show-delete-card',
+                createNewCard: 'create-new-card',
                 cardCacheChanged: 'card-cache-changed',
                 quizCacheChanged: 'quiz-cache-changed'
             };

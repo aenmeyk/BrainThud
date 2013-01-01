@@ -1,11 +1,15 @@
-﻿define('card-manager', ['jquery', 'ko', 'router', 'data-context', 'utils', 'amplify', 'config', 'global'],
-    function ($, ko, router, dataContext, utils, amplify, config, global) {
+﻿define('card-manager', ['jquery', 'ko', 'router', 'data-context', 'utils', 'dom', 'amplify', 'config', 'global'],
+    function ($, ko, router, dataContext, utils, dom, amplify, config, global) {
         var
             deleteCardOptions,
             register = function () {
                 var $deleteDialog = $('#deleteDialog');
                 $('body').on('click.modal.data-api', '[data-toggle="delete"]', function () {
                     deleteCard();
+                });
+
+                amplify.subscribe(config.pubs.createNewCard, function (newCard) {
+                    createCard(newCard);
                 });
 
                 amplify.subscribe(config.pubs.showEditCard, function (cardId) {
@@ -17,6 +21,14 @@
                         currentCard: data,
                     };
                     $deleteDialog.modal('show');
+                });
+            },
+            
+            createCard = function(newCard) {
+                $.when(dataContext.card.createData({ data: newCard }))
+                .then(function () {
+                    toastr.success('Success!');
+                    amplify.publish(config.pubs.createCard);
                 });
             },
 
