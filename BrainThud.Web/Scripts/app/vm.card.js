@@ -22,11 +22,11 @@
             activate = function (routeData) {
                 $.when(dataContext.card.getData(dataOptions))
                     .then(function () {
-                        for (var i = 0; i < cards().length; i++) {
-                            if (cards()[i].entityId() === parseInt(routeData.cardId)) {
-                                card(cards()[i]);
-                            }
-                        };
+                        var cardId = parseInt(routeData.cardId);
+                        var item = _.find(cards(), function(val) {
+                            return val.entityId() === cardId;
+                        });
+                        card(item);
                     })
                     .then(function () {
                         editor.refreshPreview('edit');
