@@ -1,10 +1,25 @@
-﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'dom', 'editor', 'router', 'global', 'model'],
-    function ($, ko, dataContext, presenter, toastr, dom, editor, router, global, model) {
+﻿define('vm.card', ['jquery', 'ko', 'data-context', 'toastr', 'dom', 'editor', 'router', 'global', 'model', 'amplify', 'config'],
+    function ($, ko, dataContext, toastr, dom, editor, router, global, model, amplify, config) {
         var
-            card = ko.observable(new model.Card()),
-            cards = ko.observableArray(),
-            dataOptions = {
-                results: cards
+            cardId = ko.observable(0),
+            cards = ko.observableArray([]),
+            card = ko.computed(function () {
+                var found = _.find(cards(), function (item) {
+                    return item.entityId() === parseInt(cardId());
+                });
+
+                return found ? found : new model.Card();
+            }),
+
+            init = function () {
+                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
+                    cards(data);
+                });
+            },
+
+            activate = function (routeData) {
+                cardId(parseInt(routeData.cardId));
+                editor.refreshPreview('edit');
             },
 
             updateCard = function () {
@@ -17,21 +32,9 @@
                     toastr.success('Success!');
                     router.navigateTo(global.previousUrl);
                 });
-            },
-
-            activate = function (routeData) {
-                $.when(dataContext.card.getData(dataOptions))
-                    .then(function () {
-                        var cardId = parseInt(routeData.cardId);
-                        var item = _.find(cards(), function(val) {
-                            return val.entityId() === cardId;
-                        });
-                        card(item);
-                    })
-                    .then(function () {
-                        editor.refreshPreview('edit');
-                    });
             };
+
+        init();
 
         return {
             activate: activate,
