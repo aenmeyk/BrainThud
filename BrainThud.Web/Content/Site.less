@@ -335,8 +335,13 @@ input[type=text] {
 
 .main-container {
 	box-shadow: 0 0 85px rgba(0, 0, 0, .3);
-	padding: 50px 30px;
-	margin-top: -50px;
+	padding: 0 30px;
+	margin-top: -51px;
+	min-height: 100%;
+}
+
+.main {
+	padding: 50px 0;
 }
 
 /* ==========================================================================
@@ -455,6 +460,11 @@ input[type=text] {
 		box-shadow: none;
 		padding: 0;
 		margin-top: 0;
+		min-height: 0%;
+	}
+
+	.main {
+		padding: 0;
 	}
 }
 
@@ -628,8 +638,4 @@ input[type=text] {
 
 .wmd-button-row {
 	margin: 0;
-}
-
-.container {
-	min-height: 100%;
 }
