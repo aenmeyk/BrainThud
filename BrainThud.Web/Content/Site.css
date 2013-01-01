@@ -16,6 +16,10 @@ select,
 textarea {
   color: #5a5a5a;
 }
+html,
+body {
+  height: 100%;
+}
 body {
   font-size: 1em;
   line-height: 1.4;
@@ -104,6 +108,7 @@ form {
 }
 ul {
   list-style: none;
+  margin: 0;
 }
 h1,
 h2,
@@ -288,6 +293,11 @@ input[type=text] {
   font-size: 13px;
   color: #aaaaaa;
 }
+.main-container {
+  box-shadow: 0 0 85px rgba(0, 0, 0, 0.3);
+  padding: 50px 30px;
+  margin-top: -50px;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -384,6 +394,13 @@ input[type=text] {
    ========================================================================== */
 @media (min-width: 1200px) {
   
+}
+@media (max-width: 1239px) {
+  .main-container {
+    box-shadow: none;
+    padding: 0;
+    margin-top: 0;
+  }
 }
 @media (max-width: 1199px) {
   h3 {
@@ -547,4 +564,7 @@ input[type=text] {
 }
 .wmd-button-row {
   margin: 0;
+}
+.container {
+  min-height: 100%;
 }
