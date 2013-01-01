@@ -1,32 +1,29 @@
-﻿define('vm.cards', ['jquery', 'ko', 'data-context', 'router', 'amplify', 'config'],
-    function ($, ko, dataContext, router, amplify, config) {
+﻿define('vm.cards', ['ko', 'amplify', 'config'],
+    function (ko, amplify, config) {
         var
             cards = ko.observableArray([]),
-            
-            dataOptions = {
-                results: cards
+
+            init = function () {
+                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
+                    cards(data);
+                });
             },
-            
+
             editCard = function (card) {
-                router.navigateTo('#/cards/' + card.entityId() + '/edit');
+                amplify.publish(config.pubs.showEditCard, card.entityId());
             },
 
             flipCard = function (card) {
                 card.questionSideVisible(!card.questionSideVisible());
             },
 
-            activate = function () {
-                dataContext.card.getData(dataOptions);
-            },
-            
+            activate = function () { },
+
             showDeleteDialog = function (card) {
-                amplify.publish(config.pubs.showDeleteCard, {
-                    data: card,
-                    callback: function() {
-                        dataContext.card.getData(dataOptions);
-                    }
-                });
+                amplify.publish(config.pubs.showDeleteCard, card);
             };
+
+        init();
 
         return {
             cards: cards,

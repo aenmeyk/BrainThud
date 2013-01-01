@@ -12,10 +12,9 @@
                     router.navigateTo('#/cards/' + cardId + '/edit');
                 });
 
-                amplify.subscribe(config.pubs.showDeleteCard, function (options) {
+                amplify.subscribe(config.pubs.showDeleteCard, function (data) {
                     deleteCardOptions = {
-                        currentCard: options.data,
-                        currentCallback: options.callback                      
+                        currentCard: data,
                     };
                     $deleteDialog.modal('show');
                 });
@@ -31,7 +30,6 @@
                     }
                 })).then(function () {
                     $("#deleteDialog").modal('hide');
-                    deleteCardOptions.currentCallback();
                     dataContext.quiz.refreshCache();
                     amplify.publish(config.pubs.deleteCard);
                 });

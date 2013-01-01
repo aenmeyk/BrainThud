@@ -19,6 +19,9 @@
                 amplify.subscribe(config.pubs.quizCacheChanged, function (data) {
                     cardCount(data[0].cardIds.length);
                 });
+                amplify.subscribe(config.pubs.deleteCard, function () {
+                    showNextCard();
+                });
             },
 
             activate = function (routeData) {
@@ -74,10 +77,7 @@
             },
 
             showDeleteDialog = function () {
-                amplify.publish(config.pubs.showDeleteCard, {
-                    data: card(),
-                    callback: showNextCard
-                });
+                amplify.publish(config.pubs.showDeleteCard, card());
             },
 
             displayIndex = ko.computed(function () {
