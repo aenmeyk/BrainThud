@@ -257,6 +257,7 @@
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
+    <Content Include="Scripts\app\card-manager.js" />
     <Content Include="Scripts\app\global.js" />
     <Content Include="Scripts\app\quiz-navigator.js" />
     <Content Include="Scripts\app\data-subs.js" />
@@ -355,7 +356,7 @@
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
     <Content Include="Test\Scripts\jasmine-test-runner.cshtml" />
     <Content Include="Views\quiz-card.cshtml" />
-    <Content Include="Views\Shared\_delete-card-dialog.cshtml" />
+    <Content Include="Views\delete-card-dialog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

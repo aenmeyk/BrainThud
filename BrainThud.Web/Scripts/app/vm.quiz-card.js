@@ -59,25 +59,13 @@
             },
             
             editCard = function() {
-                router.navigateTo('#/cards/' + card().entityId() + '/edit');
+                amplify.publish(config.pubs.showEditCard, card().entityId());
             },
             
             showDeleteDialog = function() {
-                $("#quiz-card-view .deleteDialog").modal('show');
-            },
-            
-            deleteCard = function() {
-                $.when(dataContext.card.deleteData({
-                    params: {
-                        userId: global.userId,
-                        partitionKey: card().partitionKey(),
-                        rowKey: card().rowKey(),
-                        entityId: card().entityId()
-                    }
-                })).then(function () {
-                    $("#quiz-card-view .deleteDialog").modal('hide');
-                    showNextCard();
-                    amplify.publish(config.pubs.deleteCard);
+                amplify.publish(config.pubs.showDeleteCard, {
+                    data: card(),
+                    callback: showNextCard
                 });
             },
             
@@ -99,7 +87,6 @@
             submitIncorrect: submitIncorrect,
             editCard: editCard,
             showDeleteDialog: showDeleteDialog,
-            deleteCard: deleteCard,
             displayIndex: displayIndex,
             cardCount: cardCount
         };

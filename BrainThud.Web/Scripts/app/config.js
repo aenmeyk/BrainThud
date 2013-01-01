@@ -24,7 +24,9 @@
                 deleteCard: 'delete-card',
                 showCurrentCard: 'show-current-card',
                 showNextCard: 'show-next-card',
-                showPreviousCard: 'show-previous-card'
+                showPreviousCard: 'show-previous-card',
+                showEditCard: 'show-edit-card',
+                showDeleteCard: 'show-delete-card'
             };
 
         toastr.options.timeOut = 1500;

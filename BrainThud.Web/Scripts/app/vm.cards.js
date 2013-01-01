@@ -23,22 +23,11 @@
             },
             
             showDeleteDialog = function (card) {
-                activeCard = card;
-                $("#cards-view .deleteDialog").modal('show');
-            },
-
-            deleteCard = function () {
-                $.when(dataContext.card.deleteData({
-                    params: {
-                        userId: global.userId,
-                        partitionKey: activeCard.partitionKey(),
-                        rowKey: activeCard.rowKey(),
-                        entityId: activeCard.entityId()
+                amplify.publish(config.pubs.showDeleteCard, {
+                    data: card,
+                    callback: function() {
+                        dataContext.card.getData(dataOptions());
                     }
-                })).then(function () {
-                    $("#cards-view .deleteDialog").modal('hide');
-                    amplify.publish(config.pubs.deleteCard);
-                    activate();
                 });
             };
 
@@ -47,8 +36,7 @@
             editCard: editCard,
             flipCard: flipCard,
             activate: activate,
-            showDeleteDialog: showDeleteDialog,
-            deleteCard: deleteCard
+            showDeleteDialog: showDeleteDialog
         };
     }
 );
