@@ -3,7 +3,7 @@
         <span class="form-label">Deck Name</span>
     </div>
     <div class="span10">
-        <input id="new-card-deckname-@(ViewBag.EditorName)" type="text" class="stretch" data-bind="value: deckName" />
+        <input id="new-card-deckname-@(ViewBag.EditorName)" type="text" class="stretch" data-bind="value: card().deckName" />
     </div>
 </div>
 <div class="row-fluid">
@@ -11,7 +11,7 @@
         <span class="form-label">Tags</span>
     </div>
     <div class="span10">
-        <input id="new-card-tags-@(ViewBag.EditorName)" type="text" placeholder="separate tags with commas" class="stretch" data-bind="value: tags" />
+        <input id="new-card-tags-@(ViewBag.EditorName)" type="text" placeholder="separate tags with commas" class="stretch" data-bind="value: card().tags" />
     </div>
 </div>
 
@@ -25,7 +25,7 @@
 </div>
 <div class="row-fluid">
     <div class="span10 offset2">
-        <textarea id="wmd-input-question-@(ViewBag.EditorName)" class="large question" data-bind="value: question"></textarea>
+        <textarea id="wmd-input-question-@(ViewBag.EditorName)" class="large question" data-bind="value: card().question"></textarea>
     </div>
 </div>
 <div class="row-fluid">
@@ -44,7 +44,7 @@
 </div>
 <div class="row-fluid">
     <div class="span10 offset2">
-        <textarea id="wmd-input-answer-@(ViewBag.EditorName)" class="large answer" data-bind="value: answer"></textarea>
+        <textarea id="wmd-input-answer-@(ViewBag.EditorName)" class="large answer" data-bind="value: card().answer"></textarea>
     </div>
 </div>
 <div class="row-fluid">

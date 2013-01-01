@@ -1,10 +1,7 @@
-﻿define('vm.create-card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'editor', 'dom'],
-    function ($, ko, dataContext, presenter, toastr, editor, dom) {
+﻿define('vm.create-card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'editor', 'dom', 'model'],
+    function ($, ko, dataContext, presenter, toastr, editor, dom, model) {
         var
-            deckName = ko.observable(''),
-            tags = ko.observable(''),
-            question = ko.observable(''),
-            answer = ko.observable(''),
+            card = ko.observable(new model.Card()),
 
             createCard = function () {
                 var cardData = {
@@ -32,10 +29,7 @@
 
         return {
             activate: activate,
-            deckName: deckName,
-            tags: tags,
-            question: question,
-            answer: answer,
+            card: card,
             createCard: createCard
         };
     }

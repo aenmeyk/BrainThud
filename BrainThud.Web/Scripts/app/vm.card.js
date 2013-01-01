@@ -1,33 +1,17 @@
-﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'dom', 'editor', 'router', 'global'],
-    function ($, ko, dataContext, presenter, toastr, dom, editor, router, global) {
+﻿define('vm.card', ['jquery', 'ko', 'data-context', 'presenter', 'toastr', 'dom', 'editor', 'router', 'global', 'model'],
+    function ($, ko, dataContext, presenter, toastr, dom, editor, router, global, model) {
         var
+            card = ko.observable(new model.Card()),
             cards = ko.observableArray(),
             dataOptions = {
                 results: cards
             },
-            partitionKey = ko.observable(''),
-            rowKey = ko.observable(''),
-            deckName = ko.observable(''),
-            tags = ko.observable(''),
-            question = ko.observable(''),
-            answer = ko.observable(''),
-            quizDate = ko.observable(''),
-            level = ko.observable(''),
-            entityId = ko.observable(''),
-            userId = ko.observable(''),
 
             updateCard = function () {
-                var cardData = {
-                    partitionKey: partitionKey(),
-                    rowKey: rowKey(),
-                    quizDate: quizDate(),
-                    level: level(),
-                    entityId: entityId(),
-                    userId: userId()
-                };
-                dom.getCardValues(cardData, 'edit');
+                var item = ko.toJS(card);
+                dom.getCardValues(item, 'edit');
                 $.when(dataContext.card.updateData({
-                    data: cardData
+                    data: item
                 }))
                 .then(function () {
                     toastr.success('Success!');
@@ -40,18 +24,7 @@
                     .then(function () {
                         for (var i = 0; i < cards().length; i++) {
                             if (cards()[i].entityId() === parseInt(routeData.cardId)) {
-                                // TODO: Move this to the mapper
-                                var card = cards()[i];
-                                partitionKey(card.partitionKey());
-                                rowKey(card.rowKey());
-                                deckName(card.deckName());
-                                tags(card.tags());
-                                question(card.question());
-                                answer(card.answer());
-                                quizDate(card.quizDate());
-                                level(card.level());
-                                entityId(card.entityId());
-                                userId(card.userId());
+                                card(cards()[i]);
                             }
                         };
                     })
@@ -62,10 +35,7 @@
 
         return {
             activate: activate,
-            deckName: deckName,
-            tags: tags,
-            question: question,
-            answer: answer,
+            card: card,
             updateCard: updateCard
         };
     }
