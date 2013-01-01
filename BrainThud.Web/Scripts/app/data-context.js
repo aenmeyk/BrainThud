@@ -1,6 +1,11 @@
 ﻿define('data-context', ['data-service', 'model.mapper', 'data-context-helper', 'data-subs'],
     function (dataService, modelMapper, dataContextHelper, dataSubs) {
         var
+            userConfig = new dataContextHelper.EntitySet({
+                get: dataService.config.get,
+                mapper: modelMapper.config
+            }),
+            
             card = new dataContextHelper.EntitySet({
                 get: dataService.card.get,
                 create: dataService.card.create,
@@ -15,10 +20,6 @@
                 subs: dataSubs.quiz
             }),
             
-            userConfig = new dataContextHelper.EntitySet({
-                get: dataService.config.get,
-                mapper: modelMapper.config
-            }),
             quizResult = new dataContextHelper.EntitySet({
                 create: dataService.quizResult.create,
                 mapper: modelMapper.quizResult
