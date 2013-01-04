@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
-using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
@@ -13,26 +12,17 @@ using BrainThud.Web.Resources;
 
 namespace BrainThud.Web.Controllers
 {
-
-    // TODO: Add a method to get all cards for a particular user:
-    //     public IEnumerable<Card> Get(int userId)
     public class CardsController : ApiControllerBase
     {
         private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IAuthenticationHelper authenticationHelper;
-        private readonly IUserHelper userHelper;
-        private readonly IIdentityQueueManager identityQueueManager;
 
         public CardsController(
             ITableStorageContextFactory tableStorageContextFactory,
-            IAuthenticationHelper authenticationHelper,
-            IUserHelper userHelper,
-            IIdentityQueueManager identityQueueManager)
+            IAuthenticationHelper authenticationHelper)
         {
             this.tableStorageContextFactory = tableStorageContextFactory;
             this.authenticationHelper = authenticationHelper;
-            this.userHelper = userHelper;
-            this.identityQueueManager = identityQueueManager;
         }
 
         public IEnumerable<Card> Get()
