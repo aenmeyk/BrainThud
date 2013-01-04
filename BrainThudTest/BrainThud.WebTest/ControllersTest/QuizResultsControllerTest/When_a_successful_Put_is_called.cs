@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
 using BrainThud.Web;
@@ -10,11 +11,8 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerTest
 {
     [TestFixture]
-    public class When_a_successful_Post_is_made : Given_a_new_QuizResultsController
+    public class When_a_successful_Put_is_called : Given_a_new_QuizResultsController
     {
-        private const int YEAR = 2012;
-        private const int MONTH = 8;
-        private const int DAY = 19;
         private QuizResult quizResult;
         private HttpResponseMessage response;
         private readonly Card card = new Card { EntityId = TestValues.CARD_ID };
@@ -22,14 +20,23 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         public override void When()
         {
             this.TableStorageContext.Setup(x => x.Cards.GetById(TestValues.USER_ID, TestValues.CARD_ID)).Returns(this.card);
+            this.TableStorageContext.Setup(x => x.QuizResults.GetForQuiz(TestValues.YEAR, TestValues.MONTH, TestValues.DAY))
+                .Returns(new[] { new QuizResult { CardId = TestValues.CARD_ID } }.AsQueryable());
+
             this.quizResult = new QuizResult { EntityId = TestValues.QUIZ_RESULT_ID, UserId = TestValues.USER_ID, CardId = TestValues.CARD_ID };
-            this.response = this.QuizResultsController.Post(TestValues.USER_ID, YEAR, MONTH, DAY, this.quizResult);
+            this.response = this.QuizResultsController.Put(TestValues.USER_ID, TestValues.YEAR, TestValues.MONTH, TestValues.DAY, this.quizResult);
         }
 
         [Test]
-        public void Then_a_201_status_code_should_be_returned()
+        public void Then_ReverseIfExists_should_be_called_on_QuizResultHandler()
         {
-            this.response.StatusCode.Should().Be(HttpStatusCode.Created);
+            this.QuizResultHandler.Verify(x => x.ReverseIfExists(this.TableStorageContext.Object, this.quizResult, this.card), Times.Once());
+        }
+
+        [Test]
+        public void Then_a_200_status_code_should_be_returned()
+        {
+            this.response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
         [Test]
@@ -47,9 +54,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         [Test]
         public void Then_the_QuizDate_should_be_set_from_the_date_parameters()
         {
-            this.quizResult.QuizDate.Year.Should().Be(YEAR);
-            this.quizResult.QuizDate.Month.Should().Be(MONTH);
-            this.quizResult.QuizDate.Day.Should().Be(DAY);
+            this.quizResult.QuizDate.Year.Should().Be(TestValues.YEAR);
+            this.quizResult.QuizDate.Month.Should().Be(TestValues.MONTH);
+            this.quizResult.QuizDate.Day.Should().Be(TestValues.DAY);
         }
 
         [Test]

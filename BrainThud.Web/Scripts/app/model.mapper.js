@@ -37,13 +37,13 @@
                     for (var i = 0; i < dto.length; i++) {
                         if (!utils.entityExists(results, dto)) {
                             var singleQuizResult = new model.QuizResult();
-                            singleQuizResult.partitionKey(dto.partitionKey)
-                                .rowKey(dto.rowKey)
-                                .quizDate(dto.quizDate)
-                                .cardId(dto.cardId)
-                                .isCorrect(dto.isCorrect)
-                                .userId(dto.userId)
-                                .entityId(dto.entityId);
+                            singleQuizResult.partitionKey(dto[i].partitionKey)
+                                .rowKey(dto[i].rowKey)
+                                .quizDate(dto[i].quizDate)
+                                .cardId(dto[i].cardId)
+                                .isCorrect(dto[i].isCorrect)
+                                .userId(dto[i].userId)
+                                .entityId(dto[i].entityId);
 
                             results.push(singleQuizResult);
                         }

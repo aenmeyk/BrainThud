@@ -1,14 +1,63 @@
-﻿define('vm.quiz', ['ko', 'data-context', 'utils', 'moment', 'quiz-navigator', 'amplify', 'config', 'global'],
-    function (ko, dataContext, utils, moment, quizNavigator, amplify, config, global) {
+﻿define('vm.quiz', ['ko', 'underscore', 'moment', 'quiz-navigator', 'amplify', 'config'],
+    function (ko, _, moment, quizNavigator, amplify, config) {
         var
-            
+            // How to handl quiz result changes??
             init = function() {
-                amplify.subscribe(config.pubs.deleteCard, function () {
-                    invalidateCache = true;
+                amplify.subscribe(config.pubs.quizCacheChanged, function (data) {
+                    var quiz = data[0];
+                    quizDate(moment(quiz.quizDate).format('L'));
+                    cardCount(quiz.cardIds.length);
+                    quizResults(quiz.quizResults);
+                    quizNavigator.activate();
+                });
+                amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
+
+                    var cardIds = _.map(data, function(item) {
+                        return item.cardId();
+                    });
+
+                    var results = quizResults();
+                    _.each(cardIds, function(cardId) {
+                        for (var i = 0; i < results.length; i++) {
+                            if (results[i].cardId == cardId) {
+                                quizResults.splice(i, 1);
+                                break;
+                            }
+                        }
+                    });
+
+                    _.each(data, function (item) {
+                        quizResults.push(ko.toJS(item));
+                    });
+
+//                    _.each(data, function (item) {
+
+                    ////var itemFound = false;
+                    ////for (var i = 0; i < quizResults().length; i++) {
+                    ////    if (quizResults()[i].cardId == item.cardId()) {
+                    ////        quizResults()[i] = ko.toJS(item);
+                    ////        itemFound = true;
+                    ////        break;
+                    ////    }
+                    ////}
+
+                    ////if (!itemFound) {
+                    ////    quizResults.push(ko.toJS(item));
+                    ////}
+
+//                        var existingItem = _.find(quizResults(), function(result) {
+//                            return result.cardId === item.cardId();
+//                        });
+//
+//                        if (existingItem) {
+//                            existingItem = ko.toJS(item);
+//                        } else {
+//                            quizResults.push(item);
+//                        }
+//                    });
                 });
             },
 
-            invalidateCache = false,
             quizDate = ko.observable(),
             cardCount = ko.observable(0),
             quizResults = ko.observableArray([]),
@@ -29,30 +78,7 @@
                 });
             }),
 
-            quizzes = ko.observableArray([]),
-
-            dataOptions = function() {
-                return {
-                    invalidateCache: invalidateCache,
-                    results: quizzes,
-                    params: {
-                        datePath: utils.getDatePath(),
-                        userId: global.userId
-                    }
-                };
-            },
-
-           activate = function () {
-               $.when(dataContext.quiz.getData(dataOptions()))
-                   .then(function () {
-                       var quiz = quizzes()[0];
-                       quizDate(moment(quiz.quizDate).format('L'));
-                       cardCount(quiz.cardIds.length);
-                       quizResults(quiz.quizResults);
-                       invalidateCache = false;
-                       quizNavigator.activate();
-                   });
-           },
+            activate = function () { },
 
             startQuiz = function () {
                 amplify.publish(config.pubs.showCurrentCard);

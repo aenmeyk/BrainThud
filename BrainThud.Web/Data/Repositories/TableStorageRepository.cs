@@ -44,11 +44,9 @@ namespace BrainThud.Web.Data.Repositories
 
         public T Get(string partitionKey, string rowKey)
         {
-// ReSharper disable ReplaceWithSingleCallToFirstOrDefault
             return this.EntitySet
                 .Where(x => x.PartitionKey == partitionKey && x.RowKey == rowKey)
                 .FirstOrDefault();
-// ReSharper restore ReplaceWithSingleCallToFirstOrDefault
         }
 
         public IQueryable<T> GetAll()

@@ -50,7 +50,11 @@
                                 publishCacheChanged();
                                 def.resolve();
                             },
-                            error: function () {
+                            error: function (xhr) {
+                                if (xhr && xhr.status == 412) {
+                                    // do a GET, then a PUT
+                                    console.log("error 412");
+                                }
                                 if (def.reject) def.reject();
                             }
                         });

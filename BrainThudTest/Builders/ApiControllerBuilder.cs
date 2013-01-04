@@ -15,10 +15,9 @@ namespace BrainThudTest.Builders
             this.controllerContextBuilder = new ControllerContextBuilder();
         }
 
-        public ApiControllerBuilder<T> CreateRequest(HttpMethod httpMethod, string requestUri)
+        public ApiControllerBuilder<T> CreateRequest(HttpRequestMessage request)
         {
             var config = new HttpConfiguration();
-            var request = new HttpRequestMessage(httpMethod, requestUri);
             var controllerPartLength = "Controller".Length;
             var typeName = typeof(T).Name;
             var controllerName = typeName.Remove(typeName.Length - controllerPartLength, controllerPartLength);
@@ -31,6 +30,12 @@ namespace BrainThudTest.Builders
                 .Build();
 
             return this;
+        }
+
+        public ApiControllerBuilder<T> CreateRequest(HttpMethod httpMethod, string requestUri)
+        {
+            var request = new HttpRequestMessage(httpMethod, requestUri);
+            return this.CreateRequest(request);
         }
 
         public T Build()

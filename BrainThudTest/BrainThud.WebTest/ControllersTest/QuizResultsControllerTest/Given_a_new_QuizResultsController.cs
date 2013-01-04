@@ -17,10 +17,14 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         {
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
             var tableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
-            tableStorageContextFactory.Setup(x => x.CreateTableStorageContext(AzureTableNames.CARD, TestValues.NAME_IDENTIFIER)).Returns(this.TableStorageContext.Object);
+            tableStorageContextFactory
+                .Setup(x => x.CreateTableStorageContext(AzureTableNames.CARD, TestValues.NAME_IDENTIFIER))
+                .Returns(this.TableStorageContext.Object);
+
             this.QuizResultHandler = new Mock<IQuizResultHandler>();
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
+            this.Request = new HttpRequestMessage(HttpMethod.Post, TestUrls.QUIZ_RESULTS);
 
             var quizResultsController = new QuizResultsControllerFake(
                 tableStorageContextFactory.Object, 
@@ -28,10 +32,11 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
                 authenticationHelper.Object);
 
             this.QuizResultsController = new ApiControllerBuilder<QuizResultsControllerFake>(quizResultsController)
-               .CreateRequest(HttpMethod.Post, TestUrls.QUIZ_RESULTS)
+               .CreateRequest(this.Request)
                .Build();
         }
 
+        protected HttpRequestMessage Request { get; private set; }
         protected Mock<IQuizResultHandler> QuizResultHandler { get; private set; }
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
         protected QuizResultsControllerFake QuizResultsController { get; private set; }

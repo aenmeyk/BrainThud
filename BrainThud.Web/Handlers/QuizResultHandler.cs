@@ -27,13 +27,10 @@ namespace BrainThud.Web.Handlers
         public void ReverseIfExists(ITableStorageContext tableStorageContext, QuizResult quizResult, Card card)
         {
             var quizDate = quizResult.QuizDate;
-
-// ReSharper disable ReplaceWithSingleCallToFirstOrDefault
             var existingResult = tableStorageContext.QuizResults
                 .GetForQuiz(quizDate.Year, quizDate.Month, quizDate.Day)
                 .Where(x => x.CardId == card.EntityId)
                 .FirstOrDefault();
-// ReSharper restore ReplaceWithSingleCallToFirstOrDefault
 
             if(existingResult != null)
             {

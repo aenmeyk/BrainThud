@@ -88,6 +88,12 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_Get_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_Put_is_made_and_the_related_card_does_not_exist.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_Post_is_made_and_the_related_card_does_not_exist.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Put_is_called_with_an_invalid_model.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_successful_Put_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_Post_is_made_without_IfMatchNone_and_the_QuizResult_already_exists.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_Post_is_made_with_IfMatchNone_and_the_QuizResult_already_exists.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_Get_is_called_by_a_user_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueSeederTest\Given_a_new_IdentityQueueSeeder.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueSeederTest\When_nothing_changes.cs" />

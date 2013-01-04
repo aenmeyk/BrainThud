@@ -28,7 +28,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
 
             var generator = new UniqueRandomGenerator();
 
-            // Use EntityId of > 100 to indicate which cards should be included in result
+            // Use EntityId of >= 100 to indicate which cards should be included in result
             var userCards = Builder<Card>.CreateListOfSize(10)
                 .TheFirst(2).With(x => x.QuizDate = dayBefore).And(x => x.EntityId = generator.Next(100, 1000))
                 .TheNext(2).With(x => x.QuizDate = this.quizDate).And(x => x.EntityId = generator.Next(100, 1000))
@@ -56,7 +56,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizzesControllerTest
         [Test]
         public void Then_only_cards_with_a_QuizDate_less_than_or_equal_to_the_quizDate_parameter_are_returned()
         {
-            this.quiz.CardIds.Should().OnlyContain(x => x > 100).And.HaveCount(10);
+            this.quiz.CardIds.Should().OnlyContain(x => x >= 100).And.HaveCount(10);
         }
 
         [Test]

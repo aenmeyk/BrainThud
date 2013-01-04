@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
 using BrainThud.Web.Resources;
@@ -62,7 +62,7 @@ namespace BrainThud.Web.Controllers
                 return this.Request.CreateResponse(HttpStatusCode.OK, card);
             }
 
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
         [ValidateInput(false)]
@@ -86,7 +86,7 @@ namespace BrainThud.Web.Controllers
                 return response;
             }
 
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
         public HttpResponseMessage Delete(int userId, int cardId)
@@ -101,7 +101,7 @@ namespace BrainThud.Web.Controllers
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
 
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
     }
 }

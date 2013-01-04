@@ -24,7 +24,8 @@
             
             quizResult = new dataContextHelper.EntitySet({
                 create: dataService.quizResult.create,
-                mapper: modelMapper.quizResult
+                mapper: modelMapper.quizResult,
+                cardChangedPub: config.pubs.quizResultCacheChanged
             });
 
         return {
