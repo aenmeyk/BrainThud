@@ -29,6 +29,7 @@ namespace BrainThud.Web.Controllers
                 .AddDays(1).Date
                 .AddMilliseconds(-1);
 
+            // TODO: Don't include the quiz results here.  Get them from the QuizResultsController.  Keep it simple.
             var quizResults = tableStorageContext.QuizResults.GetForQuiz(year, month, day).ToList();
             var userCards = tableStorageContext.Cards.GetForUser().Where(x => x.QuizDate <= quizDate).ToList().Select(x => x.EntityId);
             var quizResultCards = tableStorageContext.Cards.GetForQuizResults(quizResults).Select(x => x.EntityId);

@@ -1,15 +1,11 @@
-﻿define('data-service.quiz-result', ['amplify'],
-    function (amplify) {
+﻿define('data-service.quiz-result', ['amplify', 'model.mapper'],
+    function (amplify, modelMapper) {
         var
+            currentData,
+            cachedResults,
             init = function () {
-                amplify.request.define('getQuizResult', 'ajax', {
-                    url: '/api/quizzes/{userId}/{datePath}/results',
-                    dataType: 'json',
-                    type: 'GET'
-                }),
-
                 amplify.request.define('createQuizResult', 'ajax', {
-                    url: '/api/quizzes/{userId}/{datePath}/results',
+                    url: '/api/quizzes/{userId}/{datePath}/results/{cardId}',
                     dataType: 'json',
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8',
@@ -20,29 +16,44 @@
                     decoder: function (data, status, xhr, success, error) {
                         if (status == "success") {
                             success(data);
+                            // TODO: I think we need a custom header saying why the precondition failed.  If it is because
+                            // the resource already exists then we can remove it from the cache before creating it again
+                            
+                            // If I already have the quiz result client-side, why would I ever do a POST first?
+                        } else if (xhr.status == 412) {
+                            var location = xhr.getResponseHeader("Location");
+                            // TODO: we are not using amplify here.  How do we do that?
+                            $.ajax({
+                                url: location,
+                                type: 'PUT',
+                                data: currentData,
+                                success: function(result) {
+                                    var existingItem = _.find(cachedResults, function(item) {
+                                        return item.quizDate() === result.quizDate
+                                            && item.cardId() === result.cardId;
+                                    });
+                                    var index = _.indexOf(cachedResults, existingItem);
+                                    cachedResults.splice(index, 1);
+                                    modelMapper.quizResult.mapResults([result], cachedResults);
+                                }
+                            });
                         } else {
-                            error(xhr);
+                            error();
                         }
                     }
                 });
 
                 amplify.request.define('updateQuizResult', 'ajax', {
-                    url: '/api/quizzes/{userId}/{datePath}/results',
+                    url: '/api/quizzes/{userId}/{datePath}/results/{cardId}',
                     dataType: 'json',
                     type: 'PUT',
                     contentType: 'application/json; charset=utf-8'
                 });
             },
 
-            get = function (callbacks) {
-                return amplify.request({
-                    resourceId: 'getQuizResult',
-                    success: callbacks.success,
-                    error: callbacks.error
-                });
-            },
-
-            create = function (data, config) {
+            create = function (data, cache, config) {
+                currentData = data;
+                cachedResults = cache;
                 return amplify.request({
                     resourceId: 'createQuizResult',
                     data: {
@@ -57,14 +68,6 @@
             },
 
             update = function(data, callbacks) {
-                // TODO: Try to only use pub/sub
-                var success = function(result) {
-                    callbacks.success(result);
-
-                    var card = modelMapper.card.mapResult(result);
-                    pubs.card.update(card);
-                };
-
                 return amplify.request({
                     resourceId: 'updateQuizResult',
                     data: data,
@@ -76,7 +79,6 @@
         init();
 
         return {
-            get: get,
             create: create,
             update: update
         };

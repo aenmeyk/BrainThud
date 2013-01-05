@@ -35,7 +35,7 @@
                 });
             },
 
-            create = function (data, callbacks) {
+            create = function (data, cache, callbacks) {
                 return amplify.request({
                     resourceId: 'createCard',
                     data: data,

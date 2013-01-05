@@ -61,7 +61,7 @@ namespace BrainThud.Web.Controllers
                                                  : HttpStatusCode.Conflict;
 
                     var httpResponseMessage = new HttpResponseMessage(responseStatusCode);
-                    var existingRouteValues = new {userId, year, month, day, quizResultId = existingQuizResult.EntityId};
+                    var existingRouteValues = new {userId, year, month, day, cardId};
                     httpResponseMessage.Headers.Location = this.GetQuizResultUri(existingRouteValues);
                     throw new HttpResponseException(httpResponseMessage);
                 }

@@ -44,23 +44,14 @@
                 
                 createData = function (options) {
                     return $.Deferred(function (def) {
-                        entitySetConfig.create(options.data, {
+                        entitySetConfig.create(options.data, cachedResults, {
                             params: options.params,
                             success: function (result) {
                                 entitySetConfig.mapper.mapResults([result], cachedResults);
                                 publishCacheChanged();
                                 def.resolve();
                             },
-                            error: function (xhr) {
-                                if (xhr && xhr.status == 412) {
-                                    var location = xhr.getResponseHeader("Location");
-                                    if (location) {
-                                        $.getJSON(location, null, function(data) {
-                                            console.log(data);
-                                        });
-                                    }
-                                    // do a GET (using the Location header), then a PUT
-                                }
+                            error: function () {
                                 if (def.reject) def.reject();
                             }
                         });
