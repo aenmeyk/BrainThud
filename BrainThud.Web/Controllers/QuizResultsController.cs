@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -26,6 +27,11 @@ namespace BrainThud.Web.Controllers
             this.authenticationHelper = authenticationHelper;
             this.lazyTableStorageContext = new Lazy<ITableStorageContext>(() =>
                 tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier));
+        }
+
+        public IEnumerable<QuizResult> Get()
+        {
+            return this.TableStorageContext.QuizResults.GetForUser();
         }
 
         public QuizResult Get(int userId, int year, int month, int day, int cardId)
