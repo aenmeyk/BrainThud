@@ -29,9 +29,13 @@ namespace BrainThud.Web.Controllers
                 tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier));
         }
 
-        public IEnumerable<QuizResult> Get()
+        public IEnumerable<QuizResult> Get(int userId, int year, int month, int day)
         {
-            return this.TableStorageContext.QuizResults.GetForUser();
+            var quizResult = this.TableStorageContext.QuizResults
+                .GetForQuiz(year, month, day);
+
+            if (quizResult != null) return quizResult;
+            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
         }
 
         public QuizResult Get(int userId, int year, int month, int day, int cardId)

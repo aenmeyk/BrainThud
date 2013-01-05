@@ -88,10 +88,11 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_Get_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Get_is_called_for_a_Quiz_that_does_exist.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Get_is_called_for_a_Quiz_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Delete_is_called_and_the_card_does_not_exist.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Get_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Get_is_called_for_a_QuizResult_that_does_not_exist.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Get_is_called_for_an_existing_QuizResult.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Get_is_called_for_a_Card_that_does_not_exist.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Get_is_called_for_a_Card_that_does_exist.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_Put_is_made_and_the_related_card_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_Post_is_made_and_the_related_card_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Put_is_called_with_an_invalid_model.cs" />

@@ -7,7 +7,7 @@ using System.Linq;
 namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerTest
 {
     [TestFixture]
-    public class When_Get_is_called_for_an_existing_QuizResult : Given_a_new_QuizResultsController
+    public class When_Get_is_called_for_a_Card_that_does_exist : Given_a_new_QuizResultsController
     {
         private QuizResult quizResult;
 
