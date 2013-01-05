@@ -18,27 +18,26 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
             this.TableStorageContext.Setup(x => x.QuizResults.GetForQuiz(TestValues.YEAR, TestValues.MONTH, TestValues.DAY))
                 .Returns(new[] {new QuizResult {CardId = TestValues.CARD_ID}}.AsQueryable());
 
-            this.quizResult = new QuizResult { EntityId = TestValues.QUIZ_RESULT_ID, UserId = TestValues.USER_ID, CardId = TestValues.CARD_ID };
-            this.QuizResultsController.Post(TestValues.USER_ID, TestValues.YEAR, TestValues.MONTH, TestValues.DAY, this.quizResult);
+            this.quizResult = new QuizResult();
+            this.QuizResultsController.Post(
+                TestValues.USER_ID, 
+                TestValues.YEAR, 
+                TestValues.MONTH, 
+                TestValues.DAY, 
+                TestValues.CARD_ID, 
+                this.quizResult);
         }
 
         [Test]
         public void Then_an_HttpResponseException_should_be_thrown_with_a_409_status_code()
         {
-            HttpResponseException exception = null;
+            this.TestException<HttpResponseException>(x => x.Response.StatusCode.Should().Be(HttpStatusCode.Conflict));
+        }
 
-            try
-            {
-                this.ThrowUnhandledExceptions();
-            }
-            catch (HttpResponseException e)
-            {
-                exception = e;
-            }
-            finally
-            {
-                exception.Response.StatusCode.Should().Be(HttpStatusCode.Conflict);
-            }
+        [Test]
+        public void Then_the_location_of_the_existing_QuizResult_is_returned_in_the_response()
+        {
+            this.TestException<HttpResponseException>(x => x.Response.Headers.Location.Should().Be(TestUrls.LOCALHOST));
         }
     }
 }

@@ -76,7 +76,9 @@
         init();
 
         return {
-            create: create
+            get: get,
+            create: create,
+            update: update
         };
     }
 );

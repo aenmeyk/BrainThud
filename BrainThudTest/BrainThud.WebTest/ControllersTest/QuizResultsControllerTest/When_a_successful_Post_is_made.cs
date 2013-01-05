@@ -12,9 +12,6 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
     [TestFixture]
     public class When_a_successful_Post_is_made : Given_a_new_QuizResultsController
     {
-        private const int YEAR = 2012;
-        private const int MONTH = 8;
-        private const int DAY = 19;
         private QuizResult quizResult;
         private HttpResponseMessage response;
         private readonly Card card = new Card { EntityId = TestValues.CARD_ID };
@@ -22,8 +19,14 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         public override void When()
         {
             this.TableStorageContext.Setup(x => x.Cards.GetById(TestValues.USER_ID, TestValues.CARD_ID)).Returns(this.card);
-            this.quizResult = new QuizResult { EntityId = TestValues.QUIZ_RESULT_ID, UserId = TestValues.USER_ID, CardId = TestValues.CARD_ID };
-            this.response = this.QuizResultsController.Post(TestValues.USER_ID, YEAR, MONTH, DAY, this.quizResult);
+            this.quizResult = new QuizResult();
+            this.response = this.QuizResultsController.Post(
+                TestValues.USER_ID, 
+                TestValues.YEAR, 
+                TestValues.MONTH, 
+                TestValues.DAY, 
+                TestValues.CARD_ID, 
+                this.quizResult);
         }
 
         [Test]
@@ -47,9 +50,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         [Test]
         public void Then_the_QuizDate_should_be_set_from_the_date_parameters()
         {
-            this.quizResult.QuizDate.Year.Should().Be(YEAR);
-            this.quizResult.QuizDate.Month.Should().Be(MONTH);
-            this.quizResult.QuizDate.Day.Should().Be(DAY);
+            this.quizResult.QuizDate.Year.Should().Be(TestValues.YEAR);
+            this.quizResult.QuizDate.Month.Should().Be(TestValues.MONTH);
+            this.quizResult.QuizDate.Day.Should().Be(TestValues.DAY);
         }
 
         [Test]
@@ -69,9 +72,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
             var userId = userIdPropertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
             userId.Should().Be(this.quizResult.UserId);
 
-            var quizResultIdPropertyInfo = type.GetProperty("quizResultId");
-            var quizResultId = quizResultIdPropertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
-            quizResultId.Should().Be(this.quizResult.EntityId);
+            var quizResultIdPropertyInfo = type.GetProperty("cardId");
+            var cardId = quizResultIdPropertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
+            cardId.Should().Be(this.quizResult.CardId);
 
             this.QuizResultsController.RouteName.Should().Be(RouteNames.API_QUIZ_RESULTS);
             this.response.Headers.Location.ToString().Should().Be(TestUrls.LOCALHOST);

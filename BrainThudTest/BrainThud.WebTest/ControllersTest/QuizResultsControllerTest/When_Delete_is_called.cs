@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Net.Http;
+using BrainThud.Web.Model;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -13,13 +15,21 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
 
         public override void When()
         {
-            this.response = this.QuizResultsController.Delete(TestValues.USER_ID, 2012, 7, 1, TestValues.CARD_ID);
+            this.TableStorageContext.Setup(x => x.QuizResults.GetForQuiz(TestValues.YEAR, TestValues.MONTH, TestValues.DAY))
+                .Returns(new[] { new QuizResult { EntityId = TestValues.QUIZ_RESULT_ID, CardId = TestValues.CARD_ID } }.AsQueryable());
+
+            this.response = this.QuizResultsController.Delete(
+                TestValues.USER_ID, 
+                TestValues.YEAR, 
+                TestValues.MONTH, 
+                TestValues.DAY, 
+                TestValues.CARD_ID);
         }
 
         [Test]
         public void Then_Delete_is_called_on_the_CardRepository()
         {
-            this.TableStorageContext.Verify(x => x.QuizResults.DeleteById(TestValues.USER_ID, TestValues.CARD_ID), Times.Once());
+            this.TableStorageContext.Verify(x => x.QuizResults.DeleteById(TestValues.USER_ID, TestValues.QUIZ_RESULT_ID), Times.Once());
         }
 
         [Test]

@@ -2,6 +2,7 @@
     function ($, _, utils, amplify) {
         var EntitySet = function (entitySetConfig) {
             var
+                that = this,
                 mostRecentGetParams = {},
                 cachedResults = [],
                 
@@ -52,8 +53,13 @@
                             },
                             error: function (xhr) {
                                 if (xhr && xhr.status == 412) {
-                                    // do a GET, then a PUT
-                                    console.log("error 412");
+                                    var location = xhr.getResponseHeader("Location");
+                                    if (location) {
+                                        $.getJSON(location, null, function(data) {
+                                            console.log(data);
+                                        });
+                                    }
+                                    // do a GET (using the Location header), then a PUT
                                 }
                                 if (def.reject) def.reject();
                             }

@@ -23,6 +23,7 @@
             }),
             
             quizResult = new dataContextHelper.EntitySet({
+                get: dataService.quizResult.get,
                 create: dataService.quizResult.create,
                 mapper: modelMapper.quizResult,
                 cardChangedPub: config.pubs.quizResultCacheChanged

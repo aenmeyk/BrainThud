@@ -24,7 +24,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
                 .Returns(new[] { new QuizResult { CardId = TestValues.CARD_ID } }.AsQueryable());
 
             this.quizResult = new QuizResult { EntityId = TestValues.QUIZ_RESULT_ID, UserId = TestValues.USER_ID, CardId = TestValues.CARD_ID };
-            this.response = this.QuizResultsController.Put(TestValues.USER_ID, TestValues.YEAR, TestValues.MONTH, TestValues.DAY, this.quizResult);
+            this.response = this.QuizResultsController.Put(
+                TestValues.USER_ID, 
+                TestValues.YEAR, 
+                TestValues.MONTH, 
+                TestValues.DAY, 
+                TestValues.CARD_ID, 
+                this.quizResult);
         }
 
         [Test]
@@ -76,9 +82,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
             var userId = userIdPropertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
             userId.Should().Be(this.quizResult.UserId);
 
-            var quizResultIdPropertyInfo = type.GetProperty("quizResultId");
-            var quizResultId = quizResultIdPropertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
-            quizResultId.Should().Be(this.quizResult.EntityId);
+            var quizResultIdPropertyInfo = type.GetProperty("cardId");
+            var cardId = quizResultIdPropertyInfo.GetValue(this.QuizResultsController.RouteValues, null);
+            cardId.Should().Be(this.quizResult.CardId);
 
             this.QuizResultsController.RouteName.Should().Be(RouteNames.API_QUIZ_RESULTS);
             this.response.Headers.Location.ToString().Should().Be(TestUrls.LOCALHOST);

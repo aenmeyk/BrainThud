@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -6,37 +7,50 @@ using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
 using BrainThud.Web.Model;
-using System.Linq;
 
 namespace BrainThud.Web.Controllers
 {
     public class QuizResultsController : ApiControllerBase
     {
-        private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IQuizResultHandler quizResultHandler;
         private readonly IAuthenticationHelper authenticationHelper;
+        private readonly Lazy<ITableStorageContext> lazyTableStorageContext;
+        private ITableStorageContext TableStorageContext { get { return this.lazyTableStorageContext.Value; } }
 
         public QuizResultsController(
             ITableStorageContextFactory tableStorageContextFactory,
             IQuizResultHandler quizResultHandler,
             IAuthenticationHelper authenticationHelper)
         {
-            this.tableStorageContextFactory = tableStorageContextFactory;
             this.quizResultHandler = quizResultHandler;
             this.authenticationHelper = authenticationHelper;
+            this.lazyTableStorageContext = new Lazy<ITableStorageContext>(() =>
+                tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier));
         }
 
-        public HttpResponseMessage Post(int userId, int year, int month, int day, QuizResult quizResult)
+        public QuizResult Get(int userId, int year, int month, int day, int cardId)
+        {
+            var quizResult = this.TableStorageContext.QuizResults
+                .GetForQuiz(year, month, day)
+                .Where(x => x.CardId == cardId)
+                .FirstOrDefault();
+
+            if(quizResult != null) return quizResult;
+            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+        }
+
+        public HttpResponseMessage Post(int userId, int year, int month, int day, int cardId, QuizResult quizResult)
         {
             if (this.ModelState.IsValid)
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
+                quizResult.UserId = userId;
+                quizResult.CardId = cardId;
 
                 // Ensure that a QuizResult doesn't already exist for this user for this card for this day
-                var existingQuizResult = tableStorageContext.QuizResults
+                var existingQuizResult = this.TableStorageContext.QuizResults
                     .GetForQuiz(year, month, day)
-                    .Where(x => x.CardId == quizResult.CardId)
+                    .Where(x => x.CardId == cardId)
                     .FirstOrDefault();
 
                 if (existingQuizResult != null)
@@ -46,19 +60,22 @@ namespace BrainThud.Web.Controllers
                                                  ? HttpStatusCode.PreconditionFailed
                                                  : HttpStatusCode.Conflict;
 
-                    throw new HttpResponseException(new HttpResponseMessage(responseStatusCode));
+                    var httpResponseMessage = new HttpResponseMessage(responseStatusCode);
+                    var existingRouteValues = new {userId, year, month, day, quizResultId = existingQuizResult.EntityId};
+                    httpResponseMessage.Headers.Location = this.GetQuizResultUri(existingRouteValues);
+                    throw new HttpResponseException(httpResponseMessage);
                 }
 
-                var card = GetCard(userId, quizResult, tableStorageContext);
+                var card = GetCard(userId, cardId, this.TableStorageContext);
                 this.quizResultHandler.UpdateCardLevel(quizResult, card);
-                tableStorageContext.QuizResults.Add(quizResult);
-                tableStorageContext.Cards.Update(card);
-                tableStorageContext.CommitBatch();
+                this.TableStorageContext.QuizResults.Add(quizResult);
+                this.TableStorageContext.Cards.Update(card);
+                this.TableStorageContext.CommitBatch();
 
                 // Create the response
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, quizResult);
-                var routeValues = new { userId, year, month, day, quizResultId = quizResult.EntityId };
-                response.Headers.Location = new Uri(this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues));
+                var routeValues = new { userId, year, month, day, cardId };
+                response.Headers.Location = this.GetQuizResultUri(routeValues);
 
                 return response;
             }
@@ -66,23 +83,22 @@ namespace BrainThud.Web.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        public HttpResponseMessage Put(int userId, int year, int month, int day, QuizResult quizResult)
+        public HttpResponseMessage Put(int userId, int year, int month, int day, int cardId, QuizResult quizResult)
         {
             if (this.ModelState.IsValid)
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-                var card = GetCard(userId, quizResult, tableStorageContext);
-                this.quizResultHandler.ReverseIfExists(tableStorageContext, quizResult, card);
+                var card = GetCard(userId, cardId, this.TableStorageContext);
+                this.quizResultHandler.ReverseIfExists(this.TableStorageContext, quizResult, card);
                 this.quizResultHandler.UpdateCardLevel(quizResult, card);
-                tableStorageContext.QuizResults.Add(quizResult);
-                tableStorageContext.Cards.Update(card);
-                tableStorageContext.CommitBatch();
+                this.TableStorageContext.QuizResults.Add(quizResult);
+                this.TableStorageContext.Cards.Update(card);
+                this.TableStorageContext.CommitBatch();
 
                 // Create the response
                 var response = this.Request.CreateResponse(HttpStatusCode.OK, quizResult);
-                var routeValues = new { userId, year, month, day, quizResultId = quizResult.EntityId };
-                response.Headers.Location = new Uri(this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues));
+                var routeValues = new { userId, year, month, day, cardId };
+                response.Headers.Location = this.GetQuizResultUri(routeValues);
 
                 return response;
             }
@@ -90,13 +106,22 @@ namespace BrainThud.Web.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        public HttpResponseMessage Delete(int userId, int year, int month, int day, int quizResultId)
+        public HttpResponseMessage Delete(int userId, int year, int month, int day, int cardId)
         {
             if (this.ModelState.IsValid)
             {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-                tableStorageContext.QuizResults.DeleteById(userId, quizResultId);
-                tableStorageContext.Commit();
+                var quizResult = this.TableStorageContext.QuizResults
+                    .GetForQuiz(year, month, day)
+                    .Where(x => x.CardId == cardId)
+                    .FirstOrDefault();
+
+                if(quizResult == null)
+                {
+                    throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+                }
+
+                this.TableStorageContext.QuizResults.DeleteById(userId, quizResult.EntityId);
+                this.TableStorageContext.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
@@ -104,16 +129,21 @@ namespace BrainThud.Web.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        private static Card GetCard(int userId, QuizResult quizResult, ITableStorageContext tableStorageContext)
+        private Uri GetQuizResultUri(object routeValues)
         {
-            var card = tableStorageContext.Cards.GetById(userId, quizResult.CardId);
+            return new Uri(this.GetLink(RouteNames.API_QUIZ_RESULTS, routeValues));
+        }
 
-            if(card == null)
+        private static Card GetCard(int userId, int cardId, ITableStorageContext tableStorageContext)
+        {
+            var card = tableStorageContext.Cards.GetById(userId, cardId);
+
+            if (card == null)
             {
-                // I'm not convinced that 422 is the right status code to return here since it's not a standard code
+                // I'm not convinced that 422 (Unprocessable Entity) is the correct status code to return here since it's not a standard code
                 throw new HttpResponseException(new HttpResponseMessage((HttpStatusCode)422));
             }
-            
+
             return card;
         }
     }

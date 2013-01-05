@@ -114,12 +114,12 @@ namespace BrainThudTest.Integration
             var cardUrl = postCardResponse.Headers.Location;
 
             // Create the QuizResult
-            var quizResult = new QuizResult { IsCorrect = true, CardId = postCard.EntityId };
+            var quizResult = new QuizResult { IsCorrect = true };
 
 
             // Test POST
             // -------------------------------------------------------------------------------------
-            var testUrl = string.Format(TestUrls.QUIZ_RESULTS, postCard.UserId, quizDate.Year, quizDate.Month, quizDate.Day);
+            var testUrl = string.Format(TestUrls.QUIZ_RESULTS, postCard.UserId, quizDate.Year, quizDate.Month, quizDate.Day, postCard.EntityId);
             var postResponse = client.PostAsJsonAsync(testUrl, quizResult).Result;
             var postQuizResult = postResponse.Content.ReadAsAsync<QuizResult>().Result;
 
@@ -129,13 +129,15 @@ namespace BrainThudTest.Integration
             // Assert that the posted QuizResult was returned in the response
             postQuizResult.QuizDate.Should().Be(quizDate);
 
-            // Assert that the relevant keys were set on the Card
+            // Assert that the relevant fields were set on the QuizResult
             postQuizResult.PartitionKey.Should().NotBeEmpty();
             postQuizResult.RowKey.Should().NotBeEmpty();
+            postQuizResult.QuizDate.Should().Be(quizDate);
+            postQuizResult.CardId.Should().Be(postCard.EntityId);
 
             // Assert that the location of the new QuizResult was returned in the Location header
             var quizResultUrl = postResponse.Headers.Location;
-            quizResultUrl.AbsoluteUri.Should().BeEquivalentTo(string.Format("{0}/{1}", testUrl, postQuizResult.EntityId));
+            quizResultUrl.AbsoluteUri.Should().BeEquivalentTo(testUrl);
 
 
             // Test DELETE

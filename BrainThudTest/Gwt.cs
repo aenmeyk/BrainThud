@@ -50,5 +50,23 @@ namespace BrainThudTest
 
             this.testExceptionList.HandleAll();
         }
+
+        protected void TestException<T>(Action<T> test) where T : Exception
+        {
+            T exception = null;
+
+            try
+            {
+                this.ThrowUnhandledExceptions();
+            }
+            catch (T e)
+            {
+                exception = e;
+            }
+            finally
+            {
+                test(exception);
+            }
+        }
     }
 }

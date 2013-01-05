@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using BrainThud.Web.Model;
 using NUnit.Framework;
@@ -13,26 +12,19 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         public override void When()
         {
             this.QuizResultsController.ModelState.AddModelError("Error Key", "Error Message");
-            this.QuizResultsController.Put(TestValues.USER_ID, 2012, 1, 1, new QuizResult());
+            this.QuizResultsController.Put(
+                TestValues.USER_ID, 
+                TestValues.YEAR, 
+                TestValues.MONTH, 
+                TestValues.DAY, 
+                TestValues.CARD_ID, 
+                new QuizResult());
         }
 
         [Test]
         public void Then_an_exception_should_be_thrown_and_400_should_be_returned_as_the_status_code()
         {
-            HttpResponseException exception = null;
-
-            try
-            {
-                this.ThrowUnhandledExceptions();
-            }
-            catch (HttpResponseException e)
-            {
-                exception = e;
-            }
-            finally
-            {
-                exception.Response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-            }
+            this.TestException<HttpResponseException>(x => x.Response.StatusCode.Should().Be(HttpStatusCode.BadRequest));
         }
     }
 }
