@@ -9,7 +9,7 @@
 
     public static class RouteNames
     {
-        public const string API_QUIZZES = "ApiQuizzes";
+        public const string API_QUIZ_CARDS = "ApiQuizCards";
         public const string API_QUIZ_RESULTS = "ApiQuizResults";
         public const string API_CARDS = "ApiCards";
         public const string API_DEFAULT = "ApiDefault";

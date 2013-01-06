@@ -99,7 +99,7 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_successful_Put_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_Post_is_made_without_IfMatchNone_and_the_QuizResult_already_exists.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_Post_is_made_with_IfMatchNone_and_the_QuizResult_already_exists.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_Get_is_called_by_a_user_that_does_not_exist.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Get_is_called_by_a_user_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueSeederTest\Given_a_new_IdentityQueueSeeder.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueSeederTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueSeederTest\When_Seed_is_called.cs" />
@@ -209,11 +209,8 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_a_successful_Post_is_made.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Post_is_called_with_an_invalid_model.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_Get_is_called_with_a_DateTime.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\QuizzesControllerTest\Given_a_new_QuizzesController.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Get_is_called_with_a_DateTime.cs" />
     <Compile Include="BrainThud.WebTest\Fakes\CardsControllerFake.cs" />
-    <Compile Include="BrainThud.WebTest\Fakes\QuizzesControllerFake.cs" />
     <Compile Include="BrainThud.WebTest\Fakes\QuizResultsControllerFake.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_UpdateCardLevel_is_called_with_an_incorrect_result.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\Given_a_new_QuizResultHandler.cs" />

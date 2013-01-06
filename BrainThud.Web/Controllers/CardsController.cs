@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
@@ -25,12 +26,6 @@ namespace BrainThud.Web.Controllers
             this.authenticationHelper = authenticationHelper;
         }
 
-        public IEnumerable<Card> Get()
-        {
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-            return tableStorageContext.Cards.GetForUser();
-        }
-
         public Card Get(int userId, int cardId)
         {
             var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
@@ -38,6 +33,27 @@ namespace BrainThud.Web.Controllers
             if (card == null) throw new HttpException((int)HttpStatusCode.NotFound, ErrorMessages.The_specified_card_could_not_be_found);
                
             return card;
+        }
+
+        public IEnumerable<Card> Get()
+        {
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
+            return tableStorageContext.Cards.GetForUser();
+        }
+
+        public IEnumerable<Card> GetForQuiz(int year, int month, int day)
+        {
+            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
+
+            var quizDate = new DateTime(year, month, day)
+                .AddDays(1).Date
+                .AddMilliseconds(-1);
+
+            var quizResults = tableStorageContext.QuizResults.GetForQuiz(year, month, day).ToList();
+            var userCards = tableStorageContext.Cards.GetForUser().Where(x => x.QuizDate <= quizDate).ToList();
+            var quizResultCards = tableStorageContext.Cards.GetForQuizResults(quizResults);
+
+            return userCards.Union(quizResultCards);
         }
 
         [ValidateInput(false)]

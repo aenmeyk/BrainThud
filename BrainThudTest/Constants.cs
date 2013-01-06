@@ -43,7 +43,7 @@ namespace BrainThudTest
     public static class TestUrls
     {
         public const string CARDS = "http://localhost/api/cards";
-        public const string QUIZ_RESULTS = "http://localhost/api/quizzes/{0}/{1}/{2}/{3}/results/{4}";
+        public const string QUIZ_RESULTS = "http://localhost/api/quiz-results/{0}/{1}/{2}/{3}/{4}";
         public const string LOCALHOST = "http://localhost/";
     }
 

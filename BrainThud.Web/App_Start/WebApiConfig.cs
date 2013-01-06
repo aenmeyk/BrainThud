@@ -7,14 +7,9 @@ namespace BrainThud.Web.App_Start
         public static void Configure(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
-                name: RouteNames.API_QUIZZES,
-                routeTemplate: "api/quizzes/{userid}/{year}/{month}/{day}",
-                defaults: new { controller = "Quizzes" });
-
-            config.Routes.MapHttpRoute(
-                name: RouteNames.API_QUIZ_RESULTS,
-                routeTemplate: "api/quizzes/{userid}/{year}/{month}/{day}/results/{cardId}",
-                defaults: new { controller = "QuizResults", cardId = RouteParameter.Optional });
+                name: RouteNames.API_QUIZ_CARDS,
+                routeTemplate: "api/cards/{userid}/{year}/{month}/{day}",
+                defaults: new { controller = "Cards" });
 
             config.Routes.MapHttpRoute(
                 name: RouteNames.API_CARDS,
@@ -25,6 +20,11 @@ namespace BrainThud.Web.App_Start
                     userid = RouteParameter.Optional,
                     cardid = RouteParameter.Optional
                 });
+
+            config.Routes.MapHttpRoute(
+                name: RouteNames.API_QUIZ_RESULTS,
+                routeTemplate: "api/quiz-results/{userid}/{year}/{month}/{day}/{cardId}",
+                defaults: new { controller = "QuizResults", cardId = RouteParameter.Optional });
 
             config.Routes.MapHttpRoute(
                 name: RouteNames.API_DEFAULT,

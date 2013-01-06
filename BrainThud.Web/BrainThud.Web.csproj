@@ -209,7 +209,6 @@
     <Compile Include="DependencyResolution\StructureMapMvcResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapWebApiResolver.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
-    <Compile Include="Dtos\Quiz.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
