@@ -4,7 +4,7 @@ using BrainThud.Web.Model;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
+namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
 {
     [TestFixture]
     public class When_Put_is_called_with_an_invalid_model : Given_a_new_CardsController

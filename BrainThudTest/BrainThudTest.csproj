@@ -185,21 +185,21 @@
     <Compile Include="BrainThud.WebTest\CalendarsTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\CalendarsTest\Given_a_new_DefaultQuizCalendar.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\ApiControllerBaseTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Delete_is_called_with_an_invalid_model.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Post_is_called_with_an_invalid_model.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Put_is_called_with_an_invalid_QuizDate.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Get_is_called_with_a_CardId_that_does_not_exist.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Get_is_called_with_a_UserId_and_CardId.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Delete_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Post_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Put_is_called.cs" />
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\Given_a_new_CardsController.cs">
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Delete_is_called_with_an_invalid_model.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Post_is_called_with_an_invalid_model.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Put_is_called_with_an_invalid_QuizDate.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Get_is_called_with_a_CardId_that_does_not_exist.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Get_is_called_with_a_UserId_and_CardId.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Delete_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Post_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Put_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\Given_a_new_CardsController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_Get_is_called.cs">
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Get_is_called.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\ControllersTest\CardControllerTest\When_nothing_changes.cs">
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BrainThud.WebTest\ControllersTest\ApiControllerBaseTest\Given_a_new_ApiControllerBase.cs" />

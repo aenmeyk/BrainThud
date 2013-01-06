@@ -2,7 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
+namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
 {
     [TestFixture]
     public class When_nothing_changes : Given_a_new_CardsController

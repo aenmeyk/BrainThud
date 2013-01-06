@@ -2,13 +2,12 @@
 using System.Net.Http;
 using System.Web.Helpers;
 using BrainThud.Web;
-using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
+namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
 {
     [TestFixture]
     public class When_Post_is_called : Given_a_new_CardsController

@@ -7,7 +7,7 @@ using BrainThudTest.Builders;
 using Moq;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
+namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
 {
     [TestFixture]
     public abstract class Given_a_new_CardsController : Gwt

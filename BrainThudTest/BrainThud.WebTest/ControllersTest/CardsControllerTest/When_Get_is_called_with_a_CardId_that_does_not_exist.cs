@@ -3,7 +3,7 @@ using BrainThud.Web.Model;
 using BrainThud.Web.Resources;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardControllerTest
+namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
 {
     [TestFixture]
     public class When_Get_is_called_with_a_CardId_that_does_not_exist : Given_a_new_CardsController
