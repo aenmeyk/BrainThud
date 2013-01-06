@@ -17,6 +17,11 @@ function ($, ko, dataContext, utils, global) {
                                     datePath: utils.getDatePath(),
                                     userId: global.userId
                                 }
+                            }), dataContext.quizResult.getData({
+                                params: {
+                                    datePath: utils.getDatePath(),
+                                    userId: global.userId
+                                }
                             }), dataContext.card.getData({ results: ko.observableArray([]) }))
                             .fail(function() { def.reject(); })
                             .done(function() { def.resolve(); });

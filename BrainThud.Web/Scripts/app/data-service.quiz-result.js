@@ -4,6 +4,13 @@
             currentData,
             cachedResults,
             init = function () {
+                amplify.request.define('getQuizResult', 'ajax', {
+                    url: '/api/quizzes/{userId}/{datePath}/results',
+                    dataType: 'json',
+                    type: 'GET',
+                    contentType: 'application/json; charset=utf-8'
+                });
+
                 amplify.request.define('createQuizResult', 'ajax', {
                     url: '/api/quizzes/{userId}/{datePath}/results/{cardId}',
                     dataType: 'json',
@@ -51,6 +58,18 @@
                 });
             },
 
+            get = function (config) {
+                return amplify.request({
+                    resourceId: 'getQuizResult',
+                    data: {
+                        datePath: config.params.datePath,
+                        userId: config.params.userId
+                    },
+                    success: config.success,
+                    error: config.error
+                });
+            },
+
             create = function (data, cache, config) {
                 currentData = data;
                 cachedResults = cache;
@@ -79,6 +98,7 @@
         init();
 
         return {
+            get: get,
             create: create,
             update: update
         };
