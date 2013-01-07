@@ -3,13 +3,6 @@
         var
             // How to handl quiz result changes??
             init = function() {
-                amplify.subscribe(config.pubs.quizCacheChanged, function (data) {
-                    var quiz = data[0];
-                    quizDate(moment(quiz.quizDate).format('L'));
-                    cardCount(quiz.cardIds.length);
-                    quizResults(quiz.quizResults);
-                    quizNavigator.activate();
-                });
                 amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
 
                     var cardIds = _.map(data, function(item) {
@@ -29,32 +22,6 @@
                     _.each(data, function (item) {
                         quizResults.push(ko.toJS(item));
                     });
-
-//                    _.each(data, function (item) {
-
-                    ////var itemFound = false;
-                    ////for (var i = 0; i < quizResults().length; i++) {
-                    ////    if (quizResults()[i].cardId == item.cardId()) {
-                    ////        quizResults()[i] = ko.toJS(item);
-                    ////        itemFound = true;
-                    ////        break;
-                    ////    }
-                    ////}
-
-                    ////if (!itemFound) {
-                    ////    quizResults.push(ko.toJS(item));
-                    ////}
-
-//                        var existingItem = _.find(quizResults(), function(result) {
-//                            return result.cardId === item.cardId();
-//                        });
-//
-//                        if (existingItem) {
-//                            existingItem = ko.toJS(item);
-//                        } else {
-//                            quizResults.push(item);
-//                        }
-//                    });
                 });
             },
 

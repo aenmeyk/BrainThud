@@ -1,24 +1,6 @@
 ﻿define('model.mapper', ['model', 'editor', 'utils'],
     function (model, editor, utils) {
-        var quiz = {
-            mapResults: function (dto, results) {
-                    var quizResults = [];
-
-                    for (var i = 0; i < dto.quizResults.length; i++) {
-                        
-                        // TODO: Why is quizResult being mapped from getCardFromDto?
-                        quizResults.push(getCardFromDto(dto.quizResults[i]));
-                    }
-
-                    results.push({
-                        cardIds: dto.cardIds,
-                        resultsUri: dto.resultsUri,
-                        userId: dto.userId,
-                        quizDate: dto.quizDate,
-                        quizResults: dto.quizResults
-                    });
-                }
-            },
+        var 
             card = {
                 mapResults: function(dto, results) {
                     for (var i = 0; i < dto.length; i++) {
@@ -58,6 +40,7 @@
                     }
                 }
             },
+            
             getCardFromDto = function(dto) {
                 var singleCard = new model.Card();
                 singleCard.partitionKey(dto.partitionKey)
@@ -76,7 +59,6 @@
 
         return {
             card: card,
-            quiz: quiz,
             quizResult: quizResult,
             config: config
         };

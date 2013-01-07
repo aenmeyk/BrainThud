@@ -15,13 +15,6 @@
                 cardChangedPub: config.pubs.cardCacheChanged
             }),
             
-            quiz = new dataContextHelper.EntitySet({
-                get: dataService.quiz.get,
-                mapper: modelMapper.quiz,
-                subs: dataSubs.quiz,
-                cardChangedPub: config.pubs.quizCacheChanged
-            }),
-            
             quizResult = new dataContextHelper.EntitySet({
                 get: dataService.quizResult.get,
                 create: dataService.quizResult.create,
@@ -31,7 +24,6 @@
 
         return {
             card: card,
-            quiz: quiz,
             config: userConfig,
             quizResult: quizResult
         };

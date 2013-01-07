@@ -42,7 +42,6 @@
                     }
                 })).then(function () {
                     $("#deleteDialog").modal('hide');
-                    dataContext.quiz.refreshCache();
                     amplify.publish(config.pubs.deleteCard);
                 });
             };

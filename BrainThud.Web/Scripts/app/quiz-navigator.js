@@ -7,11 +7,12 @@
 
             activate = function () {
                 quizzes = ko.observableArray([]);
-                $.when(dataContext.quiz.getData(dataOptions()))
-                    .then(function () {
-                        var quiz = quizzes()[0];
-                        cardIds = quiz.cardIds;
-                    });
+                // TODO:
+//                $.when(dataContext.quiz.getData(dataOptions()))
+//                    .then(function () {
+//                        var quiz = quizzes()[0];
+//                        cardIds = quiz.cardIds;
+//                    });
             },
 
             dataOptions = function () {

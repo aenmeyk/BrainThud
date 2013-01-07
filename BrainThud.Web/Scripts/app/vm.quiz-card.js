@@ -16,9 +16,6 @@
                 amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
                     cards(data);
                 });
-                amplify.subscribe(config.pubs.quizCacheChanged, function (data) {
-                    cardCount(data[0].cardIds.length);
-                });
                 amplify.subscribe(config.pubs.deleteCard, function () {
                     showNextCard();
                 });

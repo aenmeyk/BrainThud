@@ -3,7 +3,7 @@
         var
             hashes = {
                 cardEdit: '#/cards/:cardId/edit',
-                createCard: '#/create-card',
+                createCard: '#/cards/new',
                 cards: '#/cards',
                 quiz: '#/quizzes/:userId/:year/:month/:day',
                 quizCard: '#/quizzes/:userId/:year/:month/:day/:cardId'
@@ -16,6 +16,11 @@
                 quiz: '#quiz-view',
                 quizCard: '#quiz-card-view',
                 nav: '#nav-view'
+            },
+            
+            routes = {
+                quizResults: '/api/quiz-results/{userId}/{datePath}',
+                quizResult: '/api/quiz-results/{userId}/{datePath}/{cardId}'
             },
 
             pubs = {
@@ -30,7 +35,6 @@
                 showDeleteCard: 'show-delete-card',
                 createNewCard: 'create-new-card',
                 cardCacheChanged: 'card-cache-changed',
-                quizCacheChanged: 'quiz-cache-changed',
                 quizResultCacheChanged: 'quiz-result-cache-changed'
             };
 
@@ -39,7 +43,8 @@
         return {
             hashes: hashes,
             viewIds: viewIds,
-            pubs: pubs
+            pubs: pubs,
+            routes: routes
         };
     }
 );

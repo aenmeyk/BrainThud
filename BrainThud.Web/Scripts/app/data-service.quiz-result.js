@@ -1,18 +1,18 @@
-﻿define('data-service.quiz-result', ['amplify', 'model.mapper'],
-    function (amplify, modelMapper) {
+﻿define('data-service.quiz-result', ['amplify', 'model.mapper', 'config'],
+    function (amplify, modelMapper, config) {
         var
             currentData,
             cachedResults,
             init = function () {
                 amplify.request.define('getQuizResult', 'ajax', {
-                    url: '/api/quizzes/{userId}/{datePath}/results',
+                    url: config.routes.quizResults,
                     dataType: 'json',
                     type: 'GET',
                     contentType: 'application/json; charset=utf-8'
                 });
 
                 amplify.request.define('createQuizResult', 'ajax', {
-                    url: '/api/quizzes/{userId}/{datePath}/results/{cardId}',
+                    url: config.routes.quizResult,
                     dataType: 'json',
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8',
@@ -51,38 +51,38 @@
                 });
 
                 amplify.request.define('updateQuizResult', 'ajax', {
-                    url: '/api/quizzes/{userId}/{datePath}/results/{cardId}',
+                    url: config.quizResult,
                     dataType: 'json',
                     type: 'PUT',
                     contentType: 'application/json; charset=utf-8'
                 });
             },
 
-            get = function (config) {
+            get = function (options) {
                 return amplify.request({
                     resourceId: 'getQuizResult',
                     data: {
-                        datePath: config.params.datePath,
-                        userId: config.params.userId
+                        datePath: options.params.datePath,
+                        userId: options.params.userId
                     },
-                    success: config.success,
-                    error: config.error
+                    success: options.success,
+                    error: options.error
                 });
             },
 
-            create = function (data, cache, config) {
+            create = function (data, cache, options) {
                 currentData = data;
                 cachedResults = cache;
                 return amplify.request({
                     resourceId: 'createQuizResult',
                     data: {
-                        datePath: config.params.datePath,
-                        userId: config.params.userId,
+                        datePath: options.params.datePath,
+                        userId: options.params.userId,
                         cardId: data.cardId,
                         isCorrect: data.isCorrect
                     },
-                    success: config.success,
-                    error: config.error
+                    success: options.success,
+                    error: options.error
                 });
             },
 
