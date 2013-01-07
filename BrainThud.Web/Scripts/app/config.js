@@ -20,7 +20,8 @@
             
             routes = {
                 quizResults: '/api/quiz-results/{userId}/{datePath}',
-                quizResult: '/api/quiz-results/{userId}/{datePath}/{cardId}'
+                quizResult: '/api/quiz-results/{userId}/{datePath}/{cardId}',
+                quizCards: '/api/cards/{userId}/{datePath}'
             },
 
             pubs = {

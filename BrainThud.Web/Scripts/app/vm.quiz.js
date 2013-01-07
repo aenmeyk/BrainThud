@@ -1,7 +1,6 @@
-﻿define('vm.quiz', ['ko', 'underscore', 'moment', 'quiz-navigator', 'amplify', 'config'],
-    function (ko, _, moment, quizNavigator, amplify, config) {
+﻿define('vm.quiz', ['ko', 'underscore', 'moment', 'quiz-navigator', 'amplify', 'config', 'data-context', 'utils', 'global'],
+    function (ko, _, moment, quizNavigator, amplify, config, dataContext, utils, global) {
         var
-            // How to handl quiz result changes??
             init = function() {
                 amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
 
@@ -25,9 +24,13 @@
                 });
             },
 
-            quizDate = ko.observable(),
-            cardCount = ko.observable(0),
+            quizDate = moment().format('L'),
             quizResults = ko.observableArray([]),
+            cards = ko.observable([]),
+            
+            cardCount = ko.computed(function() {
+                return cards().length;
+            }),
             
             completedCardCount = ko.computed(function () {
                 return quizResults().length;
@@ -45,7 +48,15 @@
                 });
             }),
 
-            activate = function () { },
+            activate = function() {
+                dataContext.quizCards.getData({
+                    results: cards,
+                    params: {
+                        datePath: utils.getDatePath(),
+                        userId: global.userId
+                    }
+                });
+            },
 
             startQuiz = function () {
                 amplify.publish(config.pubs.showCurrentCard);
@@ -64,13 +75,13 @@
 
 
         return {
-            startQuiz: startQuiz,
-            activate: activate,
             quizDate: quizDate,
             cardCount: cardCount,
             completedCardCount: completedCardCount,
             correctCardCount: correctCardCount,
-            incorrectCardCount: incorrectCardCount
+            incorrectCardCount: incorrectCardCount,
+            activate: activate,
+            startQuiz: startQuiz
         };
     }
 );

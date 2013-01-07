@@ -1,9 +1,14 @@
-﻿define('data-service.card', ['amplify', 'pubs', 'model.mapper'],
-    function (amplify, pubs, modelMapper) {
+﻿define('data-service.card', ['amplify', 'pubs', 'model.mapper', 'config'],
+    function (amplify, pubs, modelMapper, config) {
         var
             init = function() {
                 amplify.request.define('getCards', 'ajax', {
                     url: '/api/cards',
+                    dataType: 'json',
+                    type: 'GET'
+                }),
+                amplify.request.define('getForQuiz', 'ajax', {
+                    url: config.routes.quizCards,
                     dataType: 'json',
                     type: 'GET'
                 }),
@@ -32,6 +37,18 @@
                     resourceId: 'getCards',
                     success: callbacks.success,
                     error: callbacks.error
+                });
+            },
+
+            getForQuiz = function (options) {
+                return amplify.request({
+                    resourceId: 'getForQuiz',
+                    data: {
+                        datePath: options.params.datePath,
+                        userId: options.params.userId
+                    },
+                    success: options.success,
+                    error: options.error
                 });
             },
 
@@ -77,6 +94,7 @@
 
         return {
             get: get,
+            getForQuiz: getForQuiz,
             create: create,
             update: update,
             deleteItem: deleteItem

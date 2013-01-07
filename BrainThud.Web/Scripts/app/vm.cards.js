@@ -17,7 +17,9 @@
                 card.questionSideVisible(!card.questionSideVisible());
             },
 
-            activate = function () { },
+            activate = function() {
+                // TODO: Implement
+            },
 
             showDeleteDialog = function (card) {
                 amplify.publish(config.pubs.showDeleteCard, card);
