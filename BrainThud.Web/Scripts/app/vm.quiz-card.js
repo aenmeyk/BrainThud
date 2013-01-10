@@ -1,15 +1,23 @@
-﻿define('vm.quiz-card', ['jquery', 'underscore', 'ko', 'data-context', 'utils', 'router', 'amplify', 'config', 'model', 'global'],
-    function ($, _, ko, dataContext, utils, router, amplify, config, model, global) {
+﻿define('vm.quiz-card', ['jquery', 'underscore', 'ko', 'data-context', 'utils', 'router', 'amplify', 'config', 'model', 'global', 'quiz-navigator'],
+    function ($, _, ko, dataContext, utils, router, amplify, config, model, global, quizNavigator) {
         var
             cards = ko.observableArray([]),
-            cardCount = ko.observable(0),
             cardId = ko.observable(0),
+            
             card = ko.computed(function () {
                 var found = _.find(cards(), function (item) {
                     return item.entityId() === parseInt(cardId());
                 });
 
                 return found ? found : new model.Card();
+            }),
+
+            displayIndex = ko.computed(function () {
+                return quizNavigator.cardIndex() + 1;
+            }),
+
+            cardCount = ko.computed(function () {
+                return quizNavigator.cardCount();
             }),
             
             init = function() {
@@ -75,11 +83,7 @@
 
             showDeleteDialog = function () {
                 amplify.publish(config.pubs.showDeleteCard, card());
-            },
-
-            displayIndex = ko.computed(function () {
-                return _.indexOf(cards(), card()) + 1;
-            });
+            };
 
         init();
 

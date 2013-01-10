@@ -63,6 +63,8 @@
                         userId: global.userId
                     }
                 });
+
+                quizNavigator.activate();
             },
 
             startQuiz = function () {

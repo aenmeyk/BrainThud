@@ -1,28 +1,20 @@
 ﻿define('quiz-navigator', ['ko', 'router', 'data-context', 'utils', 'amplify', 'config', 'global'],
     function (ko, router, dataContext, utils, amplify, config, global) {
         var
-            cardIds,
-            cardIndex = 0,
-            quizzes = ko.observableArray([]),
+            cardIndex = ko.observable(0),
+            cards = ko.observableArray([]),
+            cardCount = ko.computed(function () {
+                return cards().length;
+            }),
 
             activate = function () {
-                quizzes = ko.observableArray([]);
-                // TODO:
-//                $.when(dataContext.quiz.getData(dataOptions()))
-//                    .then(function () {
-//                        var quiz = quizzes()[0];
-//                        cardIds = quiz.cardIds;
-//                    });
-            },
-
-            dataOptions = function () {
-                return {
-                    results: quizzes,
+                dataContext.quizCards.getData({
+                    results: cards,
                     params: {
                         datePath: utils.getDatePath(),
                         userId: global.userId
                     }
-                };
+                });
             },
 
             getQuizPath = function () {
@@ -30,12 +22,12 @@
             },
 
             getCardUri = function () {
-                return getQuizPath() + '/' + cardIds[cardIndex];
+                return getQuizPath() + '/' + cards()[cardIndex()].entityId();
             },
 
             showLastCard = function () {
-                cardIndex = cardIds.length - 1;
-                if (cardIndex > 0) {
+                cardIndex(cards().length - 1);
+                if (cardIndex() > 0) {
                     router.navigateTo(getCardUri());
                 } else {
                     showQuizSummary();
@@ -43,7 +35,7 @@
             },
 
             showCurrentCard = function () {
-                if (cardIndex < cardIds.length - 1) {
+                if (cardIndex() < cards().length - 1) {
                     router.navigateTo(getCardUri());
                 } else {
                     showLastCard();
@@ -51,8 +43,8 @@
             },
 
             showNextCard = function () {
-                if (cardIndex < cardIds.length - 1) {
-                    cardIndex++;
+                if (cardIndex() < cards().length - 1) {
+                    cardIndex(cardIndex() + 1);
                     router.navigateTo(getCardUri());
                 } else {
                     showQuizSummary();
@@ -60,16 +52,16 @@
             },
 
             showPreviousCard = function () {
-                if (cardIndex > 0) {
-                    cardIndex--;
+                if (cardIndex() > 0) {
+                    cardIndex(cardIndex() - 1);
                     router.navigateTo(getCardUri());
                 } else {
                     showQuizSummary();
                 }
             },
-            
-            showQuizSummary = function() {
-                cardIndex = 0;
+
+            showQuizSummary = function () {
+                cardIndex(0);
                 router.navigateTo(getQuizPath());
             };
 
@@ -85,8 +77,12 @@
             showPreviousCard();
         });
 
+//        init();
+
         return {
-            activate: activate
+            activate: activate,
+            cardIndex: cardIndex,
+            cardCount: cardCount
         };
     }
 );
