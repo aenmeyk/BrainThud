@@ -198,9 +198,6 @@ h6 {
 .quiz-control-box {
   margin: 15px 0 0 0;
 }
-.brand {
-  padding: 0 0 0 15px !important;
-}
 .identity {
   float: right;
   display: block;
@@ -241,7 +238,8 @@ h6 {
   padding: 30px 10px;
 }
 .login-logo {
-  margin: 10px 0;
+  margin: 30px 0;
+  padding-left: 10px;
 }
 input[type=text] {
   -webkit-box-sizing: border-box;
@@ -572,4 +570,12 @@ input[type=text] {
 }
 .wmd-button-row {
   margin: 0;
+}
+.brand {
+  padding: 0 0 0 15px !important;
+  position: absolute;
+  margin-top: 3px;
+}
+.nav {
+  margin: 0 10px 0 45px !important;
 }
