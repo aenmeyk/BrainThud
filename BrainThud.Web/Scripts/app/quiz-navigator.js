@@ -77,8 +77,6 @@
             showPreviousCard();
         });
 
-//        init();
-
         return {
             activate: activate,
             cardIndex: cardIndex,

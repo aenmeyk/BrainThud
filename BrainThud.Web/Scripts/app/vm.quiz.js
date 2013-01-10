@@ -1,5 +1,5 @@
-﻿define('vm.quiz', ['ko', 'underscore', 'moment', 'quiz-navigator', 'amplify', 'config', 'data-context', 'utils', 'global'],
-    function (ko, _, moment, quizNavigator, amplify, config, dataContext, utils, global) {
+﻿define('vm.quiz', ['ko', 'underscore', 'moment', 'amplify', 'config', 'data-context', 'utils', 'global'],
+    function (ko, _, moment, amplify, config, dataContext, utils, global) {
         var
             init = function() {
 //                amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
@@ -63,8 +63,6 @@
                         userId: global.userId
                     }
                 });
-
-                quizNavigator.activate();
             },
 
             startQuiz = function () {
