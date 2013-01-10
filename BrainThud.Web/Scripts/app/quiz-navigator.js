@@ -1,10 +1,17 @@
-﻿define('quiz-navigator', ['ko', 'router', 'data-context', 'utils', 'amplify', 'config', 'global'],
-    function (ko, router, dataContext, utils, amplify, config, global) {
+﻿define('quiz-navigator', ['ko', 'router', 'data-context', 'utils', 'amplify', 'config', 'global', 'model'],
+    function (ko, router, dataContext, utils, amplify, config, global, model) {
         var
             cardIndex = ko.observable(0),
             cards = ko.observableArray([]),
+            
             cardCount = ko.computed(function () {
                 return cards().length;
+            }),
+            
+            currentCard = ko.computed(function () {
+                var card = cards()[cardIndex()];
+                if (card) return card;
+                return new model.Card();
             }),
 
             activate = function () {
@@ -22,7 +29,7 @@
             },
 
             getCardUri = function () {
-                return getQuizPath() + '/' + cards()[cardIndex()].entityId();
+                return getQuizPath() + '/' + currentCard().entityId();
             },
 
             showLastCard = function () {
@@ -79,8 +86,11 @@
 
         return {
             activate: activate,
+            currentCard: currentCard,
             cardIndex: cardIndex,
-            cardCount: cardCount
+            cardCount: cardCount,
+            showNextCard: showNextCard,
+            showPreviousCard: showPreviousCard
         };
     }
 );
