@@ -2,7 +2,7 @@
     function (router, utils, global) {
         var
             goToCreateCard = function () {
-                router.navigateTo('#/create-card');
+                router.navigateTo('#/cards/new');
             },
             goToCards = function () {
                 router.navigateTo('#/cards');
