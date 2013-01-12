@@ -21,6 +21,10 @@
 
                  amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
                      cards(data);
+                     
+                     if (cardIndex() >= cards().length) {
+                         showQuizSummary();
+                     }
                  });
              },
 
