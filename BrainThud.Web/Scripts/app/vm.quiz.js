@@ -1,19 +1,9 @@
 ﻿define('vm.quiz', ['ko', 'underscore', 'moment', 'amplify', 'config', 'data-context', 'utils', 'global'],
     function (ko, _, moment, amplify, config, dataContext, utils, global) {
         var
-            init = function () {
-                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
-                    cards(data);
-                });
-                
-                amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
-                    quizResults(data);
-                });
-            },
-
             quizDate = moment().format('L'),
             quizResults = ko.observableArray([]),
-            cards = ko.observable([]),
+            cards = ko.observableArray([]),
             
             cardCount = ko.computed(function() {
                 return cards().length;
@@ -35,6 +25,16 @@
                 }).length;
             }),
             
+            init = function () {
+                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
+                    cards(data);
+                });
+                
+                amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
+                    quizResults(data);
+                });
+            },
+
             activate = function() {
                 getQuizCards();
                 getQuizResults();

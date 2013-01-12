@@ -14,7 +14,17 @@
                 return new model.Card();
             }),
 
-            activate = function () {
+             init = function () {
+                 amplify.subscribe(config.pubs.cardCacheChanged, function () {
+                     dataContext.quizCards.refreshCache();
+                 });
+
+                 amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
+                     cards(data);
+                 });
+             },
+
+           activate = function () {
                 dataContext.quizCards.getData({
                     results: cards,
                     params: {
@@ -83,6 +93,8 @@
         amplify.subscribe(config.pubs.showPreviousCard, function () {
             showPreviousCard();
         });
+
+        init();
 
         return {
             activate: activate,

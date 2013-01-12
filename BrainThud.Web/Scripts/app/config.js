@@ -38,6 +38,7 @@
                 showDeleteCard: 'show-delete-card',
                 createNewCard: 'create-new-card',
                 cardCacheChanged: 'card-cache-changed',
+                quizCardCacheChanged: 'quiz-card-cache-changed',
                 quizResultCacheChanged: 'quiz-result-cache-changed'
             };
 
