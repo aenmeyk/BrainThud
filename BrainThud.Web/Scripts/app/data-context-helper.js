@@ -1,20 +1,21 @@
 ﻿define('data-context-helper', ['jquery', 'underscore', 'utils', 'amplify'],
     function ($, _, utils, amplify) {
+        
         var EntitySet = function (entitySetConfig) {
             var
+                cachedResults,
                 mostRecentGetParams = {},
-                cachedResults = [],
                 
                 getData = function (options) {
                     var def = new $.Deferred();
                     mostRecentGetParams = options.params;
 
                     if (options.invalidateCache) {
-                        cachedResults = [];
+                        cachedResults = undefined;
                     }
 
                     var results = options && options.results;
-                    if (!cachedResults || !utils.hasProperties(cachedResults)) {
+                    if (!cachedResults) {
                         entitySetConfig.get({
                             params: options.params,
                             success: function (dto) {

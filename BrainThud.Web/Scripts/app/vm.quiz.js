@@ -2,12 +2,12 @@
     function (ko, _, moment, amplify, config, dataContext, utils, global) {
         var
             init = function () {
-                amplify.subscribe(config.pubs.cardCacheChanged, function () {
-                    getQuizCards();
+                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
+                    cards(data);
                 });
                 
-                amplify.subscribe(config.pubs.quizResultCacheChanged, function () {
-                    getQuizResults();
+                amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
+                    quizResults(data);
                 });
             },
 
