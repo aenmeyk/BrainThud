@@ -4,7 +4,7 @@
         var EntitySet = function (entitySetConfig) {
             var
                 cachedResults,
-                mostRecentGetParams = {},
+                mostRecentGetParams,
                 
                 getData = function (options) {
                     var def = new $.Deferred();
@@ -108,11 +108,13 @@
                     }
                 },
                 
-                refreshCache = function() {
-                    getData({
-                        invalidateCache: true,
-                        params: mostRecentGetParams
-                    });
+                refreshCache = function () {
+                    if (mostRecentGetParams) {
+                        getData({
+                            invalidateCache: true,
+                            params: mostRecentGetParams
+                        });
+                    }
                 };
             
             return {
