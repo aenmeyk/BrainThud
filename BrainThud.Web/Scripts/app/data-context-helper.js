@@ -2,7 +2,6 @@
     function ($, _, utils, amplify) {
         var EntitySet = function (entitySetConfig) {
             var
-                that = this,
                 mostRecentGetParams = {},
                 cachedResults = [],
                 
