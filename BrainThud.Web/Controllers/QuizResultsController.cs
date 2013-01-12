@@ -77,7 +77,7 @@ namespace BrainThud.Web.Controllers
                 }
 
                 var card = GetCard(userId, cardId, this.TableStorageContext);
-                this.quizResultHandler.UpdateCardLevel(quizResult, card);
+                this.quizResultHandler.IncrementCardLevel(quizResult, card);
                 this.TableStorageContext.QuizResults.Add(quizResult);
                 this.TableStorageContext.Cards.Update(card);
                 this.TableStorageContext.CommitBatch();
@@ -97,11 +97,16 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                quizResult.QuizDate = new DateTime(year, month, day);
+                // Maybe do some sort of valid state check at the beginning of this
+                // method and throw exception if not valid.  Check: card exists, quiz result exists, quizResult param
+                // contains valid data (keys not null, etc).
+
                 var card = GetCard(userId, cardId, this.TableStorageContext);
-                this.quizResultHandler.ReverseIfExists(this.TableStorageContext, quizResult, card);
-                this.quizResultHandler.UpdateCardLevel(quizResult, card);
-                this.TableStorageContext.QuizResults.Add(quizResult);
+
+                // We are updateing the QuizResult for this card so first reverse the previous result then apply the new one
+                this.quizResultHandler.DecrementCardLevel(card);
+                this.quizResultHandler.IncrementCardLevel(quizResult, card);
+                this.TableStorageContext.QuizResults.Update(quizResult);
                 this.TableStorageContext.Cards.Update(card);
                 this.TableStorageContext.CommitBatch();
 

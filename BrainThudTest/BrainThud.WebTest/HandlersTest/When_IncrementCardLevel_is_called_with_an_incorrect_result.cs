@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.HandlersTest
 {
     [TestFixture]
-    public class When_UpdateCardLevel_is_called_with_an_incorrect_result : Given_a_new_QuizResultHandler
+    public class When_IncrementCardLevel_is_called_with_an_incorrect_result : Given_a_new_QuizResultHandler
     {
         private const int CARD_LEVEL = 3;
         private Card card;
@@ -16,7 +16,7 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
             var quizResult = new QuizResult { IsCorrect = false };
             this.card = new Card { Level = CARD_LEVEL };
             this.QuizCalendar.Setup(x => x[0]).Returns(1);
-            this.QuizResultHandler.UpdateCardLevel(quizResult, this.card);
+            this.QuizResultHandler.IncrementCardLevel(quizResult, this.card);
         }
 
         [Test]

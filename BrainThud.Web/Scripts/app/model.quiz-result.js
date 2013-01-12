@@ -4,6 +4,7 @@
             var self = this;
             self.partitionKey = ko.observable();
             self.rowKey = ko.observable();
+            self.timestamp = ko.observable();
             self.quizDate = ko.observable();
             self.cardId = ko.observable();
             self.isCorrect = ko.observable();

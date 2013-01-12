@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
@@ -13,6 +14,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
     [TestFixture]
     public class When_a_successful_Put_is_called : Given_a_new_QuizResultsController
     {
+        private readonly DateTime quizDate = new DateTime(TestValues.YEAR, TestValues.MONTH, TestValues.DAY);
         private QuizResult quizResult;
         private HttpResponseMessage response;
         private readonly Card card = new Card { EntityId = TestValues.CARD_ID };
@@ -34,9 +36,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         }
 
         [Test]
-        public void Then_ReverseIfExists_should_be_called_on_QuizResultHandler()
+        public void Then_DecrementCardLevel_should_be_called_on_QuizResultHandler()
         {
-            this.QuizResultHandler.Verify(x => x.ReverseIfExists(this.TableStorageContext.Object, this.quizResult, this.card), Times.Once());
+            this.QuizResultHandler.Verify(x => x.DecrementCardLevel(this.card), Times.Once());
         }
 
         [Test]
@@ -46,9 +48,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         }
 
         [Test]
-        public void Then_the_QuizResult_is_added_to_the_QuizResults_repository()
+        public void Then_the_QuizResult_is_updated_in_the_QuizResults_repository()
         {
-            this.TableStorageContext.Verify(x => x.QuizResults.Add(this.quizResult), Times.Once());
+            this.TableStorageContext.Verify(x => x.QuizResults.Update(this.quizResult), Times.Once());
         }
 
         [Test]
@@ -57,13 +59,6 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
             this.TableStorageContext.Verify(x => x.CommitBatch(), Times.Once());
         }
 
-        [Test]
-        public void Then_the_QuizDate_should_be_set_from_the_date_parameters()
-        {
-            this.quizResult.QuizDate.Year.Should().Be(TestValues.YEAR);
-            this.quizResult.QuizDate.Month.Should().Be(TestValues.MONTH);
-            this.quizResult.QuizDate.Day.Should().Be(TestValues.DAY);
-        }
 
         [Test]
         public void Then_the_QuizResult_should_be_returned_in_the_response()
@@ -91,9 +86,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         }
 
         [Test]
-        public void Then_UpdateCardLevel_is_called_on_the_QuizResultHandler()
+        public void Then_IncrementCardLevel_is_called_on_the_QuizResultHandler()
         {
-            this.QuizResultHandler.Verify(x => x.UpdateCardLevel(this.quizResult, It.Is<Card>(c => c.EntityId == this.quizResult.CardId)), Times.Once());
+            this.QuizResultHandler.Verify(x => x.IncrementCardLevel(this.quizResult, It.Is<Card>(c => c.EntityId == this.quizResult.CardId)), Times.Once());
         }
 
         [Test]
@@ -101,5 +96,26 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         {
             this.TableStorageContext.Verify(x => x.Cards.Update(It.Is<Card>(c => c.EntityId == this.quizResult.CardId)), Times.Once());
         }
+
+//        [Test]
+//        public void Then_the_QuizDate_should_be_set_from_the_date_parameters()
+//        {
+//            this.quizResult.QuizDate.Year.Should().Be(TestValues.YEAR);
+//            this.quizResult.QuizDate.Month.Should().Be(TestValues.MONTH);
+//            this.quizResult.QuizDate.Day.Should().Be(TestValues.DAY);
+//        }
+//
+//        [Test]
+//        public void Then_the_CardId_should_be_set_on_the_QuizResult()
+//        {
+//            this.quizResult.CardId.Should().Be(TestValues.CARD_ID);
+//        }
+//
+//        [Test]
+//        public void Then_the_UserId_should_be_set_on_the_QuizResult()
+//        {
+//            this.quizResult.UserId.Should().Be(TestValues.USER_ID);
+//        }
+
     }
 }

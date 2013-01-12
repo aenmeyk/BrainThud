@@ -3,7 +3,7 @@
         var
             init = function() {
                 amplify.request.define('getCards', 'ajax', {
-                    url: '/api/cards',
+                    url: config.routes.cards,
                     dataType: 'json',
                     type: 'GET'
                 }),
@@ -13,19 +13,19 @@
                     type: 'GET'
                 }),
                 amplify.request.define('createCard', 'ajax', {
-                    url: '/api/cards',
+                    url: config.routes.cards,
                     dataType: 'json',
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8'
                 }),
                 amplify.request.define('updateCard', 'ajax', {
-                    url: '/api/cards',
+                    url: config.routes.cards,
                     dataType: 'json',
                     type: 'PUT',
                     contentType: 'application/json; charset=utf-8'
                 });
                 amplify.request.define('deleteCard', 'ajax', {
-                    url: '/api/cards/{userId}/{entityId}',
+                    url: config.routes.card,
                     dataType: 'json',
                     type: 'DELETE',
                     contentType: 'application/json; charset=utf-8'
@@ -45,7 +45,7 @@
                     resourceId: 'getForQuiz',
                     data: {
                         datePath: options.params.datePath,
-                        userId: options.params.userId
+                        userIdPath: options.params.userId
                     },
                     success: options.success,
                     error: options.error
@@ -78,15 +78,15 @@
                 });
             },
 
-            deleteItem = function (config) {
+            deleteItem = function (options) {
                 return amplify.request({
                     resourceId: 'deleteCard',
                     data: {
-                         entityId: config.params.entityId,
-                         userId: config.params.userId
+                        entityIdPath: options.params.entityId,
+                        userIdPath: options.params.userId
                     },
-                    success: config.success,
-                    error: config.error
+                    success: options.success,
+                    error: options.error
                 });
             };
         

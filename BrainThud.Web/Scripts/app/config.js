@@ -19,9 +19,11 @@
             },
             
             routes = {
-                quizResults: '/api/quiz-results/{userId}/{datePath}',
-                quizResult: '/api/quiz-results/{userId}/{datePath}/{cardId}',
-                quizCards: '/api/cards/{userId}/{datePath}'
+                cards: '/api/cards',
+                card: '/api/cards/{userIdPath}/{entityIdPath}',
+                quizResults: '/api/quiz-results/{userIdPath}/{datePath}',
+                quizResult: '/api/quiz-results/{userIdPath}/{datePath}/{cardIdPath}',
+                quizCards: '/api/cards/{userIdPath}/{datePath}'
             },
 
             pubs = {

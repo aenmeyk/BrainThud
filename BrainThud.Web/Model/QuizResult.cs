@@ -8,7 +8,6 @@ namespace BrainThud.Web.Model
         public DateTime QuizDate { get; set; }
         public int CardId { get; set; }
         public bool IsCorrect { get; set; }
-        public bool IsTestData { get; set; }
         public int UserId { get; set; }
         public int EntityId { get; set; }
     }

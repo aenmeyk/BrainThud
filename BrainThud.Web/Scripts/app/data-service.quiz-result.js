@@ -1,5 +1,5 @@
-﻿define('data-service.quiz-result', ['amplify', 'model.mapper', 'config'],
-    function (amplify, modelMapper, config) {
+﻿define('data-service.quiz-result', ['underscore', 'amplify', 'model.mapper', 'config'],
+    function (_, amplify, modelMapper, config) {
         var
             currentData,
             cachedResults,
@@ -51,7 +51,7 @@
                 });
 
                 amplify.request.define('updateQuizResult', 'ajax', {
-                    url: config.quizResult,
+                    url: config.routes.quizResult,
                     dataType: 'json',
                     type: 'PUT',
                     contentType: 'application/json; charset=utf-8'
@@ -63,7 +63,7 @@
                     resourceId: 'getQuizResult',
                     data: {
                         datePath: options.params.datePath,
-                        userId: options.params.userId
+                        userIdPath: options.params.userId
                     },
                     success: options.success,
                     error: options.error
@@ -77,8 +77,8 @@
                     resourceId: 'createQuizResult',
                     data: {
                         datePath: options.params.datePath,
-                        userId: options.params.userId,
-                        cardId: data.cardId,
+                        userIdPath: options.params.userId,
+                        cardIdPath: data.cardId,
                         isCorrect: data.isCorrect
                     },
                     success: options.success,
@@ -86,12 +86,21 @@
                 });
             },
 
-            update = function(data, callbacks) {
+            // TODO: Standardize on options/data
+            update = function (data, options) {
+                var content = {
+                    datePath: options.params.datePath,
+                    userIdPath: options.params.userId,
+                    cardIdPath: data.cardId,
+                };
+
+                _.extend(content, data.quizResult);
+                
                 return amplify.request({
                     resourceId: 'updateQuizResult',
-                    data: data,
-                    success: success,
-                    error: callbacks.error
+                    data: content,
+                    success: options.success,
+                    error: options.error
                 });
             };
         
