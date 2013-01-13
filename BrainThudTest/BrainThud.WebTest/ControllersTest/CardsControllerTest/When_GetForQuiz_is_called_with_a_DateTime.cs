@@ -29,6 +29,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
 
             // Use EntityId of >= 100 to indicate which cards should be included in result
             var userCards = Builder<Card>.CreateListOfSize(10)
+                .All().With(x => x.CreatedTimestamp = generator.Next(DateTime.MinValue, DateTime.MaxValue))
                 .TheFirst(2).With(x => x.QuizDate = dayBefore).And(x => x.EntityId = generator.Next(100, 1000))
                 .TheNext(2).With(x => x.QuizDate = this.quizDate).And(x => x.EntityId = generator.Next(100, 1000))
                 .TheNext(2).With(x => x.QuizDate = millisecondAfter).And(x => x.EntityId = generator.Next(100, 1000))
@@ -62,6 +63,12 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
         public void Then_the_cards_referenced_from_the_QuizResults_should_be_included_in_the_QuizCards()
         {
             this.cards.Select(x => x.EntityId).Should().Contain(this.quizResultCards.Select(x => x.EntityId));
+        }
+
+        [Test]
+        public void Then_the_cards_should_be_returned_in_CreatedTimestamp_order()
+        {
+            this.cards.Select(x => x.CreatedTimestamp).Should().BeInAscendingOrder();
         }
     }
 }

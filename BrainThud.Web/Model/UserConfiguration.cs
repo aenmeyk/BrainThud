@@ -1,8 +1,8 @@
-using Microsoft.WindowsAzure.StorageClient;
+using BrainThud.Web.Data.AzureTableStorage;
 
 namespace BrainThud.Web.Model
 {
-    public class UserConfiguration : TableServiceEntity 
+    public class UserConfiguration : AzureTableEntity 
     {
         public int UserId { get; set; }
     }

@@ -1,10 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.WindowsAzure.StorageClient;
+using BrainThud.Web.Data.AzureTableStorage;
 
 namespace BrainThud.Web.Model
 {
-    public class Card : TableServiceEntity
+    public class Card : AzureTableEntity
     {
         public string Question { get; set; }
 

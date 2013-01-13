@@ -6,7 +6,7 @@ using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.Repositories
 {
-    public abstract class CardEntityRepository<T> : TableStorageRepository<T>, ICardEntityRepository<T> where T : TableServiceEntity
+    public abstract class CardEntityRepository<T> : TableStorageRepository<T>, ICardEntityRepository<T> where T : AzureTableEntity
     {
         protected CardEntityRepository(
             ITableStorageContext tableStorageContext, 

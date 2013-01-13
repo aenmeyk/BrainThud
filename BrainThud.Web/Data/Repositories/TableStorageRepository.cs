@@ -2,11 +2,10 @@ using System;
 using System.Linq;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
-using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.Repositories
 {
-    public class TableStorageRepository<T> : ITableStorageRepository<T> where T : TableServiceEntity
+    public class TableStorageRepository<T> : ITableStorageRepository<T> where T : AzureTableEntity
     {
         private readonly Lazy<int> userId;
 
@@ -28,6 +27,7 @@ namespace BrainThud.Web.Data.Repositories
 
         public virtual void Add(T entity)
         {
+            entity.CreatedTimestamp = DateTime.UtcNow;
             this.TableStorageContext.AddObject(entity);
         }
 

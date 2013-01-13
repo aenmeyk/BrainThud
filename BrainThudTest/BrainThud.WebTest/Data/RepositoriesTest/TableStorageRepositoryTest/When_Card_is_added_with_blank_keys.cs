@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data.KeyGenerators;
+﻿using System;
+using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
 using Moq;
 using NUnit.Framework;
@@ -26,16 +27,10 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.TableStorageRepo
             this.TableStorageContext.Verify(x => x.AddObject(this.card));
         }
 
-//        [Test]
-//        public void Then_the_PartitionKey_is_set_from_the_TableStorageKeyGenerator()
-//        {
-//            this.card.PartitionKey.Should().Be(TestValues.PARTITION_KEY);
-//        }
-//
-//        [Test]
-//        public void Then_the_RowKey_is_set_from_the_TableStorageKeyGenerator()
-//        {
-//            this.card.RowKey.Should().Be(TestValues.ROW_KEY);
-//        }
+        [Test]
+        public void Then_CreatedTimestamp_is_set_on_the_card()
+        {
+            this.card.CreatedTimestamp.Should().BeWithin(5.Seconds()).Before(DateTime.UtcNow);
+        }
     }
 }

@@ -1,9 +1,9 @@
 using System;
-using Microsoft.WindowsAzure.StorageClient;
+using BrainThud.Web.Data.AzureTableStorage;
 
 namespace BrainThud.Web.Model
 {
-    public class QuizResult : TableServiceEntity
+    public class QuizResult : AzureTableEntity
     {
         public DateTime QuizDate { get; set; }
         public int CardId { get; set; }

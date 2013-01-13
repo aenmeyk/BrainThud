@@ -38,7 +38,7 @@ namespace BrainThud.Web.Controllers
         public IEnumerable<Card> Get()
         {
             var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-            return tableStorageContext.Cards.GetForUser();
+            return tableStorageContext.Cards.GetForUser().ToList().OrderBy(x => x.CreatedTimestamp);
         }
 
         public IEnumerable<Card> GetForQuiz(int year, int month, int day)
@@ -53,7 +53,7 @@ namespace BrainThud.Web.Controllers
             var userCards = tableStorageContext.Cards.GetForUser().Where(x => x.QuizDate <= quizDate).ToList();
             var quizResultCards = tableStorageContext.Cards.GetForQuizResults(quizResults);
 
-            return userCards.Union(quizResultCards);
+            return userCards.Union(quizResultCards).ToList().OrderBy(x => x.CreatedTimestamp);
         }
 
         [ValidateInput(false)]

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BrainThud.Web.Model;
+using FizzWare.NBuilder;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -14,7 +16,14 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
 
         public override void When()
         {
-            this.expectedCards = new HashSet<Card> { new Card(), new Card() }.AsQueryable();
+            var generator = new UniqueRandomGenerator();
+
+            this.expectedCards = Builder<Card>
+                .CreateListOfSize(10)
+                .All().With(x => x.CreatedTimestamp = generator.Next(DateTime.MinValue, DateTime.MaxValue))
+                .Build()
+                .AsQueryable();
+
             this.TableStorageContext.Setup(x => x.Cards.GetForUser()).Returns(this.expectedCards);
             this.returnedCards = this.CardsController.Get();
         }
@@ -22,7 +31,13 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
         [Test]
         public void Then_all_Cards_are_returned_from_the_cards_repository()
         {
-            this.returnedCards.Should().Equal(this.expectedCards);
+            this.returnedCards.Should().BeEquivalentTo(this.expectedCards);
+        }
+
+        [Test]
+        public void Then_the_cards_should_be_returned_in_CreatedTimestamp_order()
+        {
+            this.returnedCards.Select(x => x.CreatedTimestamp).Should().BeInAscendingOrder();
         }
     }
 }
