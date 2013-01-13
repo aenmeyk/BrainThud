@@ -7,7 +7,6 @@ function ($, binder, routeConfig, dataPrimer, cardManager, quizNavigator) {
             .done(function() {
                 routeConfig.register();
                 cardManager.register();
-                quizNavigator.activate();
             });
         };
 

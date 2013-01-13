@@ -1,6 +1,7 @@
-﻿define('quiz-navigator', ['ko', 'router', 'data-context', 'utils', 'amplify', 'config', 'global', 'model'],
-    function (ko, router, dataContext, utils, amplify, config, global, model) {
+﻿define('quiz-navigator', ['jquery', 'ko', 'underscore', 'router', 'data-context', 'utils', 'amplify', 'config', 'global', 'model'],
+    function ($, ko, _, router, dataContext, utils, amplify, config, global, model) {
         var
+            isActivated = false,
             cardIndex = ko.observable(0),
             cards = ko.observableArray([]),
             
@@ -28,14 +29,26 @@
                  });
              },
 
-           activate = function () {
-                dataContext.quizCards.getData({
-                    results: cards,
-                    params: {
-                        datePath: utils.getDatePath(),
-                        userId: global.userId
-                    }
-                });
+           activate = function (routeData) {
+               isActivated = true;
+               $.when(dataContext.quizCards.getData({
+                   results: cards,
+                   params: {
+                       datePath: utils.getDatePath(),
+                       userId: global.userId
+                   }
+               })).done(function() {
+                   if (routeData) {
+                       var cardItems = cards();
+                       var routeCard = _.find(cardItems, function(item) {
+                           return item.entityId() === parseInt(routeData.cardId);
+                       });
+
+                       cardIndex(_.indexOf(cardItems, routeCard));
+                       showCurrentCard();
+                   }
+               });
+                   ;
             },
 
             getQuizPath = function () {
@@ -101,6 +114,7 @@
         init();
 
         return {
+            isActivated: isActivated,
             activate: activate,
             currentCard: currentCard,
             cardIndex: cardIndex,

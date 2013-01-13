@@ -11,7 +11,10 @@
                 return quizNavigator.cardCount();
             }),
             
-            activate = function() {
+            activate = function (routeData) {
+                if (!quizNavigator.isActivated) {
+                    quizNavigator.activate(routeData);
+                }
                 dataContext.quizResult.getData({
                     results: quizResults,
                     params: {
