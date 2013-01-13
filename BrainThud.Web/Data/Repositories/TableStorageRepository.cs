@@ -21,8 +21,8 @@ namespace BrainThud.Web.Data.Repositories
 
         protected void SetKeyValues(T entity, ITableStorageKeyGenerator keyGenerator)
         {
-            if(string.IsNullOrEmpty(entity.PartitionKey)) entity.PartitionKey = keyGenerator.GeneratePartitionKey(this.UserId);
-            if(string.IsNullOrEmpty(entity.RowKey)) entity.RowKey = keyGenerator.GenerateRowKey();
+            if (string.IsNullOrEmpty(entity.PartitionKey)) entity.PartitionKey = keyGenerator.GeneratePartitionKey(this.UserId);
+            if (string.IsNullOrEmpty(entity.RowKey)) entity.RowKey = keyGenerator.GenerateRowKey();
         }
 
         public virtual void Add(T entity)
@@ -33,6 +33,11 @@ namespace BrainThud.Web.Data.Repositories
 
         public void Update(T entity)
         {
+            if (entity.CreatedTimestamp <= DateTime.MinValue)
+            {
+                entity.CreatedTimestamp = entity.Timestamp;
+            }
+
             this.TableStorageContext.UpdateObject(entity);
         }
 

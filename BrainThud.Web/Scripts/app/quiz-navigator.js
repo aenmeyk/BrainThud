@@ -69,7 +69,7 @@
             },
 
             showCurrentCard = function () {
-                if (cardIndex() < cards().length - 1) {
+                if (cardIndex() < cards().length) {
                     router.navigateTo(getCardUri());
                 } else {
                     showLastCard();

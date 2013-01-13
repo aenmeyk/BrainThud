@@ -28,6 +28,7 @@
             init = function () {
                 amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
                     cards(data);
+                    dataContext.quizResult.refreshCache();
                 });
                 
                 amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
