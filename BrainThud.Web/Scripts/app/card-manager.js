@@ -16,9 +16,10 @@
                     router.navigateTo('#/cards/' + cardId + '/edit');
                 });
 
-                amplify.subscribe(config.pubs.showDeleteCard, function (data) {
+                amplify.subscribe(config.pubs.showDeleteCard, function (data, callback) {
                     deleteCardOptions = {
                         currentCard: data,
+                        callback: callback
                     };
                     $deleteDialog.modal('show');
                 });
@@ -43,6 +44,9 @@
                 })).then(function () {
                     $("#deleteDialog").modal('hide');
                     amplify.publish(config.pubs.deleteCard);
+                    if (deleteCardOptions.callback) {
+                        deleteCardOptions.callback();
+                    }
                 });
             };
 

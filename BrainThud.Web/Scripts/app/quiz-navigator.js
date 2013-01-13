@@ -119,6 +119,7 @@
             currentCard: currentCard,
             cardIndex: cardIndex,
             cardCount: cardCount,
+            showCurrentCard: showCurrentCard,
             showNextCard: showNextCard,
             showPreviousCard: showPreviousCard
         };

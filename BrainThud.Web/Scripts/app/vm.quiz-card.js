@@ -94,7 +94,7 @@
             },
 
             showDeleteDialog = function () {
-                amplify.publish(config.pubs.showDeleteCard, card());
+                amplify.publish(config.pubs.showDeleteCard, card(), quizNavigator.showNextCard);
             };
 
         return {
