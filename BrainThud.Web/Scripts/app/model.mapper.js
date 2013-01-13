@@ -39,6 +39,8 @@
                 var singleCard = new model.Card();
                 singleCard.partitionKey(dto.partitionKey)
                     .rowKey(dto.rowKey)
+                    .timestamp(dto.timestamp)
+                    .createdTimestamp(dto.createdTimestamp)
                     .deckName(dto.deckName)
                     .tags(dto.tags)
                     .question(dto.question)
@@ -56,6 +58,7 @@
                 singleQuizResult.partitionKey(dto.partitionKey)
                     .rowKey(dto.rowKey)
                     .timestamp(dto.timestamp)
+                    .createdTimestamp(dto.createdTimestamp)
                     .quizDate(dto.quizDate)
                     .cardId(dto.cardId)
                     .isCorrect(dto.isCorrect)

@@ -4,6 +4,8 @@
             var self = this;
             self.partitionKey = ko.observable();
             self.rowKey = ko.observable();
+            self.timestamp = ko.observable();
+            self.createdTimestamp = ko.observable();
             self.deckName = ko.observable();
             self.tags = ko.observable();
             self.question = ko.observable();
