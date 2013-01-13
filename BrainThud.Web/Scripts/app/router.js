@@ -4,8 +4,6 @@
             defaultRoute = '',
 
             navigateTo = function (url) {
-                global.previousUrl = global.currentUrl;
-                global.currentUrl = url;
                 sammy.setLocation(url);
             },
 
@@ -46,6 +44,8 @@
                 }
 
                 sammy.get(options.route, function (context) {
+                    global.previousUrl = global.currentUrl;
+                    global.currentUrl = sammy.last_location[1];
                     options.callback(context.params);
                     $('.view').hide();
                     presenter.transitionTo($(options.view));
