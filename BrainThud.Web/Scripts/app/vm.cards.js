@@ -1,7 +1,7 @@
 ﻿define('vm.cards', ['ko', 'underscore', 'amplify', 'config'],
     function (ko, _, amplify, config) {
         var
-            selectedDeck = ko.observable('Vocabulary'),
+            selectedDeck = ko.observable(''),
             cards = ko.observableArray([]),
             
             cardDecks = ko.computed(function() {
@@ -25,6 +25,16 @@
             init = function () {
                 amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
                     cards(data);
+                    
+                    if (data && data.length > 0) {
+                        var sortedCards = _.sortBy(data, function (item) {
+                            return item.deckName();
+                        });
+
+                        selectedDeck(sortedCards[0].deckName());
+                    } else {
+                        selectedDeck('');
+                    }
                 });
             },
 
