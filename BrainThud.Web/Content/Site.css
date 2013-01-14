@@ -195,6 +195,9 @@ h6 {
   background: #d3e8f1;
   cursor: pointer;
 }
+.selectedCardDeck {
+  background: #bad9e6;
+}
 .primary-button {
   padding: 25px;
   margin-top: 10px;

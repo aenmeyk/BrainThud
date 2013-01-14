@@ -41,6 +41,10 @@
             filterCards = function(deckName) {
                 selectedDeck(deckName);
             },
+            
+            isDeckSelected = function (deckName) {
+                return selectedDeck() === deckName;
+            },
 
             showDeleteDialog = function (card) {
                 amplify.publish(config.pubs.showDeleteCard, card);
@@ -55,6 +59,7 @@
             flipCard: flipCard,
             activate: activate,
             filterCards: filterCards,
+            isDeckSelected: isDeckSelected,
             showDeleteDialog: showDeleteDialog
         };
     }
