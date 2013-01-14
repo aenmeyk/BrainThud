@@ -1,7 +1,26 @@
-﻿define('vm.cards', ['ko', 'amplify', 'config'],
-    function (ko, amplify, config) {
+﻿define('vm.cards', ['ko', 'underscore', 'amplify', 'config'],
+    function (ko, _, amplify, config) {
         var
+            selectedDeck = ko.observable('Vocabulary'),
             cards = ko.observableArray([]),
+            
+            cardDecks = ko.computed(function() {
+                var deckNames = _.map(cards(), function(item) {
+                        return item.deckName();
+                    }),
+                    sortedNames = _.sortBy(deckNames, function(item) {
+                        return item;
+                    });
+
+                return _.uniq(sortedNames, true);
+            }),
+            
+            filteredCards = ko.computed(function () {
+                var deck = selectedDeck();
+                return _.filter(cards(), function (item) {
+                    return item.deckName() === deck;
+                });
+            }),
 
             init = function () {
                 amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
@@ -17,8 +36,10 @@
                 card.questionSideVisible(!card.questionSideVisible());
             },
 
-            activate = function() {
-                // TODO: Implement
+            activate = function() { },
+            
+            filterCards = function(deckName) {
+                selectedDeck(deckName);
             },
 
             showDeleteDialog = function (card) {
@@ -28,10 +49,12 @@
         init();
 
         return {
-            cards: cards,
+            cardDecks: cardDecks,
+            filteredCards: filteredCards,
             editCard: editCard,
             flipCard: flipCard,
             activate: activate,
+            filterCards: filterCards,
             showDeleteDialog: showDeleteDialog
         };
     }

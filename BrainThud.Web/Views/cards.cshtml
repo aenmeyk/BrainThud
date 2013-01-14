@@ -1,18 +1,23 @@
 ﻿<section id="cards-view" class="view">
 
-    <ul data-bind="foreach:cards">
-        <li>
-            @*                                <span data-bind="text: $data.cardId"></span>*@
-
-            <div class="row-fluid">
-                <div class="span12">
-                    <div id="wmd-preview-quiz" class="list-card question span12" data-bind="html: currentSideText, css: { question: questionSideVisible(), answer: !questionSideVisible() }"></div>
+    <div class="row-fluid">
+        <div class="span3">
+            <ul data-bind="foreach:cardDecks">
+                <li>
+                    <div class="list-card-deck" data-bind="html: $data, click: function() { $root.filterCards($data) }"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="span9">
+            <ul data-bind="foreach:filteredCards">
+                <li>
+                    <div class="list-card question" data-bind="html: currentSideText, css: { question: questionSideVisible(), answer: !questionSideVisible() }"></div>
                     @Html.Partial("_card-mini-menu", new[] { "<a data-bind='click: function() { $root.flipCard($data) }'>flip</a>" })
-                </div>
-            </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-        </li>
-    </ul>
 
     @*    <span data-bind="text: ko.toJSON($data)"></span>*@
 </section>

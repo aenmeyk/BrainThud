@@ -183,6 +183,18 @@ h6 {
   -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 }
+.list-card-deck {
+  background: #e3f0f5;
+  padding: 10px;
+  margin: 10px 0 0 0;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.list-card-deck:hover {
+  background: #d3e8f1;
+  cursor: pointer;
+}
 .primary-button {
   padding: 25px;
   margin-top: 10px;
