@@ -23,11 +23,11 @@
                 },
                 
                 {
-                    view: config.viewIds.cards,
+                    view: config.viewIds.library,
                     routes: [{
-                        title: "Today's Cards",
-                        route: config.hashes.cards,
-                        callback: vm.cards.activate
+                        title: "Library",
+                        route: config.hashes.library,
+                        callback: vm.library.activate
                         }]
                 },
                 

@@ -1,4 +1,4 @@
-﻿define('vm.cards', ['ko', 'underscore', 'amplify', 'config'],
+﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config'],
     function (ko, _, amplify, config) {
         var
             selectedDeck = ko.observable(''),

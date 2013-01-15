@@ -1,9 +1,9 @@
-﻿define('vm', ['vm.card', 'vm.create-card', 'vm.cards', 'vm.quiz', 'vm.quiz-card', 'vm.nav'],
-    function (card, createCard, cards, quiz, quizCard, nav) {
+﻿define('vm', ['vm.card', 'vm.create-card', 'vm.library', 'vm.quiz', 'vm.quiz-card', 'vm.nav'],
+    function (card, createCard, library, quiz, quizCard, nav) {
         return {
             card: card,
             createCard: createCard,
-            cards: cards,
+            library: library,
             quiz: quiz,
             quizCard: quizCard,
             nav: nav

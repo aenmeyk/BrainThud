@@ -9,14 +9,14 @@ describe("A binder module, when bind() is called", function () {
         vm = {
             card: 'card ViewModel',
             createCard: 'createCard ViewModel',
-            cards: 'cards ViewModel',
+            library: 'library ViewModel',
             quiz: 'quiz ViewModel'
         },
         config = {
             viewIds: {
                 card: 'card view ID',
                 createCard: 'createCard view ID',
-                cards: 'cards view ID',
+                library: 'library view ID',
                 quiz: 'quiz view ID'
             }
         };
@@ -37,8 +37,8 @@ describe("A binder module, when bind() is called", function () {
         expect(ko.applyBindings).toHaveBeenCalledWith(vm.createCard, config.viewIds.createCard);
     });
 
-    it('should bind the cards view model to the cards view', function () {
-        expect(ko.applyBindings).toHaveBeenCalledWith(vm.cards, config.viewIds.cards);
+    it('should bind the library view model to the library view', function () {
+        expect(ko.applyBindings).toHaveBeenCalledWith(vm.library, config.viewIds.library);
     });
 
     it('should bind the quiz view model to the quiz view', function () {

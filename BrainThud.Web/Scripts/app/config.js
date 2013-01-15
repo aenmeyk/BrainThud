@@ -4,7 +4,7 @@
             hashes = {
                 cardEdit: '#/cards/:cardId/edit',
                 createCard: '#/cards/new',
-                cards: '#/cards',
+                library: '#/library',
                 quiz: '#/quizzes/:userId/:year/:month/:day',
                 quizCard: '#/quizzes/:userId/:year/:month/:day/:cardId'
             },
@@ -12,7 +12,7 @@
             viewIds = {
                 card: '#card-view',
                 createCard: '#create-card-view',
-                cards: '#cards-view',
+                library: '#library-view',
                 quiz: '#quiz-view',
                 quizCard: '#quiz-card-view',
                 nav: '#nav-view'

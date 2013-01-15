@@ -4,8 +4,8 @@
             goToCreateCard = function () {
                 router.navigateTo('#/cards/new');
             },
-            goToCards = function () {
-                router.navigateTo('#/cards');
+            goToLibrary = function () {
+                router.navigateTo('#/library');
             },
             goToQuiz = function () {
                 router.navigateTo('#/quizzes/' + global.userId + '/' + utils.getDatePath());
@@ -16,7 +16,7 @@
 
         return {
             goToCreateCard: goToCreateCard,
-            goToCards: goToCards,
+            goToLibrary: goToLibrary,
             goToQuiz: goToQuiz,
             goToSignOut: goToSignOut
         };

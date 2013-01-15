@@ -312,7 +312,7 @@
     <Content Include="Scripts\app\vm.js" />
     <Content Include="Scripts\app\data-service.card.js" />
     <Content Include="Scripts\app\data-context.js" />
-    <Content Include="Scripts\app\vm.cards.js" />
+    <Content Include="Scripts\app\vm.library.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\GPL-LICENSE.txt" />
@@ -383,7 +383,7 @@
     <Content Include="Images\twitter.png" />
     <Content Include="Images\windowsLive.png" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\cards.cshtml" />
+    <Content Include="Views\library.cshtml" />
     <Content Include="Views\create-card.cshtml" />
     <Content Include="Views\quiz.cshtml" />
   </ItemGroup>
