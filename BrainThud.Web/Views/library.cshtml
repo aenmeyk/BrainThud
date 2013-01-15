@@ -4,7 +4,7 @@
         <div class="span3">
             <ul data-bind="foreach:cardDecks">
                 <li>
-                    <div class="list-card-deck" data-bind="html: $data, css: { selectedCardDeck: $root.isDeckSelected($data) }, click: function() { $root.filterCards($data) }"></div>
+                    <div class="list-card-deck" data-bind="html: $data.deckName(), css: { selectedCardDeck: $root.isDeckSelected($data) }, click: function() { $root.filterCards($data.deckNameSlug()) }"></div>
                 </li>
             </ul>
         </div>

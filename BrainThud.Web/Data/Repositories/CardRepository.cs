@@ -5,6 +5,7 @@ using BrainThud.Web.Calendars;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Model;
+using BrainThud.Web.Extensions;
 
 namespace BrainThud.Web.Data.Repositories
 {
@@ -28,8 +29,16 @@ namespace BrainThud.Web.Data.Repositories
             entity.QuizDate = DateTime.UtcNow.AddDays(this.quizCalendar[0]).Date;
             entity.UserId = this.UserId;
             entity.EntityId = this.KeyGenerator.GeneratedEntityId;
+            entity.DeckNameSlug = entity.DeckName.GenerateSlug();
 
             base.Add(entity);
+        }
+
+        public override void Update(Card entity)
+        {
+            entity.DeckNameSlug = entity.DeckName.GenerateSlug();
+
+            base.Update(entity);
         }
 
         public IEnumerable<Card> GetForQuizResults(IEnumerable<QuizResult> quizResults)

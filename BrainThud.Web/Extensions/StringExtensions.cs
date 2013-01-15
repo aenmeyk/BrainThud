@@ -6,6 +6,8 @@ namespace BrainThud.Web.Extensions
     {
         public static string GenerateSlug(this string phrase)
         {
+            if(string.IsNullOrEmpty(phrase)) return phrase;
+
             var str = phrase.RemoveAccent().ToLower();
 
             // invalid chars           

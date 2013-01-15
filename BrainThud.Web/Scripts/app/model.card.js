@@ -7,6 +7,7 @@
             self.timestamp = ko.observable();
             self.createdTimestamp = ko.observable();
             self.deckName = ko.observable();
+            self.deckNameSlug = ko.observable();
             self.tags = ko.observable();
             self.question = ko.observable();
             self.answer = ko.observable();

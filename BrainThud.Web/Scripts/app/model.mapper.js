@@ -42,6 +42,7 @@
                     .timestamp(dto.timestamp)
                     .createdTimestamp(dto.createdTimestamp)
                     .deckName(dto.deckName)
+                    .deckNameSlug(dto.deckNameSlug)
                     .tags(dto.tags)
                     .question(dto.question)
                     .answer(dto.answer)

@@ -1,24 +1,23 @@
-﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config', 'router', 'sammy'],
-    function (ko, _, amplify, config, router, Sammy) {
+﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config', 'router'],
+    function (ko, _, amplify, config, router) {
         var
             selectedDeck = ko.observable(''),
             cards = ko.observableArray([]),
             
             cardDecks = ko.computed(function() {
-                var deckNames = _.map(cards(), function(item) {
+                var sortedCards = _.sortBy(cards(), function (item) {
                         return item.deckName();
-                    }),
-                    sortedNames = _.sortBy(deckNames, function(item) {
-                        return item;
                     });
 
-                return _.uniq(sortedNames, true);
+                return _.uniq(sortedCards, true, function(item) {
+                    return item.deckName();
+                });
             }),
             
             filteredCards = ko.computed(function () {
                 var deck = selectedDeck();
                 return _.filter(cards(), function (item) {
-                    return item.deckName() === deck;
+                    return item.deckNameSlug() === deck;
                 });
             }),
 
@@ -31,7 +30,7 @@
                             return item.deckName();
                         });
 
-                        selectedDeck(sortedCards[0].deckName());
+                        selectedDeck(sortedCards[0].deckNameSlug());
                     } else {
                         selectedDeck('');
                     }
@@ -47,17 +46,17 @@
             },
 
             activate = function (routeData) {
-                if (routeData.deckName) {
-                    selectedDeck(routeData.deckName);
+                if (routeData.deckNameSlug) {
+                    selectedDeck(routeData.deckNameSlug);
                 }
             },
             
-            filterCards = function(deckName) {
-                router.navigateTo('#/library/' + deckName);
+            filterCards = function (deckNameSlug) {
+                router.navigateTo('#/library/' + deckNameSlug);
             },
             
-            isDeckSelected = function (deckName) {
-                return selectedDeck() === deckName;
+            isDeckSelected = function (deckNameSlug) {
+                return selectedDeck() === deckNameSlug;
             },
 
             showDeleteDialog = function (card) {

@@ -17,6 +17,8 @@ namespace BrainThud.Web.Model
 
         public string DeckName { get; set; }
 
+        public string DeckNameSlug { get; set; }
+
         public string Tags { get; set; }
 
         public int EntityId { get; set; }

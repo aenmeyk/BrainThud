@@ -31,7 +31,7 @@ namespace BrainThud.Web.Data.Repositories
             this.TableStorageContext.AddObject(entity);
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             if (entity.CreatedTimestamp <= DateTime.MinValue)
             {
