@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.Web", "BrainThud.
 EndProject
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "BrainThud.App", "BrainThud.App\BrainThud.App.jsproj", "{1909D130-AB71-4BE1-BCCD-C7FD1CE85007}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.Admin", "BrainThud.Admin\BrainThud.Admin.csproj", "{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,16 @@ Global
 		{1909D130-AB71-4BE1-BCCD-C7FD1CE85007}.Release|x86.ActiveCfg = Release|x86
 		{1909D130-AB71-4BE1-BCCD-C7FD1CE85007}.Release|x86.Build.0 = Release|x86
 		{1909D130-AB71-4BE1-BCCD-C7FD1CE85007}.Release|x86.Deploy.0 = Release|x86
+		{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}.Release|ARM.ActiveCfg = Release|Any CPU
+		{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}.Release|x64.ActiveCfg = Release|Any CPU
+		{EC70CB14-A2F8-4E08-B7B4-0FF698F7AA01}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
