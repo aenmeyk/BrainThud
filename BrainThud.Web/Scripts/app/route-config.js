@@ -32,6 +32,15 @@
                 },
                 
                 {
+                    view: config.viewIds.library,
+                    routes: [{
+                        title: "Card Deck",
+                        route: config.hashes.deck,
+                        callback: vm.library.activate
+                        }]
+                },
+                
+                {
                     view: config.viewIds.quiz,
                     routes: [{
                         title: "Quiz",

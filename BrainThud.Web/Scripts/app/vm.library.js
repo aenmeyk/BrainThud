@@ -1,5 +1,5 @@
-﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config'],
-    function (ko, _, amplify, config) {
+﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config', 'router', 'sammy'],
+    function (ko, _, amplify, config, router, Sammy) {
         var
             selectedDeck = ko.observable(''),
             cards = ko.observableArray([]),
@@ -46,10 +46,14 @@
                 card.questionSideVisible(!card.questionSideVisible());
             },
 
-            activate = function() { },
+            activate = function (routeData) {
+                if (routeData.deckName) {
+                    selectedDeck(routeData.deckName);
+                }
+            },
             
             filterCards = function(deckName) {
-                selectedDeck(deckName);
+                router.navigateTo('#/library/' + deckName);
             },
             
             isDeckSelected = function (deckName) {

@@ -5,6 +5,7 @@
                 cardEdit: '#/cards/:cardId/edit',
                 createCard: '#/cards/new',
                 library: '#/library',
+                deck: '#/library/:deckName',
                 quiz: '#/quizzes/:userId/:year/:month/:day',
                 quizCard: '#/quizzes/:userId/:year/:month/:day/:cardId'
             },
