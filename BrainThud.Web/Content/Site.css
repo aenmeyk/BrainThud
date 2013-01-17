@@ -157,6 +157,9 @@ h6 {
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- custom -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+.main-nav {
+  margin: 0 10px 0 45px !important;
+}
 .quiz-card {
   border: 1px;
   border-style: solid;
@@ -183,20 +186,12 @@ h6 {
   -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 }
-.list-card-deck {
-  background: #e3f0f5;
-  padding: 10px;
-  margin: 10px 0 0 0;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-}
 .list-card-deck:hover {
-  background: #d3e8f1;
   cursor: pointer;
 }
-.selectedCardDeck {
-  background: #bad9e6;
+.card-deck-container {
+  padding: 8px 0;
+  margin-top: 10px;
 }
 .primary-button {
   padding: 25px;
@@ -590,7 +585,4 @@ input[type=text] {
   padding: 0 0 0 15px !important;
   position: absolute;
   margin-top: 3px;
-}
-.nav {
-  margin: 0 10px 0 45px !important;
 }

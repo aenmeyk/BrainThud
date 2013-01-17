@@ -2,11 +2,13 @@
 
     <div class="row-fluid">
         <div class="span3">
-            <ul data-bind="foreach:cardDecks">
-                <li>
-                    <div class="list-card-deck" data-bind="html: $data.deckName(), css: { selectedCardDeck: $root.isDeckSelected($data) }, click: function() { $root.filterCards($data.deckNameSlug()) }"></div>
-                </li>
-            </ul>
+            <div class="well card-deck-container">
+                <ul class="nav nav-list" data-bind="foreach:cardDecks">
+                    <li data-bind="css: { active: $root.isDeckSelected($data.deckNameSlug()) }">
+                        <a class="list-card-deck" data-bind="html: $data.deckName(), click: function() { $root.filterCards($data.deckNameSlug()) }"></a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="span9">
             <ul data-bind="foreach:filteredCards">

@@ -199,6 +199,10 @@ h1, h2, h3, h4, h5, h6 {
 /* --- custom -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+.main-nav {
+	margin: 0 10px 0 45px !important;
+}
+
 .card (@padding: 50px, @min-height: 200px) {
     border: 1px;
     border-style: solid;
@@ -218,19 +222,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .list-card-deck {
-	background: #e3f0f5;
-    padding: 10px;
-    margin: 10px 0 0 0;
-    .corner-radius;
-
 	&:hover{
-		background: #d3e8f1;
 		cursor: pointer;
 	}
 }
 
-.selectedCardDeck{
-	background: #bad9e6;
+.card-deck-container {
+	padding: 8px 0;
+    margin-top: 10px;
 }
 
 .primary-button {
@@ -657,8 +656,4 @@ input[type=text] {
     padding: 0 0 0 15px !important;
 	position: absolute;
 	margin-top: 3px;
-}
-
-.nav {
-	margin: 0 10px 0 45px !important;
 }
