@@ -186,12 +186,37 @@ h6 {
   -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 }
+.list-card-deck {
+  display: block;
+  border: 1px solid #E5E5E5;
+  margin: 0 0 -1px;
+  padding: 6px 15px !important;
+}
 .list-card-deck:hover {
   cursor: pointer;
 }
 .card-deck-container {
-  padding: 8px 0;
-  margin-top: 10px;
+  background-color: white;
+  padding: 0;
+  margin: 10px 0;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.card-deck-container li:first-child > a {
+  border-radius: 6px 6px 0 0;
+}
+.card-deck-container li:last-child > a {
+  border-radius: 0 0 6px 6px;
+  margin: 0 -15px;
+}
+.card-deck-name {
+  color: #5a5a5a;
+  font-weight: bold;
+}
+.card-deck-name:hover {
+  color: #5a5a5a;
+  cursor: pointer;
 }
 .primary-button {
   padding: 25px;
@@ -440,6 +465,14 @@ input[type=text] {
     -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+@media (min-width: 768px) {
+  .card-deck-name {
+    display: none;
+  }
+  .card-deck-container {
+    height: auto !important;
   }
 }
 @media (min-width: 768px) and (max-width: 979px) {

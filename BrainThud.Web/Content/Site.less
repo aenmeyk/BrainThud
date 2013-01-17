@@ -222,14 +222,38 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .list-card-deck {
+	display: block;
+	border: 1px solid #E5E5E5;
+	margin: 0 0 -1px;
+	padding: 6px 15px !important;
 	&:hover{
 		cursor: pointer;
 	}
 }
 
 .card-deck-container {
-	padding: 8px 0;
-    margin-top: 10px;
+	background-color: white;
+	padding: 0;
+    margin: 10px 0;
+    .corner-radius;
+
+	li:first-child > a{
+		border-radius: 6px 6px 0 0;
+	}
+
+	li:last-child > a{
+		border-radius: 0 0 6px 6px;
+		margin: 0 -15px;
+	}
+}
+
+.card-deck-name {
+	color: @primary-text-color;
+	font-weight: bold;
+	&:hover{
+		color: @primary-text-color;
+		cursor: pointer;
+	}
 }
 
 .primary-button {
@@ -496,10 +520,22 @@ input[type=text] {
 	}
 }
 
+@media (min-width: 768px) {
+
+    .card-deck-name {
+		display: none;
+    }
+
+	.card-deck-container {
+		height: auto !important;
+	}
+}
+
 @media (min-width: 768px) and (max-width: 979px) {
 }
 
 @media (max-width: 767px) {
+
     .primary-button {
         margin-top: 0;
         padding: 15px;

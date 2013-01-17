@@ -1,38 +1,51 @@
 ﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config', 'router'],
     function (ko, _, amplify, config, router) {
         var
-            selectedDeck = ko.observable(''),
+            selectedDeckSlug = ko.observable(''),
             cards = ko.observableArray([]),
-            
-            cardDecks = ko.computed(function() {
-                var sortedCards = _.sortBy(cards(), function (item) {
-                        return item.deckName();
+
+            selectedDeckName = ko.computed(function () {
+                var slug = selectedDeckSlug(),
+                    card = _.find(cards(), function (item) {
+                        return item.deckNameSlug() === slug;
                     });
 
-                return _.uniq(sortedCards, true, function(item) {
+                if (card) {
+                    return card.deckName();
+                } else {
+                    return "Card Decks";
+                }
+            }),
+
+            cardDecks = ko.computed(function () {
+                var sortedCards = _.sortBy(cards(), function (item) {
+                    return item.deckName();
+                });
+
+                return _.uniq(sortedCards, true, function (item) {
                     return item.deckName();
                 });
             }),
-            
+
             filteredCards = ko.computed(function () {
-                var deck = selectedDeck();
+                var slug = selectedDeckSlug();
                 return _.filter(cards(), function (item) {
-                    return item.deckNameSlug() === deck;
+                    return item.deckNameSlug() === slug;
                 });
             }),
 
             init = function () {
                 amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
                     cards(data);
-                    
+
                     if (data && data.length > 0) {
                         var sortedCards = _.sortBy(data, function (item) {
                             return item.deckName();
                         });
 
-                        selectedDeck(sortedCards[0].deckNameSlug());
+                        selectedDeckSlug(sortedCards[0].deckNameSlug());
                     } else {
-                        selectedDeck('');
+                        selectedDeckSlug('');
                     }
                 });
             },
@@ -47,16 +60,25 @@
 
             activate = function (routeData) {
                 if (routeData.deckNameSlug) {
-                    selectedDeck(routeData.deckNameSlug);
+                    selectedDeckSlug(routeData.deckNameSlug);
+                }
+            },
+
+            filterCards = function (deckNameSlug) {
+                if ($('.card-deck-name').is(":visible")) {
+                    $('.card-deck-container').collapse('toggle');
+                    setTimeout(function() { navigateToSlug(deckNameSlug); }, 400);
+                } else {
+                    navigateToSlug(deckNameSlug);
                 }
             },
             
-            filterCards = function (deckNameSlug) {
-                router.navigateTo('#/library/' + deckNameSlug);
+            navigateToSlug = function(slug) {
+                router.navigateTo('#/library/' + slug);
             },
-            
+
             isDeckSelected = function (deckNameSlug) {
-                return selectedDeck() === deckNameSlug;
+                return selectedDeckSlug() === deckNameSlug;
             },
 
             showDeleteDialog = function (card) {
@@ -72,6 +94,7 @@
             flipCard: flipCard,
             activate: activate,
             filterCards: filterCards,
+            selectedDeckName: selectedDeckName,
             isDeckSelected: isDeckSelected,
             showDeleteDialog: showDeleteDialog
         };

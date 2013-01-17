@@ -2,7 +2,8 @@
 
     <div class="row-fluid">
         <div class="span3">
-            <div class="well card-deck-container">
+            <a class="card-deck-name" data-bind="html: selectedDeckName()" data-toggle="collapse" data-target=".card-deck-container"></a>
+            <div class="card-deck-container collapse">
                 <ul class="nav nav-list" data-bind="foreach:cardDecks">
                     <li data-bind="css: { active: $root.isDeckSelected($data.deckNameSlug()) }">
                         <a class="list-card-deck" data-bind="html: $data.deckName(), click: function() { $root.filterCards($data.deckNameSlug()) }"></a>
@@ -10,14 +11,14 @@
                 </ul>
             </div>
         </div>
-        <div class="span9">
-            <ul data-bind="foreach:filteredCards">
-                <li>
-                    <div class="list-card question" data-bind="html: currentSideText, css: { question: questionSideVisible(), answer: !questionSideVisible() }"></div>
-                    @Html.Partial("_card-mini-menu", new[] { "<a data-bind='click: function() { $root.flipCard($data) }'>flip</a>" })
-                </li>
-            </ul>
-        </div>
+    <div class="span9">
+        <ul data-bind="foreach:filteredCards">
+            <li>
+                <div class="list-card question" data-bind="html: currentSideText, css: { question: questionSideVisible(), answer: !questionSideVisible() }"></div>
+                @Html.Partial("_card-mini-menu", new[] { "<a data-bind='click: function() { $root.flipCard($data) }'>flip</a>" })
+            </li>
+        </ul>
+    </div>
     </div>
 
 
