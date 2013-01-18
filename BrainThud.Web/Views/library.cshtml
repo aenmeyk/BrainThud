@@ -2,7 +2,14 @@
 
     <div class="row-fluid">
         <div class="span3">
-            <a class="card-deck-name" data-bind="html: selectedDeckName()" data-toggle="collapse" data-target=".card-deck-container"></a>
+            <a class="card-deck-name">
+                <table>
+                    <tr>
+                        <td class="stretch"><span data-bind="html: selectedDeckName()"></span></td>
+                        <td><i id="card-deck-chevron" class="icon-chevron-down icon-white"></i></td>
+                    </tr>
+                </table>
+            </a>
             <div class="card-deck-container collapse">
                 <ul class="nav nav-list" data-bind="foreach:cardDecks">
                     <li data-bind="css: { active: $root.isDeckSelected($data.deckNameSlug()) }">
