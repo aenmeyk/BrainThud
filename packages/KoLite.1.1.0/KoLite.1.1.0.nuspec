@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>KoLite</id>
+    <version>1.1.0</version>
+    <title>KoLite - Lightweight Toolkit for KnockoutJS</title>
+    <authors>John Papa, Hans Fjällemark</authors>
+    <owners>John Papa, Hans Fjällemark</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/CodeSeven/KoLite</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>KoLite contains a set of helpers to aid in creating MVVM applications using JavaScript and Knockout. Including:
+
+asyncCommand
+activity
+dirtyFlag
+
+For a quick start, see http://jpapa.me/kolitegh</description>
+    <summary>KoLite contains a set of helpers to aid in creating MVVM applications using JavaScript and Knockout.</summary>
+    <releaseNotes>Command binding handler supports binding to native Knockout bindings as well as the Knockout event binding for DOM events.
+
+Event object get passed on to callback on event bindings, to determine pressed key or keypress event.
+
+Added ko.command as an alternative to ko.asyncCommand for synchronous tasks.
+
+The asyncCommand's canExecute now defaults to !isExecuting if no canExecute delegate is specified. This eliminates the need of a canExecute delegate in you view-model when you only want disable the bound element when the command is executing.
+
+Explicitly do not execute commands when canExecute returns falsy. This is needed for DOM elements like the &lt;a&gt; which cannot be disabled.
+
+Renamed file knockout.asyncCommand.js to knockout.command.js as it now contains both async and sync commands.</releaseNotes>
+    <copyright>Copyright © 2012 Hans Fjällemark &amp; John Papa.</copyright>
+    <language>en-US</language>
+    <tags>knockout, jquery, kolite</tags>
+    <dependencies>
+      <dependency id="knockoutjs" version="2.0.0" />
+      <dependency id="jQuery" version="1.4.4" />
+    </dependencies>
+  </metadata>
+</package>

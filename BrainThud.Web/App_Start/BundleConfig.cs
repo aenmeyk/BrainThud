@@ -27,7 +27,7 @@ namespace BrainThud.Web.App_Start
                 "~/Scripts/jquery.unobtrusive*",
                 "~/Scripts/jquery.validate*",
                 "~/Scripts/plugins.js",
-                "~/Scripts/knockout-*",
+                "~/Scripts/knockout*",
                 "~/Scripts/amplify.*",
                 "~/Scripts/bootstrap.*",
                 "~/Scripts/Markdown.*",
