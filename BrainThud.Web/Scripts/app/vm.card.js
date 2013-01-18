@@ -17,6 +17,10 @@
                 });
             },
 
+            isValid = ko.computed(function () {
+                return card().deckName() && card().question() && card().answer();
+            }),
+
             activate = function (routeData) {
                 cardId(parseInt(routeData.cardId));
                 editor.refreshPreview('edit');
@@ -32,14 +36,25 @@
                     toastr.success('Success!');
                     router.navigateTo(global.previousUrl);
                 });
-            };
+            },
+
+            updateAndCloseCommand = ko.asyncCommand({
+                execute: function (complete) {
+                    $.when(updateCard())
+                        .always(complete);
+                    return;
+                },
+                canExecute: function (isExecuting) {
+                    return isValid();
+                }
+            });
 
         init();
 
         return {
             activate: activate,
             card: card,
-            updateCard: updateCard
+            updateAndCloseCommand: updateAndCloseCommand
         };
     }
 );

@@ -9,6 +9,10 @@
                     editor.refreshPreview('create');
                 });
             },
+            
+            isValid = ko.computed(function() {
+                return card().deckName() && card().question() && card().answer();
+            }),
 
             activate = function () { },
 
@@ -19,14 +23,25 @@
                 };
                 dom.getCardValues(newCard, 'create');
                 amplify.publish(config.pubs.createNewCard, newCard);
-            };
+            },
+
+            createAndNewCommand = ko.asyncCommand({
+                execute: function (complete) {
+                        $.when(createCard())
+                            .always(complete);
+                        return;
+                },
+                canExecute: function (isExecuting) {
+                    return isValid();
+                }
+            });
 
         init();
 
         return {
             activate: activate,
             card: card,
-            createCard: createCard
+            createAndNewCommand: createAndNewCommand
         };
     }
 );
