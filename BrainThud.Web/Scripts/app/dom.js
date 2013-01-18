@@ -1,5 +1,5 @@
-﻿define('dom', ['jquery', 'utils'],
-    function ($, utils) {
+﻿define('dom', ['jquery'],
+    function ($) {
         var
             getCardValues = function (card, editorName) {
                 card.deckName = $('#new-card-deckname-' + editorName).val();

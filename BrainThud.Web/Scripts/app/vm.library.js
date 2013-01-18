@@ -65,8 +65,10 @@
             },
 
             filterCards = function (deckNameSlug) {
-                if ($('.card-deck-name').is(":visible")) {
-                    $('.card-deck-name').click();
+                var $cardDeckName = $('.card-deck-name');
+                
+                if ($cardDeckName.is(":visible")) {
+                    $cardDeckName.click();
                     setTimeout(function () { navigateToSlug(deckNameSlug); }, 400);
                 } else {
                     navigateToSlug(deckNameSlug);
