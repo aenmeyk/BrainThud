@@ -66,8 +66,8 @@
 
             filterCards = function (deckNameSlug) {
                 if ($('.card-deck-name').is(":visible")) {
-                    $('.card-deck-container').collapse('toggle');
-                    setTimeout(function() { navigateToSlug(deckNameSlug); }, 400);
+                    $('.card-deck-name').click();
+                    setTimeout(function () { navigateToSlug(deckNameSlug); }, 400);
                 } else {
                     navigateToSlug(deckNameSlug);
                 }

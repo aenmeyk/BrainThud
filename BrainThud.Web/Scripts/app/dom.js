@@ -15,19 +15,22 @@
 
             isCreateCardRendered = function () {
                 return $('#wmd-input-question-create').length != 0;
-            };
-
-        var $cardDeckChevron = $('#card-deck-chevron');
-        var $cardDeckContainer = $('.card-deck-container');
-
-        $('.card-deck-name').toggle(function () {
+            },
+            
+            $cardDeckChevron = $('#card-deck-chevron'),
+            $cardDeckContainer = $('.card-deck-container'),
+            $cardDeckName = $('.card-deck-name');
+        
+        $cardDeckName.click(function () {
             $cardDeckContainer.collapse('toggle');
+        });
+        
+        $cardDeckName.toggle(function () {
             setTimeout(function () {
                 $cardDeckChevron.addClass("icon-chevron-up");
                 $cardDeckChevron.removeClass("icon-chevron-down");
             }, 100);
         }, function () {
-            $cardDeckContainer.collapse('toggle');
             setTimeout(function () {
                 $cardDeckChevron.addClass("icon-chevron-down");
                 $cardDeckChevron.removeClass("icon-chevron-up");
