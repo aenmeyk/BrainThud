@@ -12,6 +12,7 @@ function ($, ko, dataContext, utils, global) {
                     .done(function () {
                         if (userConfiguration()[0]) {
                             global.userId = userConfiguration()[0].userId;
+                            global.routePrefix = '#/' + global.userId + '/';
                             $.when(dataContext.quizResult.getData({
                                 params: {
                                     datePath: utils.getDatePath(),

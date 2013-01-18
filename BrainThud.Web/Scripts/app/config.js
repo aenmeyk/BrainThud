@@ -2,12 +2,12 @@
     function (toastr) {
         var
             hashes = {
-                cardEdit: '#/cards/:cardId/edit',
-                createCard: '#/cards/new',
-                library: '#/library',
-                deck: '#/library/:deckNameSlug',
-                quiz: '#/quizzes/:userId/:year/:month/:day',
-                quizCard: '#/quizzes/:userId/:year/:month/:day/:cardId'
+                cardEdit: '#/:userId/cards/:cardId/edit',
+                createCard: '#/:userId/cards/new',
+                library: '#/:userId/library',
+                deck: '#/:userId/library/:deckNameSlug',
+                quiz: '#/:userId/quizzes/:year/:month/:day',
+                quizCard: '#/:userId/quizzes/:year/:month/:day/:cardId'
             },
 
             viewIds = {

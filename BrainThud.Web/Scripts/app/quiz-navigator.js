@@ -52,7 +52,7 @@
             },
 
             getQuizPath = function () {
-                return '#/quizzes/' + global.userId + '/' + utils.getDatePath();
+                return global.routePrefix + 'quizzes/' + utils.getDatePath();
             },
 
             getCardUri = function () {

@@ -13,7 +13,7 @@
                 });
 
                 amplify.subscribe(config.pubs.showEditCard, function (cardId) {
-                    router.navigateTo('#/cards/' + cardId + '/edit');
+                    router.navigateTo(global.routePrefix + 'cards/' + cardId + '/edit');
                 });
 
                 amplify.subscribe(config.pubs.showDeleteCard, function (data, callback) {

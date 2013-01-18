@@ -2,13 +2,13 @@
     function (router, utils, global) {
         var
             goToCreateCard = function () {
-                router.navigateTo('#/cards/new');
+                router.navigateTo(global.routePrefix + 'cards/new');
             },
             goToLibrary = function () {
-                router.navigateTo('#/library');
+                router.navigateTo(global.routePrefix + 'library');
             },
             goToQuiz = function () {
-                router.navigateTo('#/quizzes/' + global.userId + '/' + utils.getDatePath());
+                router.navigateTo(global.routePrefix + 'quizzes/' + utils.getDatePath());
             },
             goToSignOut = function () {
                 router.navigateTo('/Account/SignOut');

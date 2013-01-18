@@ -1,5 +1,5 @@
-﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config', 'router'],
-    function (ko, _, amplify, config, router) {
+﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config', 'router', 'global'],
+    function (ko, _, amplify, config, router, global) {
         var
             selectedDeckSlug = ko.observable(''),
             cards = ko.observableArray([]),
@@ -76,7 +76,7 @@
             },
             
             navigateToSlug = function(slug) {
-                router.navigateTo('#/library/' + slug);
+                router.navigateTo(global.routePrefix + 'library/' + slug);
             },
 
             isDeckSelected = function (deckNameSlug) {

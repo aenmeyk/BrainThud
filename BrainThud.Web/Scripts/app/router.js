@@ -1,7 +1,6 @@
 ﻿define('router', ['jquery', 'underscore', 'sammy', 'presenter', 'config', 'global'],
     function ($, _, Sammy, presenter, config, global) {
         var startupUrl = '',
-            defaultRoute = '',
 
             navigateTo = function (url) {
                 sammy.setLocation(url);
@@ -39,10 +38,6 @@
             },
 
             registerRoute = function (options) {
-                if (options.isDefault) {
-                    defaultRoute = options.route;
-                }
-
                 sammy.get(options.route, function (context) {
                     global.previousUrl = global.currentUrl;
                     global.currentUrl = sammy.last_location[1];
@@ -51,12 +46,16 @@
                     presenter.transitionTo($(options.view));
                 });
             },
+            
+            getDefaultRoute = function() {
+                return global.routePrefix + 'cards/new';
+            },
 
             run = function () {
 
                 // 1) if i browse to a location, use it
                 // 2) otherwise use the default route
-                startupUrl = sammy.getLocation() || defaultRoute;
+                startupUrl = sammy.getLocation() || getDefaultRoute();
 
                 if (!startupUrl) {
                     return;

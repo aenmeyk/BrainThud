@@ -1,5 +1,5 @@
-﻿define('bootstrapper', ['jquery', 'binder', 'route-config', 'data-primer', 'card-manager', 'quiz-navigator'],
-function ($, binder, routeConfig, dataPrimer, cardManager, quizNavigator) {
+﻿define('bootstrapper', ['jquery', 'binder', 'route-config', 'data-primer', 'card-manager'],
+function ($, binder, routeConfig, dataPrimer, cardManager) {
     var
         run = function () {
         $.when(dataPrimer.fetch())

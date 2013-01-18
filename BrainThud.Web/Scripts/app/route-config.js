@@ -15,7 +15,6 @@
                 {
                     view: config.viewIds.createCard,
                     routes: [{
-                        isDefault: true,
                         title: "Create Card",
                         route: config.hashes.createCard,
                         callback: vm.createCard.activate
