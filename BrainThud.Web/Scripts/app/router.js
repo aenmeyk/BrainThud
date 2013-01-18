@@ -1,6 +1,14 @@
-﻿define('router', ['jquery', 'underscore', 'sammy', 'presenter', 'config', 'global'],
-    function ($, _, Sammy, presenter, config, global) {
-        var startupUrl = '',
+﻿define('router', ['jquery', 'ko', 'underscore', 'sammy', 'presenter', 'config', 'global', 'utils'],
+    function ($, ko, _, Sammy, presenter, config, global, utils) {
+        var
+            startupUrl = '',
+            userHasCards = ko.observable(false),
+
+            init = function () {
+                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
+                    userHasCards(data.length > 0);
+                });
+            },
 
             navigateTo = function (url) {
                 sammy.setLocation(url);
@@ -48,21 +56,31 @@
             },
             
             getDefaultRoute = function() {
-                return global.routePrefix + 'cards/new';
-            },
-
-            run = function () {
-
-                // 1) if i browse to a location, use it
-                // 2) otherwise use the default route
-                startupUrl = sammy.getLocation() || getDefaultRoute();
-
-                if (!startupUrl) {
-                    return;
+                if (userHasCards()) {
+                    return global.routePrefix + 'quizzes/' + utils.getDatePath();
+                } else {
+                    return global.routePrefix + 'cards/new';
                 }
-                sammy.run();
-                navigateTo(startupUrl);
-            };
+            },
+        
+
+        run = function () {
+
+            // 1) if I browse to a location, use it
+            // 2) otherwise if I have cards, go to the quiz
+            // 3) otherwise go to the Create Card view
+            startupUrl = sammy.getLocation() || getDefaultRoute();
+
+            if (!startupUrl) {
+                return;
+            }
+            
+            sammy.run();
+            navigateTo(startupUrl);
+        };
+
+
+        init();
 
         return {
             navigateTo: navigateTo,
