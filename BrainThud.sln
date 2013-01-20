@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.WinPhone", "Brain
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.AndroidPhone", "BrainThud.AndroidPhone\BrainThud.AndroidPhone.csproj", "{0D3F5F02-9371-49CF-9820-FFAA3A8E8D44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.AndroidTablet", "BrainThud.AndroidTablet\BrainThud.AndroidTablet.csproj", "{E041902E-84F9-4C0A-B178-A36626B1CC67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,7 @@ Global
 		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Release|x86.ActiveCfg = Release|Any CPU
 		{0D3F5F02-9371-49CF-9820-FFAA3A8E8D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D3F5F02-9371-49CF-9820-FFAA3A8E8D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D3F5F02-9371-49CF-9820-FFAA3A8E8D44}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{0D3F5F02-9371-49CF-9820-FFAA3A8E8D44}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{0D3F5F02-9371-49CF-9820-FFAA3A8E8D44}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{0D3F5F02-9371-49CF-9820-FFAA3A8E8D44}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -111,6 +114,16 @@ Global
 		{0D3F5F02-9371-49CF-9820-FFAA3A8E8D44}.Release|ARM.ActiveCfg = Release|Any CPU
 		{0D3F5F02-9371-49CF-9820-FFAA3A8E8D44}.Release|x64.ActiveCfg = Release|Any CPU
 		{0D3F5F02-9371-49CF-9820-FFAA3A8E8D44}.Release|x86.ActiveCfg = Release|Any CPU
+		{E041902E-84F9-4C0A-B178-A36626B1CC67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E041902E-84F9-4C0A-B178-A36626B1CC67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E041902E-84F9-4C0A-B178-A36626B1CC67}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E041902E-84F9-4C0A-B178-A36626B1CC67}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E041902E-84F9-4C0A-B178-A36626B1CC67}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E041902E-84F9-4C0A-B178-A36626B1CC67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E041902E-84F9-4C0A-B178-A36626B1CC67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E041902E-84F9-4C0A-B178-A36626B1CC67}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E041902E-84F9-4C0A-B178-A36626B1CC67}.Release|x64.ActiveCfg = Release|Any CPU
+		{E041902E-84F9-4C0A-B178-A36626B1CC67}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
