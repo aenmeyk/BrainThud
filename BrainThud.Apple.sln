@@ -1,7 +1,9 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.IPhone", "BrainThud.IPhone\BrainThud.IPhone.csproj", "{16D77DD3-017C-4E65-A92E-CF15E5ECC201}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.IPad", "BrainThud.IPad\BrainThud.IPad.csproj", "{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,9 +27,20 @@ Global
 		{16D77DD3-017C-4E65-A92E-CF15E5ECC201}.Release|iPhone.Build.0 = Release|iPhone
 		{16D77DD3-017C-4E65-A92E-CF15E5ECC201}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{16D77DD3-017C-4E65-A92E-CF15E5ECC201}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Debug|iPhone.Build.0 = Debug|iPhone
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Release|iPhone.ActiveCfg = Release|iPhone
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Release|iPhone.Build.0 = Release|iPhone
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BrainThud.IPhone.csproj
+		StartupItem = BrainThud.IPad\BrainThud.IPad.csproj
 	EndGlobalSection
 EndGlobal
-\
