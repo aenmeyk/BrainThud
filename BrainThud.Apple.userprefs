@@ -1,10 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="BrainThud.IPad/RootViewController.cs">
+    <Files>
+      <File FileName="BrainThud.IPad/DetailViewController.cs" Line="77" Column="30" />
+      <File FileName="BrainThud.IPad/Main.cs" Line="1" Column="1" />
+      <File FileName="BrainThud.IPad/RootViewController.cs" Line="70" Column="26" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True">
-          <Option id="ShowAllFiles" value="True" />
+        <State expanded="True">
+          <Node name="BrainThud.Core" expanded="True" selected="True" />
+          <Node name="BrainThud.IPad" expanded="True">
+            <Node name="Core" expanded="True" />
+          </Node>
+          <Node name="BrainThud.IPhone" expanded="True">
+            <Node name="Core" expanded="True" />
+          </Node>
         </State>
       </Pad>
     </Pads>

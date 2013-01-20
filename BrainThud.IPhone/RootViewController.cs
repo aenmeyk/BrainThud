@@ -3,6 +3,7 @@ using System.Drawing;
 
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
+using BrainThud.Core;
 
 namespace BrainThud.IPhone
 {
@@ -79,8 +80,9 @@ namespace BrainThud.IPhone
 				}
 				
 				// Configure the cell.
-				cell.TextLabel.Text = NSBundle.MainBundle.LocalizedString ("Detail", "Detail");
-				
+				//cell.TextLabel.Text = NSBundle.MainBundle.LocalizedString ("Detail", "Detail");
+				cell.TextLabel.Text = TestValues.HelloBrainThud;
+
 				return cell;
 			}
 

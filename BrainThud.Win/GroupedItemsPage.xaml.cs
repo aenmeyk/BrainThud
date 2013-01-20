@@ -1,4 +1,5 @@
-﻿using BrainThud.Win.Data;
+﻿using BrainThud.Core;
+using BrainThud.Win.Data;
 
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace BrainThud.Win
         public GroupedItemsPage()
         {
             this.InitializeComponent();
+            this.pageTitle.Text = TestValues.HelloBrainThud;
         }
 
         /// <summary>

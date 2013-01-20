@@ -1,8 +1,8 @@
 using System;
 using System.Drawing;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using BrainThud.Core;
 
 namespace BrainThud.IPad
 {
@@ -82,7 +82,8 @@ namespace BrainThud.IPad
 				}
 				
 				// Configure the cell.
-				cell.TextLabel.Text = NSBundle.MainBundle.LocalizedString ("Detail", "Detail");
+				//cell.TextLabel.Text = NSBundle.MainBundle.LocalizedString ("Detail", "Detail");
+				cell.TextLabel.Text = TestValues.HelloBrainThud;
 				return cell;
 			}
 

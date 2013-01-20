@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using BrainThud.Core;
 using Microsoft.Phone.Controls;
 
 namespace BrainThud.WinPhone
@@ -23,6 +24,7 @@ namespace BrainThud.WinPhone
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
+            this.Panorama.Title = TestValues.HelloBrainThud;
         }
 
         // Load data for the ViewModel Items

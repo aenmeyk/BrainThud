@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using BrainThud.Core;
 
 namespace BrainThud.AndroidTablet
 {
@@ -25,7 +26,8 @@ namespace BrainThud.AndroidTablet
             // and attach an event to it
             Button button = FindViewById<Button>(Resource.Id.MyButton);
 
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+            button.Click += delegate { button.Text = TestValues.HelloBrainThud; };
+            //            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
         }
     }
 }

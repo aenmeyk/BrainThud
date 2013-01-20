@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.IPhone", "BrainTh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.IPad", "BrainThud.IPad\BrainThud.IPad.csproj", "{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.Core", "BrainThud.Core\BrainThud.Core.csproj", "{73F9AB29-527B-49EA-A24E-E4C800D1800D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -27,6 +29,17 @@ Global
 		{16D77DD3-017C-4E65-A92E-CF15E5ECC201}.Release|iPhone.Build.0 = Release|iPhone
 		{16D77DD3-017C-4E65-A92E-CF15E5ECC201}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{16D77DD3-017C-4E65-A92E-CF15E5ECC201}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.Release|iPhone.Build.0 = Release|Any CPU
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{73F9AB29-527B-49EA-A24E-E4C800D1800D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
 		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
 		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
@@ -41,6 +54,6 @@ Global
 		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BrainThud.IPad\BrainThud.IPad.csproj
+		StartupItem = BrainThud.IPhone\BrainThud.IPhone.csproj
 	EndGlobalSection
 EndGlobal
