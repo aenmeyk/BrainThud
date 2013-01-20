@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.Admin", "BrainThu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.Win", "BrainThud.Win\BrainThud.Win.csproj", "{50DCC37F-363C-4392-984D-7B7500E346EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainThud.WinPhone", "BrainThud.WinPhone\BrainThud.WinPhone.csproj", "{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,18 @@ Global
 		{50DCC37F-363C-4392-984D-7B7500E346EC}.Release|x86.ActiveCfg = Release|x86
 		{50DCC37F-363C-4392-984D-7B7500E346EC}.Release|x86.Build.0 = Release|x86
 		{50DCC37F-363C-4392-984D-7B7500E346EC}.Release|x86.Deploy.0 = Release|x86
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Release|x64.ActiveCfg = Release|Any CPU
+		{6E483DED-C85B-4DB4-9048-B6CCD1B639BD}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
