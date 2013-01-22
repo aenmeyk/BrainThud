@@ -20,44 +20,50 @@
     <!--[if lt IE 7]>
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
-        <header>
-            <div class="navbar navbar-static-top">
-                <div class="navbar-inner">
-                    @if (ViewBag.HideNavBar == null || !ViewBag.HideNavBar)
-                    {
-                        <div id="#header-content" class="container">
-                            <a class="brand" href="#">
-                                <img src="~/Images/logo_fat_40.png" /></a>
+    
+    <header>
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                @if (ViewBag.HideNavBar == null || !ViewBag.HideNavBar)
+                {
+                    <div id="#header-content" class="container">
+                        <a class="brand" href="#">
+                            <img src="~/Images/logo_fat_40.png" /></a>
 
-                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                                <i class="icon-bar"></i>
-                                <i class="icon-bar"></i>
-                                <i class="icon-bar"></i>
-                            </a>
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i>
+                        </a>
 
-                            <div class="identity">@User.Identity.Name</div>
+                        <div class="identity">@User.Identity.Name</div>
 
-                            <section id="nav-view">
-                                <div class="nav-collapse">
-                                    <ul class="nav main-nav">
-                                        <li><a href="" data-bind="click: goToCreateCard" data-toggle="collapse" data-target=".nav-collapse">Create Card</a></li>
-                                        <li><a href="" data-bind="click: goToLibrary" data-toggle="collapse" data-target=".nav-collapse">Library</a></li>
-                                        <li><a href="" data-bind="click: goToQuiz" data-toggle="collapse" data-target=".nav-collapse">Quiz</a></li>
-                                        <li><a href="" data-bind="click: goToSignOut" data-toggle="collapse" data-target=".nav-collapse">Sign Out</a></li>
-                                    </ul>
-                                </div>
-                            </section>
-                        </div>
-                    }
-                </div>
+                        <section id="nav-view">
+                            <div class="nav-collapse">
+                                <ul class="nav main-nav">
+                                    <li><a href="" data-bind="click: goToCreateCard" data-toggle="collapse" data-target=".nav-collapse">Create Card</a></li>
+                                    <li><a href="" data-bind="click: goToLibrary" data-toggle="collapse" data-target=".nav-collapse">Library</a></li>
+                                    <li><a href="" data-bind="click: goToQuiz" data-toggle="collapse" data-target=".nav-collapse">Quiz</a></li>
+                                    <li><a href="" data-bind="click: goToSignOut" data-toggle="collapse" data-target=".nav-collapse">Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                }
             </div>
-        </header>
-
-        <div class="container main-container">
-            <section class="main">
-                @RenderBody()
-            </section>
         </div>
+    </header>
+
+    <div class="container main-container">
+        <section class="main">
+            @RenderBody()
+        </section>
+    </div>
+    
+    <div id="loading">
+        <img src="~/Images/loading.gif" />
+    </div>
+
 
     @Scripts.Render(
         BundlePaths.JQUERY,

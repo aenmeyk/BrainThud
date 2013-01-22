@@ -13,12 +13,21 @@ function ($, ko, dataContext, utils, global) {
                         if (userConfiguration()[0]) {
                             global.userId = userConfiguration()[0].userId;
                             global.routePrefix = '#/' + global.userId + '/';
-                            $.when(dataContext.quizResult.getData({
-                                params: {
-                                    datePath: utils.getDatePath(),
-                                    userId: global.userId
-                                }
-                            }), dataContext.card.getData({ results: ko.observableArray([]) }))
+                            var datePath = utils.getDatePath();
+                            $.when(
+                                dataContext.quizResult.getData({
+                                    params: {
+                                        datePath: datePath,
+                                        userId: global.userId
+                                    }
+                                }),
+                                dataContext.card.getData({}),
+                                dataContext.quizCards.getData({
+                                    params: {
+                                        datePath: datePath,
+                                        userId: global.userId
+                                    }
+                                }))
                             .fail(function() { def.reject(); })
                             .done(function() { def.resolve(); });
                         } else {

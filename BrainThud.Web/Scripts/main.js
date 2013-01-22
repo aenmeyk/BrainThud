@@ -30,6 +30,8 @@ var global = {
 
     require(['bootstrapper'],
         function (bootstrapper) {
-            bootstrapper.run();
+            if (window.location.pathname !== "/Account/Login") {
+                bootstrapper.run();
+            }
         });
 })();

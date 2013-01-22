@@ -17,6 +17,18 @@
                 return $('#wmd-input-question-create').length != 0;
             },
             
+            showLoading = function() {
+                $('#loading').css({
+                    height: "100px"
+                });
+            },
+            
+            hideLoading = function () {
+                $('#loading').animate({
+                    height: "0px"
+                }, 400);
+            },
+            
             $cardDeckChevron = $('#card-deck-chevron'),
             $cardDeckContainer = $('.card-deck-container'),
             $cardDeckName = $('.card-deck-name');
@@ -40,7 +52,9 @@
         return {
             getCardValues: getCardValues,
             resetNewCard: resetNewCard,
-            isCreateCardRendered: isCreateCardRendered
+            isCreateCardRendered: isCreateCardRendered,
+            showLoading: showLoading,
+            hideLoading: hideLoading
         };
     }
 );

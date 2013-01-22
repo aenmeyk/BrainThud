@@ -1,7 +1,6 @@
-﻿define('vm.quiz', ['ko', 'underscore', 'moment', 'amplify', 'config', 'data-context', 'utils', 'global'],
-    function (ko, _, moment, amplify, config, dataContext, utils, global) {
-        var
-            quizDate = moment().format('L'),
+﻿define('vm.quiz', ['jquery', 'ko', 'underscore', 'moment', 'amplify', 'config', 'data-context', 'utils', 'global', 'dom'],
+    function ($, ko, _, moment, amplify, config, dataContext, utils, global, dom) {
+        var quizDate = moment().format('L'),
             quizResults = ko.observableArray([]),
             cards = ko.observableArray([]),
             
@@ -26,7 +25,7 @@
             }),
             
             init = function () {
-                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
+                amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
                     cards(data);
                     dataContext.quizResult.refreshCache();
                 });
@@ -36,23 +35,23 @@
                 });
             },
 
-            activate = function() {
+            activate = function () {
                 getQuizCards();
                 getQuizResults();
             },
             
-            getQuizCards = function() {
-                dataContext.quizCards.getData({
-                    results: cards,
-                    params: {
-                        datePath: utils.getDatePath(),
-                        userId: global.userId
-                    }
-                });
+            getQuizCards = function () {
+                return dataContext.quizCards.getData({
+                        results: cards,
+                        params: {
+                            datePath: utils.getDatePath(),
+                            userId: global.userId
+                        }
+                    });
             },
             
             getQuizResults = function() {
-                dataContext.quizResult.getData({
+                return dataContext.quizResult.getData({
                     results: quizResults,
                     params: {
                         datePath: utils.getDatePath(),
@@ -68,6 +67,7 @@
         init();
 
         return {
+            info: '',
             quizDate: quizDate,
             cardCount: cardCount,
             completedCardCount: completedCardCount,
