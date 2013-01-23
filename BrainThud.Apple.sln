@@ -54,6 +54,6 @@ Global
 		{BE7C8C1C-09A8-4C33-B371-BFB8D04BAD8C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BrainThud.IPhone\BrainThud.IPhone.csproj
+		StartupItem = BrainThud.IPad\BrainThud.IPad.csproj
 	EndGlobalSection
 EndGlobal
