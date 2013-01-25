@@ -13,6 +13,24 @@
             self.quizInterval3 = ko.observable();
             self.quizInterval4 = ko.observable();
             self.quizInterval5 = ko.observable();
+            self.quizInterval0DayLabel = ko.computed(function() {
+                return (self.quizInterval0() === 1) ? 'day' : 'days';
+            });
+            self.quizInterval1DayLabel = ko.computed(function() {
+                return (self.quizInterval1() === 1) ? 'day' : 'days';
+            });
+            self.quizInterval2DayLabel = ko.computed(function() {
+                return (self.quizInterval2() === 1) ? 'day' : 'days';
+            });
+            self.quizInterval3DayLabel = ko.computed(function() {
+                return (self.quizInterval3() === 1) ? 'day' : 'days';
+            });
+            self.quizInterval4DayLabel = ko.computed(function() {
+                return (self.quizInterval4() === 1) ? 'day' : 'days';
+            });
+            self.quizInterval5DayLabel = ko.computed(function() {
+                return (self.quizInterval5() === 1) ? 'day' : 'days';
+            });
         };
 
         return UserConfiguration;

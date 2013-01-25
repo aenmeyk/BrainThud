@@ -6,7 +6,7 @@
     </div>
     <div class="row-fluid skip-line">
         <div class="span12 well">
-            <button type="button" class="close" data-dismiss="alert">×</button>
+@*            <button type="button" class="close" data-dismiss="alert">×</button>*@
             <p>
                 Every card in your library has a card level ranging from 0 to 5.  This level indicates the number of times you have consecutively answered the card correctly.
             </p>
@@ -39,62 +39,87 @@
 
     <div class="row-fluid skip-line">
         <div class="span10 offset1">
-            <span>When a card is <span class="strong">first created</span> it should be asked in the quiz after <span class="strong">1</span> day</span>
+            <span>
+                When a card is <span class="strong">first created</span> it should be asked in the quiz after 
+                <input type="text" class="strong input-mini right-text-align level-slider-label" data-bind="value: userConfiguration().quizInterval0, valueUpdate: 'afterkeydown'" /> <span data-bind="html: userConfiguration().quizInterval0DayLabel"></span>
+            </span>
         </div>
     </div>
     <div class="row-fluid">
         <div class="span10 offset1">
-            <div class="slider"></div>
+            <div data-bind="slider: userConfiguration().quizInterval0, sliderOptions: {min: 0, max: 365, range: 'min', step: 1}"></div>
+        </div>
+    </div>
+    <div class="row-fluid skip-line">
+        <div class="span10 offset1">
+            <span>
+                When a card at <span class="strong">level 1</span> is answered correctly is should be asked again after 
+                <input type="text" class="strong input-mini right-text-align level-slider-label" data-bind="value: userConfiguration().quizInterval1, valueUpdate: 'afterkeydown'" /> <span data-bind="html: userConfiguration().quizInterval1DayLabel"></span>
+            </span>
         </div>
     </div>
     <div class="row-fluid">
         <div class="span10 offset1">
-            <span>When a card at <span class="strong">level 1</span> is answered correctly is should be asked again after <span class="strong">7</span> days</span>
+            <div data-bind="slider: userConfiguration().quizInterval1, sliderOptions: {min: 0, max: 365, range: 'min', step: 1}"></div>
         </div>
     </div>
-     <div class="row-fluid">
+    <div class="row-fluid skip-line">
         <div class="span10 offset1">
-            <div class="slider"></div>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span10 offset1">
-            <span>When a card at <span class="strong">level 2</span> is answered correctly is should be asked again after <span class="strong">30</span> days</span>
-        </div>
-    </div>
-     <div class="row-fluid">
-        <div class="span10 offset1">
-            <div class="slider"></div>
+            <span>When a card at <span class="strong">level 2</span> is answered correctly is should be asked again after 
+                <input type="text" class="strong input-mini right-text-align level-slider-label" data-bind="value: userConfiguration().quizInterval2, valueUpdate: 'afterkeydown'" /> <span data-bind="html: userConfiguration().quizInterval2DayLabel"></span>
+
+            </span>
         </div>
     </div>
     <div class="row-fluid">
         <div class="span10 offset1">
-            <span>When a card at <span class="strong">level 3</span> is answered correctly is should be asked again after <span class="strong">90</span> days</span>
+            <div data-bind="slider: userConfiguration().quizInterval2, sliderOptions: {min: 0, max: 365, range: 'min', step: 1}"></div>
         </div>
     </div>
-     <div class="row-fluid">
+    <div class="row-fluid skip-line">
         <div class="span10 offset1">
-            <div class="slider"></div>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span10 offset1">
-            <span>When a card at <span class="strong">level 4</span> is answered correctly is should be asked again after <span class="strong">180</span> days</span>
-        </div>
-    </div>
-     <div class="row-fluid">
-        <div class="span10 offset1">
-            <div class="slider"></div>
+            <span>When a card at <span class="strong">level 3</span> is answered correctly is should be asked again after 
+                <input type="text" class="strong input-mini right-text-align level-slider-label" data-bind="value: userConfiguration().quizInterval3, valueUpdate: 'afterkeydown'" /> <span data-bind="html: userConfiguration().quizInterval3DayLabel"></span>
+
+            </span>
         </div>
     </div>
     <div class="row-fluid">
         <div class="span10 offset1">
-            <span>When a card at <span class="strong">level 5</span> is answered correctly is should be asked again after <span class="strong">360</span> days</span>
+            <div data-bind="slider: userConfiguration().quizInterval3, sliderOptions: {min: 0, max: 365, range: 'min', step: 1}"></div>
         </div>
     </div>
-     <div class="row-fluid">
+    <div class="row-fluid skip-line">
         <div class="span10 offset1">
-            <div class="slider"></div>
+            <span>When a card at <span class="strong">level 4</span> is answered correctly is should be asked again after 
+                <input type="text" class="strong input-mini right-text-align level-slider-label" data-bind="value: userConfiguration().quizInterval4, valueUpdate: 'afterkeydown'" /> <span data-bind="html: userConfiguration().quizInterval4DayLabel"></span>
+
+            </span>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div data-bind="slider: userConfiguration().quizInterval4, sliderOptions: {min: 0, max: 365, range: 'min', step: 1}"></div>
+        </div>
+    </div>
+    <div class="row-fluid skip-line">
+        <div class="span10 offset1">
+            <span>When a card at <span class="strong">level 5</span> is answered correctly is should be asked again after 
+                <input type="text" class="strong input-mini right-text-align level-slider-label" data-bind="value: userConfiguration().quizInterval5, valueUpdate: 'afterkeydown'" /> <span data-bind="html: userConfiguration().quizInterval5DayLabel"></span>
+
+            </span>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span10 offset1">
+            <div data-bind="slider: userConfiguration().quizInterval5, sliderOptions: {min: 0, max: 365, range: 'min', step: 1}"></div>
+        </div>
+    </div>
+
+        
+    <div class="row-fluid skip-line">
+        <div class="span10 offset1">
+            <button type="button" class="btn right-align" data-bind="command: updateCommand">Save</button>
         </div>
     </div>
 

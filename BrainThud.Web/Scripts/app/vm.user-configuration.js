@@ -14,11 +14,24 @@
                     .done(function() {
                         userConfiguration(userConfigurations()[0]);
                     });
-            };
+            },
+            
+            updateCommand = ko.asyncCommand({
+                execute: function (complete) {
+                    console.log(userConfiguration().quizInterval0());
+//                    $.when(updateCard())
+//                        .always(complete);
+                    return;
+                },
+                canExecute: function (isExecuting) {
+                    return true;
+                }
+            });
 
         return {
             activate: activate,
-            userConfiguration: userConfiguration
+            userConfiguration: userConfiguration,
+            updateCommand: updateCommand
         };
     }
 );
