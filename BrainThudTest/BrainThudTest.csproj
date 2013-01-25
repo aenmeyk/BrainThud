@@ -129,8 +129,10 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\SignOut.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\Given_a_new_ConfigController.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_Put_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_Get_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_Put_is_called_with_an_invalid_QuizDate.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Get_is_called_for_a_Quiz_that_does_exist.cs" />

@@ -16,11 +16,20 @@
                     });
             },
             
+            updateUserConfiguration = function () {
+                var item = ko.toJS(userConfiguration);
+                $.when(dataContext.userConfiguration.updateData({
+                    data: item
+                }))
+                .then(function () {
+                    toastr.success('Success!');
+                });
+            },
+
             updateCommand = ko.asyncCommand({
                 execute: function (complete) {
-                    console.log(userConfiguration().quizInterval0());
-//                    $.when(updateCard())
-//                        .always(complete);
+                    $.when(updateUserConfiguration())
+                        .always(complete);
                     return;
                 },
                 canExecute: function (isExecuting) {

@@ -1,5 +1,4 @@
-﻿using BrainThud.Web;
-using BrainThud.Web.Model;
+﻿using BrainThud.Web.Model;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -13,12 +12,8 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.ConfigControllerTest
 
         public override void When()
         {
-            this.AuthenticationHelper
-                .SetupGet(x => x.NameIdentifier)
-                .Returns(TestValues.NAME_IDENTIFIER);
-
-            this.TableStorageContextFactory
-                .Setup(x => x.CreateTableStorageContext(AzureTableNames.CARD, TestValues.NAME_IDENTIFIER).UserConfigurations.GetByNameIdentifier())
+            this.TableStorageContext
+                .Setup(x => x.UserConfigurations.GetByNameIdentifier())
                 .Returns(this.expectedResult);
 
             this.actualResult = this.ConfigController.Get();

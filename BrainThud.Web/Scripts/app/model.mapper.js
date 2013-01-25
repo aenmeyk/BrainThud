@@ -32,6 +32,9 @@
                     if (!utils.entityExists(results, dto)) {
                         results.push(getUserConfigurationFromDto(dto));
                     }
+                },
+                mapResult: function (dto) {
+                    return getUserConfigurationFromDto(dto);
                 }
             },
             

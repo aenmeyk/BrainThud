@@ -3,6 +3,7 @@
         var
             userConfiguration = new dataContextHelper.EntitySet({
                 get: dataService.userConfiguration.get,
+                update: dataService.userConfiguration.update,
                 mapper: modelMapper.userConfiguration
             }),
             
