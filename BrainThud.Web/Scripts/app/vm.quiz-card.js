@@ -95,6 +95,10 @@
 
             showDeleteDialog = function () {
                 amplify.publish(config.pubs.showDeleteCard, card(), quizNavigator.showNextCard);
+            },
+
+            showCardInfoDialog = function () {
+                amplify.publish(config.pubs.showCardInfo, card());
             };
 
         return {
@@ -107,6 +111,7 @@
             submitIncorrect: submitIncorrect,
             editCard: editCard,
             showDeleteDialog: showDeleteDialog,
+            showCardInfoDialog: showCardInfoDialog,
             displayIndex: displayIndex,
             cardCount: cardCount
         };

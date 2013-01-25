@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Cirrious.MvvmCross.ExtensionMethods;
+using Cirrious.MvvmCross.Interfaces.ServiceProvider;
+using Cirrious.MvvmCross.Interfaces.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -24,7 +27,7 @@ namespace BrainThud.Win
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App : Application, IMvxServiceConsumer
     {
         /// <summary>
         /// Initializes the singleton Application object.  This is the first line of authored code
@@ -75,13 +78,19 @@ namespace BrainThud.Win
             }
             if (rootFrame.Content == null)
             {
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
-                if (!rootFrame.Navigate(typeof(QuizView), "QuizView"))
-                {
-                    throw new Exception("Failed to create initial page");
-                }
+                var setup = new Setup(rootFrame);
+                setup.Initialize();
+
+                var start = this.GetService<IMvxStartNavigation>();
+                start.Start();
+
+//                // When the navigation stack isn't restored navigate to the first page,
+//                // configuring the new page by passing required information as a navigation
+//                // parameter
+//                if (!rootFrame.Navigate(typeof(QuizView), "QuizView"))
+//                {
+//                    throw new Exception("Failed to create initial page");
+//                }
             }
             // Ensure the current window is active
             Window.Current.Activate();

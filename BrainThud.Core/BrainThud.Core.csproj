@@ -87,6 +87,9 @@
     <Optimize>False</Optimize>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cirrious.MvvmCross">
+      <HintPath>..\Resources\MvvmCross\Portable\Release\Cirrious.MvvmCross.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -96,9 +99,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="Models\QuizSummary_OLD.cs" />
+    <Compile Include="Models\QuizSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartApplicationObject.cs" />
     <Compile Include="TestValues.cs" />
+    <Compile Include="Trace.cs" />
     <Compile Include="ViewModels\QuizViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

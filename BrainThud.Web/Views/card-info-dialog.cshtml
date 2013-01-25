@@ -1,0 +1,29 @@
+﻿<div id="card-info-dialog" class="modal hide fade">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>Card Information</h3>
+    </div>
+    <div class="modal-body">
+        <div class="content-block">
+            <div>
+                <span>Deck name:</span>
+                <span class="double-space strong" data-bind="html: card().deckName()"></span>
+            </div>
+            <div>
+                <span>Consecutive correct answers:</span>
+                <span class="double-space strong" data-bind="html: card().level()"></span>
+            </div>
+            <div>
+                <span>Next quiz date:</span>
+                <span class="double-space strong" data-bind="html: card().localizedQuizDate()"></span>
+            </div>
+        </div>
+        <div class="skip-line small-text">
+            <span>Tags:</span>
+            <span class="double-space" data-bind="html: card().tags()"></span>
+        </div>
+    </div>
+<div class="modal-footer">
+    <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+</div>
+</div>

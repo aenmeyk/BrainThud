@@ -32,7 +32,7 @@
             $cardDeckChevron = $('#card-deck-chevron'),
             $cardDeckContainer = $('.card-deck-container'),
             $cardDeckName = $('.card-deck-name');
-        
+        $("#slider").slider();
         $cardDeckName.click(function () {
             $cardDeckContainer.collapse('toggle');
         });

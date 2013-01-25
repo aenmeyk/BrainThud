@@ -233,6 +233,22 @@
     </Compile>
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\themes\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="Content\themes\cupertino\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <Content Include="Content\themes\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="Content\themes\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="Content\themes\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="Content\themes\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="Content\themes\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="Content\themes\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="Content\themes\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="Content\themes\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="Content\themes\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="Content\themes\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="Content\themes\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\cupertino\jquery-ui-1.10.0.custom.css" />
+    <Content Include="Content\themes\cupertino\jquery-ui-1.10.0.custom.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\wmd-buttons.png" />
@@ -259,12 +275,15 @@
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
     <Content Include="Scripts\app\card-manager.js" />
+    <Content Include="Scripts\app\model.user-configuration.js" />
+    <Content Include="Scripts\app\vm.user-configuration.js" />
+    <Content Include="Scripts\app\vm.card-info.js" />
     <Content Include="Scripts\app\global.js" />
     <Content Include="Scripts\app\quiz-navigator.js" />
     <Content Include="Scripts\app\data-subs.js" />
     <Content Include="Scripts\app\vm.quiz-card-old.js" />
     <Content Include="Scripts\app\model.quiz-result.js" />
-    <Content Include="Scripts\app\data-service.config.js" />
+    <Content Include="Scripts\app\data-service.user-configuration.js" />
     <Content Include="Scripts\app\pubs.js" />
     <Content Include="Scripts\app\vm.quiz.js" />
     <Content Include="Scripts\app\vm.nav.js" />
@@ -273,6 +292,8 @@
     <Content Include="Scripts\app\vm.create-card.js" />
     <Content Include="Scripts\jasmine\jasmine-html.js" />
     <Content Include="Scripts\jasmine\jasmine.js" />
+    <Content Include="Scripts\jquery-ui-1.10.0.custom.js" />
+    <Content Include="Scripts\jquery-ui-1.10.0.custom.min.js" />
     <Content Include="Scripts\knockout.activity.js" />
     <Content Include="Scripts\knockout.command.js" />
     <Content Include="Scripts\knockout.dirtyFlag.js" />
@@ -360,6 +381,8 @@
     <Content Include="Test\Scripts\jasmine-test-runner.cshtml" />
     <Content Include="Views\quiz-card.cshtml" />
     <Content Include="Views\delete-card-dialog.cshtml" />
+    <Content Include="Views\card-info-dialog.cshtml" />
+    <Content Include="Views\user-configuration.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

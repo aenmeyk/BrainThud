@@ -100,9 +100,24 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="..\BrainThud.Core\App.cs">
+      <Link>Core\App.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Models\QuizSummary.cs">
+      <Link>Core\Models\QuizSummary.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\StartApplicationObject.cs">
+      <Link>Core\StartApplicationObject.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Trace.cs">
+      <Link>Core\Trace.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\ViewModels\QuizViewModel.cs">
+      <Link>Core\ViewModels\QuizViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\ViewModels\ViewModelBase.cs">
+      <Link>Core\ViewModels\ViewModelBase.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -123,8 +138,7 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="ViewModels\QuizSummary.cs" />
-    <Compile Include="ViewModels\QuizViewModel.cs" />
+    <Compile Include="Setup.cs" />
     <Compile Include="Views\QuizView.xaml.cs">
       <DependentUpon>QuizView.xaml</DependentUpon>
     </Compile>
@@ -135,6 +149,7 @@
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
     <None Include="BrainThud.Win_TemporaryKey.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.png" />
@@ -170,6 +185,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cirrious.MvvmCross, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Resources\MvvmCross\Portable\Release\Cirrious.MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Plugins.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Resources\MvvmCross\Portable\Release\Cirrious.MvvmCross.Plugins.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.WinRT">
+      <HintPath>..\Resources\MvvmCross\WinRT\Release\Cirrious.MvvmCross.WinRT.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

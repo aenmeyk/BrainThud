@@ -55,6 +55,15 @@
                         route: config.hashes.quizCard,
                         callback: vm.quizCard.activate
                         }]
+                },
+
+                {
+                    view: config.viewIds.userConfiguration,
+                    routes: [{
+                        title: "userConfiguration",
+                        route: config.hashes.userConfiguration,
+                        callback: vm.userConfiguration.activate
+                    }]
                 }];
 
             _.each(routeData, function (route) {

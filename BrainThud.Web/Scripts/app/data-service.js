@@ -1,8 +1,8 @@
-﻿define('data-service', ['data-service.card', 'data-service.quiz-result', 'data-service.config'],
-    function (card, quizResult, config) {
+﻿define('data-service', ['data-service.card', 'data-service.quiz-result', 'data-service.user-configuration'],
+    function (card, quizResult, userConfiguration) {
         
         var init = function() {
-            amplify.subscribe("request.ajax.preprocess", function(defnSettings, settings, ajaxSettings) {
+            amplify.subscribe("request.ajax.preprocess", function(defnSettings, settingValues, ajaxSettings) {
                 ajaxSettings.data = JSON.stringify(ajaxSettings.data);
             });
         };
@@ -12,7 +12,7 @@
         return {
             card: card,
             quizResult: quizResult,
-            config: config
+            userConfiguration: userConfiguration
         };
     }
 );

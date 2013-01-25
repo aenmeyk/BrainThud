@@ -1,5 +1,5 @@
-﻿define('model.card', ['ko', 'editor'],
-    function (ko, editor) {
+﻿define('model.card', ['ko', 'editor', 'moment'],
+    function (ko, editor, moment) {
         var Card = function() {
             var self = this;
             self.partitionKey = ko.observable();
@@ -24,6 +24,9 @@
             });
             self.currentSideText = ko.computed(function () {
                 return self.questionSideVisible() ? self.questionHtml() : self.answerHtml();
+            });
+            self.localizedQuizDate = ko.computed(function () {
+                return moment(self.quizDate()).format('L');
             });
         };
 

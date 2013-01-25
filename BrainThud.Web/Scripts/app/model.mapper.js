@@ -27,12 +27,29 @@
                 }
             },
 
-            config = {
-                mapResults: function(dto, results) {
+            userConfiguration = {
+                mapResults: function (dto, results) {
                     if (!utils.entityExists(results, dto)) {
-                        results.push(dto);
+                        results.push(getUserConfigurationFromDto(dto));
                     }
                 }
+            },
+            
+            getUserConfigurationFromDto = function (dto) {
+                var singleUserConfiguration = new model.UserConfiguration();
+                singleUserConfiguration.partitionKey(dto.partitionKey)
+                    .rowKey(dto.rowKey)
+                    .timestamp(dto.timestamp)
+                    .createdTimestamp(dto.createdTimestamp)
+                    .userId(dto.userId)
+                    .quizInterval0(dto.quizInterval0)
+                    .quizInterval1(dto.quizInterval1)
+                    .quizInterval2(dto.quizInterval2)
+                    .quizInterval3(dto.quizInterval3)
+                    .quizInterval4(dto.quizInterval4)
+                    .quizInterval5(dto.quizInterval5);
+
+                return singleUserConfiguration;
             },
             
             getCardFromDto = function(dto) {
@@ -72,7 +89,7 @@
         return {
             card: card,
             quizResult: quizResult,
-            config: config
+            userConfiguration: userConfiguration
         };
     }
 );

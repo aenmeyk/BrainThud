@@ -7,7 +7,8 @@
                 library: '#/:userId/library',
                 deck: '#/:userId/library/:deckNameSlug',
                 quiz: '#/:userId/quizzes/:year/:month/:day',
-                quizCard: '#/:userId/quizzes/:year/:month/:day/:cardId'
+                quizCard: '#/:userId/quizzes/:year/:month/:day/:cardId',
+                userConfiguration: '#/:userId/user-configuration'
             },
 
             viewIds = {
@@ -16,10 +17,13 @@
                 library: '#library-view',
                 quiz: '#quiz-view',
                 quizCard: '#quiz-card-view',
+                userConfiguration: '#user-configuration-view',
+                cardInfo: '#card-info-dialog',
                 nav: '#nav-view'
             },
             
             routes = {
+                userConfiguration: '/api/config',
                 cards: '/api/cards',
                 card: '/api/cards/{userIdPath}/{entityIdPath}',
                 quizResults: '/api/quiz-results/{userIdPath}/{datePath}',
@@ -37,6 +41,7 @@
                 showPreviousCard: 'show-previous-card',
                 showEditCard: 'show-edit-card',
                 showDeleteCard: 'show-delete-card',
+                showCardInfo: 'show-card-info',
                 createNewCard: 'create-new-card',
                 cardCacheChanged: 'card-cache-changed',
                 quizCardCacheChanged: 'quiz-card-cache-changed',

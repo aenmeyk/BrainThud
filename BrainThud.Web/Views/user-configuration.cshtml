@@ -1,0 +1,37 @@
+﻿<section id="user-configuration-view" class="view">
+    <div class="row-fluid">
+        <div class="span12">
+            <h1>Settings</h1>
+        </div>
+    </div>
+    <div class="row-fluid skip-line">
+        <div class="span12">
+            <p>
+                Every card in your library has a card level associated with it.  This level indicates the number of times you have consecutively answered the card correctly.
+            </p>
+            <p>
+                When you first create a card it will be assigned a level of 0, indicating that you have not yet answered the card correctly.  During your daily quiz if you then answer the card correctly it will be promoted to level 1.  If you answer the card incorrectly, regardless of the level it is currently on, it will return back to level 0.
+            </p>
+            <p>
+                Each card level has a certain number of days associated with it indicating the frequency at which the card will appear in your daily quiz.  Use the sliders below to set the number of days a card should wait at each level before appearing in your quiz again.
+            </p>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div data-bind="html: userConfiguration().userId()"></div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div data-bind="html: userConfiguration().quizInterval0()"></div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="slider"></div>
+        </div>
+    </div>
+
+    @*    <span data-bind="text: ko.toJSON($data)"></span>*@
+</section>

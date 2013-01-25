@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Cirrious.MvvmCross.WinRT.Views;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
@@ -34,7 +35,7 @@ namespace BrainThud.Win.Common
     /// </list>
     /// </summary>
     [Windows.Foundation.Metadata.WebHostHidden]
-    public class LayoutAwarePage : Page
+    public class LayoutAwarePage : MvxWinRTPage
     {
         /// <summary>
         /// Identifies the <see cref="DefaultViewModel"/> dependency property.
@@ -358,6 +359,8 @@ namespace BrainThud.Win.Common
                 // from cache
                 this.LoadState(e.Parameter, (Dictionary<String, Object>)frameState[this._pageKey]);
             }
+
+            base.OnNavigatedTo(e);
         }
 
         /// <summary>
@@ -371,6 +374,8 @@ namespace BrainThud.Win.Common
             var pageState = new Dictionary<String, Object>();
             this.SaveState(pageState);
             frameState[_pageKey] = pageState;
+
+            base.OnNavigatedFrom(e);
         }
 
         /// <summary>

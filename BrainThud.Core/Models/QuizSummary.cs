@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using BrainThud.Win.Common;
+using BrainThud.Core.ViewModels;
 
 namespace BrainThud.Win.ViewModels
 {
-    public class QuizSummary : BindableBase
+    public class QuizSummary : ViewModelBase
     {
         public QuizSummary()
         {
@@ -14,21 +14,29 @@ namespace BrainThud.Win.ViewModels
             this.CardsCompleted = 5;
             this.CardsCorrect = 3;
             this.CardsIncorrect = 2;
-            this.QuizDate = DateTime.Now.ToString(DateTimeFormatInfo.CurrentInfo.ShortDatePattern);;
+            this.QuizDate = DateTime.Now.ToString(DateTimeFormatInfo.CurrentInfo.ShortDatePattern); ;
         }
 
         private string title;
         public string Title
         {
             get { return this.title; }
-            set { this.SetProperty(ref this.title, value); }
+            set
+            {
+                this.title = value;
+                this.RaisePropertyChanged("Title");
+            }
         }
 
         private string quizDate;
         public string QuizDate
         {
             get { return this.quizDate; }
-            set { this.SetProperty(ref this.quizDate, value); }
+            set
+            {
+                this.quizDate = value;
+                this.RaisePropertyChanged("QuizDate");
+            }
         }
 
         private int cardCount;
@@ -37,8 +45,9 @@ namespace BrainThud.Win.ViewModels
             get { return this.cardCount; }
             set
             {
-                this.SetProperty(ref this.cardCount, value);
-                this.OnPropertyChanged("ProgressMessage");
+                this.cardCount = value;
+                this.RaisePropertyChanged("CardCount");
+                this.RaisePropertyChanged("ProgressMessage");
             }
         }
 
@@ -48,8 +57,9 @@ namespace BrainThud.Win.ViewModels
             get { return this.cardsCompleted; }
             set
             {
-                this.SetProperty(ref this.cardsCompleted, value);
-                this.OnPropertyChanged("ProgressMessage");
+                this.cardsCompleted = value;
+                this.RaisePropertyChanged("CardsCompleted");
+                this.RaisePropertyChanged("ProgressMessage");
             }
         }
 
@@ -59,8 +69,9 @@ namespace BrainThud.Win.ViewModels
             get { return this.cardsCorrect; }
             set
             {
-                this.SetProperty(ref this.cardsCorrect, value);
-                this.OnPropertyChanged("CorrectMessage");
+                this.cardsCorrect = value;
+                this.RaisePropertyChanged("CardsCorrect");
+                this.RaisePropertyChanged("CorrectMessage");
             }
         }
 
@@ -70,8 +81,9 @@ namespace BrainThud.Win.ViewModels
             get { return this.cardsIncorrect; }
             set
             {
-                this.SetProperty(ref this.cardsIncorrect, value);
-                this.OnPropertyChanged("IncorrectMessage");
+                this.cardsIncorrect = value;
+                this.RaisePropertyChanged("CardsIncorrect");
+                this.RaisePropertyChanged("IncorrectMessage");
             }
         }
 
@@ -92,10 +104,10 @@ namespace BrainThud.Win.ViewModels
 
         public ObservableCollection<string> Items
         {
-            get 
+            get
             {
-                return new ObservableCollection<string> { "One", "Two", "Three", "One", "Two", "Three", "One", "Two", "Three", "One", "Two", "Three", "One", "Two", "Three" }; 
+                return new ObservableCollection<string> { "One", "Two", "Three", "One", "Two", "Three", "One", "Two", "Three", "One", "Two", "Three", "One", "Two", "Three" };
             }
-        } 
+        }
     }
 }

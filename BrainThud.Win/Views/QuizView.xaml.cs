@@ -19,6 +19,12 @@ namespace BrainThud.Win.Views
             this.DataContext = new QuizSummary();
         }
 
+        public new QuizSummary ViewModel
+        {
+            get { return (QuizSummary)base.ViewModel; }
+            set { base.ViewModel = value; }
+        }
+
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.

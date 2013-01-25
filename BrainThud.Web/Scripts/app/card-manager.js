@@ -1,9 +1,10 @@
-﻿define('card-manager', ['jquery', 'ko', 'router', 'data-context', 'utils', 'dom', 'amplify', 'config', 'global'],
-    function ($, ko, router, dataContext, utils, dom, amplify, config, global) {
+﻿define('card-manager', ['jquery', 'ko', 'router', 'data-context', 'utils', 'dom', 'amplify', 'config', 'global', 'vm'],
+    function ($, ko, router, dataContext, utils, dom, amplify, config, global, vm) {
         var
             deleteCardOptions,
             register = function () {
                 var $deleteDialog = $('#deleteDialog');
+                var $cardInfoDialog = $('#card-info-dialog');
                 $('body').on('click.modal.data-api', '[data-toggle="delete"]', function () {
                     deleteCard();
                 });
@@ -22,6 +23,11 @@
                         callback: callback
                     };
                     $deleteDialog.modal('show');
+                });
+
+                amplify.subscribe(config.pubs.showCardInfo, function (data) {
+                    vm.cardInfo.activate(data);
+                    $cardInfoDialog.modal('show');
                 });
             },
             

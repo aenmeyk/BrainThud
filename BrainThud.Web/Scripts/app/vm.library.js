@@ -85,6 +85,10 @@
 
             showDeleteDialog = function (card) {
                 amplify.publish(config.pubs.showDeleteCard, card);
+            },
+
+            showCardInfoDialog = function (card) {
+                amplify.publish(config.pubs.showCardInfo, card);
             };
 
         init();
@@ -98,7 +102,8 @@
             filterCards: filterCards,
             selectedDeckName: selectedDeckName,
             isDeckSelected: isDeckSelected,
-            showDeleteDialog: showDeleteDialog
+            showDeleteDialog: showDeleteDialog,
+            showCardInfoDialog: showCardInfoDialog
         };
     }
 );

@@ -8,10 +8,10 @@ function ($, ko, dataContext, utils, global) {
         },
         fetch = function () {
             return $.Deferred(function (def) {
-                $.when(dataContext.config.getData(configOptions))
+                $.when(dataContext.userConfiguration.getData(configOptions))
                     .done(function () {
                         if (userConfiguration()[0]) {
-                            global.userId = userConfiguration()[0].userId;
+                            global.userId = userConfiguration()[0].userId();
                             global.routePrefix = '#/' + global.userId + '/';
                             var datePath = utils.getDatePath();
                             $.when(
