@@ -142,8 +142,6 @@
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="ViewModels\QuizSummary.cs" />
-    <Compile Include="ViewModels\QuizViewModel.cs" />
     <Compile Include="Views\QuizView.xaml.cs">
       <DependentUpon>QuizView.xaml</DependentUpon>
     </Compile>
