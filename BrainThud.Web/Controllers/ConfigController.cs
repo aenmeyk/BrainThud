@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using BrainThud.Web.Data.AzureTableStorage;
@@ -9,30 +10,30 @@ namespace BrainThud.Web.Controllers
 {
     public class ConfigController : ApiControllerBase
     {
-        private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IAuthenticationHelper authenticationHelper;
+        private readonly Lazy<ITableStorageContext> lazyTableStorageContext;
+        private ITableStorageContext TableStorageContext { get { return this.lazyTableStorageContext.Value; } }
 
         public ConfigController(
             ITableStorageContextFactory tableStorageContextFactory,
             IAuthenticationHelper authenticationHelper)
         {
-            this.tableStorageContextFactory = tableStorageContextFactory;
             this.authenticationHelper = authenticationHelper;
+            this.lazyTableStorageContext = new Lazy<ITableStorageContext>(() =>
+                tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier));
         }
 
         public UserConfiguration Get()
         {
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-            return tableStorageContext.UserConfigurations.GetByNameIdentifier();
+            return this.TableStorageContext.UserConfigurations.GetByNameIdentifier();
         }
 
         public HttpResponseMessage Put(UserConfiguration userConfiguration)
         {
             if (this.ModelState.IsValid)
             {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-                tableStorageContext.UserConfigurations.Update(userConfiguration);
-                tableStorageContext.Commit();
+                this.TableStorageContext.UserConfigurations.Update(userConfiguration);
+                this.TableStorageContext.Commit();
 
                 return this.Request.CreateResponse(HttpStatusCode.OK, userConfiguration);
             }

@@ -15,21 +15,22 @@ namespace BrainThud.Web.Controllers
 {
     public class CardsController : ApiControllerBase
     {
-        private readonly ITableStorageContextFactory tableStorageContextFactory;
         private readonly IAuthenticationHelper authenticationHelper;
+        private readonly Lazy<ITableStorageContext> lazyTableStorageContext;
+        private ITableStorageContext TableStorageContext { get { return this.lazyTableStorageContext.Value; } }
 
         public CardsController(
             ITableStorageContextFactory tableStorageContextFactory,
             IAuthenticationHelper authenticationHelper)
         {
-            this.tableStorageContextFactory = tableStorageContextFactory;
             this.authenticationHelper = authenticationHelper;
+            this.lazyTableStorageContext = new Lazy<ITableStorageContext>(() =>
+                tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier));
         }
 
         public Card Get(int userId, int cardId)
         {
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-            var card = tableStorageContext.Cards.GetById(userId, cardId);
+            var card = this.TableStorageContext.Cards.GetById(userId, cardId);
             if (card == null) throw new HttpException((int)HttpStatusCode.NotFound, ErrorMessages.The_specified_card_could_not_be_found);
                
             return card;
@@ -37,21 +38,18 @@ namespace BrainThud.Web.Controllers
 
         public IEnumerable<Card> Get()
         {
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-            return tableStorageContext.Cards.GetForUser().ToList().OrderBy(x => x.CreatedTimestamp);
+            return this.TableStorageContext.Cards.GetForUser().ToList().OrderBy(x => x.CreatedTimestamp);
         }
 
         public IEnumerable<Card> GetForQuiz(int year, int month, int day)
         {
-            var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-
             var quizDate = new DateTime(year, month, day)
                 .AddDays(1).Date
                 .AddMilliseconds(-1);
 
-            var quizResults = tableStorageContext.QuizResults.GetForQuiz(year, month, day).ToList();
-            var userCards = tableStorageContext.Cards.GetForUser().Where(x => x.QuizDate <= quizDate).ToList();
-            var quizResultCards = tableStorageContext.Cards.GetForQuizResults(quizResults);
+            var quizResults = this.TableStorageContext.QuizResults.GetForQuiz(year, month, day).ToList();
+            var userCards = this.TableStorageContext.Cards.GetForUser().Where(x => x.QuizDate <= quizDate).ToList();
+            var quizResultCards = this.TableStorageContext.Cards.GetForQuizResults(quizResults);
 
             return userCards.Union(quizResultCards).ToList().OrderBy(x => x.CreatedTimestamp);
         }
@@ -61,9 +59,8 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-                tableStorageContext.Cards.Update(card);
-                tableStorageContext.Commit();
+                this.TableStorageContext.Cards.Update(card);
+                this.TableStorageContext.Commit();
 
                 return this.Request.CreateResponse(HttpStatusCode.OK, card);
             }
@@ -76,9 +73,8 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-                tableStorageContext.Cards.Add(card);
-                tableStorageContext.CommitBatch();
+                this.TableStorageContext.Cards.Add(card);
+                this.TableStorageContext.CommitBatch();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, card);
 
                 var routeValues = new
@@ -99,10 +95,9 @@ namespace BrainThud.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var tableStorageContext = this.tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD, this.authenticationHelper.NameIdentifier);
-                tableStorageContext.Cards.DeleteById(userId, cardId);
-                tableStorageContext.QuizResults.DeleteByCardId(cardId);
-                tableStorageContext.Commit();
+                this.TableStorageContext.Cards.DeleteById(userId, cardId);
+                this.TableStorageContext.QuizResults.DeleteByCardId(cardId);
+                this.TableStorageContext.Commit();
 
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             }
