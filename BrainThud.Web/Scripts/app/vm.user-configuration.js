@@ -16,26 +16,22 @@
                     });
             },
             
-            updateUserConfiguration = function () {
-                var item = ko.toJS(userConfiguration);
-                $.when(dataContext.userConfiguration.updateData({
-                    data: item
-                }))
-                .then(function () {
-                    toastr.success('Success!');
-                });
-            },
-
             updateCommand = ko.asyncCommand({
                 execute: function (complete) {
-                    $.when(updateUserConfiguration())
-                        .always(complete);
-                    return;
+                    var item = ko.toJS(userConfiguration);
+                    $.when(dataContext.userConfiguration.updateData({
+                            data: item
+                        }))
+                        .always(function() {
+                            complete();
+                            toastr.success('Success!');
+                        });
                 },
                 canExecute: function (isExecuting) {
-                    return true;
+                    return !isExecuting && userConfiguration().dirtyFlag().isDirty();
                 }
             });
+
 
         return {
             activate: activate,

@@ -52,6 +52,7 @@
                     .quizInterval4(dto.quizInterval4)
                     .quizInterval5(dto.quizInterval5);
 
+                singleUserConfiguration.dirtyFlag().reset();
                 return singleUserConfiguration;
             },
             
@@ -71,6 +72,7 @@
                     .userId(dto.userId)
                     .entityId(dto.entityId);
 
+                singleCard.dirtyFlag().reset();
                 return singleCard;
             },
             
@@ -86,6 +88,7 @@
                     .userId(dto.userId)
                     .entityId(dto.entityId);
 
+                singleQuizResult.dirtyFlag().reset();
                 return singleQuizResult;
             };
 

@@ -119,7 +119,7 @@
         
     <div class="row-fluid skip-line">
         <div class="span10 offset1">
-            <button type="button" class="btn right-align" data-bind="command: updateCommand">Save</button>
+            <button type="button" class="btn right-align" data-bind="command: updateCommand, activity: updateCommand.isExecuting">Save</button>
         </div>
     </div>
 

@@ -9,10 +9,6 @@
                     deleteCard();
                 });
 
-                amplify.subscribe(config.pubs.createNewCard, function (newCard) {
-                    createCard(newCard);
-                });
-
                 amplify.subscribe(config.pubs.showEditCard, function (cardId) {
                     router.navigateTo(global.routePrefix + 'cards/' + cardId + '/edit');
                 });
@@ -28,14 +24,6 @@
                 amplify.subscribe(config.pubs.showCardInfo, function (data) {
                     vm.cardInfo.activate(data);
                     $cardInfoDialog.modal('show');
-                });
-            },
-            
-            createCard = function(newCard) {
-                $.when(dataContext.card.createData({ data: newCard }))
-                .then(function () {
-                    toastr.success('Success!');
-                    amplify.publish(config.pubs.createCard);
                 });
             },
 

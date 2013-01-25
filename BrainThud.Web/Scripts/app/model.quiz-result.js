@@ -11,6 +11,9 @@
             self.isCorrect = ko.observable();
             self.userId = ko.observable();
             self.entityId = ko.observable();
+            self.dirtyFlag = new ko.DirtyFlag([
+                self.isCorrect
+            ]);
         };
 
         return QuizResult;

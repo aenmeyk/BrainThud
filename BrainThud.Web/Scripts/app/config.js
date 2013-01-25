@@ -33,7 +33,6 @@
 
             pubs = {
                 createQuizResult: 'create-quiz-result',
-                createCard: 'create-card',
                 updateCard: 'update-card',
                 deleteCard: 'delete-card',
                 showCurrentCard: 'show-current-card',

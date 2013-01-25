@@ -91,10 +91,10 @@
                 var content = {
                     datePath: options.params.datePath,
                     userIdPath: options.params.userId,
-                    cardIdPath: data.cardId,
+                    cardIdPath: data.cardId
                 };
 
-                _.extend(content, data.quizResult);
+                _.extend(content, data);
                 
                 return amplify.request({
                     resourceId: 'updateQuizResult',

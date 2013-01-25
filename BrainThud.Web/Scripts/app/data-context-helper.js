@@ -69,7 +69,8 @@
                                         break;
                                     }
                                 }
-
+                                
+                                options.data.dirtyFlag().reset();
                                 publishCacheChanged();
                                 def.resolve();
                             },

@@ -26,26 +26,22 @@
                 editor.refreshPreview('edit');
             },
 
-            updateCard = function () {
-                var item = ko.toJS(card);
-                dom.getCardValues(item, 'edit');
-                $.when(dataContext.card.updateData({
-                    data: item
-                }))
-                .then(function () {
-                    toastr.success('Success!');
-                    router.navigateTo(global.previousUrl);
-                });
-            },
-
             updateAndCloseCommand = ko.asyncCommand({
                 execute: function (complete) {
-                    $.when(updateCard())
-                        .always(complete);
+                    var item = ko.toJS(card);
+                    dom.getCardValues(item, 'edit');
+                    $.when(dataContext.card.updateData({
+                            data: item
+                        }))
+                        .always(function () {
+                            complete();
+                            toastr.success('Success!');
+                            router.navigateTo(global.previousUrl);
+                        });
                     return;
                 },
                 canExecute: function (isExecuting) {
-                    return isValid();
+                    return !isExecuting && isValid();
                 }
             });
 

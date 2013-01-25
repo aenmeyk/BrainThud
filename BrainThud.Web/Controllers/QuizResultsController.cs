@@ -103,7 +103,7 @@ namespace BrainThud.Web.Controllers
 
                 var card = GetCard(userId, cardId, this.TableStorageContext);
 
-                // We are updateing the QuizResult for this card so first reverse the previous result then apply the new one
+                // We are updating the QuizResult for this card so first reverse the previous result then apply the new one
                 this.quizResultHandler.DecrementCardLevel(card);
                 this.quizResultHandler.IncrementCardLevel(quizResult, card);
                 this.TableStorageContext.QuizResults.Update(quizResult);

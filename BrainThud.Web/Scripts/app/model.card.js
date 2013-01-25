@@ -28,6 +28,12 @@
             self.localizedQuizDate = ko.computed(function () {
                 return moment(self.quizDate()).format('L');
             });
+            self.dirtyFlag = new ko.DirtyFlag([
+                self.deckName,
+                self.tags,
+                self.question,
+                self.answer
+            ]);
         };
 
         return Card;

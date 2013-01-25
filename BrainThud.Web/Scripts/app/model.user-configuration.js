@@ -31,6 +31,14 @@
             self.quizInterval5DayLabel = ko.computed(function() {
                 return (self.quizInterval5() === 1) ? 'day' : 'days';
             });
+            self.dirtyFlag = new ko.DirtyFlag([
+                self.quizInterval0,
+                self.quizInterval1,
+                self.quizInterval2,
+                self.quizInterval3,
+                self.quizInterval4,
+                self.quizInterval5
+            ]);
         };
 
         return UserConfiguration;

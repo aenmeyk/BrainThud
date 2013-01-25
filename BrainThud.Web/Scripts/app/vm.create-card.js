@@ -1,14 +1,7 @@
-﻿define('vm.create-card', ['ko', 'editor', 'dom', 'model', 'amplify', 'config'],
-    function (ko, editor, dom, model, amplify, config) {
+﻿define('vm.create-card', ['ko', 'data-context', 'editor', 'dom', 'model', 'amplify', 'config'],
+    function (ko, dataContext, editor, dom, model, amplify, config) {
         var
             card = ko.observable(new model.Card()),
-
-            init = function () {
-                amplify.subscribe(config.pubs.createCard, function () {
-                    dom.resetNewCard();
-                    editor.refreshPreview('create');
-                });
-            },
             
             isValid = ko.computed(function() {
                 return card().deckName() && card().question() && card().answer();
@@ -16,27 +9,26 @@
 
             activate = function () { },
 
-            createCard = function () {
-                var newCard = {
-                    quizDate: new Date(),
-                    level: 0
-                };
-                dom.getCardValues(newCard, 'create');
-                amplify.publish(config.pubs.createNewCard, newCard);
-            },
-
             createAndNewCommand = ko.asyncCommand({
                 execute: function (complete) {
-                        $.when(createCard())
-                            .always(complete);
-                        return;
+                    var newCard = {
+                        quizDate: new Date(),
+                        level: 0
+                    };
+                    dom.getCardValues(newCard, 'create');
+                    
+                    $.when(dataContext.card.createData({ data: newCard }))
+                        .always(function () {
+                            toastr.success('Success!');
+                            dom.resetNewCard();
+                            editor.refreshPreview('create');
+                            complete();
+                        });
                 },
                 canExecute: function (isExecuting) {
-                    return isValid();
+                    return !isExecuting && isValid();
                 }
             });
-
-        init();
 
         return {
             activate: activate,

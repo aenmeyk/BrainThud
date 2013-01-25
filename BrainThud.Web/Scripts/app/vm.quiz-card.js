@@ -43,16 +43,26 @@
 
             getUpdateConfig = function (quizResult) {
                 return {
-                    data: {
-                        cardId: card().entityId(),
-                        quizResult: quizResult
-                    },
+                    data: quizResult,
                     params: {
                         datePath: utils.getDatePath(),
                         userId: global.userId
                     }
                 };
             },
+//
+//            getUpdateConfig = function (quizResult) {
+//                return {
+//                    data: {
+//                        cardId: card().entityId(),
+//                        quizResult: quizResult
+//                    },
+//                    params: {
+//                        datePath: utils.getDatePath(),
+//                        userId: global.userId
+//                    }
+//                };
+//            },
 
             submitQuizResult = function (isCorrect) {
                 var currentCard = card();
