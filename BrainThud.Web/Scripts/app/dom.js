@@ -19,7 +19,7 @@
             
             showLoading = function() {
                 $('#loading').css({
-                    height: "100px"
+                    height: "40px"
                 });
             },
             
