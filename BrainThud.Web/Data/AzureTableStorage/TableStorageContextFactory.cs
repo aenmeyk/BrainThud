@@ -1,5 +1,4 @@
-﻿using BrainThud.Web.Calendars;
-using BrainThud.Web.Data.KeyGenerators;
+﻿using BrainThud.Web.Data.KeyGenerators;
 
 namespace BrainThud.Web.Data.AzureTableStorage
 {
@@ -8,18 +7,15 @@ namespace BrainThud.Web.Data.AzureTableStorage
         private readonly ICloudStorageServices cloudStorageServices;
         private readonly ICardEntityKeyGenerator cardKeyGenerator;
         private readonly ICardEntityKeyGenerator quizResultKeyGenerator;
-        private readonly IQuizCalendar quizCalendar;
 
         public TableStorageContextFactory(
             ICloudStorageServices cloudStorageServices,
             ICardEntityKeyGenerator cardKeyGenerator,
-            ICardEntityKeyGenerator quizResultKeyGenerator,
-            IQuizCalendar quizCalendar)
+            ICardEntityKeyGenerator quizResultKeyGenerator)
         {
             this.cloudStorageServices = cloudStorageServices;
             this.cardKeyGenerator = cardKeyGenerator;
             this.quizResultKeyGenerator = quizResultKeyGenerator;
-            this.quizCalendar = quizCalendar;
         }
 
         public ITableStorageContext CreateTableStorageContext(string tableName, string nameIdentifier = NameIdentifiers.MASTER)
@@ -28,7 +24,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
                 this.cloudStorageServices,
                 this.cardKeyGenerator,
                 this.quizResultKeyGenerator,
-                this.quizCalendar,
                 tableName, 
                 nameIdentifier);
         }

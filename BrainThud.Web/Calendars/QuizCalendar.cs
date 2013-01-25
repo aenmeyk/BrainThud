@@ -2,5 +2,5 @@
 
 namespace BrainThud.Web.Calendars
 {
-    public interface IQuizCalendar : IDictionary<int, int> { }
+    public class QuizCalendar : Dictionary<int, int>, IQuizCalendar{ }
 }

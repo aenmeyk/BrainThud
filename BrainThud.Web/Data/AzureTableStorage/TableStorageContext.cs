@@ -13,30 +13,28 @@ namespace BrainThud.Web.Data.AzureTableStorage
     {
         private readonly ICardEntityKeyGenerator cardKeyGenerator;
         private readonly ICardEntityKeyGenerator quizResultKeyGenerator;
-        private readonly IQuizCalendar quizCalendar;
         private readonly string tableName;
         private readonly string nameIdentifier;
         private readonly Lazy<ICardRepository> cards;
         private readonly Lazy<IQuizResultsRepository> quizResults;
         private readonly Lazy<IUserConfigurationRepository> userConfigurations;
         private readonly Lazy<ITableStorageRepository<MasterConfiguration>> masterConfigurations;
+        private IQuizCalendar QuizCalendar { get { return this.UserConfigurations.GetByNameIdentifier().QuizCalendar; } }
 
         public TableStorageContext(
-            ICloudStorageServices cloudStorageServices, 
+            ICloudStorageServices cloudStorageServices,
             ICardEntityKeyGenerator cardKeyGenerator,
             ICardEntityKeyGenerator quizResultKeyGenerator,
-            IQuizCalendar quizCalendar,
-            string tableName, 
+            string tableName,
             string nameIdentifier)
             : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
         {
             this.cardKeyGenerator = cardKeyGenerator;
             this.quizResultKeyGenerator = quizResultKeyGenerator;
-            this.quizCalendar = quizCalendar;
             this.tableName = tableName;
             this.nameIdentifier = nameIdentifier;
             this.IgnoreResourceNotFoundException = true;
-            this.cards = new Lazy<ICardRepository>(() => new CardRepository(this, this.cardKeyGenerator, this.quizCalendar, this.nameIdentifier));
+            this.cards = new Lazy<ICardRepository>(() => new CardRepository(this, this.cardKeyGenerator, this.QuizCalendar, this.nameIdentifier));
             this.quizResults = new Lazy<IQuizResultsRepository>(() => new QuizResultsRepository(this, this.quizResultKeyGenerator, this.nameIdentifier));
             this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => new UserConfigurationRepository(this, this.cardKeyGenerator, this.nameIdentifier));
             this.masterConfigurations = new Lazy<ITableStorageRepository<MasterConfiguration>>(() => new TableStorageRepository<MasterConfiguration>(this));
@@ -66,7 +64,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
                 }
             }
 
-            if(!alreadyAttached)
+            if (!alreadyAttached)
             {
                 this.Detach(entity);
                 this.AttachTo(this.tableName, entity);

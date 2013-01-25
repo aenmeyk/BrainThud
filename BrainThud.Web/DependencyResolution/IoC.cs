@@ -19,7 +19,7 @@ namespace BrainThud.Web.DependencyResolution
                         });
 
                     x.For<IControllerFactory>().Use<DefaultControllerFactory>();
-                    x.For<IQuizCalendar>().Use<DefaultQuizCalendar>();
+//                    x.For<IQuizCalendar>().Use<DefaultQuizCalendar>();
                     x.For<ITableStorageKeyGenerator>().Use<CardKeyGenerator>();
 
                     var cardKeyGenerator = x.For<ICardEntityKeyGenerator>().Use<CardKeyGenerator>();

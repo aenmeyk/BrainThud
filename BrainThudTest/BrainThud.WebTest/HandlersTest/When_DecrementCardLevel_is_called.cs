@@ -26,7 +26,7 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         [Test]
         public void Then_the_QuizDate_should_be_reduced_by_days_of_previous_level()
         {
-            var expectedQuizDate = quizDate.AddDays(-CALENDAR_DAYS);
+            var expectedQuizDate = quizDate.AddDays(-this.UserConfiguration.QuizCalendar[CALENDAR_LEVEL]);
             this.card.QuizDate.Should().Be(expectedQuizDate);
         }
     }

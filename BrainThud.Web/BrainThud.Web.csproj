@@ -163,6 +163,7 @@
     <Compile Include="App_Start\MvcRouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Calendars\QuizCalendar.cs" />
     <Compile Include="Calendars\DefaultQuizCalendar.cs" />
     <Compile Include="Calendars\IQuizCalendar.cs" />
     <Compile Include="Constants.cs" />

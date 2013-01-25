@@ -15,7 +15,6 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         {
             var quizResult = new QuizResult { IsCorrect = true };
             this.card = new Card { Level = CARD_LEVEL };
-            this.QuizCalendar.Setup(x => x[CARD_LEVEL + 1]).Returns(90);
             this.QuizResultHandler.IncrementCardLevel(quizResult, this.card);
         }
 
@@ -28,7 +27,7 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         [Test]
         public void Then_the_QuizDate_is_updated_to_the_next_day_in_the_calendar()
         {
-            var expectedQuizDate = DateTime.UtcNow.AddDays(this.QuizCalendar.Object[CARD_LEVEL + 1]).Date;
+            var expectedQuizDate = DateTime.UtcNow.AddDays(this.UserConfiguration.QuizCalendar[CARD_LEVEL + 1]).Date;
             this.card.QuizDate.Should().Be(expectedQuizDate);
         }
     }
