@@ -112,9 +112,6 @@
     <Compile Include="..\BrainThud.Core\Trace.cs">
       <Link>Core\Trace.cs</Link>
     </Compile>
-    <Compile Include="..\BrainThud.Core\ViewModels\QuizViewModel.cs">
-      <Link>Core\ViewModels\QuizViewModel.cs</Link>
-    </Compile>
     <Compile Include="..\BrainThud.Core\ViewModels\ViewModelBase.cs">
       <Link>Core\ViewModels\ViewModelBase.cs</Link>
     </Compile>
