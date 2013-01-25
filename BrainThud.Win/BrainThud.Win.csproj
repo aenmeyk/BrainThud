@@ -118,6 +118,9 @@
     <Compile Include="..\BrainThud.Core\ViewModels\ViewModelBase.cs">
       <Link>Core\ViewModels\ViewModelBase.cs</Link>
     </Compile>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,8 @@
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="ViewModels\QuizSummary.cs" />
+    <Compile Include="ViewModels\QuizViewModel.cs" />
     <Compile Include="Views\QuizView.xaml.cs">
       <DependentUpon>QuizView.xaml</DependentUpon>
     </Compile>
