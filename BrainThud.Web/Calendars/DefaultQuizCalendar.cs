@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace BrainThud.Web.Calendars
+﻿namespace BrainThud.Web.Calendars
 {
-    public class DefaultQuizCalendar : Dictionary<int, int>, IQuizCalendar
+    public class DefaultQuizCalendar : QuizCalendar
     {
         public DefaultQuizCalendar()
         {

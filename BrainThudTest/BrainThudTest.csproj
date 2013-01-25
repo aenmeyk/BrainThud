@@ -211,6 +211,9 @@
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserConfigurationRepositoryTest\Given_a_new_UserConfigurationRepository.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserConfigurationRepositoryTest\When_GetByNameIdentifier_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserConfigurationRepositoryTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_DecrementCardLevel_is_called_with_a_level_less_than_zero.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_IncrementCardLevel_is_called_with_a_level_less_than_zero.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_IncrementCardLevel_is_called_with_a_level_greater_than_the_max_QuizInterval.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_DecrementCardLevel_is_called_and_the_card_is_level_0.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_DecrementCardLevel_is_called.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\Given_a_new_UserHelper.cs" />

@@ -26,15 +26,18 @@ namespace BrainThud.Web.Handlers
                 ? card.Level + 1
                 : 0;
 
-            card.QuizDate = DateTime.UtcNow.AddDays(this.QuizCalendar[card.Level]).Date;
+            if(card.Level < 0) card.Level = 0;
+
+            card.QuizDate = DateTime.UtcNow.AddDays(this.QuizCalendar.GetQuizInterval(card.Level)).Date;
         }
 
         public void DecrementCardLevel(Card card)
         {
+            if(card.Level < 0) card.Level = 0;
             if (card.Level == 0) return;
 
             card.Level--;
-            card.QuizDate = card.QuizDate.AddDays(-this.QuizCalendar[card.Level]).Date;
+            card.QuizDate = card.QuizDate.AddDays(-this.QuizCalendar.GetQuizInterval(card.Level)).Date;
         }
     }
 }

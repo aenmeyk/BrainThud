@@ -2,5 +2,8 @@
 
 namespace BrainThud.Web.Calendars
 {
-    public interface IQuizCalendar : IDictionary<int, int> { }
+    public interface IQuizCalendar : IDictionary<int, int>
+    {
+        int GetQuizInterval(int cardLevel);
+    }
 }
