@@ -6,6 +6,8 @@ namespace BrainThud.Web.Model
     public class UserConfiguration : AzureTableEntity
     {
         public int UserId { get; set; }
+
+        // TODO: Make this some sort of list or array
         public int QuizInterval0 { get; set; }
         public int QuizInterval1 { get; set; }
         public int QuizInterval2 { get; set; }

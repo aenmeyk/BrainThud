@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data.AzureQueues;
+﻿using BrainThud.Web.Calendars;
+using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Helpers;
 using Moq;
 
@@ -14,7 +15,8 @@ namespace BrainThudTest.BrainThud.WebTest.HelpersTest.UserHelperTest
 
             this.UserHelper = new UserHelper(
                 authenticationHelper.Object, 
-                this.IdentityQueueManager.Object);
+                this.IdentityQueueManager.Object,
+                new DefaultQuizCalendar());
         }
 
         protected UserHelper UserHelper { get; private set; }
