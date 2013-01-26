@@ -1,5 +1,5 @@
-﻿define('vm.quiz', ['jquery', 'ko', 'underscore', 'moment', 'amplify', 'config', 'data-context', 'utils', 'global', 'dom'],
-    function ($, ko, _, moment, amplify, config, dataContext, utils, global, dom) {
+﻿define('vm.quiz', ['jquery', 'ko', 'underscore', 'moment', 'amplify', 'config', 'data-context', 'utils', 'global'],
+    function ($, ko, _, moment, amplify, config, dataContext, utils, global) {
         var quizDate = moment().format('L'),
             quizResults = ko.observableArray([]),
             cards = ko.observableArray([]),
@@ -27,7 +27,6 @@
             init = function () {
                 amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
                     cards(data);
-//                    dataContext.quizResult.refreshCache();
                 });
                 
                 amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
@@ -41,7 +40,7 @@
             },
             
             getQuizCards = function () {
-                return dataContext.quizCards.getData({
+                return dataContext.quizCard.getData({
                         results: cards,
                         params: {
                             datePath: utils.getDatePath(),

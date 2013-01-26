@@ -37,7 +37,7 @@
                     }
                 })).then(function () {
                     $("#deleteDialog").modal('hide');
-                    dataContext.quizCards.removeCachedItem(deleteCardOptions.currentCard);
+                    dataContext.quizCard.removeCachedItem(deleteCardOptions.currentCard);
                     amplify.publish(config.pubs.deleteCard);
                     if (deleteCardOptions.callback) {
                         deleteCardOptions.callback();

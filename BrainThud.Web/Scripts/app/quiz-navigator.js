@@ -16,11 +16,6 @@
             }),
 
              init = function () {
-//                 amplify.subscribe(config.pubs.cardCacheChanged, function () {
-//                     dataContext.quizCards.setCacheInvalid();
-//                     isActivated(false);
-//                 });
-
                  amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
                      cards(data);
                      var cardsLength = cards().length;
@@ -32,7 +27,7 @@
 
            activate = function (routeData) {
                isActivated(true);
-               $.when(dataContext.quizCards.getData({
+               $.when(dataContext.quizCard.getData({
                    results: cards,
                    params: {
                        datePath: utils.getDatePath(),

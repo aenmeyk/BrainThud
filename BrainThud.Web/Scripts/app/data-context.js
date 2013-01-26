@@ -16,7 +16,7 @@
                 cardChangedPub: config.pubs.cardCacheChanged
             }),
             
-            quizCards = new dataContextHelper.EntitySet({
+            quizCard = new dataContextHelper.EntitySet({
                 get: dataService.card.getForQuiz,
                 deleteItem: dataService.card.deleteItem,
                 mapper: modelMapper.card,
@@ -34,7 +34,7 @@
         return {
             userConfiguration: userConfiguration,
             card: card,
-            quizCards: quizCards,
+            quizCard: quizCard,
             quizResult: quizResult
         };
     }

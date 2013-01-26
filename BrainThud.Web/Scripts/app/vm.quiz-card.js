@@ -55,7 +55,7 @@
                 var currentCard = card();
                 currentCard.isCorrect(isCorrect);
                 currentCard.completedQuizDate(moment.utc().format());
-                dataContext.quizCards.updateCachedItem(currentCard);
+                dataContext.quizCard.updateCachedItem(currentCard);
                 dataContext.card.updateCachedItem(currentCard);
                 
                 var existingQuizResult = _.find(quizResults(), function (item) {

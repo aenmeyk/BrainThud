@@ -22,7 +22,7 @@ function ($, ko, dataContext, utils, global) {
                                     }
                                 }),
                                 dataContext.card.getData({}),
-                                dataContext.quizCards.getData({
+                                dataContext.quizCard.getData({
                                     params: {
                                         datePath: datePath,
                                         userId: global.userId
