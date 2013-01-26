@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using BrainThud.Web;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.DependencyResolution;
@@ -16,14 +17,15 @@ namespace BrainThud.Admin
             var contextFactory = container.GetInstance<ITableStorageContextFactory>();
             var context = contextFactory.CreateTableStorageContext(AzureTableNames.CARD);
 
-            var cards = context.Cards.GetAll();
+            var items = context.QuizResults.GetAll();
 
-            foreach(var card in cards)
+            foreach (var item in items)
             {
-                context.Cards.Update(card);
+                item.CardQuizDate = DateTime.UtcNow.AddDays(-1);
+                context.QuizResults.Update(item);
             }
 
-            // context.Commit();
+             context.Commit();
         }
 
         static void Initialize()
