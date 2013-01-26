@@ -77,7 +77,7 @@ namespace BrainThud.Web.Controllers
                 }
 
                 var card = GetCard(userId, cardId, this.TableStorageContext);
-                this.quizResultHandler.IncrementCardLevel(quizResult, card);
+                this.quizResultHandler.ApplyQuizResult(quizResult, card);
                 this.TableStorageContext.QuizResults.Add(quizResult);
                 this.TableStorageContext.Cards.Update(card);
                 this.TableStorageContext.CommitBatch();
@@ -104,8 +104,10 @@ namespace BrainThud.Web.Controllers
                 var card = GetCard(userId, cardId, this.TableStorageContext);
 
                 // We are updating the QuizResult for this card so first reverse the previous result then apply the new one
-                this.quizResultHandler.DecrementCardLevel(card);
-                this.quizResultHandler.IncrementCardLevel(quizResult, card);
+                var existingQuizResult = this.TableStorageContext.QuizResults.Get(quizResult.PartitionKey, quizResult.RowKey);
+                this.quizResultHandler.ReverseQuizResult(existingQuizResult, card);
+                this.TableStorageContext.Detach(existingQuizResult);
+                this.quizResultHandler.ApplyQuizResult(quizResult, card);
                 this.TableStorageContext.QuizResults.Update(quizResult);
                 this.TableStorageContext.Cards.Update(card);
                 this.TableStorageContext.CommitBatch();

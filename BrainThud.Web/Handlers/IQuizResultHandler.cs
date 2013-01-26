@@ -4,7 +4,7 @@ namespace BrainThud.Web.Handlers
 {
     public interface IQuizResultHandler 
     {
-        void IncrementCardLevel(QuizResult quizResult, Card card);
-        void DecrementCardLevel(Card card);
+        void ApplyQuizResult(QuizResult quizResult, Card card);
+        void ReverseQuizResult(QuizResult quizResult, Card card);
     }
 }

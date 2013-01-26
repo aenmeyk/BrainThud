@@ -211,11 +211,9 @@
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserConfigurationRepositoryTest\Given_a_new_UserConfigurationRepository.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserConfigurationRepositoryTest\When_GetByNameIdentifier_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserConfigurationRepositoryTest\When_nothing_changes.cs" />
-    <Compile Include="BrainThud.WebTest\HandlersTest\When_DecrementCardLevel_is_called_with_a_level_less_than_zero.cs" />
-    <Compile Include="BrainThud.WebTest\HandlersTest\When_IncrementCardLevel_is_called_with_a_level_less_than_zero.cs" />
-    <Compile Include="BrainThud.WebTest\HandlersTest\When_IncrementCardLevel_is_called_with_a_level_greater_than_the_max_QuizInterval.cs" />
-    <Compile Include="BrainThud.WebTest\HandlersTest\When_DecrementCardLevel_is_called_and_the_card_is_level_0.cs" />
-    <Compile Include="BrainThud.WebTest\HandlersTest\When_DecrementCardLevel_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_ReverseQuizResult_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_ApplyQuizResult_is_called_with_a_level_less_than_zero.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_ApplyQuizResult_is_called_with_a_level_greater_than_the_max_QuizInterval.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\Given_a_new_UserHelper.cs" />
     <Compile Include="BrainThud.WebTest\HelpersTest\UserHelperTest\When_CreateUserConfiguration_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Model\CardTest\Given_a_new_Card.cs">
@@ -264,9 +262,9 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_GetForQuiz_is_called_with_a_DateTime.cs" />
     <Compile Include="BrainThud.WebTest\Fakes\CardsControllerFake.cs" />
     <Compile Include="BrainThud.WebTest\Fakes\QuizResultsControllerFake.cs" />
-    <Compile Include="BrainThud.WebTest\HandlersTest\When_IncrementCardLevel_is_called_with_an_incorrect_result.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_ApplyQuizResult_is_called_with_an_incorrect_result.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\Given_a_new_QuizResultHandler.cs" />
-    <Compile Include="BrainThud.WebTest\HandlersTest\When_IncrementCardLevel_is_called_with_a_correct_result.cs" />
+    <Compile Include="BrainThud.WebTest\HandlersTest\When_ApplyQuizResult_is_called_with_a_correct_result.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\WebRoleTest\Given_a_new_WebRole.cs" />
     <Compile Include="BrainThud.WebTest\WebRoleTest\When_Run_is_called.cs" />

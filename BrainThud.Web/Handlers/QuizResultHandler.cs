@@ -20,24 +20,24 @@ namespace BrainThud.Web.Handlers
                 .UserConfigurations.GetByNameIdentifier().QuizCalendar);
         }
 
-        public void IncrementCardLevel(QuizResult quizResult, Card card)
+        public void ApplyQuizResult(QuizResult quizResult, Card card)
         {
+            quizResult.CardLevel = card.Level >= 0 ? card.Level : 0;
+            quizResult.CardQuizDate = card.QuizDate;
             card.Level = quizResult.IsCorrect
                 ? card.Level + 1
                 : 0;
 
             if(card.Level < 0) card.Level = 0;
 
-            card.QuizDate = DateTime.UtcNow.AddDays(this.QuizCalendar.GetQuizInterval(card.Level)).Date;
+            var daysQuizExtended = this.QuizCalendar.GetQuizInterval(card.Level);
+            card.QuizDate = DateTime.UtcNow.AddDays(daysQuizExtended).Date;
         }
 
-        public void DecrementCardLevel(Card card)
+        public void ReverseQuizResult(QuizResult quizResult, Card card)
         {
-            if(card.Level < 0) card.Level = 0;
-            if (card.Level == 0) return;
-
-            card.Level--;
-            card.QuizDate = card.QuizDate.AddDays(-this.QuizCalendar.GetQuizInterval(card.Level)).Date;
+            card.Level = quizResult.CardLevel;
+            card.QuizDate = quizResult.CardQuizDate;
         }
     }
 }
