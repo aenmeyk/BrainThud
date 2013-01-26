@@ -25,6 +25,10 @@
                     vm.cardInfo.activate(data);
                     $cardInfoDialog.modal('show');
                 });
+
+                amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
+                    dataContext.card.setCacheInvalid();
+                });
             },
 
             deleteCard = function () {

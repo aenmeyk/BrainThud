@@ -5,12 +5,13 @@
             var
                 cachedResults,
                 mostRecentGetParams,
+                isCacheInvalid = false,
                 
                 getData = function (options) {
                     var def = new $.Deferred();
                     mostRecentGetParams = options.params;
 
-                    if (options.invalidateCache) {
+                    if (options.invalidateCache || isCacheInvalid) {
                         cachedResults = undefined;
                     }
 
@@ -103,6 +104,18 @@
                     });
                 },
 
+                updateCachedItem = function (item) {
+                    for (var i = 0; i < cachedResults.length; i++) {
+                        if (cachedResults[i].partitionKey() === item.partitionKey() && cachedResults[i].rowKey() === item.rowKey()) {
+                            cachedResults[i] = item;
+                            break;
+                        }
+                    }
+
+                    publishCacheChanged();
+
+                },
+
                 publishCacheChanged = function () {
                     if (entitySetConfig.cardChangedPub) {
                         amplify.publish(entitySetConfig.cardChangedPub, cachedResults);
@@ -116,6 +129,10 @@
                             params: mostRecentGetParams
                         });
                     }
+                },
+                
+                setCacheInvalid = function () {
+                    isCacheInvalid = true;
                 };
             
             return {
@@ -123,7 +140,9 @@
                 createData: createData,
                 updateData: updateData,
                 deleteData: deleteData,
-                refreshCache: refreshCache
+                updateCachedItem: updateCachedItem,
+                refreshCache: refreshCache,
+                setCacheInvalid: setCacheInvalid
             };
         };
 

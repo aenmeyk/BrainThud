@@ -1,7 +1,7 @@
 ﻿define('quiz-navigator', ['jquery', 'ko', 'underscore', 'router', 'data-context', 'utils', 'amplify', 'config', 'global', 'model'],
     function ($, ko, _, router, dataContext, utils, amplify, config, global, model) {
         var
-            isActivated = false,
+            isActivated = ko.observable(false),
             cardIndex = ko.observable(0),
             cards = ko.observableArray([]),
             
@@ -17,7 +17,7 @@
 
              init = function () {
                  amplify.subscribe(config.pubs.cardCacheChanged, function () {
-                     dataContext.quizCards.refreshCache();
+                     dataContext.quizCards.setCacheInvalid();
                  });
 
                  amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
@@ -30,7 +30,7 @@
              },
 
            activate = function (routeData) {
-               isActivated = true;
+               isActivated(true);
                $.when(dataContext.quizCards.getData({
                    results: cards,
                    params: {

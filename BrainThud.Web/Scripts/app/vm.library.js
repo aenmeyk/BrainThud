@@ -1,5 +1,5 @@
-﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config', 'router', 'global'],
-    function (ko, _, amplify, config, router, global) {
+﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config', 'router', 'global', 'data-context'],
+    function (ko, _, amplify, config, router, global, dataContext) {
         var
             selectedDeckSlug = ko.observable(''),
             cards = ko.observableArray([]),
@@ -50,18 +50,21 @@
                 });
             },
 
+            activate = function (routeData) {
+                if (routeData.deckNameSlug) {
+                    selectedDeckSlug(routeData.deckNameSlug);
+                }
+                dataContext.card.getData({
+                    results: cards
+                });
+            },
+
             editCard = function (card) {
                 amplify.publish(config.pubs.showEditCard, card.entityId());
             },
 
             flipCard = function (card) {
                 card.questionSideVisible(!card.questionSideVisible());
-            },
-
-            activate = function (routeData) {
-                if (routeData.deckNameSlug) {
-                    selectedDeckSlug(routeData.deckNameSlug);
-                }
             },
 
             filterCards = function (deckNameSlug) {

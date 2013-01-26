@@ -1,5 +1,5 @@
-﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'utils', 'amplify', 'config', 'global', 'quiz-navigator'],
-    function (_, ko, dataContext, utils, amplify, config, global, quizNavigator) {
+﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'utils', 'amplify', 'config', 'global', 'quiz-navigator', 'moment'],
+    function (_, ko, dataContext, utils, amplify, config, global, quizNavigator, moment) {
         var
             quizResults = ko.observableArray([]),
 
@@ -12,7 +12,7 @@
             }),
             
             activate = function (routeData) {
-                if (!quizNavigator.isActivated) {
+                if (!quizNavigator.isActivated()) {
                     quizNavigator.activate(routeData);
                 }
                 dataContext.quizResult.getData({
@@ -50,22 +50,12 @@
                     }
                 };
             },
-//
-//            getUpdateConfig = function (quizResult) {
-//                return {
-//                    data: {
-//                        cardId: card().entityId(),
-//                        quizResult: quizResult
-//                    },
-//                    params: {
-//                        datePath: utils.getDatePath(),
-//                        userId: global.userId
-//                    }
-//                };
-//            },
 
             submitQuizResult = function (isCorrect) {
                 var currentCard = card();
+                currentCard.isCorrect(isCorrect);
+                currentCard.completedQuizDate(moment.utc().format());
+                dataContext.quizCards.updateCachedItem(currentCard);
                 
                 var existingQuizResult = _.find(quizResults(), function (item) {
                     return item.cardId() === currentCard.entityId();
