@@ -25,10 +25,6 @@
                     vm.cardInfo.activate(data);
                     $cardInfoDialog.modal('show');
                 });
-
-                amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
-                    dataContext.card.setCacheInvalid();
-                });
             },
 
             deleteCard = function () {
@@ -41,6 +37,7 @@
                     }
                 })).then(function () {
                     $("#deleteDialog").modal('hide');
+                    dataContext.quizCards.removeCachedItem(deleteCardOptions.currentCard);
                     amplify.publish(config.pubs.deleteCard);
                     if (deleteCardOptions.callback) {
                         deleteCardOptions.callback();

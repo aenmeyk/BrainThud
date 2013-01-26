@@ -23,6 +23,7 @@
                                 cachedResults = [];
 
                                 entitySetConfig.mapper.mapResults(dto, cachedResults);
+                                isCacheInvalid = false;
 
                                 if (results) {
                                     results(cachedResults);
@@ -116,6 +117,17 @@
 
                 },
 
+                removeCachedItem = function (item) {
+                    for (var i = 0; i < cachedResults.length; i++) {
+                        if (cachedResults[i].partitionKey() === item.partitionKey() && cachedResults[i].rowKey() === item.rowKey()) {
+                            cachedResults.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                    publishCacheChanged();
+                },
+
                 publishCacheChanged = function () {
                     if (entitySetConfig.cardChangedPub) {
                         amplify.publish(entitySetConfig.cardChangedPub, cachedResults);
@@ -141,6 +153,7 @@
                 updateData: updateData,
                 deleteData: deleteData,
                 updateCachedItem: updateCachedItem,
+                removeCachedItem: removeCachedItem,
                 refreshCache: refreshCache,
                 setCacheInvalid: setCacheInvalid
             };

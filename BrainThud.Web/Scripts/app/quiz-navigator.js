@@ -16,9 +16,10 @@
             }),
 
              init = function () {
-                 amplify.subscribe(config.pubs.cardCacheChanged, function () {
-                     dataContext.quizCards.setCacheInvalid();
-                 });
+//                 amplify.subscribe(config.pubs.cardCacheChanged, function () {
+//                     dataContext.quizCards.setCacheInvalid();
+//                     isActivated(false);
+//                 });
 
                  amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
                      cards(data);

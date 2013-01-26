@@ -30,6 +30,7 @@
                 execute: function (complete) {
                     var item = ko.toJS(card);
                     dom.getCardValues(item, 'edit');
+                    dataContext.quizCards.updateCachedItem(card());
                     $.when(dataContext.card.updateData({
                             data: item
                         }))
