@@ -129,8 +129,8 @@
                 },
 
                 publishCacheChanged = function () {
-                    if (entitySetConfig.cardChangedPub) {
-                        amplify.publish(entitySetConfig.cardChangedPub, cachedResults);
+                    if (entitySetConfig.cacheChangedPub) {
+                        amplify.publish(entitySetConfig.cacheChangedPub, cachedResults);
                     }
                 },
                 
