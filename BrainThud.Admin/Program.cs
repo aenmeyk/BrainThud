@@ -17,8 +17,7 @@ namespace BrainThud.Admin
             var contextFactory = container.GetInstance<ITableStorageContextFactory>();
             var context = contextFactory.CreateTableStorageContext(AzureTableNames.CARD);
 
-            SetCardValues(context);
-//            SetQuizResultValues(context);
+            SetConfigValues(context);
 
 //             context.Commit();
         }
@@ -42,6 +41,22 @@ namespace BrainThud.Admin
             {
                 item.CardQuizDate = DateTime.UtcNow.AddDays(-1);
                 context.QuizResults.Update(item);
+            }
+        }
+
+        private static void SetConfigValues(ITableStorageContext context)
+        {
+            var items = context.UserConfigurations.GetAll();
+
+            foreach (var item in items)
+            {
+                item.QuizInterval0 = 1;
+                item.QuizInterval1 = 5;
+                item.QuizInterval2 = 14;
+                item.QuizInterval3 = 28;
+                item.QuizInterval4 = 60;
+                item.QuizInterval5 = 120;
+                context.UserConfigurations.Update(item);
             }
         }
 

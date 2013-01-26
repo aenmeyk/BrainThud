@@ -42,7 +42,7 @@
                     return;
                 },
                 canExecute: function (isExecuting) {
-                    return !isExecuting && isValid();
+                    return !isExecuting && card().dirtyFlag().isDirty() && isValid();
                 }
             });
 
