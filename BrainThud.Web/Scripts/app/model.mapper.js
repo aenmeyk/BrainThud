@@ -70,7 +70,9 @@
                     .quizDate(dto.quizDate)
                     .level(dto.level)
                     .userId(dto.userId)
-                    .entityId(dto.entityId);
+                    .entityId(dto.entityId)
+                    .isCorrect(dto.isCorrect)
+                    .completedQuizDate(dto.completedQuizDate);
 
                 singleCard.dirtyFlag().reset();
                 return singleCard;

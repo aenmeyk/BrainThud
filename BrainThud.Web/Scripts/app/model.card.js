@@ -15,6 +15,8 @@
             self.level = ko.observable();
             self.userId = ko.observable();
             self.entityId = ko.observable();
+            self.isCorrect = ko.observable();
+            self.completedQuizDate = ko.observable();
             self.questionSideVisible = ko.observable(true);
             self.questionHtml = ko.computed(function () {
                 return self.question() ? editor.makeHtml(self.question()) : '';
@@ -24,6 +26,24 @@
             });
             self.currentSideText = ko.computed(function () {
                 return self.questionSideVisible() ? self.questionHtml() : self.answerHtml();
+            });
+            self.libraryCardBorder = ko.computed(function () {
+                if (!self.questionSideVisible()) return 'answer';
+                
+                if (new Date(self.completedQuizDate()) > Date.UTC(1800, 1, 1)) {
+                    return self.isCorrect() ? 'correct' : 'incorrect';
+                }
+
+                return 'question';
+            });
+            self.quizCardBorder = ko.computed(function () {
+                if (!self.questionSideVisible()) return 'answer';
+                
+                if (moment(self.completedQuizDate()).format('L') === moment().format('L')) {
+                    return self.isCorrect() ? 'correct' : 'incorrect';
+                }
+
+                return 'question';
             });
             self.localizedQuizDate = ko.computed(function () {
                 return moment(self.quizDate()).format('L');

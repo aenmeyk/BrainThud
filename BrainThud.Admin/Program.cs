@@ -29,7 +29,7 @@ namespace BrainThud.Admin
 
             foreach(var card in cards)
             {
-                card.CompletedQuizDate = DateTime.UtcNow.AddDays(-1);
+                card.CompletedQuizDate = TypeValues.MIN_SQL_DATETIME;
                 context.Cards.Update(card);
             }
         }
