@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BrainThud.Core.ViewModels;
 using BrainThud.Win.ViewModels;
 using Windows.UI.Xaml.Controls;
 
@@ -16,12 +17,11 @@ namespace BrainThud.Win.Views
         public QuizView()
         {
             this.InitializeComponent();
-            this.DataContext = new QuizSummary();
         }
 
-        public new QuizSummary ViewModel
+        public new QuizViewModel ViewModel
         {
-            get { return (QuizSummary)base.ViewModel; }
+            get { return (QuizViewModel)base.ViewModel; }
             set { base.ViewModel = value; }
         }
 

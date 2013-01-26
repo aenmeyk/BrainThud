@@ -106,6 +106,7 @@
     <Compile Include="StartApplicationObject.cs" />
     <Compile Include="TestValues.cs" />
     <Compile Include="Trace.cs" />
+    <Compile Include="ViewModels\QuizViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿using BrainThud.Win.ViewModels;
+﻿using BrainThud.Core.ViewModels;
 using Cirrious.MvvmCross.Interfaces.ViewModels;
 using Cirrious.MvvmCross.ViewModels;
 
@@ -10,7 +10,7 @@ namespace BrainThud.Core
     {
         public void Start()
         {
-            RequestNavigate<QuizSummary>();
+            RequestNavigate<QuizViewModel>();
         }
 
         public bool ApplicationCanOpenBookmarks
