@@ -22,8 +22,12 @@ namespace BrainThud.Web.Handlers
 
         public void ApplyQuizResult(QuizResult quizResult, Card card)
         {
+            // Set current card values on QuizResult so it can be reversed
             quizResult.CardLevel = card.Level >= 0 ? card.Level : 0;
             quizResult.CardQuizDate = card.QuizDate;
+            quizResult.CardIsCorrect = card.IsCorrect;
+            quizResult.CardCompletedQuizDate = card.CompletedQuizDate;
+
             card.Level = quizResult.IsCorrect
                 ? card.Level + 1
                 : 0;
@@ -32,12 +36,16 @@ namespace BrainThud.Web.Handlers
 
             var daysQuizExtended = this.QuizCalendar.GetQuizInterval(card.Level);
             card.QuizDate = DateTime.UtcNow.AddDays(daysQuizExtended).Date;
+            card.IsCorrect = quizResult.IsCorrect;
+            card.CompletedQuizDate = DateTime.UtcNow.Date;
         }
 
         public void ReverseQuizResult(QuizResult quizResult, Card card)
         {
             card.Level = quizResult.CardLevel;
             card.QuizDate = quizResult.CardQuizDate;
+            card.IsCorrect = quizResult.CardIsCorrect;
+            card.CompletedQuizDate = quizResult.CardCompletedQuizDate;
         }
     }
 }

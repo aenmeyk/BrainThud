@@ -15,7 +15,7 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         public override void When()
         {
             this.quizResult = new QuizResult { IsCorrect = true };
-            this.card = new Card { Level = CARD_LEVEL, QuizDate = TestValues.CARD_QUIZ_DATE };
+            this.card = new Card { Level = CARD_LEVEL, QuizDate = TestValues.CARD_QUIZ_DATE, IsCorrect = false, CompletedQuizDate = TestValues.DATETIME };
             this.QuizResultHandler.ApplyQuizResult(this.quizResult, this.card);
         }
 
@@ -33,6 +33,18 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         }
 
         [Test]
+        public void Then_IsCorrect_is_set_to_the_QuizResult_IsCorrect()
+        {
+            this.card.IsCorrect.Should().Be(this.quizResult.IsCorrect);
+        }
+
+        [Test]
+        public void Then_CompletedQuizDate_should_be_set_to_today()
+        {
+            this.card.CompletedQuizDate.Should().Be(DateTime.UtcNow.Date);
+        }
+
+        [Test]
         public void Then_the_QuizResult_CardQuizDate_should_be_set_to_the_card_QuizDate_before_the_QuizResult_was_applied()
         {
             this.quizResult.CardQuizDate.Should().Be(TestValues.CARD_QUIZ_DATE);
@@ -42,6 +54,18 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         public void Then_the_QuizResult_CardLevel_should_be_set_to_the_card_level_before_it_was_incremented()
         {
             this.quizResult.CardLevel.Should().Be(CARD_LEVEL);
+        }
+
+        [Test]
+        public void Then_the_QuizResult_CardIsCorrect_is_set_to_the_QuizResult_IsCorrect()
+        {
+            this.quizResult.CardIsCorrect.Should().BeFalse();
+        }
+
+        [Test]
+        public void Then_the_QuizResult_CardCompletedQuizDate_should_be_set_to_today()
+        {
+            this.quizResult.CardCompletedQuizDate.Should().Be(TestValues.DATETIME);
         }
     }
 }

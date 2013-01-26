@@ -1,4 +1,6 @@
-﻿namespace BrainThud.Web
+﻿using System;
+
+namespace BrainThud.Web
 {
     public static class Hosts
     {
@@ -79,8 +81,13 @@
 
     public static class TypeValues
     {
-        public const string MIN_SQL_DATETIME = "01/01/1753";
-        public const string MAX_SQL_DATETIME = "12/31/9999";
+        // ReSharper disable InconsistentNaming
+        public static readonly DateTime MIN_SQL_DATETIME = new DateTime(1753, 1, 1);
+        public static readonly DateTime MAX_SQL_DATETIME = new DateTime(9999, 12, 31);
+        // ReSharper restore InconsistentNaming
+
+        public const string MIN_SQL_DATETIME_STRING = "01/01/1753";
+        public const string MAX_SQL_DATETIME_STRING = "12/31/9999";
     }
 
     public static class AzureErrorCodes

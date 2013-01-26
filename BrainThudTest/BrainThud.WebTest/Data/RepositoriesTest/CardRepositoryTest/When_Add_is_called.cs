@@ -1,4 +1,5 @@
 ﻿using System;
+using BrainThud.Web;
 using BrainThud.Web.Model;
 using FluentAssertions;
 using NUnit.Framework;
@@ -51,6 +52,12 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
         public void Then_the_DeckNameSlug_should_be_populated()
         {
             this.card.DeckNameSlug.Should().Be("the-deck-name");
+        }
+
+        [Test]
+        public void Then_the_CompletedQuizDate_should_be_set()
+        {
+            this.card.CompletedQuizDate.Should().Be(TypeValues.MIN_SQL_DATETIME);
         }
     }
 }

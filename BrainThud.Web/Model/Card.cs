@@ -10,7 +10,7 @@ namespace BrainThud.Web.Model
 
         public string Answer { get; set; }
 
-        [Range(typeof(DateTime), TypeValues.MIN_SQL_DATETIME, TypeValues.MAX_SQL_DATETIME)]
+        [Range(typeof(DateTime), TypeValues.MIN_SQL_DATETIME_STRING, TypeValues.MAX_SQL_DATETIME_STRING)]
         public DateTime QuizDate { get; set; }
 
         public int Level { get; set; }
@@ -24,5 +24,9 @@ namespace BrainThud.Web.Model
         public int EntityId { get; set; }
 
         public int UserId { get; set; }
+
+        public bool IsCorrect { get; set; }
+
+        public DateTime CompletedQuizDate { get; set; }
     }
 }

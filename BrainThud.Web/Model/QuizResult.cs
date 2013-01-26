@@ -20,5 +20,17 @@ namespace BrainThud.Web.Model
         /// Indicates the value of the card's QuizDate property before this QuizResult was applied
         /// </summary>
         public DateTime CardQuizDate { get; set; }
+
+
+        /// <summary>
+        /// Indicates the value of the card's IsCorrect property before this QuizResult was applied
+        /// </summary>
+        public bool CardIsCorrect { get; set; }
+
+
+        /// <summary>
+        /// Indicates the value of the card's CompletedQuizDate property before this QuizResult was applied
+        /// </summary>
+        public DateTime CardCompletedQuizDate { get; set; }
     }
 }
