@@ -1,5 +1,5 @@
-﻿define('utils', [],
-    function () {
+﻿define('utils', ['moment'],
+    function (moment) {
         var
             hasProperties = function (obj) {
                 for (var prop in obj) {
@@ -10,12 +10,7 @@
                 return false;
             },
             getDatePath = function() {
-                var today = new Date(),
-                    year = today.getFullYear(),
-                    month = today.getMonth() + 1,
-                    day = today.getDate();
-
-                return year + '/' + month + '/' + day;
+                return moment.utc(new Date()).format('YYYY/M/D');
             },
             entityExists = function(array, entity) {
                 for (var i = 0; i < array.length; i++) {

@@ -28,8 +28,8 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         [Test]
         public void Then_the_QuizDate_is_updated_to_the_next_day_in_the_calendar()
         {
-            var expectedQuizDate = DateTime.UtcNow.AddDays(this.UserConfiguration.QuizCalendar[CARD_LEVEL + 1]).Date;
-            this.card.QuizDate.Should().Be(expectedQuizDate);
+            var expectedQuizDate = DateTime.UtcNow.AddDays(this.UserConfiguration.QuizCalendar[CARD_LEVEL + 1]);
+            this.card.QuizDate.Should().BeWithin(10.Seconds()).Before(expectedQuizDate);
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         [Test]
         public void Then_CompletedQuizDate_should_be_set_to_today()
         {
-            this.card.CompletedQuizDate.Should().Be(DateTime.UtcNow.Date);
+            this.card.CompletedQuizDate.Should().BeWithin(10.Seconds()).Before(DateTime.UtcNow);
         }
 
         [Test]

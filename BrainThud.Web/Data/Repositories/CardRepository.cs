@@ -26,7 +26,7 @@ namespace BrainThud.Web.Data.Repositories
         public override void Add(Card entity)
         {
             this.SetKeyValues(entity, this.KeyGenerator);
-            entity.QuizDate = DateTime.UtcNow.AddDays(this.quizCalendar[0]).Date;
+            entity.QuizDate = DateTime.UtcNow.AddDays(this.quizCalendar[0]);
             entity.UserId = this.UserId;
             entity.EntityId = this.KeyGenerator.GeneratedEntityId;
             entity.DeckNameSlug = entity.DeckName.GenerateSlug();

@@ -28,8 +28,8 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         [Test]
         public void Then_the_QuizDate_is_updated_to_level_zero_in_the_calendar()
         {
-            var expectedQuizDate = DateTime.UtcNow.AddDays(this.UserConfiguration.QuizCalendar[0]).Date;
-            this.card.QuizDate.Should().Be(expectedQuizDate);
+            var expectedQuizDate = DateTime.UtcNow.AddDays(this.UserConfiguration.QuizCalendar[0]);
+            this.card.QuizDate.Should().BeWithin(10.Seconds()).Before(expectedQuizDate);
         }
 
         [Test]

@@ -35,9 +35,9 @@ namespace BrainThud.Web.Handlers
             if(card.Level < 0) card.Level = 0;
 
             var daysQuizExtended = this.QuizCalendar.GetQuizInterval(card.Level);
-            card.QuizDate = DateTime.UtcNow.AddDays(daysQuizExtended).Date;
+            card.QuizDate = DateTime.UtcNow.AddDays(daysQuizExtended);
             card.IsCorrect = quizResult.IsCorrect;
-            card.CompletedQuizDate = DateTime.UtcNow.Date;
+            card.CompletedQuizDate = DateTime.UtcNow;
         }
 
         public void ReverseQuizResult(QuizResult quizResult, Card card)

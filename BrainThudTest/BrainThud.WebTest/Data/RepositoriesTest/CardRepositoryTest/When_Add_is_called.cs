@@ -44,8 +44,8 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
         [Test]
         public void Then_the_QuizDate_should_be_set_from_the_first_entry_in_the_QuizCalendar()
         {
-            var expectedDate = DateTime.UtcNow.AddDays(TestValues.INT).Date;
-            this.card.QuizDate.Date.Should().Be(expectedDate);
+            var expectedDate = DateTime.UtcNow.AddDays(TestValues.INT);
+            this.card.QuizDate.Should().BeWithin(10.Seconds()).Before(expectedDate);
         }
 
         [Test]
