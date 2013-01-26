@@ -1,5 +1,5 @@
-﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'utils', 'amplify', 'config', 'global', 'quiz-navigator', 'moment'],
-    function (_, ko, dataContext, utils, amplify, config, global, quizNavigator, moment) {
+﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'utils', 'amplify', 'config', 'global', 'quiz-navigator', 'moment', 'data-service', 'model.mapper'],
+    function (_, ko, dataContext, utils, amplify, config, global, quizNavigator, moment, dataService, modelMapper) {
         var
             quizResults = ko.observableArray([]),
 
@@ -51,12 +51,23 @@
                 };
             },
 
+            getCard = function (entityId) {
+                dataService.card.getSingle({
+                    params: {
+                        userId: global.userId,
+                        entityId: entityId
+                    },
+                    success: function(dto) {
+                        var result = modelMapper.card.mapResult(dto);
+                        dataContext.quizCard.updateCachedItem(result);
+                        dataContext.card.updateCachedItem(result);
+                    }
+                });
+            },
+
             submitQuizResult = function (isCorrect) {
-                var currentCard = card();
-                currentCard.isCorrect(isCorrect);
-                currentCard.completedQuizDate(moment.utc().format());
-                dataContext.quizCard.updateCachedItem(currentCard);
-                dataContext.card.updateCachedItem(currentCard);
+                var currentCard = card(),
+                    deferredSave;
                 
                 var existingQuizResult = _.find(quizResults(), function (item) {
                     return item.cardId() === currentCard.entityId();
@@ -65,10 +76,15 @@
                 if (existingQuizResult) {
                     var jsQuizResult = ko.toJS(existingQuizResult);
                     jsQuizResult.isCorrect = isCorrect;
-                    dataContext.quizResult.updateData(getUpdateConfig(jsQuizResult));
+                    deferredSave = dataContext.quizResult.updateData(getUpdateConfig(jsQuizResult));
                 } else {
-                    dataContext.quizResult.createData(getCreateConfig(isCorrect));
+                    deferredSave = dataContext.quizResult.createData(getCreateConfig(isCorrect));
                 }
+
+                $.when(deferredSave)
+                    .done(function() {
+                        getCard(currentCard.entityId());
+                    });
 
                 amplify.publish(config.pubs.createQuizResult, {
                     cardId: card().entityId(),

@@ -4,6 +4,7 @@
             card = {
                 mapResults: function(dto, results) {
                     for (var i = 0; i < dto.length; i++) {
+                        // TODO: If the entity exists, remove it then add it again
                         if (!utils.entityExists(results, dto)) {
                             results.push(getCardFromDto(dto[i]));
                         }

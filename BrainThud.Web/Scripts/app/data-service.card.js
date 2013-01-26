@@ -7,6 +7,11 @@
                     dataType: 'json',
                     type: 'GET'
                 }),
+                amplify.request.define('getSingle', 'ajax', {
+                    url: config.routes.card,
+                    dataType: 'json',
+                    type: 'GET'
+                }),
                 amplify.request.define('getForQuiz', 'ajax', {
                     url: config.routes.quizCards,
                     dataType: 'json',
@@ -37,6 +42,18 @@
                     resourceId: 'getCards',
                     success: callbacks.success,
                     error: callbacks.error
+                });
+            },
+
+            getSingle = function (options) {
+                return amplify.request({
+                    resourceId: 'getSingle',
+                    data: {
+                        userIdPath: options.params.userId,
+                        entityIdPath: options.params.entityId
+                    },
+                    success: options.success,
+                    error: options.error
                 });
             },
 
@@ -94,6 +111,7 @@
 
         return {
             get: get,
+            getSingle: getSingle,
             getForQuiz: getForQuiz,
             create: create,
             update: update,
