@@ -4,6 +4,7 @@ using BrainThud.Web;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.DependencyResolution;
 using Microsoft.WindowsAzure;
+using System.Linq;
 
 namespace BrainThud.Admin
 {
@@ -17,19 +18,33 @@ namespace BrainThud.Admin
             var contextFactory = container.GetInstance<ITableStorageContextFactory>();
             var context = contextFactory.CreateTableStorageContext(AzureTableNames.CARD);
 
-//            SetQuizResultValues(context);
+            SetCardValues(context);
 
-//            context.Commit();
+            context.Commit();
         }
 
         private static void SetCardValues(ITableStorageContext context)
         {
             var cards = context.Cards.GetAll();
+            var quizResults = context.QuizResults.GetAll().ToList();
 
-            foreach(var card in cards)
+            foreach (var item in cards)
             {
-                card.CompletedQuizDate = TypeValues.MIN_SQL_DATETIME;
-                context.Cards.Update(card);
+                var quizResult = quizResults
+                    .Where(x => x.CardId == item.EntityId)
+                    .OrderBy(x => x.QuizDate)
+                    .LastOrDefault();
+
+                if(quizResult != null)
+                {
+                    item.CompletedQuizYear = quizResult.QuizYear;
+                    item.CompletedQuizMonth = quizResult.QuizMonth;
+                    item.CompletedQuizDay = quizResult.QuizDay;
+                    item.IsCorrect = quizResult.IsCorrect;
+                }
+
+
+                context.Cards.Update(item);
             }
         }
 
@@ -39,14 +54,7 @@ namespace BrainThud.Admin
 
             foreach (var item in items)
             {
-                item.QuizYear = item.QuizDate.Year;
-                item.QuizMonth = item.QuizDate.Month;
-                item.QuizDay = item.QuizDate.Day;
-
-                if(item.CardCompletedQuizDate < new DateTime(2000, 1, 1)) item.CardCompletedQuizDate = DateTime.UtcNow.AddDays(-1);
-
                 context.QuizResults.Update(item);
-//                context.Commit();
             }
         }
 

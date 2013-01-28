@@ -18,7 +18,9 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
                 CardQuizDate = TestValues.CARD_QUIZ_DATE,
                 CardLevel = TestValues.CARD_QUIZ_LEVEL,
                 CardIsCorrect = true,
-                CardCompletedQuizDate = TestValues.DATETIME
+                CardCompletedQuizYear = TestValues.YEAR,
+                CardCompletedQuizMonth = TestValues.MONTH,
+                CardCompletedQuizDay = TestValues.DAY
             };
 
             this.QuizResultHandler.ReverseQuizResult(this.quizResult, this.card);
@@ -43,9 +45,11 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         }
 
         [Test]
-        public void Then_the_CardCompletedQuizDate_is_set_to_the_QuizResult_CompletedQuizDate()
+        public void Then_the_Card_completed_quiz_date_is_set_to_the_QuizResult_CompletedQuizDate()
         {
-            this.card.CompletedQuizDate.Should().Be(quizResult.CardCompletedQuizDate);
+            this.card.CompletedQuizYear.Should().Be(TestValues.YEAR);
+            this.card.CompletedQuizMonth.Should().Be(TestValues.MONTH);
+            this.card.CompletedQuizDay.Should().Be(TestValues.DAY);
         }
     }
 }

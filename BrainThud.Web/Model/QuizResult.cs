@@ -1,6 +1,5 @@
 using System;
 using BrainThud.Core.Data.AzureTableStorage;
-using BrainThud.Web.Data.AzureTableStorage;
 
 namespace BrainThud.Web.Model
 {
@@ -15,27 +14,13 @@ namespace BrainThud.Web.Model
         public int UserId { get; set; }
         public int EntityId { get; set; }
 
-        /// <summary>
-        /// Indicates the value of the card's Level property before this QuizResult was applied
-        /// </summary>
+        // The following fields indicate the value of the card's properties before this QuizResult was applied.
+        // We record them in the QuizResult so if the QuizResult is reversed, the values can be reset on the card.
         public int CardLevel { get; set; }
-
-        /// <summary>
-        /// Indicates the value of the card's QuizDate property before this QuizResult was applied
-        /// </summary>
         public DateTime CardQuizDate { get; set; }
-
-
-        /// <summary>
-        /// Indicates the value of the card's IsCorrect property before this QuizResult was applied
-        /// </summary>
         public bool CardIsCorrect { get; set; }
-
-
-        /// <summary>
-        /// Indicates the value of the card's CompletedQuizDate property before this QuizResult was applied
-        /// </summary>
-        public DateTime CardCompletedQuizDate { get; set; }
-
+        public int CardCompletedQuizYear { get; set; }
+        public int CardCompletedQuizMonth { get; set; }
+        public int CardCompletedQuizDay { get; set; }
     }
 }
