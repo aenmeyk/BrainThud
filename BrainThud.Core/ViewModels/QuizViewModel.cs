@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using BrainThud.Core.Models;
 
 namespace BrainThud.Core.ViewModels
 {
@@ -8,7 +9,9 @@ namespace BrainThud.Core.ViewModels
     {
         public QuizViewModel()
         {
-            this.Title = "Today's Quiz";
+            var card = new Card {Question = "This value was set on the card"};
+
+            this.Title = card.Question;
             this.CardCount = 10;
             this.CardsCompleted = 5;
             this.CardsCorrect = 3;

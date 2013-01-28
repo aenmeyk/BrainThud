@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureInitializer.cs" />
+    <Compile Include="BrainThud.CoreTest\IntegrationTest\CardControllerIntegrationTest.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\Given_a_new_AccountController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\SignOut.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
@@ -294,7 +295,9 @@
       <Name>BrainThud.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BrainThud.CoreTest\ApiTest\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

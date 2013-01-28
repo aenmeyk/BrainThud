@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data.AzureTableStorage;
+﻿using BrainThud.Core.Data.AzureTableStorage;
+using BrainThud.Web.Data.AzureTableStorage;
 
 namespace BrainThud.Web.Model
 {

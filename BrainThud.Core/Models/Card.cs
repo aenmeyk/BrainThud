@@ -1,9 +1,7 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 using BrainThud.Core.Data.AzureTableStorage;
-using BrainThud.Web.Data.AzureTableStorage;
 
-namespace BrainThud.Web.Model
+namespace BrainThud.Core.Models
 {
     public class Card : AzureTableEntity
     {
@@ -11,7 +9,6 @@ namespace BrainThud.Web.Model
 
         public string Answer { get; set; }
 
-        [Range(typeof(DateTime), TypeValues.MIN_SQL_DATETIME_STRING, TypeValues.MAX_SQL_DATETIME_STRING)]
         public DateTime QuizDate { get; set; }
 
         public int Level { get; set; }

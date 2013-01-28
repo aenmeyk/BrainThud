@@ -27,7 +27,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WEB</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -36,7 +36,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;WEB</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -155,6 +155,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\BrainThud.Core\Data\AzureTableStorage\AzureTableEntity.cs">
+      <Link>Core\Data\AzureTableStorage\AzureTableEntity.cs</Link>
+    </Compile>
     <Compile Include="ActionFilters\ValidationActionFilter.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -171,6 +174,7 @@
     <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ConfigController.cs" />
+    <Compile Include="Controllers\FederationCallbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JasmineController.cs" />
     <Compile Include="Controllers\QuizResultsController.cs" />
@@ -189,7 +193,7 @@
     <Compile Include="Data\KeyGenerators\CardEntityKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\ICardEntityKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\QuizResultKeyGenerator.cs" />
-    <Compile Include="Data\AzureTableStorage\AzureTableEntity.cs" />
+    <Compile Include="Data\AzureTableStorage\AzureTableEntityPartial.cs" />
     <Compile Include="Data\Repositories\CardEntityRepository.cs" />
     <Compile Include="Data\Repositories\CardRepository.cs" />
     <Compile Include="Data\Repositories\ICardRepository.cs" />
@@ -469,7 +473,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Web|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WEB</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>

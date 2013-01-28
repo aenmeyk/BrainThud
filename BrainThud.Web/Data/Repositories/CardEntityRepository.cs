@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using BrainThud.Core.Data.AzureTableStorage;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using Microsoft.WindowsAzure.StorageClient;

@@ -1,42 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity Name="71af87f8-5077-4b6e-8e17-2cb54ba77786"
-            Publisher="CN=Kevin"
-            Version="1.0.0.0" />
-
+  <Identity Name="6362KevinAenmey.FlashCardbyBrainThud" Publisher="CN=82924ECF-BFBC-4FF5-865B-FE37E3BCD035" Version="1.0.0.0" />
   <Properties>
-    <DisplayName>BrainThud.Win</DisplayName>
-    <PublisherDisplayName>Kevin</PublisherDisplayName>
+    <DisplayName>FlashCard by BrainThud</DisplayName>
+    <PublisherDisplayName>Kevin Aenmey</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="BrainThud.Win.App">
-        <VisualElements
-            DisplayName="BrainThud.Win"
-            Logo="Assets\Logo.png"
-            SmallLogo="Assets\SmallLogo.png"
-            Description="BrainThud.Win"
-            ForegroundText="light"
-            BackgroundColor="#464646">
-            <DefaultTile ShowName="allLogos" />
-            <SplashScreen Image="Assets\SplashScreen.png" />
-        </VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="BrainThud.Win.App">
+      <VisualElements DisplayName="FlashCard by BrainThud" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="BrainThud.Win" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+      </VisualElements>
     </Application>
   </Applications>
   <Capabilities>
+    <Capability Name="privateNetworkClientServer" />
+    <Capability Name="internetClientServer" />
     <Capability Name="internetClient" />
   </Capabilities>
 </Package>
