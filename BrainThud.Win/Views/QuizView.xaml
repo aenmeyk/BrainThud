@@ -39,8 +39,6 @@
             Grid.RowSpan="2"
             Margin="0,40,0,0"
             Padding="120,126,120,50"
-            ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource Standard500x130ItemTemplate}"
             SelectionMode="None"
             IsSwipeEnabled="false">
 
@@ -74,6 +72,7 @@
                     <Setter Property="Margin" Value="52,0,0,10"/>
                 </Style>
             </GridView.ItemContainerStyle>
+            <Button Content="Button" Click="Button_Click_1"/>
         </GridView>
 
         <!-- Vertical scrolling list only used when snapped -->

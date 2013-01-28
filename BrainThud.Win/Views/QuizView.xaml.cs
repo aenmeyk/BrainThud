@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BrainThud.Core.ViewModels;
-using BrainThud.Win.ViewModels;
+using Windows.Security.Authentication.Web;
 using Windows.UI.Xaml.Controls;
 
 // The Group Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229
@@ -25,6 +25,9 @@ namespace BrainThud.Win.Views
             set { base.ViewModel = value; }
         }
 
+
+
+
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -38,6 +41,45 @@ namespace BrainThud.Win.Views
         {
             // TODO: Assign a bindable group to this.DefaultViewModel["Group"]
             // TODO: Assign a collection of bindable items to this.DefaultViewModel["Items"]
+        }
+
+        private async void Button_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        { 
+
+//            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
+//                    WebAuthenticationOptions.None,
+//                    new Uri(string.Format("https://brainthud.accesscontrol.windows.net/v2/metadata/identityProviders.js?protocol=wsfederation&realm={0}&version=1.0&callback=ShowSigninPage", "http://www.brainthud.com/")),
+//                    new Uri("http://localhost:36877/api/FederationCallback"));
+
+//            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
+//                        WebAuthenticationOptions.None,
+//                        new Uri("https://brainthud.accesscontrol.windows.net:443/v2/wsfederation?wa=wsignin1.0&wtrealm=http%3a%2f%2flocalhost:36877%2f"),
+//                        new Uri("http://localhost:36877/api/federationcallback/end")
+//                    );
+
+//            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
+//                        WebAuthenticationOptions.None,
+//                        new Uri("https://brainthud.accesscontrol.windows.net:443/v2/wsfederation?wa=wsignin1.0&wtrealm=http%3a%2f%2flocalhost:36877%2f"),
+//                        new Uri("http://0e5a5f4209a84c8ea1ccc0ea45aca178.cloudapp.net/api/federationcallback/end")
+//                    );
+
+            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
+                        WebAuthenticationOptions.None,
+                        new Uri("https://brainthud.accesscontrol.windows.net:443/v2/wsfederation?wa=wsignin1.0&wtrealm=http%3a%2f%2fauthentication.brainthud.com%2f"),
+                        new Uri("http://authentication.brainthud.com/api/federationcallback/end")
+                    );
+
+//            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
+//                        WebAuthenticationOptions.None,
+//                        new Uri("https://brainthud.accesscontrol.windows.net:443/v2/wsfederation?wa=wsignin1.0&wtrealm=http%3a%2f%2flocalhost:36877%2f")
+//                    );
+
+
+            // The data you returned
+            var token = webAuthenticationResult.ResponseData;
+            var token1 = webAuthenticationResult.ResponseErrorDetail;
+            var token2 = webAuthenticationResult.ResponseStatus;
+            var token3 = webAuthenticationResult.ToString();
         }
     }
 }

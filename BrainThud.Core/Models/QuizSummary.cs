@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using BrainThud.Core.ViewModels;
 
-namespace BrainThud.Win.ViewModels
+namespace BrainThud.Core.Models
 {
     public class QuizSummary : ViewModelBase
     {

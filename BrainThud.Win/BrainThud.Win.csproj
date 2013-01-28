@@ -12,7 +12,8 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>BrainThud.Win_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>BrainThud.Win_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>FAFACEB75465D07ABF53710598E89D86966D0EB0</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -103,11 +104,26 @@
     <Compile Include="..\BrainThud.Core\App.cs">
       <Link>Core\App.cs</Link>
     </Compile>
+    <Compile Include="..\BrainThud.Core\Constants.cs">
+      <Link>Core\Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Data\AzureTableStorage\AzureTableEntity.cs">
+      <Link>Core\Data\AzureTableStorage\AzureTableEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Models\Card.cs">
+      <Link>Core\Models\Card.cs</Link>
+    </Compile>
     <Compile Include="..\BrainThud.Core\Models\QuizSummary.cs">
       <Link>Core\Models\QuizSummary.cs</Link>
     </Compile>
+    <Compile Include="..\BrainThud.Core\Models\QuizSummary_OLD.cs">
+      <Link>Core\Models\QuizSummary_OLD.cs</Link>
+    </Compile>
     <Compile Include="..\BrainThud.Core\StartApplicationObject.cs">
       <Link>Core\StartApplicationObject.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\TestValues.cs">
+      <Link>Core\TestValues.cs</Link>
     </Compile>
     <Compile Include="..\BrainThud.Core\Trace.cs">
       <Link>Core\Trace.cs</Link>
@@ -150,6 +166,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="BrainThud.Win_StoreKey.pfx" />
     <None Include="Common\ReadMe.txt" />
     <None Include="BrainThud.Win_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -162,6 +179,7 @@
     <Content Include="Assets\LightGray.png" />
     <Content Include="Assets\MediumGray.png" />
     <Content Include="Assets\DarkGray.png" />
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
