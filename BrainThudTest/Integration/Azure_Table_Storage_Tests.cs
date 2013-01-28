@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Web.Http;
+using BrainThud.Web;
 using BrainThud.Web.App_Start;
 using BrainThud.Web.DependencyResolution;
 using BrainThud.Web.Model;
@@ -36,6 +37,8 @@ namespace BrainThudTest.Integration
 
             var server = new HttpServer(config);
             var client = new HttpClient(server);
+            client.DefaultRequestHeaders.Add(HttpHeaders.X_CLIENT_DATE, DateTime.Now.ToLongDateString());
+
             var card = new Card { Question = POST_QUESTION_TEXT, QuizDate = DateTime.Now };
 
             // Test POST
@@ -106,6 +109,7 @@ namespace BrainThudTest.Integration
 
             var server = new HttpServer(config);
             var client = new HttpClient(server);
+            client.DefaultRequestHeaders.Add(HttpHeaders.X_CLIENT_DATE, DateTime.Now.ToLongDateString());
 
             // Create the card
             var card = new Card { Question = "Created from QuizResultsController_CRUD test.", QuizDate = DateTime.Now };

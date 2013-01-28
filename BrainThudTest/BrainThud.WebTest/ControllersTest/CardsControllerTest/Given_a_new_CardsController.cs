@@ -16,6 +16,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
         public override void Given()
         {
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
+
             var tableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
             tableStorageContextFactory.Setup(x => x.CreateTableStorageContext(AzureTableNames.CARD, TestValues.NAME_IDENTIFIER)).Returns(this.TableStorageContext.Object);
 
@@ -23,13 +24,17 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
 
             var cardsControllerFake = new CardsControllerFake(tableStorageContextFactory.Object, authenticationHelper.Object);
+            var apiControllerBuilder = new ApiControllerBuilder<CardsControllerFake>(cardsControllerFake);
 
-            this.CardsController = new ApiControllerBuilder<CardsControllerFake>(cardsControllerFake)
+            this.CardsController = apiControllerBuilder
                 .CreateRequest(HttpMethod.Post, TestUrls.CARDS)
                 .Build();
+
+            this.Request = apiControllerBuilder.Request;
         }
 
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
         protected CardsControllerFake CardsController { get; private set; }
+        protected HttpRequestMessage Request { get; set; }
     }
 }

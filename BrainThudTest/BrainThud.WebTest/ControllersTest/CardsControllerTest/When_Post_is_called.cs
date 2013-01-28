@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
 using BrainThud.Web;
@@ -17,7 +18,8 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
 
         public override void When()
         {
-            this.card = new Card { RowKey = "1C81541E-5062-43F5-B63D-E07BD579FE79" };
+            this.Request.Headers.Add(HttpHeaders.X_CLIENT_DATE, TestValues.DATETIME.ToString("o"));
+            this.card = new Card { RowKey = TestValues.ROW_KEY };
             this.response = this.CardsController.Post(this.card);
         }
 
@@ -25,7 +27,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
         [Category(TestTypes.LONG_RUNNING)]
         public void Then_Add_is_called_on_Card_repository()
         {
-            this.TableStorageContext.Verify(x => x.Cards.Add(this.card), Times.Once());
+            this.TableStorageContext.Verify(x => x.Cards.Add(this.card, TestValues.DATETIME), Times.Once());
         }
 
         [Test]

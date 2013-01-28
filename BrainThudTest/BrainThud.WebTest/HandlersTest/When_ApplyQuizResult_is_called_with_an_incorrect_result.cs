@@ -14,9 +14,10 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
 
         public override void When()
         {
+            var quizDate = TestValues.CARD_QUIZ_DATE;
             this.quizResult = new QuizResult { IsCorrect = false };
-            this.card = new Card { Level = CARD_LEVEL, QuizDate = TestValues.CARD_QUIZ_DATE };
-            this.QuizResultHandler.ApplyQuizResult(this.quizResult, this.card);
+            this.card = new Card { Level = CARD_LEVEL, QuizDate = quizDate };
+            this.QuizResultHandler.ApplyQuizResult(this.quizResult, this.card, quizDate.Year, quizDate.Month, quizDate.Day);
         }
 
         [Test]

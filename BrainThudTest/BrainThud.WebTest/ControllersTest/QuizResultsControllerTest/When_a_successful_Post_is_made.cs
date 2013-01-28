@@ -86,7 +86,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
         [Test]
         public void Then_IncrementCardLevel_is_called_on_the_QuizResultHandler()
         {
-            this.QuizResultHandler.Verify(x => x.ApplyQuizResult(this.quizResult, It.Is<Card>(c => c.EntityId == this.quizResult.CardId)), Times.Once());
+            this.QuizResultHandler.Verify(x => x.ApplyQuizResult(this.quizResult, It.Is<Card>(c => c.EntityId == this.quizResult.CardId), TestValues.YEAR, TestValues.MONTH, TestValues.DAY), Times.Once());
         }
 
         [Test]
