@@ -20,9 +20,17 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.QuizResultsRepos
             // Use IsCorrect = true to indicate which cards should be included in result
             var allQuizResults = Builder<QuizResult>.CreateListOfSize(10)
                 .All().With(x => x.PartitionKey = TestValues.CARD_PARTITION_KEY).And(x => x.RowKey = CardRowTypes.QUIZ_RESULT + "-x")
-                .TheFirst(5).With(x => x.QuizDate = quizDate).And(x => x.IsCorrect = true)
-                .TheNext(5).With(x => x.QuizDate = new DateTime(1990, 1, 1)).And(x => x.IsCorrect = false)
-                .TheFirst(2).With(x => x.PartitionKey = TestValues.PARTITION_KEY)
+                .TheFirst(5).With(x => x.QuizDate = quizDate)
+                    .And(x => x.IsCorrect = true)
+                    .And(x => x.QuizYear = TestValues.YEAR)
+                    .And(x => x.QuizMonth = TestValues.MONTH)
+                    .And(x => x.QuizDay = TestValues.DAY)
+                .TheNext(5).With(x => x.QuizDate = new DateTime(1990, 1, 1))
+                    .And(x => x.IsCorrect = false)
+                    .And(x => x.QuizYear = 1990)
+                    .And(x => x.QuizMonth = 1)
+                    .And(x => x.QuizDay = 1)
+             .TheFirst(2).With(x => x.PartitionKey = TestValues.PARTITION_KEY)
                 .Build();
 
             this.TableStorageContext.Setup(x => x.CreateQuery<QuizResult>()).Returns(allQuizResults.AsQueryable);

@@ -25,9 +25,8 @@ namespace BrainThud.Web.Data.Repositories
 
         public IQueryable<QuizResult> GetForQuiz(int year, int month, int day)
         {
-            var quizDate = new DateTime(year, month, day);
             return this.EntitySet
-                .Where(x => x.QuizDate == quizDate)
+                .Where(x => x.QuizYear == year && x.QuizMonth == month && x.QuizDay == day)
                 .Where(x =>
                     string.Compare(x.PartitionKey, this.NameIdentifier + '-', StringComparison.Ordinal) >= 0
                     && string.Compare(x.PartitionKey, this.NameIdentifier + '.', StringComparison.Ordinal) < 0);

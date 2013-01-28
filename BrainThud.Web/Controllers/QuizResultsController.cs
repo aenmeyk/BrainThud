@@ -54,6 +54,9 @@ namespace BrainThud.Web.Controllers
             if (this.ModelState.IsValid)
             {
                 quizResult.QuizDate = new DateTime(year, month, day);
+                quizResult.QuizYear = year;
+                quizResult.QuizMonth = month;
+                quizResult.QuizDay = day;
                 quizResult.UserId = userId;
                 quizResult.CardId = cardId;
 
