@@ -1,7 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using BrainThud.Core.Data.AzureTableStorage;
-using BrainThud.Web.Data.AzureTableStorage;
 
 namespace BrainThud.Web.Model
 {
@@ -28,6 +27,10 @@ namespace BrainThud.Web.Model
 
         public bool IsCorrect { get; set; }
 
-        public DateTime CompletedQuizDate { get; set; }
+        public int CompletedQuizYear { get; set; }
+
+        public int CompletedQuizMonth { get; set; }
+        
+        public int CompletedQuizDay { get; set; }
     }
 }

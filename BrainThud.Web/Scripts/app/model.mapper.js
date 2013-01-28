@@ -73,7 +73,9 @@
                     .userId(dto.userId)
                     .entityId(dto.entityId)
                     .isCorrect(dto.isCorrect)
-                    .completedQuizDate(dto.completedQuizDate);
+                    .completedQuizYear(dto.completedQuizYear)
+                    .completedQuizMonth(dto.completedQuizMonth)
+                    .completedQuizDay(dto.completedQuizDay);
 
                 singleCard.dirtyFlag().reset();
                 return singleCard;

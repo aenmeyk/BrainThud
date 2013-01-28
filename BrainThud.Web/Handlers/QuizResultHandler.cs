@@ -26,7 +26,9 @@ namespace BrainThud.Web.Handlers
             quizResult.CardLevel = card.Level >= 0 ? card.Level : 0;
             quizResult.CardQuizDate = card.QuizDate;
             quizResult.CardIsCorrect = card.IsCorrect;
-            quizResult.CardCompletedQuizDate = card.CompletedQuizDate;
+            quizResult.CardCompletedQuizYear = card.CompletedQuizYear;
+            quizResult.CardCompletedQuizMonth = card.CompletedQuizMonth;
+            quizResult.CardCompletedQuizDay = card.CompletedQuizDay;
 
             card.Level = quizResult.IsCorrect
                 ? card.Level + 1
@@ -37,7 +39,9 @@ namespace BrainThud.Web.Handlers
             var daysQuizExtended = this.QuizCalendar.GetQuizInterval(card.Level);
             card.QuizDate = new DateTime(year, month, day).AddDays(daysQuizExtended);
             card.IsCorrect = quizResult.IsCorrect;
-            card.CompletedQuizDate = DateTime.UtcNow;
+            card.CompletedQuizYear = year;
+            card.CompletedQuizMonth = month;
+            card.CompletedQuizDay = day;
         }
 
         public void ReverseQuizResult(QuizResult quizResult, Card card)
@@ -45,7 +49,9 @@ namespace BrainThud.Web.Handlers
             card.Level = quizResult.CardLevel;
             card.QuizDate = quizResult.CardQuizDate;
             card.IsCorrect = quizResult.CardIsCorrect;
-            card.CompletedQuizDate = quizResult.CardCompletedQuizDate;
+            card.CompletedQuizYear = quizResult.CardCompletedQuizYear;
+            card.CompletedQuizMonth = quizResult.CardCompletedQuizMonth;
+            card.CompletedQuizDay = quizResult.CardCompletedQuizDay;
         }
     }
 }

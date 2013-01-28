@@ -14,10 +14,18 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
 
         public override void When()
         {
-            var quizDate = TestValues.CARD_QUIZ_DATE;
             this.quizResult = new QuizResult { IsCorrect = true };
-            this.card = new Card { Level = CARD_LEVEL, QuizDate = quizDate, IsCorrect = false, CompletedQuizDate = TestValues.DATETIME };
-            this.QuizResultHandler.ApplyQuizResult(this.quizResult, this.card, quizDate.Year, quizDate.Month, quizDate.Day);
+            this.card = new Card
+            {
+                Level = CARD_LEVEL,
+                QuizDate = TestValues.CARD_QUIZ_DATE, 
+                IsCorrect = false, 
+                CompletedQuizYear = TestValues.YEAR, 
+                CompletedQuizMonth = TestValues.MONTH, 
+                CompletedQuizDay = TestValues.DAY
+            };
+
+            this.QuizResultHandler.ApplyQuizResult(this.quizResult, this.card, TestValues.CARD_QUIZ_DATE.Year, TestValues.CARD_QUIZ_DATE.Month, TestValues.CARD_QUIZ_DATE.Day);
         }
 
         [Test]
@@ -40,9 +48,11 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         }
 
         [Test]
-        public void Then_CompletedQuizDate_should_be_set_to_today()
+        public void Then_completed_quiz_date_should_be_set_to_the_quiz_date()
         {
-            this.card.CompletedQuizDate.Should().BeWithin(10.Seconds()).Before(DateTime.UtcNow);
+            this.card.CompletedQuizYear.Should().Be(TestValues.CARD_QUIZ_DATE.Year);
+            this.card.CompletedQuizMonth.Should().Be(TestValues.CARD_QUIZ_DATE.Month);
+            this.card.CompletedQuizDay.Should().Be(TestValues.CARD_QUIZ_DATE.Day);
         }
 
         [Test]
@@ -64,9 +74,11 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
         }
 
         [Test]
-        public void Then_the_QuizResult_CardCompletedQuizDate_should_be_set_to_today()
+        public void Then_the_QuizResult_Card_completed_quiz_date_should_be_set_to_today()
         {
-            this.quizResult.CardCompletedQuizDate.Should().Be(TestValues.DATETIME);
+            this.quizResult.CardCompletedQuizYear.Should().Be(TestValues.YEAR);
+            this.quizResult.CardCompletedQuizMonth.Should().Be(TestValues.MONTH);
+            this.quizResult.CardCompletedQuizDay.Should().Be(TestValues.DAY);
         }
     }
 }

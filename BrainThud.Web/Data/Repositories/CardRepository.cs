@@ -35,7 +35,6 @@ namespace BrainThud.Web.Data.Repositories
             entity.UserId = this.UserId;
             entity.EntityId = this.KeyGenerator.GeneratedEntityId;
             entity.DeckNameSlug = entity.DeckName.GenerateSlug();
-            entity.CompletedQuizDate = TypeValues.MIN_SQL_DATETIME;
 
             base.Add(entity);
         }

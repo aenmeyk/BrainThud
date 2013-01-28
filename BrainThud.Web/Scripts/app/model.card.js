@@ -16,7 +16,9 @@
             self.userId = ko.observable();
             self.entityId = ko.observable();
             self.isCorrect = ko.observable();
-            self.completedQuizDate = ko.observable();
+            self.completedQuizYear = ko.observable();
+            self.completedQuizMonth = ko.observable();
+            self.completedQuizDay = ko.observable();
             self.questionSideVisible = ko.observable(true);
             self.questionHtml = ko.computed(function () {
                 return self.question() ? editor.makeHtml(self.question()) : '';
@@ -30,7 +32,8 @@
             self.libraryCardBorder = ko.computed(function () {
                 if (!self.questionSideVisible()) return 'answer';
                 
-                if (new Date(self.completedQuizDate()) > Date.UTC(1800, 1, 1)) {
+                // If the completedQuizYear has been set, it means the user has answered this card
+                if (self.completedQuizYear() > 0) {
                     return self.isCorrect() ? 'correct' : 'incorrect';
                 }
 
@@ -39,7 +42,11 @@
             self.quizCardBorder = ko.computed(function () {
                 if (!self.questionSideVisible()) return 'answer';
                 
-                if (moment(self.completedQuizDate()).format('L') === moment().format('L')) {
+                var today = new Date();
+                
+                if (self.completedQuizYear() === today.getFullYear() &&
+                    self.completedQuizMonth() === today.getMonth() + 1 &&
+                    self.completedQuizDay() === today.getDate()) {
                     return self.isCorrect() ? 'correct' : 'incorrect';
                 }
 
