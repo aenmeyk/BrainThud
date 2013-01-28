@@ -53,6 +53,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.QuizResultsControllerT
             this.quizResult.QuizDate.Year.Should().Be(TestValues.YEAR);
             this.quizResult.QuizDate.Month.Should().Be(TestValues.MONTH);
             this.quizResult.QuizDate.Day.Should().Be(TestValues.DAY);
+            this.quizResult.QuizYear.Should().Be(TestValues.YEAR);
+            this.quizResult.QuizMonth.Should().Be(TestValues.MONTH);
+            this.quizResult.QuizDay.Should().Be(TestValues.DAY);
         }
 
         [Test]

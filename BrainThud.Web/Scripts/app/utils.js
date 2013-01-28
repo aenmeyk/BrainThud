@@ -10,7 +10,7 @@
                 return false;
             },
             getDatePath = function() {
-                return moment.utc(new Date()).format('YYYY/M/D');
+                return moment(new Date()).format('YYYY/M/D');
             },
             entityExists = function(array, entity) {
                 for (var i = 0; i < array.length; i++) {
