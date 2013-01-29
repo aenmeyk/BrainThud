@@ -16,7 +16,11 @@
 
                 return 'question';
             }),
-            
+
+            isSubmitResultDisabled = ko.computed(function () {
+                return !quizNavigator.isQuizToday();
+            }),
+
             activate = function (routeData) {
                 quizNavigator.activate(routeData);
             },
@@ -85,7 +89,8 @@
             },
 
             flipCard = function () {
-                quizNavigator.currentCard().questionSideVisible(!card().questionSideVisible());
+                var card = quizNavigator.currentCard();
+                card.questionSideVisible(!card.questionSideVisible());
             },
 
             submitCorrect = function () {
@@ -97,20 +102,21 @@
             },
 
             editCard = function () {
-                amplify.publish(config.pubs.showEditCard, card().entityId());
+                amplify.publish(config.pubs.showEditCard, quizNavigator.currentCard().entityId());
             },
 
             showDeleteDialog = function () {
-                amplify.publish(config.pubs.showDeleteCard, card(), quizNavigator.showNextCard);
+                amplify.publish(config.pubs.showDeleteCard, quizNavigator.currentCard(), quizNavigator.showNextCard);
             },
 
             showCardInfoDialog = function () {
-                amplify.publish(config.pubs.showCardInfo, card());
+                amplify.publish(config.pubs.showCardInfo, quizNavigator.currentCard());
             };
 
         return {
             activate: activate,
             card: quizNavigator.currentCard,
+            isSubmitResultDisabled: isSubmitResultDisabled,
             showNextCard: quizNavigator.showNextCard,
             showPreviousCard: quizNavigator.showPreviousCard,
             flipCard: flipCard,

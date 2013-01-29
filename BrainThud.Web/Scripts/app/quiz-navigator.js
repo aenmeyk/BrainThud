@@ -16,6 +16,14 @@
             quizDatePath = ko.computed(function () {
                 return moment(quizDate()).format('YYYY/M/D');
             }),
+            
+            isQuizToday = ko.computed(function() {
+                return quizDate() === moment().format('L');
+            }),
+            
+            isQuizInFuture = ko.computed(function () {
+                return new Date(quizYear(), quizMonth() - 1, quizDay()) > new Date();
+            }),
 
             cardCount = ko.computed(function () {
                 return cards().length;
@@ -182,6 +190,8 @@
             activate: activate,
             quizDate: quizDate,
             quizDatePath: quizDatePath,
+            isQuizToday: isQuizToday,
+            isQuizInFuture: isQuizInFuture,
             currentCard: currentCard,
             currentQuizResult: currentQuizResult,
             cardIndex: cardIndex,
