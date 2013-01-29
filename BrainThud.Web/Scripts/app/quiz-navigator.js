@@ -5,13 +5,16 @@
             cardIndex = ko.observable(0),
             cards = ko.observableArray([]),
             quizResults = ko.observableArray([]),
-            quizDate = ko.observable(''),
             quizYear = ko.observable(0),
             quizMonth = ko.observable(0),
             quizDay = ko.observable(0),
+
+            quizDate = ko.computed(function () {
+                return moment([quizYear(), quizMonth() - 1, quizDay()]).format('L');
+            }),
             
             quizDatePath = ko.computed(function () {
-                return moment([quizYear(), quizMonth() - 1, quizDay()]).format('YYYY/M/D');
+                return moment(quizDate()).format('YYYY/M/D');
             }),
 
             cardCount = ko.computed(function () {
@@ -82,7 +85,6 @@
             activate = function (routeData) {
                 // If the new route doesn't match the current route then we need to get the cards and quizResults for the new route
                 if (quizYear() !== routeData.year || quizMonth() !== routeData.month || quizDay() !== routeData.day) {
-//                    isActivated(false);
                     dataContext.quizCard.setCacheInvalid();
                     dataContext.quizResult.setCacheInvalid();
                     quizYear(routeData.year);
@@ -90,26 +92,19 @@
                     quizDay(routeData.day);
                 }
 
-                if (!isActivated()) {
-//                    isActivated(true);
+                $.when(getQuizCards(), getQuizResults())
+                    .done(function () {
+                        if (routeData && routeData.cardId) {
+                            var cardItems = cards();
+                            var routeCard = _.find(cardItems, function(item) {
+                                return item.entityId() === parseInt(routeData.cardId);
+                            });
 
-                    quizDate(moment([quizYear(), quizMonth() - 1, quizDay()]).format('L'));
-
-                    $.when(getQuizCards(), getQuizResults())
-                        .done(function () {
-                            if (routeData && routeData.cardId) {
-                                var cardItems = cards();
-                                var routeCard = _.find(cardItems, function(item) {
-                                    return item.entityId() === parseInt(routeData.cardId);
-                                });
-
-                                cardIndex(_.indexOf(cardItems, routeCard));
-//                                showCurrentCard();
-                            } else {
-                                cardIndex(0);
-                            }
-                        });
-                };
+                            cardIndex(_.indexOf(cardItems, routeCard));
+                        } else {
+                            cardIndex(0);
+                        }
+                    });
             },
 
             getQuizCards = function () {

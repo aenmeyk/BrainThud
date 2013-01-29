@@ -2,7 +2,7 @@
 
     <div class="row-fluid">
         <div class="span12">
-            <h1>Today's Quiz</h1>
+            <h1 data-bind="html: pageTitle"></h1>
         </div>
     </div>
     <div class="row-fluid">
@@ -25,7 +25,7 @@
     <div class="row-fluid">
         <div class="span4 offset8">
             <button type="button" class="primary-button btn btn-primary right-align" data-bind="click: startQuiz">
-                <i class="icon-play-circle icon-white"></i> Start Quiz
+                <i class="icon-play-circle icon-white"></i><span data-bind="html: startQuizLabel"></span>
             </button>
         </div>
     </div>
