@@ -1,5 +1,5 @@
-define('vm.quiz', ['jquery', 'ko', 'underscore', 'moment', 'amplify', 'config', 'data-context', 'utils', 'global', 'quiz-navigator'],
-    function ($, ko, _, moment, amplify, config, dataContext, utils, global, quizNavigator) {
+define('vm.quiz', ['quiz-navigator'],
+    function (quizNavigator) {
         var
             activate = function (routeData) {
                 quizNavigator.activate(routeData);
