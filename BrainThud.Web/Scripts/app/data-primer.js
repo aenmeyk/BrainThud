@@ -15,19 +15,20 @@ function ($, ko, dataContext, utils, global) {
                             global.routePrefix = '#/' + global.userId + '/';
                             var datePath = utils.getDatePath();
                             $.when(
-                                dataContext.quizResult.getData({
-                                    params: {
-                                        datePath: datePath,
-                                        userId: global.userId
-                                    }
-                                }),
-                                dataContext.card.getData({}),
-                                dataContext.quizCard.getData({
-                                    params: {
-                                        datePath: datePath,
-                                        userId: global.userId
-                                    }
-                                }))
+//                                dataContext.quizResult.getData({
+//                                    params: {
+//                                        datePath: datePath,
+//                                        userId: global.userId
+//                                    }
+//                                }),
+//                                dataContext.quizCard.getData({
+//                                    params: {
+//                                        datePath: datePath,
+//                                        userId: global.userId
+//                                    }
+//                                }),
+                                dataContext.card.getData({})
+                            )
                             .fail(function() { def.reject(); })
                             .done(function() { def.resolve(); });
                         } else {
