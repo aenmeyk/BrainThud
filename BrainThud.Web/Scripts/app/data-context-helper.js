@@ -106,19 +106,21 @@
                 },
 
                 updateCachedItem = function (item) {
-                    for (var i = 0; i < cachedResults.length; i++) {
-                        if (cachedResults[i].partitionKey() === item.partitionKey() && cachedResults[i].rowKey() === item.rowKey()) {
-                            cachedResults[i] = item;
-                            break;
+                    if (cachedResults && cachedResults.length > 0) {
+                        for (var i = 0; i < cachedResults.length; i++) {
+                            if (cachedResults[i].partitionKey() === item.partitionKey() && cachedResults[i].rowKey() === item.rowKey()) {
+                                cachedResults[i] = item;
+                                break;
+                            }
                         }
+
+                        publishCacheChanged();
                     }
-
-                    publishCacheChanged();
-
                 },
 
                 removeCachedItem = function (item) {
-                    for (var i = 0; i < cachedResults.length; i++) {
+                    if (cachedResults && cachedResults.length > 0) {
+                        for (var i = 0; i < cachedResults.length; i++) {
                         if (cachedResults[i].partitionKey() === item.partitionKey() && cachedResults[i].rowKey() === item.rowKey()) {
                             cachedResults.splice(i, 1);
                             break;
@@ -126,6 +128,7 @@
                     }
 
                     publishCacheChanged();
+                    }
                 },
 
                 publishCacheChanged = function () {

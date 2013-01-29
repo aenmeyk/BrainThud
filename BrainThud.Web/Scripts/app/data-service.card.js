@@ -23,8 +23,7 @@
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8',
                     beforeSend: function(xhr) {
-                        xhr.setRequestHeader('X-Client-Date', moment(new Date(2013,0,28,23, 0, 0, 0)).format());
-//                        xhr.setRequestHeader('X-Client-Date', moment().format());
+                        xhr.setRequestHeader('X-Client-Date', moment().format());
                     }
                 }),
                 amplify.request.define('updateCard', 'ajax', {
