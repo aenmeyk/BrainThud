@@ -32,15 +32,6 @@
             $cardDeckChevron = $('#card-deck-chevron'),
             $cardDeckContainer = $('.card-deck-container'),
             $cardDeckName = $('.card-deck-name');
-//        $("#level0Slider").slider({
-//            range: "min",
-//            value: 30,
-//            min: 0,
-//            max: 365,
-//            slide: function (event, ui) {
-//                $("#level0Interval").val(ui.value);
-//            }
-//        });
         $cardDeckName.click(function () {
             $cardDeckContainer.collapse('toggle');
         });

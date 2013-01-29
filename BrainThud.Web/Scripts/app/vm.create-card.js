@@ -19,6 +19,7 @@
                     
                     $.when(dataContext.card.createData({ data: newCard }))
                         .always(function () {
+                            dataContext.quizCard.setCacheInvalid();
                             toastr.success('Success!');
                             dom.resetNewCard();
                             editor.refreshPreview('create');
