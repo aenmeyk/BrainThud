@@ -1,41 +1,22 @@
 ﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'utils', 'amplify', 'config', 'global', 'quiz-navigator', 'moment', 'data-service', 'model.mapper'],
     function (_, ko, dataContext, utils, amplify, config, global, quizNavigator, moment, dataService, modelMapper) {
         var
-            quizResults = ko.observableArray([]),
-
             displayIndex = ko.computed(function () {
                 return quizNavigator.cardIndex() + 1;
             }),
-
-            cardCount = ko.computed(function () {
-                return quizNavigator.cardCount();
-            }),
             
             activate = function (routeData) {
-                if (!quizNavigator.isActivated()) {
-                    quizNavigator.activate(routeData);
-                }
-                dataContext.quizResult.getData({
-                    results: quizResults,
-                    params: {
-                        datePath: utils.getDatePath(),
-                        userId: global.userId
-                    }
-                });
+                quizNavigator.activate(routeData);
             },
-            
-            card = ko.computed(function() {
-                return quizNavigator.currentCard();
-            }),
 
             getCreateConfig = function (isCorrect) {
                 return {
                     data: {
-                        cardId: card().entityId(),
+                        cardId: quizNavigator.currentCard().entityId(),
                         isCorrect: isCorrect
                     },
                     params: {
-                        datePath: utils.getDatePath(),
+                        datePath: quizNavigator.quizDatePath(),
                         userId: global.userId
                     }
                 };
@@ -45,7 +26,7 @@
                 return {
                     data: quizResult,
                     params: {
-                        datePath: utils.getDatePath(),
+                        datePath: quizNavigator.quizDatePath(),
                         userId: global.userId
                     }
                 };
@@ -66,10 +47,10 @@
             },
 
             submitQuizResult = function (isCorrect) {
-                var currentCard = card(),
+                var currentCard = quizNavigator.currentCard(),
                     deferredSave;
                 
-                var existingQuizResult = _.find(quizResults(), function (item) {
+                var existingQuizResult = _.find(quizNavigator.quizResults(), function (item) {
                     return item.cardId() === currentCard.entityId();
                 });
 
@@ -87,7 +68,7 @@
                     });
 
                 amplify.publish(config.pubs.createQuizResult, {
-                    cardId: card().entityId(),
+                    cardId: currentCard.entityId(),
                     isCorrect: isCorrect
                 });
                 
@@ -95,7 +76,7 @@
             },
 
             flipCard = function () {
-                card().questionSideVisible(!card().questionSideVisible());
+                quizNavigator.currentCard().questionSideVisible(!card().questionSideVisible());
             },
 
             submitCorrect = function () {
@@ -120,7 +101,7 @@
 
         return {
             activate: activate,
-            card: card,
+            card: quizNavigator.currentCard,
             showNextCard: quizNavigator.showNextCard,
             showPreviousCard: quizNavigator.showPreviousCard,
             flipCard: flipCard,
@@ -130,7 +111,7 @@
             showDeleteDialog: showDeleteDialog,
             showCardInfoDialog: showCardInfoDialog,
             displayIndex: displayIndex,
-            cardCount: cardCount
+            cardCount: quizNavigator.cardCount
         };
     }
 );
