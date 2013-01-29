@@ -1,50 +1,104 @@
-﻿define('quiz-navigator', ['jquery', 'ko', 'underscore', 'router', 'data-context', 'utils', 'amplify', 'config', 'global', 'model'],
-    function ($, ko, _, router, dataContext, utils, amplify, config, global, model) {
+﻿define('quiz-navigator', ['jquery', 'ko', 'underscore', 'router', 'data-context', 'utils', 'amplify', 'config', 'global', 'model', 'moment'],
+    function ($, ko, _, router, dataContext, utils, amplify, config, global, model, moment) {
         var
             isActivated = ko.observable(false),
             cardIndex = ko.observable(0),
             cards = ko.observableArray([]),
-            
+            quizResults = ko.observableArray([]),
+            quizDate = ko.observable(''),
+            quizYear = ko.observable(0),
+            quizMonth = ko.observable(0),
+            quizDay = ko.observable(0),
+
             cardCount = ko.computed(function () {
                 return cards().length;
             }),
-            
+
+            completedCardCount = ko.computed(function () {
+                return quizResults().length;
+            }),
+
+            correctCardCount = ko.computed(function () {
+                return _.filter(quizResults(), function (quizResult) {
+                    return quizResult.isCorrect();
+                }).length;
+            }),
+
+            incorrectCardCount = ko.computed(function () {
+                return _.filter(quizResults(), function (quizResult) {
+                    return !quizResult.isCorrect();
+                }).length;
+            }),
+
             currentCard = ko.computed(function () {
                 var card = cards()[cardIndex()];
                 if (card) return card;
                 return new model.Card();
             }),
 
-             init = function () {
-                 amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
-                     cards(data);
-                     var cardsLength = cards().length;
-                     if (cardIndex() >= cardsLength) {
+            init = function () {
+                amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
+                    cards(data);
+                    var cardsLength = cards().length;
+                    if (cardIndex() >= cardsLength) {
                         cardIndex(0);
-                     }
-                 });
-             },
+                    }
+                });
+            },
 
-           activate = function (routeData) {
-               isActivated(true);
-               $.when(dataContext.quizCard.getData({
-                   results: cards,
-                   params: {
-                       datePath: utils.getDatePath(),
-                       userId: global.userId
-                   }
-               })).done(function() {
-                   if (routeData) {
-                       var cardItems = cards();
-                       var routeCard = _.find(cardItems, function(item) {
-                           return item.entityId() === parseInt(routeData.cardId);
-                       });
+            activate = function (routeData) {
+                // If the new route doesn't match the current route then we need to get the cards and quizResults for the new route
+                if (quizYear() !== routeData.year || quizMonth() !== routeData.month || quizDay() !== routeData.day) {
+                    isActivated(false);
+                    dataContext.quizCard.setCacheInvalid();
+                    dataContext.quizResult.setCacheInvalid();
+                    quizYear(routeData.year);
+                    quizMonth(routeData.month);
+                    quizDay(routeData.day);
+                }
 
-                       cardIndex(_.indexOf(cardItems, routeCard));
-                       showCurrentCard();
-                   }
-               });
-                   ;
+                if (!isActivated()) {
+                    isActivated(true);
+
+                    var year = quizYear(),
+                        month = quizMonth(),
+                        day = quizDay();
+
+                    quizDate(moment([year, month - 1, day]).format('L'));
+
+                    $.when(getQuizCards(year, month, day), getQuizResults(year, month, day))
+                        .done(function () {
+//                            if (routeData) {
+//                                var cardItems = cards();
+//                                var routeCard = _.find(cardItems, function (item) {
+//                                    return item.entityId() === parseInt(routeData.cardId);
+//                                });
+//
+//                                cardIndex(_.indexOf(cardItems, routeCard));
+//                                showCurrentCard();
+//                            }
+                        });
+                };
+            },
+
+            getQuizCards = function (year, month, day) {
+                return dataContext.quizCard.getData({
+                    results: cards,
+                    params: {
+                        datePath: moment([year, month - 1, day]).format('YYYY/M/D'),
+                        userId: global.userId
+                    }
+                });
+            },
+
+            getQuizResults = function (year, month, day) {
+                return dataContext.quizResult.getData({
+                    results: quizResults,
+                    params: {
+                        datePath: moment([year, month - 1, day]).format('YYYY/M/D'),
+                        userId: global.userId
+                    }
+                });
             },
 
             getQuizPath = function () {
@@ -112,9 +166,13 @@
         return {
             isActivated: isActivated,
             activate: activate,
+            quizDate: quizDate,
             currentCard: currentCard,
             cardIndex: cardIndex,
             cardCount: cardCount,
+            completedCardCount: completedCardCount,
+            correctCardCount: correctCardCount,
+            incorrectCardCount: incorrectCardCount,
             showCurrentCard: showCurrentCard,
             showNextCard: showNextCard,
             showPreviousCard: showPreviousCard
