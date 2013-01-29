@@ -1,6 +1,7 @@
-﻿define('dom', ['jquery', 'ko'],
-    function ($, ko) {
+﻿define('dom', ['jquery', 'ko', 'config', 'underscore'],
+    function ($, ko, config, _) {
         var
+            cardDeckNames = ko.observableArray([]),
             getCardValues = function (card, editorName) {
                 card.deckName = $('#new-card-deckname-' + editorName).val();
                 card.tags = $('#new-card-tags-' + editorName).val();
@@ -32,7 +33,7 @@
             $cardDeckChevron = $('#card-deck-chevron'),
             $cardDeckContainer = $('.card-deck-container'),
             $cardDeckName = $('.card-deck-name');
-        $cardDeckName.click(function () {
+            $cardDeckName.click(function () {
             $cardDeckContainer.collapse('toggle');
         });
         
@@ -47,7 +48,7 @@
                 $cardDeckChevron.removeClass("icon-chevron-up");
             }, 100);
         });
-
+        
         ko.bindingHandlers.slider = {
             init: function (element, valueAccessor, allBindingsAccessor) {
                 var options = allBindingsAccessor().sliderOptions || {};
@@ -71,6 +72,29 @@
 
             }
         };
+
+        $('[id^=new-card-deckname]').typeahead({
+            source: function (query, process) {
+                process(cardDeckNames());
+            }
+        });
+
+        // TODO: this method doesn't really belong here
+        amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
+            var sortedCards = _.sortBy(data, function (item) {
+                return item.deckName().toLowerCase();;
+            });
+            
+            var deckNames = _.map(sortedCards, function(item) {
+                return item.deckName();
+            });
+
+            var uniqueDeckNames = _.uniq(deckNames, true, function (item) {
+                return item;
+            });
+
+            cardDeckNames(uniqueDeckNames);
+        });
 
         return {
             getCardValues: getCardValues,

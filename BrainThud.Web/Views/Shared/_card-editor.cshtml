@@ -3,7 +3,7 @@
         <span class="form-label">Deck name</span>
     </div>
     <div class="span10">
-        <input id="new-card-deckname-@(ViewBag.EditorName)" type="text" class="stretch" data-bind="value: card().deckName, valueUpdate:'afterkeyup'" required/>
+        <input id="new-card-deckname-@(ViewBag.EditorName)" type="text" class="stretch" data-provide="typeahead" data-bind="value: card().deckName, valueUpdate:'afterkeyup'" required/>
     </div>
 </div>
 <div class="row-fluid">
