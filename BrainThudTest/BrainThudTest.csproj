@@ -129,6 +129,7 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\Given_a_new_AccountController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\SignOut.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\CardsControllerTest\When_Post_is_called_with_no_X_Client_Date_header.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\Given_a_new_ConfigController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_Put_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_nothing_changes.cs" />
@@ -174,6 +175,7 @@
     </Compile>
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\QuizResultKeyGeneratorTest\Given_a_new_QuizResultKeyGenerator.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\QuizResultKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Add_is_called_with_clientDateTime.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Add_is_called_with_null_DeckName.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Update_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_GetForQuiz_is_called.cs" />

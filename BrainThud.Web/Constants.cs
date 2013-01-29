@@ -95,5 +95,8 @@ namespace BrainThud.Web
         public const string CONCURRENCY_VIOLATION = "UpdateConditionNotSatisfied";
     }
 
-
+    public static class HttpHeaders
+    {
+        public const string X_CLIENT_DATE = "X-Client-Date";
+    }
 }

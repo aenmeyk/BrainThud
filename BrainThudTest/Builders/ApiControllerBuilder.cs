@@ -8,6 +8,7 @@ namespace BrainThudTest.Builders
     {
         private readonly T apiController;
         private readonly ControllerContextBuilder controllerContextBuilder;
+        public HttpRequestMessage Request { get; set; }
 
         public ApiControllerBuilder(T apiController)
         {
@@ -34,8 +35,8 @@ namespace BrainThudTest.Builders
 
         public ApiControllerBuilder<T> CreateRequest(HttpMethod httpMethod, string requestUri)
         {
-            var request = new HttpRequestMessage(httpMethod, requestUri);
-            return this.CreateRequest(request);
+            this.Request = new HttpRequestMessage(httpMethod, requestUri);
+            return this.CreateRequest(this.Request);
         }
 
         public T Build()

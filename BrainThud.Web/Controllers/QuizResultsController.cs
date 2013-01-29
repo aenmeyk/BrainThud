@@ -80,7 +80,7 @@ namespace BrainThud.Web.Controllers
                 }
 
                 var card = GetCard(userId, cardId, this.TableStorageContext);
-                this.quizResultHandler.ApplyQuizResult(quizResult, card);
+                this.quizResultHandler.ApplyQuizResult(quizResult, card, year, month, day);
                 this.TableStorageContext.QuizResults.Add(quizResult);
                 this.TableStorageContext.Cards.Update(card);
                 this.TableStorageContext.CommitBatch();
@@ -110,7 +110,7 @@ namespace BrainThud.Web.Controllers
                 var existingQuizResult = this.TableStorageContext.QuizResults.Get(quizResult.PartitionKey, quizResult.RowKey);
                 this.quizResultHandler.ReverseQuizResult(existingQuizResult, card);
                 this.TableStorageContext.Detach(existingQuizResult);
-                this.quizResultHandler.ApplyQuizResult(quizResult, card);
+                this.quizResultHandler.ApplyQuizResult(quizResult, card, year, month, day);
                 this.TableStorageContext.QuizResults.Update(quizResult);
                 this.TableStorageContext.Cards.Update(card);
                 this.TableStorageContext.CommitBatch();

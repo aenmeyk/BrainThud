@@ -1,5 +1,5 @@
-﻿define('data-service.card', ['amplify', 'pubs', 'model.mapper', 'config'],
-    function (amplify, pubs, modelMapper, config) {
+﻿define('data-service.card', ['amplify', 'pubs', 'model.mapper', 'config', 'moment'],
+    function (amplify, pubs, modelMapper, config, moment) {
         var
             init = function() {
                 amplify.request.define('getCards', 'ajax', {
@@ -21,7 +21,11 @@
                     url: config.routes.cards,
                     dataType: 'json',
                     type: 'POST',
-                    contentType: 'application/json; charset=utf-8'
+                    contentType: 'application/json; charset=utf-8',
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader('X-Client-Date', moment(new Date(2013,0,28,23, 0, 0, 0)).format());
+//                        xhr.setRequestHeader('X-Client-Date', moment().format());
+                    }
                 }),
                 amplify.request.define('updateCard', 'ajax', {
                     url: config.routes.cards,

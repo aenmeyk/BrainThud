@@ -23,6 +23,7 @@ namespace BrainThudTest
 
         public const int INT = 5;
         public const string STRING = "TestString";
+        public const string DATETIME_STRING = "2012-07-21T00:00:00-05:00";
         public const int USER_ID = 21;
         public const int CARD_ID = 583;
         public const int QUIZ_ID = 37;
