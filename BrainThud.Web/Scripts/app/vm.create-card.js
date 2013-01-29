@@ -1,5 +1,5 @@
-﻿define('vm.create-card', ['ko', 'data-context', 'editor', 'dom', 'model', 'amplify', 'config'],
-    function (ko, dataContext, editor, dom, model, amplify, config) {
+﻿define('vm.create-card', ['ko', 'data-context', 'editor', 'dom', 'model'],
+    function (ko, dataContext, editor, dom, model) {
         var
             card = ko.observable(new model.Card()),
             
@@ -18,13 +18,14 @@
                     dom.getCardValues(newCard, 'create');
                     
                     $.when(dataContext.card.createData({ data: newCard }))
-                        .always(function () {
-                            dataContext.quizCard.setCacheInvalid();
-                            toastr.success('Success!');
-                            dom.resetNewCard();
-                            editor.refreshPreview('create');
-                            complete();
-                        });
+                    .done(function () {
+                        dataContext.quizCard.setCacheInvalid();
+                        dom.resetNewCard();
+                        editor.refreshPreview('create');
+                    })
+                    .always(function() {
+                        complete();
+                    });
                 },
                 canExecute: function (isExecuting) {
                     return !isExecuting && isValid();

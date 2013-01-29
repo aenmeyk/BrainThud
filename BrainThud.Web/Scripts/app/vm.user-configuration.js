@@ -24,7 +24,6 @@
                         }))
                         .always(function() {
                             complete();
-                            toastr.success('Success!');
                         });
                 },
                 canExecute: function (isExecuting) {
