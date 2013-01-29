@@ -9,6 +9,10 @@
             quizYear = ko.observable(0),
             quizMonth = ko.observable(0),
             quizDay = ko.observable(0),
+            
+            quizDatePath = ko.computed(function () {
+                return moment([quizYear(), quizMonth() - 1, quizDay()]).format('YYYY/M/D');
+            }),
 
             cardCount = ko.computed(function () {
                 return cards().length;
@@ -49,7 +53,7 @@
             activate = function (routeData) {
                 // If the new route doesn't match the current route then we need to get the cards and quizResults for the new route
                 if (quizYear() !== routeData.year || quizMonth() !== routeData.month || quizDay() !== routeData.day) {
-                    isActivated(false);
+//                    isActivated(false);
                     dataContext.quizCard.setCacheInvalid();
                     dataContext.quizResult.setCacheInvalid();
                     quizYear(routeData.year);
@@ -58,7 +62,7 @@
                 }
 
                 if (!isActivated()) {
-                    isActivated(true);
+//                    isActivated(true);
 
                     var year = quizYear(),
                         month = quizMonth(),
@@ -66,7 +70,7 @@
 
                     quizDate(moment([year, month - 1, day]).format('L'));
 
-                    $.when(getQuizCards(year, month, day), getQuizResults(year, month, day))
+                    $.when(getQuizCards(), getQuizResults())
                         .done(function () {
 //                            if (routeData) {
 //                                var cardItems = cards();
@@ -81,21 +85,21 @@
                 };
             },
 
-            getQuizCards = function (year, month, day) {
+            getQuizCards = function () {
                 return dataContext.quizCard.getData({
                     results: cards,
                     params: {
-                        datePath: moment([year, month - 1, day]).format('YYYY/M/D'),
+                        datePath: quizDatePath(),
                         userId: global.userId
                     }
                 });
             },
 
-            getQuizResults = function (year, month, day) {
+            getQuizResults = function () {
                 return dataContext.quizResult.getData({
                     results: quizResults,
                     params: {
-                        datePath: moment([year, month - 1, day]).format('YYYY/M/D'),
+                        datePath: quizDatePath(),
                         userId: global.userId
                     }
                 });
@@ -167,6 +171,7 @@
             isActivated: isActivated,
             activate: activate,
             quizDate: quizDate,
+            quizDatePath: quizDatePath,
             currentCard: currentCard,
             cardIndex: cardIndex,
             cardCount: cardCount,
