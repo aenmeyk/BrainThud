@@ -69,12 +69,8 @@
                     }
                 });
 
-                amplify.subscribe(config.pubs.createQuizResult, function (data) {
-                    var quizResult = _.find(quizResults(), function (item) {
-                        return item.cardId() === data.cardId;
-                    });
-
-                    quizResult.isCorrect(data.isCorrect);
+                amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
+                    quizResults(data);
                 });
 
                 amplify.subscribe(config.pubs.showCurrentCard, function () {
