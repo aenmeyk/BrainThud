@@ -134,7 +134,13 @@ h6 {
 .correct-color {
   color: #59b359;
 }
+.correctColor {
+  color: #59b359;
+}
 .incorrect-color {
+  color: #d74c46;
+}
+.incorrectColor {
   color: #d74c46;
 }
 .view {
