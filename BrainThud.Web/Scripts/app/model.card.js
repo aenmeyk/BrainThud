@@ -39,19 +39,19 @@
 
                 return 'question';
             });
-            self.quizCardBorder = ko.computed(function () {
-                if (!self.questionSideVisible()) return 'answer';
-                
-                var today = new Date();
-                
-                if (self.completedQuizYear() === today.getFullYear() &&
-                    self.completedQuizMonth() === today.getMonth() + 1 &&
-                    self.completedQuizDay() === today.getDate()) {
-                    return self.isCorrect() ? 'correct' : 'incorrect';
-                }
-
-                return 'question';
-            });
+//            self.quizCardBorder = ko.computed(function () {
+//                if (!self.questionSideVisible()) return 'answer';
+//                
+//                var today = new Date();
+//                
+//                if (self.completedQuizYear() === today.getFullYear() &&
+//                    self.completedQuizMonth() === today.getMonth() + 1 &&
+//                    self.completedQuizDay() === today.getDate()) {
+//                    return self.isCorrect() ? 'correct' : 'incorrect';
+//                }
+//
+//                return 'question';
+//            });
             self.localizedQuizDate = ko.computed(function () {
                 return moment(self.quizDate()).format('L');
             });

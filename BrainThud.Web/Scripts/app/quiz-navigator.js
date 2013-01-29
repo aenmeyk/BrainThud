@@ -1,5 +1,5 @@
-﻿define('quiz-navigator', ['jquery', 'ko', 'underscore', 'router', 'data-context', 'utils', 'amplify', 'config', 'global', 'model', 'moment'],
-    function ($, ko, _, router, dataContext, utils, amplify, config, global, model, moment) {
+﻿define('quiz-navigator', ['jquery', 'ko', 'underscore', 'router', 'data-context', 'amplify', 'config', 'global', 'model', 'moment'],
+    function ($, ko, _, router, dataContext, amplify, config, global, model, moment) {
         var
             isActivated = ko.observable(false),
             cardIndex = ko.observable(0),
@@ -40,6 +40,15 @@
                 return new model.Card();
             }),
 
+            currentQuizResult = ko.computed(function () {
+                var card = currentCard();
+                var quizResult = _.find(quizResults(), function (item) {
+                    return item.cardId() === card.entityId();
+                });
+
+                return quizResult;
+            }),
+
             init = function () {
                 amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
                     cards(data);
@@ -47,6 +56,26 @@
                     if (cardIndex() >= cardsLength) {
                         cardIndex(0);
                     }
+                });
+
+                amplify.subscribe(config.pubs.createQuizResult, function (data) {
+                    var quizResult = _.find(quizResults(), function (item) {
+                        return item.cardId() === data.cardId;
+                    });
+
+                    quizResult.isCorrect(data.isCorrect);
+                });
+
+                amplify.subscribe(config.pubs.showCurrentCard, function () {
+                    showCurrentCard();
+                });
+
+                amplify.subscribe(config.pubs.showNextCard, function () {
+                    showNextCard();
+                });
+
+                amplify.subscribe(config.pubs.showPreviousCard, function () {
+                    showPreviousCard();
                 });
             },
 
@@ -64,23 +93,21 @@
                 if (!isActivated()) {
 //                    isActivated(true);
 
-                    var year = quizYear(),
-                        month = quizMonth(),
-                        day = quizDay();
-
-                    quizDate(moment([year, month - 1, day]).format('L'));
+                    quizDate(moment([quizYear(), quizMonth() - 1, quizDay()]).format('L'));
 
                     $.when(getQuizCards(), getQuizResults())
                         .done(function () {
-//                            if (routeData) {
-//                                var cardItems = cards();
-//                                var routeCard = _.find(cardItems, function (item) {
-//                                    return item.entityId() === parseInt(routeData.cardId);
-//                                });
-//
-//                                cardIndex(_.indexOf(cardItems, routeCard));
+                            if (routeData && routeData.cardId) {
+                                var cardItems = cards();
+                                var routeCard = _.find(cardItems, function(item) {
+                                    return item.entityId() === parseInt(routeData.cardId);
+                                });
+
+                                cardIndex(_.indexOf(cardItems, routeCard));
 //                                showCurrentCard();
-//                            }
+                            } else {
+                                cardIndex(0);
+                            }
                         });
                 };
             },
@@ -106,7 +133,7 @@
             },
 
             getQuizPath = function () {
-                return global.routePrefix + 'quizzes/' + utils.getDatePath();
+                return global.routePrefix + 'quizzes/' + quizDatePath();
             },
 
             getCardUri = function () {
@@ -153,18 +180,6 @@
                 router.navigateTo(getQuizPath());
             };
 
-        amplify.subscribe(config.pubs.showCurrentCard, function () {
-            showCurrentCard();
-        });
-
-        amplify.subscribe(config.pubs.showNextCard, function () {
-            showNextCard();
-        });
-
-        amplify.subscribe(config.pubs.showPreviousCard, function () {
-            showPreviousCard();
-        });
-
         init();
 
         return {
@@ -173,6 +188,7 @@
             quizDate: quizDate,
             quizDatePath: quizDatePath,
             currentCard: currentCard,
+            currentQuizResult: currentQuizResult,
             cardIndex: cardIndex,
             cardCount: cardCount,
             completedCardCount: completedCardCount,

@@ -1,8 +1,20 @@
-﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'utils', 'amplify', 'config', 'global', 'quiz-navigator', 'moment', 'data-service', 'model.mapper'],
-    function (_, ko, dataContext, utils, amplify, config, global, quizNavigator, moment, dataService, modelMapper) {
+﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'amplify', 'config', 'global', 'quiz-navigator', 'data-service', 'model.mapper'],
+    function (_, ko, dataContext, amplify, config, global, quizNavigator, dataService, modelMapper) {
         var
             displayIndex = ko.computed(function () {
                 return quizNavigator.cardIndex() + 1;
+            }),
+            
+            borderCss = ko.computed(function () {
+                var card = quizNavigator.currentCard();
+                
+                if (!card.questionSideVisible()) return 'answer';
+
+                if (quizNavigator.currentQuizResult()) {
+                    return quizNavigator.currentQuizResult().isCorrect() ? 'correct' : 'incorrect';
+                }
+
+                return 'question';
             }),
             
             activate = function (routeData) {
@@ -48,11 +60,8 @@
 
             submitQuizResult = function (isCorrect) {
                 var currentCard = quizNavigator.currentCard(),
+                    existingQuizResult = quizNavigator.currentQuizResult(),
                     deferredSave;
-                
-                var existingQuizResult = _.find(quizNavigator.quizResults(), function (item) {
-                    return item.cardId() === currentCard.entityId();
-                });
 
                 if (existingQuizResult) {
                     var jsQuizResult = ko.toJS(existingQuizResult);
@@ -111,7 +120,8 @@
             showDeleteDialog: showDeleteDialog,
             showCardInfoDialog: showCardInfoDialog,
             displayIndex: displayIndex,
-            cardCount: quizNavigator.cardCount
+            cardCount: quizNavigator.cardCount,
+            borderCss: borderCss
         };
     }
 );
