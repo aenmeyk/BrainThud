@@ -1,24 +1,29 @@
-define('vm.quiz', ['quiz-navigator', 'moment'],
-    function (quizNavigator, moment) {
+define('vm.quiz', ['ko', 'quiz-navigator'],
+    function (ko, quizNavigator) {
         var
-            pageTitle = ko.observable("Today's Quiz");
-            startQuizLabel = ko.observable('Start Quiz');
-
+            pageTitle = ko.observable("Today's Quiz"),
+            startQuizLabel = ko.observable('Start Quiz'),
+            
+            isStartDisabled = ko.computed(function() {
+                return quizNavigator.cardCount() === 0 || quizNavigator.isQuizInFuture();
+            }),
+        
             activate = function (routeData) {
                 quizNavigator.activate(routeData);
 
-                if (quizNavigator.quizDate() === moment().format('L')) {
+                if (quizNavigator.isQuizToday()) {
                     pageTitle("Today's Quiz");
                     startQuizLabel(' Start Quiz');
                 } else {
-                    pageTitle('Quiz History');
-                    startQuizLabel(' Review Quiz');
+                    pageTitle('Quiz Review');
+                    startQuizLabel(' Start Review');
                 }
             };
 
         return {
             quizDate: quizNavigator.quizDate,
             cardCount: quizNavigator.cardCount,
+            isStartDisabled: isStartDisabled,
             completedCardCount: quizNavigator.completedCardCount,
             correctCardCount: quizNavigator.correctCardCount,
             incorrectCardCount: quizNavigator.incorrectCardCount,
