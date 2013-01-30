@@ -686,3 +686,7 @@ input[type=text] {
   position: absolute;
   margin-top: 3px;
 }
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover {
+  color: #ffffff;
+}

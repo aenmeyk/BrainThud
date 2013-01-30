@@ -19,7 +19,7 @@
 
             cardDecks = ko.computed(function () {
                 var sortedCards = _.sortBy(cards(), function (item) {
-                    return item.deckName();
+                    return item.deckName().toLowerCase();;
                 });
 
                 return _.uniq(sortedCards, true, function (item) {
@@ -40,7 +40,7 @@
 
                     if (data && data.length > 0) {
                         var sortedCards = _.sortBy(data, function (item) {
-                            return item.deckName();
+                            return item.deckName().toLowerCase();;
                         });
 
                         selectedDeckSlug(sortedCards[0].deckNameSlug());
