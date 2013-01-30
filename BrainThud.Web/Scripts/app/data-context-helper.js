@@ -33,6 +33,7 @@
                                 def.resolve(results);
                             },
                             error: function () {
+                                toastr.error('An error occurred');
                                 if (def.reject) def.reject();
                             }
                         });
@@ -51,9 +52,11 @@
                             success: function (result) {
                                 entitySetConfig.mapper.mapResults([result], cachedResults);
                                 publishCacheChanged();
+                                if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 def.resolve();
                             },
                             error: function () {
+                                toastr.error('An error occurred');
                                 if (def.reject) def.reject();
                             }
                         });
@@ -74,9 +77,11 @@
                                 
                                 options.data.dirtyFlag().reset();
                                 publishCacheChanged();
+                                if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 def.resolve();
                             },
                             error: function () {
+                                toastr.error('An error occurred');
                                 if (def.reject) def.reject();
                             }
                         });
@@ -96,9 +101,11 @@
                                 }
 
                                 publishCacheChanged();
+                                if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 def.resolve();
                             },
                             error: function () {
+                                toastr.error('An error occurred');
                                 if (def.reject) def.reject();
                             }
                         });

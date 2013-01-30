@@ -1,5 +1,5 @@
-﻿define('vm.card', ['jquery', 'ko', 'data-context', 'toastr', 'dom', 'editor', 'router', 'global', 'model', 'amplify', 'config'],
-    function ($, ko, dataContext, toastr, dom, editor, router, global, model, amplify, config) {
+﻿define('vm.card', ['jquery', 'ko', 'data-context', 'dom', 'editor', 'router', 'global', 'model', 'amplify', 'config'],
+    function ($, ko, dataContext, dom, editor, router, global, model, amplify, config) {
         var
             cardId = ko.observable(0),
             cards = ko.observableArray([]),
@@ -32,13 +32,14 @@
                     dom.getCardValues(item, 'edit');
                     dataContext.quizCard.updateCachedItem(card());
                     $.when(dataContext.card.updateData({
-                            data: item
-                        }))
-                        .always(function () {
-                            complete();
-                            toastr.success('Success!');
-                            router.navigateTo(global.previousUrl);
-                        });
+                        data: item
+                    }))
+                    .done(function() {
+                         router.navigateTo(global.previousUrl);
+                    })
+                    .always(function() {
+                        complete();
+                    });
                     return;
                 },
                 canExecute: function (isExecuting) {

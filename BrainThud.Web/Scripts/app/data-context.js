@@ -4,7 +4,8 @@
             userConfiguration = new dataContextHelper.EntitySet({
                 get: dataService.userConfiguration.get,
                 update: dataService.userConfiguration.update,
-                mapper: modelMapper.userConfiguration
+                mapper: modelMapper.userConfiguration,
+                showSuccessToastr: true
             }),
             
             card = new dataContextHelper.EntitySet({
@@ -13,7 +14,8 @@
                 update: dataService.card.update,
                 deleteItem: dataService.card.deleteItem,
                 mapper: modelMapper.card,
-                cacheChangedPub: config.pubs.cardCacheChanged
+                cacheChangedPub: config.pubs.cardCacheChanged,
+                showSuccessToastr: true
             }),
             
             quizCard = new dataContextHelper.EntitySet({
