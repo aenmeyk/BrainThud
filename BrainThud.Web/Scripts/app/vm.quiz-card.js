@@ -22,7 +22,9 @@
             }),
 
             activate = function (routeData) {
-                quizNavigator.activate(routeData);
+                if (!quizNavigator.isActivated()) {
+                    quizNavigator.activate(routeData);
+                }
             },
 
             getCreateConfig = function (isCorrect) {
@@ -76,7 +78,7 @@
                 }
 
                 $.when(deferredSave)
-                    .done(function() {
+                    .done(function () {
                         getCard(currentCard.entityId());
                     });
 

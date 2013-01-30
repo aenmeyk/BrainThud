@@ -32,7 +32,10 @@
                     dom.getCardValues(item, 'edit');
                     dataContext.quizCard.updateCachedItem(card());
                     $.when(dataContext.card.updateData({
-                        data: item
+                        data: item,
+                        callback: function (result) {
+                            amplify.publish(config.pubs.cardUpdated, result);
+                        }
                     }))
                     .done(function() {
                          router.navigateTo(global.previousUrl);
