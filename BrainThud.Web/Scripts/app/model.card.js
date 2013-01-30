@@ -23,6 +23,30 @@
             self.questionHtml = ko.computed(function () {
                 return self.question() ? editor.makeHtml(self.question()) : '';
             });
+            self.previousQuizDate = ko.computed(function () {
+                // If the completedQuizYear has been set, it means the user has answered this card
+                if (self.completedQuizYear() > 0 && self.completedQuizMonth() > 0 && self.completedQuizDay() > 0) {
+                    return moment([self.completedQuizYear(), self.completedQuizMonth() -1, self.completedQuizDay()]).format('L');
+                }
+
+                return 'Quiz not yet taken';
+            });
+            self.previousQuizAnswer = ko.computed(function () {
+                // If the completedQuizYear has been set, it means the user has answered this card
+                if (self.completedQuizYear() > 0) {
+                    return self.isCorrect() ? 'Correct' : 'Incorrect';
+                }
+
+                return 'Quiz not yet taken';
+            });
+            self.answerIsCorrect = ko.computed(function () {
+                // If the completedQuizYear has been set, it means the user has answered this card
+                if (self.completedQuizYear() > 0) {
+                    return self.isCorrect() ? true : false;
+                }
+
+                return undefined;
+            });
             self.answerHtml = ko.computed(function () {
                 return self.answer() ? editor.makeHtml(self.answer()) : '';
             });
