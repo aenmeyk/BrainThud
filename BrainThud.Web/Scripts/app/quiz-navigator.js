@@ -62,11 +62,23 @@
 
             init = function () {
                 amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
-                    cards(data);
-                    var cardsLength = cards().length;
-                    if (cardIndex() >= cardsLength) {
-                        cardIndex(0);
-                    }
+                    _.each(cards(), function(existingCard) {
+                        var updatedCard = _.find(data, function (item) {
+                            return item.entityId() === existingCard.entityId();
+                        });
+
+                        var existingCardIndex = _.indexOf(cards(), existingCard);
+                        cards.splice(existingCardIndex, 1, updatedCard);
+                    });
+                });
+
+                amplify.subscribe(config.pubs.cardUpdated, function(data) {
+                    var existingCard = _.find(cards(), function (item) {
+                        return item.entityId() === data.entityId;
+                    });
+
+                    var existingCardIndex = _.indexOf(cards(), existingCard);
+                    cards.splice(existingCardIndex, 1, data);
                 });
 
                 amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
@@ -87,6 +99,8 @@
             },
 
             activate = function (routeData) {
+                isActivated(true);
+                
                 // If the new route doesn't match the current route then we need to get the cards and quizResults for the new route
                 if (quizYear() !== routeData.year || quizMonth() !== routeData.month || quizDay() !== routeData.day) {
                     dataContext.quizCard.setCacheInvalid();
@@ -97,18 +111,18 @@
                 }
 
                 $.when(getQuizCards(), getQuizResults())
-                    .done(function () {
-                        if (routeData && routeData.cardId) {
-                            var cardItems = cards();
-                            var routeCard = _.find(cardItems, function(item) {
-                                return item.entityId() === parseInt(routeData.cardId);
-                            });
+                .done(function() {
+                    if (routeData && routeData.cardId) {
+                        var cardItems = cards();
+                        var routeCard = _.find(cardItems, function(item) {
+                            return item.entityId() === parseInt(routeData.cardId);
+                        });
 
-                            cardIndex(_.indexOf(cardItems, routeCard));
-                        } else {
-                            cardIndex(0);
-                        }
-                    });
+                        cardIndex(_.indexOf(cardItems, routeCard));
+                    } else {
+                        cardIndex(0);
+                    }
+                });
             },
 
             getQuizCards = function () {
@@ -177,6 +191,11 @@
             showQuizSummary = function () {
                 cardIndex(0);
                 router.navigateTo(getQuizPath());
+            },
+            
+            shuffleCards = function() {
+                cards(_.shuffle(cards()));
+                cardIndex(0);
             };
 
         init();
@@ -197,7 +216,8 @@
             incorrectCardCount: incorrectCardCount,
             showCurrentCard: showCurrentCard,
             showNextCard: showNextCard,
-            showPreviousCard: showPreviousCard
+            showPreviousCard: showPreviousCard,
+            shuffleCards: shuffleCards
         };
     }
 );

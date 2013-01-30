@@ -108,13 +108,13 @@ namespace BrainThud.Web.Controllers
 
         private DateTime GetClientDateTime()
         {
-            DateTime clientDateTime;
+            DateTimeOffset clientDateTime;
             var clientDateTimeString = string.Empty;
             var xClientDateHeader = this.Request.Headers.FirstOrDefault(x => x.Key == HttpHeaders.X_CLIENT_DATE);
 
             if (xClientDateHeader.Key != null) clientDateTimeString = xClientDateHeader.Value.FirstOrDefault();
 
-            if (!DateTime.TryParse(clientDateTimeString, out clientDateTime))
+            if (!DateTimeOffset.TryParse(clientDateTimeString, out clientDateTime))
             {
                 var httpResponseMessage = new HttpResponseMessage(HttpStatusCode.BadRequest);
                 httpResponseMessage.Content = new StringContent(ErrorMessages.X_Client_Date_header_field_is_required);

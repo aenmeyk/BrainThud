@@ -34,6 +34,7 @@
             pubs = {
                 createQuizResult: 'create-quiz-result',
                 updateCard: 'update-card',
+                cardUpdated: 'card-updated',
                 deleteCard: 'delete-card',
                 showCurrentCard: 'show-current-card',
                 showNextCard: 'show-next-card',

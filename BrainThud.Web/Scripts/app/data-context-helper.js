@@ -78,6 +78,7 @@
                                 options.data.dirtyFlag().reset();
                                 publishCacheChanged();
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
+                                if (options.callback) options.callback(cachedResults[i]);
                                 def.resolve();
                             },
                             error: function () {
