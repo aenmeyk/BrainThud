@@ -10,8 +10,10 @@
             },
 
             resetNewCard = function () {
-                $('#wmd-input-question-create').val('');
+                var createTextBox = $('#wmd-input-question-create');
+                createTextBox.val('');
                 $('#wmd-input-answer-create').val('');
+                createTextBox.focus();
             },
 
             isCreateCardRendered = function () {
