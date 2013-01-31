@@ -108,7 +108,7 @@
             },
 
             showDeleteDialog = function () {
-                amplify.publish(config.pubs.showDeleteCard, quizNavigator.currentCard(), quizNavigator.showNextCard);
+                amplify.publish(config.pubs.showDeleteCard, quizNavigator.currentCard());
             },
 
             showCardInfoDialog = function () {
