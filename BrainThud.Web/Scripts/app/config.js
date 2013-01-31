@@ -50,6 +50,7 @@
             };
 
         toastr.options.timeOut = 1500;
+        toastr.options.positionClass = 'toast-bottom-full-width';
 
         return {
             hashes: hashes,
