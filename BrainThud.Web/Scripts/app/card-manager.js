@@ -28,6 +28,7 @@
             },
 
             deleteCard = function () {
+                $("#deleteDialog").modal('hide');
                 $.when(dataContext.card.deleteData({
                     params: {
                         userId: global.userId,
@@ -36,7 +37,6 @@
                         entityId: deleteCardOptions.currentCard.entityId()
                     }
                 })).then(function () {
-                    $("#deleteDialog").modal('hide');
                     dataContext.quizCard.removeCachedItem(deleteCardOptions.currentCard);
                     dataContext.quizResult.refreshCache();
                     amplify.publish(config.pubs.cardDeleted, deleteCardOptions.currentCard.entityId());
