@@ -7,6 +7,10 @@ define('vm.quiz', ['ko', 'quiz-navigator'],
             isStartDisabled = ko.computed(function() {
                 return quizNavigator.cardCount() === 0 || quizNavigator.isQuizInFuture();
             }),
+            
+            isShuffleDisabled = ko.computed(function () {
+                return !quizNavigator.isQuizToday();
+            }),
         
             activate = function (routeData) {
                 quizNavigator.activate(routeData);
@@ -24,6 +28,7 @@ define('vm.quiz', ['ko', 'quiz-navigator'],
             quizDate: quizNavigator.quizDate,
             cardCount: quizNavigator.cardCount,
             isStartDisabled: isStartDisabled,
+            isShuffleDisabled: isShuffleDisabled,
             completedCardCount: quizNavigator.completedCardCount,
             correctCardCount: quizNavigator.correctCardCount,
             incorrectCardCount: quizNavigator.incorrectCardCount,

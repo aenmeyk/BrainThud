@@ -29,7 +29,7 @@
             </button>
         </div>
         <div class="span4">
-            <button type="button" class="primary-button btn" data-bind="click: shuffleCards">
+            <button type="button" class="primary-button btn" data-bind="click: shuffleCards, disable: isShuffleDisabled(), css: { disabled: isShuffleDisabled() } ">
                 <span>Shuffle Cards</span>
             </button>
         </div>
