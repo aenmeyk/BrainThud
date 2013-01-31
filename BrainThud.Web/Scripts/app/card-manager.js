@@ -39,6 +39,7 @@
                     $("#deleteDialog").modal('hide');
                     dataContext.quizCard.removeCachedItem(deleteCardOptions.currentCard);
                     dataContext.quizResult.refreshCache();
+                    amplify.publish(config.pubs.cardDeleted, deleteCardOptions.currentCard.entityId());
                     amplify.publish(config.pubs.deleteCard);
                     if (deleteCardOptions.callback) {
                         deleteCardOptions.callback();

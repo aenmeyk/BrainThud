@@ -1,5 +1,5 @@
-﻿define('quiz-navigator', ['jquery', 'ko', 'underscore', 'router', 'data-context', 'amplify', 'config', 'global', 'model', 'moment'],
-    function ($, ko, _, router, dataContext, amplify, config, global, model, moment) {
+﻿define('quiz-navigator', ['jquery', 'ko', 'underscore', 'router', 'data-context', 'amplify', 'config', 'global', 'model', 'moment', 'toastr'],
+    function ($, ko, _, router, dataContext, amplify, config, global, model, moment, toastr) {
         var
             isActivated = ko.observable(false),
             cardIndex = ko.observable(0),
@@ -62,13 +62,33 @@
 
             init = function () {
                 amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
-                    _.each(cards(), function(existingCard) {
+                    _.each(cards(), function (existingCard) {
+
                         var updatedCard = _.find(data, function (item) {
                             return item.entityId() === existingCard.entityId();
                         });
 
                         var existingCardIndex = _.indexOf(cards(), existingCard);
-                        cards.splice(existingCardIndex, 1, updatedCard);
+
+                        // If the card has been deleted, remove it.  Otherwise update it.
+                        if (!updatedCard) {
+                            cards.splice(existingCardIndex, 1);
+                        } else {
+                            cards.splice(existingCardIndex, 1, updatedCard);
+                        }
+                        
+                        if (cardIndex() >= cards().length) {
+                            if (cards().length > 0) {
+                                cardIndex(cards().length - 1);
+                            } else {
+                                cardIndex(0);
+                            }
+                        }
+                    });
+
+                    var addedCards = _.difference(data, cards());
+                    _.each(addedCards, function(addedCard) {
+                        cards.push(addedCard);
                     });
                 });
 
@@ -99,8 +119,6 @@
             },
 
             activate = function (routeData) {
-                isActivated(true);
-                
                 // If the new route doesn't match the current route then we need to get the cards and quizResults for the new route
                 if (quizYear() !== routeData.year || quizMonth() !== routeData.month || quizDay() !== routeData.day) {
                     dataContext.quizCard.setCacheInvalid();
@@ -110,19 +128,23 @@
                     quizDay(routeData.day);
                 }
 
-                $.when(getQuizCards(), getQuizResults())
-                .done(function() {
-                    if (routeData && routeData.cardId) {
-                        var cardItems = cards();
-                        var routeCard = _.find(cardItems, function(item) {
-                            return item.entityId() === parseInt(routeData.cardId);
-                        });
+                if (!isActivated()) {
+                    isActivated(true);
 
-                        cardIndex(_.indexOf(cardItems, routeCard));
-                    } else {
-                        cardIndex(0);
-                    }
-                });
+                    $.when(getQuizCards(), getQuizResults())
+                        .done(function() {
+                            if (routeData && routeData.cardId) {
+                                var cardItems = cards();
+                                var routeCard = _.find(cardItems, function(item) {
+                                    return item.entityId() === parseInt(routeData.cardId);
+                                });
+
+                                cardIndex(_.indexOf(cardItems, routeCard));
+                            } else {
+                                cardIndex(0);
+                            }
+                        });
+                }
             },
 
             getQuizCards = function () {
@@ -196,6 +218,7 @@
             shuffleCards = function() {
                 cards(_.shuffle(cards()));
                 cardIndex(0);
+                toastr.success('Cards Shuffled');
             };
 
         init();

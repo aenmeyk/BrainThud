@@ -36,6 +36,7 @@
                 updateCard: 'update-card',
                 cardUpdated: 'card-updated',
                 deleteCard: 'delete-card',
+                cardDeleted: 'card-deleted',
                 showCurrentCard: 'show-current-card',
                 showNextCard: 'show-next-card',
                 showPreviousCard: 'show-previous-card',

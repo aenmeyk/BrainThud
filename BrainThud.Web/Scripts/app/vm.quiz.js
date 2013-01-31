@@ -18,11 +18,6 @@ define('vm.quiz', ['ko', 'quiz-navigator'],
                     pageTitle('Quiz Review');
                     startQuizLabel(' Start Review');
                 }
-            },
-            
-            startQuiz = function() {
-                quizNavigator.shuffleCards();
-                quizNavigator.showCurrentCard();
             };
 
         return {
@@ -35,7 +30,8 @@ define('vm.quiz', ['ko', 'quiz-navigator'],
             activate: activate,
             pageTitle: pageTitle,
             startQuizLabel: startQuizLabel,
-            startQuiz: startQuiz
+            startQuiz: quizNavigator.showCurrentCard,
+            shuffleCards: quizNavigator.shuffleCards
         };
     }
 );

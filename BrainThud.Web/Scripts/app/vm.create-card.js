@@ -19,7 +19,7 @@
                     
                     $.when(dataContext.card.createData({ data: newCard }))
                     .done(function () {
-                        dataContext.quizCard.setCacheInvalid();
+                        dataContext.quizCard.refreshCache();
                         dom.resetNewCard();
                         editor.refreshPreview('create');
                     })
