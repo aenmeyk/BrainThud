@@ -1,5 +1,5 @@
-﻿define('card-manager', ['jquery', 'ko', 'data-context', 'global', 'underscore', 'data-service', 'model.mapper'],
-    function (jquery, ko, dataContext, global, _, dataService, modelMapper) {
+﻿define('card-manager', ['jquery', 'ko', 'data-context', 'global', 'underscore', 'data-service', 'model.mapper', 'vm.card-info'],
+    function (jquery, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         var
             $deleteDialog,
             $cardInfoDialog,
@@ -12,6 +12,10 @@
 
             quizDate = ko.computed(function () {
                 return moment([quizYear(), quizMonth() - 1, quizDay()]).format('L');
+            }),
+
+            quizCardCount = ko.computed(function () {
+                return quizCards().length;
             }),
 
             init = function () {
@@ -31,17 +35,19 @@
             },
 
             getQuizCards = function (year, month, day) {
-                quizYear(year);
-                quizMonth(month);
-                quizDay(day);
+                if (year && year >= 0) {
+                    quizYear(year);
+                    quizMonth(month);
+                    quizDay(day);
 
-                dataContext.quizResult.getData({
-                    results: quizResults,
-                    params: {
-                        datePath: moment([year, month, day]).format('YYYY/M/D'),
-                        userId: global.userId
-                    }
-                });
+                    dataContext.quizCard.getData({
+                        results: quizCards,
+                        params: {
+                            datePath: moment([year, month, day]).format('YYYY/M/D'),
+                            userId: global.userId
+                        }
+                    });
+                }
             },
                 
             refreshCards = function() {
@@ -92,14 +98,19 @@
                 $deleteDialog.modal('show');
             },
 
+            showCardInfo = function (card) {
+                cardInfo.activate(card);
+                $cardInfoDialog.modal('show');
+            },
+
             executeDelete = function () {
                 $("#deleteDialog").modal('hide');
                 $.when(dataContext.card.deleteData({
-                    params: {
+                    data: {
                         userId: global.userId,
-                        partitionKey: deleteCardOptions.Card.partitionKey(),
-                        rowKey: deleteCardOptions.Card.rowKey(),
-                        entityId: deleteCardOptions.Card.entityId()
+                        partitionKey: deleteCardOptions.card.partitionKey(),
+                        rowKey: deleteCardOptions.card.rowKey(),
+                        entityId: deleteCardOptions.card.entityId()
                     }
                 })).then(function () {
                     refreshCards();
@@ -132,9 +143,11 @@
             init: init,
             cards: cards,
             quizCards: quizCards,
+            quizCardCount: quizCardCount,
             createCard: createCard,
             updateCard: updateCard,
             deleteCard: deleteCard,
+            showCardInfo: showCardInfo,
             getQuizCards: getQuizCards,
             shuffleQuizCards: shuffleQuizCards,
             applyQuizResult: applyQuizResult

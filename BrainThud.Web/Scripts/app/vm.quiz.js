@@ -1,11 +1,11 @@
-define('vm.quiz', ['ko', 'quiz-navigator'],
-    function (ko, quizNavigator) {
+define('vm.quiz', ['ko', 'quiz-navigator', 'card-manager'],
+    function (ko, quizNavigator, cardManager) {
         var
             pageTitle = ko.observable("Today's Quiz"),
             startQuizLabel = ko.observable('Start Quiz'),
             
             isStartDisabled = ko.computed(function() {
-                return quizNavigator.cardCount() === 0 || quizNavigator.isQuizInFuture();
+                return cardManager.quizCardCount() === 0 || quizNavigator.isQuizInFuture();
             }),
             
             isShuffleDisabled = ko.computed(function () {
@@ -13,7 +13,8 @@ define('vm.quiz', ['ko', 'quiz-navigator'],
             }),
         
             activate = function (routeData) {
-                quizNavigator.activate(routeData);
+                // quizNavigator.activate(routeData);
+                cardManager.getQuizCards(routeData.year, routeData.month, routeData.day);
 
                 if (quizNavigator.isQuizToday()) {
                     pageTitle("Today's Quiz");
@@ -26,7 +27,7 @@ define('vm.quiz', ['ko', 'quiz-navigator'],
 
         return {
             quizDate: quizNavigator.quizDate,
-            cardCount: quizNavigator.cardCount,
+            cardCount: cardManager.quizCardCount,
             isStartDisabled: isStartDisabled,
             isShuffleDisabled: isShuffleDisabled,
             completedCardCount: quizNavigator.completedCardCount,
@@ -36,7 +37,7 @@ define('vm.quiz', ['ko', 'quiz-navigator'],
             pageTitle: pageTitle,
             startQuizLabel: startQuizLabel,
             startQuiz: quizNavigator.showCurrentCard,
-            shuffleCards: quizNavigator.shuffleCards
+            shuffleCards: cardManager.shuffleQuizCards
         };
     }
 );

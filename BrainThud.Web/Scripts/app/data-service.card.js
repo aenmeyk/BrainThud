@@ -102,8 +102,8 @@
                 return amplify.request({
                     resourceId: 'deleteCard',
                     data: {
-                        entityIdPath: options.params.entityId,
-                        userIdPath: options.params.userId
+                        entityIdPath: options.data.entityId,
+                        userIdPath: options.data.userId
                     },
                     success: options.success,
                     error: options.error
