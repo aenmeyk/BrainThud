@@ -1,5 +1,5 @@
-﻿define('vm.create-card', ['ko', 'data-context', 'editor', 'dom', 'model'],
-    function (ko, dataContext, editor, dom, model) {
+﻿define('vm.create-card', ['ko', 'card-manager', 'editor', 'dom', 'model'],
+    function (ko, cardManager, editor, dom, model) {
         var
             card = ko.observable(new model.Card()),
             
@@ -17,9 +17,8 @@
                     };
                     dom.getCardValues(newCard, 'create');
                     
-                    $.when(dataContext.card.createData({ data: newCard }))
+                    $.when(cardManager.createCard(newCard))
                     .done(function () {
-                        dataContext.quizCard.refreshCache();
                         dom.resetNewCard();
                         editor.refreshPreview('create');
                     })
