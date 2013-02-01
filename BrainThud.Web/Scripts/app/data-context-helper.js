@@ -50,10 +50,11 @@
                         entitySetConfig.create(options.data, cachedResults, {
                             params: options.params,
                             success: function (result) {
-                                entitySetConfig.mapper.mapResults([result], cachedResults);
+                                var newItem = entitySetConfig.mapper.mapResult(result);
+                                cachedResults.push(newItem);
                                 publishCacheChanged();
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
-                                def.resolve();
+                                def.resolve(newItem);
                             },
                             error: function () {
                                 toastr.error('An error occurred');
@@ -68,9 +69,11 @@
                         entitySetConfig.update(options.data, {
                             params: options.params,
                             success: function (dto) {
+                                var updatedItem;
                                 for (var i = 0; i < cachedResults.length; i++) {
                                     if (cachedResults[i].partitionKey() === dto.partitionKey && cachedResults[i].rowKey() === dto.rowKey) {
                                         cachedResults[i] = entitySetConfig.mapper.mapResult(dto);
+                                        updatedItem = cachedResults[i];
                                         break;
                                     }
                                 }
@@ -79,7 +82,7 @@
                                 publishCacheChanged();
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 if (options.callback) options.callback(cachedResults[i]);
-                                def.resolve();
+                                def.resolve(updatedItem);
                             },
                             error: function () {
                                 toastr.error('An error occurred');
