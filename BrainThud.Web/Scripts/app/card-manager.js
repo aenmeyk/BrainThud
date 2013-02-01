@@ -122,6 +122,7 @@
 
             shuffleQuizCards = function () {
                 quizCards(_.shuffle(quizCards()));
+                toastr.success('Cards Shuffled');
             },
 
             applyQuizResult = function (quizResult) {

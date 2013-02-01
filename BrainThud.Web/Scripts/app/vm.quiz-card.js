@@ -1,5 +1,5 @@
-﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'amplify', 'config', 'global', 'quiz-navigator', 'data-service', 'model.mapper', 'router'],
-    function (_, ko, dataContext, amplify, config, global, quizNavigator, dataService, modelMapper, router) {
+﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'amplify', 'config', 'global', 'quiz-navigator', 'data-service', 'model.mapper', 'router', 'card-manager'],
+    function (_, ko, dataContext, amplify, config, global, quizNavigator, dataService, modelMapper, router, cardManager) {
         var
             displayIndex = ko.computed(function () {
                 return quizNavigator.cardIndex() + 1;
@@ -22,9 +22,9 @@
             }),
 
             activate = function (routeData) {
-                if (!quizNavigator.isActivated()) {
+//                if (!quizNavigator.isActivated()) {
                     quizNavigator.activate(routeData);
-                }
+//                }
             },
 
             getCreateConfig = function (isCorrect) {
@@ -128,7 +128,7 @@
             showDeleteDialog: showDeleteDialog,
             showCardInfoDialog: showCardInfoDialog,
             displayIndex: displayIndex,
-            cardCount: quizNavigator.cardCount,
+            cardCount: cardManager.quizCardCount,
             borderCss: borderCss
         };
     }
