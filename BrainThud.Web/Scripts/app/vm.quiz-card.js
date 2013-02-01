@@ -1,5 +1,5 @@
-﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'amplify', 'config', 'global', 'quiz-navigator', 'data-service', 'model.mapper'],
-    function (_, ko, dataContext, amplify, config, global, quizNavigator, dataService, modelMapper) {
+﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'amplify', 'config', 'global', 'quiz-navigator', 'data-service', 'model.mapper', 'router'],
+    function (_, ko, dataContext, amplify, config, global, quizNavigator, dataService, modelMapper, router) {
         var
             displayIndex = ko.computed(function () {
                 return quizNavigator.cardIndex() + 1;
@@ -104,7 +104,7 @@
             },
 
             editCard = function () {
-                amplify.publish(config.pubs.showEditCard, quizNavigator.currentCard().entityId());
+                router.navigateTo(global.routePrefix + 'cards/' + quizNavigator.currentCard().entityId() + '/edit');
             },
 
             showDeleteDialog = function () {

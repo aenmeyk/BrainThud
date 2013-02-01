@@ -40,7 +40,7 @@
 
                     if (data && data.length > 0) {
                         var sortedCards = _.sortBy(data, function (item) {
-                            return item.deckName().toLowerCase();;
+                            return item.deckName().toLowerCase();
                         });
 
                         selectedDeckSlug(sortedCards[0].deckNameSlug());
@@ -60,7 +60,7 @@
             },
 
             editCard = function (card) {
-                amplify.publish(config.pubs.showEditCard, card.entityId());
+                router.navigateTo(global.routePrefix + 'cards/' + card.entityId() + '/edit');
             },
 
             flipCard = function (card) {

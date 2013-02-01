@@ -1,28 +1,23 @@
-﻿define('vm.card', ['jquery', 'ko', 'data-context', 'dom', 'editor', 'router', 'global', 'model', 'amplify', 'config'],
-    function ($, ko, dataContext, dom, editor, router, global, model, amplify, config) {
+﻿define('vm.card', ['jquery', 'ko', 'card-manager', 'dom', 'editor', 'router', 'global', 'model'],
+    function ($, ko, cardManager, dom, editor, router, global, model) {
         var
-            cardId = ko.observable(0),
-            cards = ko.observableArray([]),
-            card = ko.computed(function () {
-                var found = _.find(cards(), function (item) {
-                    return item.entityId() === parseInt(cardId());
-                });
-
-                return found ? found : new model.Card();
-            }),
-
-            init = function () {
-                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
-                    cards(data);
-                });
-            },
+            card = ko.observable(new model.Card()),
 
             isValid = ko.computed(function () {
                 return card().deckName() && card().question() && card().answer();
             }),
 
             activate = function (routeData) {
-                cardId(parseInt(routeData.cardId));
+                var found = _.find(cardManager.cards(), function (item) {
+                    return item.entityId() === parseInt(routeData.cardId);
+                });
+
+                if (found) {
+                    card(found);
+                } else {
+                    card(new model.Card());
+                }
+
                 editor.refreshPreview('edit');
             },
 
@@ -30,27 +25,18 @@
                 execute: function (complete) {
                     var item = ko.toJS(card);
                     dom.getCardValues(item, 'edit');
-                    dataContext.quizCard.updateCachedItem(card());
-                    $.when(dataContext.card.updateData({
-                        data: item,
-                        callback: function (result) {
-                            amplify.publish(config.pubs.cardUpdated, result);
-                        }
-                    }))
+                    $.when(cardManager.updateCard(item))
                     .done(function() {
                          router.navigateTo(global.previousUrl);
                     })
                     .always(function() {
                         complete();
                     });
-                    return;
                 },
                 canExecute: function (isExecuting) {
                     return !isExecuting && card().dirtyFlag().isDirty() && isValid();
                 }
             });
-
-        init();
 
         return {
             activate: activate,

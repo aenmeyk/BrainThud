@@ -5,10 +5,7 @@ function ($, binder, routeConfig, dataPrimer, cardManager, dom) {
             dom.showLoading();
             $.when(dataPrimer.fetch())
                 .done(binder.bind)
-                .done(function() {
-                    routeConfig.register();
-                    cardManager.register();
-                })
+                .done(routeConfig.register)
                 .always(dom.hideLoading);
         };
 
