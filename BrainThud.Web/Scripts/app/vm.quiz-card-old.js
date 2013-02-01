@@ -1,5 +1,5 @@
-﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'amplify', 'config', 'global', 'quiz-navigator', 'data-service', 'model.mapper', 'router', 'card-manager', 'moment'],
-    function (_, ko, dataContext, amplify, config, global, quizNavigator, dataService, modelMapper, router, cardManager, moment) {
+﻿define('vm.quiz-card-old', ['underscore', 'ko', 'data-context', 'amplify', 'config', 'global', 'quiz-navigator', 'data-service', 'model.mapper', 'router', 'card-manager'],
+    function (_, ko, dataContext, amplify, config, global, quizNavigator, dataService, modelMapper, router, cardManager) {
         var
             displayIndex = ko.computed(function () {
                 return quizNavigator.cardIndex() + 1;
@@ -22,11 +22,9 @@
             }),
 
             activate = function (routeData) {
-                if (routeData.year !== quizNavigator.quizYear() 
-                    || routeData.month !== quizNavigator.quizMonth() 
-                    || routeData.day !== quizNavigator.quizDay()) {
+//                if (!quizNavigator.isActivated()) {
                     quizNavigator.activate(routeData);
-                }
+//                }
             },
 
             getCreateConfig = function (isCorrect) {
@@ -52,8 +50,23 @@
                 };
             },
 
+            getCard = function (entityId) {
+                dataService.card.getSingle({
+                    params: {
+                        userId: global.userId,
+                        entityId: entityId
+                    },
+                    success: function(dto) {
+                        var result = modelMapper.card.mapResult(dto);
+                        dataContext.quizCard.updateCachedItem(result);
+                        dataContext.card.updateCachedItem(result);
+                    }
+                });
+            },
+
             submitQuizResult = function (isCorrect) {
-                var existingQuizResult = quizNavigator.currentQuizResult(),
+                var currentCard = quizNavigator.currentCard(),
+                    existingQuizResult = quizNavigator.currentQuizResult(),
                     deferredSave;
 
                 if (existingQuizResult) {
@@ -65,8 +78,13 @@
                 }
 
                 $.when(deferredSave)
-                .done(function () {
-                    cardManager.applyQuizResult(quizResult());
+                    .done(function () {
+                        getCard(currentCard.entityId());
+                    });
+
+                amplify.publish(config.pubs.createQuizResult, {
+                    cardId: currentCard.entityId(),
+                    isCorrect: isCorrect
                 });
                 
                 quizNavigator.showNextCard();
@@ -90,11 +108,11 @@
             },
 
             showDeleteDialog = function () {
-                cardManager.deleteCard(quizNavigator.currentCard());
+                amplify.publish(config.pubs.showDeleteCard, quizNavigator.currentCard());
             },
 
             showCardInfoDialog = function () {
-                cardManager.showCardInfo(quizNavigator.currentCard());
+                amplify.publish(config.pubs.showCardInfo, quizNavigator.currentCard());
             };
 
         return {

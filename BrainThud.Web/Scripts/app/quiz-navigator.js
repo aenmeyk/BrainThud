@@ -145,6 +145,9 @@
         return {
             activate: activate,
             quizDate: quizDate,
+            quizYear: quizYear,
+            quizMonth: quizMonth,
+            quizDay: quizDay,
             quizDatePath: quizDatePath,
             isQuizToday: isQuizToday,
             isQuizInFuture: isQuizInFuture,
