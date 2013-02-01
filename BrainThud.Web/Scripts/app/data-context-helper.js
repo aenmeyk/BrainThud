@@ -92,10 +92,10 @@
                 deleteData = function (options) {
                     return $.Deferred(function (def) {
                         entitySetConfig.deleteItem({
-                            params: options.params,
+                            data: options.data,
                             success: function () {
                                 for (var i = 0; i < cachedResults.length; i++) {
-                                    if (cachedResults[i].partitionKey() === options.params.partitionKey && cachedResults[i].rowKey() === options.params.rowKey) {
+                                    if (cachedResults[i].partitionKey() === options.data.partitionKey && cachedResults[i].rowKey() === options.data.rowKey) {
                                         cachedResults.splice(i, 1);
                                         break;
                                     }
