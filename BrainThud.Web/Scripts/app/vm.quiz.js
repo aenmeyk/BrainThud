@@ -13,8 +13,7 @@ define('vm.quiz', ['ko', 'quiz-navigator', 'card-manager'],
             }),
         
             activate = function (routeData) {
-                // quizNavigator.activate(routeData);
-                cardManager.getQuizCards(routeData.year, routeData.month, routeData.day);
+                quizNavigator.activate(routeData);
 
                 if (quizNavigator.isQuizToday()) {
                     pageTitle("Today's Quiz");

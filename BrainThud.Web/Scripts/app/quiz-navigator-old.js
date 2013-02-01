@@ -1,7 +1,9 @@
-﻿define('quiz-navigator', ['jquery', 'ko', 'card-manager', 'underscore', 'router', 'data-context', 'amplify', 'config', 'global', 'model', 'moment', 'toastr'],
+﻿define('quiz-navigator-old', ['jquery', 'ko', 'card-manager', 'underscore', 'router', 'data-context', 'amplify', 'config', 'global', 'model', 'moment', 'toastr'],
     function ($, ko, cardManager, _, router, dataContext, amplify, config, global, model, moment, toastr) {
         var
+            isActivated = ko.observable(false),
             cardIndex = ko.observable(0),
+            cards = ko.observableArray([]),
             quizResults = ko.observableArray([]),
             quizYear = ko.observable(0),
             quizMonth = ko.observable(0),
@@ -23,6 +25,10 @@
                 return new Date(quizYear(), quizMonth() - 1, quizDay()) > new Date();
             }),
 
+            cardCount = ko.computed(function () {
+                return cards().length;
+            }),
+
             completedCardCount = ko.computed(function () {
                 return quizResults().length;
             }),
@@ -40,7 +46,7 @@
             }),
 
             currentCard = ko.computed(function () {
-                var card = cardManager.quizCards()[cardIndex()];
+                var card = cards()[cardIndex()];
                 if (card) return card;
                 return new model.Card();
             }),
@@ -54,27 +60,99 @@
                 return quizResult;
             }),
 
+            init = function () {
+                amplify.subscribe(config.pubs.quizCardCacheChanged, function (data) {
+                    _.each(cards(), function (existingCard) {
+
+                        var updatedCard = _.find(data, function (item) {
+                            return item.entityId() === existingCard.entityId();
+                        });
+
+                        var existingCardIndex = _.indexOf(cards(), existingCard);
+
+                        // If the card has been deleted, remove it.  Otherwise update it.
+                        if (!updatedCard) {
+                            cards.splice(existingCardIndex, 1);
+                        } else {
+                            cards.splice(existingCardIndex, 1, updatedCard);
+                        }
+                        
+                        if (cardIndex() >= cards().length) {
+                            if (cards().length > 0) {
+                                cardIndex(cards().length - 1);
+                            } else {
+                                cardIndex(0);
+                            }
+                        }
+                    });
+
+                    var addedCards = _.difference(data, cards());
+                    _.each(addedCards, function(addedCard) {
+                        cards.push(addedCard);
+                    });
+                });
+
+                amplify.subscribe(config.pubs.cardUpdated, function(data) {
+                    var existingCard = _.find(cards(), function (item) {
+                        return item.entityId() === data.entityId;
+                    });
+
+                    var existingCardIndex = _.indexOf(cards(), existingCard);
+                    cards.splice(existingCardIndex, 1, data);
+                });
+
+                amplify.subscribe(config.pubs.quizResultCacheChanged, function (data) {
+                    quizResults(data);
+                });
+
+                amplify.subscribe(config.pubs.showCurrentCard, function () {
+                    showCurrentCard();
+                });
+
+                amplify.subscribe(config.pubs.showNextCard, function () {
+                    showNextCard();
+                });
+
+                amplify.subscribe(config.pubs.showPreviousCard, function () {
+                    showPreviousCard();
+                });
+            },
+
             activate = function (routeData) {
                 // If the new route doesn't match the current route then we need to get the cards and quizResults for the new route
                 if (quizYear() !== routeData.year || quizMonth() !== routeData.month || quizDay() !== routeData.day) {
-                    cardManager.getQuizCards(routeData.year, routeData.month, routeData.day);
+                    dataContext.quizCard.setCacheInvalid();
+                    dataContext.quizResult.setCacheInvalid();
                     quizYear(routeData.year);
                     quizMonth(routeData.month);
                     quizDay(routeData.day);
                 }
 
+                if (!isActivated()) {
+                    isActivated(true);
 
-                $.when(getQuizResults())
-                .done(function() {
-                    if (routeData && routeData.cardId) {
-                        var cards = cardManager.quizCards();
-                        var routeCard = _.find(cards, function (item) {
-                            return item.entityId() === parseInt(routeData.cardId);
+                    $.when(getQuizCards(), getQuizResults())
+                        .done(function() {
+                            if (routeData && routeData.cardId) {
+                                var cardItems = cards();
+                                var routeCard = _.find(cardItems, function(item) {
+                                    return item.entityId() === parseInt(routeData.cardId);
+                                });
+
+                                cardIndex(_.indexOf(cardItems, routeCard));
+                            } else {
+                                cardIndex(0);
+                            }
                         });
+                }
+            },
 
-                        cardIndex(_.indexOf(cards, routeCard));
-                    } else {
-                        cardIndex(0);
+            getQuizCards = function () {
+                return dataContext.quizCard.getData({
+                    results: cards,
+                    params: {
+                        datePath: quizDatePath(),
+                        userId: global.userId
                     }
                 });
             },
@@ -98,7 +176,7 @@
             },
 
             showLastCard = function () {
-                cardIndex(cardManager.quizCards().length - 1);
+                cardIndex(cards().length - 1);
                 if (cardIndex() > 0) {
                     router.navigateTo(getCardUri());
                 } else {
@@ -107,7 +185,7 @@
             },
 
             showCurrentCard = function () {
-                if (cardIndex() < cardManager.quizCards().length) {
+                if (cardIndex() < cards().length) {
                     router.navigateTo(getCardUri());
                 } else {
                     showLastCard();
@@ -115,7 +193,7 @@
             },
 
             showNextCard = function () {
-                if (cardIndex() < cardManager.quizCards().length - 1) {
+                if (cardIndex() < cards().length - 1) {
                     cardIndex(cardIndex() + 1);
                     router.navigateTo(getCardUri());
                 } else {
@@ -138,11 +216,15 @@
             },
             
             shuffleCards = function() {
-                cardManager.shuffleQuizCards();
+                cards(_.shuffle(cards()));
                 cardIndex(0);
+                toastr.success('Cards Shuffled');
             };
 
+        init();
+
         return {
+            isActivated: isActivated,
             activate: activate,
             quizDate: quizDate,
             quizDatePath: quizDatePath,
@@ -151,6 +233,7 @@
             currentCard: currentCard,
             currentQuizResult: currentQuizResult,
             cardIndex: cardIndex,
+            cardCount: cardCount,
             completedCardCount: completedCardCount,
             correctCardCount: correctCardCount,
             incorrectCardCount: incorrectCardCount,
