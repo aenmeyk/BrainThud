@@ -1,5 +1,5 @@
-﻿define('quiz-navigator', ['jquery', 'ko', 'underscore', 'router', 'data-context', 'amplify', 'config', 'global', 'model', 'moment', 'toastr'],
-    function ($, ko, _, router, dataContext, amplify, config, global, model, moment, toastr) {
+﻿define('quiz-navigator', ['jquery', 'ko', 'card-manager', 'underscore', 'router', 'data-context', 'amplify', 'config', 'global', 'model', 'moment', 'toastr'],
+    function ($, ko, cardManager, _, router, dataContext, amplify, config, global, model, moment, toastr) {
         var
             isActivated = ko.observable(false),
             cardIndex = ko.observable(0),
