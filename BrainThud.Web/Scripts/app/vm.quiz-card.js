@@ -76,7 +76,7 @@
             },
 
             showDeleteDialog = function () {
-                cardManager.deleteCard(quizNavigator.currentCard(), function () {
+                cardManager.deleteCard(quizNavigator.currentCard(), function() {
                     quizNavigator.removeCurrentCardIndex();
                 });
             },

@@ -36,7 +36,7 @@ define('vm.quiz', ['ko', 'quiz-navigator', 'card-manager'],
             pageTitle: pageTitle,
             startQuizLabel: startQuizLabel,
             startQuiz: quizNavigator.showCurrentCard,
-            shuffleCards: cardManager.shuffleQuizCards
+            shuffleCards: quizNavigator.shuffleCards
         };
     }
 );
