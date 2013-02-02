@@ -1,6 +1,6 @@
-﻿define('dom', ['require', 'jquery', 'ko', 'editor'],
+﻿define('dom', ['require', 'jquery', 'ko'],
     
-function (require, $, ko, editor) {
+function (require, $, ko) {
     var
         getCardValues = function (card, editorName) {
             card.deckName = $('#new-card-deckname-' + editorName).val();
@@ -11,7 +11,11 @@ function (require, $, ko, editor) {
 
         resetNewCard = function () {
             $('#wmd-input-question-create').focus();
-            editor.refreshPreview('create');
+            require('editor').refreshPreview('create');
+        },
+
+        isCreateCardRendered = function () {
+            return $('#wmd-input-question-create').length != 0;
         },
             
         showLoading = function() {
@@ -65,7 +69,6 @@ function (require, $, ko, editor) {
             var value = ko.utils.unwrapObservable(valueAccessor());
             if (isNaN(value)) value = 0;
             $(element).slider("value", value);
-
         }
     };
 
@@ -79,6 +82,7 @@ function (require, $, ko, editor) {
     return {
         getCardValues: getCardValues,
         resetNewCard: resetNewCard,
+        isCreateCardRendered: isCreateCardRendered,
         showLoading: showLoading,
         hideLoading: hideLoading
     };

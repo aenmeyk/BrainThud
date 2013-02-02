@@ -1,6 +1,6 @@
-﻿define('editor', ['markdown'],
+﻿define('editor', ['markdown', 'dom'],
     
-function (markdown) {
+function (markdown, dom) {
     var
         markDownConverter,
         questionEditorCreate,
@@ -9,17 +9,19 @@ function (markdown) {
         answerEditorEdit,
 
         init = function () {
-            markDownConverter = markdown.getSanitizingConverter();
+            if (dom.isCreateCardRendered()) {
+                markDownConverter = markdown.getSanitizingConverter();
 
-            questionEditorCreate = new Markdown.Editor(markDownConverter, "-question-create");
-            questionEditorEdit = new Markdown.Editor(markDownConverter, "-question-edit");
-            answerEditorCreate = new Markdown.Editor(markDownConverter, "-answer-create");
-            answerEditorEdit = new Markdown.Editor(markDownConverter, "-answer-edit");
+                questionEditorCreate = new Markdown.Editor(markDownConverter, "-question-create");
+                questionEditorEdit = new Markdown.Editor(markDownConverter, "-question-edit");
+                answerEditorCreate = new Markdown.Editor(markDownConverter, "-answer-create");
+                answerEditorEdit = new Markdown.Editor(markDownConverter, "-answer-edit");
 
-            questionEditorCreate.run();
-            questionEditorEdit.run();
-            answerEditorCreate.run();
-            answerEditorEdit.run();
+                questionEditorCreate.run();
+                questionEditorEdit.run();
+                answerEditorCreate.run();
+                answerEditorEdit.run();
+            }
         },
 
         refreshPreview = function (editor) {
