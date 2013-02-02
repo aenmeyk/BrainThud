@@ -19,17 +19,17 @@
             }),
 
             init = function () {
-                getCards();
-
                 $deleteDialog = $('#deleteDialog');
                 $cardInfoDialog = $('#card-info-dialog');
                 $('body').on('click.modal.data-api', '[data-toggle="delete"]', function () {
                     executeDelete();
                 });
+                
+                return getCards();
             },
             
             getCards = function () {
-                dataContext.card.getData({
+                return dataContext.card.getData({
                     results: cards
                 });
             },

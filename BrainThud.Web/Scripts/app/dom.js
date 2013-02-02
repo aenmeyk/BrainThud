@@ -82,21 +82,21 @@
         });
 
         // TODO: this method doesn't really belong here
-        amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
-            var sortedCards = _.sortBy(data, function (item) {
-                return item.deckName().toLowerCase();;
-            });
-            
-            var deckNames = _.map(sortedCards, function(item) {
-                return item.deckName();
-            });
-
-            var uniqueDeckNames = _.uniq(deckNames, true, function (item) {
-                return item;
-            });
-
-            cardDeckNames(uniqueDeckNames);
-        });
+//        amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
+//            var sortedCards = _.sortBy(data, function (item) {
+//                return item.deckName().toLowerCase();;
+//            });
+//            
+//            var deckNames = _.map(sortedCards, function(item) {
+//                return item.deckName();
+//            });
+//
+//            var uniqueDeckNames = _.uniq(deckNames, true, function (item) {
+//                return item;
+//            });
+//
+//            cardDeckNames(uniqueDeckNames);
+//        });
 
         return {
             getCardValues: getCardValues,
