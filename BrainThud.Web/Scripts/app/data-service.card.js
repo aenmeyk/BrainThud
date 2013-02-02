@@ -1,5 +1,5 @@
-﻿define('data-service.card', ['amplify', 'model.mapper', 'config', 'moment'],
-    function (amplify, modelMapper, config, moment) {
+﻿define('data-service.card', ['amplify', 'config', 'moment'],
+    function (amplify, config, moment) {
         var
             init = function() {
                 amplify.request.define('getCards', 'ajax', {

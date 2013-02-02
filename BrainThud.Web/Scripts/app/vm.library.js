@@ -1,5 +1,5 @@
-﻿define('vm.library', ['ko', 'card-manager', 'underscore', 'amplify', 'config', 'router', 'global', 'data-context'],
-    function (ko, cardManager, _, amplify, config, router, global, dataContext) {
+﻿define('vm.library', ['ko', 'card-manager', 'underscore', 'router', 'global'],
+    function (ko, cardManager, _, router, global) {
         var
             selectedDeckSlug = ko.observable(''),
 

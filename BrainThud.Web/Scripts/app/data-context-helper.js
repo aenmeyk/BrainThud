@@ -1,5 +1,5 @@
-﻿define('data-context-helper', ['jquery', 'underscore', 'utils', 'amplify'],
-    function ($, _, utils, amplify) {
+﻿define('data-context-helper', ['jquery'],
+    function ($) {
         
         var EntitySet = function (entitySetConfig) {
             var
@@ -50,6 +50,7 @@
                             params: options.params,
                             success: function (result) {
                                 var newItem = entitySetConfig.mapper.mapResult(result);
+                                if (!cachedResults) cachedResults = [];
                                 cachedResults.push(newItem);
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 def.resolve(newItem);

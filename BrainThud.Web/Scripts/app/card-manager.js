@@ -1,168 +1,188 @@
 ﻿define('card-manager', ['jquery', 'ko', 'data-context', 'global', 'underscore', 'data-service', 'model.mapper', 'vm.card-info'],
-    function (jquery, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
-        var
-            $deleteDialog,
-            $cardInfoDialog,
-            deleteCardOptions,
-            cards = ko.observableArray([]),
-            quizCards = ko.observableArray([]),
-            quizYear = ko.observable(0),
-            quizMonth = ko.observable(0),
-            quizDay = ko.observable(0),
 
-            quizDate = ko.computed(function () {
-                return moment([quizYear(), quizMonth() - 1, quizDay()]).format('L');
-            }),
+function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
+    var
+        $deleteDialog,
+        $cardInfoDialog,
+        deleteCardOptions,
+        cards = ko.observableArray([]),
+        quizCards = ko.observableArray([]),
+        quizYear = ko.observable(0),
+        quizMonth = ko.observable(0),
+        quizDay = ko.observable(0),
 
-            quizCardCount = ko.computed(function () {
-                return quizCards().length;
-            }),
+        cardDeckNames = ko.computed(function () {
+            var sortedCards = _.sortBy(cards(), function (item) {
+                return item.deckName().toLowerCase();;
+            });
+                            
+            var deckNames = _.map(sortedCards, function(item) {
+                return item.deckName();
+            });
+                
+            return _.uniq(deckNames, true, function (item) {
+                return item;
+            });
+        }),
 
-            init = function () {
+        quizDate = ko.computed(function () {
+            return moment([quizYear(), quizMonth() - 1, quizDay()]).format('L');
+        }),
+
+        quizCardCount = ko.computed(function () {
+            return quizCards().length;
+        }),
+
+        init = function () {
+            return $.Deferred(function (def) {
                 $deleteDialog = $('#deleteDialog');
                 $cardInfoDialog = $('#card-info-dialog');
                 $('body').on('click.modal.data-api', '[data-toggle="delete"]', function () {
                     executeDelete();
                 });
-                
-                return getCards();
-            },
-            
-            getCards = function () {
-                return dataContext.card.getData({
-                    results: cards
-                });
-            },
 
-            getQuizCards = function (year, month, day) {
-                var def = new $.Deferred();
-                if (year && year >= 0) {
-                    // If the quiz date has changed, invalidate the cache
-                    if (quizYear() !== year || quizMonth() !== month || quizDay() !== day) {
-                        quizYear(year);
-                        quizMonth(month);
-                        quizDay(day);
-                        dataContext.quizCard.setCacheInvalid();
-                    }
-
-                    def = dataContext.quizCard.getData({
-                        results: quizCards,
-                        params: {
-                            datePath: moment([year, month - 1, day]).format('YYYY/M/D'),
-                            userId: global.userId
-                        }
-                    });
-                } else {
+                $.when(getCards())
+                .done(function() {
                     def.resolve();
-                }
+                });
+            }).promise();
+        },
+            
+        getCards = function () {
+            return dataContext.card.getData({
+                results: cards
+            });
+        },
 
-                return def;
-            },
-                
-            refreshCards = function() {
-                getCards();
-                if (quizYear() > 0) {
-                    getQuizCards(quizYear(), quizMonth(), quizDay());
-                }
-            },
-
-            createCard = function (card) {
-                var def = new $.Deferred();
-
-                $.when(dataContext.card.createData({
-                    data: card
-                })).done(function (newCard) {
-                    if (moment(newCard.quizDate).format('L') == quizDate) {
-                        quizCards.push(newCard);
-                    }
+        getQuizCards = function (year, month, day) {
+            var def = new $.Deferred();
+            if (year && year >= 0) {
+                // If the quiz date has changed, invalidate the cache
+                if (quizYear() !== year || quizMonth() !== month || quizDay() !== day) {
+                    quizYear(year);
+                    quizMonth(month);
+                    quizDay(day);
                     dataContext.quizCard.setCacheInvalid();
-                    getCards();
-                    def.resolve(newCard);
-                }).fail(function () {
-                    def.reject();
-                });
+                }
 
-                return def;
-            },
-
-            updateCard = function (card) {
-                var def = new $.Deferred();
-
-                $.when(dataContext.card.updateData({
-                    data: card
-                })).done(function (updatedCard) {
-                    dataContext.quizCard.updateCachedItem(updatedCard);
-                    refreshCards();
-                    def.resolve(updatedCard);
-                }).fail(function() {
-                    def.reject();
-                });
-
-                return def;
-            },
-
-            deleteCard = function (card, callback) {
-                deleteCardOptions = {
-                    card: card,
-                    callback: callback
-                };
-                $deleteDialog.modal('show');
-            },
-
-            showCardInfo = function (card) {
-                cardInfo.activate(card);
-                $cardInfoDialog.modal('show');
-            },
-
-            executeDelete = function () {
-                $("#deleteDialog").modal('hide');
-                $.when(dataContext.card.deleteData({
-                    data: {
-                        userId: global.userId,
-                        partitionKey: deleteCardOptions.card.partitionKey(),
-                        rowKey: deleteCardOptions.card.rowKey(),
-                        entityId: deleteCardOptions.card.entityId()
-                    }
-                })).then(function () {
-                    refreshCards();
-                    if (deleteCardOptions.callback) {
-                        deleteCardOptions.callback();
-                    }
-                });
-            },
-
-            shuffleQuizCards = function () {
-                quizCards(_.shuffle(quizCards()));
-                toastr.success('Cards Shuffled');
-            },
-
-            applyQuizResult = function (quizResult) {
-                dataService.card.getSingle({
+                def = dataContext.quizCard.getData({
+                    results: quizCards,
                     params: {
-                        userId: global.userId,
-                        entityId: quizResult.cardId()
-                    },
-                    success: function (dto) {
-                        var result = modelMapper.card.mapResult(dto);
-                        dataContext.quizCard.updateCachedItem(result);
-                        dataContext.card.updateCachedItem(result);
-                        refreshCards();
+                        datePath: moment([year, month - 1, day]).format('YYYY/M/D'),
+                        userId: global.userId
                     }
                 });
+            } else {
+                def.resolve();
+            }
+
+            return def;
+        },
+                
+        refreshCards = function() {
+            getCards();
+            if (quizYear() > 0) {
+                getQuizCards(quizYear(), quizMonth(), quizDay());
+            }
+        },
+
+        createCard = function (card) {
+            var def = new $.Deferred();
+
+            $.when(dataContext.card.createData({
+                data: card
+            })).done(function (newCard) {
+                if (moment(newCard.quizDate).format('L') == quizDate) {
+                    quizCards.push(newCard);
+                }
+                dataContext.quizCard.setCacheInvalid();
+                getCards();
+                def.resolve(newCard);
+            }).fail(function () {
+                def.reject();
+            });
+
+            return def;
+        },
+
+        updateCard = function (card) {
+            var def = new $.Deferred();
+
+            $.when(dataContext.card.updateData({
+                data: card
+            })).done(function (updatedCard) {
+                dataContext.quizCard.updateCachedItem(updatedCard);
+                refreshCards();
+                def.resolve(updatedCard);
+            }).fail(function() {
+                def.reject();
+            });
+
+            return def;
+        },
+
+        deleteCard = function (card, callback) {
+            deleteCardOptions = {
+                card: card,
+                callback: callback
             };
-        
-        return {
-            init: init,
-            cards: cards,
-            quizCards: quizCards,
-            quizCardCount: quizCardCount,
-            createCard: createCard,
-            updateCard: updateCard,
-            deleteCard: deleteCard,
-            showCardInfo: showCardInfo,
-            getQuizCards: getQuizCards,
-            shuffleQuizCards: shuffleQuizCards,
-            applyQuizResult: applyQuizResult
+            $deleteDialog.modal('show');
+        },
+
+        showCardInfo = function (card) {
+            cardInfo.activate(card);
+            $cardInfoDialog.modal('show');
+        },
+
+        executeDelete = function () {
+            $("#deleteDialog").modal('hide');
+            $.when(dataContext.card.deleteData({
+                data: {
+                    userId: global.userId,
+                    partitionKey: deleteCardOptions.card.partitionKey(),
+                    rowKey: deleteCardOptions.card.rowKey(),
+                    entityId: deleteCardOptions.card.entityId()
+                }
+            })).then(function () {
+                refreshCards();
+                if (deleteCardOptions.callback) {
+                    deleteCardOptions.callback();
+                }
+            });
+        },
+
+        shuffleQuizCards = function () {
+            quizCards(_.shuffle(quizCards()));
+            toastr.success('Cards Shuffled');
+        },
+
+        applyQuizResult = function (quizResult) {
+            dataService.card.getSingle({
+                params: {
+                    userId: global.userId,
+                    entityId: quizResult.cardId()
+                },
+                success: function (dto) {
+                    var result = modelMapper.card.mapResult(dto);
+                    dataContext.quizCard.updateCachedItem(result);
+                    dataContext.card.updateCachedItem(result);
+                    refreshCards();
+                }
+            });
         };
-    }
-);
+        
+    return {
+        init: init,
+        cards: cards,
+        cardDeckNames: cardDeckNames,
+        quizCards: quizCards,
+        quizCardCount: quizCardCount,
+        createCard: createCard,
+        updateCard: updateCard,
+        deleteCard: deleteCard,
+        showCardInfo: showCardInfo,
+        getQuizCards: getQuizCards,
+        shuffleQuizCards: shuffleQuizCards,
+        applyQuizResult: applyQuizResult
+    };
+});

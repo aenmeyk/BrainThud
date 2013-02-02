@@ -1,5 +1,5 @@
-﻿define('data-context', ['data-service', 'model.mapper', 'data-context-helper', 'config'],
-    function (dataService, modelMapper, dataContextHelper, config) {
+﻿define('data-context', ['data-service', 'model.mapper', 'data-context-helper'],
+    function (dataService, modelMapper, dataContextHelper) {
         var
             userConfiguration = new dataContextHelper.EntitySet({
                 get: dataService.userConfiguration.get,
