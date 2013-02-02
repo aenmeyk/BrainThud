@@ -1,11 +1,12 @@
-﻿define('vm.library', ['ko', 'card-manager', 'underscore', 'router', 'global'],
-    function (ko, cardManager, _, router, global) {
+﻿define('vm.library', ['ko', 'underscore', 'amplify', 'config', 'router', 'global', 'data-context'],
+    function (ko, _, amplify, config, router, global, dataContext) {
         var
             selectedDeckSlug = ko.observable(''),
+            cards = ko.observableArray([]),
 
             selectedDeckName = ko.computed(function () {
                 var slug = selectedDeckSlug(),
-                    card = _.find(cardManager.cards(), function (item) {
+                    card = _.find(cards(), function (item) {
                         return item.deckNameSlug() === slug;
                     });
 
@@ -17,7 +18,7 @@
             }),
 
             cardDecks = ko.computed(function () {
-                var sortedCards = _.sortBy(cardManager.cards(), function (item) {
+                var sortedCards = _.sortBy(cards(), function (item) {
                     return item.deckName().toLowerCase();;
                 });
 
@@ -28,27 +29,38 @@
 
             filteredCards = ko.computed(function () {
                 var slug = selectedDeckSlug();
-                return _.filter(cardManager.cards(), function (item) {
+                return _.filter(cards(), function (item) {
                     return item.deckNameSlug() === slug;
                 });
             }),
 
+            init = function () {
+                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
+                    cards(data);
+
+                    if (data && data.length > 0) {
+                        var sortedCards = _.sortBy(data, function (item) {
+                            return item.deckName().toLowerCase();;
+                        });
+
+                        selectedDeckSlug(sortedCards[0].deckNameSlug());
+                    } else {
+                        selectedDeckSlug('');
+                    }
+                });
+            },
+
             activate = function (routeData) {
                 if (routeData.deckNameSlug) {
                     selectedDeckSlug(routeData.deckNameSlug);
-                } else if (cardDecks().length > 0) {
-                    var sortedCards = _.sortBy(cardManager.cards(), function (item) {
-                        return item.deckName().toLowerCase();
-                    });
-                
-                    navigateToSlug(sortedCards[0].deckNameSlug());
-                } else {
-                    selectedDeckSlug('');
                 }
+                dataContext.card.getData({
+                    results: cards
+                });
             },
 
             editCard = function (card) {
-                router.navigateTo(global.routePrefix + 'cards/' + card.entityId() + '/edit');
+                amplify.publish(config.pubs.showEditCard, card.entityId());
             },
 
             flipCard = function (card) {
@@ -75,12 +87,14 @@
             },
 
             showDeleteDialog = function (card) {
-                cardManager.deleteCard(card);
+                amplify.publish(config.pubs.showDeleteCard, card);
             },
 
             showCardInfoDialog = function (card) {
-                cardManager.showCardInfo(card);
+                amplify.publish(config.pubs.showCardInfo, card);
             };
+
+        init();
 
         return {
             cardDecks: cardDecks,

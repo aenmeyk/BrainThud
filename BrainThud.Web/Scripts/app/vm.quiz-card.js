@@ -1,13 +1,14 @@
 ﻿define('vm.quiz-card', ['ko', 'data-context', 'global', 'quiz-navigator', 'router', 'card-manager'],
     function (ko, dataContext, global, quizNavigator, router, cardManager) {
         var
+            isExecuting = ko.observable(false),
             displayIndex = ko.computed(function () {
-                return quizNavigator.cardIndex() + 1;
+                return quizNavigator.cardOrderIndex() + 1;
             }),
-            
+
             borderCss = ko.computed(function () {
                 var card = quizNavigator.currentCard();
-                
+
                 if (!card.questionSideVisible()) return 'answer';
 
                 if (quizNavigator.currentQuizResult()) {
@@ -22,9 +23,10 @@
             }),
 
             activate = function (routeData) {
-                if (routeData.year !== quizNavigator.quizYear() 
-                    || routeData.month !== quizNavigator.quizMonth() 
-                    || routeData.day !== quizNavigator.quizDay()) {
+                if (routeData.year !== quizNavigator.quizYear()
+                    || routeData.month !== quizNavigator.quizMonth()
+                    || routeData.day !== quizNavigator.quizDay()
+                    || parseInt(routeData.cardId) !== quizNavigator.currentCard().entityId()) {
                     quizNavigator.activate(routeData);
                 }
             },
@@ -53,23 +55,15 @@
             },
 
             submitQuizResult = function (isCorrect) {
-                var existingQuizResult = quizNavigator.currentQuizResult(),
-                    deferredSave;
+                var existingQuizResult = quizNavigator.currentQuizResult();
 
                 if (existingQuizResult) {
                     var jsQuizResult = ko.toJS(existingQuizResult);
                     jsQuizResult.isCorrect = isCorrect;
-                    deferredSave = dataContext.quizResult.updateData(getUpdateConfig(jsQuizResult));
+                    return dataContext.quizResult.updateData(getUpdateConfig(jsQuizResult));
                 } else {
-                    deferredSave = dataContext.quizResult.createData(getCreateConfig(isCorrect));
+                    return dataContext.quizResult.createData(getCreateConfig(isCorrect));
                 }
-
-                $.when(deferredSave)
-                .done(function (quizResult) {
-                    cardManager.applyQuizResult(quizResult);
-                });
-                
-                quizNavigator.showNextCard();
             },
 
             flipCard = function () {
@@ -77,35 +71,52 @@
                 card.questionSideVisible(!card.questionSideVisible());
             },
 
-            submitCorrect = function () {
-                submitQuizResult(true);
-            },
-
-            submitIncorrect = function () {
-                submitQuizResult(false);
-            },
-
             editCard = function () {
                 router.navigateTo(global.routePrefix + 'cards/' + quizNavigator.currentCard().entityId() + '/edit');
             },
 
             showDeleteDialog = function () {
-                cardManager.deleteCard(quizNavigator.currentCard());
+                cardManager.deleteCard(quizNavigator.currentCard(), function () {
+                    quizNavigator.removeCurrentCardIndex();
+                });
             },
 
             showCardInfoDialog = function () {
                 cardManager.showCardInfo(quizNavigator.currentCard());
-            };
+            },
+
+            getQuizResultCommandConfig = function (isCorrect) {
+                return {
+                    execute: function (complete) {
+                        isExecuting(true);
+                        $.when(submitQuizResult(isCorrect))
+                            .done(function (quizResult) {
+                                cardManager.applyQuizResult(quizResult);
+                                quizNavigator.showNextCard();
+                            })
+                            .always(function () {
+                                complete();
+                                isExecuting(false);
+                            });
+                    },
+                    canExecute: function () {
+                        return !isExecuting() && !isSubmitResultDisabled();
+                    }
+                };
+            },
+
+            correctCommand = ko.asyncCommand(getQuizResultCommandConfig(true)),
+
+            incorrectCommand = ko.asyncCommand(getQuizResultCommandConfig(false));
 
         return {
             activate: activate,
             card: quizNavigator.currentCard,
-            isSubmitResultDisabled: isSubmitResultDisabled,
             showNextCard: quizNavigator.showNextCard,
+            correctCommand: correctCommand,
+            incorrectCommand: incorrectCommand,
             showPreviousCard: quizNavigator.showPreviousCard,
             flipCard: flipCard,
-            submitCorrect: submitCorrect,
-            submitIncorrect: submitIncorrect,
             editCard: editCard,
             showDeleteDialog: showDeleteDialog,
             showCardInfoDialog: showCardInfoDialog,
