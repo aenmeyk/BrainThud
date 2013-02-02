@@ -34,8 +34,14 @@
             }),
 
             activate = function (routeData) {
+                // 1) Navigate to the deck specified in the route
+                // 2) If no deck specified in route, navigate to the previously selected deck
+                // 3) If no previously selected deck, navigate to the first deck
+                // 4) If there are no cards, clear the selected deck
                 if (routeData.deckNameSlug) {
                     selectedDeckSlug(routeData.deckNameSlug);
+                } else if (selectedDeckSlug() !== '') {
+                    navigateToSlug(selectedDeckSlug());
                 } else if (cardDecks().length > 0) {
                     var sortedCards = _.sortBy(cardManager.cards(), function (item) {
                         return item.deckName().toLowerCase();

@@ -28,10 +28,10 @@
             <button type="button" class="primary-button btn btn-primary" data-bind="click: flipCard">Flip Card</button>
         </div>
         <div class="span4">
-            <button type="button" class="primary-button btn btn-success" data-bind="click: submitCorrect, disable: isSubmitResultDisabled(), css: { disabled: isSubmitResultDisabled() }">Correct</button>
+            <button type="button" class="primary-button btn btn-success" data-bind="command: correctCommand, activity: correctCommand.isExecuting">Correct</button>
         </div>
         <div class="span4">
-            <button type="button" class="primary-button btn btn-danger" data-bind="click: submitIncorrect, disable: isSubmitResultDisabled(), css: { disabled: isSubmitResultDisabled() }">Incorrect</button>
+            <button type="button" class="primary-button btn btn-danger" data-bind="command: incorrectCommand, activity: incorrectCommand.isExecuting">Incorrect</button>
         </div>
     </div>
 
