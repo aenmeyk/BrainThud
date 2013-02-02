@@ -3,7 +3,7 @@
         var
             isExecuting = ko.observable(false),
             displayIndex = ko.computed(function () {
-                return quizNavigator.cardIndex() + 1;
+                return quizNavigator.cardOrderIndex() + 1;
             }),
             
             borderCss = ko.computed(function () {
@@ -75,7 +75,9 @@
             },
 
             showDeleteDialog = function () {
-                cardManager.deleteCard(quizNavigator.currentCard());
+                cardManager.deleteCard(quizNavigator.currentCard(), function() {
+                    quizNavigator.removeCurrentCardIndex();
+                });
             },
 
             showCardInfoDialog = function () {

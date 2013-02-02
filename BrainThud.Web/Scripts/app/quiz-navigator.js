@@ -1,7 +1,8 @@
 ﻿define('quiz-navigator', ['jquery', 'ko', 'card-manager', 'underscore', 'router', 'data-context', 'global', 'model', 'moment'],
     function ($, ko, cardManager, _, router, dataContext, global, model, moment) {
         var
-            cardIndex = ko.observable(0),
+            cardOrderIndex = ko.observable(0),
+            cardOrder = ko.observableArray([]),
             quizResults = ko.observableArray([]),
             quizYear = ko.observable(0),
             quizMonth = ko.observable(0),
@@ -40,8 +41,10 @@
             }),
 
             currentCard = ko.computed(function () {
-                var card = cardManager.quizCards()[cardIndex()];
+                var index = cardOrder()[cardOrderIndex()],
+                    card = cardManager.quizCards()[index];
                 if (card) return card;
+                
                 return new model.Card();
             }),
 
@@ -69,13 +72,24 @@
                 .done(function() {
                     if (routeData && routeData.cardId) {
                         var cards = cardManager.quizCards(),
-                            routeCard = _.find(cards, function (item) {
-                            return item.entityId() === parseInt(routeData.cardId);
-                        });
+                            routeCard = _.find(cards, function(item) {
+                                return item.entityId() === parseInt(routeData.cardId);
+                            }),
+                            cardIndex = _.indexOf(cards, routeCard),
+                            orderIndex = _.indexOf(cardOrder(), cardIndex);
 
-                        cardIndex(_.indexOf(cards, routeCard));
+                        cardOrderIndex(orderIndex);
                     } else {
-                        cardIndex(0);
+                        cardOrderIndex(0);
+                    }
+                    
+                    var cardCount = cardManager.quizCards().length;
+                    if (cardOrder().length !== cardCount) {
+                        var indexes = [];
+                        for (var i = 0; i < cardCount; i++) {
+                            indexes.push(i);
+                        }
+                        cardOrder(indexes);
                     }
                 });
             },
@@ -108,8 +122,8 @@
             },
 
             showLastCard = function () {
-                cardIndex(cardManager.quizCards().length - 1);
-                if (cardIndex() > 0) {
+                cardOrderIndex(cardOrder().length - 1);
+                if (cardOrderIndex() > 0) {
                     router.navigateTo(getCardUri());
                 } else {
                     showQuizSummary();
@@ -117,7 +131,7 @@
             },
 
             showCurrentCard = function () {
-                if (cardIndex() < cardManager.quizCards().length) {
+                if (cardOrderIndex() < cardManager.quizCards().length) {
                     router.navigateTo(getCardUri());
                 } else {
                     showLastCard();
@@ -125,8 +139,8 @@
             },
 
             showNextCard = function () {
-                if (cardIndex() < cardManager.quizCards().length - 1) {
-                    cardIndex(cardIndex() + 1);
+                if (cardOrderIndex() < cardManager.quizCards().length - 1) {
+                    cardOrderIndex(cardOrderIndex() + 1);
                     router.navigateTo(getCardUri());
                 } else {
                     showQuizSummary();
@@ -134,8 +148,8 @@
             },
 
             showPreviousCard = function () {
-                if (cardIndex() > 0) {
-                    cardIndex(cardIndex() - 1);
+                if (cardOrderIndex() > 0) {
+                    cardOrderIndex(cardOrderIndex() - 1);
                     router.navigateTo(getCardUri());
                 } else {
                     showQuizSummary();
@@ -143,13 +157,32 @@
             },
 
             showQuizSummary = function () {
-                cardIndex(0);
+                cardOrderIndex(0);
                 router.navigateTo(getQuizPath());
             },
-            
-            shuffleCards = function() {
-                cardManager.shuffleQuizCards();
-                cardIndex(0);
+
+            removeCurrentCardIndex = function () {
+                var currentIndex = cardOrderIndex(),
+                    cardOrderIndexes = cardOrder();
+                
+                cardOrderIndexes = _.without(cardOrderIndexes, currentIndex);
+                
+                // Since a card has been removed, we need to reduce the index of
+                // every card that had a higher index of the one removed.
+                for (var i = 0; i < cardOrderIndexes.length; i++) {
+                    if (cardOrderIndexes[i] > currentIndex) {
+                        cardOrderIndexes[i] = cardOrderIndexes[i] - 1;
+                    }
+                }
+
+                cardOrder(cardOrderIndexes);
+                showCurrentCard();
+            },
+
+            shuffleCards = function () {
+                cardOrder(_.shuffle(cardOrder()));
+                cardOrderIndex(0);
+                toastr.success('Cards Shuffled');
             };
 
         return {
@@ -163,7 +196,8 @@
             isQuizInFuture: isQuizInFuture,
             currentCard: currentCard,
             currentQuizResult: currentQuizResult,
-            cardIndex: cardIndex,
+            cardOrderIndex: cardOrderIndex,
+            removeCurrentCardIndex: removeCurrentCardIndex,
             completedCardCount: completedCardCount,
             correctCardCount: correctCardCount,
             incorrectCardCount: incorrectCardCount,

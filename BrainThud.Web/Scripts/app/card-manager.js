@@ -79,11 +79,18 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
             return def;
         },
                 
-        refreshCards = function() {
-            getCards();
-            if (quizYear() > 0) {
-                getQuizCards(quizYear(), quizMonth(), quizDay());
-            }
+        refreshCards = function () {
+            var def = new $.Deferred();
+
+            $.when(getCards(), getQuizCards(quizYear(), quizMonth(), quizDay()))
+            .done(function() {
+                def.resolve();
+            })
+            .fail(function() {
+                def.reject();
+            });
+
+            return def;
         },
 
         createCard = function (card) {
@@ -112,8 +119,10 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
                 data: card
             })).done(function (updatedCard) {
                 dataContext.quizCard.updateCachedItem(updatedCard);
-                refreshCards();
-                def.resolve(updatedCard);
+                $.when(refreshCards())
+                .done(function() {
+                    def.resolve(updatedCard);
+                });
             }).fail(function() {
                 def.reject();
             });
@@ -144,16 +153,16 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
                     entityId: deleteCardOptions.card.entityId()
                 }
             })).then(function () {
-                refreshCards();
-                if (deleteCardOptions.callback) {
-                    deleteCardOptions.callback();
-                }
+                dataContext.quizCard.setCacheInvalid();
+                dataContext.quizResult.setCacheInvalid();
+                
+                $.when(refreshCards())
+                .done(function() {
+                    if (deleteCardOptions.callback) {
+                        deleteCardOptions.callback(deleteCardOptions.card);
+                    }
+                });
             });
-        },
-
-        shuffleQuizCards = function () {
-            quizCards(_.shuffle(quizCards()));
-            toastr.success('Cards Shuffled');
         },
 
         applyQuizResult = function (quizResult) {
@@ -182,7 +191,6 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         deleteCard: deleteCard,
         showCardInfo: showCardInfo,
         getQuizCards: getQuizCards,
-        shuffleQuizCards: shuffleQuizCards,
         applyQuizResult: applyQuizResult
     };
 });
