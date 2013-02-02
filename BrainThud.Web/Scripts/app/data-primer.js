@@ -13,23 +13,8 @@ function ($, ko, dataContext, utils, global, cardManager) {
                         if (userConfiguration()[0]) {
                             global.userId = userConfiguration()[0].userId();
                             global.routePrefix = '#/' + global.userId + '/';
-                            var datePath = utils.getDatePath();
-                            $.when(
-//                                dataContext.quizResult.getData({
-//                                    params: {
-//                                        datePath: datePath,
-//                                        userId: global.userId
-//                                    }
-//                                }),
-//                                dataContext.quizCard.getData({
-//                                    params: {
-//                                        datePath: datePath,
-//                                        userId: global.userId
-//                                    }
-//                                }),
-//                                dataContext.card.getData({})
-                                cardManager.init()
-                            )
+                            
+                            $.when(cardManager.init)
                             .fail(function() { def.reject(); })
                             .done(function() { def.resolve(); });
                         } else {

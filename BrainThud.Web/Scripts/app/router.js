@@ -1,14 +1,10 @@
-﻿define('router', ['jquery', 'ko', 'underscore', 'sammy', 'presenter', 'config', 'global', 'utils'],
-    function ($, ko, _, Sammy, presenter, config, global, utils) {
+﻿define('router', ['jquery', 'ko', 'underscore', 'sammy', 'presenter', 'config', 'global', 'utils', 'card-manager'],
+    function ($, ko, _, Sammy, presenter, config, global, utils, cardManager) {
         var
             startupUrl = '',
-            userHasCards = ko.observable(false),
-
-            init = function () {
-                amplify.subscribe(config.pubs.cardCacheChanged, function (data) {
-                    userHasCards(data.length > 0);
-                });
-            },
+            userHasCards = ko.computed(function() {
+                return cardManager.cards().length > 0;
+            }),
 
             navigateTo = function (url) {
                 sammy.setLocation(url);
@@ -78,9 +74,6 @@
             sammy.run();
             navigateTo(startupUrl);
         };
-
-
-        init();
 
         return {
             navigateTo: navigateTo,

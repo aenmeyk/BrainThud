@@ -29,7 +29,6 @@
                                     results(cachedResults);
                                 }
 
-                                publishCacheChanged();
                                 def.resolve(results);
                             },
                             error: function () {
@@ -52,7 +51,6 @@
                             success: function (result) {
                                 var newItem = entitySetConfig.mapper.mapResult(result);
                                 cachedResults.push(newItem);
-                                publishCacheChanged();
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 def.resolve(newItem);
                             },
@@ -79,7 +77,6 @@
                                 }
                                 
                                 options.data.dirtyFlag().reset();
-                                publishCacheChanged();
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 if (options.callback) options.callback(cachedResults[i]);
                                 def.resolve(updatedItem);
@@ -104,7 +101,6 @@
                                     }
                                 }
 
-                                publishCacheChanged();
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 def.resolve();
                             },
@@ -124,8 +120,6 @@
                                 break;
                             }
                         }
-
-                        publishCacheChanged();
                     }
                 },
 
@@ -137,14 +131,6 @@
                             break;
                         }
                     }
-
-                    publishCacheChanged();
-                    }
-                },
-
-                publishCacheChanged = function () {
-                    if (entitySetConfig.cacheChangedPub) {
-                        amplify.publish(entitySetConfig.cacheChangedPub, cachedResults);
                     }
                 },
                 
