@@ -1,5 +1,5 @@
-﻿define('model.mapper', ['model', 'editor', 'utils'],
-    function (model, editor, utils) {
+﻿define('model.mapper', ['model', 'utils'],
+    function (model, utils) {
         var 
             card = {
                 mapResults: function(dto, results) {

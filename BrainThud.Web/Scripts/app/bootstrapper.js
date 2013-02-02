@@ -1,5 +1,5 @@
-﻿define('bootstrapper', ['jquery', 'binder', 'route-config', 'data-primer', 'card-manager', 'dom'],
-function ($, binder, routeConfig, dataPrimer, cardManager, dom) {
+﻿define('bootstrapper', ['jquery', 'binder', 'route-config', 'data-primer', 'dom'],
+function ($, binder, routeConfig, dataPrimer, dom) {
     var
         run = function () {
             dom.showLoading();

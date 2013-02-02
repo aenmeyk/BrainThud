@@ -1,5 +1,5 @@
-﻿define('quiz-navigator', ['jquery', 'ko', 'card-manager', 'underscore', 'router', 'data-context', 'amplify', 'config', 'global', 'model', 'moment'],
-    function ($, ko, cardManager, _, router, dataContext, amplify, config, global, model, moment) {
+﻿define('quiz-navigator', ['jquery', 'ko', 'card-manager', 'underscore', 'router', 'data-context', 'global', 'model', 'moment'],
+    function ($, ko, cardManager, _, router, dataContext, global, model, moment) {
         var
             cardIndex = ko.observable(0),
             quizResults = ko.observableArray([]),

@@ -1,6 +1,6 @@
-﻿define('data-primer', ['jquery', 'ko', 'data-context', 'utils', 'global', 'card-manager'],
+﻿define('data-primer', ['jquery', 'ko', 'data-context', 'global', 'card-manager'],
 
-function ($, ko, dataContext, utils, global, cardManager) {
+function ($, ko, dataContext, global, cardManager) {
     var
         userConfiguration = ko.observableArray([]),
         configOptions = {
@@ -14,7 +14,7 @@ function ($, ko, dataContext, utils, global, cardManager) {
                             global.userId = userConfiguration()[0].userId();
                             global.routePrefix = '#/' + global.userId + '/';
                             
-                            $.when(cardManager.init)
+                            $.when(cardManager.init())
                             .fail(function() { def.reject(); })
                             .done(function() { def.resolve(); });
                         } else {

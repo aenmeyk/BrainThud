@@ -1,5 +1,5 @@
-﻿define('vm.quiz-card', ['underscore', 'ko', 'data-context', 'amplify', 'config', 'global', 'quiz-navigator', 'data-service', 'model.mapper', 'router', 'card-manager', 'moment'],
-    function (_, ko, dataContext, amplify, config, global, quizNavigator, dataService, modelMapper, router, cardManager, moment) {
+﻿define('vm.quiz-card', ['ko', 'data-context', 'global', 'quiz-navigator', 'router', 'card-manager'],
+    function (ko, dataContext, global, quizNavigator, router, cardManager) {
         var
             displayIndex = ko.computed(function () {
                 return quizNavigator.cardIndex() + 1;

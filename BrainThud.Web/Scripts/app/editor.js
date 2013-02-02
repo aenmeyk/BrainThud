@@ -1,47 +1,45 @@
-﻿define('editor', ['markdown', 'dom'],
-    function (markdown, dom) {
-        var
-            init = function () {
-                if (dom.isCreateCardRendered()) {
-                    markDownConverter = markdown.getSanitizingConverter();
+﻿define('editor', ['markdown'],
+    
+function (markdown) {
+    var
+        markDownConverter,
+        questionEditorCreate,
+        questionEditorEdit,
+        answerEditorCreate,
+        answerEditorEdit,
 
-                    questionEditorCreate = new Markdown.Editor(markDownConverter, "-question-create");
-                    questionEditorEdit = new Markdown.Editor(markDownConverter, "-question-edit");
-                    answerEditorCreate = new Markdown.Editor(markDownConverter, "-answer-create");
-                    answerEditorEdit = new Markdown.Editor(markDownConverter, "-answer-edit");
+        init = function () {
+            markDownConverter = markdown.getSanitizingConverter();
 
-                    questionEditorCreate.run();
-                    questionEditorEdit.run();
-                    answerEditorCreate.run();
-                    answerEditorEdit.run();
-                }
-            },
-            
-            refreshPreview = function (editor) {
-                if (editor === 'create') {
-                    questionEditorCreate.refreshPreview();
-                    answerEditorCreate.refreshPreview();
-                } else if (editor === 'edit') {
-                    questionEditorEdit.refreshPreview();
-                    answerEditorEdit.refreshPreview();
-                };
-            },
-            
-            makeHtml = function (text) {
-                return markDownConverter.makeHtml(text);
-            },
+            questionEditorCreate = new Markdown.Editor(markDownConverter, "-question-create");
+            questionEditorEdit = new Markdown.Editor(markDownConverter, "-question-edit");
+            answerEditorCreate = new Markdown.Editor(markDownConverter, "-answer-create");
+            answerEditorEdit = new Markdown.Editor(markDownConverter, "-answer-edit");
 
-            markDownConverter,
-            questionEditorCreate,
-            questionEditorEdit,
-            answerEditorCreate,
-            answerEditorEdit;
+            questionEditorCreate.run();
+            questionEditorEdit.run();
+            answerEditorCreate.run();
+            answerEditorEdit.run();
+        },
 
-        init();
+        refreshPreview = function (editor) {
+            if (editor === 'create') {
+                questionEditorCreate.refreshPreview();
+                answerEditorCreate.refreshPreview();
+            } else if (editor === 'edit') {
+                questionEditorEdit.refreshPreview();
+                answerEditorEdit.refreshPreview();
+            };
+        },
 
-        return {
-            refreshPreview: refreshPreview,
-            makeHtml: makeHtml
+        makeHtml = function (text) {
+            return markDownConverter.makeHtml(text);
         };
-    }
-);
+
+    init();
+
+    return {
+        refreshPreview: refreshPreview,
+        makeHtml: makeHtml
+    };
+});
