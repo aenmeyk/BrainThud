@@ -64,7 +64,11 @@
                 return 'question';
             });
             self.localizedQuizDate = ko.computed(function () {
-                return moment(self.quizDate()).format('L');
+                var quizDate = self.quizDate();
+                if (quizDate && quizDate.length > 10) {
+                    // Not sure if it's a good idea to always expect quizDate in ISO 8601 format
+                    return moment(self.quizDate().slice(0, 10)).format('L');
+                }
             });
             self.dirtyFlag = new ko.DirtyFlag([
                 self.deckName,
