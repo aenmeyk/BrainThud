@@ -65,8 +65,8 @@
                 }
 
                 $.when(deferredSave)
-                .done(function () {
-                    cardManager.applyQuizResult(quizResult());
+                .done(function (quizResult) {
+                    cardManager.applyQuizResult(quizResult);
                 });
                 
                 quizNavigator.showNextCard();

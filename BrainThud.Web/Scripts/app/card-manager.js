@@ -35,24 +35,35 @@
             },
 
             getQuizCards = function (year, month, day) {
+                var def = new $.Deferred();
                 if (year && year >= 0) {
-                    quizYear(year);
-                    quizMonth(month);
-                    quizDay(day);
+                    // If the quiz date has changed, invalidate the cache
+                    if (quizYear() !== year || quizMonth() !== month || quizDay() !== day) {
+                        quizYear(year);
+                        quizMonth(month);
+                        quizDay(day);
+                        dataContext.quizCard.setCacheInvalid();
+                    }
 
-                    dataContext.quizCard.getData({
+                    def = dataContext.quizCard.getData({
                         results: quizCards,
                         params: {
-                            datePath: moment([year, month, day]).format('YYYY/M/D'),
+                            datePath: moment([year, month - 1, day]).format('YYYY/M/D'),
                             userId: global.userId
                         }
                     });
+                } else {
+                    def.resolve();
                 }
+
+                return def;
             },
                 
             refreshCards = function() {
                 getCards();
-                getQuizCards(quizYear(), quizMonth(), quizDay());
+                if (quizYear() > 0) {
+                    getQuizCards(quizYear(), quizMonth(), quizDay());
+                }
             },
 
             createCard = function (card) {
@@ -80,8 +91,8 @@
                 $.when(dataContext.card.updateData({
                     data: card
                 })).done(function (updatedCard) {
-                    dataContext.quizCard.setCacheInvalid();
-                    getCards();
+                    dataContext.quizCard.updateCachedItem(updatedCard);
+                    refreshCards();
                     def.resolve(updatedCard);
                 }).fail(function() {
                     def.reject();

@@ -1,5 +1,5 @@
-﻿define('quiz-navigator', ['jquery', 'ko', 'card-manager', 'underscore', 'router', 'data-context', 'amplify', 'config', 'global', 'model', 'moment', 'toastr'],
-    function ($, ko, cardManager, _, router, dataContext, amplify, config, global, model, moment, toastr) {
+﻿define('quiz-navigator', ['jquery', 'ko', 'card-manager', 'underscore', 'router', 'data-context', 'amplify', 'config', 'global', 'model', 'moment'],
+    function ($, ko, cardManager, _, router, dataContext, amplify, config, global, model, moment) {
         var
             cardIndex = ko.observable(0),
             quizResults = ko.observableArray([]),
@@ -55,20 +55,21 @@
             }),
 
             activate = function (routeData) {
+                var isQuizDateChanged = false;
+                
                 // If the new route doesn't match the current route then we need to get the cards and quizResults for the new route
                 if (quizYear() !== routeData.year || quizMonth() !== routeData.month || quizDay() !== routeData.day) {
-                    cardManager.getQuizCards(routeData.year, routeData.month, routeData.day);
                     quizYear(routeData.year);
                     quizMonth(routeData.month);
                     quizDay(routeData.day);
+                    isQuizDateChanged = true;
                 }
-
-
-                $.when(getQuizResults())
+                
+                $.when(getQuizCards(routeData), getQuizResults(isQuizDateChanged))
                 .done(function() {
                     if (routeData && routeData.cardId) {
-                        var cards = cardManager.quizCards();
-                        var routeCard = _.find(cards, function (item) {
+                        var cards = cardManager.quizCards(),
+                            routeCard = _.find(cards, function (item) {
                             return item.entityId() === parseInt(routeData.cardId);
                         });
 
@@ -79,7 +80,16 @@
                 });
             },
 
-            getQuizResults = function () {
+            getQuizCards = function () {
+                return cardManager.getQuizCards(quizYear(), quizMonth(), quizDay());
+            },
+
+            getQuizResults = function (isQuizDateChanged) {
+                // If the quiz date has changed, invalidate the cache
+                if (isQuizDateChanged) {
+                    dataContext.quizResult.setCacheInvalid();
+                }
+                
                 return dataContext.quizResult.getData({
                     results: quizResults,
                     params: {
