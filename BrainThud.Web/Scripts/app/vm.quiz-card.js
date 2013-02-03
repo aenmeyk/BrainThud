@@ -23,8 +23,8 @@
             }),
 
             activate = function (routeData) {
-                if (routeData.year !== quizNavigator.quizYear()
-                    || routeData.month !== quizNavigator.quizMonth()
+                if (routeData.year !== quizNavigator.quizYear() 
+                    || routeData.month !== quizNavigator.quizMonth() 
                     || routeData.day !== quizNavigator.quizDay()
                     || parseInt(routeData.cardId) !== quizNavigator.currentCard().entityId()) {
                     quizNavigator.activate(routeData);
