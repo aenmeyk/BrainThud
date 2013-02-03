@@ -70,9 +70,19 @@
                 
                 $.when(getQuizCards(routeData), getQuizResults(isQuizDateChanged))
                 .done(function() {
+                    var cards = cardManager.quizCards(),
+                        cardCount = cards.length;
+                    
+                    if (cardOrder().length !== cardCount) {
+                        var indexes = [];
+                        for (var i = 0; i < cardCount; i++) {
+                            indexes.push(i);
+                        }
+                        cardOrder(indexes);
+                    }
+
                     if (routeData && routeData.cardId) {
-                        var cards = cardManager.quizCards(),
-                            routeCard = _.find(cards, function(item) {
+                        var routeCard = _.find(cards, function(item) {
                                 return item.entityId() === parseInt(routeData.cardId);
                             }),
                             cardIndex = _.indexOf(cards, routeCard),
@@ -81,15 +91,6 @@
                         cardOrderIndex(orderIndex);
                     } else {
                         cardOrderIndex(0);
-                    }
-                    
-                    var cardCount = cardManager.quizCards().length;
-                    if (cardOrder().length !== cardCount) {
-                        var indexes = [];
-                        for (var i = 0; i < cardCount; i++) {
-                            indexes.push(i);
-                        }
-                        cardOrder(indexes);
                     }
                 });
             },
