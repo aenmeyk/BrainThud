@@ -125,6 +125,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureInitializer.cs" />
+    <Compile Include="BrainThud.CoreTest\AzureServicesTest\Given_a_new_AccessControlService.cs" />
+    <Compile Include="BrainThud.CoreTest\AzureServicesTest\When_GetIdentityProviders_is_called.cs" />
     <Compile Include="BrainThud.CoreTest\IntegrationTest\CardControllerIntegrationTest.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\Given_a_new_AccountController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_SignOut_is_called.cs" />
@@ -214,6 +216,7 @@
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserConfigurationRepositoryTest\Given_a_new_UserConfigurationRepository.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserConfigurationRepositoryTest\When_GetByNameIdentifier_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\UserConfigurationRepositoryTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\Fakes\HttpMessageHandlerFake.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_ReverseQuizResult_is_called.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_ApplyQuizResult_is_called_with_a_level_less_than_zero.cs" />
     <Compile Include="BrainThud.WebTest\HandlersTest\When_ApplyQuizResult_is_called_with_a_level_greater_than_the_max_QuizInterval.cs" />
@@ -292,6 +295,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BrainThud.Core\BrainThud.Core.csproj">
+      <Project>{73F9AB29-527B-49EA-A24E-E4C800D1800D}</Project>
+      <Name>BrainThud.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BrainThud.Web\BrainThud.Web.csproj">
       <Project>{7A052710-6240-4B71-8E72-39C90401B2C7}</Project>
       <Name>BrainThud.Web</Name>

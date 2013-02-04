@@ -95,5 +95,8 @@ namespace BrainThud.Core
         public const string CONCURRENCY_VIOLATION = "UpdateConditionNotSatisfied";
     }
 
-
+    public static class Urls
+    {
+        public const string IDENTITY_PROVIDERS = @"https://brainthud.accesscontrol.windows.net/v2/metadata/identityProviders.js?protocol=wsfederation&realm=http%3a%2f%2fauthentication.brainthud.com%2f&version=1.0&callback=";
+    }
 }
