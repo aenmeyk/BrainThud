@@ -16,17 +16,99 @@
             Source="{Binding IdentityProviders}"/>
     </Page.Resources>
 
-    <StackPanel>
-        <TextBlock>Identity Providers</TextBlock>
-        <ListView
-            ItemsSource="{Binding Source={StaticResource ItemsViewSource}}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"></TextBlock>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            
-        </ListView>
-
-    </StackPanel>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Source="/Core/Images/logo_large.png" Margin="100" />
+        <Grid Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid 
+                Margin="20"
+                Column="1"
+                Background="#f5f5f5">
+                <Border BorderBrush="#ddd" BorderThickness="1">
+                    <StackPanel
+                        VerticalAlignment="Center">
+                        <TextBlock 
+                            FontSize="24"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Center"
+                            Foreground="#5a5a5a">
+                            Tap below to log in with a trusted identity provider
+                        </TextBlock>
+                        <TextBlock 
+                            Grid.Row="1"
+                            Margin="0,20,0,0"
+                            FontSize="18"
+                            HorizontalAlignment="Center"
+                            Foreground="#5a5a5a">
+                            Your BrainThud account will be created when you log in
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <GridView
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                ItemsSource="{Binding Source={StaticResource ItemsViewSource}}"
+                SelectionMode="None">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="3" BorderBrush="#dadada">
+                            <Image Source="{Binding ImageUrl}" Height="50" />
+                        </Border>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter 
+                            Property="HorizontalContentAlignment"  
+                            Value="Stretch" />
+                        <Setter 
+                            Property="VerticalContentAlignment"  
+                            Value="Stretch" />
+                    </Style>
+                </GridView.ItemContainerStyle>
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VariableSizedWrapGrid 
+                            ItemHeight="180"  
+                            ItemWidth="280" />
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
+            <Grid 
+                Margin="20"
+                Column="1"
+                Grid.Row="2"
+                Background="#dff0d8">
+                <Border BorderBrush="#d6e9c6" BorderThickness="1">
+                    <StackPanel
+                        VerticalAlignment="Center">
+                        <TextBlock 
+                            FontSize="24"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Center"
+                            Foreground="#468847">
+                            Don't worry,
+                        </TextBlock>
+                        <TextBlock 
+                            Grid.Row="1"
+                            Margin="0,20,0,0"
+                            FontSize="18"
+                            HorizontalAlignment="Center"
+                            Foreground="#468847">
+                            The identity providers don't give us access to your credentials
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
 </common:LayoutAwarePage>
