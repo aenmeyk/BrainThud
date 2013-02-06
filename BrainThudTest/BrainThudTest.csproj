@@ -79,6 +79,16 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cirrious.MvvmCross, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Resources\MvvmCross\Portable\Release\Cirrious.MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.Console">
+      <HintPath>..\Resources\MvvmCross\Portable\Release\Cirrious.MvvmCross.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Cirrious.MvvmCross.OpenNetCfIoC">
+      <HintPath>..\Resources\MvvmCross\Portable\Release\Cirrious.MvvmCross.OpenNetCfIoC.dll</HintPath>
+    </Reference>
     <Reference Include="FizzWare.NBuilder">
       <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
     </Reference>
@@ -126,8 +136,11 @@
   <ItemGroup>
     <Compile Include="AzureInitializer.cs" />
     <Compile Include="BrainThud.CoreTest\AzureServicesTest\Given_a_new_AccessControlService.cs" />
+    <Compile Include="BrainThud.CoreTest\AzureServicesTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.CoreTest\AzureServicesTest\When_GetIdentityProviders_is_called.cs" />
     <Compile Include="BrainThud.CoreTest\IntegrationTest\CardControllerIntegrationTest.cs" />
+    <Compile Include="BrainThud.CoreTest\ViewModelsTest\LoginViewModelTest\Given_a_new_LoginViewModel.cs" />
+    <Compile Include="BrainThud.CoreTest\ViewModelsTest\LoginViewModelTest\When_IdentityProviders_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\Given_a_new_AccountController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_SignOut_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
@@ -280,6 +293,7 @@
     <Compile Include="Builders\MockCloudStorageServicesBuilder.cs" />
     <Compile Include="Extensions\BrainThudAssertionExtensions.cs" />
     <Compile Include="GwtAzureEmulator.cs" />
+    <Compile Include="GwtMvvmCross.cs" />
     <Compile Include="Integration\Azure_Table_Storage_Tests.cs">
       <SubType>Code</SubType>
     </Compile>

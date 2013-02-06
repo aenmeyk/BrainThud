@@ -1,5 +1,4 @@
 ﻿<common:LayoutAwarePage
-    x:Name="pageRoot"
     x:Class="BrainThud.Win.Views.QuizView"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

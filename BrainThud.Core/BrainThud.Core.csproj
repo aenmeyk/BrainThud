@@ -110,9 +110,11 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AzureServices\AccessControlService.cs" />
+    <Compile Include="AzureServices\IAccessControlService.cs" />
     <Compile Include="AzureServices\IdentityProvider.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Data\AzureTableStorage\AzureTableEntity.cs" />
+    <Compile Include="DependencyResolution\MvxIoC.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\QuizSummary_OLD.cs" />
     <Compile Include="Models\QuizSummary.cs" />
@@ -120,6 +122,7 @@
     <Compile Include="StartApplicationObject.cs" />
     <Compile Include="TestValues.cs" />
     <Compile Include="Trace.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\QuizViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>

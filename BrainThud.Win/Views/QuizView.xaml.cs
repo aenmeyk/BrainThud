@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BrainThud.Core.ViewModels;
-using Windows.Security.Authentication.Web;
+using BrainThud.Win.Common;
 using Windows.UI.Xaml.Controls;
 
 // The Group Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229
@@ -12,7 +12,7 @@ namespace BrainThud.Win.Views
     /// A page that displays an overview of a single group, including a preview of the items
     /// within the group.
     /// </summary>
-    public sealed partial class QuizView : BrainThud.Win.Common.LayoutAwarePage
+    public sealed partial class QuizView : LayoutAwarePage
     {
         public QuizView()
         {
@@ -45,52 +45,21 @@ namespace BrainThud.Win.Views
 
         private async void Button_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         { 
+            this.ViewModel.LoadData();
 
-//            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
-//                    WebAuthenticationOptions.None,
-//                    new Uri(string.Format("https://brainthud.accesscontrol.windows.net/v2/metadata/identityProviders.js?protocol=wsfederation&realm={0}&version=1.0&callback=ShowSigninPage", "http://www.brainthud.com/")),
-//                    new Uri("http://localhost:36877/api/FederationCallback"));
-
+//            // TODO: This navigates to the live login page.  I need to get a list of identity providers (from https://brainthud.accesscontrol.windows.net/v2/metadata/identityProviders.js?protocol=wsfederation&realm=http%3a%2f%2fauthentication.brainthud.com%2f&version=1.0&callback=)
+//            // I then need to parse the results, extract the "LoginUrl" and the "ImageUrl", display them for the user to select and then pass the "LoginUrl" that the user selected into this method.
 //            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
 //                        WebAuthenticationOptions.None,
-//                        new Uri("https://brainthud.accesscontrol.windows.net:443/v2/wsfederation?wa=wsignin1.0&wtrealm=http%3a%2f%2flocalhost:36877%2f"),
-//                        new Uri("http://localhost:36877/api/federationcallback/end")
-//                    );
-
-//            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
-//                        WebAuthenticationOptions.None,
-//                        new Uri("https://brainthud.accesscontrol.windows.net:443/v2/wsfederation?wa=wsignin1.0&wtrealm=http%3a%2f%2flocalhost:36877%2f"),
-//                        new Uri("http://0e5a5f4209a84c8ea1ccc0ea45aca178.cloudapp.net/api/federationcallback/end")
-//                    );
-
-//            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
-//                        WebAuthenticationOptions.None,
-//                        new Uri("https://brainthud.accesscontrol.windows.net:443/v2/wsfederation?wa=wsignin1.0&wtrealm=http%3a%2f%2flocalhost:36877%2f")
-//                    );
-
-            // TODO: This navigates to the live login page.  I need to get a list of identity providers (from https://brainthud.accesscontrol.windows.net/v2/metadata/identityProviders.js?protocol=wsfederation&realm=http%3a%2f%2fauthentication.brainthud.com%2f&version=1.0&callback=)
-            // I then need to parse the results, extract the "LoginUrl" and the "ImageUrl", display them for the user to select and then pass the "LoginUrl" that the user selected into this method.
-            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
-                        WebAuthenticationOptions.None,
-                        new Uri("https://login.live.com/login.srf?wa=wsignin1.0&wtrealm=https%3a%2f%2faccesscontrol.windows.net%2f&wreply=https%3a%2f%2fbrainthud.accesscontrol.windows.net%2fv2%2fwsfederation&wp=MBI_FED_SSL&wctx=cHI9d3NmZWRlcmF0aW9uJnJtPWh0dHAlM2ElMmYlMmZhdXRoZW50aWNhdGlvbi5icmFpbnRodWQuY29tJTJm0"),
-                        new Uri("http://authentication.brainthud.com/api/federationcallback/end")
-                    );
-
-
-
-// TODO: This should show the list of identity providers, but it doesn't
-//            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
-//                        WebAuthenticationOptions.None,
-//                        new Uri("https://brainthud.accesscontrol.windows.net:443/v2/wsfederation?wa=wsignin1.0&wtrealm=http%3a%2f%2fauthentication.brainthud.com%2f"),
+//                        new Uri("https://login.live.com/login.srf?wa=wsignin1.0&wtrealm=https%3a%2f%2faccesscontrol.windows.net%2f&wreply=https%3a%2f%2fbrainthud.accesscontrol.windows.net%2fv2%2fwsfederation&wp=MBI_FED_SSL&wctx=cHI9d3NmZWRlcmF0aW9uJnJtPWh0dHAlM2ElMmYlMmZhdXRoZW50aWNhdGlvbi5icmFpbnRodWQuY29tJTJm0"),
 //                        new Uri("http://authentication.brainthud.com/api/federationcallback/end")
 //                    );
-
-
-            // The data you returned
-            var token = webAuthenticationResult.ResponseData;
-            var token1 = webAuthenticationResult.ResponseErrorDetail;
-            var token2 = webAuthenticationResult.ResponseStatus;
-            var token3 = webAuthenticationResult.ToString();
+//
+//            // The data you returned
+//            var token = webAuthenticationResult.ResponseData;
+//            var token1 = webAuthenticationResult.ResponseErrorDetail;
+//            var token2 = webAuthenticationResult.ResponseStatus;
+//            var token3 = webAuthenticationResult.ToString();
         }
     }
 }

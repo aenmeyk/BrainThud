@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace BrainThud.Core.AzureServices
 {
-    public class AccessControlService
+    public class AccessControlService:IAccessControlService
     {
         private readonly HttpClient httpClient;
 

@@ -43,5 +43,7 @@ namespace BrainThudTest.BrainThud.CoreTest.AzureServicesTest
         {
             this.identityProviders.Select(x => x.ImageUrl).Should().NotContainNulls();
         }
+
+
     }
 }

@@ -104,11 +104,23 @@
     <Compile Include="..\BrainThud.Core\App.cs">
       <Link>Core\App.cs</Link>
     </Compile>
+    <Compile Include="..\BrainThud.Core\AzureServices\AccessControlService.cs">
+      <Link>Core\AzureServices\AccessControlService.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\AzureServices\IAccessControlService.cs">
+      <Link>Core\AzureServices\IAccessControlService.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\AzureServices\IdentityProvider.cs">
+      <Link>Core\AzureServices\IdentityProvider.cs</Link>
+    </Compile>
     <Compile Include="..\BrainThud.Core\Constants.cs">
       <Link>Core\Constants.cs</Link>
     </Compile>
     <Compile Include="..\BrainThud.Core\Data\AzureTableStorage\AzureTableEntity.cs">
       <Link>Core\Data\AzureTableStorage\AzureTableEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\DependencyResolution\MvxIoC.cs">
+      <Link>Core\DependencyResolution\MvxIoC.cs</Link>
     </Compile>
     <Compile Include="..\BrainThud.Core\Models\Card.cs">
       <Link>Core\Models\Card.cs</Link>
@@ -127,6 +139,9 @@
     </Compile>
     <Compile Include="..\BrainThud.Core\Trace.cs">
       <Link>Core\Trace.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\ViewModels\LoginViewModel.cs">
+      <Link>Core\ViewModels\LoginViewModel.cs</Link>
     </Compile>
     <Compile Include="..\BrainThud.Core\ViewModels\QuizViewModel.cs">
       <Link>Core\ViewModels\QuizViewModel.cs</Link>
@@ -158,6 +173,9 @@
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\QuizView.xaml.cs">
       <DependentUpon>QuizView.xaml</DependentUpon>
     </Compile>
@@ -201,6 +219,10 @@
     <Page Include="ItemDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\QuizView.xaml">
       <SubType>Designer</SubType>

@@ -10,7 +10,7 @@ namespace BrainThud.Core
     {
         public void Start()
         {
-            RequestNavigate<QuizViewModel>();
+            RequestNavigate<LoginViewModel>();
         }
 
         public bool ApplicationCanOpenBookmarks

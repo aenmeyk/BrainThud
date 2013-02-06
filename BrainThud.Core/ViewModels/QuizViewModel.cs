@@ -1,22 +1,47 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using BrainThud.Core.Models;
+using Cirrious.MvvmCross.Interfaces.ServiceProvider;
+using Cirrious.MvvmCross.ExtensionMethods;
+using BrainThud.Core.AzureServices;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace BrainThud.Core.ViewModels
 {
     public class QuizViewModel : ViewModelBase
     {
+        private IAccessControlService accessControlService;
+
         public QuizViewModel()
         {
-            var card = new Card {Question = "This value was set on the card"};
+            var card = new Card { Question = "This value was set on the card" };
 
             this.Title = card.Question;
             this.CardCount = 10;
             this.CardsCompleted = 5;
             this.CardsCorrect = 3;
             this.CardsIncorrect = 2;
-            this.QuizDate = DateTime.Now.ToString(DateTimeFormatInfo.CurrentInfo.ShortDatePattern); ;
+            this.QuizDate = DateTime.Now.ToString(DateTimeFormatInfo.CurrentInfo.ShortDatePattern);
+            this.accessControlService = this.GetService<IAccessControlService>();
+
+            //            var result = accessControlService.GetIdentityProviders().Result;
+            //            this.Title = result.Select(x => x.Name).First();
+
+            //            var httpClient = new HttpClient();
+            //            var response = httpClient.GetAsync(Urls.IDENTITY_PROVIDERS).Result;
+            //            var json = response.Content.ReadAsStringAsync().Result;
+            //            var result = JsonConvert.DeserializeObject<IEnumerable<IdentityProvider>>(json);
+
+        }
+
+        public async void LoadData()
+        {
+            var result = await accessControlService.GetIdentityProviders();
+            this.Title = result.Select(x => x.Name).First();
         }
 
         private string title;
@@ -78,6 +103,7 @@ namespace BrainThud.Core.ViewModels
         }
 
         private int cardsIncorrect;
+
         public int CardsIncorrect
         {
             get { return this.cardsIncorrect; }
@@ -110,5 +136,6 @@ namespace BrainThud.Core.ViewModels
             {
                 return new ObservableCollection<string> { "One", "Two", "Three", "One", "Two", "Three", "One", "Two", "Three", "One", "Two", "Three", "One", "Two", "Three" };
             }
-        }    }
+        }
+    }
 }

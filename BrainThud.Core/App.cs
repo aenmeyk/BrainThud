@@ -1,4 +1,5 @@
-﻿using Cirrious.MvvmCross.Application;
+﻿using BrainThud.Core.DependencyResolution;
+using Cirrious.MvvmCross.Application;
 using Cirrious.MvvmCross.ExtensionMethods;
 using Cirrious.MvvmCross.Interfaces.ServiceProvider;
 using Cirrious.MvvmCross.Interfaces.ViewModels;
@@ -14,6 +15,7 @@ namespace BrainThud.Core
             // set the start object
             var startApplicationObject = new StartApplicationObject();
             this.RegisterServiceInstance<IMvxStartNavigation>(startApplicationObject);
+            MvxIoC.Initialize(this);
         }
     }
 }
