@@ -54,15 +54,24 @@
                 </Border>
             </Grid>
             <GridView
+                x:Name="IdentityProviderGridView"
                 Grid.Row="1"
                 HorizontalAlignment="Center"
+                VerticalAlignment="Center"
                 ItemsSource="{Binding Source={StaticResource ItemsViewSource}}"
                 SelectionMode="None">
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderThickness="3" BorderBrush="#dadada">
-                            <Image Source="{Binding ImageUrl}" Height="50" />
-                        </Border>
+                        <Button 
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Command="{Binding DataContext.SelectIdentityProviderCommand, ElementName=IdentityProviderGridView}">
+                            <Border BorderThickness="3" BorderBrush="#dadada">
+                                <Image Source="{Binding ImageUrl}" Height="50" />
+                            </Border>
+                        </Button>
                     </DataTemplate>
                 </GridView.ItemTemplate>
                 <GridView.ItemContainerStyle>

@@ -1,5 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Windows.Input;
 using BrainThud.Core.AzureServices;
+using Cirrious.MvvmCross.Commands;
 using Cirrious.MvvmCross.ExtensionMethods;
 
 namespace BrainThud.Core.ViewModels
@@ -29,6 +32,11 @@ namespace BrainThud.Core.ViewModels
                 this.identityProviders = value;
                 this.RaisePropertyChanged("IdentityProviders");
             }
+        }
+
+        public ICommand SelectIdentityProviderCommand
+        {
+            get { return new MvxRelayCommand(() => Debug.WriteLine("Test")); }
         }
     }
 }
