@@ -272,8 +272,12 @@
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Content\toastr.css" />
     <Content Include="Images\loading.gif" />
-    <Content Include="Images\logo_fat_40.png" />
-    <Content Include="Images\logo_medium.png" />
+    <Content Include="Images\logo-200.png" />
+    <Content Include="Images\logo-partial-54.png" />
+    <Content Include="Images\title-330.png" />
+    <Content Include="mu-5568ed11-0ee94393-6a0265e4-df5307bb.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\account.js" />
     <Content Include="Scripts\amplify.js" />
     <Content Include="Scripts\amplify.min.js" />
