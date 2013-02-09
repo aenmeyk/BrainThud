@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using BrainThud.Core.ViewModels;
-using BrainThud.Win.Common;
+using BrainThud.WinRT.Common;
 using Windows.UI.Xaml.Controls;
 
 // The Group Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229
 
-namespace BrainThud.Win.Views
+namespace BrainThud.WinRT.Views
 {
     /// <summary>
     /// A page that displays an overview of a single group, including a preview of the items

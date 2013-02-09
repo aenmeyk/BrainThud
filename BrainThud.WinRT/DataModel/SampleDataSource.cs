@@ -2,12 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Windows.ApplicationModel.Resources.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml.Data;
+using BrainThud.WinRT.Common;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Collections.Specialized;
@@ -19,14 +14,14 @@ using System.Collections.Specialized;
 // Applications may use this model as a starting point and build on it, or discard it entirely and
 // replace it with something appropriate to their needs.
 
-namespace BrainThud.Win.Data
+namespace BrainThud.WinRT.DataModel
 {
     /// <summary>
     /// Base class for <see cref="SampleDataItem"/> and <see cref="SampleDataGroup"/> that
     /// defines properties common to both.
     /// </summary>
     [Windows.Foundation.Metadata.WebHostHidden]
-    public abstract class SampleDataCommon : BrainThud.Win.Common.BindableBase
+    public abstract class SampleDataCommon : BindableBase
     {
         private static Uri _baseUri = new Uri("ms-appx:///");
 
@@ -135,7 +130,7 @@ namespace BrainThud.Win.Data
         public SampleDataGroup(String uniqueId, String title, String subtitle, String imagePath, String description)
             : base(uniqueId, title, subtitle, imagePath, description)
         {
-            Items.CollectionChanged += ItemsCollectionChanged;
+            this.Items.CollectionChanged += this.ItemsCollectionChanged;
         }
 
         private void ItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -153,50 +148,50 @@ namespace BrainThud.Win.Data
                 case NotifyCollectionChangedAction.Add:
                     if (e.NewStartingIndex < 12)
                     {
-                        TopItems.Insert(e.NewStartingIndex,Items[e.NewStartingIndex]);
-                        if (TopItems.Count > 12)
+                        this.TopItems.Insert(e.NewStartingIndex,this.Items[e.NewStartingIndex]);
+                        if (this.TopItems.Count > 12)
                         {
-                            TopItems.RemoveAt(12);
+                            this.TopItems.RemoveAt(12);
                         }
                     }
                     break;
                 case NotifyCollectionChangedAction.Move:
                     if (e.OldStartingIndex < 12 && e.NewStartingIndex < 12)
                     {
-                        TopItems.Move(e.OldStartingIndex, e.NewStartingIndex);
+                        this.TopItems.Move(e.OldStartingIndex, e.NewStartingIndex);
                     }
                     else if (e.OldStartingIndex < 12)
                     {
-                        TopItems.RemoveAt(e.OldStartingIndex);
-                        TopItems.Add(Items[11]);
+                        this.TopItems.RemoveAt(e.OldStartingIndex);
+                        this.TopItems.Add(this.Items[11]);
                     }
                     else if (e.NewStartingIndex < 12)
                     {
-                        TopItems.Insert(e.NewStartingIndex, Items[e.NewStartingIndex]);
-                        TopItems.RemoveAt(12);
+                        this.TopItems.Insert(e.NewStartingIndex, this.Items[e.NewStartingIndex]);
+                        this.TopItems.RemoveAt(12);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     if (e.OldStartingIndex < 12)
                     {
-                        TopItems.RemoveAt(e.OldStartingIndex);
-                        if (Items.Count >= 12)
+                        this.TopItems.RemoveAt(e.OldStartingIndex);
+                        if (this.Items.Count >= 12)
                         {
-                            TopItems.Add(Items[11]);
+                            this.TopItems.Add(this.Items[11]);
                         }
                     }
                     break;
                 case NotifyCollectionChangedAction.Replace:
                     if (e.OldStartingIndex < 12)
                     {
-                        TopItems[e.OldStartingIndex] = Items[e.OldStartingIndex];
+                        this.TopItems[e.OldStartingIndex] = this.Items[e.OldStartingIndex];
                     }
                     break;
                 case NotifyCollectionChangedAction.Reset:
-                    TopItems.Clear();
-                    while (TopItems.Count < Items.Count && TopItems.Count < 12)
+                    this.TopItems.Clear();
+                    while (this.TopItems.Count < this.Items.Count && this.TopItems.Count < 12)
                     {
-                        TopItems.Add(Items[TopItems.Count]);
+                        this.TopItems.Add(this.Items[this.TopItems.Count]);
                     }
                     break;
             }

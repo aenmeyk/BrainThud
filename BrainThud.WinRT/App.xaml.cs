@@ -1,29 +1,15 @@
-﻿using BrainThud.Core.DependencyResolution;
-using BrainThud.Win.Common;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using BrainThud.WinRT.Common;
 using Cirrious.MvvmCross.ExtensionMethods;
 using Cirrious.MvvmCross.Interfaces.ServiceProvider;
 using Cirrious.MvvmCross.Interfaces.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using BrainThud.Win.Views;
 
 // The Grid App template is documented at http://go.microsoft.com/fwlink/?LinkId=234226
 
-namespace BrainThud.Win
+namespace BrainThud.WinRT
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -37,7 +23,7 @@ namespace BrainThud.Win
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            this.Suspending += this.OnSuspending;
         }
 
         /// <summary>

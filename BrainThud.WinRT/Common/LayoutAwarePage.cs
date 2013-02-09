@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Cirrious.MvvmCross.WinRT.Views;
-using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
 using Windows.UI.Core;
@@ -12,7 +10,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace BrainThud.Win.Common
+namespace BrainThud.WinRT.Common
 {
     /// <summary>
     /// Typical implementation of Page that provides several important conveniences:
@@ -69,7 +67,7 @@ namespace BrainThud.Win.Common
                 {
                     // Listen to the window directly so focus isn't required
                     Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated +=
-                        CoreDispatcher_AcceleratorKeyActivated;
+                        this.CoreDispatcher_AcceleratorKeyActivated;
                     Window.Current.CoreWindow.PointerPressed +=
                         this.CoreWindow_PointerPressed;
                 }
@@ -80,7 +78,7 @@ namespace BrainThud.Win.Common
             {
                 this.StopLayoutUpdates(sender, e);
                 Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated -=
-                    CoreDispatcher_AcceleratorKeyActivated;
+                    this.CoreDispatcher_AcceleratorKeyActivated;
                 Window.Current.CoreWindow.PointerPressed -=
                     this.CoreWindow_PointerPressed;
             };
@@ -251,7 +249,7 @@ namespace BrainThud.Win.Common
             this._layoutAwareControls.Add(control);
 
             // Set the initial visual state of the control
-            VisualStateManager.GoToState(control, DetermineVisualState(ApplicationView.Value), false);
+            VisualStateManager.GoToState(control, this.DetermineVisualState(ApplicationView.Value), false);
         }
 
         private void WindowSizeChanged(object sender, WindowSizeChangedEventArgs e)
@@ -310,7 +308,7 @@ namespace BrainThud.Win.Common
         {
             if (this._layoutAwareControls != null)
             {
-                string visualState = DetermineVisualState(ApplicationView.Value);
+                string visualState = this.DetermineVisualState(ApplicationView.Value);
                 foreach (var layoutAwareControl in this._layoutAwareControls)
                 {
                     VisualStateManager.GoToState(layoutAwareControl, visualState, false);
@@ -373,7 +371,7 @@ namespace BrainThud.Win.Common
             var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
             var pageState = new Dictionary<String, Object>();
             this.SaveState(pageState);
-            frameState[_pageKey] = pageState;
+            frameState[this._pageKey] = pageState;
 
             base.OnNavigatedFrom(e);
         }
@@ -426,7 +424,7 @@ namespace BrainThud.Win.Common
 
             private void InvokeMapChanged(CollectionChange change, K key)
             {
-                var eventHandler = MapChanged;
+                var eventHandler = this.MapChanged;
                 if (eventHandler != null)
                 {
                     eventHandler(this, new ObservableDictionaryChangedEventArgs(change, key));

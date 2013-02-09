@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Documents;
 
-namespace BrainThud.Win.Common
+namespace BrainThud.WinRT.Common
 {
     /// <summary>
     /// Wrapper for <see cref="RichTextBlock"/> that creates as many additional overflow
@@ -66,8 +62,8 @@ namespace BrainThud.Win.Common
         /// </summary>
         public RichTextBlock RichTextContent
         {
-            get { return (RichTextBlock)GetValue(RichTextContentProperty); }
-            set { SetValue(RichTextContentProperty, value); }
+            get { return (RichTextBlock)this.GetValue(RichTextContentProperty); }
+            set { this.SetValue(RichTextContentProperty, value); }
         }
 
         /// <summary>
@@ -76,8 +72,8 @@ namespace BrainThud.Win.Common
         /// </summary>
         public DataTemplate ColumnTemplate
         {
-            get { return (DataTemplate)GetValue(ColumnTemplateProperty); }
-            set { SetValue(ColumnTemplateProperty, value); }
+            get { return (DataTemplate)this.GetValue(ColumnTemplateProperty); }
+            set { this.SetValue(ColumnTemplateProperty, value); }
         }
 
         /// <summary>
@@ -121,7 +117,7 @@ namespace BrainThud.Win.Common
             // done yet
             if (this._overflowColumns == null)
             {
-                Children.Add(this.RichTextContent);
+                this.Children.Add(this.RichTextContent);
                 this._overflowColumns = new List<RichTextBlockOverflow>();
             }
 
@@ -198,7 +194,7 @@ namespace BrainThud.Win.Common
         {
             double maxWidth = 0;
             double maxHeight = 0;
-            foreach (var child in Children)
+            foreach (var child in this.Children)
             {
                 child.Arrange(new Rect(maxWidth, 0, child.DesiredSize.Width, finalSize.Height));
                 maxWidth += child.DesiredSize.Width;

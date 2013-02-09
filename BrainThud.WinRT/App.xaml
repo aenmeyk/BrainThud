@@ -1,9 +1,8 @@
 ﻿<Application
-    x:Class="BrainThud.Win.App"
+    x:Class="BrainThud.WinRT.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:BrainThud.Win"
-    xmlns:localData="using:BrainThud.Win.Data">
+    xmlns:local="using:BrainThud.Win">
 
     <Application.Resources>
         <ResourceDictionary>

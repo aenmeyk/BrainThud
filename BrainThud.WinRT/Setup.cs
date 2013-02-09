@@ -2,7 +2,7 @@
 using Cirrious.MvvmCross.WinRT.Platform;
 using Windows.UI.Xaml.Controls;
 
-namespace BrainThud.Win
+namespace BrainThud.WinRT
 {
     public class Setup
         : MvxBaseWinRTSetup

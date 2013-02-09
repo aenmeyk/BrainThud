@@ -1,12 +1,12 @@
 ﻿using System;
 using BrainThud.Core.AzureServices;
 using BrainThud.Core.ViewModels;
-using BrainThud.Win.Common;
+using BrainThud.WinRT.Common;
 using Windows.Security.Authentication.Web;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 
-namespace BrainThud.Win.Views
+namespace BrainThud.WinRT.Views
 {
     public sealed partial class LoginView : LayoutAwarePage
     {
