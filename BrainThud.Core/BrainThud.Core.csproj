@@ -134,8 +134,8 @@
     <Folder Include="Api\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\logo_large.png" />
-    <Content Include="Images\logo_medium.png" />
+    <Content Include="Images\logo-300-app.png" />
+    <Content Include="Images\title-330.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

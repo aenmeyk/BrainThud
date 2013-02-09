@@ -1,5 +1,10 @@
-﻿using BrainThud.Core.ViewModels;
+﻿using System;
+using BrainThud.Core.AzureServices;
+using BrainThud.Core.ViewModels;
 using BrainThud.Win.Common;
+using Windows.Security.Authentication.Web;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
 
 namespace BrainThud.Win.Views
 {
@@ -14,6 +19,17 @@ namespace BrainThud.Win.Views
         {
             get { return (LoginViewModel)base.ViewModel; }
             set { base.ViewModel = value; }
+        }
+
+        private async void OnIdentityProviderTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var identityProvider = (IdentityProvider)((FrameworkElement)e.OriginalSource).DataContext;
+
+            var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
+                        WebAuthenticationOptions.None,
+                        new Uri(identityProvider.LoginUrl),
+                        new Uri("http://authentication.brainthud.com/api/federationcallback/end")
+                    );
         }
     }
 }
