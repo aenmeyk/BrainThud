@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{912A6EFE-CA93-444A-8AF0-8E9A0137C1ED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BrainThud.Core.WinRT</RootNamespace>
+    <AssemblyName>BrainThud.Core.WinRT</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\BrainThud.Core\App.cs">
+      <Link>App.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\AzureServices\AccessControlService.cs">
+      <Link>AzureServices\AccessControlService.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\AzureServices\IAccessControlService.cs">
+      <Link>AzureServices\IAccessControlService.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\AzureServices\IdentityProvider.cs">
+      <Link>AzureServices\IdentityProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Constants.cs">
+      <Link>Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Data\AzureTableStorage\AzureTableEntity.cs">
+      <Link>Data\AzureTableStorage\AzureTableEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\DependencyResolution\MvxIoC.cs">
+      <Link>DependencyResolution\MvxIoC.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Models\Card.cs">
+      <Link>Models\Card.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Models\QuizSummary.cs">
+      <Link>Models\QuizSummary.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Models\QuizSummary_OLD.cs">
+      <Link>Models\QuizSummary_OLD.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\StartApplicationObject.cs">
+      <Link>StartApplicationObject.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\TestValues.cs">
+      <Link>TestValues.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\Trace.cs">
+      <Link>Trace.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\ViewModels\LoginViewModel.cs">
+      <Link>ViewModels\LoginViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\ViewModels\QuizViewModel.cs">
+      <Link>ViewModels\QuizViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\BrainThud.Core\ViewModels\ViewModelBase.cs">
+      <Link>ViewModels\ViewModelBase.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\BrainThud.Core\Images\logo-300-app.png">
+      <Link>Images\logo-300-app.png</Link>
+    </Content>
+    <Content Include="..\BrainThud.Core\Images\title-330.png">
+      <Link>Images\title-330.png</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Cirrious.MvvmCross">
+      <HintPath>..\BrainThudTest\bin\Win\Cirrious.MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\BrainThudTest\bin\Win\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkReference="73f9ab29-527b-49ea-a24e-e4c800d1800d" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
