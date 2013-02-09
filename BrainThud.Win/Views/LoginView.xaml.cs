@@ -28,8 +28,7 @@ namespace BrainThud.Win.Views
             var webAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
                         WebAuthenticationOptions.None,
                         new Uri(identityProvider.LoginUrl),
-                        new Uri("http://authentication.brainthud.com/api/federationcallback/end")
-                    );
+                        new Uri("http://authentication.brainthud.com/api/federationcallback/end"));
         }
     }
 }
