@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>KEVDESKTOP</Machine>
+    <WindowsUser>Kevin</WindowsUser>
+    <SolutionConfiguration>WinRT|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\BrainThud.WinRT.exe">
+      <PackagePath>BrainThud.WinRT.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\BrainThud.WinRT.pdb">
+      <PackagePath>BrainThud.WinRT.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.Core.WinRT\bin\WinRT\BrainThud.Core.pdb">
+      <PackagePath>BrainThud.Core.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.Core.WinRT\bin\WinRT\BrainThud.Core.dll">
+      <PackagePath>BrainThud.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\Resources\MvvmCross\Portable\Release\Cirrious.MvvmCross.dll">
+      <PackagePath>Cirrious.MvvmCross.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\Resources\MvvmCross\Portable\Release\Cirrious.MvvmCross.Plugins.Json.dll">
+      <PackagePath>Cirrious.MvvmCross.Plugins.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\Resources\MvvmCross\WinRT\Release\Cirrious.MvvmCross.WinRT.dll">
+      <PackagePath>Cirrious.MvvmCross.WinRT.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\Resources\MvvmCross\Portable\Release\Cirrious.MvvmCross.pdb">
+      <PackagePath>Cirrious.MvvmCross.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\Resources\MvvmCross\Portable\Release\Cirrious.MvvmCross.Plugins.Json.pdb">
+      <PackagePath>Cirrious.MvvmCross.Plugins.Json.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\Resources\MvvmCross\WinRT\Release\Cirrious.MvvmCross.WinRT.pdb">
+      <PackagePath>Cirrious.MvvmCross.WinRT.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.xml">
+      <PackagePath>Newtonsoft.Json.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\Assets\LightGray.png">
+      <PackagePath>Assets\LightGray.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\Assets\MediumGray.png">
+      <PackagePath>Assets\MediumGray.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\Assets\DarkGray.png">
+      <PackagePath>Assets\DarkGray.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.Core\Images\logo-300-app.png">
+      <PackagePath>BrainThud.Core\Images\logo-300-app.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.Core\Images\title-330.png">
+      <PackagePath>BrainThud.Core\Images\title-330.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\Common\StandardStyles.xaml">
+      <PackagePath>Common\StandardStyles.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\GroupedItemsPage.xaml">
+      <PackagePath>GroupedItemsPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\GroupDetailPage.xaml">
+      <PackagePath>GroupDetailPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\ItemDetailPage.xaml">
+      <PackagePath>ItemDetailPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\Views\LoginView.xaml">
+      <PackagePath>Views\LoginView.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\Views\QuizView.xaml">
+      <PackagePath>Views\QuizView.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.WinRT\bin\WinRT\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

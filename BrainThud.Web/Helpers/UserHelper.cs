@@ -1,6 +1,6 @@
-﻿using BrainThud.Web.Calendars;
+﻿using BrainThud.Core.Calendars;
+using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureQueues;
-using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Helpers
 {

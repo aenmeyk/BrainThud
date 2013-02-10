@@ -1,4 +1,4 @@
-﻿using BrainThud.Web.Model;
+﻿using BrainThud.Core.Models;
 
 namespace BrainThud.Web.Helpers
 {

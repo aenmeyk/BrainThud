@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BrainThud.Web.Model;
+using BrainThud.Core.Models;
 using FizzWare.NBuilder;
 using FluentAssertions;
 using NUnit.Framework;

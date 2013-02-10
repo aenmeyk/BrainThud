@@ -3,7 +3,6 @@ using BrainThud.Web.Controllers;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
-using BrainThud.Web.Model;
 
 namespace BrainThudTest.BrainThud.WebTest.Fakes
 {

@@ -21,12 +21,12 @@
         </Grid.ColumnDefinitions>
         <StackPanel VerticalAlignment="Center">
             <Image 
-                Source="/Core/Images/title-330.png" 
+                Source="/BrainThud.Core/Images/title-330.png" 
                 HorizontalAlignment="Center"
                 Stretch="None"
                 />
             <Image 
-                Source="/Core/Images/logo-300-app.png" 
+                Source="/BrainThud.Core/Images/logo-300-app.png" 
                 HorizontalAlignment="Center" 
                 Stretch="None"
                 Margin="0, 100, 0, 0" />

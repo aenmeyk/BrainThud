@@ -1,5 +1,5 @@
 ﻿using BrainThud.Web.Data.KeyGenerators;
-using BrainThud.Web.Model;
+using BrainThud.Core.Models;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;

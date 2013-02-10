@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using BrainThud.Core.Models;
 using BrainThud.Web;
-using BrainThud.Web.Model;
+using BrainThud.Core.Models;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;

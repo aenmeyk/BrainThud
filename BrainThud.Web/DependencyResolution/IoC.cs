@@ -1,5 +1,5 @@
 using System.Web.Mvc;
-using BrainThud.Web.Calendars;
+using BrainThud.Core.Calendars;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using StructureMap;

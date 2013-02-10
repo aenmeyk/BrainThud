@@ -1,8 +1,8 @@
-﻿using BrainThud.Web;
+﻿using BrainThud.Core.Models;
+using BrainThud.Web;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
-using BrainThud.Web.Model;
 using Moq;
 using NUnit.Framework;
 

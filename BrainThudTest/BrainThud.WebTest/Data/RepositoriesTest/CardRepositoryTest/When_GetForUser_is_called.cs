@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using BrainThud.Core.Models;
 using BrainThud.Web;
-using BrainThud.Web.Model;
+using BrainThud.Core.Models;
 using FizzWare.NBuilder;
 using FluentAssertions;
 using NUnit.Framework;

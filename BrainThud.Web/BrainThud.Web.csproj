@@ -69,9 +69,8 @@
     <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAzure.Storage.1.7.0.0\lib\net35-full\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
@@ -155,9 +154,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\BrainThud.Core\Data\AzureTableStorage\AzureTableEntity.cs">
-      <Link>Core\Data\AzureTableStorage\AzureTableEntity.cs</Link>
-    </Compile>
     <Compile Include="ActionFilters\ValidationActionFilter.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -166,9 +162,6 @@
     <Compile Include="App_Start\MvcRouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Calendars\QuizCalendar.cs" />
-    <Compile Include="Calendars\DefaultQuizCalendar.cs" />
-    <Compile Include="Calendars\IQuizCalendar.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\CardsController.cs" />
@@ -193,7 +186,6 @@
     <Compile Include="Data\KeyGenerators\CardEntityKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\ICardEntityKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\QuizResultKeyGenerator.cs" />
-    <Compile Include="Data\AzureTableStorage\AzureTableEntityPartial.cs" />
     <Compile Include="Data\Repositories\CardEntityRepository.cs" />
     <Compile Include="Data\Repositories\CardRepository.cs" />
     <Compile Include="Data\Repositories\ICardRepository.cs" />
@@ -225,10 +217,6 @@
     <Compile Include="Helpers\IUserHelper.cs" />
     <Compile Include="Helpers\PredicateBuilder.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
-    <Compile Include="Model\Card.cs" />
-    <Compile Include="Model\UserConfiguration.cs" />
-    <Compile Include="Model\MasterConfiguration.cs" />
-    <Compile Include="Model\QuizResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -434,6 +422,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BrainThud.Core.Web\BrainThud.Core.Web.csproj">
+      <Project>{b4a0adb4-f871-4160-8915-3d04dfdcb02b}</Project>
+      <Name>BrainThud.Core.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -465,7 +459,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Win|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRT|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>

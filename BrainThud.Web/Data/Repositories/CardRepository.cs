@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BrainThud.Web.Calendars;
+using BrainThud.Core.Calendars;
+using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
-using BrainThud.Web.Model;
 using BrainThud.Web.Extensions;
 
 namespace BrainThud.Web.Data.Repositories

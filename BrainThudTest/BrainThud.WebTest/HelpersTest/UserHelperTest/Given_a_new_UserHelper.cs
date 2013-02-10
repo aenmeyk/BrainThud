@@ -1,4 +1,4 @@
-﻿using BrainThud.Web.Calendars;
+﻿using BrainThud.Core.Calendars;
 using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Helpers;
 using Moq;

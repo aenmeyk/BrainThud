@@ -1,5 +1,6 @@
 ﻿using System.Web;
-using BrainThud.Web.Model;
+using BrainThud.Core.Models;
+using BrainThud.Core.Models;
 using BrainThud.Web.Resources;
 using NUnit.Framework;
 

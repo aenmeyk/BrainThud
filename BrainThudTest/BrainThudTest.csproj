@@ -60,7 +60,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Win|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRT|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Win\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -102,9 +102,8 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.10\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -238,7 +237,6 @@
     <Compile Include="BrainThud.WebTest\Model\CardTest\Given_a_new_Card.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BrainThud.WebTest\Model\CardTest\When_an_invalid_QuizDate_is_set.cs" />
     <Compile Include="BrainThud.WebTest\Model\CardTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -309,9 +307,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BrainThud.Core\BrainThud.Core.csproj">
-      <Project>{73F9AB29-527B-49EA-A24E-E4C800D1800D}</Project>
-      <Name>BrainThud.Core</Name>
+    <ProjectReference Include="..\BrainThud.Core.Web\BrainThud.Core.Web.csproj">
+      <Project>{b4a0adb4-f871-4160-8915-3d04dfdcb02b}</Project>
+      <Name>BrainThud.Core.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\BrainThud.Web\BrainThud.Web.csproj">
       <Project>{7A052710-6240-4B71-8E72-39C90401B2C7}</Project>

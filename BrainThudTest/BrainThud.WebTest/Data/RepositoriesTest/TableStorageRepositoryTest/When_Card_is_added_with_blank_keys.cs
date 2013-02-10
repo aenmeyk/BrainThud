@@ -1,6 +1,7 @@
 ﻿using System;
+using BrainThud.Core.Models;
 using BrainThud.Web.Data.KeyGenerators;
-using BrainThud.Web.Model;
+using BrainThud.Core.Models;
 using Moq;
 using NUnit.Framework;
 using FluentAssertions;

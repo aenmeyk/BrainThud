@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="6362KevinAenmey.FlashCardbyBrainThud" Publisher="CN=82924ECF-BFBC-4FF5-865B-FE37E3BCD035" Version="1.0.0.0" />
+  <Identity Name="6362KevinAenmey.FlashCardbyBrainThud" Publisher="CN=82924ECF-BFBC-4FF5-865B-FE37E3BCD035" Version="1.0.0.1" />
   <Properties>
     <DisplayName>FlashCard by BrainThud</DisplayName>
     <PublisherDisplayName>Kevin Aenmey</PublisherDisplayName>

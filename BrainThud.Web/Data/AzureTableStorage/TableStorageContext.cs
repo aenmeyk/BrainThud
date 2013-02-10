@@ -1,10 +1,10 @@
 using System;
 using System.Data.Services.Client;
 using System.Linq;
-using BrainThud.Web.Calendars;
+using BrainThud.Core.Calendars;
+using BrainThud.Core.Models;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
-using BrainThud.Web.Model;
 using Microsoft.WindowsAzure.StorageClient;
 
 namespace BrainThud.Web.Data.AzureTableStorage

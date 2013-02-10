@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
+using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
-using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Data.Repositories
 {

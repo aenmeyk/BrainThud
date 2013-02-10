@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http;
+using BrainThud.Core.Models;
 using BrainThud.Web;
-using BrainThud.Web.Model;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;

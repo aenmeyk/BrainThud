@@ -4,10 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;
-using BrainThud.Web.Model;
 
 namespace BrainThud.Web.Controllers
 {

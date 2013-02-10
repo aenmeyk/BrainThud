@@ -64,7 +64,7 @@
     <WarningLevel>4</WarningLevel>
     <Optimize>False</Optimize>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Win|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRT|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <OutputPath>bin\Win\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -95,7 +95,7 @@
       <HintPath>..\..\..\..\..\..\Program Files\Microsoft SDKs\Windows Azure\.NET SDK\2012-10\bin\Microsoft.WindowsAzure.StorageClient.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\BrainThudTest\bin\Release\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -113,12 +113,16 @@
     <Compile Include="AzureServices\AccessControlService.cs" />
     <Compile Include="AzureServices\IAccessControlService.cs" />
     <Compile Include="AzureServices\IdentityProvider.cs" />
+    <Compile Include="Calendars\DefaultQuizCalendar.cs" />
+    <Compile Include="Calendars\IQuizCalendar.cs" />
+    <Compile Include="Calendars\QuizCalendar.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Data\AzureTableStorage\AzureTableEntity.cs" />
     <Compile Include="DependencyResolution\MvxIoC.cs" />
     <Compile Include="Models\Card.cs" />
-    <Compile Include="Models\QuizSummary_OLD.cs" />
-    <Compile Include="Models\QuizSummary.cs" />
+    <Compile Include="Models\MasterConfiguration.cs" />
+    <Compile Include="Models\QuizResult.cs" />
+    <Compile Include="Models\UserConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartApplicationObject.cs" />
     <Compile Include="TestValues.cs" />
@@ -127,7 +131,9 @@
     <Compile Include="ViewModels\QuizViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Images\logo-300-app.png" />
     <Content Include="Images\title-330.png" />

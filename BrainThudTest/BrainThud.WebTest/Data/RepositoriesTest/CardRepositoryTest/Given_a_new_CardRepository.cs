@@ -1,8 +1,9 @@
-﻿using BrainThud.Web.Calendars;
+﻿using BrainThud.Core.Models;
+using BrainThud.Core.Calendars;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
-using BrainThud.Web.Model;
+using BrainThud.Core.Models;
 using FizzWare.NBuilder;
 using Moq;
 using NUnit.Framework;

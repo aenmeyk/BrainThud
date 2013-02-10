@@ -1,6 +1,6 @@
-﻿using BrainThud.Web;
-using BrainThud.Web.Calendars;
-using BrainThud.Web.Model;
+﻿using BrainThud.Core.Calendars;
+using BrainThud.Core.Models;
+using BrainThud.Web;
 using FluentAssertions;
 using NUnit.Framework;
 

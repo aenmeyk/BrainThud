@@ -14,6 +14,7 @@
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>BrainThud.Win_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>FAFACEB75465D07ABF53710598E89D86966D0EB0</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -101,57 +102,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\BrainThud.Core\App.cs">
-      <Link>Core\App.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\AzureServices\AccessControlService.cs">
-      <Link>Core\AzureServices\AccessControlService.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\AzureServices\IAccessControlService.cs">
-      <Link>Core\AzureServices\IAccessControlService.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\AzureServices\IdentityProvider.cs">
-      <Link>Core\AzureServices\IdentityProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\Constants.cs">
-      <Link>Core\Constants.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\Data\AzureTableStorage\AzureTableEntity.cs">
-      <Link>Core\Data\AzureTableStorage\AzureTableEntity.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\DependencyResolution\MvxIoC.cs">
-      <Link>Core\DependencyResolution\MvxIoC.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\Models\Card.cs">
-      <Link>Core\Models\Card.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\Models\QuizSummary.cs">
-      <Link>Core\Models\QuizSummary.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\Models\QuizSummary_OLD.cs">
-      <Link>Core\Models\QuizSummary_OLD.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\StartApplicationObject.cs">
-      <Link>Core\StartApplicationObject.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\TestValues.cs">
-      <Link>Core\TestValues.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\Trace.cs">
-      <Link>Core\Trace.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\ViewModels\LoginViewModel.cs">
-      <Link>Core\ViewModels\LoginViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\ViewModels\QuizViewModel.cs">
-      <Link>Core\ViewModels\QuizViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\BrainThud.Core\ViewModels\ViewModelBase.cs">
-      <Link>Core\ViewModels\ViewModelBase.cs</Link>
-    </Compile>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -184,18 +134,12 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="BrainThud.Win_StoreKey.pfx" />
+    <None Include="BrainThud.Win_TemporaryKey.pfx" />
     <None Include="Common\ReadMe.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\BrainThud.Core\Images\logo-300-app.png">
-      <Link>Core\Images\logo-300-app.png</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\BrainThud.Core\Images\title-330.png">
-      <Link>Core\Images\title-330.png</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
@@ -250,6 +194,12 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\winrt45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BrainThud.Core.WinRT\BrainThud.Core.WinRT.csproj">
+      <Project>{d7788c40-93ff-4aec-9c64-bdbbdd14bb7f}</Project>
+      <Name>BrainThud.Core.WinRT</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
@@ -407,9 +357,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Win|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRT|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Win\</OutputPath>
+    <OutputPath>bin\WinRT\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <DebugType>full</DebugType>
@@ -419,7 +369,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Win|ARM'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRT|ARM' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\ARM\Win\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
@@ -432,7 +382,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Win|x64'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRT|x64' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Win\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
@@ -445,7 +395,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Win|x86'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRT|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Win\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>

@@ -68,7 +68,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Win|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'WinRT|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Win\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>

@@ -1,5 +1,4 @@
-﻿using BrainThud.Web.Calendars;
-using BrainThudTest.Tools;
+﻿using BrainThud.Core.Calendars;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.CalendarsTest

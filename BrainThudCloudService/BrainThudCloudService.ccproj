@@ -67,7 +67,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'WinPhone' ">
     <OutputPath>bin\WinPhone\</OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Win' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'WinRT' ">
     <OutputPath>bin\Win\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Web' ">

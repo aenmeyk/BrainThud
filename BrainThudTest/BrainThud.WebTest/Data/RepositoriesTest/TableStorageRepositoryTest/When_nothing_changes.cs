@@ -1,5 +1,6 @@
-﻿using BrainThud.Web.Data.Repositories;
-using BrainThud.Web.Model;
+﻿using BrainThud.Core.Models;
+using BrainThud.Web.Data.Repositories;
+using BrainThud.Core.Models;
 using FluentAssertions;
 using NUnit.Framework;
 

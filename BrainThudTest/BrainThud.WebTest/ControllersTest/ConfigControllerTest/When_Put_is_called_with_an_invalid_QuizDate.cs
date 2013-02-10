@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Web.Http;
-using BrainThud.Web.Model;
+using BrainThud.Core.Models;
 using FluentAssertions;
 using NUnit.Framework;
 

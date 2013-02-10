@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using BrainThud.Web.Model;
+using BrainThud.Core.Models;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
