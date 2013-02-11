@@ -71,6 +71,7 @@
     <Site name="Web" physicalDirectory="C:\Drop\Dropbox\Projects\BrainThud\BrainThud\BrainThud.Web\">
       <Bindings>
         <Binding name="Endpoint1" endpointName="Endpoint1" />
+        <Binding name="Endpoint2" endpointName="Endpoint2" />
       </Bindings>
     </Site>
   </Sites>

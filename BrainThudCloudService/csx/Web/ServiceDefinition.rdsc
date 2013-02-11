@@ -2,6 +2,7 @@
 <serviceContract xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" dslVersion="1.0.0.0" name="BrainThudCloudServiceContract" xmlns="http://schemas.microsoft.com/dsltools/Contracts">
   <elements>
     <interface name="BrainThud.Web:Endpoint1" url="http://*:80" />
+    <interface name="BrainThud.Web:Endpoint2" url="https://*:443" />
     <interface name="BrainThud.Web:Microsoft.WindowsAzure.Plugins.RemoteForwarder.RdpInput" url="tcp://*:3389" />
   </elements>
 </serviceContract>
