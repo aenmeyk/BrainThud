@@ -2,6 +2,11 @@
 
 namespace BrainThud.Web
 {
+    public static class Constants
+    {
+        public const string FEDERATION_CALLBACK_END_ID = "end";
+    }
+
     public static class Hosts
     {
         public const string LOCALHOST = "http://localhost:36877/";
@@ -16,6 +21,11 @@ namespace BrainThud.Web
         public const string API_CARDS = "ApiCards";
         public const string API_DEFAULT = "ApiDefault";
         public const string DEFAULT = "Default";
+    }
+
+    public static class Routes
+    {
+        public const string FEDERATION_CALLBACK = "/api/federationcallback/";
     }
 
     public static class BundlePaths

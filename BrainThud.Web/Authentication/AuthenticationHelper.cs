@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using BrainThud.Web.Extensions;
 
-namespace BrainThud.Web.Helpers
+namespace BrainThud.Web.Authentication
 {
     public class AuthenticationHelper : IAuthenticationHelper
     {
@@ -35,7 +35,7 @@ namespace BrainThud.Web.Helpers
 #endif
 
                 return FederatedAuthentication.SessionAuthenticationModule.ContextSessionSecurityToken != null
-                    ? claims.First(x => x.Type == NAMEIDENTIFIER).Value.GenerateSlug()
+                    ? this.claims.First(x => x.Type == NAMEIDENTIFIER).Value.GenerateSlug()
                     : null;
             }
         }

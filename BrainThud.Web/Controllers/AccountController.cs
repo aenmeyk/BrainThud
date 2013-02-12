@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using BrainThud.Web.Authentication;
 using BrainThud.Web.Helpers;
 
 namespace BrainThud.Web.Controllers

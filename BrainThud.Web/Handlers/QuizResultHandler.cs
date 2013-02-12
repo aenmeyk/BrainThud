@@ -1,6 +1,7 @@
 ﻿using System;
 using BrainThud.Core.Calendars;
 using BrainThud.Core.Models;
+using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Helpers;
 

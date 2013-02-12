@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Controllers;
+﻿using BrainThud.Web.Authentication;
+using BrainThud.Web.Controllers;
 using BrainThud.Web.Helpers;
 using Moq;
 using NUnit.Framework;

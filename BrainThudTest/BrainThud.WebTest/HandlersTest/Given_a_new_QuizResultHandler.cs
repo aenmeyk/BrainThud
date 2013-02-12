@@ -1,5 +1,6 @@
 ﻿using BrainThud.Core.Models;
 using BrainThud.Web;
+using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;
 using BrainThud.Web.Helpers;

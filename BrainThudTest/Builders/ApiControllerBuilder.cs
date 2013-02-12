@@ -1,11 +1,11 @@
 ﻿using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Hosting;
 
 namespace BrainThudTest.Builders
 {
     public class ApiControllerBuilder<T> where T : ApiController
     {
+        private string cookies = string.Empty;
         private readonly T apiController;
         private readonly ControllerContextBuilder controllerContextBuilder;
         public HttpRequestMessage Request { get; set; }
@@ -18,16 +18,16 @@ namespace BrainThudTest.Builders
 
         public ApiControllerBuilder<T> CreateRequest(HttpRequestMessage request)
         {
-            var config = new HttpConfiguration();
             var controllerPartLength = "Controller".Length;
             var typeName = typeof(T).Name;
             var controllerName = typeName.Remove(typeName.Length - controllerPartLength, controllerPartLength);
 
+            this.Request = request;
             this.apiController.Request = request;
-            this.apiController.Request.Properties[HttpPropertyKeys.HttpConfigurationKey] = config;
 
             this.apiController.ControllerContext = this.controllerContextBuilder
                 .SetControllerName(controllerName)
+                .CreateRequest(this.Request)
                 .Build();
 
             return this;
@@ -35,13 +35,20 @@ namespace BrainThudTest.Builders
 
         public ApiControllerBuilder<T> CreateRequest(HttpMethod httpMethod, string requestUri)
         {
-            this.Request = new HttpRequestMessage(httpMethod, requestUri);
-            return this.CreateRequest(this.Request);
+            var request = new HttpRequestMessage(httpMethod, requestUri);
+            return this.CreateRequest(request);
         }
 
         public T Build()
         {
+            if(!string.IsNullOrEmpty(this.cookies)) this.Request.Headers.Add("Cookie", cookies);
             return this.apiController;
+        }
+
+        public ApiControllerBuilder<T> AddCookie(string key, string value)
+        {
+            this.cookies += string.Format("{0}={1};", key, value);
+            return this;
         }
     }
 }

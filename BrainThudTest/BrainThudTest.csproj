@@ -149,6 +149,11 @@
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_Get_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\ConfigControllerTest\When_Put_is_called_with_an_invalid_QuizDate.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\FederationCallbackControllerTest\When_Get_is_called_with_end_as_the_id.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\FederationCallbackControllerTest\When_Get_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\FederationCallbackControllerTest\When_Post_is_called_with_no_cookies.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\FederationCallbackControllerTest\Given_a_new_FederationCallbackController.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\FederationCallbackControllerTest\When_Post_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\QuizResultsControllerTest\When_Get_is_called_for_a_Quiz_that_does_exist.cs" />

@@ -29,7 +29,12 @@ namespace BrainThudTest.Builders
 
         public ControllerContextBuilder CreateRequest(HttpMethod httpMethod, string requestUri)
         {
-            this.request = new HttpRequestMessage(httpMethod, requestUri);
+            return this.CreateRequest(new HttpRequestMessage(httpMethod, requestUri));
+        }
+
+        public ControllerContextBuilder CreateRequest(HttpRequestMessage httpRequestMessage)
+        {
+            this.request = httpRequestMessage;
             this.request.Properties.Add(HttpPropertyKeys.HttpConfigurationKey, this.config);
             return this;
         }

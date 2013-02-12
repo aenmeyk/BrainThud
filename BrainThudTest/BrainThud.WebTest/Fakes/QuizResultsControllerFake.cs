@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using BrainThud.Web.Authentication;
 using BrainThud.Web.Controllers;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;

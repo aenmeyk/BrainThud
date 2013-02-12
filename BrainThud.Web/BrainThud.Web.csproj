@@ -162,6 +162,7 @@
     <Compile Include="App_Start\MvcRouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Authentication\ICookieStore.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\CardsController.cs" />
@@ -212,8 +213,8 @@
     </Compile>
     <Compile Include="Handlers\IQuizResultHandler.cs" />
     <Compile Include="Handlers\QuizResultHandler.cs" />
-    <Compile Include="Helpers\AuthenticationHelper.cs" />
-    <Compile Include="Helpers\IAuthenticationHelper.cs" />
+    <Compile Include="Authentication\AuthenticationHelper.cs" />
+    <Compile Include="Authentication\IAuthenticationHelper.cs" />
     <Compile Include="Helpers\IUserHelper.cs" />
     <Compile Include="Helpers\PredicateBuilder.cs" />
     <Compile Include="Helpers\UserHelper.cs" />

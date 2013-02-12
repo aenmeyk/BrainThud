@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data.AzureQueues;
+﻿using BrainThud.Web.Authentication;
+using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Helpers;

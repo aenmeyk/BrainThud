@@ -1,4 +1,4 @@
-﻿namespace BrainThud.Web.Helpers
+﻿namespace BrainThud.Web.Authentication
 {
     public interface IAuthenticationHelper 
     {
