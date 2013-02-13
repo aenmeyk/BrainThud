@@ -23,9 +23,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.FederationCallbackCont
         }
 
         [Test]
-        public void Then_a_302_status_code_is_returned()
+        public void Then_a_400_status_code_is_returned()
         {
-            this.response.StatusCode.Should().Be(HttpStatusCode.Redirect);
+            this.response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }

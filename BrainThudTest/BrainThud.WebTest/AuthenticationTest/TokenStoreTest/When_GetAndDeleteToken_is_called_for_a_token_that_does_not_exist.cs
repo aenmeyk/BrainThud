@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.AuthenticationTest
+namespace BrainThudTest.BrainThud.WebTest.AuthenticationTest.TokenStoreTest
 {
     [TestFixture]
     public class When_GetAndDeleteToken_is_called_for_a_token_that_does_not_exist : Given_a_new_TokenStore

@@ -55,5 +55,13 @@ namespace BrainThud.Web.Authentication
 
             return tokenValue;
         }
+
+        public void ClearTokens()
+        {
+            lock(locker)
+            {
+                tokens.Clear();
+            }
+        }
     }
 }

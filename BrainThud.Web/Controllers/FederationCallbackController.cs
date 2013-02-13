@@ -105,10 +105,10 @@ namespace BrainThud.Web.Controllers
         {
             var nameIdentifier = this.authenticationHelper.NameIdentifier;
             var cookieCollection = this.Request.Headers.GetCookies().FirstOrDefault();
-            //            if (authenticationToken.Cookies.Count == 0) return new HttpResponseMessage(HttpStatusCode.BadRequest);
-            var cookies = cookieCollection != null
-                ? cookieCollection.Cookies
-                : new Collection<CookieState>();
+
+            if (cookieCollection == null || cookieCollection.Cookies.Count == 0) return new HttpResponseMessage(HttpStatusCode.BadRequest);
+
+            var cookies = cookieCollection.Cookies;
 
             foreach(var cookie in cookies.Where(x => x.Name.StartsWith("FedAuth")))
             {

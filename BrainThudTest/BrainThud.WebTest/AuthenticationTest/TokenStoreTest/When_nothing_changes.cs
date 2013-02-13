@@ -2,7 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.AuthenticationTest
+namespace BrainThudTest.BrainThud.WebTest.AuthenticationTest.TokenStoreTest
 {
     [TestFixture]
     public class When_nothing_changes : Given_a_new_TokenStore
