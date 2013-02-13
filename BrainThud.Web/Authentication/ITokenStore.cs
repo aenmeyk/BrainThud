@@ -1,8 +1,8 @@
 ﻿namespace BrainThud.Web.Authentication
 {
-    public interface ICookieStore 
+    public interface ITokenStore 
     {
-        void AddOrUpdate(string key, string value);
+        void AddTokenCookie(string nameIdentifier, string key, string value);
         string GetAndDeleteToken(string nameIdentifier);
     }
 }

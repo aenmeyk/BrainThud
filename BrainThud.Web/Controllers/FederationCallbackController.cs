@@ -93,28 +93,29 @@ namespace BrainThud.Web.Controllers
     public class FederationCallbackController : ApiController
     {
         private readonly IAuthenticationHelper authenticationHelper;
-        private readonly ICookieStore cookieStore;
+        private readonly ITokenStore tokenStore;
 
-        public FederationCallbackController(IAuthenticationHelper authenticationHelper, ICookieStore cookieStore)
+        public FederationCallbackController(IAuthenticationHelper authenticationHelper, ITokenStore tokenStore)
         {
             this.authenticationHelper = authenticationHelper;
-            this.cookieStore = cookieStore;
+            this.tokenStore = tokenStore;
         }
 
         public HttpResponseMessage Post()
         {
+            var nameIdentifier = this.authenticationHelper.NameIdentifier;
             var cookieCollection = this.Request.Headers.GetCookies().FirstOrDefault();
+            //            if (authenticationToken.Cookies.Count == 0) return new HttpResponseMessage(HttpStatusCode.BadRequest);
             var cookies = cookieCollection != null
                 ? cookieCollection.Cookies
                 : new Collection<CookieState>();
 
             foreach(var cookie in cookies.Where(x => x.Name.StartsWith("FedAuth")))
             {
-                this.cookieStore.AddOrUpdate(cookie.Name, cookie.Value);
+                this.tokenStore.AddTokenCookie(nameIdentifier, cookie.Name, cookie.Value);
             }
 
             var response = this.Request.CreateResponse(HttpStatusCode.Redirect);
-            var nameIdentifier = this.authenticationHelper.NameIdentifier;
             var locationUrl = string.Format("{0}{1}?nameidentifier={2}", Routes.FEDERATION_CALLBACK, Constants.FEDERATION_CALLBACK_END_ID, nameIdentifier);
             response.Headers.Add("Location", locationUrl);
 
@@ -131,7 +132,7 @@ namespace BrainThud.Web.Controllers
             // back to the client.  We don't want to get the token in that special case.
             if (!id.Equals(Constants.FEDERATION_CALLBACK_END_ID, StringComparison.OrdinalIgnoreCase))
             {
-                var token = this.cookieStore.GetAndDeleteToken(id);
+                var token = this.tokenStore.GetAndDeleteToken(id);
                 response.Content = new StringContent(token);
             }
 

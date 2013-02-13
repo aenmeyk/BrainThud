@@ -37,10 +37,10 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.FederationCallbackCont
         }
 
         [Test]
-        public void Then_the_FedAuth_cookies_are_added_to_the_CookieStore()
+        public void Then_the_FedAuth_cookies_are_added_to_the_TokenStore()
         {
-            this.CookieStore.Verify(x => x.AddOrUpdate(TestValues.FED_AUTH_COOKIE_KEY, TestValues.FED_AUTH_COOKIE_VALUE));
-            this.CookieStore.Verify(x => x.AddOrUpdate(TestValues.FED_AUTH_1_COOKIE_KEY, TestValues.FED_AUTH_1_COOKIE_VALUE));
+            this.TokenStore.Verify(x => x.AddTokenCookie(TestValues.NAME_IDENTIFIER, TestValues.FED_AUTH_COOKIE_KEY, TestValues.FED_AUTH_COOKIE_VALUE));
+            this.TokenStore.Verify(x => x.AddTokenCookie(TestValues.NAME_IDENTIFIER, TestValues.FED_AUTH_1_COOKIE_KEY, TestValues.FED_AUTH_1_COOKIE_VALUE));
         }
     }
 }

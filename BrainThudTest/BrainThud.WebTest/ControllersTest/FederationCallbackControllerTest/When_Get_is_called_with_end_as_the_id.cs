@@ -20,9 +20,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.FederationCallbackCont
         }
 
         [Test]
-        public void Then_GetToken_should_not_be_called_on_the_CookieStore()
+        public void Then_GetToken_should_not_be_called_on_the_TokenStore()
         {
-            this.CookieStore.Verify(x => x.GetAndDeleteToken(It.IsAny<string>()), Times.Never());
+            this.TokenStore.Verify(x => x.GetAndDeleteToken(It.IsAny<string>()), Times.Never());
         }
     }
 }

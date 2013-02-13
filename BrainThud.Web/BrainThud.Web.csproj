@@ -162,7 +162,8 @@
     <Compile Include="App_Start\MvcRouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Authentication\ICookieStore.cs" />
+    <Compile Include="Authentication\ITokenStore.cs" />
+    <Compile Include="Authentication\TokenStore.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\CardsController.cs" />

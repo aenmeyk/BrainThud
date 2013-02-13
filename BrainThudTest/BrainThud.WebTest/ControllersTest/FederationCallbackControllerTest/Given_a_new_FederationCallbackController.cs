@@ -13,12 +13,12 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.FederationCallbackCont
         {
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
-            this.CookieStore = new Mock<ICookieStore>();
+            this.TokenStore = new Mock<ITokenStore>();
             this.Request = new HttpRequestMessage(HttpMethod.Post, TestUrls.FEDERATION_CALLBACK);
-            this.FederationCallbackController = new FederationCallbackController(authenticationHelper.Object, this.CookieStore.Object);
+            this.FederationCallbackController = new FederationCallbackController(authenticationHelper.Object, this.TokenStore.Object);
         }
 
-        protected Mock<ICookieStore> CookieStore { get; private set; }
+        protected Mock<ITokenStore> TokenStore { get; private set; }
         protected HttpRequestMessage Request { get; private set; }
         protected FederationCallbackController FederationCallbackController { get; private set; }
     }

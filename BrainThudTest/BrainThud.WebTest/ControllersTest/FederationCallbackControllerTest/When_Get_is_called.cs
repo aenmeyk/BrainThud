@@ -16,7 +16,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.FederationCallbackCont
 
         public override void When()
         {
-            this.CookieStore.Setup(x => x.GetAndDeleteToken(TestValues.NAME_IDENTIFIER)).Returns(TestValues.FED_AUTH_TOKEN);
+            this.TokenStore.Setup(x => x.GetAndDeleteToken(TestValues.NAME_IDENTIFIER)).Returns(TestValues.FED_AUTH_TOKEN);
 
             this.controller = new ApiControllerBuilder<FederationCallbackController>(this.FederationCallbackController)
                 .CreateRequest(this.Request)
@@ -39,9 +39,9 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.FederationCallbackCont
         }
 
         [Test]
-        public void Then_the_token_is_retrieved_and_deleted_from_the_CookieStore()
+        public void Then_the_token_is_retrieved_and_deleted_from_the_TokenStore()
         {
-            this.CookieStore.Verify(x => x.GetAndDeleteToken(TestValues.NAME_IDENTIFIER), Times.Once());
+            this.TokenStore.Verify(x => x.GetAndDeleteToken(TestValues.NAME_IDENTIFIER), Times.Once());
         }
     }
 }

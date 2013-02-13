@@ -140,6 +140,12 @@
     <Compile Include="BrainThud.CoreTest\IntegrationTest\CardControllerIntegrationTest.cs" />
     <Compile Include="BrainThud.CoreTest\ViewModelsTest\LoginViewModelTest\Given_a_new_LoginViewModel.cs" />
     <Compile Include="BrainThud.CoreTest\ViewModelsTest\LoginViewModelTest\When_IdentityProviders_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\AuthenticationTest\When_GetAndDeleteToken_is_called_for_a_token_that_does_not_exist.cs" />
+    <Compile Include="BrainThud.WebTest\AuthenticationTest\When_GetAndDeleteToken_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\AuthenticationTest\When_two_different_tokens_are_added.cs" />
+    <Compile Include="BrainThud.WebTest\AuthenticationTest\Given_a_new_TokenStore.cs" />
+    <Compile Include="BrainThud.WebTest\AuthenticationTest\When_AddTokenCookie_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\AuthenticationTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\Given_a_new_AccountController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_SignOut_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\AccountControllerTest\When_Login_is_called.cs" />
