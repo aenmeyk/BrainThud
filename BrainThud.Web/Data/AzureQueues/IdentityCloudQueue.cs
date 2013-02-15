@@ -1,6 +1,6 @@
 ﻿using System;
 using BrainThud.Web.Data.AzureTableStorage;
-using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure.Storage.Queue;
 
 namespace BrainThud.Web.Data.AzureQueues
 {
@@ -31,7 +31,7 @@ namespace BrainThud.Web.Data.AzureQueues
 
         public int RetrieveApproximateMessageCount()
         {
-            return this.lazyCloudQueue.Value.RetrieveApproximateMessageCount();
+            return this.lazyCloudQueue.Value.ApproximateMessageCount ?? 0;
         }
     }
 }

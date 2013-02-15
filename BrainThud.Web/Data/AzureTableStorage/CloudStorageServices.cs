@@ -1,8 +1,8 @@
 using System;
 using System.Configuration;
-using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.ServiceRuntime;
-using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace BrainThud.Web.Data.AzureTableStorage
 {
@@ -14,7 +14,13 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public CloudStorageServices()
         {
-            this.lazyCloudStorageAccount = new Lazy<CloudStorageAccount>(() => CloudStorageAccount.FromConfigurationSetting(ConfigurationSettings.AZURE_STORAGE));
+            this.lazyCloudStorageAccount = new Lazy<CloudStorageAccount>(() =>
+            {
+                var connectionString = ConfigurationManager.ConnectionStrings[ConfigurationSettings.AZURE_STORAGE].ConnectionString;
+                return CloudStorageAccount.Parse(connectionString);
+
+            });
+
             this.lazyCloudTableClient = new Lazy<CloudTableClient>(() => this.CloudStorageAccount.CreateCloudTableClient());
             this.lazyCloudQueueClient = new Lazy<CloudQueueClient>(() => this.CloudStorageAccount.CreateCloudQueueClient());
         }
@@ -25,34 +31,18 @@ namespace BrainThud.Web.Data.AzureTableStorage
         public void CreateTablesIfNotCreated()
         {
             var cloudTableClient = this.lazyCloudTableClient.Value;
-            cloudTableClient.CreateTableIfNotExist(AzureTableNames.CARD);
-            cloudTableClient.CreateTableIfNotExist(AzureTableNames.CONFIGURATION);
+
+            var cardTable = cloudTableClient.GetTableReference(AzureTableNames.CARD);
+            cardTable.CreateIfNotExists();
+
+            var configurationTable = cloudTableClient.GetTableReference(AzureTableNames.CONFIGURATION);
+            configurationTable.CreateIfNotExists();
         }
 
         public void CreateQueusIfNotCreated()
         {
             var cloudQueue = lazyCloudQueueClient.Value.GetQueueReference(AzureQueueNames.IDENTITY);
-            cloudQueue.CreateIfNotExist();
+            cloudQueue.CreateIfNotExists();
         }
-
-        public void SetConfigurationSettingPublisher()
-        {
-            CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
-            {
-                string connectionString;
-
-                if (RoleEnvironment.IsAvailable)
-                {
-                    connectionString = RoleEnvironment.GetConfigurationSettingValue(configName);
-                }
-                else
-                {
-                    connectionString = ConfigurationManager.AppSettings[configName];
-                }
-
-                configSetter(connectionString);
-            });
-        }
-
     }
 }

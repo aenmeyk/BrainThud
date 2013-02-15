@@ -28,7 +28,6 @@ namespace BrainThud.Web
         public override void Run()
         {
             var cloudStorageServices = IoCContainer.GetInstance<ICloudStorageServices>();
-            cloudStorageServices.SetConfigurationSettingPublisher();
             cloudStorageServices.CreateTablesIfNotCreated();
             cloudStorageServices.CreateQueusIfNotCreated();
 

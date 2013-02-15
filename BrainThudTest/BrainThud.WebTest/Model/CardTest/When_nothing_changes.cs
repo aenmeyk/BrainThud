@@ -1,5 +1,5 @@
 ﻿using BrainThudTest.Extensions;
-using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure.Storage;
 using NUnit.Framework;
 using FluentAssertions;
 

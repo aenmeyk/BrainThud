@@ -5,7 +5,7 @@ using BrainThud.Core.Calendars;
 using BrainThud.Core.Models;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
-using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace BrainThud.Web.Data.AzureTableStorage
 {

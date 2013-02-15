@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using BrainThud.Web.Data.AzureTableStorage;
-using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure.Storage;
 
 namespace BrainThud.Web.Data.AzureQueues
 {

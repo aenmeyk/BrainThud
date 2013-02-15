@@ -1,5 +1,5 @@
-using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
 
 namespace BrainThud.Web.Data.AzureTableStorage
 {
@@ -8,7 +8,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
         CloudStorageAccount CloudStorageAccount { get; }
         CloudQueueClient CloudQueueClient { get; }
         void CreateTablesIfNotCreated();
-        void SetConfigurationSettingPublisher();
         void CreateQueusIfNotCreated();
     }
 }

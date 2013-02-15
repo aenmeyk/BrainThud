@@ -1,7 +1,7 @@
 ﻿using BrainThud.Web;
 using BrainThud.Web.Data.AzureTableStorage;
 using FluentAssertions;
-using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure.Storage;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorageContextTest

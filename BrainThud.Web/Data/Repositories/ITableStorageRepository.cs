@@ -1,4 +1,4 @@
-using Microsoft.WindowsAzure.StorageClient;
+using Microsoft.WindowsAzure.Storage;
 
 namespace BrainThud.Web.Data.Repositories
 {

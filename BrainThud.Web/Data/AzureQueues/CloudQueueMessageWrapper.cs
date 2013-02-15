@@ -1,4 +1,4 @@
-﻿using Microsoft.WindowsAzure.StorageClient;
+﻿using Microsoft.WindowsAzure.Storage.Queue;
 
 namespace BrainThud.Web.Data.AzureQueues
 {
