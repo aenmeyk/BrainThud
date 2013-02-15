@@ -16,9 +16,8 @@ namespace BrainThud.Web.Data.AzureTableStorage
         {
             this.lazyCloudStorageAccount = new Lazy<CloudStorageAccount>(() =>
             {
-                var connectionString = ConfigurationManager.ConnectionStrings[ConfigurationSettings.AZURE_STORAGE].ConnectionString;
+                var connectionString = ConfigurationManager.AppSettings[ConfigurationSettings.AZURE_STORAGE];
                 return CloudStorageAccount.Parse(connectionString);
-
             });
 
             this.lazyCloudTableClient = new Lazy<CloudTableClient>(() => this.CloudStorageAccount.CreateCloudTableClient());
@@ -26,16 +25,15 @@ namespace BrainThud.Web.Data.AzureTableStorage
         }
 
         public CloudStorageAccount CloudStorageAccount { get { return this.lazyCloudStorageAccount.Value; } }
+        public CloudTableClient CloudTableClient { get { return this.lazyCloudTableClient.Value; } }
         public CloudQueueClient CloudQueueClient { get { return this.lazyCloudQueueClient.Value; } }
 
         public void CreateTablesIfNotCreated()
         {
-            var cloudTableClient = this.lazyCloudTableClient.Value;
-
-            var cardTable = cloudTableClient.GetTableReference(AzureTableNames.CARD);
+            var cardTable = this.CloudTableClient.GetTableReference(AzureTableNames.CARD);
             cardTable.CreateIfNotExists();
 
-            var configurationTable = cloudTableClient.GetTableReference(AzureTableNames.CONFIGURATION);
+            var configurationTable = this.CloudTableClient.GetTableReference(AzureTableNames.CONFIGURATION);
             configurationTable.CreateIfNotExists();
         }
 

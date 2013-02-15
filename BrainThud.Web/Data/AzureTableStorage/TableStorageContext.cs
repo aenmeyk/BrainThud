@@ -5,7 +5,7 @@ using BrainThud.Core.Calendars;
 using BrainThud.Core.Models;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Table.DataServices;
 
 namespace BrainThud.Web.Data.AzureTableStorage
 {
@@ -27,7 +27,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
             ICardEntityKeyGenerator quizResultKeyGenerator,
             string tableName,
             string nameIdentifier)
-            : base(cloudStorageServices.CloudStorageAccount.TableEndpoint.ToString(), cloudStorageServices.CloudStorageAccount.Credentials)
+            : base(cloudStorageServices.CloudTableClient)
         {
             this.cardKeyGenerator = cardKeyGenerator;
             this.quizResultKeyGenerator = quizResultKeyGenerator;

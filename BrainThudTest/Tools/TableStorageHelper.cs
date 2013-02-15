@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.WindowsAzure.Storage;
+﻿using Microsoft.WindowsAzure.Storage.Table.DataServices;
 
 namespace BrainThudTest.Tools
 {

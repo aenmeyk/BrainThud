@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table.DataServices;
 
 namespace BrainThud.Web.Data.Repositories
 {

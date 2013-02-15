@@ -1,6 +1,6 @@
 ﻿using BrainThud.Web;
 using FluentAssertions;
-using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Queue;
 using Moq;
 using NUnit.Framework;
 

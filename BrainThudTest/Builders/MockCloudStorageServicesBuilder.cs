@@ -1,4 +1,6 @@
-﻿using BrainThud.Web.Data.AzureTableStorage;
+﻿using System;
+using BrainThud.Web.Data.AzureTableStorage;
+using Microsoft.WindowsAzure.Storage.Table;
 using Moq;
 
 namespace BrainThudTest.Builders
@@ -7,9 +9,9 @@ namespace BrainThudTest.Builders
     {
         public Mock<ICloudStorageServices> Build()
         {
-            var cloudStorageAccount = new CloudStorageAccountBuilder().Build();
             var cloudStorageServices = new Mock<ICloudStorageServices>();
-            cloudStorageServices.SetupGet(x => x.CloudStorageAccount).Returns(cloudStorageAccount);
+            var cloudTableClient = new CloudTableClient(new Uri("http://www.example.com/"));
+            cloudStorageServices.SetupGet(x => x.CloudTableClient).Returns(cloudTableClient);
 
             return cloudStorageServices;
         }

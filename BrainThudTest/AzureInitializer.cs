@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Diagnostics;
 using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
 
 namespace BrainThudTest
 {
@@ -22,11 +23,11 @@ namespace BrainThudTest
                 proc.WaitForExit();
             }
 
-            CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
-            {
-                var connectionString = ConfigurationManager.AppSettings[configName];
-                configSetter(connectionString);
-            });
+//            CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
+//            {
+//                var connectionString = ConfigurationManager.AppSettings[configName];
+//                configSetter(connectionString);
+//            });
         }
     }
 }

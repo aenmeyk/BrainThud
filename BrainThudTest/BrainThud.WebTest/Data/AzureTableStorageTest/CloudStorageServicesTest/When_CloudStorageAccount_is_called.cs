@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CloudStorageServicesTest

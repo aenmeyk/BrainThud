@@ -1,6 +1,6 @@
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Table.DataServices;
 
 namespace BrainThud.Core.Data.AzureTableStorage
 {
-    public partial class AzureTableEntity : TableEntity { }
+    public partial class AzureTableEntity : TableServiceEntity { }
 }

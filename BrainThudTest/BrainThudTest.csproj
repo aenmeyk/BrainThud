@@ -97,8 +97,11 @@
       <HintPath>..\packages\FluentAssertions.2.0.0.1\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.WindowsAzure.StorageClient, Version=1.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
@@ -297,7 +300,6 @@
     <Compile Include="BrainThud.WebTest\HandlersTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\WebRoleTest\Given_a_new_WebRole.cs" />
     <Compile Include="BrainThud.WebTest\WebRoleTest\When_Run_is_called.cs" />
-    <Compile Include="Builders\CloudStorageAccountBuilder.cs" />
     <Compile Include="Builders\ApiControllerBuilder.cs" />
     <Compile Include="Builders\ControllerContextBuilder.cs" />
     <Compile Include="Builders\MockCloudStorageServicesBuilder.cs" />

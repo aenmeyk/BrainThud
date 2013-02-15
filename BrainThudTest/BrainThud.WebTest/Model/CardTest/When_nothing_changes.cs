@@ -1,7 +1,7 @@
 ﻿using BrainThudTest.Extensions;
-using Microsoft.WindowsAzure.Storage;
-using NUnit.Framework;
 using FluentAssertions;
+using Microsoft.WindowsAzure.Storage.Table.DataServices;
+using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.Model.CardTest
 {

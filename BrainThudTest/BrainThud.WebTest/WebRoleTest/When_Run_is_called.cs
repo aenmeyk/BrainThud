@@ -12,12 +12,6 @@ namespace BrainThudTest.BrainThud.WebTest.WebRoleTest
         }
 
         [Test]
-        public void Then_SetConfigurationSettingPublisher_is_called_on_the_CloudStorageServices()
-        {
-            this.CloudStorageServices.Verify(x => x.SetConfigurationSettingPublisher(), Times.Once());
-        }
-
-        [Test]
         public void Then_CreateTablesIfNotCreated_is_called_on_the_CloudStorageServices()
         {
             this.CloudStorageServices.Verify(x => x.CreateTablesIfNotCreated(), Times.Once());

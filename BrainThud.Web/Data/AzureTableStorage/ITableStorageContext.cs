@@ -2,7 +2,7 @@ using System.Data.Services.Client;
 using System.Linq;
 using BrainThud.Core.Models;
 using BrainThud.Web.Data.Repositories;
-using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table.DataServices;
 
 namespace BrainThud.Web.Data.AzureTableStorage
 {

@@ -5,6 +5,7 @@ using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.DependencyResolution;
 using Microsoft.WindowsAzure;
 using System.Linq;
+using Microsoft.WindowsAzure.Storage;
 
 namespace BrainThud.Admin
 {
@@ -12,7 +13,7 @@ namespace BrainThud.Admin
     {
         static void Main(string[] args)
         {
-            Initialize();
+//            Initialize();
 
             var container = IoC.Initialize();
             var contextFactory = container.GetInstance<ITableStorageContextFactory>();
@@ -74,13 +75,13 @@ namespace BrainThud.Admin
             }
         }
 
-        static void Initialize()
-        {
-            CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
-            {
-                var connectionString = ConfigurationManager.AppSettings[configName];
-                configSetter(connectionString);
-            });
-        }
+//        static void Initialize()
+//        {
+//            CloudStorageAccount.SetConfigurationSettingPublisher((configName, configSetter) =>
+//            {
+//                var connectionString = ConfigurationManager.AppSettings[configName];
+//                configSetter(connectionString);
+//            });
+//        }
     }
 }
