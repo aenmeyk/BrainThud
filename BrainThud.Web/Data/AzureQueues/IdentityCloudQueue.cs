@@ -31,7 +31,12 @@ namespace BrainThud.Web.Data.AzureQueues
 
         public int RetrieveApproximateMessageCount()
         {
-            return this.lazyCloudQueue.Value.ApproximateMessageCount ?? 0;
+            this.lazyCloudQueue.Value.FetchAttributes();
+            var approximateMessageCount = this.lazyCloudQueue.Value.ApproximateMessageCount;
+
+            return approximateMessageCount != null
+                ? approximateMessageCount.Value
+                : 0;
         }
     }
 }

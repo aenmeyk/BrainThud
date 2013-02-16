@@ -1,5 +1,6 @@
 using System;
 using System.Configuration;
+using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
@@ -16,7 +17,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         {
             this.lazyCloudStorageAccount = new Lazy<CloudStorageAccount>(() =>
             {
-                var connectionString = ConfigurationManager.AppSettings[ConfigurationSettings.AZURE_STORAGE];
+                var connectionString = CloudConfigurationManager.GetSetting(ConfigurationSettings.AZURE_STORAGE);
                 return CloudStorageAccount.Parse(connectionString);
             });
 
