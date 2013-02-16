@@ -3,6 +3,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using BrainThud.Web.Api;
 using BrainThud.Web.App_Start;
 using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureTableStorage;

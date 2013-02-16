@@ -5,6 +5,7 @@ using System.Net.Http.Formatting;
 using System.Web.Http;
 using BrainThud.Core.Models;
 using BrainThud.Web;
+using BrainThud.Web.Api;
 using BrainThud.Web.App_Start;
 using BrainThud.Web.DependencyResolution;
 using FluentAssertions;
