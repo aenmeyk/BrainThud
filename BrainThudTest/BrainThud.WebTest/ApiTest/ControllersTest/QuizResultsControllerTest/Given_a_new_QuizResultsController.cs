@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using BrainThud.Web;
 using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;
@@ -16,10 +15,10 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.QuizResultsCon
         public override void Given()
         {
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
-            var tableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
-            tableStorageContextFactory
-                .Setup(x => x.CreateTableStorageContext(AzureTableNames.CARD, TestValues.NAME_IDENTIFIER))
-                .Returns(this.TableStorageContext.Object);
+
+            var tableStorageContextFactory = new TableStorageContextFactoryMockBuilder()
+                .SetTableStorageContext(this.TableStorageContext)
+                .Build();
 
             this.QuizResultHandler = new Mock<IQuizResultHandler>();
             var authenticationHelper = new Mock<IAuthenticationHelper>();

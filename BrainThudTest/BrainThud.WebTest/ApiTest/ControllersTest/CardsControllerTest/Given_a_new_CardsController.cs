@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using BrainThud.Web;
 using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThudTest.BrainThud.WebTest.Fakes;
@@ -17,8 +16,9 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         {
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
 
-            var tableStorageContextFactory = new Mock<ITableStorageContextFactory> { DefaultValue = DefaultValue.Mock };
-            tableStorageContextFactory.Setup(x => x.CreateTableStorageContext(AzureTableNames.CARD, TestValues.NAME_IDENTIFIER)).Returns(this.TableStorageContext.Object);
+            var tableStorageContextFactory = new TableStorageContextFactoryMockBuilder()
+                .SetTableStorageContext(this.TableStorageContext)
+                .Build();
 
             var authenticationHelper = new Mock<IAuthenticationHelper>();
             authenticationHelper.Setup(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);

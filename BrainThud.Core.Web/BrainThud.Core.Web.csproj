@@ -116,6 +116,9 @@
     <Compile Include="..\BrainThud.Core\Models\Card.cs">
       <Link>Models\Card.cs</Link>
     </Compile>
+    <Compile Include="..\BrainThud.Core\Models\CardDeck.cs">
+      <Link>Models\CardDeck.cs</Link>
+    </Compile>
     <Compile Include="..\BrainThud.Core\Models\MasterConfiguration.cs">
       <Link>Models\MasterConfiguration.cs</Link>
     </Compile>
@@ -162,7 +165,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="73f9ab29-527b-49ea-a24e-e4c800d1800d" />
+      <UserProperties ProjectLinkReference="73f9ab29-527b-49ea-a24e-e4c800d1800d" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

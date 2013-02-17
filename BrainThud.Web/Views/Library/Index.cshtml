@@ -1,0 +1,13 @@
+﻿@model IEnumerable<BrainThud.Core.Models.CardDeck>
+
+@{
+    ViewBag.Title = "Library";
+}
+
+<h2>Library</h2>
+<ul>
+    @foreach(var cardDeck in Model)
+    {
+        <li>@cardDeck.DeckName</li>
+    }
+</ul>

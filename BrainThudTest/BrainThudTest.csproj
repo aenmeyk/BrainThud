@@ -178,6 +178,8 @@
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\QuizResultsControllerTest\When_a_Post_is_made_without_IfMatchNone_and_the_QuizResult_already_exists.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\QuizResultsControllerTest\When_a_Post_is_made_with_IfMatchNone_and_the_QuizResult_already_exists.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_GetForQuiz_is_called_by_a_user_that_does_not_exist.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\LibraryControllerTest\Given_a_new_LibraryController.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\LibraryControllerTest\When_Index_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueSeederTest\Given_a_new_IdentityQueueSeeder.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueSeederTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueSeederTest\When_Seed_is_called.cs" />
@@ -303,6 +305,7 @@
     <Compile Include="Builders\ApiControllerBuilder.cs" />
     <Compile Include="Builders\ControllerContextBuilder.cs" />
     <Compile Include="Builders\MockCloudStorageServicesBuilder.cs" />
+    <Compile Include="Builders\TableStorageContextFactoryMockBuilder.cs" />
     <Compile Include="Extensions\BrainThudAssertionExtensions.cs" />
     <Compile Include="GwtAzureEmulator.cs" />
     <Compile Include="GwtMvvmCross.cs" />

@@ -120,6 +120,7 @@
     <Compile Include="Data\AzureTableStorage\AzureTableEntity.cs" />
     <Compile Include="DependencyResolution\MvxIoC.cs" />
     <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\CardDeck.cs" />
     <Compile Include="Models\MasterConfiguration.cs" />
     <Compile Include="Models\QuizResult.cs" />
     <Compile Include="Models\UserConfiguration.cs" />

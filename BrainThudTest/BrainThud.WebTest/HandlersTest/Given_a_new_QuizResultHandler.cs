@@ -1,9 +1,8 @@
 ﻿using BrainThud.Core.Models;
-using BrainThud.Web;
 using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Handlers;
-using BrainThud.Web.Helpers;
+using BrainThudTest.Builders;
 using Moq;
 using NUnit.Framework;
 
@@ -20,10 +19,10 @@ namespace BrainThudTest.BrainThud.WebTest.HandlersTest
             this.AuthenticationHelper.SetupGet(x => x.NameIdentifier).Returns(TestValues.NAME_IDENTIFIER);
 
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };
-            var tableStorageContextFactory = new Mock<ITableStorageContextFactory>();
-            tableStorageContextFactory
-                .Setup(x => x.CreateTableStorageContext(AzureTableNames.CARD, TestValues.NAME_IDENTIFIER))
-                .Returns(this.TableStorageContext.Object);
+
+            var tableStorageContextFactory = new TableStorageContextFactoryMockBuilder()
+                .SetTableStorageContext(this.TableStorageContext)
+                .Build();
 
             this.UserConfiguration = new UserConfiguration
             {
