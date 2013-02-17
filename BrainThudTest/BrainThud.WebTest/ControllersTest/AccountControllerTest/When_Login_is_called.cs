@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Net;
+using System.Web.Mvc;
 using BrainThud.Web;
 using FluentAssertions;
 using NUnit.Framework;
@@ -24,8 +25,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.AccountControllerTest
         [Test]
         public void Then_the_MetaDataScript_is_set()
         {
-            const string format = "https://brainthud.accesscontrol.windows.net/v2/metadata/identityProviders.js?protocol=wsfederation&realm={0}&version=1.0&callback=ShowSigninPage";
-            ((string)this.AccountController.ViewBag.MetaDataScript).Should().BeOneOf(string.Format(format, Hosts.LOCALHOST), string.Format(format, Hosts.BRAINTHUD));
+            ((string)this.AccountController.ViewBag.MetaDataScript).Should().BeOneOf(string.Format(Urls.IDENTITY_PROVIDERS, WebUtility.UrlEncode(Urls.LOCALHOST)), string.Format(Urls.IDENTITY_PROVIDERS, WebUtility.UrlEncode(Urls.BRAINTHUD)));
         }
     }
 }

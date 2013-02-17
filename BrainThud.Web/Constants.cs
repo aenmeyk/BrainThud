@@ -7,11 +7,12 @@ namespace BrainThud.Web
         public const string FEDERATION_CALLBACK_END_ID = "end";
     }
 
-    public static class Hosts
+    public static class Urls
     {
         public const string LOCALHOST = "http://localhost:36877/";
 //        public const string LOCALHOST = "http://127.0.0.1:81/";
         public const string BRAINTHUD = "http://www.brainthud.com/";
+        public const string IDENTITY_PROVIDERS = @"https://brainthud.accesscontrol.windows.net/v2/metadata/IdentityProviders.js?protocol=wsfederation&realm={0}&reply_to=&context=rm%3d0%26id%3dpassive%26ru%3d%252f&request_id=&version=1.0&callback=ShowSigninPage";
     }
 
     public static class RouteNames

@@ -16,13 +16,13 @@ namespace BrainThud.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
-            var host = Hosts.BRAINTHUD;
+            var host = Urls.BRAINTHUD;
 #if DEBUG
-            host = Hosts.LOCALHOST;
+            host = Urls.LOCALHOST;
 #endif
 
             host = WebUtility.UrlEncode(host);
-            ViewBag.MetaDataScript = string.Format(@"https://brainthud.accesscontrol.windows.net/v2/metadata/IdentityProviders.js?protocol=wsfederation&realm={0}&reply_to=&context=rm%3d0%26id%3dpassive%26ru%3d%252f&request_id=&version=1.0&callback=ShowSigninPage", host);
+            ViewBag.MetaDataScript = string.Format(Urls.IDENTITY_PROVIDERS, host);
             return View("Login");
         }
 
