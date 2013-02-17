@@ -1,6 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Net;
+using System.Web.Mvc;
 using BrainThud.Web.Authentication;
-using BrainThud.Web.Helpers;
 
 namespace BrainThud.Web.Controllers
 {
@@ -21,7 +21,8 @@ namespace BrainThud.Web.Controllers
             host = Hosts.LOCALHOST;
 #endif
 
-            ViewBag.MetaDataScript = string.Format("https://brainthud.accesscontrol.windows.net/v2/metadata/identityProviders.js?protocol=wsfederation&realm={0}&version=1.0&callback=ShowSigninPage", host);
+            host = WebUtility.UrlEncode(host);
+            ViewBag.MetaDataScript = string.Format(@"https://brainthud.accesscontrol.windows.net/v2/metadata/IdentityProviders.js?protocol=wsfederation&realm={0}&reply_to=&context=rm%3d0%26id%3dpassive%26ru%3d%252f&request_id=&version=1.0&callback=ShowSigninPage", host);
             return View("Login");
         }
 

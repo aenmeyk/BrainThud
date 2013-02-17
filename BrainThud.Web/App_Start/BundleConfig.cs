@@ -24,6 +24,7 @@ namespace BrainThud.Web.App_Start
                 "~/Scripts/jquery-ui*"));
 
             bundles.Add(new ScriptBundle(BundlePaths.EXTERNAL_LIBS).Include(
+                "~/Scripts/account.js",
                 "~/Scripts/jquery.unobtrusive*",
                 "~/Scripts/jquery.validate*",
                 "~/Scripts/jquery-ui*",
