@@ -27,7 +27,7 @@
             @if (ViewBag.HideNavBar == null || !ViewBag.HideNavBar)
             {
                 <div id="#header-content" class="container">
-                    <a class="brand" href="#">
+                    <a class="brand" href="/">
                         <img src="~/Images/logo-partial-54.png" /></a>
 
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -35,13 +35,22 @@
                         <i class="icon-bar"></i>
                         <i class="icon-bar"></i>
                     </a>
-
-                    <div class="identity">@User.Identity.Name</div>
+                    
+                    <div class="identity">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @User.Identity.Name
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Log In", "Login", "Account")
+                        }
+                    </div>
 
                     <section id="nav-view">
                         <div class="nav-collapse">
                             <ul class="nav main-nav">
-                                 @RenderSection("header", required: false)
+                                 @RenderSection("menu", required: false)
                             </ul>
                         </div>
                     </section>

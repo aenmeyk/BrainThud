@@ -177,6 +177,11 @@ h6 {
 .center-align {
   text-align: center;
 }
+.image-center-align {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 .double-space {
   margin-left: 10px;
 }
@@ -335,6 +340,9 @@ h6 {
 .login-logo {
   margin: 120px 0 0 0;
   max-width: 200px;
+}
+.home-logo {
+  margin-top: 40px;
 }
 input[type=text] {
   -webkit-box-sizing: border-box;

@@ -2,11 +2,14 @@
     ViewBag.Title = "BrainThud";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    
-@section header {
-    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-    <li>@Html.ActionLink("Library", "Index", "Library")</li>
-    <li>@Html.ActionLink("Log In", "Login", "Account")</li>
+
+@if (ViewBag.HideNavBar == null || !ViewBag.HideNavBar)
+{
+    <text>
+        @section menu {
+            <li>@Html.ActionLink("Library", "Index", "Library")</li>
+        }
+    </text>
 }
 
 @RenderBody()
