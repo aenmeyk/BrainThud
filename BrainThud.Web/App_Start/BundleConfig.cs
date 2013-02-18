@@ -38,6 +38,9 @@ namespace BrainThud.Web.App_Start
                 "~/Scripts/underscore.*",
                 "~/Scripts/sammy.js"));
 
+            bundles.Add(new ScriptBundle(BundlePaths.PUBLIC).IncludeDirectory(
+                "~/Scripts/public", "*.js", searchSubdirectories: false));
+
             bundles.Add(new ScriptBundle(BundlePaths.APP_LIBS).IncludeDirectory(
                 "~/Scripts/app", "*.js", searchSubdirectories: false));
 

@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "BrainThud";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    
+@section header {
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Library", "Index", "Library")</li>
+    <li>@Html.ActionLink("Log In", "Login", "Account")</li>
+}
+
+@RenderBody()
+
+@section Scripts {
+    @RenderSection("scripts", required: false)
+}

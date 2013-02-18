@@ -12,7 +12,7 @@ namespace BrainThud.Web
         public const string LOCALHOST = "http://localhost:36877/";
 //        public const string LOCALHOST = "http://127.0.0.1:81/";
         public const string BRAINTHUD = "http://www.brainthud.com/";
-        public const string IDENTITY_PROVIDERS = @"https://brainthud.accesscontrol.windows.net/v2/metadata/IdentityProviders.js?protocol=wsfederation&realm={0}&reply_to=&context=rm%3d0%26id%3dpassive%26ru%3d%252f&request_id=&version=1.0&callback=ShowSigninPage";
+        public const string IDENTITY_PROVIDERS = @"https://brainthud.accesscontrol.windows.net/v2/metadata/IdentityProviders.js?protocol=wsfederation&realm={0}&reply_to=&context=rm%3d0%26id%3dpassive%26ru%3D%252Fhome%252F&request_id=&version=1.0&callback=ShowSigninPage";
     }
 
     public static class RouteNames
@@ -22,6 +22,7 @@ namespace BrainThud.Web
         public const string API_CARDS = "ApiCards";
         public const string API_DEFAULT = "ApiDefault";
         public const string DEFAULT = "Default";
+        public const string HOME = "Home";
     }
 
     public static class Routes
@@ -36,6 +37,7 @@ namespace BrainThud.Web
         public const string EXTERNAL_LIBS = "~/bundles/jsextlibs";
         public const string APP_LIBS = "~/bundles/jsapplibs";
         public const string MODERNIZR = "~/bundles/modernizr";
+        public const string PUBLIC = "~/bundles/public";
         public const string CSS = "~/Content/css";
         public const string LESS = "~/Content/less";
     }

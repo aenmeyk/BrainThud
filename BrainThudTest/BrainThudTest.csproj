@@ -164,6 +164,7 @@
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\FederationCallbackControllerTest\When_Post_is_called_with_no_cookies.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\FederationCallbackControllerTest\Given_a_new_FederationCallbackController.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\FederationCallbackControllerTest\When_Post_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Home_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\Given_a_new_HomeController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\HomeControllerTest\When_Index_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\QuizResultsControllerTest\When_Get_is_called_for_a_Quiz_that_does_exist.cs" />

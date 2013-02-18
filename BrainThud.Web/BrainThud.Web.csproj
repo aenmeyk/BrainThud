@@ -393,6 +393,8 @@
     <Content Include="Views\card-info-dialog.cshtml" />
     <Content Include="Views\user-configuration.cshtml" />
     <Content Include="Views\Library\Index.cshtml" />
+    <Content Include="Views\Shared\_public-layout.cshtml" />
+    <Content Include="Views\Home\home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -426,6 +428,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\public\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
