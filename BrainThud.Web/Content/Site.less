@@ -6,6 +6,7 @@
  * Kroc Camen, and the H5BP dev community and team.
  */
 
+@primary-color: #3799c4;
 @question-color: #D4D4D4;
 @answer-color: #006ECC;
 @correct-color: #59B359;
@@ -158,6 +159,30 @@ h1, h2, h3, h4, h5, h6 {
 	display: none;
 }
 
+.gradient-background(@color) {
+    background-color: @color;
+    *background-color: darken(@color, 10%);
+    background-image: -moz-linear-gradient(top, lighten(@color, 10%), darken(@color, 10%));
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(lighten(@color, 10%)), to(darken(@color, 10%)));
+    background-image: -webkit-linear-gradient(top, lighten(@color, 10%), darken(@color, 10%));
+    background-image: -o-linear-gradient(top, lighten(@color, 10%), darken(@color, 10%));
+    background-image: linear-gradient(to bottom, lighten(@color, 10%), darken(@color, 10%));
+    border-color: darken(@color, 5%) darken(@color, 5%) darken(@color, 20%);
+
+    &.dropdown-toggle {
+        background-color: darken(@color, 5%);
+    }
+
+    &:hover,
+    &:active,
+    &.active,
+    &.disabled,
+    &[disabled] {
+        background-color: darken(@color, 10%);
+        *background-color: darken(@color, 20%);
+    }
+}
+
 .correct-color {
 	color: @correct-color;
 }
@@ -262,7 +287,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main-nav {
-	margin: 0 10px 0 45px !important;
+	margin: 0 10px 0 60px !important;
 }
 
 .card (@padding: 50px, @min-height: 200px) {
@@ -311,7 +336,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-deck-name {
 	display: block;
-	background-color: #08C;
+	background-color: @primary-color;
 	font-weight: bold;
 	padding: 8px;
 	text-align: center;
@@ -326,7 +351,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-button {
-    padding: 25px;
+    padding: 25px 0;
     margin-top: 10px;
     width: 100%;
 }
@@ -395,7 +420,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .home-logo {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 input[type=text] {
@@ -780,6 +805,14 @@ input[type=text] {
 /* --- override lib css -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+a {
+  color: @primary-color;
+
+  &:hover {
+	  color: darken(@primary-color, 10%);
+  }
+}
+
 .row-fluid [class*="span"] {
 	min-height: 10px;
 }
@@ -799,3 +832,15 @@ input[type=text] {
     color: #ffffff;
 }
 
+.btn-primary {
+	.gradient-background(@primary-color);
+}
+
+.btn-success {
+	.gradient-background(#9bcc57);
+}
+
+.nav-list > .active > a,
+.nav-list > .active > a:hover {
+  background-color: @primary-color;
+}

@@ -6,9 +6,14 @@
 @if (ViewBag.HideNavBar == null || !ViewBag.HideNavBar)
 {
     <text>
-        @section menu {
-            <li>@Html.ActionLink("Library", "Index", "Library")</li>
+    @section menu {
+        <li>@Html.ActionLink("Library", "Index", "Library")</li>
+
+        @if(User.Identity.IsAuthenticated)
+        {
+            <li>@Html.ActionLink("Sign Out", "SignOut", "Account")</li>
         }
+    }
     </text>
 }
 

@@ -1,13 +1,16 @@
 @{
     ViewBag.Title = "Log In";
     Layout = "~/Views/Shared/_public-layout.cshtml";
+    ViewBag.HideNavBar = true;
 }
 
 <div class="row-fluid">
     <div class="span12">
         <div class="span4 login-brand">
-            <img src="~/Images/title-330.png" />
-            <img class="login-logo hidden-phone" src="~/Images/logo-200.png" />
+            <a href="/">
+                <img src="~/Images/title-330.png" />
+                <img class="login-logo hidden-phone" src="~/Images/logo-200.png" />
+            </a>
         </div>
         <div class="span8">
             <div class="colored-content-block center-align login-instructions">
