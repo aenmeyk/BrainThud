@@ -22,6 +22,7 @@ namespace BrainThud.Web
         public const string API_CARDS = "ApiCards";
         public const string API_DEFAULT = "ApiDefault";
         public const string DEFAULT = "Default";
+        public const string DECK = "Deck";
         public const string HOME = "Home";
     }
 

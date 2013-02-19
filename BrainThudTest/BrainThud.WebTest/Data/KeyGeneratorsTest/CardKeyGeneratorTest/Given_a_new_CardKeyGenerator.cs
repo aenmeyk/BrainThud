@@ -7,7 +7,7 @@ using BrainThudTest.Builders;
 using Moq;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.CardKeyGeneratorTest
+namespace BrainThudTest.BrainThud.WebTest.Data.KeyGeneratorsTest.CardKeyGeneratorTest
 {
     [TestFixture]
     public abstract class Given_a_new_CardKeyGenerator : Gwt

@@ -6,6 +6,7 @@ namespace BrainThud.Web.Data.Repositories
     {
         void Update(T entity);
         T Get(string partitionKey, string rowKey);
+        IQueryable<T> Get(string partitionKey);
         IQueryable<T> GetAll();
     }
 }

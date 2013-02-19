@@ -3,11 +3,11 @@ using BrainThud.Web.Data.AzureQueues;
 
 namespace BrainThud.Web.Data.KeyGenerators
 {
-    public class QuizResultKeyGenerator : CardEntityKeyGenerator
+    public class UserConfigurationKeyGenerator : CardEntityKeyGenerator
     {
-        public QuizResultKeyGenerator(
+        public UserConfigurationKeyGenerator(
             IAuthenticationHelper authenticationHelper,
             IIdentityQueueManager identityQueueManager)
-            : base(authenticationHelper, identityQueueManager, CardRowTypes.QUIZ_RESULT){}
+            : base(authenticationHelper, identityQueueManager, CardRowTypes.CONFIGURATION){}
     }
 }

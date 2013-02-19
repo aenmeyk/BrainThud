@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using BrainThud.Core.Data.AzureTableStorage;
+using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 
@@ -50,9 +51,14 @@ namespace BrainThud.Web.Data.Repositories
 
         public T Get(string partitionKey, string rowKey)
         {
-            return this.EntitySet
-                .Where(x => x.PartitionKey == partitionKey && x.RowKey == rowKey)
+            return this.Get(partitionKey)
+                .Where(x => x.RowKey == rowKey)
                 .FirstOrDefault();
+        }
+
+        public IQueryable<T> Get(string partitionKey)
+        {
+            return this.EntitySet.Where(x => x.PartitionKey == partitionKey);
         }
 
         public IQueryable<T> GetAll()

@@ -13,6 +13,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
     {
         private readonly ICardEntityKeyGenerator cardKeyGenerator;
         private readonly ICardEntityKeyGenerator quizResultKeyGenerator;
+        private readonly ICardEntityKeyGenerator userConfigurationKeyGenerator;
         private readonly string tableName;
         private readonly string nameIdentifier;
         private readonly Lazy<ICardRepository> cards;
@@ -25,18 +26,20 @@ namespace BrainThud.Web.Data.AzureTableStorage
             ICloudStorageServices cloudStorageServices,
             ICardEntityKeyGenerator cardKeyGenerator,
             ICardEntityKeyGenerator quizResultKeyGenerator,
+            ICardEntityKeyGenerator userConfigurationKeyGenerator,
             string tableName,
             string nameIdentifier)
             : base(cloudStorageServices.CloudTableClient)
         {
             this.cardKeyGenerator = cardKeyGenerator;
             this.quizResultKeyGenerator = quizResultKeyGenerator;
+            this.userConfigurationKeyGenerator = userConfigurationKeyGenerator;
             this.tableName = tableName;
             this.nameIdentifier = nameIdentifier;
             this.IgnoreResourceNotFoundException = true;
             this.cards = new Lazy<ICardRepository>(() => new CardRepository(this, this.cardKeyGenerator, this.QuizCalendar, this.nameIdentifier));
             this.quizResults = new Lazy<IQuizResultsRepository>(() => new QuizResultsRepository(this, this.quizResultKeyGenerator, this.nameIdentifier));
-            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => new UserConfigurationRepository(this, this.cardKeyGenerator, this.nameIdentifier));
+            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => new UserConfigurationRepository(this, this.userConfigurationKeyGenerator, this.nameIdentifier));
             this.masterConfigurations = new Lazy<ITableStorageRepository<MasterConfiguration>>(() => new TableStorageRepository<MasterConfiguration>(this));
         }
 

@@ -16,6 +16,12 @@ namespace BrainThud.Web.App_Start
             );
 
             routes.MapRoute(
+                name: RouteNames.DECK,
+                url: "library/{userId}/{deckNameSlug}",
+                defaults: new { controller = "Library", action = "Deck" }
+            );
+
+            routes.MapRoute(
                 name: RouteNames.DEFAULT,
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

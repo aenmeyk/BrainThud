@@ -198,6 +198,7 @@
     <Compile Include="Data\AzureTableStorage\ITableStorageContext.cs" />
     <Compile Include="Data\AzureTableStorage\ITableStorageContextFactory.cs" />
     <Compile Include="Data\KeyGenerators\CardEntityKeyGenerator.cs" />
+    <Compile Include="Data\KeyGenerators\UserConfigurationKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\ICardEntityKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\QuizResultKeyGenerator.cs" />
     <Compile Include="Data\Repositories\CardEntityRepository.cs" />
@@ -396,6 +397,7 @@
     <Content Include="Views\Library\Index.cshtml" />
     <Content Include="Views\Shared\_public-layout.cshtml" />
     <Content Include="Views\Home\home.cshtml" />
+    <Content Include="Views\Library\card-deck.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

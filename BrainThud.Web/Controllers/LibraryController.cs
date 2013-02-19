@@ -40,11 +40,18 @@ namespace BrainThud.Web.Controllers
         }
 
         //
-        // GET: /Library/Details/5
+        // GET: /Library/5/342
 
-        //        public ActionResult Details(int id)
-        //        {
-        //            return View();
-        //        }
+        public ActionResult Deck(int userId, string deckNameSlug)
+        {
+            deckNameSlug = deckNameSlug.ToLower();
+            var userConfiguration = this.TableStorageContext.UserConfigurations.GetByUserId(userId);
+            var partitionKey = userConfiguration.PartitionKey;
+            var cards = this.TableStorageContext.Cards.Get(partitionKey)
+                .Where(x => x.DeckNameSlug == deckNameSlug)
+                .ToList();
+
+            return View("card-deck", cards);
+        }
     }
 }

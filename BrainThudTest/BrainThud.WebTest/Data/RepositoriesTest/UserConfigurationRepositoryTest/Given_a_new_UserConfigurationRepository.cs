@@ -12,15 +12,15 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.UserConfiguratio
         public override void Given()
         {
             this.TableStorageContext = new Mock<ITableStorageContext>();
-            this.CardKeyGenerator = new Mock<ICardEntityKeyGenerator>();
+            this.UserConfigurationKeyGenerator = new Mock<ICardEntityKeyGenerator>();
 
             this.UserConfigurationRepository = new UserConfigurationRepository(
                 this.TableStorageContext.Object,
-                this.CardKeyGenerator.Object,
+                this.UserConfigurationKeyGenerator.Object,
                 TestValues.NAME_IDENTIFIER);
         }
 
-        protected Mock<ICardEntityKeyGenerator> CardKeyGenerator { get; private set; }
+        protected Mock<ICardEntityKeyGenerator> UserConfigurationKeyGenerator { get; private set; }
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
         protected UserConfigurationRepository UserConfigurationRepository { get; set; }
     }

@@ -9,13 +9,19 @@ namespace BrainThud.Web.Data.Repositories
     {
         public UserConfigurationRepository(
             ITableStorageContext tableStorageContext,
-            ICardEntityKeyGenerator cardKeyGenerator, 
+            ICardEntityKeyGenerator userConfigurationKeyGenerator, 
             string nameIdentifier)
-            : base(tableStorageContext, cardKeyGenerator, nameIdentifier, CardRowTypes.CONFIGURATION){}
+            : base(tableStorageContext, userConfigurationKeyGenerator, nameIdentifier, CardRowTypes.CONFIGURATION){}
 
         public UserConfiguration GetByNameIdentifier()
         {
             return this.GetForUser().FirstOrDefault();
+        }
+
+        public UserConfiguration GetByUserId(int userId)
+        {
+            var rowKey = this.KeyGenerator.GetRowKey(userId);
+            return this.EntitySet.Where(x => x.RowKey == rowKey).FirstOrDefault();
         }
     }
 }

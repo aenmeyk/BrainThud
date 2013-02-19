@@ -24,10 +24,12 @@ namespace BrainThud.Web.DependencyResolution
 
                     var cardKeyGenerator = x.For<ICardEntityKeyGenerator>().Use<CardKeyGenerator>();
                     var quizResultKeyGenerator = x.For<ICardEntityKeyGenerator>().Use<QuizResultKeyGenerator>();
+                    var userConfigurationKeyGenerator = x.For<ICardEntityKeyGenerator>().Use<UserConfigurationKeyGenerator>();
 
                     x.For<ITableStorageContextFactory>().Use<TableStorageContextFactory>()
                         .Ctor<ICardEntityKeyGenerator>("cardKeyGenerator").Is(cardKeyGenerator)
-                        .Ctor<ICardEntityKeyGenerator>("quizResultKeyGenerator").Is(quizResultKeyGenerator);
+                        .Ctor<ICardEntityKeyGenerator>("quizResultKeyGenerator").Is(quizResultKeyGenerator)
+                        .Ctor<ICardEntityKeyGenerator>("userConfigurationKeyGenerator").Is(userConfigurationKeyGenerator);
                 });
 
             return ObjectFactory.Container;
