@@ -1,4 +1,4 @@
-/*
+﻿/*
  * HTML5 Boilerplate
  *
  * What follows is the result of much research on cross-browser styling.
@@ -758,3 +758,9 @@ a:hover {
 .nav-list > .active > a:hover {
   background-color: #3799c4;
 }
+/*code, pre {
+    word-break: normal;
+    word-wrap: normal;
+    white-space:nowrap;
+    overflow: scroll;
+}*/

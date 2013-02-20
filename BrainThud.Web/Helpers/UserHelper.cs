@@ -24,12 +24,11 @@ namespace BrainThud.Web.Helpers
         public UserConfiguration CreateUserConfiguration()
         {
             var userId = this.identityQueueManager.GetNextIdentity();
-            var configurationId = this.identityQueueManager.GetNextIdentity();
 
             var configuration = new UserConfiguration
             {
                 PartitionKey = string.Format("{0}-{1}", this.authenticationHelper.NameIdentifier, userId),
-                RowKey = string.Format("{0}-{1}", CardRowTypes.CONFIGURATION, configurationId),
+                RowKey = string.Format("{0}-{1}", CardRowTypes.CONFIGURATION, userId),
                 UserId = userId,
                 QuizInterval0 = defaultQuizCalendar[0],
                 QuizInterval1 = defaultQuizCalendar[1],

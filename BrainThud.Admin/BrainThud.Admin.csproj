@@ -123,9 +123,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BrainThud.Core\BrainThud.Core.csproj">
-      <Project>{73F9AB29-527B-49EA-A24E-E4C800D1800D}</Project>
-      <Name>BrainThud.Core</Name>
+    <ProjectReference Include="..\BrainThud.Core.Web\BrainThud.Core.Web.csproj">
+      <Project>{b4a0adb4-f871-4160-8915-3d04dfdcb02b}</Project>
+      <Name>BrainThud.Core.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\BrainThud.Web\BrainThud.Web.csproj">
       <Project>{7A052710-6240-4B71-8E72-39C90401B2C7}</Project>

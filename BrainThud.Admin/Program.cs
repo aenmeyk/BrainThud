@@ -6,6 +6,7 @@ using BrainThud.Web.DependencyResolution;
 using Microsoft.WindowsAzure;
 using System.Linq;
 using Microsoft.WindowsAzure.Storage;
+using BrainThud.Web.Extensions;
 
 namespace BrainThud.Admin
 {
@@ -27,24 +28,10 @@ namespace BrainThud.Admin
         private static void SetCardValues(ITableStorageContext context)
         {
             var cards = context.Cards.GetAll();
-            var quizResults = context.QuizResults.GetAll().ToList();
 
             foreach (var item in cards)
             {
-                var quizResult = quizResults
-                    .Where(x => x.CardId == item.EntityId)
-                    .OrderBy(x => x.QuizDate)
-                    .LastOrDefault();
-
-                if(quizResult != null)
-                {
-                    item.CompletedQuizYear = quizResult.QuizYear;
-                    item.CompletedQuizMonth = quizResult.QuizMonth;
-                    item.CompletedQuizDay = quizResult.QuizDay;
-                    item.IsCorrect = quizResult.IsCorrect;
-                }
-
-
+                item.DeckNameSlug = item.DeckName.GenerateSlug();
                 context.Cards.Update(item);
             }
         }
