@@ -9,6 +9,6 @@
 <ul>
     @foreach(var cardDeck in Model)
     {
-        <li>@cardDeck.DeckName</li>
+        <li>@Html.ActionLink(cardDeck.DeckName, "Deck", new { userId = cardDeck.UserId, deckNameSlug = cardDeck.DeckNameSlug })</li>
     }
 </ul>

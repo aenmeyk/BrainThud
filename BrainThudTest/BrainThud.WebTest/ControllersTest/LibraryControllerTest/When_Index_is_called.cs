@@ -17,7 +17,11 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.LibraryControllerTest
         public override void When()
         {
             this.cards = Builder<Card>.CreateListOfSize(10)
-                .Random(5).With(x => x.DeckName = TestValues.STRING )
+                .All()
+                    .With(x => x.UserId = TestValues.USER_ID)
+                .Random(5)
+                    .With(x => x.DeckName = TestValues.STRING)
+                    .And(x => x.DeckNameSlug = TestValues.STRING)
                 .Build();
 
             this.TableStorageContext.Setup(x => x.Cards.GetAll()).Returns(this.cards.AsQueryable);
