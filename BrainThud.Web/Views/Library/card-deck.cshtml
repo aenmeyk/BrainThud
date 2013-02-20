@@ -1,8 +1,20 @@
 ﻿@model System.Collections.Generic.List<BrainThud.Core.Models.Card>
 
 @{
-    ViewBag.Title = "title";
+    var firstCard = Model.FirstOrDefault();
+
+    if(firstCard != null)
+    {
+        ViewBag.Title = firstCard.DeckName;
+    }
+    
     Layout = "~/Views/Shared/_public-layout.cshtml";
 }
 
-<h2>title</h2>
+<h2>@ViewBag.Title</h2>
+<ul>
+    @foreach(var card in Model)
+    {
+        <li>@card.Question</li>
+    }
+</ul>
