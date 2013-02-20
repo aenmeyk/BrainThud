@@ -7,8 +7,10 @@
 
 <h2>@ViewBag.Title</h2>
 <ul>
-    @foreach(var cardDeck in Model)
+    @foreach (var cardDeck in Model)
     {
-        <li>@Html.ActionLink(cardDeck.DeckName, "Deck", new { userId = cardDeck.UserId, deckNameSlug = cardDeck.DeckNameSlug })</li>
+        <li>
+            @Html.ActionLink(cardDeck.DeckName, "Deck", new { userId = cardDeck.UserId, deckNameSlug = cardDeck.DeckNameSlug })
+        </li>
     }
 </ul>

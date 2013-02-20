@@ -3,18 +3,20 @@
 @{
     var firstCard = Model.FirstOrDefault();
 
-    if(firstCard != null)
+    if (firstCard != null)
     {
         ViewBag.Title = firstCard.DeckName;
     }
-    
+
     Layout = "~/Views/Shared/_public-layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
 <ul>
-    @foreach(var card in Model)
+    @foreach (var card in Model)
     {
-        <li>@card.Question</li>
+        <li>
+            <div class="markdown">@card.Question</div>
+        </li>
     }
 </ul>

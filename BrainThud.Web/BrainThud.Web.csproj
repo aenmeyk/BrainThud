@@ -314,6 +314,7 @@
     <Content Include="Scripts\Markdown.Sanitizer.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\public\dom.js" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\underscore.js" />
@@ -431,7 +432,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\public\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
