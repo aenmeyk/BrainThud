@@ -25,6 +25,10 @@ namespace BrainThud.Web.Controllers
 #endif
         public ActionResult Index()
         {
+            // TODO: We need some better way of retrieving the card deck names from storage.
+            // It will be too expensive to retrieve every card.  Maybe store the deck names as 
+            // a property in UserConfiguration or as a separate entity type: 
+            // CardDeck { DeckName, DeckNameSlug, NumberOfCards }
             var cards = this.TableStorageContext
                 .Cards
                 .GetAll()

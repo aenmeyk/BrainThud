@@ -15,8 +15,13 @@
 <ul>
     @foreach (var card in Model)
     {
-        <li>
-            <div class="markdown">@card.Question</div>
+        <li id="card-@card.EntityId">
+            <div class="markdown list-card question">@card.Question</div>
+            <div class="markdown list-card answer hidden">@card.Answer</div>
+            <ul class="mini-menu">
+                <li><a data-bind="click: function() { $root.showCardInfoDialog($data) }">view</a></li>
+                <li><a href="javascript:flipCard('card-@card.EntityId')">flip</a></li>
+            </ul>
         </li>
     }
 </ul>
