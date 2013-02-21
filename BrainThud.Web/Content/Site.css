@@ -764,3 +764,9 @@ a:hover {
     white-space:nowrap;
     overflow: scroll;
 }*/
+pre {
+  overflow: auto;
+  word-break: normal;
+  word-wrap: normal;
+  white-space: pre;
+}
