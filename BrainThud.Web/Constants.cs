@@ -92,6 +92,7 @@ namespace BrainThud.Web
         public const int SEED_IDENTITIES = 200;
         public const int IDENTITY_QUEUE_VISIBILITY_TIMEOUT_SECONDS = 10;
         public static int SeedRefreshIntervalSeconds = 120;
+        public const string TEST_PARTITION_KEY = "5dfwtubuqmmf0foup1nhorsbgt5yilyqwp6vj44knre-532";
     }
 
     public static class TypeValues

@@ -10,7 +10,7 @@
     @foreach (var cardDeck in Model)
     {
         <li>
-            @Html.ActionLink(cardDeck.DeckName, "Deck", new { userId = cardDeck.UserId, deckNameSlug = cardDeck.DeckNameSlug })
+            @Html.ActionLink(cardDeck.DeckName, "Deck", new { userId = cardDeck.UserId, deckNameSlug = cardDeck.DeckNameSlug }, new {@class= "block-link hover-border"})
         </li>
     }
 </ul>

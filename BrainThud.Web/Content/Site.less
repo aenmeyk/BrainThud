@@ -203,6 +203,24 @@ h1, h2, h3, h4, h5, h6 {
 	display:none;
 }
 
+.undecorated-link {
+    color: @primary-text-color;
+	&:hover{
+		cursor: pointer;
+        text-decoration:none;
+        color: @primary-text-color;
+	}
+}
+
+.hover-border {
+	&:hover{
+		cursor: pointer;
+        text-decoration:none;
+        color: @primary-text-color;
+        border-color: @primary-text-color  !important;
+	}
+}
+
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- Text -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -316,6 +334,13 @@ h1, h2, h3, h4, h5, h6 {
 	&:hover{
 		cursor: pointer;
 	}
+}
+
+.block-link {
+    display: block;
+    color: @primary-text-color;
+    border-color: @question-color !important;
+   .card(10px, 0);
 }
 
 .card-deck-container {

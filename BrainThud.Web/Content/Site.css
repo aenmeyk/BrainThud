@@ -146,6 +146,20 @@ h6 {
 .view {
   display: none;
 }
+.undecorated-link {
+  color: #5a5a5a;
+}
+.undecorated-link:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: #5a5a5a;
+}
+.hover-border:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: #5a5a5a;
+  border-color: #5a5a5a !important;
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- Text -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -244,6 +258,22 @@ h6 {
 }
 .list-card-deck:hover {
   cursor: pointer;
+}
+.block-link {
+  display: block;
+  color: #5a5a5a;
+  border-color: #d4d4d4 !important;
+  border: 1px;
+  border-style: solid;
+  padding: 10px;
+  min-height: 0 !important;
+  margin: 10px 0 0 0;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 }
 .card-deck-container {
   background-color: white;
