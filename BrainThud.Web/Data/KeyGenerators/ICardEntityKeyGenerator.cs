@@ -5,5 +5,6 @@ namespace BrainThud.Web.Data.KeyGenerators
         int GeneratedEntityId { get; }
         string GetRowKey(int entityId);
         string GetPartitionKey(int userId);
+        string GetPartitionKey(string nameIdentifier, int userId);
     }
 }

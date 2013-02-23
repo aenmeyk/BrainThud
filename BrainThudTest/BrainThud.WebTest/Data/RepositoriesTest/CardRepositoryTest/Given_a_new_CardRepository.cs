@@ -3,7 +3,6 @@ using BrainThud.Core.Calendars;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
-using BrainThud.Core.Models;
 using FizzWare.NBuilder;
 using Moq;
 using NUnit.Framework;
@@ -14,14 +13,11 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
     [TestFixture]
     public abstract class Given_a_new_CardRepository : Gwt
     {
-
         public override void Given()
         {
             var cards = Builder<Card>.CreateListOfSize(5)
-                .TheFirst(3)
-                    .With(x => x.PartitionKey = TestValues.CARD_PARTITION_KEY)
-                .TheFirst(1)
-                    .And(x => x.RowKey = TestValues.CARD_ROW_KEY)
+                .TheFirst(3).With(x => x.PartitionKey = TestValues.CARD_PARTITION_KEY)
+                .TheFirst(1).And(x => x.RowKey = TestValues.CARD_ROW_KEY)
                 .Build();
 
             this.TableStorageContext = new Mock<ITableStorageContext> { DefaultValue = DefaultValue.Mock };

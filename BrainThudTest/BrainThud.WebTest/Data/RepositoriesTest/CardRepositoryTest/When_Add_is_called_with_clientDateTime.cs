@@ -1,6 +1,4 @@
-﻿using System;
-using BrainThud.Core.Models;
-using BrainThud.Web;
+﻿using BrainThud.Core.Models;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -14,7 +12,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
         public override void When()
         {
             this.QuizCalendar.Setup(x => x[0]).Returns(TestValues.INT);
-            this.CardRepository.Add(card, TestValues.DATETIME);
+            this.CardRepository.Add(this.card, TestValues.DATETIME);
         }
 
         [Test]

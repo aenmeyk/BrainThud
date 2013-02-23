@@ -384,6 +384,9 @@ input[type=text] {
   margin-top: 3px;
   font-weight: bold;
 }
+.form-text {
+  margin-top: 3px;
+}
 .text-small {
   font-size: 13px;
   color: #aaaaaa;

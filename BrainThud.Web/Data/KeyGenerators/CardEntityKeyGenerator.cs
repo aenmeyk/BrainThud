@@ -34,7 +34,12 @@ namespace BrainThud.Web.Data.KeyGenerators
 
         public string GetPartitionKey(int userId)
         {
-            return string.Format("{0}-{1}", this.authenticationHelper.NameIdentifier, userId);
+            return this.GetPartitionKey(this.authenticationHelper.NameIdentifier, userId);
+        }
+
+        public string GetPartitionKey(string nameIdentifier, int userId)
+        {
+            return string.Format("{0}-{1}", nameIdentifier, userId);
         }
 
         public string GetRowKey(int entityId)

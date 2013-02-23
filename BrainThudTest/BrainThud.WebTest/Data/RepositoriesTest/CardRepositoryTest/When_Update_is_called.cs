@@ -1,5 +1,4 @@
 ﻿using BrainThud.Core.Models;
-using BrainThud.Core.Models;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -12,7 +11,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
 
         public override void When()
         {
-            this.CardRepository.Update(card);
+            this.CardRepository.Update(this.card);
         }
 
         [Test]

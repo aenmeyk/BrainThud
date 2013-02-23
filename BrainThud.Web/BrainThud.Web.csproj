@@ -399,6 +399,7 @@
     <Content Include="Views\Shared\_public-layout.cshtml" />
     <Content Include="Views\Home\home.cshtml" />
     <Content Include="Views\Library\card-deck.cshtml" />
+    <Content Include="Views\Library\card.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

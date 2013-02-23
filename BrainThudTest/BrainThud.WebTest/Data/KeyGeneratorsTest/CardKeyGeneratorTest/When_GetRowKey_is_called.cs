@@ -15,7 +15,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.KeyGeneratorsTest.CardKeyGenerato
         }
 
         [Test]
-        public void Then_the_CardId_should_be_c_dash_CardId()
+        public void Then_the_RowKey_should_be_c_dash_CardId()
         {
             this.rowKey.Should().Be(CardRowTypes.CARD + "-" + TestValues.CARD_ID);
         }

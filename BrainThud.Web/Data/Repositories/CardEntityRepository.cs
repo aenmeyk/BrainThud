@@ -37,8 +37,12 @@ namespace BrainThud.Web.Data.Repositories
         public T GetById(int userId, int entityId)
         {
             var partitionKey = this.KeyGenerator.GetPartitionKey(userId);
-            var rowKey = this.KeyGenerator.GetRowKey(entityId);
+            return this.GetByPartitionKey(partitionKey, entityId);
+        }
 
+        public T GetByPartitionKey(string partitionKey, int entityId)
+        {
+            var rowKey = this.KeyGenerator.GetRowKey(entityId);
             return this.Get(partitionKey, rowKey);
         }
 
@@ -46,7 +50,6 @@ namespace BrainThud.Web.Data.Repositories
         {
             var partitionKey = this.KeyGenerator.GetPartitionKey(userId);
             var rowKey = this.KeyGenerator.GetRowKey(entityId);
-
             this.Delete(partitionKey, rowKey);
         }
 

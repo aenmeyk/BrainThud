@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using BrainThud.Core;
 using BrainThud.Core.Models;
 using FizzWare.NBuilder;
 using FluentAssertions;
@@ -17,12 +16,6 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.LibraryControllerTest
 
         public override void When()
         {
-            var userConfiguration = new UserConfiguration
-            {
-                PartitionKey = TestValues.PARTITION_KEY,
-                RowKey = string.Format("{0}-{1}", CardRowTypes.CONFIGURATION, TestValues.USER_ID)
-            };
-
             this.cards = Builder<Card>.CreateListOfSize(10)
               .All()
                 .With(x => x.PartitionKey = TestValues.PARTITION_KEY)
@@ -31,7 +24,6 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.LibraryControllerTest
                 .With(x => x.DeckNameSlug = TestValues.STRING.ToLower())
               .Build();
 
-            this.TableStorageContext.Setup(x => x.UserConfigurations.GetByUserId(TestValues.USER_ID)).Returns(userConfiguration);
             this.TableStorageContext.Setup(x => x.Cards.Get(TestValues.PARTITION_KEY)).Returns<string>(x => this.cards.AsQueryable());
             this.result = (ViewResult)this.LibraryController.Deck(TestValues.USER_ID, TestValues.STRING.ToUpper());
         }

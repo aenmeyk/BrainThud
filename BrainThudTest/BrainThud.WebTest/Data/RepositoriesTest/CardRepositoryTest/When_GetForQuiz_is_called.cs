@@ -2,9 +2,7 @@
 using System.Linq;
 using BrainThud.Core.Models;
 using BrainThud.Web;
-using BrainThud.Core.Models;
 using FluentAssertions;
-using Moq;
 using NUnit.Framework;
 
 namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTest

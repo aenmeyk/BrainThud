@@ -63,5 +63,13 @@ namespace BrainThud.Web.Controllers
 
             return View("card-deck", cards);
         }
+
+        public ActionResult Card(int userId, int cardId)
+        {
+            var userConfiguration = this.TableStorageContext.UserConfigurations.GetByUserId(userId);
+            var partitionKey = userConfiguration.PartitionKey;
+            var card = this.TableStorageContext.Cards.GetByPartitionKey(partitionKey, cardId);
+            return View("card", card);
+        }
     }
 }

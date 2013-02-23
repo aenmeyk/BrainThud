@@ -179,6 +179,7 @@
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\QuizResultsControllerTest\When_a_Post_is_made_without_IfMatchNone_and_the_QuizResult_already_exists.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\QuizResultsControllerTest\When_a_Post_is_made_with_IfMatchNone_and_the_QuizResult_already_exists.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_GetForQuiz_is_called_by_a_user_that_does_not_exist.cs" />
+    <Compile Include="BrainThud.WebTest\ControllersTest\LibraryControllerTest\When_Card_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\LibraryControllerTest\When_Deck_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\LibraryControllerTest\Given_a_new_LibraryController.cs" />
     <Compile Include="BrainThud.WebTest\ControllersTest\LibraryControllerTest\When_Index_is_called.cs" />
@@ -189,6 +190,8 @@
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueManagerTest\When_GetNextIdentity_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueManagerTest\Given_a_new_IdentityQueueManager.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueManagerTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\CardKeyGeneratorTest\When_GetPartitionKey_is_called_with_a_NameIdentifier_and_a_UserId.cs" />
+    <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\CardKeyGeneratorTest\When_GetPartitionKey_is_called_with_a_UserId.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\CardKeyGeneratorTest\When_GetRowKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\CardKeyGeneratorTest\When_GeneratePartitionKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\CardKeyGeneratorTest\Given_a_new_CardKeyGenerator.cs" />
@@ -210,6 +213,7 @@
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\UserConfigurationKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\QuizResultKeyGeneratorTest\Given_a_new_QuizResultKeyGenerator.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\QuizResultKeyGeneratorTest\When_GenerateRowKey_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_GetByPartitionKey_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Add_is_called_with_clientDateTime.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Add_is_called_with_null_DeckName.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_Update_is_called.cs" />

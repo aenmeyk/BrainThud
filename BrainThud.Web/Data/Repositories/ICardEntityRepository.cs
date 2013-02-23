@@ -7,6 +7,7 @@ namespace BrainThud.Web.Data.Repositories
     {
         IQueryable<T> GetForUser();
         T GetById(int userId, int entityId);
+        T GetByPartitionKey(string partitionKey, int entityId);
         void DeleteById(int userId, int entityId);
     }
 }

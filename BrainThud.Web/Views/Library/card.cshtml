@@ -1,0 +1,38 @@
+﻿@model BrainThud.Core.Models.Card
+
+@{
+    Layout = "~/Views/Shared/_public-layout.cshtml";
+}
+
+<div class="row-fluid skip-line">
+    <div class="span2">
+        <span class="form-label">Deck name</span>
+    </div>
+    <div class="span10">
+        <div class="form-text">@Model.DeckName</div>
+    </div>
+</div>
+<div class="row-fluid skip-line">
+    <div class="span2">
+        <span class="form-label">Tags</span>
+    </div>
+    <div class="span10">
+        <div class="form-text">@Model.Tags</div>
+    </div>
+</div>
+<div class="row-fluid skip-line">
+    <div class="span2">
+        <span class="form-label">Question</span>
+    </div>
+    <div class="span10">
+        <div class="markdown list-card question">@Model.Question</div>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span2">
+        <span class="form-label">Answer</span>
+    </div>
+    <div class="span10">
+        <div class="markdown list-card answer">@Model.Answer</div>
+    </div>
+</div>

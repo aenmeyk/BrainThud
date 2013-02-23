@@ -22,6 +22,12 @@ namespace BrainThud.Web.App_Start
             );
 
             routes.MapRoute(
+                name: RouteNames.CARD,
+                url: "flashcard/{userId}/{cardId}/{cardSlug}",
+                defaults: new { controller = "Library", action = "Card" }
+            );
+
+            routes.MapRoute(
                 name: RouteNames.DEFAULT,
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
