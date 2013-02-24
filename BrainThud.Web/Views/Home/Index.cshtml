@@ -14,10 +14,13 @@
     </div>
 </div>
 <div class="row-fluid skip-line">
-    <div class="span3 offset3">
-        @Html.ActionLink("Browse", "Index", "Library", null, new { @class = "btn btn-success primary-button" })
+    <div class="span3 offset1">
+        @Html.ActionLink("Browse Flashcards", "Index", "Library", null, new { @class = "btn btn-warning primary-button" })
+    </div>
+    <div class="span4">
+        @Html.ActionLink("Sign Up", "Login", "Account", null, new { @class = "btn btn-primary primary-button" })
     </div>
     <div class="span3">
-        @Html.ActionLink("Log In", "Login", "Account", null, new { @class = "btn btn-primary primary-button" })
+        @Html.ActionLink("Log In", "Login", "Account", null, new { @class = "btn btn-success primary-button" })
     </div>
 </div>

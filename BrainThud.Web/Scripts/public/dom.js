@@ -1,7 +1,8 @@
 ﻿var converter = Markdown.getSanitizingConverter();
 $('.markdown').each(function() {
     var elem = $(this);
-    elem.html(converter.makeHtml(elem.html()));
+    var decoded = $("<div/>").html(elem.html()).text();
+    elem.html(converter.makeHtml(decoded));
 });
 
 var flipCard = function(entityId) {

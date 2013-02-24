@@ -142,6 +142,19 @@ h1, h2, h3, h4, h5, h6 {
 	color: @primary-text-color;
 }
 
+.identity a {
+    float: none;
+    padding: 10px 15px 10px;
+    color: #777777;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #ffffff;
+    &:hover {
+      color: #333333;
+      text-decoration: none;
+      background-color: transparent;
+    }
+}
+
 .slider {
 	margin-top: 10px;
 	margin-bottom: 30px;
@@ -676,7 +689,7 @@ input[type=text] {
 
     .primary-button {
         margin-top: 0;
-        padding: 15px;
+        padding: 15px 0;
     }
 
     .card-toolbar {
@@ -867,6 +880,10 @@ a {
 
 .btn-success {
 	.gradient-background(#9bcc57);
+}
+
+.btn-warning {
+	.gradient-background(#f7a03a);
 }
 
 .nav-list > .active > a,

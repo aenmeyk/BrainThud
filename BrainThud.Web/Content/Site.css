@@ -118,6 +118,18 @@ h5,
 h6 {
   color: #5a5a5a;
 }
+.identity a {
+  float: none;
+  padding: 10px 15px 10px;
+  color: #777777;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #ffffff;
+}
+.identity a:hover {
+  color: #333333;
+  text-decoration: none;
+  background-color: transparent;
+}
 .slider {
   margin-top: 10px;
   margin-bottom: 30px;
@@ -585,7 +597,7 @@ input[type=text] {
 @media (max-width: 767px) {
   .primary-button {
     margin-top: 0;
-    padding: 15px;
+    padding: 15px 0;
   }
   .card-toolbar {
     margin: 0;
@@ -786,6 +798,27 @@ a:hover {
 .btn-success[disabled] {
   background-color: #82b838;
   *background-color: #67912c;
+}
+.btn-warning {
+  background-color: #f7a03a;
+  *background-color: #f4880a;
+  background-image: -moz-linear-gradient(top, #f9b86b, #f4880a);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f9b86b), to(#f4880a));
+  background-image: -webkit-linear-gradient(top, #f9b86b, #f4880a);
+  background-image: -o-linear-gradient(top, #f9b86b, #f4880a);
+  background-image: linear-gradient(to bottom, #f9b86b, #f4880a);
+  border-color: #f69421 #f69421 #c36d08;
+}
+.btn-warning.dropdown-toggle {
+  background-color: #f69421;
+}
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning.active,
+.btn-warning.disabled,
+.btn-warning[disabled] {
+  background-color: #f4880a;
+  *background-color: #c36d08;
 }
 .nav-list > .active > a,
 .nav-list > .active > a:hover {

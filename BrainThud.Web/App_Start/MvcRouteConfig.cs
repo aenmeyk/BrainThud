@@ -17,13 +17,13 @@ namespace BrainThud.Web.App_Start
 
             routes.MapRoute(
                 name: RouteNames.DECK,
-                url: "library/{userId}/{deckNameSlug}",
+                url: "card-decks/{userId}/{deckNameSlug}",
                 defaults: new { controller = "Library", action = "Deck" }
             );
 
             routes.MapRoute(
                 name: RouteNames.CARD,
-                url: "flashcard/{userId}/{cardId}/{cardSlug}",
+                url: "flashcards/{userId}/{cardId}/{cardSlug}",
                 defaults: new { controller = "Library", action = "Card" }
             );
 

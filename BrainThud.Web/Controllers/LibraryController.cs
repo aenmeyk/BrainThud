@@ -32,7 +32,7 @@ namespace BrainThud.Web.Controllers
             var cards = this.TableStorageContext
                 .Cards
                 .GetAll()
-                .Where(x => x.PartitionKey != ConfigurationSettings.TEST_PARTITION_KEY)
+//                .Where(x => x.PartitionKey != ConfigurationSettings.TEST_PARTITION_KEY)
                 .ToList();
 
             var cardDecks = from c in cards
