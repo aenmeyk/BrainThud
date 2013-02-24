@@ -22,7 +22,7 @@ namespace BrainThud.Admin
 
             SetCardValues(context);
 
-//            context.Commit();
+            context.Commit();
         }
 
         private static void SetCardValues(ITableStorageContext context)
@@ -31,7 +31,6 @@ namespace BrainThud.Admin
 
             foreach (var item in cards)
             {
-                item.DeckNameSlug = item.DeckName.GenerateSlug();
                 context.Cards.Update(item);
             }
         }

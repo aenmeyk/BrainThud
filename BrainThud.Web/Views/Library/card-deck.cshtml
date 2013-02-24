@@ -16,12 +16,12 @@
     @foreach (var card in Model)
     {
         <li>
-            <a id="card-@card.EntityId" class="undecorated-link" href="@Url.Action("Card", new { userId = card.UserId, cardId = card.EntityId, cardSlug = "test-slug" })">
+            <a id="card-@card.EntityId" class="undecorated-link" href="@Url.Action("Card", new { userId = card.UserId, cardId = card.EntityId, cardSlug = card.CardSlug })">
                 <div class="markdown list-card hover-border question">@card.Question</div>
                 <div class="markdown list-card hover-border answer hidden">@card.Answer</div>
             </a>
             <ul class="mini-menu">
-                <li>@Html.ActionLink("view", "Card", new { userId = card.UserId, cardId = card.EntityId, cardSlug = "test-slug" })
+                <li>@Html.ActionLink("view", "Card", new { userId = card.UserId, cardId = card.EntityId, cardSlug = card.CardSlug })
                 <li><a href="javascript:flipCard('card-@card.EntityId')">flip</a></li>
             </ul>
         </li>

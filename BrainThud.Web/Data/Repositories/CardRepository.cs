@@ -34,14 +34,20 @@ namespace BrainThud.Web.Data.Repositories
             entity.QuizDate = clientDateTime.AddDays(this.quizCalendar[0]);
             entity.UserId = this.UserId;
             entity.EntityId = this.KeyGenerator.GeneratedEntityId;
-            entity.DeckNameSlug = entity.DeckName.GenerateSlug(ConfigurationSettings.CARD_DECK_SLUG_LENGTH);
+            GenerateSlugs(entity);
 
             base.Add(entity);
         }
 
-        public override void Update(Card entity)
+        private static void GenerateSlugs(Card entity)
         {
             entity.DeckNameSlug = entity.DeckName.GenerateSlug(ConfigurationSettings.CARD_DECK_SLUG_LENGTH);
+            entity.CardSlug = entity.Question.GenerateSlug(ConfigurationSettings.CARD_SLUG_LENGTH);
+        }
+
+        public override void Update(Card entity)
+        {
+            GenerateSlugs(entity);
             base.Update(entity);
         }
 

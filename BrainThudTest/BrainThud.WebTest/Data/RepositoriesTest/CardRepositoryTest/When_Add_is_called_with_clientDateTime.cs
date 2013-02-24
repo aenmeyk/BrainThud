@@ -7,7 +7,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
     [TestFixture]
     public class When_Add_is_called_with_clientDateTime : Given_a_new_CardRepository
     {
-        private readonly Card card = new Card { DeckName = "the deck name" };
+        private readonly Card card = new Card { DeckName = "the deck name", Question = "the question"};
 
         public override void When()
         {
@@ -20,6 +20,18 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
         {
             var expectedDate = TestValues.DATETIME.AddDays(TestValues.INT);
             this.card.QuizDate.Should().Be(expectedDate);
+        }
+
+        [Test]
+        public void Then_the_DeckNameSlug_should_be_set()
+        {
+            this.card.DeckNameSlug.Should().Be("the-deck-name");
+        }
+
+        [Test]
+        public void Then_the_CardSlug_should_be_set()
+        {
+            this.card.CardSlug.Should().Be("the-question");
         }
     }
 }
