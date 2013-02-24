@@ -21,7 +21,7 @@ namespace BrainThud.Web.Authentication
                 if (HttpContext.Current == null) return "TestIdentityProvider";
 #endif
                 return FederatedAuthentication.SessionAuthenticationModule.ContextSessionSecurityToken != null
-                    ? this.claims.First(x => x.Type == IDENTITY_PROVIDER).Value.GenerateSlug()
+                    ? this.claims.First(x => x.Type == IDENTITY_PROVIDER).Value.GenerateSlug(ConfigurationSettings.PARTITION_KEY_SLUG_LENGTH)
                     : null;
             }
         }
@@ -35,7 +35,7 @@ namespace BrainThud.Web.Authentication
 #endif
 
                 return FederatedAuthentication.SessionAuthenticationModule.ContextSessionSecurityToken != null
-                    ? this.claims.First(x => x.Type == NAMEIDENTIFIER).Value.GenerateSlug()
+                    ? this.claims.First(x => x.Type == NAMEIDENTIFIER).Value.GenerateSlug(ConfigurationSettings.PARTITION_KEY_SLUG_LENGTH)
                     : null;
             }
         }

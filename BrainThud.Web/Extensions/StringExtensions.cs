@@ -4,7 +4,7 @@ namespace BrainThud.Web.Extensions
 {
     public static class StringExtensions
     {
-        public static string GenerateSlug(this string phrase)
+        public static string GenerateSlug(this string phrase, int length = 1024)
         {
             if(string.IsNullOrEmpty(phrase)) return phrase;
 
@@ -17,7 +17,7 @@ namespace BrainThud.Web.Extensions
             str = Regex.Replace(str, @"\s+", " ").Trim();
 
             // cut and trim 
-            str = str.Substring(0, str.Length <= 45 ? str.Length : 45).Trim();
+            str = str.Substring(0, str.Length <= length ? str.Length : length).Trim();
             
             // hyphens  
             str = Regex.Replace(str, @"\s", "-");  

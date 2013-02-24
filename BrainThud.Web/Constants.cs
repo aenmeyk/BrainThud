@@ -93,6 +93,9 @@ namespace BrainThud.Web
         public const int IDENTITY_QUEUE_VISIBILITY_TIMEOUT_SECONDS = 10;
         public static int SeedRefreshIntervalSeconds = 120;
         public const string TEST_PARTITION_KEY = "5dfwtubuqmmf0foup1nhorsbgt5yilyqwp6vj44knre-532";
+        public const int PARTITION_KEY_SLUG_LENGTH = 45;
+        public const int CARD_DECK_SLUG_LENGTH = 1024;
+        public const int CARD_SLUG_LENGTH = 125;
     }
 
     public static class TypeValues
