@@ -8,8 +8,8 @@
     <div class="span2">
         <span class="form-label">Deck name</span>
     </div>
-    <div class="span10">
-        <div class="form-text">@Model.DeckName</div>
+    <div class="span10 form-text">
+            @Html.ActionLink(Model.DeckName, "Deck", new { userId = @Model.UserId, deckNameSlug = @Model.DeckNameSlug }, new {@class= "plain-link"})
     </div>
 </div>
 <div class="row-fluid skip-line">
@@ -25,7 +25,7 @@
         <span class="form-label">Question</span>
     </div>
     <div class="span10">
-        <div class="markdown list-card question">@Model.Question</div>
+        <div class="markdown full-card question">@Model.Question</div>
     </div>
 </div>
 <div class="row-fluid">
@@ -33,6 +33,6 @@
         <span class="form-label">Answer</span>
     </div>
     <div class="span10">
-        <div class="markdown list-card answer">@Model.Answer</div>
+        <div class="markdown full-card answer">@Model.Answer</div>
     </div>
 </div>

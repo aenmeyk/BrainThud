@@ -17,7 +17,7 @@ namespace BrainThud.Web.Extensions
             str = Regex.Replace(str, @"\s+", " ").Trim();
 
             // cut and trim 
-            str = str.Substring(0, str.Length <= 1024 ? str.Length : 1024).Trim();
+            str = str.Substring(0, str.Length <= 45 ? str.Length : 45).Trim();
             
             // hyphens  
             str = Regex.Replace(str, @"\s", "-");  

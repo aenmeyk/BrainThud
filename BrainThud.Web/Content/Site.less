@@ -225,6 +225,14 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
+.plain-link {
+    color: @primary-text-color;
+	&:hover{
+		cursor: pointer;
+        color: @primary-text-color;
+	}
+}
+
 .hover-border {
 	&:hover{
 		cursor: pointer;
@@ -321,12 +329,12 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0 10px 0 60px !important;
 }
 
-.card (@padding: 50px, @min-height: 200px) {
+.card (@padding: 50px, @min-height: 200px, @margin: 10px 0 0 0) {
     border: 1px;
     border-style: solid;
     padding: @padding;
     min-height: @min-height !important;
-    margin: 10px 0 0 0;
+    margin: @margin;
     .corner-radius;
     .shadow;
 }
@@ -337,6 +345,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .list-card {
     .card(10px, 0);
+}
+
+.full-card {
+    .card(10px, 0, 0 0 10px 0);
 }
 
 .list-card-deck {

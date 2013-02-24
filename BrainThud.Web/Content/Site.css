@@ -166,6 +166,13 @@ h6 {
   text-decoration: none;
   color: #5a5a5a;
 }
+.plain-link {
+  color: #5a5a5a;
+}
+.plain-link:hover {
+  cursor: pointer;
+  color: #5a5a5a;
+}
 .hover-border:hover {
   cursor: pointer;
   text-decoration: none;
@@ -255,6 +262,19 @@ h6 {
   padding: 10px;
   min-height: 0 !important;
   margin: 10px 0 0 0;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+}
+.full-card {
+  border: 1px;
+  border-style: solid;
+  padding: 10px;
+  min-height: 0 !important;
+  margin: 0 0 10px 0;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
