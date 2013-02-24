@@ -6,10 +6,10 @@ using FizzWare.NBuilder;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.ControllersTest.LibraryControllerTest
+namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
 {
     [TestFixture]
-    public class When_Deck_is_called : Given_a_new_LibraryController
+    public class When_Deck_is_called : Given_a_new_CardsController
     {
         private ViewResult result;
         private IList<Card> cards;

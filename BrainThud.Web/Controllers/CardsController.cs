@@ -6,12 +6,12 @@ using BrainThud.Web.Data.AzureTableStorage;
 
 namespace BrainThud.Web.Controllers
 {
-    public class LibraryController : Controller
+    public class CardsController : Controller
     {
         private readonly Lazy<ITableStorageContext> lazyTableStorageContext;
         private ITableStorageContext TableStorageContext { get { return this.lazyTableStorageContext.Value; } }
 
-        public LibraryController(ITableStorageContextFactory tableStorageContextFactory)
+        public CardsController(ITableStorageContextFactory tableStorageContextFactory)
         {
             this.lazyTableStorageContext = new Lazy<ITableStorageContext>(() =>
                 tableStorageContextFactory.CreateTableStorageContext(AzureTableNames.CARD));

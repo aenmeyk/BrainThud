@@ -184,7 +184,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JasmineController.cs" />
     <Compile Include="Api\Controllers\QuizResultsController.cs" />
-    <Compile Include="Controllers\LibraryController.cs" />
+    <Compile Include="Controllers\CardsController.cs" />
     <Compile Include="Data\AzureQueues\CloudQueueMessageWrapper.cs" />
     <Compile Include="Data\AzureQueues\ICloudQueueMessageWrapper.cs" />
     <Compile Include="Data\AzureQueues\IdentityCloudQueue.cs" />
@@ -395,11 +395,11 @@
     <Content Include="Views\delete-card-dialog.cshtml" />
     <Content Include="Views\card-info-dialog.cshtml" />
     <Content Include="Views\user-configuration.cshtml" />
-    <Content Include="Views\Library\Index.cshtml" />
+    <Content Include="Views\Cards\Index.cshtml" />
     <Content Include="Views\Shared\_public-layout.cshtml" />
     <Content Include="Views\Home\home.cshtml" />
-    <Content Include="Views\Library\card-deck.cshtml" />
-    <Content Include="Views\Library\card.cshtml" />
+    <Content Include="Views\Cards\card-deck.cshtml" />
+    <Content Include="Views\Cards\card.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -7,10 +7,10 @@ using Moq;
 using NUnit.Framework;
 using CardRowTypes = BrainThud.Core.CardRowTypes;
 
-namespace BrainThudTest.BrainThud.WebTest.ControllersTest.LibraryControllerTest
+namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
 {
     [TestFixture]
-    public abstract class Given_a_new_LibraryController : Gwt
+    public abstract class Given_a_new_CardsController : Gwt
     {
         public override void Given()
         {
@@ -27,10 +27,10 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.LibraryControllerTest
             };
 
             this.TableStorageContext.Setup(x => x.UserConfigurations.GetByUserId(TestValues.USER_ID)).Returns(userConfiguration);
-            this.LibraryController = new LibraryController(tableStorageContextFactory.Object);
+            this.LibraryController = new CardsController(tableStorageContextFactory.Object);
         }
 
         protected Mock<ITableStorageContext> TableStorageContext { get; private set; }
-        protected LibraryController LibraryController { get; set; }
+        protected CardsController LibraryController { get; set; }
     }
 }

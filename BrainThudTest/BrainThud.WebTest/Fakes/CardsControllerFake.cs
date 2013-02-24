@@ -1,9 +1,6 @@
 ﻿using BrainThud.Web.Api.Controllers;
 using BrainThud.Web.Authentication;
-using BrainThud.Web.Controllers;
-using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Helpers;
 
 namespace BrainThudTest.BrainThud.WebTest.Fakes
 {
