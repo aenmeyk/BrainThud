@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using BrainThud.Core;
@@ -26,27 +27,7 @@ namespace BrainThud.Web.Controllers
 #endif
         public ActionResult Index()
         {
-            // TODO: We need some better way of retrieving the card deck names from storage.
-            // It will be too expensive to retrieve every card.  Maybe store the deck names as 
-            // a property in UserConfiguration or as a separate entity type: 
-            // CardDeck { DeckName, DeckNameSlug, NumberOfCards }
-            var cards = this.TableStorageContext
-                .Cards
-                .GetAll()
-                .Where(x => x.PartitionKey != ConfigurationSettings.TEST_PARTITION_KEY)
-                .ToList();
-
-            var cardDecks = from c in cards
-                            group c by new {c.DeckName, c.DeckNameSlug, c.UserId}
-                            into g
-                            orderby g.Key.DeckName
-                            select new CardDeck
-                            {
-                                DeckName = g.Key.DeckName,
-                                UserId = g.Key.UserId,
-                                DeckNameSlug = g.Key.DeckNameSlug
-                            };
-
+            var cardDecks = this.TableStorageContext.CardDecks.GetAll().OrderBy(x => x.DeckName);
             return View(cardDecks);
         }
 

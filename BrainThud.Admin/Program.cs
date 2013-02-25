@@ -21,7 +21,7 @@ namespace BrainThud.Admin
             var contextFactory = container.GetInstance<ITableStorageContextFactory>();
             var context = contextFactory.CreateTableStorageContext(AzureTableNames.CARD);
 
-            SetCardValues(context);
+            SetCardDecks(context);
 
 //            context.Commit();
         }
@@ -43,6 +43,16 @@ namespace BrainThud.Admin
             foreach (var item in items)
             {
                 context.QuizResults.Update(item);
+            }
+        }
+
+        private static void SetCardDecks(ITableStorageContext context)
+        {
+            var items = context.Cards.GetAll();
+
+            foreach (var item in items)
+            {
+                context.CardDecks.AddCardToCardDeck(item);
             }
         }
 
