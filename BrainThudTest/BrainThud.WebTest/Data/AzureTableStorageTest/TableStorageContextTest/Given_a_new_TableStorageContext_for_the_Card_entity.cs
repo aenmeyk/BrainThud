@@ -1,4 +1,5 @@
-﻿using BrainThud.Web;
+﻿using BrainThud.Core;
+using BrainThud.Web;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThudTest.Builders;

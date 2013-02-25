@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using BrainThud.Core;
 using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;

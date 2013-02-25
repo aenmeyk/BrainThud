@@ -3,6 +3,7 @@ using System.IdentityModel.Services;
 using System.Security.Claims;
 using System.Linq;
 using System.Web;
+using BrainThud.Core;
 using BrainThud.Web.Extensions;
 
 namespace BrainThud.Web.Authentication

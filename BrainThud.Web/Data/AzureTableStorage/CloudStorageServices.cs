@@ -1,5 +1,5 @@
 using System;
-using System.Configuration;
+using BrainThud.Core;
 using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;

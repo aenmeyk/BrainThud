@@ -1,4 +1,5 @@
-﻿using BrainThud.Web;
+﻿using BrainThud.Core;
+using BrainThud.Web;
 using FluentAssertions;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Moq;

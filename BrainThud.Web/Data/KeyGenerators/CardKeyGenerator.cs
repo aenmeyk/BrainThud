@@ -1,3 +1,4 @@
+using BrainThud.Core;
 using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureQueues;
 

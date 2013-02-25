@@ -1,4 +1,5 @@
 ﻿using System;
+using BrainThud.Core;
 using BrainThud.Web.Data.AzureTableStorage;
 using Microsoft.WindowsAzure.Storage.Queue;
 

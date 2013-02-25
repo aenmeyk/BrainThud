@@ -1,7 +1,7 @@
-﻿using BrainThud.Web;
+﻿using BrainThud.Core;
+using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Core.Models;
 using BrainThudTest.Builders;
 using Moq;
 

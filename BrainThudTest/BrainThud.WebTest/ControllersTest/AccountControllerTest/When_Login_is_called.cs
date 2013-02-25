@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Web.Mvc;
-using BrainThud.Web;
+using BrainThud.Core;
 using FluentAssertions;
 using NUnit.Framework;
 

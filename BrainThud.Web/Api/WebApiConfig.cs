@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using BrainThud.Core;
 
 namespace BrainThud.Web.Api
 {

@@ -1,6 +1,5 @@
-﻿using BrainThud.Web;
+﻿using BrainThud.Core;
 using BrainThud.Web.Data.AzureQueues;
-using BrainThud.Core.Models;
 using Moq;
 
 namespace BrainThudTest.BrainThud.WebTest.Data.AzureQueuesTest.IdentityQueueManagerTest

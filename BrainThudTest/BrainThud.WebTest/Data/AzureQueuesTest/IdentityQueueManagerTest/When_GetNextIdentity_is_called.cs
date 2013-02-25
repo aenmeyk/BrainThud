@@ -1,5 +1,5 @@
 ﻿using System;
-using BrainThud.Web;
+using BrainThud.Core;
 using BrainThud.Web.Data.AzureQueues;
 using FluentAssertions;
 using Moq;

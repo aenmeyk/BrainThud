@@ -1,4 +1,5 @@
 ﻿using System.Web.Optimization;
+using BrainThud.Core;
 
 namespace BrainThud.Web.App_Start
 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using BrainThud.Core;
 using BrainThud.Core.Calendars;
 using BrainThud.Core.Models;
 using BrainThud.Web.Authentication;

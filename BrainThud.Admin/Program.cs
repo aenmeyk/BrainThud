@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using BrainThud.Core;
 using BrainThud.Web;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.DependencyResolution;
@@ -22,7 +23,7 @@ namespace BrainThud.Admin
 
             SetCardValues(context);
 
-            context.Commit();
+//            context.Commit();
         }
 
         private static void SetCardValues(ITableStorageContext context)

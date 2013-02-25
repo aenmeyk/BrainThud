@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BrainThud.Core;
 using BrainThud.Core.Calendars;
 using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureTableStorage;

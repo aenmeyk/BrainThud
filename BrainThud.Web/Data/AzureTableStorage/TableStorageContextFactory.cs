@@ -1,4 +1,5 @@
-﻿using BrainThud.Web.Data.KeyGenerators;
+﻿using BrainThud.Core;
+using BrainThud.Web.Data.KeyGenerators;
 
 namespace BrainThud.Web.Data.AzureTableStorage
 {

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Web.Optimization;
-using BrainThud.Web;
+using BrainThud.Core;
 using BrainThud.Web.App_Start;
 using FluentAssertions;
 using NUnit.Framework;

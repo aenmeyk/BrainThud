@@ -2,11 +2,17 @@
 
 namespace BrainThud.Core
 {
-    public static class Hosts
+    public static class Constants
+    {
+        public const string FEDERATION_CALLBACK_END_ID = "end";
+    }
+
+    public static class Urls
     {
         public const string LOCALHOST = "http://localhost:36877/";
 //        public const string LOCALHOST = "http://127.0.0.1:81/";
         public const string BRAINTHUD = "http://www.brainthud.com/";
+        public const string IDENTITY_PROVIDERS = @"https://brainthud.accesscontrol.windows.net/v2/metadata/IdentityProviders.js?protocol=wsfederation&realm={0}&reply_to=&context=rm%3d0%26id%3dpassive%26ru%3D%252Fhome%252F&request_id=&version=1.0&callback=ShowSigninPage";
     }
 
     public static class RouteNames
@@ -16,6 +22,14 @@ namespace BrainThud.Core
         public const string API_CARDS = "ApiCards";
         public const string API_DEFAULT = "ApiDefault";
         public const string DEFAULT = "Default";
+        public const string DECK = "Deck";
+        public const string CARD = "Card";
+        public const string HOME = "Home";
+    }
+
+    public static class Routes
+    {
+        public const string FEDERATION_CALLBACK = "/api/federationcallback/";
     }
 
     public static class BundlePaths
@@ -25,6 +39,7 @@ namespace BrainThud.Core
         public const string EXTERNAL_LIBS = "~/bundles/jsextlibs";
         public const string APP_LIBS = "~/bundles/jsapplibs";
         public const string MODERNIZR = "~/bundles/modernizr";
+        public const string PUBLIC = "~/bundles/public";
         public const string CSS = "~/Content/css";
         public const string LESS = "~/Content/less";
     }
@@ -65,7 +80,6 @@ namespace BrainThud.Core
     public static class CardRowTypes
     {
         public const string CARD = "c";
-        public const string RESULT = "r";
         public const string QUIZ_RESULT = "qr";
         public const string CONFIGURATION = "cfg";
     }
@@ -74,9 +88,13 @@ namespace BrainThud.Core
     {
         public const string AZURE_STORAGE = "DataConnectionString";
         public const int CONCURRENCY_VIOLATION_RETRIES = 10;
-        public const int SEED_IDENTITIES = 1000;
+        public const int SEED_IDENTITIES = 200;
         public const int IDENTITY_QUEUE_VISIBILITY_TIMEOUT_SECONDS = 10;
         public static int SeedRefreshIntervalSeconds = 120;
+        public const string TEST_PARTITION_KEY = "5dfwtubuqmmf0foup1nhorsbgt5yilyqwp6vj44knre-5219";
+        public const int PARTITION_KEY_SLUG_LENGTH = 1024;
+        public const int CARD_DECK_SLUG_LENGTH = 1024;
+        public const int CARD_SLUG_LENGTH = 125;
     }
 
     public static class TypeValues
@@ -95,8 +113,8 @@ namespace BrainThud.Core
         public const string CONCURRENCY_VIOLATION = "UpdateConditionNotSatisfied";
     }
 
-    public static class Urls
+    public static class HttpHeaders
     {
-        public const string IDENTITY_PROVIDERS = @"https://brainthud.accesscontrol.windows.net/v2/metadata/identityProviders.js?protocol=wsfederation&realm=http%3a%2f%2fauthentication.brainthud.com%2f&version=1.0&callback=";
+        public const string X_CLIENT_DATE = "X-Client-Date";
     }
 }

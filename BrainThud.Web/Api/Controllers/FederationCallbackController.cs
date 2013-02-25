@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using BrainThud.Core;
 using BrainThud.Web.Authentication;
 
 namespace BrainThud.Web.Api.Controllers

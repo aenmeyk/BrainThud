@@ -175,7 +175,6 @@
     <Compile Include="Api\WebApiConfig.cs" />
     <Compile Include="Authentication\ITokenStore.cs" />
     <Compile Include="Authentication\TokenStore.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="Api\Controllers\ApiControllerBase.cs" />
     <Compile Include="Api\Controllers\CardsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />

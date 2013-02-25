@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using BrainThud.Core;
 using BrainThud.Core.Models;
 using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureTableStorage;

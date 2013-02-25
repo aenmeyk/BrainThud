@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using BrainThud.Core;
 using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureTableStorage;
 
