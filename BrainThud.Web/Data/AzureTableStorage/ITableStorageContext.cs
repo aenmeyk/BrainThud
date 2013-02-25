@@ -14,6 +14,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         DataServiceResponse SaveChangesWithRetries();
         IQueryable<T> CreateQuery<T>();
         ICardRepository Cards { get; }
+        ICardDeckRepository CardDecks { get; }
         IQuizResultsRepository QuizResults { get; }
         IUserConfigurationRepository UserConfigurations { get; }
         ITableStorageRepository<MasterConfiguration> MasterConfigurations { get; }

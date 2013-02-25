@@ -33,7 +33,7 @@
                     contentType: 'application/json; charset=utf-8'
                 });
                 amplify.request.define('deleteCard', 'ajax', {
-                    url: config.routes.card,
+                    url: config.routes.cards,
                     dataType: 'json',
                     type: 'DELETE',
                     contentType: 'application/json; charset=utf-8'
@@ -93,10 +93,7 @@
             deleteItem = function (options) {
                 return amplify.request({
                     resourceId: 'deleteCard',
-                    data: {
-                        entityIdPath: options.data.entityId,
-                        userIdPath: options.data.userId
-                    },
+                    data: options.data,
                     success: options.success,
                     error: options.error
                 });

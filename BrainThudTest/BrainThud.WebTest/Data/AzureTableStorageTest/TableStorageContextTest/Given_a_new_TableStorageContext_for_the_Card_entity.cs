@@ -15,12 +15,14 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
         {
             this.CloudStorageServices = new MockCloudStorageServicesBuilder().Build();
             this.CardKeyGenerator = new Mock<ICardEntityKeyGenerator>();
+            this.CardDeckKeyGenerator = new Mock<ICardEntityKeyGenerator>();
             this.QuizResultKeyGenerator = new Mock<ICardEntityKeyGenerator>();
             this.UserConfigurationKeyGenerator = new Mock<ICardEntityKeyGenerator>();
 
             this.TableStorageContext = new TableStorageContext(
                 this.CloudStorageServices.Object,
                 this.CardKeyGenerator.Object,
+                this.CardDeckKeyGenerator.Object,
                 this.QuizResultKeyGenerator.Object,
                 this.UserConfigurationKeyGenerator.Object,
                 AzureTableNames.CARD,
@@ -29,6 +31,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
 
         protected TableStorageContext TableStorageContext { get; private set; }
         protected Mock<ICardEntityKeyGenerator> CardKeyGenerator { get; private set; }
+        protected Mock<ICardEntityKeyGenerator> CardDeckKeyGenerator { get; private set; }
         protected Mock<ICardEntityKeyGenerator> QuizResultKeyGenerator { get; private set; }
         protected Mock<ICardEntityKeyGenerator> UserConfigurationKeyGenerator { get; private set; }
         protected Mock<ICloudStorageServices> CloudStorageServices { get; private set; }

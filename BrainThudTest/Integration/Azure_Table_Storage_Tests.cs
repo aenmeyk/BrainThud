@@ -2,13 +2,15 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 using System.Web.Http;
-using BrainThud.Core;
 using BrainThud.Core.Models;
 using BrainThud.Web.Api;
 using BrainThud.Web.DependencyResolution;
 using FluentAssertions;
 using NUnit.Framework;
+using Newtonsoft.Json;
+using HttpHeaders = BrainThud.Core.HttpHeaders;
 
 namespace BrainThudTest.Integration
 {
@@ -84,7 +86,11 @@ namespace BrainThudTest.Integration
 
             // Test DELETE
             // -------------------------------------------------------------------------------------
-            var deleteResponse = client.DeleteAsync(cardUrl).Result;
+            var requestMessage = new HttpRequestMessage(HttpMethod.Delete, cardUrl);
+            var cardJson = JsonConvert.SerializeObject(getCard);
+            requestMessage.Content = new StringContent(cardJson);
+            requestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("text/json");
+            var deleteResponse = client.SendAsync(requestMessage).Result;
 
             // Assert that the DELETE succeeded
             deleteResponse.StatusCode.Should().Be(HttpStatusCode.NoContent);

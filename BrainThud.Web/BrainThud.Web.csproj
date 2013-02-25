@@ -192,7 +192,10 @@
     <Compile Include="Data\AzureQueues\IIdentityCloudQueue.cs" />
     <Compile Include="Data\AzureQueues\IIdentityQueueManager.cs" />
     <Compile Include="Data\AzureQueues\IIdentityQueueSeeder.cs" />
+    <Compile Include="Data\Repositories\CardDeckRepository.cs" />
     <Compile Include="Data\AzureTableStorage\CloudStorageServices.cs" />
+    <Compile Include="Data\KeyGenerators\CardDeckKeyGenerator.cs" />
+    <Compile Include="Data\Repositories\ICardDeckRepository.cs" />
     <Compile Include="Data\AzureTableStorage\ICloudStorageServices.cs" />
     <Compile Include="Data\AzureTableStorage\ITableStorageContext.cs" />
     <Compile Include="Data\AzureTableStorage\ITableStorageContextFactory.cs" />

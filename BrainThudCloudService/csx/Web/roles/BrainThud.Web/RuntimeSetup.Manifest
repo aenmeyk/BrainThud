@@ -4,7 +4,7 @@
   <Operation type="Path" path="base\x86" />
   <Operation type="Path" path="diagnostics\x64" />
   <PermissionLevels>
-    <StoredCert name="Stored0brainthud.com" permissionLevel="limitedOrElevated" />
+    <StoredCert name="Stored0BrainThud Self Signed" permissionLevel="limitedOrElevated" />
     <StoredCert name="Stored1Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" permissionLevel="elevated" />
   </PermissionLevels>
   <AdditionalRoleIdentities>

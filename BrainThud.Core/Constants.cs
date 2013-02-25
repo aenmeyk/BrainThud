@@ -80,6 +80,7 @@ namespace BrainThud.Core
     public static class CardRowTypes
     {
         public const string CARD = "c";
+        public const string CARD_DECK = "cd";
         public const string QUIZ_RESULT = "qr";
         public const string CONFIGURATION = "cfg";
     }

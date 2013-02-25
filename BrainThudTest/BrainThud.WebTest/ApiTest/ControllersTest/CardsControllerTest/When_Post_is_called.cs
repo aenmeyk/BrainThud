@@ -69,5 +69,11 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
             this.CardsController.RouteName.Should().Be(RouteNames.API_CARDS);
             this.response.Headers.Location.ToString().Should().Be(TestUrls.LOCALHOST);
         }
+
+        [Test]
+        public void Then_AddCardToCardDeck_is_called_on_CardDecks()
+        {
+            this.TableStorageContext.Verify(x => x.CardDecks.AddCardToCardDeck(this.card));
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace BrainThudTest
         public static readonly string QUIZ_RESULT_ROW_KEY = CardRowTypes.QUIZ_RESULT + '-' + QUIZ_ID;
         public static readonly DateTime CARD_QUIZ_DATE = new DateTime(2013, 3, 25);
         public static readonly string CONFIGURATION_ROW_KEY = CardRowTypes.CONFIGURATION + '-' + CONFIGURATION_ID;
+        public static readonly string CARD_DECK_ROW_KEY = CardRowTypes.CARD_DECK + '-' + CARD_DECK_ID;
         // ReSharper restore InconsistentNaming
 
         public const int INT = 5;
@@ -27,6 +28,7 @@ namespace BrainThudTest
         public const string DATETIME_STRING = "2012-07-21T00:00:00-05:00";
         public const int USER_ID = 21;
         public const int CARD_ID = 583;
+        public const int CARD_DECK_ID = 235;
         public const int QUIZ_ID = 37;
         public const int QUIZ_RESULT_ID = 32;
         public const int CARD_QUIZ_LEVEL = 3;
@@ -34,6 +36,8 @@ namespace BrainThudTest
         public const string PARTITION_KEY = "c86258da-9165-4e19-906a-4441bd298d71";
         public const string NAME_IDENTIFIER = "b979a21e36f841509fbbd1d722f80cff";
         public const string ROW_KEY = "6037e998-c399-4153-9353-00ae5e6ea1e9";
+        public const string DECK_NAME = "This is a deck name";
+        public const string DECK_NAME_SLUG = "this-is-a-deck-name";
         public const string ERROR_KEY = "ErrorKey";
         public const string ERROR_MESSAGE = "Error Message";
         public const string ERROR_KEY_2 = "ErrorKey2";

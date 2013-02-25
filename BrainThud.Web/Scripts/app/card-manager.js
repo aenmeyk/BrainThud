@@ -146,12 +146,7 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         executeDelete = function () {
             $("#deleteDialog").modal('hide');
             $.when(dataContext.card.deleteData({
-                data: {
-                    userId: global.userId,
-                    partitionKey: deleteCardOptions.card.partitionKey(),
-                    rowKey: deleteCardOptions.card.rowKey(),
-                    entityId: deleteCardOptions.card.entityId()
-                }
+                data: ko.toJS(deleteCardOptions.card)
             })).then(function () {
                 dataContext.quizCard.setCacheInvalid();
                 dataContext.quizResult.setCacheInvalid();

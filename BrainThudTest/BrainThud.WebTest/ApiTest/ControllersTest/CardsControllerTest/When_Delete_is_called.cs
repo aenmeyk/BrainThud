@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Http;
+using BrainThud.Core.Models;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -10,10 +11,12 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
     public class When_Delete_is_called : Given_a_new_CardsController
     {
         private HttpResponseMessage response;
+        private Card card;
 
         public override void When()
         {
-            this.response = this.CardsController.Delete(TestValues.USER_ID, TestValues.CARD_ID);
+            this.card = new Card { UserId = TestValues.USER_ID, EntityId = TestValues.CARD_ID };
+            this.response = this.CardsController.Delete(this.card);
         }
 
         [Test]
@@ -38,6 +41,12 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         public void Then_the_associated_QuizResults_are_deleted()
         {
             this.TableStorageContext.Verify(x => x.QuizResults.DeleteByCardId(TestValues.CARD_ID), Times.Once());
+        }
+
+        [Test]
+        public void Then_RemoveCardFromCardDeck_is_called()
+        {
+            this.TableStorageContext.Verify(x => x.CardDecks.RemoveCardFromCardDeck(this.card));
         }
     }
 }
