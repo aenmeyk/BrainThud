@@ -4,12 +4,11 @@
 }
     
 @section menu {
-    <li>@Html.ActionLink("All Cards", "Index", "Cards")</li>
-    <li><a href="" data-bind="click: goToLibrary" data-toggle="collapse" data-target=".nav-collapse">My Cards</a></li>
+    <li>@Html.ActionLink("Browse", "Index", "Cards")</li>
+    <li><a href="" data-bind="click: goToLibrary" data-toggle="collapse" data-target=".nav-collapse">Library</a></li>
     <li><a href="" data-bind="click: goToCreateCard" data-toggle="collapse" data-target=".nav-collapse">Create Card</a></li>
     <li><a href="" data-bind="click: goToQuiz" data-toggle="collapse" data-target=".nav-collapse">Quiz</a></li>
     <li><a href="" data-bind="click: goToUserConfiguration" data-toggle="collapse" data-target=".nav-collapse">Settings</a></li>
-    <li><a href="" data-bind="click: goToSignOut" data-toggle="collapse" data-target=".nav-collapse">Sign Out</a></li>
 }
 
 @RenderPage("~/Views/card.cshtml")

@@ -12,17 +12,13 @@
             },
             goToUserConfiguration = function () {
                 router.navigateTo(global.routePrefix + 'user-configuration');
-            },
-            goToSignOut = function () {
-                router.navigateTo('/Account/SignOut');
             };
 
         return {
             goToCreateCard: goToCreateCard,
             goToLibrary: goToLibrary,
             goToQuiz: goToQuiz,
-            goToUserConfiguration: goToUserConfiguration,
-            goToSignOut: goToSignOut
+            goToUserConfiguration: goToUserConfiguration
         };
     }
 );

@@ -8,16 +8,10 @@
 {
     <text>
     @section menu {
-
+        <li>@Html.ActionLink("Cards", "Index", "Cards")</li>
         @if(User.Identity.IsAuthenticated)
         {
-            <li>@Html.ActionLink("All Cards", "Index", "Cards")</li>
             <li>@Html.ActionLink("My Site", "Home", "Home")</li>
-            <li>@Html.ActionLink("Sign Out", "SignOut", "Account")</li>
-        }
-        else
-        {
-            <li>@Html.ActionLink("All Cards", "Index", "Cards")</li>
         }
     }
     </text>

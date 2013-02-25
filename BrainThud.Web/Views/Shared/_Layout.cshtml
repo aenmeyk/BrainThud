@@ -39,12 +39,12 @@
                     <div class="identity">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            @User.Identity.Name
+                            @Html.ActionLink("Sign Out", "SignOut", "Account")
                         }
                         else
                         {
-                            @Html.ActionLink("Log In", "Login", "Account")
                             @Html.ActionLink("Sign Up", "Login", "Account")
+                            @Html.ActionLink("Log In", "Login", "Account")
                         }
                     </div>
 
