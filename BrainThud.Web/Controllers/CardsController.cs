@@ -20,9 +20,6 @@ namespace BrainThud.Web.Controllers
         //
         // GET: /Library/
 
-#if !DEBUG
-        [OutputCache(Duration = 3600)]
-#endif
         public ActionResult Index()
         {
             var cardDecks = this.TableStorageContext.CardDecks.GetAll().ToList().OrderBy(x => x.DeckName);

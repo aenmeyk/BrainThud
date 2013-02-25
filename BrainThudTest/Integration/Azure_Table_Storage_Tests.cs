@@ -162,7 +162,13 @@ namespace BrainThudTest.Integration
             getResponse.IsSuccessStatusCode.Should().Be(false);
 
             // Delete the card
-            client.DeleteAsync(cardUrl);
+            var requestMessage = new HttpRequestMessage(HttpMethod.Delete, cardUrl);
+            var cardJson = JsonConvert.SerializeObject(card);
+            requestMessage.Content = new StringContent(cardJson);
+            requestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("text/json");
+            client.SendAsync(requestMessage);
+
+//            client.DeleteAsync(cardUrl);
         }
     }
 }
