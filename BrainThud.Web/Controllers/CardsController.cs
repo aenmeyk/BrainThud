@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using BrainThud.Core;
-using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureTableStorage;
 
 namespace BrainThud.Web.Controllers
@@ -27,7 +25,7 @@ namespace BrainThud.Web.Controllers
 #endif
         public ActionResult Index()
         {
-            var cardDecks = this.TableStorageContext.CardDecks.GetAll().OrderBy(x => x.DeckName);
+            var cardDecks = this.TableStorageContext.CardDecks.GetAll().ToList().OrderBy(x => x.DeckName);
             return View(cardDecks);
         }
 
