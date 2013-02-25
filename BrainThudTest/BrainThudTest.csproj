@@ -140,7 +140,6 @@
     <Compile Include="BrainThud.CoreTest\AzureServicesTest\Given_a_new_AccessControlService.cs" />
     <Compile Include="BrainThud.CoreTest\AzureServicesTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.CoreTest\AzureServicesTest\When_GetIdentityProviders_is_called.cs" />
-    <Compile Include="BrainThud.CoreTest\IntegrationTest\CardControllerIntegrationTest.cs" />
     <Compile Include="BrainThud.CoreTest\ViewModelsTest\LoginViewModelTest\Given_a_new_LoginViewModel.cs" />
     <Compile Include="BrainThud.CoreTest\ViewModelsTest\LoginViewModelTest\When_IdentityProviders_is_called.cs" />
     <Compile Include="BrainThud.WebTest\AuthenticationTest\TokenStoreTest\When_ClearTokens_is_called.cs" />

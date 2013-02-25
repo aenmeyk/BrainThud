@@ -12,19 +12,17 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
     public class When_Index_is_called : Given_a_new_CardsController
     {
         private ViewResult result;
-        private IList<Card> cards;
+        private IList<CardDeck> cardDecks;
 
         public override void When()
         {
-            this.cards = Builder<Card>.CreateListOfSize(10)
-                .All()
-                    .With(x => x.UserId = TestValues.USER_ID)
+            this.cardDecks = Builder<CardDeck>.CreateListOfSize(10)
                 .Random(5)
                     .With(x => x.DeckName = TestValues.STRING)
                     .And(x => x.DeckNameSlug = TestValues.STRING)
                 .Build();
 
-            this.TableStorageContext.Setup(x => x.Cards.GetAll()).Returns(this.cards.AsQueryable);
+            this.TableStorageContext.Setup(x => x.CardDecks.GetAll()).Returns(this.cardDecks.AsQueryable);
             this.result = (ViewResult)this.LibraryController.Index();
         }
 
@@ -46,17 +44,7 @@ namespace BrainThudTest.BrainThud.WebTest.ControllersTest.CardsControllerTest
             ((IEnumerable<CardDeck>)this.result.Model)
                 .Select(x => x.DeckName)
                 .Should()
-                .BeEquivalentTo(this.cards.Select(x => x.DeckName));
-        }
-
-        [Test]
-        public void Then_the_card_deck_names_should_be_unique()
-        {
-            ((IEnumerable<CardDeck>)this.result.Model)
-                .Select(x => x.DeckName)
-                .ToList()
-                .Should()
-                .OnlyHaveUniqueItems();
+                .BeEquivalentTo(this.cardDecks.Select(x => x.DeckName));
         }
 
         [Test]
