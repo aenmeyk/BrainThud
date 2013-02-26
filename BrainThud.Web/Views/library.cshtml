@@ -21,7 +21,7 @@
     <div class="span9">
         <ul data-bind="foreach:filteredCards">
             <li>
-                <div class="list-card question" data-bind="html: currentSideText, css: libraryCardBorder"></div>
+                <div class="list-card question markdown" data-bind="html: currentSideText, css: libraryCardBorder"></div>
                 @Html.Partial("_card-mini-menu", new[] { "<a data-bind='click: function() { $root.flipCard($data) }'>flip</a>" })
             </li>
         </ul>

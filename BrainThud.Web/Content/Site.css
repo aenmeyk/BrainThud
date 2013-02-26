@@ -471,6 +471,18 @@ input[type=text] {
 .level-slider-label {
   margin-top: 8px;
 }
+.markdown {
+  white-space: pre-line;
+}
+.markdown ul {
+  list-style-type: disc;
+  margin-left: 25px;
+  display: inline-table;
+  white-space: normal;
+}
+.markdown code {
+  color: inherit;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
