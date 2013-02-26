@@ -473,6 +473,11 @@ input[type=text] {
 }
 .markdown {
   white-space: pre-line;
+  line-height: 0;
+}
+.markdown p {
+  margin-top: 5px;
+  line-height: 1.4;
 }
 .markdown ul {
   list-style-type: disc;
