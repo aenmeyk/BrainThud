@@ -33,7 +33,7 @@ namespace BrainThud.Web.Api.Controllers
         {
             var card = this.TableStorageContext.Cards.GetById(userId, cardId);
             if (card == null) throw new HttpException((int)HttpStatusCode.NotFound, ErrorMessages.The_specified_card_could_not_be_found);
-               
+
             return card;
         }
 
@@ -61,9 +61,14 @@ namespace BrainThud.Web.Api.Controllers
             if (this.ModelState.IsValid)
             {
                 var originalCard = this.TableStorageContext.Cards.Get(card.PartitionKey, card.RowKey);
-                this.TableStorageContext.CardDecks.RemoveCardFromCardDeck(originalCard);
                 this.TableStorageContext.Detach(originalCard);
-                this.TableStorageContext.CardDecks.AddCardToCardDeck(card);
+
+                if (originalCard.DeckName != card.DeckName)
+                {
+                    this.TableStorageContext.CardDecks.RemoveCardFromCardDeck(originalCard);
+                    this.TableStorageContext.CardDecks.AddCardToCardDeck(card);
+                }
+
                 this.TableStorageContext.Cards.Update(card);
                 this.TableStorageContext.Commit();
 
