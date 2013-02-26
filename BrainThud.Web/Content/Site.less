@@ -188,12 +188,19 @@ h1, h2, h3, h4, h5, h6 {
 
     &:hover,
     &:active,
-    &.active,
-    &.disabled,
-    &[disabled] {
+    &.active{
         background-color: darken(@color, 10%);
         *background-color: darken(@color, 20%);
     }
+
+    &.disabled,
+    &[disabled] {
+        background-color: desaturate(@color, 35%);
+        *background-color: desaturate(@color, 50%);
+        border-color: desaturate(@color, 35%) desaturate(@color, 35%) desaturate(@color, 50%);
+        color: #f8f8f8
+    }
+
 }
 
 .correct-color {

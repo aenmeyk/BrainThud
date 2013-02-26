@@ -34,7 +34,7 @@
                     });
                 },
                 canExecute: function (isExecuting) {
-                    return !isExecuting && card().dirtyFlag().isDirty() && isValid();
+                    return !isExecuting && isValid();
                 }
             });
 
