@@ -22,8 +22,13 @@ namespace BrainThud.Web.Controllers
 
         public ActionResult Index()
         {
-            var cardDecks = this.TableStorageContext.CardDecks.GetAll().ToList().OrderBy(x => x.DeckName);
-            return View(cardDecks);
+            var cardDecks = this.TableStorageContext.CardDecks.GetAll().ToList();
+
+#if !DEBUG
+            cardDecks = cardDecks.Where(x => x.PartitionKey != ConfigurationSettings.TEST_PARTITION_KEY && x.PartitionKey != ConfigurationSettings.DEV_PARTITION_KEY).ToList();
+#endif
+
+            return View(cardDecks.OrderBy(x => x.DeckName));
         }
 
         //

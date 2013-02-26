@@ -16,7 +16,7 @@
 
     <div class="row-fluid">
         <div class="span12">
-            <span class="quiz-card question span12" data-bind="html: card().currentSideText, css: borderCss"></span>
+            <span class="quiz-card markdown question span12" data-bind="html: card().currentSideText, css: borderCss"></span>
             <span class="text-small progress-indicator"><span data-bind="html: displayIndex()"></span> of <span data-bind="html: cardCount()"></span></span>
             @Html.Partial("_card-mini-menu")
         </div>

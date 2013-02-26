@@ -144,10 +144,10 @@ h6 {
   display: none;
 }
 .correct-color {
-  color: #59b359;
+  color: #9bcc57;
 }
 .correctColor {
-  color: #59b359;
+  color: #9bcc57;
 }
 .incorrect-color {
   color: #d74c46;
@@ -757,10 +757,10 @@ input[type=text] {
   border-color: #d4d4d4;
 }
 .answer {
-  border-color: #006ecc;
+  border-color: #3799c4;
 }
 .correct {
-  border-color: #59b359;
+  border-color: #9bcc57;
 }
 .incorrect {
   border-color: #d74c46;
