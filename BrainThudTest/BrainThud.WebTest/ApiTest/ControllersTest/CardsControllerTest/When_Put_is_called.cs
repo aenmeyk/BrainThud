@@ -11,7 +11,7 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
     public class When_Put_is_called : Given_a_new_CardsController
     {
         private readonly Card originalCard = new Card();
-        private readonly Card updatedCard = new Card { PartitionKey = TestValues.PARTITION_KEY, RowKey = TestValues.ROW_KEY };
+        private readonly Card updatedCard = new Card { PartitionKey = TestValues.PARTITION_KEY, RowKey = TestValues.ROW_KEY, DeckName = TestValues.DECK_NAME };
         private HttpResponseMessage response;
 
         public override void When()
