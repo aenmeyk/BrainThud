@@ -43,7 +43,7 @@ namespace BrainThud.Web.Authentication
 
         public void SignOut()
         {
-            FederatedAuthentication.SessionAuthenticationModule.SignOut();
+            FederatedAuthentication.WSFederationAuthenticationModule.SignOut();
         }
     }
 }
