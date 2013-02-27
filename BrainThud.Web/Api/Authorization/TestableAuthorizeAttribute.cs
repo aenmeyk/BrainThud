@@ -8,6 +8,7 @@ namespace BrainThud.Web.Api.Authorization
     {
         protected override bool IsAuthorized(System.Web.Http.Controllers.HttpActionContext actionContext)
         {
+#if DEBUG
             if (actionContext.Request.RequestUri.Host == "localhost" && 
                 actionContext.Request.RequestUri.Port == 80)
             {
@@ -17,6 +18,7 @@ namespace BrainThud.Web.Api.Authorization
                     return true;
                 }
             }
+#endif
 
             return base.IsAuthorized(actionContext);
         }
