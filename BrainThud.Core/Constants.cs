@@ -118,5 +118,6 @@ namespace BrainThud.Core
     public static class HttpHeaders
     {
         public const string X_CLIENT_DATE = "X-Client-Date";
+        public const string X_TEST = "X-Test";
     }
 }

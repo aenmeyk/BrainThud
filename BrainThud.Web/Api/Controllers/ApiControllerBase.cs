@@ -1,8 +1,9 @@
 ﻿using System.Web.Http;
+using BrainThud.Web.Api.Authorization;
 
 namespace BrainThud.Web.Api.Controllers
 {
-    [Authorize]
+    [TestableAuthorize]
     public class ApiControllerBase : ApiController
     {
         // Allows Url.Link to be faked for testing

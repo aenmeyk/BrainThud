@@ -166,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\ValidationActionFilter.cs" />
+    <Compile Include="Api\Authorization\TestableAuthorizeAttribute.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\GlobalConfig.cs" />
