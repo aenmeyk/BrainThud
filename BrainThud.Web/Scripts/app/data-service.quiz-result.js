@@ -45,7 +45,7 @@
                                 }
                             });
                         } else {
-                            error();
+                            error(xhr);
                         }
                     }
                 });

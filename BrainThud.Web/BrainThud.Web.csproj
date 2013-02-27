@@ -399,6 +399,7 @@
     <Content Include="Views\Home\home.cshtml" />
     <Content Include="Views\Cards\card-deck.cshtml" />
     <Content Include="Views\Cards\card.cshtml" />
+    <Content Include="Views\session-expired-dialog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -8,6 +8,7 @@ using BrainThud.Web.Authentication;
 
 namespace BrainThud.Web.Api.Controllers
 {
+    [AllowAnonymous]
     public class FederationCallbackController : ApiController
     {
         private readonly IAuthenticationHelper authenticationHelper;
