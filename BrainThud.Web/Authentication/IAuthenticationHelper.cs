@@ -1,9 +1,11 @@
-﻿namespace BrainThud.Web.Authentication
+﻿using System.IdentityModel.Services;
+
+namespace BrainThud.Web.Authentication
 {
     public interface IAuthenticationHelper 
     {
         string IdentityProvider { get; }
         string NameIdentifier { get; }
-        void SignOut();
+        string SignOut();
     }
 }

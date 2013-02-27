@@ -29,8 +29,8 @@ namespace BrainThud.Web.Controllers
 
         public ActionResult SignOut()
         {
-            this.authenticationHelper.SignOut();
-            return RedirectToAction("Login");
+            var signOutUrl = this.authenticationHelper.SignOut();
+            return new RedirectResult(signOutUrl);
         }
     }
 }

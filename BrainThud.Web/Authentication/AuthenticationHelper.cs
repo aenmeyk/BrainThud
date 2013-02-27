@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Services;
+using System.Net;
 using System.Security.Claims;
 using System.Linq;
 using System.Web;
@@ -41,9 +43,13 @@ namespace BrainThud.Web.Authentication
             }
         }
 
-        public void SignOut()
+        public string SignOut()
         {
-            FederatedAuthentication.WSFederationAuthenticationModule.SignOut();
+            var module = FederatedAuthentication.WSFederationAuthenticationModule;
+            module.SignOut();
+            var signOutRequestMessage = new SignOutRequestMessage(new Uri(module.Issuer), module.Realm);
+
+            return string.Format("{0}&wtrealm={1}", signOutRequestMessage.WriteQueryString(), WebUtility.UrlEncode(module.Realm));
         }
     }
 }
