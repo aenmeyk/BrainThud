@@ -31,9 +31,8 @@
 
                                 def.resolve(results);
                             },
-                            error: function () {
-                                toastr.error('An error occurred');
-                                if (def.reject) def.reject();
+                            error: function (xhr) {
+                                handleError(def, xhr);
                             }
                         });
                     } else {
@@ -55,9 +54,8 @@
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 def.resolve(newItem);
                             },
-                            error: function () {
-                                toastr.error('An error occurred');
-                                if (def.reject) def.reject();
+                            error: function (xhr) {
+                                handleError(def, xhr);
                             }
                         });
                     });
@@ -82,9 +80,8 @@
                                 if (options.callback) options.callback(cachedResults[i]);
                                 def.resolve(updatedItem);
                             },
-                            error: function () {
-                                toastr.error('An error occurred');
-                                if (def.reject) def.reject();
+                            error: function (xhr) {
+                                handleError(def, xhr);
                             }
                         });
                     });
@@ -105,9 +102,8 @@
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 def.resolve();
                             },
-                            error: function () {
-                                toastr.error('An error occurred');
-                                if (def.reject) def.reject();
+                            error: function (xhr) {
+                                handleError(def, xhr);
                             }
                         });
                     });
@@ -146,6 +142,16 @@
                 
                 setCacheInvalid = function () {
                     isCacheInvalid = true;
+                },
+                
+                handleError = function (def, xhr) {
+                    if (xhr.status === 401) {
+                        $("#sessionExpiredDialog").modal('show');
+                    } else {
+                        toastr.error('An error occurred');
+                    }
+
+                    if (def.reject) def.reject();
                 };
             
             return {

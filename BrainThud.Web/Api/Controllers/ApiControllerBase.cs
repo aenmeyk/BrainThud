@@ -2,6 +2,7 @@
 
 namespace BrainThud.Web.Api.Controllers
 {
+    [Authorize]
     public class ApiControllerBase : ApiController
     {
         // Allows Url.Link to be faked for testing
