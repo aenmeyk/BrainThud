@@ -1,4 +1,5 @@
-﻿using System.IdentityModel.Services;
+﻿using System;
+using System.IdentityModel.Services;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -20,7 +21,7 @@ namespace BrainThud.Web
         {
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            WebApiConfig.Configure(GlobalConfiguration.Configuration); 
+            WebApiConfig.Configure(GlobalConfiguration.Configuration);
             GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration);
             MvcRouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -28,6 +29,7 @@ namespace BrainThud.Web
             FederatedAuthentication.FederationConfigurationCreated += (s, e) =>
             {
                 FederatedAuthentication.WSFederationAuthenticationModule.SignedIn += WSFederationAuthenticationModule_SignedIn;
+                FederatedAuthentication.SessionAuthenticationModule.SessionSecurityTokenReceived += SessionAuthenticationModule_SessionSecurityTokenReceived;
             };
         }
 
@@ -44,6 +46,22 @@ namespace BrainThud.Web
                 var userConfiguration = userHelper.CreateUserConfiguration();
                 tableStorageContext.UserConfigurations.Add(userConfiguration);
                 tableStorageContext.Commit();
+            }
+        }
+
+        private void SessionAuthenticationModule_SessionSecurityTokenReceived(object sender, SessionSecurityTokenReceivedEventArgs e)
+        {
+            var now = DateTime.UtcNow;
+            var validFrom = e.SessionToken.ValidFrom;
+            var validTo = e.SessionToken.ValidTo;
+
+            // If the user is in the second half of their session
+            if (now < validTo && now > validFrom.Add(new TimeSpan((validTo.Ticks - validFrom.Ticks) / 2)))
+            {
+                var module = (SessionAuthenticationModule)sender;
+                e.SessionToken = module.CreateSessionSecurityToken(e.SessionToken.ClaimsPrincipal, e.SessionToken.Context,
+                now, now.AddMinutes(ConfigurationSettings.SESSION_TOKEN_REISSUE_DURATION_MINUTES), e.SessionToken.IsPersistent);
+                e.ReissueCookie = true;
             }
         }
     }
