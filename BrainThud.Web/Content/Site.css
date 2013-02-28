@@ -681,10 +681,6 @@ input[type=text] {
     -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   }
-  .identity {
-    visibility: collapse;
-    padding: 0;
-  }
   .quiz-details {
     margin: 10px 0 0 0;
     padding: 10px;
