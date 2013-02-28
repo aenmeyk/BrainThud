@@ -97,6 +97,7 @@ namespace BrainThud.Core
         public const int PARTITION_KEY_SLUG_LENGTH = 1024;
         public const int CARD_DECK_SLUG_LENGTH = 1024;
         public const int CARD_SLUG_LENGTH = 125;
+        public const int PAGE_TITLE_LENGTH = 75;
         public const int SESSION_TOKEN_REISSUE_DURATION_MINUTES = 120;
     }
 

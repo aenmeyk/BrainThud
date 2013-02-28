@@ -1,6 +1,9 @@
-﻿@model BrainThud.Core.Models.Card
+﻿@using BrainThud.Core
+@model BrainThud.Core.Models.Card
 
 @{
+    ViewBag.MetaDescription = Model.Tags;
+    ViewBag.Title = Model.Question.Substring(0, Math.Min(Model.Question.Length, ConfigurationSettings.PAGE_TITLE_LENGTH));
     Layout = "~/Views/Shared/_public-layout.cshtml";
 }
 
