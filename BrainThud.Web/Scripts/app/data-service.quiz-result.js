@@ -21,7 +21,7 @@
                         return true;
                     },
                     decoder: function (data, status, xhr, success, error) {
-                        if (status == "success") {
+                        if (status === "success") {
                             success(data);
                             // TODO: I think we need a custom header saying why the precondition failed.  If it is because
                             // the resource already exists then we can remove it from the cache before creating it again
