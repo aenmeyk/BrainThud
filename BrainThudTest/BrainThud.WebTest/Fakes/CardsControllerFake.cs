@@ -1,4 +1,6 @@
-﻿using BrainThud.Web.Api.Controllers;
+﻿using System.Collections.Generic;
+using BrainThud.Core.Models;
+using BrainThud.Web.Api.Controllers;
 using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureTableStorage;
 

@@ -25,6 +25,7 @@
             routes = {
                 userConfiguration: '/api/config',
                 cards: '/api/cards',
+                cardDeckCards: '/api/card-decks/{userIdPath}/{deckNameSlugPath}',
                 cardDecks: '/api/card-decks/{userIdPath}',
                 card: '/api/cards/{userIdPath}/{entityIdPath}',
                 quizResults: '/api/quiz-results/{userIdPath}/{datePath}',

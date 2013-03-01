@@ -2,15 +2,22 @@
     function (ko, cardManager, _, router, global) {
         var
             selectedDeckSlug = ko.observable(''),
+            
+            filteredCards = ko.computed(function() {
+                var slug = selectedDeckSlug();
+                return _.filter(cardManager.cards(), function(item) {
+                    return item.deckNameSlug() === slug;
+                });
+            }),
 
             selectedDeckName = ko.computed(function () {
                 var slug = selectedDeckSlug(),
-                    card = _.find(cardManager.cards(), function (item) {
+                    cardDeck = _.find(cardManager.cardDecks(), function (item) {
                         return item.deckNameSlug() === slug;
                     });
 
-                if (card) {
-                    return card.deckName();
+                if (cardDeck) {
+                    return cardDeck.deckName();
                 } else {
                     return "Card Decks";
                 }
@@ -18,23 +25,11 @@
 
             cardDecks = ko.computed(function () {
                 return cardManager.cardDecks();
-//                var sortedCards = _.sortBy(cardManager.cardDecks(), function (item) {
-//                    return item.deckName().toLowerCase();
-//                });
-//
-//                return _.uniq(sortedCards, true, function (item) {
-//                    return item.deckName();
-//                });
-            }),
-
-            filteredCards = ko.computed(function () {
-                var slug = selectedDeckSlug();
-                return _.filter(cardManager.cards(), function (item) {
-                    return item.deckNameSlug() === slug;
-                });
             }),
 
             activate = function (routeData) {
+                cardManager.getCardDecks();
+
                 // 1) Navigate to the deck specified in the route
                 // 2) If no deck specified in route, navigate to the previously selected deck
                 // 3) If no previously selected deck, navigate to the first deck
@@ -43,12 +38,8 @@
                     selectedDeckSlug(routeData.deckNameSlug);
                 } else if (selectedDeckSlug() !== '') {
                     navigateToSlug(selectedDeckSlug());
-                } else if (cardDecks().length > 0) {
-                    var sortedCards = _.sortBy(cardManager.cards(), function (item) {
-                        return item.deckName().toLowerCase();
-                    });
-                
-                    navigateToSlug(sortedCards[0].deckNameSlug());
+                } else if (cardManager.cardDecks().length > 0) {
+                    navigateToSlug(cardManager.cardDecks()[0].deckNameSlug());
                 } else {
                     selectedDeckSlug('');
                 }
@@ -88,6 +79,12 @@
             showCardInfoDialog = function (card) {
                 cardManager.showCardInfo(card);
             };
+
+        selectedDeckSlug.subscribe(function (deckNameSlug) {
+            if (deckNameSlug) {
+                cardManager.getCards(deckNameSlug);
+            }
+        }.bind(this));
 
         return {
             cardDecks: cardDecks, 

@@ -18,6 +18,7 @@ namespace BrainThud.Core
     public static class RouteNames
     {
         public const string API_QUIZ_CARDS = "ApiQuizCards";
+        public const string API_CARD_DECK_CARDS = "ApiCardDeckCards";
         public const string API_QUIZ_RESULTS = "ApiQuizResults";
         public const string API_CARDS = "ApiCards";
         public const string API_CARD_DECKS = "ApiCardDecks";

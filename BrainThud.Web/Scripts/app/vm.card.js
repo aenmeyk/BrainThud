@@ -1,5 +1,5 @@
-﻿define('vm.card', ['jquery', 'ko', 'card-manager', 'dom', 'editor', 'router', 'global', 'model'],
-    function ($, ko, cardManager, dom, editor, router, global, model) {
+﻿define('vm.card', ['jquery', 'ko', 'card-manager', 'dom', 'editor', 'router', 'global', 'model', 'data-service', 'model.mapper'],
+    function ($, ko, cardManager, dom, editor, router, global, model, dataService, modelMapper) {
         var
             card = ko.observable(new model.Card()),
 
@@ -8,17 +8,25 @@
             }),
 
             activate = function (routeData) {
-                var found = _.find(cardManager.cards(), function (item) {
-                    return item.entityId() === parseInt(routeData.cardId);
+                var found;
+                
+                dataService.card.getSingle({
+                    params: {
+                        userId: global.userId,
+                        entityId: routeData.cardId
+                    },
+                    success: function (dto) {
+                        found = modelMapper.card.mapResult(dto);
+                        
+                        if (found) {
+                            card(found);
+                        } else {
+                            card(new model.Card());
+                        }
+
+                        editor.refreshPreview('edit');
+                    }
                 });
-
-                if (found) {
-                    card(found);
-                } else {
-                    card(new model.Card());
-                }
-
-                editor.refreshPreview('edit');
             },
 
             updateAndCloseCommand = ko.asyncCommand({

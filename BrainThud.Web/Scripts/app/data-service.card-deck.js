@@ -12,6 +12,9 @@
             get = function (callbacks) {
                 return amplify.request({
                     resourceId: 'getCardDecks',
+                    data: {
+                        userIdPath: callbacks.params.userId
+                    },
                     success: callbacks.success,
                     error: callbacks.error
                 });

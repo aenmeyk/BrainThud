@@ -5,6 +5,7 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         $deleteDialog,
         $cardInfoDialog,
         deleteCardOptions,
+        currentDeckNameSlug,
         cards = ko.observableArray([]),
         cardDecks = ko.observableArray([]),
         quizCards = ko.observableArray([]),
@@ -38,21 +39,30 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
                     executeDelete();
                 });
 
-                $.when(getCards(), getCardDecks())
+                $.when(getCardDecks())
                 .done(function() {
                     def.resolve();
                 });
             }).promise();
         },
             
-        getCards = function () {
+        getCards = function (deckNameSlug) {
+            if (deckNameSlug !== currentDeckNameSlug) dataContext.card.setCacheInvalid();
+            currentDeckNameSlug = deckNameSlug;
             return dataContext.card.getData({
+                params: {
+                    userId: global.userId,
+                    deckNameSlug: deckNameSlug
+                },
                 results: cards
             });
         },
             
         getCardDecks = function () {
             return dataContext.cardDeck.getData({
+                params: {
+                    userId: global.userId
+                },
                 results: cardDecks
             });
         },
@@ -85,7 +95,7 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         refreshCards = function () {
             var def = new $.Deferred();
 
-            $.when(getCards(), getQuizCards(quizYear(), quizMonth(), quizDay()))
+            $.when(getCardDecks(), getCards(currentDeckNameSlug), getQuizCards(quizYear(), quizMonth(), quizDay()))
             .done(function() {
                 def.resolve();
             })
@@ -106,7 +116,7 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
                     quizCards.push(newCard);
                 }
                 dataContext.quizCard.setCacheInvalid();
-                getCards();
+                dataContext.cardDeck.setCacheInvalid();
                 def.resolve(newCard);
             }).fail(function () {
                 def.reject();
@@ -121,7 +131,9 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
             $.when(dataContext.card.updateData({
                 data: card
             })).done(function (updatedCard) {
+                dataContext.card.updateCachedItem(updatedCard);
                 dataContext.quizCard.updateCachedItem(updatedCard);
+                dataContext.cardDeck.setCacheInvalid();
                 $.when(refreshCards())
                 .done(function() {
                     def.resolve(updatedCard);
@@ -153,7 +165,8 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
             })).then(function () {
                 dataContext.quizCard.setCacheInvalid();
                 dataContext.quizResult.setCacheInvalid();
-                
+                dataContext.cardDeck.setCacheInvalid();
+
                 $.when(refreshCards())
                 .done(function() {
                     if (deleteCardOptions.callback) {
@@ -185,6 +198,8 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         cardDeckNames: cardDeckNames,
         quizCards: quizCards,
         quizCardCount: quizCardCount,
+        getCards: getCards,
+        getCardDecks: getCardDecks,
         createCard: createCard,
         updateCard: updateCard,
         deleteCard: deleteCard,

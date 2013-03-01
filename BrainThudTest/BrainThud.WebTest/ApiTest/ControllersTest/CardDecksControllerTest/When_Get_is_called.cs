@@ -15,7 +15,11 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardDecksContr
 
         public override void When()
         {
-            this.cardDecks = Builder<CardDeck>.CreateListOfSize(10).Build();
+            this.cardDecks = Builder<CardDeck>.CreateListOfSize(10)
+                .TheFirst(1).With(x => x.DeckName = "z")
+                .TheNext(1).With(x => x.DeckName = "a")
+                .TheLast(1).With(x => x.DeckName = "m")
+                .Build();
             this.TableStorageContext.Setup(x => x.CardDecks.GetForUser()).Returns(this.cardDecks.AsQueryable());
 
             this.results = this.CardDecksController.Get();
@@ -25,6 +29,12 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardDecksContr
         public void Then_the_card_decks_are_returned_from_the_TableStorageContext()
         {
             this.results.ShouldBeEquivalentTo(cardDecks);
+        }
+
+        [Test]
+        public void Then_the_CardDecks_should_be_in_alphabetical_order()
+        {
+            this.results.Select(x => x.DeckName).Should().BeInAscendingOrder();
         }
     }
 }

@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControllerTest
 {
     [TestFixture]
-    public class When_GetForQuiz_is_called_with_a_DateTime : Given_a_new_CardsController
+    public class When_GetForQuiz_is_called_with_date_values : Given_a_new_CardsController
     {
         private DateTime quizDate;
         private IEnumerable<Card> cards;

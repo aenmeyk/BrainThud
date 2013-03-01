@@ -4,6 +4,7 @@ using BrainThud.Core;
 using BrainThud.Core.Models;
 using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureTableStorage;
+using System.Linq;
 
 namespace BrainThud.Web.Api.Controllers
 {
@@ -22,7 +23,7 @@ namespace BrainThud.Web.Api.Controllers
 
         public IEnumerable<CardDeck> Get()
         {
-            return this.TableStorageContext.CardDecks.GetForUser();
+            return this.TableStorageContext.CardDecks.GetForUser().ToList().OrderBy(x => x.DeckName);
         }
     }
 }
