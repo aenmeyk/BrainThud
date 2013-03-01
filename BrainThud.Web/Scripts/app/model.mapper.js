@@ -15,6 +15,19 @@
                 }
             },
 
+            cardDeck = {
+                mapResults: function(dto, results) {
+                    for (var i = 0; i < dto.length; i++) {
+                        if (!utils.entityExists(results, dto)) {
+                            results.push(getCardDeckFromDto(dto[i]));
+                        }
+                    }
+                },
+                mapResult: function(dto) {
+                    return getCardDeckFromDto(dto);
+                }
+            },
+
             quizResult = {
                 mapResults: function(dto, results) {
                     for (var i = 0; i < dto.length; i++) {
@@ -81,6 +94,19 @@
                 return singleCard;
             },
             
+            getCardDeckFromDto = function (dto) {
+                var singleCardDeck = new model.CardDeck();
+                singleCardDeck.partitionKey(dto.partitionKey)
+                    .rowKey(dto.rowKey)
+                    .timestamp(dto.timestamp)
+                    .createdTimestamp(dto.createdTimestamp)
+                    .deckName(dto.deckName)
+                    .deckNameSlug(dto.deckNameSlug)
+                    .cardIds(dto.cardIds);
+
+                return singleCardDeck;
+            },
+            
             getQuizResultFromDto = function(dto) {
                 var singleQuizResult = new model.QuizResult();
                 singleQuizResult.partitionKey(dto.partitionKey)
@@ -102,6 +128,7 @@
 
         return {
             card: card,
+            cardDeck: cardDeck,
             quizResult: quizResult,
             userConfiguration: userConfiguration
         };

@@ -23,6 +23,11 @@ namespace BrainThud.Web.Api
                 });
 
             config.Routes.MapHttpRoute(
+                name: RouteNames.API_CARD_DECKS,
+                routeTemplate: "api/card-decks/{userid}",
+                defaults: new { controller = "CardDecks", userid = RouteParameter.Optional });
+
+            config.Routes.MapHttpRoute(
                 name: RouteNames.API_QUIZ_RESULTS,
                 routeTemplate: "api/quiz-results/{userid}/{year}/{month}/{day}/{cardId}",
                 defaults: new { controller = "QuizResults", cardId = RouteParameter.Optional });

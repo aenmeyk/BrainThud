@@ -6,22 +6,19 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         $cardInfoDialog,
         deleteCardOptions,
         cards = ko.observableArray([]),
+        cardDecks = ko.observableArray([]),
         quizCards = ko.observableArray([]),
         quizYear = ko.observable(0),
         quizMonth = ko.observable(0),
         quizDay = ko.observable(0),
 
         cardDeckNames = ko.computed(function () {
-            var sortedCards = _.sortBy(cards(), function (item) {
+            var sortedCardDecks = _.sortBy(cardDecks(), function (item) {
                 return item.deckName().toLowerCase();;
             });
                             
-            var deckNames = _.map(sortedCards, function(item) {
+            return _.map(sortedCardDecks, function (item) {
                 return item.deckName();
-            });
-                
-            return _.uniq(deckNames, true, function (item) {
-                return item;
             });
         }),
 
@@ -41,7 +38,7 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
                     executeDelete();
                 });
 
-                $.when(getCards())
+                $.when(getCards(), getCardDecks())
                 .done(function() {
                     def.resolve();
                 });
@@ -51,6 +48,12 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         getCards = function () {
             return dataContext.card.getData({
                 results: cards
+            });
+        },
+            
+        getCardDecks = function () {
+            return dataContext.cardDeck.getData({
+                results: cardDecks
             });
         },
 
@@ -178,6 +181,7 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
     return {
         init: init,
         cards: cards,
+        cardDecks: cardDecks,
         cardDeckNames: cardDeckNames,
         quizCards: quizCards,
         quizCardCount: quizCardCount,

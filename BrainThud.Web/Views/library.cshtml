@@ -12,6 +12,7 @@
             </a>
             <div class="card-deck-container collapse">
                 <ul class="nav nav-list" data-bind="foreach:cardDecks">
+
                     <li data-bind="css: { active: $root.isDeckSelected($data.deckNameSlug()) }">
                         <a class="list-card-deck" data-bind="html: $data.deckName(), click: function() { $root.filterCards($data.deckNameSlug()) }"></a>
                     </li>
@@ -28,6 +29,5 @@
     </div>
     </div>
 
-
-    @*    <span data-bind="text: ko.toJSON($data)"></span>*@
+@*        <span data-bind="text: ko.toJSON($data)"></span>*@
 </section>

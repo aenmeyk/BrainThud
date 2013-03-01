@@ -17,13 +17,14 @@
             }),
 
             cardDecks = ko.computed(function () {
-                var sortedCards = _.sortBy(cardManager.cards(), function (item) {
-                    return item.deckName().toLowerCase();;
-                });
-
-                return _.uniq(sortedCards, true, function (item) {
-                    return item.deckName();
-                });
+                return cardManager.cardDecks();
+//                var sortedCards = _.sortBy(cardManager.cardDecks(), function (item) {
+//                    return item.deckName().toLowerCase();
+//                });
+//
+//                return _.uniq(sortedCards, true, function (item) {
+//                    return item.deckName();
+//                });
             }),
 
             filteredCards = ko.computed(function () {
@@ -89,7 +90,7 @@
             };
 
         return {
-            cardDecks: cardDecks,
+            cardDecks: cardDecks, 
             filteredCards: filteredCards,
             editCard: editCard,
             flipCard: flipCard,
