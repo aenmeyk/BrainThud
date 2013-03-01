@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
-    <title>BrainThud</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render(BundlePaths.CSS, BundlePaths.LESS)
     @Scripts.Render(BundlePaths.MODERNIZR)
 </head>
@@ -39,7 +39,7 @@
                     <div class="identity">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            @Html.ActionLink("Sign Out", "SignOut", "Account")
+                            @Html.ActionLink("Log Out", "SignOut", "Account")
                         }
                         else
                         {
