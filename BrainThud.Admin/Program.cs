@@ -15,6 +15,8 @@ using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.DependencyResolution;
 using BrainThudTest;
 using FizzWare.NBuilder;
+using FizzWare.NBuilder.Implementation;
+using FizzWare.NBuilder.PropertyNaming;
 using Microsoft.WindowsAzure;
 using System.Linq;
 using Microsoft.WindowsAzure.Storage;
@@ -89,10 +91,38 @@ namespace BrainThud.Admin
 
         private static void GenerateTestData(IContainer container)
         {
-//            var identity = new GenericIdentity("httpswwwgooglecomaccountso8ididaitoawn66whrug-vmzp4sx7ikz2px5njx5dbv2u");
-//            var principal = new GenericPrincipal(identity, null);
-//            Thread.CurrentPrincipal = principal;
-//            HttpContext.Current.User = principal;
+            const string LONG_QUESTION = @"1. An anonymous user requests a protected resource
+ 2. In the `AuthorizeRequest` step, the `WSFederationAuthenticationModule` determines that the user is not authorized to access the resource and returns a `401 Not Authorized`
+ 3. In the `EndRequest` step, the `401` is changed to a `302 Redirect` to the Security Token Service
+ 4. The Security Token Service authenticates the user and returns a security token
+ 5. In the `AuthenticateRequest` step, the token is validated, claims transformation takes place and a session is established with a `SessionSecurityToken` as a session cookie
+ 6. Once the session has been established, the `SessionSecurityToken` is sent with each request and the `SessionAuthenticationModule` validates the `SessionSecurityToken` in the `AuthenticateRequest` step";
+
+            const string LONG_ANSWER = @" 1. `ClaimsAuthenticationManager` - Reject requests based on missing or invalid identity information
+ 2. URL authorization module - Specify authorization elements in the `Web.config` files
+   
+        <location path='staff'>
+            <system.web>
+                <authorization>
+                    <allow roles='Marketing' />
+                    <deny users='*' />
+                </authorization>
+            </system.web>
+        </location>
+ 3. `ClaimsAuthorizationModule` - Also uses the URL but is claims-based.
+
+        <modules runAllManagedModulesForAllRequests='true'>
+            <add name='ClaimsAuthorizationModule' 
+                 type=System.IdentityModel.Services.ClaimsAuthorizationModule, ...' />
+        </modules>
+
+        <system.identityModel>
+           <identityConfiguration>
+               <claimsAuthorizationManager type='AuthorizationManager, ...' />
+           <identityConfiguration>
+        </system.identityModel>";
+
+
             new AzureInitializer().Initialize();
 
             var config = new HttpConfiguration { DependencyResolver = new StructureMapWebApiResolver(container), };
@@ -106,21 +136,35 @@ namespace BrainThud.Admin
             client.DefaultRequestHeaders.Add(HttpHeaders.X_CLIENT_DATE, DateTime.Now.ToLongDateString());
             client.DefaultRequestHeaders.Add(HttpHeaders.X_TEST, "true");
 
-            var cards = Builder<Card>.CreateListOfSize(1000)
+            var randomizer = new RandomGenerator();
+
+            var namer = new RandomValuePropertyNamer(new RandomGenerator(), 
+                                            new ReflectionUtil(), 
+                                            true, 
+                                            DateTime.Now, 
+                                            DateTime.Now.AddDays(10), 
+                                            true);
+
+            BuilderSetup.SetDefaultPropertyNamer(namer);
+
+            var cards = Builder<Card>.CreateListOfSize(10000)
                 .All()
                     .With(x => x.PartitionKey = null)
                     .And(x => x.RowKey = null)
                     .And(x => x.Timestamp = TypeValues.MIN_SQL_DATETIME)
-                .TheFirst(100).With(x => x.DeckName = "Philosophy of science")
-                .TheNext(100).With(x => x.DeckName = "Functional MRI Investigations of the Human Brain")
-                .TheNext(100).With(x => x.DeckName = "Cellular Neurobiology")
-                .TheNext(100).With(x => x.DeckName = "Expression and Purification of Enzyme Mutants")
-                .TheNext(100).With(x => x.DeckName = "7.02J Introduction to Experimental Biology and Communication, 18, LAB, CI-M; Biology (GIR)")
-                .TheNext(100).With(x => x.DeckName = "Studies in Musical Composition")
-                .TheNext(100).With(x => x.DeckName = "Mechanics of Structures and Soils")
-                .TheNext(100).With(x => x.DeckName = "Space Systems Development")
-                .TheNext(100).With(x => x.DeckName = "16.90 Computational Methods in Aerospace Engineering")
-                .TheNext(100).With(x => x.DeckName = "2.51 Intermediate Heat and Mass Transfer")
+                .TheFirst(1000)
+                    .With(x => x.DeckName = "Foundations of Medicine I (large)")
+                    .And(x => x.Question = LONG_QUESTION)
+                    .And(x => x.Answer = LONG_ANSWER)
+                .TheNext(1000).With(x => x.DeckName = "Foundations of Medicine II")
+                .TheNext(1000).With(x => x.DeckName = "Human Health & Disease II - Pulmonary")
+                .TheNext(1000).With(x => x.DeckName = "Human Health & Disease II - Cardiovascular")
+                .TheNext(1000).With(x => x.DeckName = "Practice of Medicine III")
+                .TheNext(1000).With(x => x.DeckName = "Human Health & Disease III - Gastrointestinal")
+                .TheNext(1000).With(x => x.DeckName = "Human Health & Disease IV - Multi-systemic Diseases")
+                .TheNext(1000).With(x => x.DeckName = "Analysis of Structures")
+                .TheNext(1000).With(x => x.DeckName = "Aircraft and Rocket Propulsion")
+                .TheNext(1000).With(x => x.DeckName = "Multivariable Feedback Systems")
                 .Build();
 
             foreach(var card in cards)
@@ -128,7 +172,7 @@ namespace BrainThud.Admin
                 var response = client.PostAsJsonAsync(TestUrls.CARDS, card).Result;
                 if (!response.IsSuccessStatusCode) break;
 
-                Thread.Sleep(500);
+                Thread.Sleep(200);
             }
         }
 
