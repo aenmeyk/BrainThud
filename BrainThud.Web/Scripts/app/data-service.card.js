@@ -3,7 +3,7 @@
         var
             init = function() {
                 amplify.request.define('getCards', 'ajax', {
-                    url: config.routes.cards,
+                    url: config.routes.cardDeckCards,
                     dataType: 'json',
                     type: 'GET'
                 }),
@@ -41,11 +41,15 @@
                 });
             },
 
-            get = function (callbacks) {
+            get = function (options) {
                 return amplify.request({
                     resourceId: 'getCards',
-                    success: callbacks.success,
-                    error: callbacks.error
+                    data: {
+                        userIdPath: options.params.userId,
+                        deckNameSlugPath: options.params.deckNameSlug
+                    },
+                    success: options.success,
+                    error: options.error
                 });
             },
 
@@ -73,21 +77,21 @@
                 });
             },
 
-            create = function (data, cache, callbacks) {
+            create = function (data, cache, options) {
                 return amplify.request({
                     resourceId: 'createCard',
                     data: data,
-                    success: callbacks.success,
-                    error: callbacks.error
+                    success: options.success,
+                    error: options.error
                 });
             },
 
-            update = function (data, callbacks) {
+            update = function (data, options) {
                 return amplify.request({
                     resourceId: 'updateCard',
                     data: data,
-                    success: callbacks.success,
-                    error: callbacks.error
+                    success: options.success,
+                    error: options.error
                 });
             },
 

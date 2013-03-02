@@ -34,7 +34,8 @@ namespace BrainThud.Web.Authentication
             get
             {
 #if DEBUG
-                if (HttpContext.Current == null) return "TestNameIdentifier";
+                if (HttpContext.Current == null) return "httpswwwgooglecomaccountso8ididaitoawn66whrug-vmzp4sx7ikz2px5njx5dbv2u";
+//                if (HttpContext.Current == null) return "TestNameIdentifier";
 #endif
 
                 return FederatedAuthentication.SessionAuthenticationModule.ContextSessionSecurityToken != null

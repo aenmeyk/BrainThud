@@ -25,7 +25,9 @@ namespace BrainThud.Web.Controllers
             var cardDecks = this.TableStorageContext.CardDecks.GetAll().ToList();
 
 #if !DEBUG
-            cardDecks = cardDecks.Where(x => x.PartitionKey != ConfigurationSettings.TEST_PARTITION_KEY && x.PartitionKey != ConfigurationSettings.DEV_PARTITION_KEY).ToList();
+            cardDecks = cardDecks.Where(x => x.PartitionKey != ConfigurationSettings.TEST_PARTITION_KEY && 
+                x.PartitionKey != ConfigurationSettings.DEV_PARTITION_KEY && 
+                x.PartitionKey != ConfigurationSettings.DEV_PARTITION_KEY_2).ToList();
 #endif
 
             return View(cardDecks.OrderBy(x => x.DeckName));

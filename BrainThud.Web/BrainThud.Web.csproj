@@ -167,6 +167,7 @@
   <ItemGroup>
     <Compile Include="ActionFilters\ValidationActionFilter.cs" />
     <Compile Include="Api\Authorization\TestableAuthorizeAttribute.cs" />
+    <Compile Include="Api\Controllers\CardDecksController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\GlobalConfig.cs" />
@@ -290,6 +291,8 @@
     <Content Include="Scripts\amplify.min.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
     <Content Include="Scripts\app\card-manager.js" />
+    <Content Include="Scripts\app\model.card-deck.js" />
+    <Content Include="Scripts\app\data-service.card-deck.js" />
     <Content Include="Scripts\app\model.user-configuration.js" />
     <Content Include="Scripts\app\vm.user-configuration.js" />
     <Content Include="Scripts\app\vm.card-info.js" />

@@ -193,6 +193,9 @@ h6 {
 .right-text-align {
   text-align: right;
 }
+.bottom-text-align {
+  vertical-align: bottom;
+}
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* --- Sizing -----------------------------------------------------------------------------------------------------------------------------------------------*/
 /* -------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -282,15 +285,6 @@ h6 {
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-}
-.list-card-deck {
-  display: block;
-  border: 1px solid #E5E5E5;
-  margin: 0 0 -1px;
-  padding: 6px 15px !important;
-}
-.list-card-deck:hover {
-  cursor: pointer;
 }
 .block-link {
   display: block;
@@ -488,6 +482,18 @@ input[type=text] {
 }
 .markdown code {
   color: inherit;
+}
+.list-card-deck {
+  display: block;
+  border: 1px solid #E5E5E5;
+  margin: 0 0 -1px;
+  padding: 6px 3px 6px 15px !important;
+}
+.list-card-deck:hover {
+  cursor: pointer;
+}
+.card-count {
+  font-size: 0.7em;
 }
 /* ==========================================================================
    Helper classes

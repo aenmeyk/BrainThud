@@ -3,7 +3,7 @@
         var
             startupUrl = '',
             userHasCards = ko.computed(function() {
-                return cardManager.cards().length > 0;
+                return cardManager.cardDecks().length > 0;
             }),
 
             navigateTo = function (url) {

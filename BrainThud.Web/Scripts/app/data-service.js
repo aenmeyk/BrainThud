@@ -1,5 +1,5 @@
-﻿define('data-service', ['data-service.card', 'data-service.quiz-result', 'data-service.user-configuration', 'amplify'],
-    function (card, quizResult, userConfiguration, amplify) {
+﻿define('data-service', ['data-service.card', 'data-service.card-deck', 'data-service.quiz-result', 'data-service.user-configuration', 'amplify'],
+    function (card, cardDeck, quizResult, userConfiguration, amplify) {
         
         var init = function() {
             amplify.request.decoders._default = function(data, status, xhr, success, error) {
@@ -19,6 +19,7 @@
 
         return {
             card: card,
+            cardDeck: cardDeck,
             quizResult: quizResult,
             userConfiguration: userConfiguration
         };

@@ -1,8 +1,7 @@
 ﻿using BrainThud.Core.Models;
-using BrainThud.Core.Models;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.Model.CardTest
+namespace BrainThudTest.BrainThud.CoreTest.Model.CardTest
 {
     [TestFixture]
     public abstract class Given_a_new_Card : Gwt

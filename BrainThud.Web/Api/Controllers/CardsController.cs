@@ -55,6 +55,11 @@ namespace BrainThud.Web.Api.Controllers
             return userCards.Union(quizResultCards).ToList().OrderBy(x => x.CreatedTimestamp);
         }
 
+        public IEnumerable<Card> GetForCardDeck(string deckNameSlug)
+        {
+            return this.TableStorageContext.Cards.GetForUser().Where(x => x.DeckNameSlug == deckNameSlug).ToList();
+        }
+
         [ValidateInput(false)]
         public HttpResponseMessage Put(Card card)
         {

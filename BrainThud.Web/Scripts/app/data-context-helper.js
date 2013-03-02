@@ -66,18 +66,19 @@
                         entitySetConfig.update(options.data, {
                             params: options.params,
                             success: function (dto) {
-                                var updatedItem;
-                                for (var i = 0; i < cachedResults.length; i++) {
-                                    if (cachedResults[i].partitionKey() === dto.partitionKey && cachedResults[i].rowKey() === dto.rowKey) {
-                                        cachedResults[i] = entitySetConfig.mapper.mapResult(dto);
-                                        updatedItem = cachedResults[i];
-                                        break;
+                                var updatedItem = entitySetConfig.mapper.mapResult(dto);
+                                if (cachedResults && cachedResults.length > 0) {
+                                    for (var i = 0; i < cachedResults.length; i++) {
+                                        if (cachedResults[i].partitionKey() === dto.partitionKey && cachedResults[i].rowKey() === dto.rowKey) {
+                                            cachedResults[i] = updatedItem;
+                                            break;
+                                        }
                                     }
                                 }
                                 
                                 options.data.dirtyFlag().reset();
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
-                                if (options.callback) options.callback(cachedResults[i]);
+                                if (options.callback) options.callback(updatedItem);
                                 def.resolve(updatedItem);
                             },
                             error: function (xhr) {
@@ -92,13 +93,15 @@
                         entitySetConfig.deleteItem({
                             data: options.data,
                             success: function () {
-                                for (var i = 0; i < cachedResults.length; i++) {
-                                    if (cachedResults[i].partitionKey() === options.data.partitionKey && cachedResults[i].rowKey() === options.data.rowKey) {
-                                        cachedResults.splice(i, 1);
-                                        break;
+                                if (cachedResults && cachedResults.length > 0) {
+                                    for (var i = 0; i < cachedResults.length; i++) {
+                                        if (cachedResults[i].partitionKey() === options.data.partitionKey && cachedResults[i].rowKey() === options.data.rowKey) {
+                                            cachedResults.splice(i, 1);
+                                            break;
+                                        }
                                     }
                                 }
-
+                                
                                 if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
                                 def.resolve();
                             },

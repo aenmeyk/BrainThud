@@ -17,6 +17,11 @@
                 showSuccessToastr: true
             }),
             
+            cardDeck = new dataContextHelper.EntitySet({
+                get: dataService.cardDeck.get,
+                mapper: modelMapper.cardDeck
+            }),
+            
             quizCard = new dataContextHelper.EntitySet({
                 get: dataService.card.getForQuiz,
                 deleteItem: dataService.card.deleteItem,
@@ -33,6 +38,7 @@
         return {
             userConfiguration: userConfiguration,
             card: card,
+            cardDeck: cardDeck,
             quizCard: quizCard,
             quizResult: quizResult
         };
