@@ -96,6 +96,7 @@ namespace BrainThud.Core
         public static int SeedRefreshIntervalSeconds = 120;
         public const string TEST_PARTITION_KEY = "TestNameIdentifier-314";
         public const string DEV_PARTITION_KEY = "5dfwtubuqmmf0foup1nhorsbgt5yilyqwp6vj44knre-5219";
+        public const string DEV_PARTITION_KEY_2 = "httpswwwgooglecomaccountso8ididaitoawn66whrug-vmzp4sx7ikz2px5njx5dbv2u-5220";
         public const int PARTITION_KEY_SLUG_LENGTH = 1024;
         public const int CARD_DECK_SLUG_LENGTH = 1024;
         public const int CARD_SLUG_LENGTH = 125;

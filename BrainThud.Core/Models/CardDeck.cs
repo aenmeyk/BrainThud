@@ -15,7 +15,7 @@ namespace BrainThud.Core.Models
         public string DeckName { get; set; }
         public string DeckNameSlug { get; set; }
         public int UserId { get; set; }
-        public int CardCount { get; private set; }
+        public int CardCount { get; set; }
 
         public string CardIds
         {
