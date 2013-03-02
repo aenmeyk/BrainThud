@@ -2,12 +2,12 @@
     function (ko, cardManager, _, router, global) {
         var
             selectedDeckSlug = ko.observable(''),
-            
+
             isCheckedForBatch = ko.observable(false),
-            
-            filteredCards = ko.computed(function() {
+
+            filteredCards = ko.computed(function () {
                 var slug = selectedDeckSlug();
-                return _.filter(cardManager.cards(), function(item) {
+                return _.filter(cardManager.cards(), function (item) {
                     return item.deckNameSlug() === slug;
                 });
             }),
@@ -57,7 +57,7 @@
 
             filterCards = function (deckNameSlug) {
                 var $cardDeckName = $('.card-deck-name');
-                
+
                 if ($cardDeckName.is(":visible")) {
                     $cardDeckName.click();
                     setTimeout(function () { navigateToSlug(deckNameSlug); }, 400);
@@ -65,8 +65,8 @@
                     navigateToSlug(deckNameSlug);
                 }
             },
-            
-            navigateToSlug = function(slug) {
+
+            navigateToSlug = function (slug) {
                 router.navigateTo(global.routePrefix + 'library/' + slug);
             },
 
@@ -75,7 +75,7 @@
             },
 
             toggleIsCheckedForBatch = function () {
-                _.each(filteredCards(), function(item) {
+                _.each(filteredCards(), function (item) {
                     item.isCheckedForBatch(!isCheckedForBatch());
                 });
             },
@@ -86,6 +86,18 @@
 
             showCardInfoDialog = function (card) {
                 cardManager.showCardInfo(card);
+            },
+
+            flipAll = function () {
+                var questionSideVisible;
+                _.each(filteredCards(), function (item) {
+                    if (questionSideVisible === undefined) {
+                        questionSideVisible = !item.questionSideVisible();
+                    }
+                    if (item.isCheckedForBatch()) {
+                        item.questionSideVisible(questionSideVisible);
+                    }
+                });
             };
 
         selectedDeckSlug.subscribe(function (deckNameSlug) {
@@ -95,7 +107,7 @@
         }.bind(this));
 
         return {
-            cardDecks: cardDecks, 
+            cardDecks: cardDecks,
             filteredCards: filteredCards,
             editCard: editCard,
             flipCard: flipCard,
@@ -106,7 +118,8 @@
             isCheckedForBatch: isCheckedForBatch,
             toggleIsCheckedForBatch: toggleIsCheckedForBatch,
             showDeleteDialog: showDeleteDialog,
-            showCardInfoDialog: showCardInfoDialog
+            showCardInfoDialog: showCardInfoDialog,
+            flipAll: flipAll
         };
     }
 );
