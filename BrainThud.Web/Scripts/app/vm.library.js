@@ -103,6 +103,7 @@
         selectedDeckSlug.subscribe(function (deckNameSlug) {
             if (deckNameSlug) {
                 cardManager.getCards(deckNameSlug);
+                isCheckedForBatch(false);
             }
         }.bind(this));
 
