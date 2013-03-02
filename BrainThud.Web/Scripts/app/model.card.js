@@ -20,6 +20,7 @@
             self.completedQuizMonth = ko.observable();
             self.completedQuizDay = ko.observable();
             self.questionSideVisible = ko.observable(true);
+            self.isCheckedForBatch = ko.observable(false);
             self.questionHtml = ko.computed(function () {
                 return self.question() ? editor.makeHtml(self.question()) : '';
             });

@@ -26,10 +26,23 @@
             </div>
         </div>
         <div class="span9">
+            <div class="batch-button-container">
+                <input type="checkbox" data-bind="        checked: isCheckedForBatch, event: { mousedown: toggleIsCheckedForBatch }">
+                <div class="btn-group batch-button">
+                    <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Edit</a></li>
+                        <li><a href="#">Delete</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Flip</a></li>
+                    </ul>
+                </div>
+            </div>
             <ul data-bind="foreach: filteredCards">
                 <li>
                     <div class="list-card-checkbox">
-                        <input type="checkbox"></div>
+                        <input type="checkbox" data-bind="checked: isCheckedForBatch">
+                    </div>
                     <div class="list-card-container">
                         <div class="list-card question markdown" data-bind="html: currentSideText, css: libraryCardBorder"></div>
                         @Html.Partial("_card-mini-menu", new[] { "<a data-bind='click: function() { $root.flipCard($data) }'>flip</a>" })

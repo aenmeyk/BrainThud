@@ -3,6 +3,8 @@
         var
             selectedDeckSlug = ko.observable(''),
             
+            isCheckedForBatch = ko.observable(false),
+            
             filteredCards = ko.computed(function() {
                 var slug = selectedDeckSlug();
                 return _.filter(cardManager.cards(), function(item) {
@@ -72,6 +74,12 @@
                 return selectedDeckSlug() === deckNameSlug;
             },
 
+            toggleIsCheckedForBatch = function () {
+                _.each(filteredCards(), function(item) {
+                    item.isCheckedForBatch(!isCheckedForBatch());
+                });
+            },
+
             showDeleteDialog = function (card) {
                 cardManager.deleteCard(card);
             },
@@ -95,6 +103,8 @@
             filterCards: filterCards,
             selectedDeckName: selectedDeckName,
             isDeckSelected: isDeckSelected,
+            isCheckedForBatch: isCheckedForBatch,
+            toggleIsCheckedForBatch: toggleIsCheckedForBatch,
             showDeleteDialog: showDeleteDialog,
             showCardInfoDialog: showCardInfoDialog
         };
