@@ -11,10 +11,9 @@
                 </table>
             </a>
             <div class="card-deck-container collapse">
-                <ul class="nav nav-list" data-bind="foreach:cardDecks">
-
+                <ul class="nav nav-list" data-bind="foreach: cardDecks">
                     <li data-bind="css: { active: $root.isDeckSelected($data.deckNameSlug()) }">
-                        <a class="list-card-deck" data-bind="click: function() { $root.filterCards($data.deckNameSlug()) }">
+                        <a class="list-card-deck" data-bind="click: function () { $root.filterCards($data.deckNameSlug()) }">
                             <table>
                                 <tr>
                                     <td class="stretch"><span class="card-title" data-bind="html: $data.deckName()"></span></td>
@@ -26,15 +25,19 @@
                 </ul>
             </div>
         </div>
-    <div class="span9">
-        <ul data-bind="foreach:filteredCards">
-            <li>
-                <div class="list-card question markdown" data-bind="html: currentSideText, css: libraryCardBorder"></div>
-                @Html.Partial("_card-mini-menu", new[] { "<a data-bind='click: function() { $root.flipCard($data) }'>flip</a>" })
-            </li>
-        </ul>
-    </div>
+        <div class="span9">
+            <ul data-bind="foreach: filteredCards">
+                <li>
+                    <div class="list-card-checkbox">
+                        <input type="checkbox"></div>
+                    <div class="list-card-container">
+                        <div class="list-card question markdown" data-bind="html: currentSideText, css: libraryCardBorder"></div>
+                        @Html.Partial("_card-mini-menu", new[] { "<a data-bind='click: function() { $root.flipCard($data) }'>flip</a>" })
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 
-@*        <span data-bind="text: ko.toJSON($data)"></span>*@
+    @*        <span data-bind="text: ko.toJSON($data)"></span>*@
 </section>
