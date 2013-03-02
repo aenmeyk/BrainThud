@@ -28,7 +28,7 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardDecksContr
         [Test]
         public void Then_the_card_decks_are_returned_from_the_TableStorageContext()
         {
-            this.results.ShouldBeEquivalentTo(cardDecks);
+            this.results.Should().BeEquivalentTo(cardDecks);
         }
 
         [Test]
