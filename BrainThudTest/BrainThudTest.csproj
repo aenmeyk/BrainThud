@@ -146,6 +146,8 @@
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardDecksControllerTest\Given_a_new_CardDecksController.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardDecksControllerTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardDecksControllerTest\When_Get_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_BatchDelete_is_called_with_an_invalid_model.cs" />
+    <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_BatchDelete_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_GetForCardDeck_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_Put_is_called_and_the_CardDeck_has_not_changed.cs" />
     <Compile Include="BrainThud.WebTest\AuthenticationTest\TokenStoreTest\When_ClearTokens_is_called.cs" />

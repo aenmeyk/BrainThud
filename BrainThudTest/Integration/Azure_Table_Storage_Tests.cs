@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web.Http;
 using BrainThud.Core.Models;
 using BrainThud.Web.Api;
@@ -14,6 +16,32 @@ using HttpHeaders = BrainThud.Core.HttpHeaders;
 
 namespace BrainThudTest.Integration
 {
+    public class XmlMediaTypeFormatterWrapper : XmlMediaTypeFormatter
+    {
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
+        {
+            var ret = base.WriteToStreamAsync(type, value, writeStream, content, transportContext);
+            if(null != ret.Exception)
+            {
+                var x = 1;
+            }
+            return ret;
+        }
+    }
+
+    public class JsonMediaTypeFormatterWrapper : JsonMediaTypeFormatter
+    {
+        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
+        {
+            var ret = base.WriteToStreamAsync(type, value, writeStream, content, transportContext);
+            if(null != ret.Exception)
+            {
+                var x = 1;
+            }
+            return ret;
+        }
+    }
+
     [TestFixture]
     public class Azure_Table_Storage_Tests
     {
@@ -32,8 +60,10 @@ namespace BrainThudTest.Integration
 
             var container = IoC.Initialize();
             var config = new HttpConfiguration { DependencyResolver = new StructureMapWebApiResolver(container),  };
-            config.Formatters.JsonFormatter.MediaTypeMappings.Add(new UriPathExtensionMapping("json", "application/json"));
-            config.Formatters.XmlFormatter.MediaTypeMappings.Add(new UriPathExtensionMapping("xml", "application/xml"));
+            config.Formatters.Add(new XmlMediaTypeFormatterWrapper());
+            config.Formatters.Add(new JsonMediaTypeFormatterWrapper());
+//            config.Formatters.JsonFormatter.MediaTypeMappings.Add(new UriPathExtensionMapping("json", "application/json"));
+//            config.Formatters.XmlFormatter.MediaTypeMappings.Add(new UriPathExtensionMapping("xml", "application/xml"));
 
             WebApiConfig.Configure(config);
 
@@ -47,6 +77,7 @@ namespace BrainThudTest.Integration
             // Test POST
             // -------------------------------------------------------------------------------------
             var postResponse = client.PostAsJsonAsync(TestUrls.CARDS, card).Result;
+            var xx = postResponse.Content.ReadAsStringAsync().Result;
             var postCard = postResponse.Content.ReadAsAsync<Card>().Result;
 
             // Assert that the POST succeeded

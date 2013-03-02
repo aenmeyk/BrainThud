@@ -88,6 +88,18 @@
                 cardManager.showCardInfo(card);
             },
 
+            deleteAll = function () {
+                var questionSideVisible;
+                _.each(filteredCards(), function (item) {
+                    if (questionSideVisible === undefined) {
+                        questionSideVisible = !item.questionSideVisible();
+                    }
+                    if (item.isCheckedForBatch()) {
+                        item.questionSideVisible(questionSideVisible);
+                    }
+                });
+            },
+
             flipAll = function () {
                 var questionSideVisible;
                 _.each(filteredCards(), function (item) {
@@ -120,6 +132,7 @@
             toggleIsCheckedForBatch: toggleIsCheckedForBatch,
             showDeleteDialog: showDeleteDialog,
             showCardInfoDialog: showCardInfoDialog,
+            deleteAll: deleteAll,
             flipAll: flipAll
         };
     }
