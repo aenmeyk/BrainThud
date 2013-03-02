@@ -23,7 +23,8 @@ namespace BrainThud.Web.Api.Controllers
 
         public IEnumerable<CardDeck> Get()
         {
-            return this.TableStorageContext.CardDecks.GetForUser().ToList().OrderBy(x => x.DeckName);
+            var cardDecks = this.TableStorageContext.CardDecks.GetForUser().ToList().OrderBy(x => x.DeckName);
+            return cardDecks;
         }
     }
 }

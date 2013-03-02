@@ -102,7 +102,8 @@
                     .createdTimestamp(dto.createdTimestamp)
                     .deckName(dto.deckName)
                     .deckNameSlug(dto.deckNameSlug)
-                    .cardIds(dto.cardIds);
+                    .cardIds(dto.cardIds)
+                    .cardCount(dto.cardCount);
 
                 return singleCardDeck;
             },

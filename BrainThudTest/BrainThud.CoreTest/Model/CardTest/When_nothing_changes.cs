@@ -3,7 +3,7 @@ using FluentAssertions;
 using Microsoft.WindowsAzure.Storage.Table.DataServices;
 using NUnit.Framework;
 
-namespace BrainThudTest.BrainThud.WebTest.Model.CardTest
+namespace BrainThudTest.BrainThud.CoreTest.Model.CardTest
 {
     [TestFixture]
     public class When_nothing_changes : Given_a_new_Card

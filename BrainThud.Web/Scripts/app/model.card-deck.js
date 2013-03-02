@@ -9,6 +9,7 @@
             self.deckName = ko.observable();
             self.deckNameSlug = ko.observable();
             self.cardIds = ko.observable();
+            self.cardCount = ko.observable();
         };
 
         return CardDeck;

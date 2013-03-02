@@ -14,7 +14,14 @@
                 <ul class="nav nav-list" data-bind="foreach:cardDecks">
 
                     <li data-bind="css: { active: $root.isDeckSelected($data.deckNameSlug()) }">
-                        <a class="list-card-deck" data-bind="html: $data.deckName(), click: function() { $root.filterCards($data.deckNameSlug()) }"></a>
+                        <a class="list-card-deck" data-bind="click: function() { $root.filterCards($data.deckNameSlug()) }">
+                            <table>
+                                <tr>
+                                    <td class="stretch"><span class="card-title" data-bind="html: $data.deckName()"></span></td>
+                                    <td class="right-text-align bottom-text-align"><span class="card-count" data-bind="html: $data.cardCount()"></span></td>
+                                </tr>
+                            </table>
+                        </a>
                     </li>
                 </ul>
             </div>
