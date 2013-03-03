@@ -18,10 +18,13 @@ namespace BrainThud.Web.App_Start
             bundles.Add(new ScriptBundle(BundlePaths.MODERNIZR).Include(
                 "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle(BundlePaths.JQUERY, "//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js").Include(
-                "~/Scripts/jquery-1.*"));
+            bundles.Add(new ScriptBundle(BundlePaths.JQUERY, "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js").Include(
+//                "~/Scripts/jquery-1.*",
+                "~/Scripts/jquery-1.9.1.js",
+                "~/Scripts/jquery-1.9.1.min.js"
+                ));
 
-            bundles.Add(new ScriptBundle(BundlePaths.JQUERY_UI, "//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js").Include(
+            bundles.Add(new ScriptBundle(BundlePaths.JQUERY_UI, "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js").Include(
                 "~/Scripts/jquery-ui*"));
 
             bundles.Add(new ScriptBundle(BundlePaths.EXTERNAL_LIBS).Include(
