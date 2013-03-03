@@ -42,6 +42,7 @@
                 // 3) If no previously selected deck, navigate to the first deck
                 // 4) If there are no cards, clear the selected deck
                 if (routeData.deckNameSlug) {
+                    cardManager.getCards(routeData.deckNameSlug);
                     selectedDeckSlug(routeData.deckNameSlug);
                 } else if (selectedDeckSlug() !== '') {
                     navigateToSlug(selectedDeckSlug());

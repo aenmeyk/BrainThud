@@ -3,10 +3,10 @@
         
         var init = function() {
             amplify.request.decoders._default = function(data, status, xhr, success, error) {
-                if (status == "success") {
-                    success(data);
-                } else {
+                if (status === "error" || status === "fail") {
                     error(xhr);
+                } else {
+                    success(data);
                 }
             };
 
