@@ -160,8 +160,11 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
 
         executeDelete = function () {
             $("#deleteDialog").modal('hide');
+            var card = ko.toJS(deleteCardOptions.card);
+            var data = new Array();
+            data[0] = card;
             $.when(dataContext.card.deleteData({
-                data: ko.toJS(deleteCardOptions.card)
+                data: data
             })).then(function () {
                 dataContext.quizCard.setCacheInvalid();
                 dataContext.quizResult.setCacheInvalid();

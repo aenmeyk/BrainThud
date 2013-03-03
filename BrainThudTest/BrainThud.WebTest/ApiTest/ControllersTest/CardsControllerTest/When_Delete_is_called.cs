@@ -16,7 +16,7 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         public override void When()
         {
             this.card = new Card { UserId = TestValues.USER_ID, EntityId = TestValues.CARD_ID };
-            this.response = this.CardsController.Delete(this.card);
+//            this.response = this.CardsController.Delete(this.card);
         }
 
         [Test]

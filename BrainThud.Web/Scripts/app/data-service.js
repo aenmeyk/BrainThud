@@ -11,7 +11,12 @@
             };
 
             amplify.subscribe("request.ajax.preprocess", function (defnSettings, settingValues, ajaxSettings) {
-                ajaxSettings.data = JSON.stringify(ajaxSettings.data);
+                // The $.extend( true, {}, defnSettings.data, data ) call that Amplify.js makes converts
+                // an array to an object.  This prevents the serialized value from being received by MVC.
+                // For deleteCards, the data is stringified before the Amplify.js call.
+                if (defnSettings.resourceId !== "deleteCards" && defnSettings.type !== "DELETE") {
+                    ajaxSettings.data = JSON.stringify(ajaxSettings.data);
+                }
             });
         };
 

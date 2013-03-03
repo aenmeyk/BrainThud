@@ -108,26 +108,15 @@ namespace BrainThud.Web.Api.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        public HttpResponseMessage Delete(Card card)
-        {
-            if (this.ModelState.IsValid)
-            {
-                this.DeleteCardAndRelations(card);
-                this.TableStorageContext.Commit();
-
-                return new HttpResponseMessage(HttpStatusCode.NoContent);
-            }
-
-            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
-        }
-
-        public HttpResponseMessage BatchDelete(IEnumerable<Card> cards)
+        public HttpResponseMessage Delete(IEnumerable<Card> cards)
         {
             if (this.ModelState.IsValid)
             {
                 foreach (var card in cards)
                 {
-                    this.DeleteCardAndRelations(card);
+                    this.TableStorageContext.Cards.DeleteById(card.UserId, card.EntityId);
+                    this.TableStorageContext.CardDecks.RemoveCardFromCardDeck(card);
+                    this.TableStorageContext.QuizResults.DeleteByCardId(card.EntityId);
                 }
 
                 this.TableStorageContext.Commit();
@@ -136,13 +125,6 @@ namespace BrainThud.Web.Api.Controllers
             }
 
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
-        }
-
-        private void DeleteCardAndRelations(Card card)
-        {
-            this.TableStorageContext.Cards.DeleteById(card.UserId, card.EntityId);
-            this.TableStorageContext.CardDecks.RemoveCardFromCardDeck(card);
-            this.TableStorageContext.QuizResults.DeleteByCardId(card.EntityId);
         }
 
         private DateTime GetClientDateTime()

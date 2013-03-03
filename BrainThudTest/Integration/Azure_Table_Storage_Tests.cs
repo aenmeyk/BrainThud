@@ -119,7 +119,7 @@ namespace BrainThudTest.Integration
             // Test DELETE
             // -------------------------------------------------------------------------------------
             var requestMessage = new HttpRequestMessage(HttpMethod.Delete, cardUrl);
-            var cardJson = JsonConvert.SerializeObject(getCard);
+            var cardJson = JsonConvert.SerializeObject(new[] { getCard });
             requestMessage.Content = new StringContent(cardJson);
             requestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("text/json");
             var deleteResponse = client.SendAsync(requestMessage).Result;

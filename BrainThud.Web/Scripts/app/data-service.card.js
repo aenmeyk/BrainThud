@@ -33,7 +33,7 @@
                     type: 'PUT',
                     contentType: 'application/json; charset=utf-8'
                 });
-                amplify.request.define('deleteCard', 'ajax', {
+                amplify.request.define('deleteCards', 'ajax', {
                     url: config.routes.cards,
                     dataType: 'json',
                     type: 'DELETE',
@@ -95,10 +95,13 @@
                 });
             },
 
-            deleteItem = function (options) {
+            // The $.extend( true, {}, defnSettings.data, data ) call that Amplify.js makes converts
+            // an array to an object.  This prevents the serialized value from being received by MVC.
+            // For deleteCards, the data is stringified before the Amplify.js call.
+           deleteItem = function (options) {
                 return amplify.request({
-                    resourceId: 'deleteCard',
-                    data: options.data,
+                    resourceId: 'deleteCards',
+                    data: JSON.stringify(options.data),
                     success: options.success,
                     error: options.error
                 });

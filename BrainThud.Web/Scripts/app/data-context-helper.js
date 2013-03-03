@@ -94,10 +94,18 @@
                             data: options.data,
                             success: function () {
                                 if (cachedResults && cachedResults.length > 0) {
-                                    for (var i = 0; i < cachedResults.length; i++) {
-                                        if (cachedResults[i].partitionKey() === options.data.partitionKey && cachedResults[i].rowKey() === options.data.rowKey) {
-                                            cachedResults.splice(i, 1);
-                                            break;
+                                    var array = options.data;
+                                    if (Object.prototype.toString.call(array) !== '[object Array]') {
+                                        array = new Array();
+                                        array[0] = options.data;
+                                    }
+
+                                    for (var j = 0; j < array.length; j++) {
+                                        for (var i = 0; i < cachedResults.length; i++) {
+                                            if (cachedResults[i].partitionKey() === array[j].partitionKey && cachedResults[i].rowKey() === array[j].rowKey) {
+                                                cachedResults.splice(i, 1);
+                                                break;
+                                            }
                                         }
                                     }
                                 }

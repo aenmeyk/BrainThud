@@ -13,7 +13,7 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         {
             this.CardsController.ModelState.AddModelError("Error Key", "Error Message");
             var card = new Card { UserId = TestValues.USER_ID, EntityId = TestValues.CARD_ID };
-            this.CardsController.Delete(card);
+//            this.CardsController.Delete(card);
         }
 
         [Test]

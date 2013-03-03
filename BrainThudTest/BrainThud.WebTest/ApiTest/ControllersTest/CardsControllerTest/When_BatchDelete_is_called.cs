@@ -19,7 +19,7 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         public override void When()
         {
             this.cards = Builder<Card>.CreateListOfSize(10).Build();
-            this.response = this.CardsController.BatchDelete(this.cards);
+//            this.response = this.CardsController.BatchDelete(this.cards);
         }
 
         [Test]

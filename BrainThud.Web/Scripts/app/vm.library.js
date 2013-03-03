@@ -89,15 +89,15 @@
             },
 
             deleteAll = function () {
-                var questionSideVisible;
-                _.each(filteredCards(), function (item) {
-                    if (questionSideVisible === undefined) {
-                        questionSideVisible = !item.questionSideVisible();
-                    }
-                    if (item.isCheckedForBatch()) {
-                        item.questionSideVisible(questionSideVisible);
-                    }
-                });
+//                var questionSideVisible;
+//                _.each(filteredCards(), function (item) {
+//                    if (questionSideVisible === undefined) {
+//                        questionSideVisible = !item.questionSideVisible();
+//                    }
+//                    if (item.isCheckedForBatch()) {
+//                        item.questionSideVisible(questionSideVisible);
+//                    }
+//                });
             },
 
             flipAll = function () {

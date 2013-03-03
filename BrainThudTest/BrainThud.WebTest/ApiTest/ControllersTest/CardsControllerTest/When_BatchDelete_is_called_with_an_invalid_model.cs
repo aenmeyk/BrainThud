@@ -14,7 +14,7 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         {
             this.CardsController.ModelState.AddModelError("Error Key", "Error Message");
             var cards = Builder<Card>.CreateListOfSize(10).Build();
-            this.CardsController.BatchDelete(cards);
+//            this.CardsController.BatchDelete(cards);
         }
 
         [Test]
