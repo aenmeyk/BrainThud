@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Web.Http;
 using BrainThud.Core.Models;
+using FizzWare.NBuilder;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -12,8 +13,8 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         public override void When()
         {
             this.CardsController.ModelState.AddModelError("Error Key", "Error Message");
-            var card = new Card { UserId = TestValues.USER_ID, EntityId = TestValues.CARD_ID };
-//            this.CardsController.Delete(card);
+            var cards = Builder<Card>.CreateListOfSize(10).Build();
+            this.CardsController.Delete(cards);
         }
 
         [Test]

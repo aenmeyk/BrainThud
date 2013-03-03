@@ -17,6 +17,12 @@ namespace BrainThud.Web.App_Start
             );
 
             routes.MapRoute(
+                name: RouteNames.SITEMAP,
+                url: "sitemap.xml",
+                defaults: new { controller = "Sitemap", action = "Feed" }
+            );
+
+            routes.MapRoute(
                 name: RouteNames.DECK,
                 url: "card-decks/{userId}/{deckNameSlug}",
                 defaults: new { controller = "Cards", action = "Deck" }

@@ -27,6 +27,7 @@ namespace BrainThud.Core
         public const string DECK = "Deck";
         public const string CARD = "Card";
         public const string HOME = "Home";
+        public const string SITEMAP = "Sitemap";
     }
 
     public static class Routes

@@ -1,9 +1,12 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using BrainThud.Core.Models;
+using FizzWare.NBuilder;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using System.Linq;
 
 namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControllerTest
 {
@@ -11,18 +14,22 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
     public class When_Delete_is_called : Given_a_new_CardsController
     {
         private HttpResponseMessage response;
-        private Card card;
+        private IList<Card> cards;
 
         public override void When()
         {
-            this.card = new Card { UserId = TestValues.USER_ID, EntityId = TestValues.CARD_ID };
-//            this.response = this.CardsController.Delete(this.card);
+            this.cards = Builder<Card>.CreateListOfSize(10).Build();
+            this.response = this.CardsController.Delete(this.cards);
         }
 
         [Test]
-        public void Then_Delete_is_called_on_the_CardRepository()
+        public void Then_all_cards_should_be_deleted_using_the_TableStorageContext()
         {
-            this.TableStorageContext.Verify(x => x.Cards.DeleteById(TestValues.USER_ID, TestValues.CARD_ID), Times.Once());
+            foreach(var card in cards)
+            {
+                var cardItem = card;
+                this.TableStorageContext.Verify(x => x.Cards.DeleteById(cardItem.UserId, cardItem.EntityId), Times.Once());
+            }
         }
 
         [Test]
@@ -40,13 +47,20 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         [Test]
         public void Then_the_associated_QuizResults_are_deleted()
         {
-            this.TableStorageContext.Verify(x => x.QuizResults.DeleteByCardId(TestValues.CARD_ID), Times.Once());
+            foreach (var card in cards)
+            {
+                this.TableStorageContext.Verify(x => x.QuizResults.DeleteByCardId(card.EntityId), Times.Once());
+            }
         }
 
         [Test]
         public void Then_RemoveCardFromCardDeck_is_called()
         {
-            this.TableStorageContext.Verify(x => x.CardDecks.RemoveCardFromCardDeck(this.card));
+            foreach (var card in cards)
+            {
+                var item = card;
+                this.TableStorageContext.Verify(x => x.CardDecks.RemoveCardFromCardDeck(item));
+            }
         }
     }
 }
