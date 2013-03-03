@@ -27,9 +27,9 @@
         </div>
         <div class="span9">
             <div class="batch-button-container">
-                <input type="checkbox" data-bind="checked: isCheckedForBatch, event: { mousedown: toggleIsCheckedForBatch }">
+                <input type="checkbox" data-bind="checked: isCheckedForBatch, event: { click: toggleIsCheckedForBatch }">
                 <div class="btn-group batch-button">
-                    <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown">Batch <span class="caret"></span></button>
+                    <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown" data-bind="disable: !isCheckedForBatch()">Batch <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         <li><a href="#">Edit</a></li>
                         <li><a data-bind="click: showDeleteBatchDialog">Delete</a></li>
@@ -41,7 +41,7 @@
             <ul data-bind="foreach: filteredCards">
                 <li>
                     <div class="list-card-checkbox">
-                        <input type="checkbox" data-bind="checked: isCheckedForBatch">
+                        <input type="checkbox" data-bind="checked: isCheckedForBatch, event: { click: $root.updateAreBatchItemsSelected }">
                     </div>
                     <div class="list-card-container">
                         <div class="list-card question markdown" data-bind="html: currentSideText, css: libraryCardBorder"></div>

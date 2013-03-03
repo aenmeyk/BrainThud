@@ -2,7 +2,6 @@
     function (ko, cardManager, _, router, global) {
         var
             selectedDeckSlug = ko.observable(''),
-
             isCheckedForBatch = ko.observable(false),
 
             filteredCards = ko.computed(function () {
@@ -80,10 +79,17 @@
                 return selectedDeckSlug() === deckNameSlug;
             },
 
+            updateAreBatchItemsSelected = function () {
+                isCheckedForBatch(batchCards().length > 0);
+                return true;
+            },
+
             toggleIsCheckedForBatch = function () {
+                var checkedForBatch = isCheckedForBatch();
                 _.each(filteredCards(), function (item) {
-                    item.isCheckedForBatch(!isCheckedForBatch());
+                    item.isCheckedForBatch(checkedForBatch);
                 });
+                return true;
             },
 
             showDeleteDialog = function (card) {
@@ -126,6 +132,7 @@
             isDeckSelected: isDeckSelected,
             isCheckedForBatch: isCheckedForBatch,
             toggleIsCheckedForBatch: toggleIsCheckedForBatch,
+            updateAreBatchItemsSelected: updateAreBatchItemsSelected,
             showDeleteDialog: showDeleteDialog,
             showDeleteBatchDialog: showDeleteBatchDialog,
             showCardInfoDialog: showCardInfoDialog,

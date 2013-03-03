@@ -903,3 +903,14 @@ pre {
   word-wrap: normal;
   white-space: pre;
 }
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus,
+.dropdown-submenu:hover > a {
+  background-color: #3799c4;
+  background-image: none;
+  cursor: pointer;
+}
+.btn-mini .caret {
+  margin-top: 8px;
+  margin-left: 3px;
+}
