@@ -95,6 +95,7 @@
                             success: function () {
                                 if (cachedResults && cachedResults.length > 0) {
                                     var array = options.data;
+                                    // If the data is not an array, convert it to an array with a single item
                                     if (Object.prototype.toString.call(array) !== '[object Array]') {
                                         array = new Array();
                                         array[0] = options.data;

@@ -12,6 +12,12 @@
                 });
             }),
 
+            batchCards = ko.computed(function () {
+                return _.filter(cardManager.cards(), function (item) {
+                    return item.isCheckedForBatch();
+                });
+            }),
+
             selectedDeckName = ko.computed(function () {
                 var slug = selectedDeckSlug(),
                     cardDeck = _.find(cardManager.cardDecks(), function (item) {
@@ -88,27 +94,17 @@
                 cardManager.showCardInfo(card);
             },
 
-            deleteAll = function () {
-//                var questionSideVisible;
-//                _.each(filteredCards(), function (item) {
-//                    if (questionSideVisible === undefined) {
-//                        questionSideVisible = !item.questionSideVisible();
-//                    }
-//                    if (item.isCheckedForBatch()) {
-//                        item.questionSideVisible(questionSideVisible);
-//                    }
-//                });
+            showDeleteBatchDialog = function () {
+                cardManager.deleteCardBatch(batchCards());
             },
 
             flipAll = function () {
                 var questionSideVisible;
-                _.each(filteredCards(), function (item) {
+                _.each(batchCards(), function (item) {
                     if (questionSideVisible === undefined) {
                         questionSideVisible = !item.questionSideVisible();
                     }
-                    if (item.isCheckedForBatch()) {
-                        item.questionSideVisible(questionSideVisible);
-                    }
+                    item.questionSideVisible(questionSideVisible);
                 });
             };
 
@@ -131,8 +127,8 @@
             isCheckedForBatch: isCheckedForBatch,
             toggleIsCheckedForBatch: toggleIsCheckedForBatch,
             showDeleteDialog: showDeleteDialog,
+            showDeleteBatchDialog: showDeleteBatchDialog,
             showCardInfoDialog: showCardInfoDialog,
-            deleteAll: deleteAll,
             flipAll: flipAll
         };
     }

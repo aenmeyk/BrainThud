@@ -146,9 +146,20 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         },
 
         deleteCard = function (card, callback) {
+            var data = new Array();
+            data[0] = ko.toJS(card);
+
             deleteCardOptions = {
-                card: card,
+                cards: data,
                 callback: callback
+            };
+            
+            $deleteDialog.modal('show');
+        },
+
+        deleteCardBatch = function (batchCards) {
+            deleteCardOptions = {
+                cards: ko.toJS(batchCards),
             };
             $deleteDialog.modal('show');
         },
@@ -160,11 +171,8 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
 
         executeDelete = function () {
             $("#deleteDialog").modal('hide');
-            var card = ko.toJS(deleteCardOptions.card);
-            var data = new Array();
-            data[0] = card;
             $.when(dataContext.card.deleteData({
-                data: data
+                data: deleteCardOptions.cards
             })).then(function () {
                 dataContext.quizCard.setCacheInvalid();
                 dataContext.quizResult.setCacheInvalid();
@@ -206,6 +214,7 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         createCard: createCard,
         updateCard: updateCard,
         deleteCard: deleteCard,
+        deleteCardBatch: deleteCardBatch,
         showCardInfo: showCardInfo,
         getQuizCards: getQuizCards,
         applyQuizResult: applyQuizResult
