@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BrainThudCloudService" generation="1" functional="0" release="0" Id="39aa1408-c3f4-483b-bdcc-a5c45ec2117c" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BrainThudCloudService" generation="1" functional="0" release="0" Id="13ba8f94-a462-43b8-a7b6-32063af4e1bf" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="BrainThudCloudServiceGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -209,19 +209,19 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="6263bb82-1a50-43a9-be75-41bbec36b550" ref="Microsoft.RedDog.Contract\ServiceContract\BrainThudCloudServiceContract@ServiceDefinition">
+    <implementation Id="ea1ff0da-3f45-4ba9-a072-72f3a046f2d1" ref="Microsoft.RedDog.Contract\ServiceContract\BrainThudCloudServiceContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="7a7233b2-b6ff-4342-b78d-4df51d3a9367" ref="Microsoft.RedDog.Contract\Interface\BrainThud.Web:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="aea93a19-29b5-4fef-9151-4fd7a94b0b88" ref="Microsoft.RedDog.Contract\Interface\BrainThud.Web:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/BrainThudCloudService/BrainThudCloudServiceGroup/BrainThud.Web:Endpoint1" />
           </inPort>
         </interfaceReference>
-        <interfaceReference Id="5412f6aa-21b2-4f51-b920-92ee74b57214" ref="Microsoft.RedDog.Contract\Interface\BrainThud.Web:Endpoint2@ServiceDefinition">
+        <interfaceReference Id="12c1dec5-455d-4a37-a431-4e4fc145f7f9" ref="Microsoft.RedDog.Contract\Interface\BrainThud.Web:Endpoint2@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/BrainThudCloudService/BrainThudCloudServiceGroup/BrainThud.Web:Endpoint2" />
           </inPort>
         </interfaceReference>
-        <interfaceReference Id="fd16da5c-d735-4f80-8e9d-40d8cc92b3d5" ref="Microsoft.RedDog.Contract\Interface\BrainThud.Web:Microsoft.WindowsAzure.Plugins.RemoteForwarder.RdpInput@ServiceDefinition">
+        <interfaceReference Id="39e876b2-e248-42d4-9067-c89206b4dc95" ref="Microsoft.RedDog.Contract\Interface\BrainThud.Web:Microsoft.WindowsAzure.Plugins.RemoteForwarder.RdpInput@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/BrainThudCloudService/BrainThudCloudServiceGroup/BrainThud.Web:Microsoft.WindowsAzure.Plugins.RemoteForwarder.RdpInput" />
           </inPort>
