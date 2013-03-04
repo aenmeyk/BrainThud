@@ -77,19 +77,19 @@
                 });
             },
 
-            create = function (data, cache, options) {
+            create = function (options) {
                 return amplify.request({
                     resourceId: 'createCard',
-                    data: data,
+                    data: options.data,
                     success: options.success,
                     error: options.error
                 });
             },
 
-            update = function (data, options) {
+            update = function (options) {
                 return amplify.request({
                     resourceId: 'updateCard',
-                    data: data,
+                    data: options.data,
                     success: options.success,
                     error: options.error
                 });

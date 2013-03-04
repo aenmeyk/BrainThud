@@ -23,12 +23,12 @@
                 });
             },
 
-            update = function (data, callbacks) {
+            update = function (options) {
                 return amplify.request({
                     resourceId: 'updateUserConfiguration',
-                    data: data,
-                    success: callbacks.success,
-                    error: callbacks.error
+                    data: options.data,
+                    success: options.success,
+                    error: options.error
                 });
             };
 

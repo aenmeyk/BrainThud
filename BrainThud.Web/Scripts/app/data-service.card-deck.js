@@ -9,14 +9,14 @@
                 });
             },
 
-            get = function (callbacks) {
+            get = function (options) {
                 return amplify.request({
                     resourceId: 'getCardDecks',
                     data: {
-                        userIdPath: callbacks.params.userId
+                        userIdPath: options.params.userId
                     },
-                    success: callbacks.success,
-                    error: callbacks.error
+                    success: options.success,
+                    error: options.error
                 });
             };
         

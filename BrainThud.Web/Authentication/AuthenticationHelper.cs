@@ -15,6 +15,23 @@ namespace BrainThud.Web.Authentication
         private const string IDENTITY_PROVIDER = @"http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider";
         private const string NAMEIDENTIFIER = @"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier";
         private IEnumerable<Claim> claims { get { return FederatedAuthentication.SessionAuthenticationModule.ContextSessionSecurityToken.ClaimsPrincipal.Claims; } }
+        private Lazy<string> lazyNameIdentifier;
+
+        public AuthenticationHelper()
+        {
+            // TODO: Add the sluggified NameIdentifier as a claim in the session cookie
+            this.lazyNameIdentifier = new Lazy<string>(() =>
+            {
+#if DEBUG
+                //                if (HttpContext.Current == null) return "httpswwwgooglecomaccountso8ididaitoawn66whrug-vmzp4sx7ikz2px5njx5dbv2u";
+                if (HttpContext.Current == null) return "TestNameIdentifier";
+#endif
+
+                return FederatedAuthentication.SessionAuthenticationModule.ContextSessionSecurityToken != null
+                    ? this.claims.First(x => x.Type == NAMEIDENTIFIER).Value.GenerateSlug(ConfigurationSettings.PARTITION_KEY_SLUG_LENGTH)
+                    : null;
+            });
+        }
 
         public string IdentityProvider
         {
@@ -31,17 +48,7 @@ namespace BrainThud.Web.Authentication
 
         public string NameIdentifier
         {
-            get
-            {
-#if DEBUG
-//                if (HttpContext.Current == null) return "httpswwwgooglecomaccountso8ididaitoawn66whrug-vmzp4sx7ikz2px5njx5dbv2u";
-                if (HttpContext.Current == null) return "TestNameIdentifier";
-#endif
-
-                return FederatedAuthentication.SessionAuthenticationModule.ContextSessionSecurityToken != null
-                    ? this.claims.First(x => x.Type == NAMEIDENTIFIER).Value.GenerateSlug(ConfigurationSettings.PARTITION_KEY_SLUG_LENGTH)
-                    : null;
-            }
+            get { return this.lazyNameIdentifier.Value; }
         }
 
         public string SignOut()

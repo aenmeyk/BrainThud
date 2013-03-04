@@ -70,31 +70,30 @@
                 });
             },
 
-            create = function (data, cache, options) {
-                currentData = data;
-                cachedResults = cache;
+            create = function (options) {
+                currentData = options.data;
+                cachedResults = options.cache;
                 return amplify.request({
                     resourceId: 'createQuizResult',
                     data: {
                         datePath: options.params.datePath,
                         userIdPath: options.params.userId,
-                        cardIdPath: data.cardId,
-                        isCorrect: data.isCorrect
+                        cardIdPath: options.data.cardId,
+                        isCorrect: options.data.isCorrect
                     },
                     success: options.success,
                     error: options.error
                 });
             },
 
-            // TODO: Standardize on options/data
-            update = function (data, options) {
+            update = function (options) {
                 var content = {
                     datePath: options.params.datePath,
                     userIdPath: options.params.userId,
-                    cardIdPath: data.cardId
+                    cardIdPath: options.data.cardId
                 };
 
-                _.extend(content, data);
+                _.extend(content, options.data);
                 
                 return amplify.request({
                     resourceId: 'updateQuizResult',

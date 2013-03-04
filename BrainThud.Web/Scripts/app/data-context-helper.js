@@ -45,7 +45,9 @@
                 
                 createData = function (options) {
                     return $.Deferred(function (def) {
-                        entitySetConfig.create(options.data, cachedResults, {
+                        entitySetConfig.create({
+                            data: options.data,
+                            cache: cachedResults,
                             params: options.params,
                             success: function (result) {
                                 var newItem = entitySetConfig.mapper.mapResult(result);
@@ -63,7 +65,8 @@
                 
                 updateData = function (options) {
                     return $.Deferred(function (def) {
-                        entitySetConfig.update(options.data, {
+                        entitySetConfig.update({
+                            data: options.data,
                             params: options.params,
                             success: function (dto) {
                                 var updatedItem = entitySetConfig.mapper.mapResult(dto);
