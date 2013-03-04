@@ -9,13 +9,10 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
     [TestFixture]
     public class When_Put_is_called_with_an_invalid_model : Given_a_new_CardsController
     {
-        private Card card;
-
         public override void When()
         {
-            this.card = new Card();
             this.CardsController.ModelState.AddModelError("Error Key", "Error Message");
-            this.CardsController.Put(this.card);
+            this.CardsController.Put(new Card());
         }
 
         [Test]

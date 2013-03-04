@@ -65,16 +65,7 @@ namespace BrainThud.Web.Api.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                var originalCard = this.TableStorageContext.Cards.Get(card.PartitionKey, card.RowKey);
-                this.TableStorageContext.Detach(originalCard);
-
-                if (originalCard.DeckName != card.DeckName)
-                {
-                    this.TableStorageContext.CardDecks.RemoveCardFromCardDeck(originalCard);
-                    this.TableStorageContext.CardDecks.AddCardToCardDeck(card);
-                }
-
-                this.TableStorageContext.Cards.Update(card);
+                this.TableStorageContext.UpdateCardAndRelations(card);
                 this.TableStorageContext.Commit();
 
                 return this.Request.CreateResponse(HttpStatusCode.OK, card);
@@ -89,7 +80,8 @@ namespace BrainThud.Web.Api.Controllers
             if (this.ModelState.IsValid)
             {
                 var clientDateTime = this.GetClientDateTime();
-                this.TableStorageContext.Cards.Add(card, clientDateTime);
+                var quizCalendar = this.TableStorageContext.UserConfigurations.GetByNameIdentifier().QuizCalendar;
+                this.TableStorageContext.Cards.Add(card, clientDateTime.AddDays(quizCalendar[0]));
                 this.TableStorageContext.CardDecks.AddCardToCardDeck(card);
                 this.TableStorageContext.CommitBatch();
                 var response = this.Request.CreateResponse(HttpStatusCode.Created, card);

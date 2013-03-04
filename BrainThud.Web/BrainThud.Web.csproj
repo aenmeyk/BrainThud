@@ -169,6 +169,7 @@
     <Compile Include="ActionFilters\ValidationActionFilter.cs" />
     <Compile Include="Api\Authorization\TestableAuthorizeAttribute.cs" />
     <Compile Include="Api\Controllers\CardDecksController.cs" />
+    <Compile Include="Api\Controllers\CardsBatchController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\GlobalConfig.cs" />
@@ -200,6 +201,8 @@
     <Compile Include="Data\Repositories\CardDeckRepository.cs" />
     <Compile Include="Data\AzureTableStorage\CloudStorageServices.cs" />
     <Compile Include="Data\KeyGenerators\CardDeckKeyGenerator.cs" />
+    <Compile Include="Data\Repositories\IRepositoryFactory.cs" />
+    <Compile Include="Data\Repositories\TableStorageRepositoryBase.cs" />
     <Compile Include="Data\Repositories\ICardDeckRepository.cs" />
     <Compile Include="Data\AzureTableStorage\ICloudStorageServices.cs" />
     <Compile Include="Data\AzureTableStorage\ITableStorageContext.cs" />
@@ -218,6 +221,7 @@
     <Compile Include="Data\AzureTableStorage\TableStorageContext.cs" />
     <Compile Include="Data\AzureTableStorage\TableStorageContextFactory.cs" />
     <Compile Include="Data\Repositories\IUserConfigurationRepository.cs" />
+    <Compile Include="Data\Repositories\RepositoryFactory.cs" />
     <Compile Include="Data\Repositories\TableStorageRepository.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
     <Compile Include="Data\KeyGenerators\CardKeyGenerator.cs" />

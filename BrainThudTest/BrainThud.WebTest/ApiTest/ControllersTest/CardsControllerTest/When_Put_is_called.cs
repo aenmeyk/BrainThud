@@ -17,7 +17,7 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         public override void When()
         {
             this.TableStorageContext
-                .Setup(x => x.Cards.Update(this.updatedCard))
+                .Setup(x => x.UpdateCardAndRelations(this.updatedCard))
                 .Callback<Card>(x => x.EntityId = TestValues.CARD_ID);
 
             this.TableStorageContext
@@ -46,33 +46,9 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         }
 
         [Test]
-        public void Then_Update_should_be_called_on_the_card_repository()
-        {
-            this.TableStorageContext.Verify(x => x.Cards.Update(this.updatedCard), Times.Once());
-        }
-
-        [Test]
         public void Then_Commit_is_called_on_the_TableStorageContext()
         {
             this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
-        }
-
-        [Test]
-        public void Then_the_original_card_deck_name_is_removed()
-        {
-            this.TableStorageContext.Verify(x => x.CardDecks.RemoveCardFromCardDeck(this.originalCard));
-        }
-
-        [Test]
-        public void Then_the_original_card_should_be_detached()
-        {
-            this.TableStorageContext.Verify(x => x.Detach(this.originalCard), Times.Once());
-        }
-
-        [Test]
-        public void Then_the_new_card_deck_name_is_added()
-        {
-            this.TableStorageContext.Verify(x => x.CardDecks.AddCardToCardDeck(this.updatedCard));
         }
     }
 }

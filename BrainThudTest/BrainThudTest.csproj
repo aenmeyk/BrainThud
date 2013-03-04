@@ -146,6 +146,10 @@
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardDecksControllerTest\Given_a_new_CardDecksController.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardDecksControllerTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardDecksControllerTest\When_Get_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsBatchControllerTest\Given_a_new_CardsBatchController.cs" />
+    <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsBatchControllerTest\When_Put_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsBatchControllerTest\When_Put_is_called_and_the_CardDeck_has_not_changed.cs" />
+    <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsBatchControllerTest\When_Put_is_called_with_an_invalid_model.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_Delete_is_called.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_Delete_is_called_with_an_invalid_model.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_GetForCardDeck_is_called.cs" />
@@ -197,6 +201,7 @@
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueManagerTest\When_GetNextIdentity_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueManagerTest\Given_a_new_IdentityQueueManager.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueManagerTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageContextTest\When_UpdateCardAndRelations_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\CardKeyGeneratorTest\When_GetPartitionKey_is_called_with_a_NameIdentifier_and_a_UserId.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\CardKeyGeneratorTest\When_GetPartitionKey_is_called_with_a_UserId.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\CardKeyGeneratorTest\When_GetRowKey_is_called.cs" />
@@ -243,6 +248,9 @@
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\QuizResultsRepositoryTest\When_Add_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardRepositoryTest\When_GetForUser_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\QuizResultsRepositoryTest\When_GetForUser_is_called.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\RepositoryFactoryTest\Given_a_new_RepositoryFactory.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\RepositoryFactoryTest\When_NothingChanges.cs" />
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\RepositoryFactoryTest\When_CreateRepository_is_called_for_CardRepository.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\When_Get_is_called_with_a_partition_key.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\When_Update_is_called_with_no_CreatedTimestamp.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\TableStorageRepositoryTest\When_GetOrCreate_is_called_for_a_Configuration_that_does_exist.cs" />
@@ -295,7 +303,7 @@
     <Compile Include="BrainThud.WebTest\CalendarsTest\Given_a_new_DefaultQuizCalendar.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\ApiControllerBaseTest\When_nothing_changes.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_Post_is_called_with_an_invalid_model.cs" />
-    <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_Put_is_called_with_an_invalid_QuizDate.cs" />
+    <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_Put_is_called_with_an_invalid_model.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_Get_is_called_with_a_CardId_that_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_Get_is_called_with_a_UserId_and_CardId.cs" />
     <Compile Include="BrainThud.WebTest\ApiTest\ControllersTest\CardsControllerTest\When_Post_is_called.cs" />

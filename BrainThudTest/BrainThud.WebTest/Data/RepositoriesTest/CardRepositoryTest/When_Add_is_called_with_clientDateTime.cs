@@ -11,15 +11,13 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
 
         public override void When()
         {
-            this.QuizCalendar.Setup(x => x[0]).Returns(TestValues.INT);
             this.CardRepository.Add(this.card, TestValues.DATETIME);
         }
 
         [Test]
-        public void Then_the_QuizDate_should_be_set_from_the_first_entry_in_the_QuizCalendar()
+        public void Then_the_QuizDate_should_be_set()
         {
-            var expectedDate = TestValues.DATETIME.AddDays(TestValues.INT);
-            this.card.QuizDate.Should().Be(expectedDate);
+            this.card.QuizDate.Should().Be(TestValues.DATETIME);
         }
 
         [Test]

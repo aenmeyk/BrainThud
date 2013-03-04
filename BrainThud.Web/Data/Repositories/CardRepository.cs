@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using BrainThud.Core;
-using BrainThud.Core.Calendars;
 using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
@@ -12,27 +11,16 @@ namespace BrainThud.Web.Data.Repositories
 {
     public class CardRepository : CardEntityRepository<Card>, ICardRepository
     {
-        private readonly IQuizCalendar quizCalendar;
-
         public CardRepository(
-            ITableStorageContext tableStorageContext, 
-            ICardEntityKeyGenerator cardKeyGenerator, 
-            IQuizCalendar quizCalendar, 
+            ITableStorageContext tableStorageContext,
+            ICardEntityKeyGenerator cardKeyGenerator,
             string nameIdentifier)
-            : base(tableStorageContext, cardKeyGenerator, nameIdentifier, CardRowTypes.CARD)
-        {
-            this.quizCalendar = quizCalendar;
-        }
+            : base(tableStorageContext, cardKeyGenerator, nameIdentifier, CardRowTypes.CARD) { }
 
-        public override void Add(Card entity)
-        {
-            this.Add(entity, DateTime.UtcNow);
-        }
-
-        public void Add(Card entity, DateTime clientDateTime)
+        public void Add(Card entity, DateTime quizDate)
         {
             this.SetKeyValues(entity, this.KeyGenerator);
-            entity.QuizDate = clientDateTime.AddDays(this.quizCalendar[0]);
+            entity.QuizDate = quizDate;
             entity.UserId = this.UserId;
             entity.EntityId = this.KeyGenerator.GeneratedEntityId;
             GenerateSlugs(entity);

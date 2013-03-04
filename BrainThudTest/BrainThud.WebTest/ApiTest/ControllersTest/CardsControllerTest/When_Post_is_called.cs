@@ -17,6 +17,8 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
 
         public override void When()
         {
+            var userConfiguration = new UserConfiguration { QuizInterval0 = TestValues.INT };
+            this.TableStorageContext.Setup(x => x.UserConfigurations.GetByNameIdentifier()).Returns(userConfiguration);
             this.Request.Headers.Add(HttpHeaders.X_CLIENT_DATE, TestValues.DATETIME.ToString("o"));
             this.card = new Card { RowKey = TestValues.ROW_KEY };
             this.response = this.CardsController.Post(this.card);
@@ -26,7 +28,7 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         [Category(TestTypes.LONG_RUNNING)]
         public void Then_Add_is_called_on_Card_repository()
         {
-            this.TableStorageContext.Verify(x => x.Cards.Add(this.card, TestValues.DATETIME), Times.Once());
+            this.TableStorageContext.Verify(x => x.Cards.Add(this.card, TestValues.DATETIME.AddDays(TestValues.INT)), Times.Once());
         }
 
         [Test]

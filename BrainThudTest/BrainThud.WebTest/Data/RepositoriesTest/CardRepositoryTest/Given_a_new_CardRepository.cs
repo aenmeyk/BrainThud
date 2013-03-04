@@ -34,12 +34,9 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardRepositoryTe
             this.CardKeyGenerator.Setup(x => x.GetRowKey(TestValues.CARD_ID)).Returns(TestValues.CARD_ROW_KEY);
             this.CardKeyGenerator.SetupGet(x => x.GeneratedEntityId).Returns(TestValues.CARD_ID);
 
-            this.QuizCalendar = new Mock<IQuizCalendar>();
-
             this.CardRepository = new CardRepository(
                 this.TableStorageContext.Object,
                 this.CardKeyGenerator.Object,
-                this.QuizCalendar.Object,
                 TestValues.NAME_IDENTIFIER);
         }
 

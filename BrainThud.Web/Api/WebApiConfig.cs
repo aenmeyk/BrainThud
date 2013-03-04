@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Routing;
 using BrainThud.Core;
 
 namespace BrainThud.Web.Api
@@ -15,12 +17,12 @@ namespace BrainThud.Web.Api
             config.Routes.MapHttpRoute(
                 name: RouteNames.API_CARDS,
                 routeTemplate: "api/cards/{userid}/{cardid}",
-                defaults: new
-                {
-                    controller = "Cards",
-                    userid = RouteParameter.Optional,
-                    cardid = RouteParameter.Optional
-                });
+                defaults: new { controller = "Cards" });
+
+            config.Routes.MapHttpRoute(
+                name: RouteNames.API_CARDS_BATCH,
+                routeTemplate: "api/cards/{userid}",
+                defaults: new { controller = "CardsBatch" });
 
             config.Routes.MapHttpRoute(
                 name: RouteNames.API_CARD_DECKS,

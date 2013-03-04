@@ -1,7 +1,10 @@
 ﻿define('vm.card', ['jquery', 'ko', 'card-manager', 'dom', 'editor', 'router', 'global', 'model', 'data-service', 'model.mapper'],
     function ($, ko, cardManager, dom, editor, router, global, model, dataService, modelMapper) {
         var
+            batchCards,
+            isBatch = false,
             card = ko.observable(new model.Card()),
+            differentValueText = '********',
 
             isValid = ko.computed(function () {
                 return card().deckName() && card().question() && card().answer();
@@ -14,8 +17,9 @@
                     setupSingleCardEdit(routeData);
                 }
             },
-            
+
             setupSingleCardEdit = function (routeData) {
+                isBatch = false;
                 var found;
 
                 dataService.card.getSingle({
@@ -36,16 +40,16 @@
                     }
                 });
             },
-            
+
             setupBatchEdit = function () {
+                isBatch = true;
                 card(new model.Card());
                 
-                var batchCards = _.filter(cardManager.cards(), function (item) {
+                batchCards = _.filter(cardManager.cards(), function (item) {
                     return item.isCheckedForBatch();
                 });
 
                 if (batchCards && batchCards.length > 0) {
-                    var differentValueText = '__________';
                     var firstCard = batchCards[0];
                     card().deckName(firstCard.deckName());
                     card().tags(firstCard.tags());
@@ -74,13 +78,40 @@
 
             updateAndCloseCommand = ko.asyncCommand({
                 execute: function (complete) {
-                    var item = ko.toJS(card);
-                    dom.getCardValues(item, 'edit');
-                    $.when(cardManager.updateCard(item))
-                    .done(function() {
-                         router.navigateTo(global.previousUrl);
+                    var updateCommand;
+
+                    if (isBatch) {
+                        updateCommand = new Array();
+                        var masterCard = card();
+                        for (var i = 0; i < batchCards.length; i++) {
+                            var batchCard = batchCards[i];
+                            if (masterCard.deckName() !== differentValueText) {
+                                batchCard.deckName(masterCard.deckName());
+                            }
+                            if (masterCard.tags() !== differentValueText) {
+                                batchCard.tags(masterCard.tags());
+                            }
+                            if (masterCard.question() !== differentValueText) {
+                                batchCard.question(masterCard.question());
+                            }
+                            if (masterCard.answer() !== differentValueText) {
+                                batchCard.answer(masterCard.answer());
+                            }
+
+                            var jsCard = ko.toJS(batchCard);
+                            updateCommand[i] = cardManager.updateCard(jsCard);
+                        }
+                    } else {
+                        var item = ko.toJS(card);
+                        dom.getCardValues(item, 'edit');
+                        updateCommand = [cardManager.updateCard(item)];
+                    }
+
+                    $.when.apply(null, updateCommand)
+                    .done(function () {
+                        router.navigateTo(global.previousUrl);
                     })
-                    .always(function() {
+                    .always(function () {
                         complete();
                     });
                 },

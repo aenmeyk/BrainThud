@@ -1,7 +1,6 @@
 using System;
 using System.Data.Services.Client;
 using System.Linq;
-using BrainThud.Core.Calendars;
 using BrainThud.Core.Models;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
@@ -15,6 +14,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
         private readonly ICardEntityKeyGenerator cardDeckKeyGenerator;
         private readonly ICardEntityKeyGenerator quizResultKeyGenerator;
         private readonly ICardEntityKeyGenerator userConfigurationKeyGenerator;
+        private readonly IRepositoryFactory repositoryFactory;
         private readonly string tableName;
         private readonly string nameIdentifier;
         private readonly Lazy<ICardRepository> cards;
@@ -22,7 +22,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
         private readonly Lazy<IQuizResultsRepository> quizResults;
         private readonly Lazy<IUserConfigurationRepository> userConfigurations;
         private readonly Lazy<ITableStorageRepository<MasterConfiguration>> masterConfigurations;
-        private IQuizCalendar QuizCalendar { get { return this.UserConfigurations.GetByNameIdentifier().QuizCalendar; } }
 
         public TableStorageContext(
             ICloudStorageServices cloudStorageServices,
@@ -30,6 +29,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
             ICardEntityKeyGenerator cardDeckKeyGenerator,
             ICardEntityKeyGenerator quizResultKeyGenerator,
             ICardEntityKeyGenerator userConfigurationKeyGenerator,
+            IRepositoryFactory repositoryFactory,
             string tableName,
             string nameIdentifier)
             : base(cloudStorageServices.CloudTableClient)
@@ -38,13 +38,14 @@ namespace BrainThud.Web.Data.AzureTableStorage
             this.cardDeckKeyGenerator = cardDeckKeyGenerator;
             this.quizResultKeyGenerator = quizResultKeyGenerator;
             this.userConfigurationKeyGenerator = userConfigurationKeyGenerator;
+            this.repositoryFactory = repositoryFactory;
             this.tableName = tableName;
             this.nameIdentifier = nameIdentifier;
             this.IgnoreResourceNotFoundException = true;
-            this.cards = new Lazy<ICardRepository>(() => new CardRepository(this, this.cardKeyGenerator, this.QuizCalendar, this.nameIdentifier));
-            this.cardDecks = new Lazy<ICardDeckRepository>(() => new CardDeckRepository(this, this.cardDeckKeyGenerator, this.nameIdentifier));
-            this.quizResults = new Lazy<IQuizResultsRepository>(() => new QuizResultsRepository(this, this.quizResultKeyGenerator, this.nameIdentifier));
-            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => new UserConfigurationRepository(this, this.userConfigurationKeyGenerator, this.nameIdentifier));
+            this.cards = new Lazy<ICardRepository>(() => this.repositoryFactory.CreateRepository<CardRepository>(this, this.cardKeyGenerator, this.nameIdentifier));
+            this.cardDecks = new Lazy<ICardDeckRepository>(() => this.repositoryFactory.CreateRepository<CardDeckRepository>(this, this.cardDeckKeyGenerator, this.nameIdentifier));
+            this.quizResults = new Lazy<IQuizResultsRepository>(() => this.repositoryFactory.CreateRepository<QuizResultsRepository>(this, this.quizResultKeyGenerator, this.nameIdentifier));
+            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => this.repositoryFactory.CreateRepository<UserConfigurationRepository>(this, this.userConfigurationKeyGenerator, this.nameIdentifier));
             this.masterConfigurations = new Lazy<ITableStorageRepository<MasterConfiguration>>(() => new TableStorageRepository<MasterConfiguration>(this));
         }
 
@@ -105,6 +106,20 @@ namespace BrainThud.Web.Data.AzureTableStorage
         public bool Detach(TableServiceEntity entity)
         {
             return base.Detach(entity);
+        }
+
+        public void UpdateCardAndRelations(Card card)
+        {
+            var originalCard = this.Cards.Get(card.PartitionKey, card.RowKey);
+            this.Detach(originalCard);
+
+            if (originalCard.DeckName != card.DeckName)
+            {
+                this.CardDecks.RemoveCardFromCardDeck(originalCard);
+                this.CardDecks.AddCardToCardDeck(card);
+            }
+
+            this.Cards.Update(card);
         }
     }
 }

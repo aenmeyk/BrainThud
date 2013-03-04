@@ -2,6 +2,7 @@
 using BrainThud.Web;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
+using BrainThud.Web.Data.Repositories;
 using BrainThudTest.Builders;
 using Moq;
 using NUnit.Framework;
@@ -18,6 +19,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
             this.CardDeckKeyGenerator = new Mock<ICardEntityKeyGenerator>();
             this.QuizResultKeyGenerator = new Mock<ICardEntityKeyGenerator>();
             this.UserConfigurationKeyGenerator = new Mock<ICardEntityKeyGenerator>();
+            this.RepositoryFactory = new Mock<IRepositoryFactory>();
 
             this.TableStorageContext = new TableStorageContext(
                 this.CloudStorageServices.Object,
@@ -25,6 +27,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
                 this.CardDeckKeyGenerator.Object,
                 this.QuizResultKeyGenerator.Object,
                 this.UserConfigurationKeyGenerator.Object,
+                this.RepositoryFactory.Object,
                 AzureTableNames.CARD,
                 TestValues.NAME_IDENTIFIER);
         }
@@ -34,6 +37,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.AzureTableStorageTest.TableStorag
         protected Mock<ICardEntityKeyGenerator> CardDeckKeyGenerator { get; private set; }
         protected Mock<ICardEntityKeyGenerator> QuizResultKeyGenerator { get; private set; }
         protected Mock<ICardEntityKeyGenerator> UserConfigurationKeyGenerator { get; private set; }
+        protected Mock<IRepositoryFactory> RepositoryFactory { get; private set; }
         protected Mock<ICloudStorageServices> CloudStorageServices { get; private set; }
     }
 }

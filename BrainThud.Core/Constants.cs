@@ -20,7 +20,8 @@ namespace BrainThud.Core
         public const string API_QUIZ_CARDS = "ApiQuizCards";
         public const string API_CARD_DECK_CARDS = "ApiCardDeckCards";
         public const string API_QUIZ_RESULTS = "ApiQuizResults";
-        public const string API_CARDS = "ApiCards";
+        public const string API_CARDS = "ApiCard";
+        public const string API_CARDS_BATCH = "ApiCardsBatch";
         public const string API_CARD_DECKS = "ApiCardDecks";
         public const string API_DEFAULT = "ApiDefault";
         public const string DEFAULT = "Default";

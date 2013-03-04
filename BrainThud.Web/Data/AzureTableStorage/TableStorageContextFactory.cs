@@ -1,5 +1,6 @@
 ﻿using BrainThud.Core;
 using BrainThud.Web.Data.KeyGenerators;
+using BrainThud.Web.Data.Repositories;
 
 namespace BrainThud.Web.Data.AzureTableStorage
 {
@@ -10,19 +11,22 @@ namespace BrainThud.Web.Data.AzureTableStorage
         private readonly ICardEntityKeyGenerator cardDeckKeyGenerator;
         private readonly ICardEntityKeyGenerator quizResultKeyGenerator;
         private readonly ICardEntityKeyGenerator userConfigurationKeyGenerator;
+        private readonly IRepositoryFactory repositoryFactory;
 
         public TableStorageContextFactory(
             ICloudStorageServices cloudStorageServices,
             ICardEntityKeyGenerator cardKeyGenerator,
             ICardEntityKeyGenerator cardDeckKeyGenerator,
             ICardEntityKeyGenerator quizResultKeyGenerator,
-            ICardEntityKeyGenerator userConfigurationKeyGenerator)
+            ICardEntityKeyGenerator userConfigurationKeyGenerator,
+            IRepositoryFactory repositoryFactory)
         {
             this.cardKeyGenerator = cardKeyGenerator;
             this.cardDeckKeyGenerator = cardDeckKeyGenerator;
             this.cloudStorageServices = cloudStorageServices;
             this.quizResultKeyGenerator = quizResultKeyGenerator;
             this.userConfigurationKeyGenerator = userConfigurationKeyGenerator;
+            this.repositoryFactory = repositoryFactory;
         }
 
         public ITableStorageContext CreateTableStorageContext(string tableName, string nameIdentifier = NameIdentifiers.MASTER)
@@ -33,6 +37,7 @@ namespace BrainThud.Web.Data.AzureTableStorage
                 this.cardDeckKeyGenerator,
                 this.quizResultKeyGenerator,
                 this.userConfigurationKeyGenerator,
+                this.repositoryFactory,
                 tableName, 
                 nameIdentifier);
         }

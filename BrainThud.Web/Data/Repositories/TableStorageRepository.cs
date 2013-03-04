@@ -6,19 +6,11 @@ using BrainThud.Web.Data.KeyGenerators;
 
 namespace BrainThud.Web.Data.Repositories
 {
-    public class TableStorageRepository<T> : ITableStorageRepository<T> where T : AzureTableEntity
+    public class TableStorageRepository<T> : TableStorageRepositoryBase, ITableStorageRepository<T> where T : AzureTableEntity
     {
-        private readonly Lazy<int> userId;
+        public TableStorageRepository(ITableStorageContext tableStorageContext) : base(tableStorageContext){}
 
-        public TableStorageRepository(ITableStorageContext tableStorageContext)
-        {
-            this.TableStorageContext = tableStorageContext;
-            this.userId = new Lazy<int>(() => this.TableStorageContext.UserConfigurations.GetByNameIdentifier().UserId);
-        }
-
-        protected ITableStorageContext TableStorageContext { get; private set; }
         protected virtual IQueryable<T> EntitySet { get { return this.TableStorageContext.CreateQuery<T>(); } }
-        protected int UserId { get { return this.userId.Value; } }
 
         protected void SetKeyValues(T entity, ITableStorageKeyGenerator keyGenerator)
         {
