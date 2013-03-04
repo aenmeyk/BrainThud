@@ -8,8 +8,16 @@
             }),
 
             activate = function (routeData) {
+                if (routeData.cardId === 'batch') {
+                    setupBatchEdit();
+                } else {
+                    setupSingleCardEdit(routeData);
+                }
+            },
+            
+            setupSingleCardEdit = function (routeData) {
                 var found;
-                
+
                 dataService.card.getSingle({
                     params: {
                         userId: global.userId,
@@ -17,7 +25,7 @@
                     },
                     success: function (dto) {
                         found = modelMapper.card.mapResult(dto);
-                        
+
                         if (found) {
                             card(found);
                         } else {
@@ -27,6 +35,41 @@
                         editor.refreshPreview('edit');
                     }
                 });
+            },
+            
+            setupBatchEdit = function () {
+                card(new model.Card());
+                
+                var batchCards = _.filter(cardManager.cards(), function (item) {
+                    return item.isCheckedForBatch();
+                });
+
+                if (batchCards && batchCards.length > 0) {
+                    var differentValueText = '__________';
+                    var firstCard = batchCards[0];
+                    card().deckName(firstCard.deckName());
+                    card().tags(firstCard.tags());
+                    card().question(firstCard.question());
+                    card().answer(firstCard.answer());
+
+                    for (var i = 0; i < batchCards.length; i++) {
+                        var currentCard = batchCards[i];
+                        if (currentCard.deckName() !== card().deckName()) {
+                            card().deckName(differentValueText);
+                        }
+                        if (currentCard.tags() !== card().tags()) {
+                            card().tags(differentValueText);
+                        }
+                        if (currentCard.question() !== card().question()) {
+                            card().question(differentValueText);
+                        }
+                        if (currentCard.answer() !== card().answer()) {
+                            card().answer(differentValueText);
+                        }
+                    }
+
+                    editor.refreshPreview('edit');
+                }
             },
 
             updateAndCloseCommand = ko.asyncCommand({

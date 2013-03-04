@@ -31,9 +31,9 @@
                 <div class="btn-group batch-button">
                     <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown" data-bind="disable: !isCheckedForBatch()">Batch <span class="caret"></span></button>
                     <ul class="dropdown-menu">
-@*                        <li><a href="#">Edit</a></li>*@
+                        <li><a data-bind="click: batchEdit">Edit Multiple</a></li>
                         <li><a data-bind="click: showDeleteBatchDialog">Delete</a></li>
-@*                        <li class="divider"></li>*@
+                        <li class="divider"></li>
                         <li><a data-bind="click: flipAll">Flip</a></li>
                     </ul>
                 </div>

@@ -101,6 +101,10 @@
                 cardManager.showCardInfo(card);
             },
 
+            batchEdit = function () {
+                router.navigateTo(global.routePrefix + 'cards/batch/edit');
+            },
+
             showDeleteBatchDialog = function () {
                 cardManager.deleteCardBatch(batchCards());
             },
@@ -135,6 +139,7 @@
             toggleIsCheckedForBatch: toggleIsCheckedForBatch,
             updateAreBatchItemsSelected: updateAreBatchItemsSelected,
             showDeleteDialog: showDeleteDialog,
+            batchEdit: batchEdit,
             showDeleteBatchDialog: showDeleteBatchDialog,
             showCardInfoDialog: showCardInfoDialog,
             flipAll: flipAll
