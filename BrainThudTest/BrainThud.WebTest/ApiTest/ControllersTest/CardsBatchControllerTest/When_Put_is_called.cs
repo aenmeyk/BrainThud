@@ -12,18 +12,12 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsBatchCont
     [TestFixture]
     public class When_Put_is_called : Given_a_new_CardsBatchController
     {
-        private readonly Card originalCard = new Card();
         private HttpResponseMessage response;
         private IList<Card> cards;
 
         public override void When()
         {
             this.cards = Builder<Card>.CreateListOfSize(10).Build();
-
-            this.TableStorageContext
-                .Setup(x => x.Cards.Get(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(this.originalCard);
-
             this.response = this.CardsBatchController.Put(this.cards);
         }
 
@@ -43,41 +37,18 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsBatchCont
         }
 
         [Test]
-        public void Then_Update_should_be_called_on_the_card_repository_for_each_card()
-        {
-            foreach (var card in cards)
-            {
-                var item = card;
-                this.TableStorageContext.Verify(x => x.Cards.Update(item), Times.Once());
-            }
-        }
-
-        [Test]
         public void Then_Commit_is_called_on_the_TableStorageContext()
         {
             this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
         }
 
         [Test]
-        public void Then_the_original_card_deck_name_is_removed_from_each_card()
+        public void Then_all_Cards_and_related_items_should_be_updated()
         {
-            this.TableStorageContext.Verify(x => 
-                x.CardDecks.RemoveCardFromCardDeck(this.originalCard), Times.Exactly(this.cards.Count));
-        }
-
-        [Test]
-        public void Then_the_original_card_should_be_detached()
-        {
-            this.TableStorageContext.Verify(x => x.Detach(this.originalCard), Times.Exactly(this.cards.Count));
-        }
-
-        [Test]
-        public void Then_the_new_card_deck_name_is_added()
-        {
-            foreach (var card in cards)
+            foreach(var card in cards)
             {
-                var item = card;
-                this.TableStorageContext.Verify(x => x.CardDecks.AddCardToCardDeck(item));
+                var cardItem = card;
+                this.TableStorageContext.Verify(x => x.UpdateCardAndRelations(cardItem), Times.Once());
             }
         }
     }

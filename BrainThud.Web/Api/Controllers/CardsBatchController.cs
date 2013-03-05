@@ -32,16 +32,7 @@ namespace BrainThud.Web.Api.Controllers
 
                 foreach(var card in cardList)
                 {
-                    var originalCard = this.TableStorageContext.Cards.Get(card.PartitionKey, card.RowKey);
-                    this.TableStorageContext.Detach(originalCard);
-
-                    if(originalCard.DeckName != card.DeckName)
-                    {
-                        this.TableStorageContext.CardDecks.RemoveCardFromCardDeck(originalCard);
-                        this.TableStorageContext.CardDecks.AddCardToCardDeck(card);
-                    }
-
-                    this.TableStorageContext.Cards.Update(card);
+                    this.TableStorageContext.UpdateCardAndRelations(card);
                 }
 
                 this.TableStorageContext.Commit();
