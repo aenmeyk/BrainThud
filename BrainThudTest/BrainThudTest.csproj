@@ -222,6 +222,7 @@
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageContextTest\When_nothing_changes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardDeckRepositoryTest\When_AddCardToCardDeck_is_called_twice_for_the_same_DeckName.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardDeckRepositoryTest\When_AddCardToCardDeck_is_called_and_the_card_DeckName_is_null.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardDeckRepositoryTest\When_RemoveFromCardDeck_is_called_and_the_card_deck_does_not_exist.cs" />
     <Compile Include="BrainThud.WebTest\Data\RepositoriesTest\CardDeckRepositoryTest\When_RemoveFromCardDeck_is_called_and_cards_remain_in_the_deck.cs" />

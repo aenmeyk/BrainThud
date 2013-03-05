@@ -49,7 +49,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.CardDeckReposito
         }
 
         [Test]
-        public void Then_the_EntityId_is_added_to_the_lsit_of_CardIds()
+        public void Then_the_EntityId_is_added_to_the_list_of_CardIds()
         {
             this.VerifyPropertySet(x => x.CardIds.Contains(this.card.EntityId.ToString()));
         }

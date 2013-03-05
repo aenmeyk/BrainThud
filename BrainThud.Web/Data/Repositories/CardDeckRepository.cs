@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using BrainThud.Core;
 using BrainThud.Core.Models;
 using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Extensions;
-using System.Linq;
 
 namespace BrainThud.Web.Data.Repositories
 {
@@ -41,6 +39,8 @@ namespace BrainThud.Web.Data.Repositories
                 };
 
                 this.Add(cardDeck);
+
+                // Keep track of the card decks we have added in this transaction so that we don't create duplicates
                 this.cardDecksAdded.Add(cardDeck.DeckName, cardDeck);
             }
             else
