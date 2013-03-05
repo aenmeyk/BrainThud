@@ -17,11 +17,12 @@ namespace BrainThud.Web.Data.Repositories
             this.identityQueueManager = identityQueueManager;
         }
 
-        public T CreateRepository<T>(ITableStorageContext tableStorageContext, string rowType, string nameIdentifier)
-            where T : TableStorageRepositoryBase
+        public TReturn CreateRepository<TRepository, TReturn>(ITableStorageContext tableStorageContext, string rowType, string nameIdentifier)
+            where TRepository : TableStorageRepositoryBase
         {
+//            var concrete = typeof(T).Assembly.GetTypes().First(x => !x.IsInterface && !x.IsAbstract && typeof(T).IsAssignableFrom(x));
             var cardEntityKeyGenerator = new CardEntityKeyGenerator(this.authenticationHelper, this.identityQueueManager, rowType);
-            return (T)Activator.CreateInstance(typeof(T), tableStorageContext, cardEntityKeyGenerator, nameIdentifier);
+            return (TReturn)Activator.CreateInstance(typeof(TRepository), tableStorageContext, cardEntityKeyGenerator, nameIdentifier);
         }
     }
 }

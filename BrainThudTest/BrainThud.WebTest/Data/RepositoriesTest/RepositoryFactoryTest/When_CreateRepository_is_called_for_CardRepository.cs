@@ -8,11 +8,11 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.RepositoryFactor
     [TestFixture]
     public class When_CreateRepository_is_called_for_CardRepository : Given_a_new_RepositoryFactory
     {
-        private CardRepository respository;
+        private ICardRepository respository;
 
         public override void When()
         {
-            this.respository = this.RepositoryFactory.CreateRepository<CardRepository>(
+            this.respository = this.RepositoryFactory.CreateRepository<CardRepository, ICardRepository>(
                 this.TableStorageContext.Object,
                 CardRowTypes.CARD,
                 TestValues.NAME_IDENTIFIER);
@@ -21,7 +21,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.RepositoryFactor
         [Test]
         public void Then_a_CardRepository_should_be_returned()
         {
-            this.respository.Should().BeAssignableTo<CardRepository>();
+            this.respository.Should().BeAssignableTo<ICardRepository>();
         }
     }
 }

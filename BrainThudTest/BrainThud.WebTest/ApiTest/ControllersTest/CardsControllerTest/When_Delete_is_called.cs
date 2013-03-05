@@ -6,7 +6,6 @@ using FizzWare.NBuilder;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
-using System.Linq;
 
 namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControllerTest
 {
@@ -23,16 +22,6 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         }
 
         [Test]
-        public void Then_all_cards_should_be_deleted_using_the_TableStorageContext()
-        {
-            foreach(var card in cards)
-            {
-                var cardItem = card;
-                this.TableStorageContext.Verify(x => x.Cards.DeleteById(cardItem.UserId, cardItem.EntityId), Times.Once());
-            }
-        }
-
-        [Test]
         public void Then_Commit_is_called_on_the_cards_repository()
         {
             this.TableStorageContext.Verify(x => x.Commit(), Times.Once());
@@ -45,21 +34,12 @@ namespace BrainThudTest.BrainThud.WebTest.ApiTest.ControllersTest.CardsControlle
         }
 
         [Test]
-        public void Then_the_associated_QuizResults_are_deleted()
+        public void Then_all_cards_should_be_deleted_using_the_TableStorageContext()
         {
-            foreach (var card in cards)
+            foreach(var card in cards)
             {
-                this.TableStorageContext.Verify(x => x.QuizResults.DeleteByCardId(card.EntityId), Times.Once());
-            }
-        }
-
-        [Test]
-        public void Then_RemoveCardFromCardDeck_is_called()
-        {
-            foreach (var card in cards)
-            {
-                var item = card;
-                this.TableStorageContext.Verify(x => x.CardDecks.RemoveCardFromCardDeck(item));
+                var cardItem = card;
+                this.TableStorageContext.Verify(x => x.DeleteCardAndRelations(cardItem), Times.Once());
             }
         }
     }

@@ -201,6 +201,7 @@
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueManagerTest\When_GetNextIdentity_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueManagerTest\Given_a_new_IdentityQueueManager.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureQueuesTest\IdentityQueueManagerTest\When_nothing_changes.cs" />
+    <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageContextTest\Delete.cs" />
     <Compile Include="BrainThud.WebTest\Data\AzureTableStorageTest\TableStorageContextTest\When_UpdateCardAndRelations_is_called.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\CardKeyGeneratorTest\When_GetPartitionKey_is_called_with_a_NameIdentifier_and_a_UserId.cs" />
     <Compile Include="BrainThud.WebTest\Data\KeyGeneratorsTest\CardKeyGeneratorTest\When_GetPartitionKey_is_called_with_a_UserId.cs" />

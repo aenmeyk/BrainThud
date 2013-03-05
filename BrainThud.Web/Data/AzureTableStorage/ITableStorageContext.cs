@@ -22,5 +22,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
         bool Detach(TableServiceEntity entity);
         void CommitBatch();
         void UpdateCardAndRelations(Card card);
+        void DeleteCardAndRelations(Card card);
     }
 }

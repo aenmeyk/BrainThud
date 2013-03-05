@@ -30,10 +30,10 @@ namespace BrainThud.Web.Data.AzureTableStorage
             this.tableName = tableName;
             this.nameIdentifier = nameIdentifier;
             this.IgnoreResourceNotFoundException = true;
-            this.cards = new Lazy<ICardRepository>(() => this.repositoryFactory.CreateRepository<CardRepository>(this, CardRowTypes.CARD, this.nameIdentifier));
-            this.cardDecks = new Lazy<ICardDeckRepository>(() => this.repositoryFactory.CreateRepository<CardDeckRepository>(this, CardRowTypes.CARD_DECK, this.nameIdentifier));
-            this.quizResults = new Lazy<IQuizResultsRepository>(() => this.repositoryFactory.CreateRepository<QuizResultsRepository>(this, CardRowTypes.QUIZ_RESULT, this.nameIdentifier));
-            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => this.repositoryFactory.CreateRepository<UserConfigurationRepository>(this, CardRowTypes.CONFIGURATION, this.nameIdentifier));
+            this.cards = new Lazy<ICardRepository>(() => this.repositoryFactory.CreateRepository<CardRepository, ICardRepository>(this, CardRowTypes.CARD, this.nameIdentifier));
+            this.cardDecks = new Lazy<ICardDeckRepository>(() => this.repositoryFactory.CreateRepository<CardDeckRepository, ICardDeckRepository>(this, CardRowTypes.CARD_DECK, this.nameIdentifier));
+            this.quizResults = new Lazy<IQuizResultsRepository>(() => this.repositoryFactory.CreateRepository<QuizResultsRepository, IQuizResultsRepository>(this, CardRowTypes.QUIZ_RESULT, this.nameIdentifier));
+            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => this.repositoryFactory.CreateRepository<UserConfigurationRepository, IUserConfigurationRepository>(this, CardRowTypes.CONFIGURATION, this.nameIdentifier));
             this.masterConfigurations = new Lazy<ITableStorageRepository<MasterConfiguration>>(() => new TableStorageRepository<MasterConfiguration>(this));
         }
 
@@ -108,6 +108,13 @@ namespace BrainThud.Web.Data.AzureTableStorage
             }
 
             this.Cards.Update(card);
+        }
+
+        public void DeleteCardAndRelations(Card card)
+        {
+            this.Cards.DeleteById(card.UserId, card.EntityId);
+            this.CardDecks.RemoveCardFromCardDeck(card);
+            this.QuizResults.DeleteByCardId(card.EntityId);
         }
     }
 }

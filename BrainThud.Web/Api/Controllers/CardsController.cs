@@ -106,9 +106,7 @@ namespace BrainThud.Web.Api.Controllers
             {
                 foreach (var card in cards)
                 {
-                    this.TableStorageContext.Cards.DeleteById(card.UserId, card.EntityId);
-                    this.TableStorageContext.CardDecks.RemoveCardFromCardDeck(card);
-                    this.TableStorageContext.QuizResults.DeleteByCardId(card.EntityId);
+                    this.TableStorageContext.DeleteCardAndRelations(card);
                 }
 
                 this.TableStorageContext.Commit();
