@@ -81,7 +81,7 @@
                     var updateCommand;
 
                     if (isBatch) {
-                        updateCommand = new Array();
+                        var cards = new Array();
                         var masterCard = card();
                         for (var i = 0; i < batchCards.length; i++) {
                             var batchCard = batchCards[i];
@@ -99,15 +99,17 @@
                             }
 
                             var jsCard = ko.toJS(batchCard);
-                            updateCommand[i] = cardManager.updateCard(jsCard);
+                            cards.push(jsCard);
                         }
+                        
+                        updateCommand = cardManager.updateCardBatch(cards);
                     } else {
                         var item = ko.toJS(card);
                         dom.getCardValues(item, 'edit');
                         updateCommand = [cardManager.updateCard(item)];
                     }
 
-                    $.when.apply(null, updateCommand)
+                    $.when(updateCommand)
                     .done(function () {
                         router.navigateTo(global.previousUrl);
                     })

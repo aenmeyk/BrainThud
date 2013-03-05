@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using BrainThud.Core;
 using BrainThud.Core.Models;
@@ -11,13 +13,18 @@ namespace BrainThud.Web.Data.Repositories
 {
     public class CardDeckRepository : CardEntityRepository<CardDeck>, ICardDeckRepository
     {
+        private readonly IDictionary<string, CardDeck> cardDecksAdded = new Dictionary<string, CardDeck>();
+
         public CardDeckRepository(ITableStorageContext tableStorageContext, ICardEntityKeyGenerator cardKeyGenerator, string nameIdentifier)
             : base(tableStorageContext, cardKeyGenerator, nameIdentifier, CardRowTypes.CARD_DECK) { }
 
         public void AddCardToCardDeck(Card card)
         {
             if (string.IsNullOrEmpty(card.DeckName)) return;
-            var existingCardDeck = this.GetExistingCardDeck(card);
+            var existingCardDeck = this.cardDecksAdded.ContainsKey(card.DeckName) 
+                ? this.cardDecksAdded[card.DeckName]
+                : this.GetExistingCardDeck(card);
+
             var cardId = card.EntityId.ToString(CultureInfo.InvariantCulture);
 
             // If a card deck with this name doesn't already exist, then create it
@@ -34,6 +41,7 @@ namespace BrainThud.Web.Data.Repositories
                 };
 
                 this.Add(cardDeck);
+                this.cardDecksAdded.Add(cardDeck.DeckName, cardDeck);
             }
             else
             {

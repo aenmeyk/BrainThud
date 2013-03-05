@@ -145,6 +145,28 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
             return def;
         },
 
+        updateCardBatch = function (cardItems) {
+            var def = new $.Deferred();
+
+            $.when(dataContext.card.updateBatch({
+                params: {
+                    userId: global.userId
+                },
+                data: cardItems
+            })).done(function () {
+                dataContext.quizCard.setCacheInvalid();
+                dataContext.cardDeck.setCacheInvalid();
+                $.when(refreshCards())
+                .done(function() {
+                    def.resolve();
+                });
+            }).fail(function() {
+                def.reject();
+            });
+
+            return def;
+        },
+
         deleteCard = function (card, callback) {
             var data = new Array();
             data[0] = ko.toJS(card);
@@ -213,6 +235,7 @@ function ($, ko, dataContext, global, _, dataService, modelMapper, cardInfo) {
         getCardDecks: getCardDecks,
         createCard: createCard,
         updateCard: updateCard,
+        updateCardBatch: updateCardBatch,
         deleteCard: deleteCard,
         deleteCardBatch: deleteCardBatch,
         showCardInfo: showCardInfo,

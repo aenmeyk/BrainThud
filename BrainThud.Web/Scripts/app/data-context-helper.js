@@ -91,6 +91,39 @@
                     });
                 },
                 
+                updateBatch = function (options) {
+                    return $.Deferred(function (def) {
+                        entitySetConfig.updateBatch({
+                            data: options.data,
+                            params: options.params,
+                            success: function (dto) {
+//                                var updatedItems = [];
+//                                entitySetConfig.mapper.mapResults(dto, updatedItems);
+//                                if (cachedResults && cachedResults.length > 0) {
+//                                    for (var j = 0; j < updatedItems.length; j++) {
+//                                        for (var i = 0; i < cachedResults.length; i++) {
+//                                            if (cachedResults[i].partitionKey() === updatedItems[j].partitionKey && cachedResults[i].rowKey() === updatedItems[j].rowKey) {
+//                                                cachedResults[i] = updatedItems[j];
+//                                                break;
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                                
+//                                options.data.dirtyFlag().reset();
+                                if (entitySetConfig.showSuccessToastr) toastr.success('Success!');
+//                                if (options.callback) options.callback(updatedItems);
+                                //                                def.resolve(updatedItems);
+                                setCacheInvalid();
+                                def.resolve();
+                            },
+                            error: function (xhr) {
+                                handleError(def, xhr);
+                            }
+                        });
+                    });
+                },
+                
                 deleteData = function (options) {
                     return $.Deferred(function (def) {
                         entitySetConfig.deleteItem({
@@ -173,6 +206,7 @@
                 getData: getData,
                 createData: createData,
                 updateData: updateData,
+                updateBatch: updateBatch,
                 deleteData: deleteData,
                 updateCachedItem: updateCachedItem,
                 removeCachedItem: removeCachedItem,

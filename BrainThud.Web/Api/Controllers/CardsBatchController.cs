@@ -32,11 +32,12 @@ namespace BrainThud.Web.Api.Controllers
 
                 foreach(var card in cardList)
                 {
+                    // TODO: This operation is done in multiple transactions so that duplicate card decks
+                    // are not created.  Figure out a way to do this in a single transaction.
                     this.TableStorageContext.UpdateCardAndRelations(card);
                 }
 
                 this.TableStorageContext.Commit();
-
                 return this.Request.CreateResponse(HttpStatusCode.OK, cardList);
             }
 

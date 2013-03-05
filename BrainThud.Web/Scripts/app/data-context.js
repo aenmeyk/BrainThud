@@ -12,6 +12,7 @@
                 get: dataService.card.get,
                 create: dataService.card.create,
                 update: dataService.card.update,
+                updateBatch: dataService.card.updateBatch,
                 deleteItem: dataService.card.deleteItem,
                 mapper: modelMapper.card,
                 showSuccessToastr: true

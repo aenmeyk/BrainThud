@@ -1,5 +1,5 @@
-﻿define('data-service.card', ['amplify', 'config', 'moment'],
-    function (amplify, config, moment) {
+﻿define('data-service.card', ['amplify', 'config', 'moment', 'underscore'],
+    function (amplify, config, moment, _) {
         var
             init = function() {
                 amplify.request.define('getCards', 'ajax', {
@@ -32,6 +32,15 @@
                     dataType: 'json',
                     type: 'PUT',
                     contentType: 'application/json; charset=utf-8'
+                });
+                amplify.request.define('updateCardBatch', 'ajax', {
+                    url: config.routes.cardsBatch,
+                    dataType: 'json',
+                    type: 'PUT',
+                    contentType: 'application/json; charset=utf-8',
+                    dataMap: function(data) {
+                        return data.body;
+                    }
                 });
                 amplify.request.define('deleteCards', 'ajax', {
                     url: config.routes.cards,
@@ -95,6 +104,20 @@
                 });
             },
 
+            updateBatch = function (options) {
+                var content = {
+                    userIdPath: options.params.userId,
+                    body: JSON.stringify(options.data)
+                };
+
+                return amplify.request({
+                    resourceId: 'updateCardBatch',
+                    data: content,
+                    success: options.success,
+                    error: options.error
+                });
+            },
+
             // The $.extend( true, {}, defnSettings.data, data ) call that Amplify.js makes converts
             // an array to an object.  This prevents the serialized value from being received by MVC.
             // For deleteCards, the data is stringified before the Amplify.js call.
@@ -115,6 +138,7 @@
             getForQuiz: getForQuiz,
             create: create,
             update: update,
+            updateBatch: updateBatch,
             deleteItem: deleteItem
         };
     }

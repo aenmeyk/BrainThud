@@ -24,7 +24,8 @@
 
             routes = {
                 userConfiguration: '/api/config',
-                cards: '/api/cards',
+                cards: '/api/cards/{userIdPath}/{cardIdPath}',
+                cardsBatch: '/api/cards/{userIdPath}',
                 cardDeckCards: '/api/card-decks/{userIdPath}/{deckNameSlugPath}',
                 cardDecks: '/api/card-decks/{userIdPath}',
                 card: '/api/cards/{userIdPath}/{entityIdPath}',
