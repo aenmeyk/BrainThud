@@ -3,11 +3,11 @@ using BrainThud.Web.Data.AzureQueues;
 
 namespace BrainThud.Web.Data.KeyGenerators
 {
-    public abstract class CardEntityKeyGenerator : ICardEntityKeyGenerator
+    public class CardEntityKeyGenerator : ICardEntityKeyGenerator
     {
         private readonly IAuthenticationHelper authenticationHelper;
 
-        protected CardEntityKeyGenerator(
+        public CardEntityKeyGenerator(
             IAuthenticationHelper authenticationHelper,
             IIdentityQueueManager identityQueueManager,
             string rowType)

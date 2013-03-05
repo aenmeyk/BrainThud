@@ -1,4 +1,6 @@
-﻿using BrainThud.Web.Data.AzureTableStorage;
+﻿using BrainThud.Web.Authentication;
+using BrainThud.Web.Data.AzureQueues;
+using BrainThud.Web.Data.AzureTableStorage;
 using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
 using Moq;
@@ -13,7 +15,9 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.RepositoryFactor
         {
             this.TableStorageContext = new Mock<ITableStorageContext>();
             this.CardEntityKeyGenerator = new Mock<ICardEntityKeyGenerator>();
-            this.RepositoryFactory = new RepositoryFactory();
+            this.RepositoryFactory = new RepositoryFactory(
+                new Mock<IAuthenticationHelper>().Object,
+                new Mock<IIdentityQueueManager>().Object);
         }
 
         protected Mock<ICardEntityKeyGenerator> CardEntityKeyGenerator { get; set; }

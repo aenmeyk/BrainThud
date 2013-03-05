@@ -200,7 +200,6 @@
     <Compile Include="Data\AzureQueues\IIdentityQueueSeeder.cs" />
     <Compile Include="Data\Repositories\CardDeckRepository.cs" />
     <Compile Include="Data\AzureTableStorage\CloudStorageServices.cs" />
-    <Compile Include="Data\KeyGenerators\CardDeckKeyGenerator.cs" />
     <Compile Include="Data\Repositories\IRepositoryFactory.cs" />
     <Compile Include="Data\Repositories\TableStorageRepositoryBase.cs" />
     <Compile Include="Data\Repositories\ICardDeckRepository.cs" />
@@ -208,9 +207,7 @@
     <Compile Include="Data\AzureTableStorage\ITableStorageContext.cs" />
     <Compile Include="Data\AzureTableStorage\ITableStorageContextFactory.cs" />
     <Compile Include="Data\KeyGenerators\CardEntityKeyGenerator.cs" />
-    <Compile Include="Data\KeyGenerators\UserConfigurationKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\ICardEntityKeyGenerator.cs" />
-    <Compile Include="Data\KeyGenerators\QuizResultKeyGenerator.cs" />
     <Compile Include="Data\Repositories\CardEntityRepository.cs" />
     <Compile Include="Data\Repositories\CardRepository.cs" />
     <Compile Include="Data\Repositories\ICardRepository.cs" />
@@ -224,7 +221,6 @@
     <Compile Include="Data\Repositories\RepositoryFactory.cs" />
     <Compile Include="Data\Repositories\TableStorageRepository.cs" />
     <Compile Include="Data\Repositories\IRepository.cs" />
-    <Compile Include="Data\KeyGenerators\CardKeyGenerator.cs" />
     <Compile Include="Data\KeyGenerators\ITableStorageKeyGenerator.cs" />
     <Compile Include="Data\Repositories\UserConfigurationRepository.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />

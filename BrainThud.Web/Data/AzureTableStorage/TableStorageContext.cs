@@ -1,8 +1,8 @@
 using System;
 using System.Data.Services.Client;
 using System.Linq;
+using BrainThud.Core;
 using BrainThud.Core.Models;
-using BrainThud.Web.Data.KeyGenerators;
 using BrainThud.Web.Data.Repositories;
 using Microsoft.WindowsAzure.Storage.Table.DataServices;
 
@@ -10,10 +10,6 @@ namespace BrainThud.Web.Data.AzureTableStorage
 {
     public class TableStorageContext : TableServiceContext, ITableStorageContext
     {
-        private readonly ICardEntityKeyGenerator cardKeyGenerator;
-        private readonly ICardEntityKeyGenerator cardDeckKeyGenerator;
-        private readonly ICardEntityKeyGenerator quizResultKeyGenerator;
-        private readonly ICardEntityKeyGenerator userConfigurationKeyGenerator;
         private readonly IRepositoryFactory repositoryFactory;
         private readonly string tableName;
         private readonly string nameIdentifier;
@@ -25,27 +21,19 @@ namespace BrainThud.Web.Data.AzureTableStorage
 
         public TableStorageContext(
             ICloudStorageServices cloudStorageServices,
-            ICardEntityKeyGenerator cardKeyGenerator,
-            ICardEntityKeyGenerator cardDeckKeyGenerator,
-            ICardEntityKeyGenerator quizResultKeyGenerator,
-            ICardEntityKeyGenerator userConfigurationKeyGenerator,
             IRepositoryFactory repositoryFactory,
             string tableName,
             string nameIdentifier)
             : base(cloudStorageServices.CloudTableClient)
         {
-            this.cardKeyGenerator = cardKeyGenerator;
-            this.cardDeckKeyGenerator = cardDeckKeyGenerator;
-            this.quizResultKeyGenerator = quizResultKeyGenerator;
-            this.userConfigurationKeyGenerator = userConfigurationKeyGenerator;
             this.repositoryFactory = repositoryFactory;
             this.tableName = tableName;
             this.nameIdentifier = nameIdentifier;
             this.IgnoreResourceNotFoundException = true;
-            this.cards = new Lazy<ICardRepository>(() => this.repositoryFactory.CreateRepository<CardRepository>(this, this.cardKeyGenerator, this.nameIdentifier));
-            this.cardDecks = new Lazy<ICardDeckRepository>(() => this.repositoryFactory.CreateRepository<CardDeckRepository>(this, this.cardDeckKeyGenerator, this.nameIdentifier));
-            this.quizResults = new Lazy<IQuizResultsRepository>(() => this.repositoryFactory.CreateRepository<QuizResultsRepository>(this, this.quizResultKeyGenerator, this.nameIdentifier));
-            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => this.repositoryFactory.CreateRepository<UserConfigurationRepository>(this, this.userConfigurationKeyGenerator, this.nameIdentifier));
+            this.cards = new Lazy<ICardRepository>(() => this.repositoryFactory.CreateRepository<CardRepository>(this, CardRowTypes.CARD, this.nameIdentifier));
+            this.cardDecks = new Lazy<ICardDeckRepository>(() => this.repositoryFactory.CreateRepository<CardDeckRepository>(this, CardRowTypes.CARD_DECK, this.nameIdentifier));
+            this.quizResults = new Lazy<IQuizResultsRepository>(() => this.repositoryFactory.CreateRepository<QuizResultsRepository>(this, CardRowTypes.QUIZ_RESULT, this.nameIdentifier));
+            this.userConfigurations = new Lazy<IUserConfigurationRepository>(() => this.repositoryFactory.CreateRepository<UserConfigurationRepository>(this, CardRowTypes.CONFIGURATION, this.nameIdentifier));
             this.masterConfigurations = new Lazy<ITableStorageRepository<MasterConfiguration>>(() => new TableStorageRepository<MasterConfiguration>(this));
         }
 

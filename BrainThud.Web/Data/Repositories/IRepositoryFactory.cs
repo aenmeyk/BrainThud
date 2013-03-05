@@ -4,7 +4,7 @@ using BrainThud.Web.Data.KeyGenerators;
 namespace BrainThud.Web.Data.Repositories
 {
     public interface IRepositoryFactory {
-        T CreateRepository<T>(ITableStorageContext tableStorageContext, ICardEntityKeyGenerator cardEntityKeyGenerator, string nameIdentifier)
+        T CreateRepository<T>(ITableStorageContext tableStorageContext, string rowType, string nameIdentifier)
             where T : TableStorageRepositoryBase;
     }
 }

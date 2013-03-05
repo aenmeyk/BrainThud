@@ -1,4 +1,4 @@
-﻿using BrainThud.Core.Calendars;
+﻿using BrainThud.Core;
 using BrainThud.Web.Data.Repositories;
 using FluentAssertions;
 using NUnit.Framework;
@@ -14,7 +14,7 @@ namespace BrainThudTest.BrainThud.WebTest.Data.RepositoriesTest.RepositoryFactor
         {
             this.respository = this.RepositoryFactory.CreateRepository<CardRepository>(
                 this.TableStorageContext.Object,
-                this.CardEntityKeyGenerator.Object,
+                CardRowTypes.CARD,
                 TestValues.NAME_IDENTIFIER);
         }
 

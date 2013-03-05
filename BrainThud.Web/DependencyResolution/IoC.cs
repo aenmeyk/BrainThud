@@ -1,7 +1,5 @@
 using System.Web.Mvc;
 using BrainThud.Core.Calendars;
-using BrainThud.Web.Data.AzureTableStorage;
-using BrainThud.Web.Data.KeyGenerators;
 using StructureMap;
 
 namespace BrainThud.Web.DependencyResolution
@@ -20,18 +18,6 @@ namespace BrainThud.Web.DependencyResolution
 
                     x.For<IControllerFactory>().Use<DefaultControllerFactory>();
                     x.For<IQuizCalendar>().Use<DefaultQuizCalendar>();
-                    x.For<ITableStorageKeyGenerator>().Use<CardKeyGenerator>();
-
-                    var cardKeyGenerator = x.For<ICardEntityKeyGenerator>().Use<CardKeyGenerator>();
-                    var cardDeckKeyGenerator = x.For<ICardEntityKeyGenerator>().Use<CardDeckKeyGenerator>();
-                    var quizResultKeyGenerator = x.For<ICardEntityKeyGenerator>().Use<QuizResultKeyGenerator>();
-                    var userConfigurationKeyGenerator = x.For<ICardEntityKeyGenerator>().Use<UserConfigurationKeyGenerator>();
-
-                    x.For<ITableStorageContextFactory>().Use<TableStorageContextFactory>()
-                        .Ctor<ICardEntityKeyGenerator>("cardKeyGenerator").Is(cardKeyGenerator)
-                        .Ctor<ICardEntityKeyGenerator>("cardDeckKeyGenerator").Is(cardDeckKeyGenerator)
-                        .Ctor<ICardEntityKeyGenerator>("quizResultKeyGenerator").Is(quizResultKeyGenerator)
-                        .Ctor<ICardEntityKeyGenerator>("userConfigurationKeyGenerator").Is(userConfigurationKeyGenerator);
                 });
 
             return ObjectFactory.Container;

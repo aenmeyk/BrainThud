@@ -1,4 +1,5 @@
-﻿using BrainThud.Core.Models;
+﻿using BrainThud.Core;
+using BrainThud.Core.Models;
 using BrainThud.Web.Authentication;
 using BrainThud.Web.Data.AzureQueues;
 using BrainThud.Web.Data.AzureTableStorage;
@@ -33,14 +34,15 @@ namespace BrainThudTest.BrainThud.WebTest.Data.KeyGeneratorsTest.CardKeyGenerato
             this.IdentityQueueManager = new Mock<IIdentityQueueManager>();
             this.IdentityQueueManager.Setup(x => x.GetNextIdentity()).Returns(NEXT_IDENTITY_VALUE);
 
-            this.CardKeyGenerator = new CardKeyGenerator(
+            this.CardKeyGenerator = new CardEntityKeyGenerator(
                 authenticationHelper.Object,
-                this.IdentityQueueManager.Object);
+                this.IdentityQueueManager.Object,
+                CardRowTypes.CARD);
         }
 
         protected Mock<ITableStorageContextFactory> TableStorageContextFactory { get; set; }
         protected Mock<IIdentityQueueManager> IdentityQueueManager { get; set; }
         protected UserConfiguration UserConfiguration { get; set; }
-        protected CardKeyGenerator CardKeyGenerator { get; set; }
+        protected CardEntityKeyGenerator CardKeyGenerator { get; set; }
     }
 }
